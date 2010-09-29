@@ -1,6 +1,7 @@
-#include "Game.h"
 #include <windows.h>
 
+#include "Game.h"
+#include "..\Utility\Console.h"
 
 //Inicializa el juego
 bool cGame::Init()
@@ -29,6 +30,7 @@ void cGame::Render()
 {
 	
 		//OutputDebugString ();
+	std::cout << "aa";
 }
 
 

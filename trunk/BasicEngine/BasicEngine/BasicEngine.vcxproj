@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Utility\Console.h" />
     <ClInclude Include="Utility\Singleton.h" />
   </ItemGroup>
   <ItemGroup>
