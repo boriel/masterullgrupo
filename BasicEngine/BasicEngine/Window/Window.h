@@ -34,7 +34,7 @@ class cWindow
 	public:
 		bool Init (cApplicationProperties &lProperties);
 		void Update();
-		bool DeInit();
+		bool Deinit();
 
 };
 
