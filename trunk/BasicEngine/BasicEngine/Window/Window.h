@@ -44,6 +44,11 @@ class cWindow : public cSingleton<cWindow>
 		inline HWND GetHWND() { return mWnd; }
 		inline bool GetCloseApplication () { return mbCloseApplication; }
 
+		inline unsigned GetWidth() { return mProperties.muiWidth; }
+		inline unsigned GetHeight() { return mProperties.muiHeight; }
+		inline unsigned GetBpp() { return mProperties.muiBits; }
+		inline HDC &GetHDC() { return mDC; }
+
 		static LRESULT CALLBACK WndProc( HWND lWnd, UINT lMsg, WPARAM lWParam, LPARAM lLParam);
 
 };
