@@ -1,7 +1,9 @@
 #include <windows.h>
 
+
 #include "Game.h"
 #include "..\Utility\Console.h"
+
 
 //Inicializa el juego
 bool cGame::Init()
@@ -21,7 +23,12 @@ bool cGame::Deinit()
 //update del juego
 void cGame::Update(float lfTimestep)
 {
+	//std::string lsTime = "aaa";
 
+	//hacer el contador de 5 segundos
+
+	//OutputDebugString (lsTime.c_str());
+	
 }
 
 
@@ -29,8 +36,8 @@ void cGame::Update(float lfTimestep)
 void cGame::Render() 
 {
 	
-		//OutputDebugString ();
-	std::cout << "aa";
+	//Mostrar el contador
+	
 }
 
 
