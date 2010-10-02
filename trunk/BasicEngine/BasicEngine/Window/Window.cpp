@@ -138,13 +138,48 @@ bool cWindow::Init (cApplicationProperties &lProperties)
 //This function will update the window and respond to possible events come of it.
 void cWindow::Update()
 {
-
+		MSG lMsg;
+	// Is There A Message Waiting?
+	if (PeekMessage(&lMsg,NULL,0,0,PM_REMOVE))
+	{
+		// Have We Received A Quit Message?
+		if (lMsg.message==WM_QUIT)
+		{
+			//mbCloseApplication = true;  //YORMAN Comentado por ahora
+		}
+		else
+		{
+			TranslateMessage(&lMsg);
+			DispatchMessage(&lMsg);
+		}
+	}
 }
 
 
 //This function will eliminate the window
 bool cWindow::Deinit()
 {
+	if (mProperties.mbFullscreen)
+	{
+		// If So Switch Back To The Desktop Resolution
+		ChangeDisplaySettings(NULL,0);
+		ShowCursor(TRUE);
+		}
+		if (mDC && !ReleaseDC(mWnd, mDC))
+		{
+			mDC=NULL;
+			return false;
+		}
+		if (mWnd && !DestroyWindow(mWnd))
+		{
+			mWnd=NULL;
+			return false;
+		}
+		if (!UnregisterClass(mProperties.macApplicationName.c_str(), mInstance))
+		{
+			mInstance=NULL;
+			return false;
+		}
 	return true;
 }
 

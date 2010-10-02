@@ -16,12 +16,14 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 
 class cGame : public cSingleton<cGame>
 {
+		
 
 		friend class cSingleton<cGame>;
 	
 
 	private: 	//variables
 		bool mbFinished;
+		bool mbCloseApplication;
 	
 
 	protected:
@@ -37,6 +39,7 @@ class cGame : public cSingleton<cGame>
 
 		inline bool HasFinished() { return mbFinished; }  // Get if the game finished
 		inline void SetFinished (bool lbValue) { mbFinished = lbValue; }
+		inline bool GetCloseApplicaton () { return mbCloseApplication; }
 
 	private:  //métodos
 
