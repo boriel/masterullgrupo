@@ -19,6 +19,7 @@ Notes:
 
 #include <Windows.h>
 
+#include "ApplicationPropierties.h"
 
 class cWindow
 {
@@ -28,9 +29,10 @@ class cWindow
 
 
 	//public functions
-	bool Init (cApplicationPropierties &lPropierties);
-	void Update();
-	bool DeInit();
+	public:
+		bool Init (cApplicationPropierties &lPropierties);
+		void Update();
+		bool DeInit();
 
 };
 
