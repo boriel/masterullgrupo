@@ -7,6 +7,9 @@
     <Filter Include="Game">
       <UniqueIdentifier>{89d391f8-1382-4aa9-b4c4-4783782f2485}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Window">
+      <UniqueIdentifier>{762e5f4f-df1a-47a2-988f-f63d8a84cd4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -18,11 +21,20 @@
     <ClInclude Include="Utility\Console.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Window\ApplicationPropierties.h">
+      <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Window\Window.h">
+      <Filter>Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
       <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Window\Window.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
