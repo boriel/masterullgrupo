@@ -131,6 +131,10 @@ bool cWindow::Init (cApplicationProperties &lProperties)
 		return false;
 	}
 
+	
+	//Others
+	mbCloseApplication = false;
+
 	return true;
 }
 
@@ -145,7 +149,7 @@ void cWindow::Update()
 		// Have We Received A Quit Message?
 		if (lMsg.message==WM_QUIT)
 		{
-			//mbCloseApplication = true;  //YORMAN Comentado por ahora
+			mbCloseApplication = true;  //YORMAN Comentado por ahora
 		}
 		else
 		{

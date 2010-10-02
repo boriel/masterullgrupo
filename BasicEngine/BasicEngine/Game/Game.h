@@ -11,6 +11,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 
 
 #include "..\Utility\Singleton.h"
+#include "..\Window\ApplicationProperties.h"
 
 //using namespace std;
 
@@ -22,8 +23,8 @@ class cGame : public cSingleton<cGame>
 	
 
 	private: 	//variables
-		bool mbFinished;
-		bool mbCloseApplication;
+		bool mbFinish;
+		cApplicationProperties mProperties;
 	
 
 	protected:
@@ -37,9 +38,9 @@ class cGame : public cSingleton<cGame>
 		bool Deinit(); // Function to deinitialize the game
 
 
-		inline bool HasFinished() { return mbFinished; }  // Get if the game finished
-		inline void SetFinished (bool lbValue) { mbFinished = lbValue; }
-		inline bool GetCloseApplicaton () { return mbCloseApplication; }
+		inline bool HasFinished() { return mbFinish; }  // Get if the game finished
+		inline void SetFinished (bool lbValue) { mbFinish = lbValue; }
+		
 
 	private:  //métodos
 

@@ -19,9 +19,11 @@ Notes:
 
 #include <Windows.h>
 
+#include "..\Utility\Singleton.h"
 #include "ApplicationProperties.h"
 
-class cWindow
+
+class cWindow : public cSingleton<cWindow>
 {
 	//private variables
 		HINSTANCE mInstance;  // Holds the instance of the application
@@ -29,6 +31,9 @@ class cWindow
 		HDC mDC;							// Private GDI Device context
 
 		cApplicationProperties mProperties;
+		bool mbCloseApplication;
+
+		friend class cSingleton<cWindow>;
 
 	//public functions
 	public:
@@ -37,6 +42,7 @@ class cWindow
 		bool Deinit();
 
 		inline HWND GetHWND() { return mWnd; }
+		inline bool GetCloseApplication () { return mbCloseApplication; }
 
 		static LRESULT CALLBACK WndProc( HWND lWnd, UINT lMsg, WPARAM lWParam, LPARAM lLParam);
 

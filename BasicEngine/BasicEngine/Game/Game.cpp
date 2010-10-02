@@ -3,21 +3,32 @@
 
 #include "Game.h"
 #include "..\Utility\Console.h"
+#include "..\Window\Window.h"
 
 
 //Inicializa el juego
 bool cGame::Init()
 {
-	mbFinished = false;
-	mbCloseApplication = false;
+	mbFinish = false;
+	
+	
+	mProperties.macApplicationName = "Test 1";
+	mProperties.mbFullscreen = false;
+	mProperties.muiBits = 16;
+	mProperties.muiWidth = 640;
+	mProperties.muiHeight = 480;
+	
+	bool lbResult = cWindow::Get().Init( mProperties );
 
-	return true;
+	return lbResult;
 }
 
 //Destrucutor del juego
 bool cGame::Deinit()
 {
-	return true;
+	bool lbResult = cWindow::Get().Deinit();
+	
+	return lbResult;
 }
 
 
@@ -30,6 +41,15 @@ void cGame::Update(float lfTimestep)
 
 	//OutputDebugString (lsTime.c_str());
 	
+	cWindow::Get().Update();
+	// Check if we need to close the application
+
+	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();
+	if (mbFinish)
+		return;
+	
+
+
 }
 
 
