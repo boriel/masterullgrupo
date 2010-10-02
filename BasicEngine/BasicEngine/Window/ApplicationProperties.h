@@ -1,18 +1,18 @@
 /*
-Class ApplicationPropierties.h
+Class ApplicationProperties.h
 
 	Parameter list to initialize the window
 */
 
-#ifndef ApplicationPropierties_H
-#define ApplicationPropierties_H
+#ifndef ApplicationProperties_H
+#define ApplicationProperties_H
 
 #include <stdio.h>
 #include <string>
 
 using namespace std;
 
-struct cApplicationPropierties
+struct cApplicationProperties
 {
 	//General Application Parameters
 	string macApplicationName;		// Application name and window
