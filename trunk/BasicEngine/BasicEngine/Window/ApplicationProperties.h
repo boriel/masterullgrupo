@@ -19,7 +19,7 @@ struct cApplicationProperties
 	unsigned muiWidth;								// Width of the window
 	unsigned muiHeight;								// Height of the window
 	unsigned muiBits;									// Bits that will have every pixel in the window. Usually 24 (RGB) or 32 (RGBA) bits per pixel.
-	bool mbFullScreen;								// true = Game in FullScreen.
+	bool mbFullscreen;								// true = Game in FullScreen.
 
 };
 
