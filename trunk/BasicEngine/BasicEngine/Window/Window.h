@@ -19,18 +19,20 @@ Notes:
 
 #include <Windows.h>
 
-#include "ApplicationPropierties.h"
+#include "ApplicationProperties.h"
 
 class cWindow
 {
-	HINSTANCE mInstance;  // Holds the instance of the application
-	HWND mWnd;						// Holds our windows handle
-	HDC mDC;							// Private GDI Device context
+	//private variables
+		HINSTANCE mInstance;  // Holds the instance of the application
+		HWND mWnd;						// Holds our windows handle
+		HDC mDC;							// Private GDI Device context
 
+		cApplicationProperties mProperties;
 
 	//public functions
 	public:
-		bool Init (cApplicationPropierties &lPropierties);
+		bool Init (cApplicationProperties &lProperties);
 		void Update();
 		bool DeInit();
 

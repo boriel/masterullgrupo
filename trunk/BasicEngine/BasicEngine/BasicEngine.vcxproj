@@ -81,7 +81,7 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Utility\Console.h" />
     <ClInclude Include="Utility\Singleton.h" />
-    <ClInclude Include="Window\ApplicationPropierties.h" />
+    <ClInclude Include="Window\ApplicationProperties.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
