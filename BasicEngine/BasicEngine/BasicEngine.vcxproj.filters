@@ -10,6 +10,12 @@
     <Filter Include="Window">
       <UniqueIdentifier>{762e5f4f-df1a-47a2-988f-f63d8a84cd4d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{57e57b90-9a0c-4cc8-861e-57e18d622b1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{df15c34a-03c2-45f3-82ec-dc39888da515}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -27,6 +33,12 @@
     <ClInclude Include="Window\ApplicationProperties.h">
       <Filter>Window</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\GraphicManager.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\GLHeaders.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -36,5 +48,13 @@
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\GraphicManager.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Config.xml">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>
