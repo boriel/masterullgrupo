@@ -19,7 +19,7 @@ bool cWindow::Init (cApplicationProperties &lProperties)
 
 	WNDCLASS lWndClass; // Windows Class Structure
 	lWndClass.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC; // Redraw On Size, And Own DC For Window.
-	//lWndClass.lpfnWndProc = (WNDPROC) WndProc; // WndProc Handles Messages   //YORMAN LA QUITO POR AHORA, PARA VER DONDE VA
+	lWndClass.lpfnWndProc = (WNDPROC) WndProc; // WndProc Handles Messages   
 	lWndClass.cbClsExtra = 0; // No Extra Window Data
 	lWndClass.cbWndExtra = 0; // No Extra Window Data
 	lWndClass.hInstance = mInstance; // Set The Instance
@@ -146,4 +146,39 @@ void cWindow::Update()
 bool cWindow::Deinit()
 {
 	return true;
+}
+
+
+
+//FUNCTIONS
+
+
+// The first parameter is the handle of the window that triggered the event (the only we have). 
+// The second parameter is the type of message we have received 
+// and the rest are parameters whose content depends on the type of message.
+LRESULT CALLBACK cWindow::WndProc( HWND lWnd, UINT lMsg, WPARAM lWParam, LPARAM lLParam)
+{
+	switch (lMsg)
+	{
+		case WM_CLOSE:  //The Windows is closed with the X
+		{
+			PostQuitMessage(0);
+			return 0;
+		}
+
+		case WM_SYSCOMMAND:  //Protector de pantalla o ahorro de energía
+		{
+			switch (lWParam)
+			{
+				case SC_SCREENSAVE:
+				case SC_MONITORPOWER:
+				return 0; // Interrupt the action
+			}
+			break;
+		}
+	}
+
+
+	// Pass All Unhandled Messages To DefWindowProc
+	return DefWindowProc(lWnd, lMsg, lWParam, lLParam);
 }
