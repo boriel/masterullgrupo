@@ -9,6 +9,7 @@
 bool cGame::Init()
 {
 	mbFinished = false;
+	mbCloseApplication = false;
 
 	return true;
 }

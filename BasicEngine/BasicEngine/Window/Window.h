@@ -36,7 +36,9 @@ class cWindow
 		void Update();
 		bool Deinit();
 
-	static LRESULT CALLBACK WndProc( HWND lWnd, UINT lMsg, WPARAM lWParam, LPARAM lLParam);
+		inline HWND GetHWND() { return mWnd; }
+
+		static LRESULT CALLBACK WndProc( HWND lWnd, UINT lMsg, WPARAM lWParam, LPARAM lLParam);
 
 };
 
