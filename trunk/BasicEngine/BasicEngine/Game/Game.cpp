@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "..\Utility\Console.h"
 #include "..\Window\Window.h"
+#include "..\Graphics\GraphicManager.h"
 
 
 //Inicializa el juego
@@ -20,7 +21,18 @@ bool cGame::Init()
 	
 	LoadResources();  //Load Resources to XML
 
-	bool lbResult = cWindow::Get().Init( mProperties );
+	bool lbResult = cWindow::Get().Init(mProperties);
+
+	// Init OpenGL
+	if ( lbResult )
+	{
+		lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
+		
+		// Kill Window
+		if (!lbResult)
+			cWindow::Get().Deinit();
+	}
+
 
 
 	
@@ -32,8 +44,11 @@ bool cGame::Init()
 //Destrucutor del juego
 bool cGame::Deinit()
 {
-	bool lbResult = cWindow::Get().Deinit();
+	//bool lbResult = cWindow::Get().Deinit();
 	
+	bool lbResult = cGraphicManager::Get().Deinit();
+	lbResult = lbResult && cWindow::Get().Deinit();
+
 	return lbResult;
 }
 
@@ -64,6 +79,15 @@ void cGame::Render()
 {
 	
 	//Mostrar el contador
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	
+	
+	// Render Here!!
+
+	
+	cGraphicManager::Get().SwapBuffer();
 	
 }
 
