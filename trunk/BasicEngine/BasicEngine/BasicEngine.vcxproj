@@ -91,6 +91,25 @@
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Graphics\GLHeaders.h" />
     <ClInclude Include="Graphics\GraphicManager.h" />
+    <ClInclude Include="MathLib\MathConst.h" />
+    <ClInclude Include="MathLib\MathLib.h" />
+    <ClInclude Include="MathLib\MathUtils\LinearInterpolator.h" />
+    <ClInclude Include="MathLib\MathUtils\LinearSplitFunction.h" />
+    <ClInclude Include="MathLib\MathUtils\MathUtilsLib.h" />
+    <ClInclude Include="MathLib\MathUtils\Plane.h" />
+    <ClInclude Include="MathLib\Matrix\Matrix.h" />
+    <ClInclude Include="MathLib\Matrix\Matrix44Col.h" />
+    <ClInclude Include="MathLib\Matrix\Matrix44Row.h" />
+    <ClInclude Include="MathLib\Matrix\MatrixFunc.h" />
+    <ClInclude Include="MathLib\Matrix\MatrixLib.h" />
+    <ClInclude Include="MathLib\Quaternion\Quaternion.h" />
+    <ClInclude Include="MathLib\Quaternion\QuaternionFunc.h" />
+    <ClInclude Include="MathLib\Quaternion\QuaternionLib.h" />
+    <ClInclude Include="MathLib\Vec\Vec2.h" />
+    <ClInclude Include="MathLib\Vec\Vec3.h" />
+    <ClInclude Include="MathLib\Vec\Vec4.h" />
+    <ClInclude Include="MathLib\Vec\VecFunc.h" />
+    <ClInclude Include="MathLib\Vec\VecLib.h" />
     <ClInclude Include="Utility\Console.h" />
     <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="Window\ApplicationProperties.h" />
@@ -100,6 +119,9 @@
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Graphics\GraphicManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
+    <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />
+    <ClCompile Include="MathLib\Vec\Vec.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
