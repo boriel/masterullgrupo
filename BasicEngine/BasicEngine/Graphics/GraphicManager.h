@@ -6,8 +6,9 @@ Class GraphicManager.h
 #define GraphicManager_H
 
 #include "GLHeaders.h"
-#include "..\Utility\Singleton.h";
+#include "..\Utility\Singleton.h"
 #include "..\Window\Window.h"
+#include "..\MathLib\MathLib.h"
 
 
 //class cWindow;
@@ -18,6 +19,13 @@ class cGraphicManager : public cSingleton<cGraphicManager>
 		bool Init( cWindow * lpWindow );
 		bool Deinit();
 		void SwapBuffer();
+
+		//Funciones auxiliares de renderizado
+		void DrawPoint (const cVec3 &lvPosition, const cVec3 &lvColor);
+		void DrawLine (const cVec3 &lvPosition1, const cVec3 &lvPosition2, const cVec3 &lvColor);
+		void DrawGrid();
+		void DrawAxis();
+
 
 		//For Opengl 
 		cWindow* mpWindow;		// Save the pointer to window that we show

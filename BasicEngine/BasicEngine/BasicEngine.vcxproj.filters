@@ -16,6 +16,21 @@
     <Filter Include="Data">
       <UniqueIdentifier>{df15c34a-03c2-45f3-82ec-dc39888da515}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MathLib">
+      <UniqueIdentifier>{a17d7b99-39b0-4e17-9250-310f94281cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\MathUtils">
+      <UniqueIdentifier>{c89f2753-373f-4543-8c21-4611b9d12416}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Matrix">
+      <UniqueIdentifier>{ff1bde3d-9823-4b35-9621-684de310ca71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Quaternion">
+      <UniqueIdentifier>{ef42c3bc-c0db-4949-8d39-4fbe450db2f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Vec">
+      <UniqueIdentifier>{8ed98f3a-ffc1-42c8-906e-c9c0b43e8df4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -39,6 +54,63 @@
     <ClInclude Include="Graphics\GLHeaders.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="MathLib\MathConst.h">
+      <Filter>MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\MathLib.h">
+      <Filter>MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\MathUtils\LinearInterpolator.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\MathUtils\LinearSplitFunction.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\MathUtils\MathUtilsLib.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\MathUtils\Plane.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Matrix\Matrix.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Matrix\Matrix44Col.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Matrix\Matrix44Row.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Matrix\MatrixFunc.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Matrix\MatrixLib.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Quaternion\Quaternion.h">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Quaternion\QuaternionFunc.h">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Quaternion\QuaternionLib.h">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Vec\Vec2.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Vec\Vec3.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Vec\Vec4.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Vec\VecFunc.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLib\Vec\VecLib.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -50,6 +122,15 @@
     </ClCompile>
     <ClCompile Include="Graphics\GraphicManager.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="MathLib\Matrix\Matrix.cpp">
+      <Filter>MathLib\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClCompile>
+    <ClCompile Include="MathLib\Vec\Vec.cpp">
+      <Filter>MathLib\Vec</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

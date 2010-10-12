@@ -86,6 +86,9 @@ void cGame::Render()
 	
 	// Render Here!!
 
+	cGraphicManager::Get().DrawPoint(cVec3 (0,0,-5), cVec3 (1,0,0)); //Creamos un punto de ejemplo
+	cGraphicManager::Get().DrawLine(cVec3 (0,1,-2), cVec3 (1,0,-3), cVec3 (0,1,0)); //creamos un ejemplo de una linea
+
 	
 	cGraphicManager::Get().SwapBuffer();
 	
