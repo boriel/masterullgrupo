@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\GLHeaders.h" />
     <ClInclude Include="Graphics\GraphicManager.h" />
     <ClInclude Include="MathLib\MathConst.h" />
@@ -117,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\GraphicManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />

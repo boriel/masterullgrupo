@@ -33,6 +33,11 @@ bool cGame::Init()
 			cWindow::Get().Deinit();
 	}
 
+	//Iniciando la camara
+	m3DCamera.Init();
+	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
+	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
+	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 
 
 	
@@ -88,6 +93,38 @@ void cGame::Render()
 
 	cGraphicManager::Get().DrawPoint(cVec3 (0,0,-5), cVec3 (1,0,0)); //Creamos un punto de ejemplo
 	cGraphicManager::Get().DrawLine(cVec3 (0,1,-2), cVec3 (1,0,-3), cVec3 (0,1,0)); //creamos un ejemplo de una linea
+
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Activate the 3D Camera
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+
+	// Set the world matrix
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+
+	//lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
+	//cGraphicManager::Get().SetWorldMatrix (lWorld);
+
+	// Render the debug lines
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+
+	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f), cVec3(1.0f, 0.0f, 1.0f) );
+	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f), cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f));
+
+
+
+	//otros ejes
+	lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
+	cGraphicManager::Get().SetWorldMatrix (lWorld);
+
+	// Render the debug lines
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+
 
 	
 	cGraphicManager::Get().SwapBuffer();
