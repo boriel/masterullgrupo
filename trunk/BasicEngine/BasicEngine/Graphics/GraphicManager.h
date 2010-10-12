@@ -9,6 +9,7 @@ Class GraphicManager.h
 #include "..\Utility\Singleton.h"
 #include "..\Window\Window.h"
 #include "..\MathLib\MathLib.h"
+#include "Camera.h"
 
 
 //class cWindow;
@@ -16,7 +17,7 @@ class cGraphicManager : public cSingleton<cGraphicManager>
 {
 	
 	public:
-		bool Init( cWindow * lpWindow );
+		bool Init (cWindow * lpWindow);
 		bool Deinit();
 		void SwapBuffer();
 
@@ -26,12 +27,17 @@ class cGraphicManager : public cSingleton<cGraphicManager>
 		void DrawGrid();
 		void DrawAxis();
 
+		void SetWorldMatrix (const cMatrix &lMatrix);
+		void RefreshWorldView ();
+		void ActivateCamera (cCamera* lpCamera);
 
 		//For Opengl 
 		cWindow* mpWindow;		// Save the pointer to window that we show
 		GLuint mPixelFormat;	// Save pixel format
 		HGLRC mHRC;						// Handle del contexto de renderizado de OPENGL
 
+		cCamera* mpActiveCamera;
+		cMatrix mWorldMatrix;
 	
 		friend class cSingleton<cGraphicManager>;
 

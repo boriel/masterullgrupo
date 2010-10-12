@@ -15,6 +15,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 
 #include "..\Utility\Singleton.h"
 #include "..\Window\ApplicationProperties.h"
+#include "..\Graphics\Camera.h"
 
 //using namespace std;
 
@@ -31,6 +32,8 @@ class cGame : public cSingleton<cGame>
 		
 		string msFilename;  // Resources or Properties file
 		TiXmlDocument mDoc;
+
+		cCamera m3DCamera;
 
 	protected:
 		cGame () { ; } //Protected Constructor

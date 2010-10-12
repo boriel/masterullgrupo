@@ -6,10 +6,13 @@
 
 bool cGraphicManager::Init (cWindow * lpWindow)
 {
-	bool lbRet = CreateContext( lpWindow );
+	bool lbRet = CreateContext (lpWindow);
 	
-	if ( lbRet )
+	if (lbRet)
 		InitializeGLState();
+
+	 mpActiveCamera = NULL;
+	 mWorldMatrix.LoadIdentity();
 
 	return lbRet;
 }
@@ -21,16 +24,20 @@ bool cGraphicManager::Deinit()
 	{
 		if (!wglMakeCurrent(NULL,NULL))
 		{
-			MessageBox(NULL,"Release Of DC And RC Failed.", "SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
+			MessageBox(NULL, "Release Of DC And RC Failed.", "SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		}
 		if (!wglDeleteContext(mHRC))
 		{
-			MessageBox(NULL,"Release Rendering Context Failed.", "SHUTDOWN ERROR",MB_OK | MB_ICONINFORMATION);
+			MessageBox(NULL, "Release Rendering Context Failed.", "SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		}
 		mHRC = NULL;
 	}
 
 	mpWindow = NULL;
+
+	 mpActiveCamera = NULL;
+	 mWorldMatrix  = NULL;
+
 
 	return true;
 }
@@ -174,6 +181,7 @@ void cGraphicManager::DrawLine (const cVec3 &lvPosition1, const cVec3 &lvPositio
 		glVertex3f(lvPosition1.x, lvPosition1.y, lvPosition1.z);
 		glVertex3f(lvPosition2.x, lvPosition2.y, lvPosition2.z);
 	};
+
 	glEnd ();
 
 	glEnable(GL_TEXTURE_2D);
@@ -230,4 +238,43 @@ void cGraphicManager::DrawAxis()
 	glEnd();
 
 	glEnable(GL_TEXTURE_2D);
+}
+
+
+//Establece la matrix de mundo
+void cGraphicManager::SetWorldMatrix (const cMatrix &lMatrix)
+{
+	mWorldMatrix = lMatrix;
+	RefreshWorldView();
+}
+
+
+void cGraphicManager::RefreshWorldView()
+{
+	// Select The Modelview Matrix
+	glMatrixMode (GL_MODELVIEW);
+	
+	// Calculate the ModelView Matrix
+	cMatrix lWorldView = mpActiveCamera->GetView();
+	lWorldView = mWorldMatrix * lWorldView;
+	
+	// Set The View Matrix
+	glLoadMatrixf (lWorldView.AsFloatPointer());
+}
+
+
+//Establecemos la cámara actual
+void cGraphicManager::ActivateCamera (cCamera* lpCamera)
+{
+	assert(lpCamera);
+	mpActiveCamera = lpCamera;
+
+	// Select The Projection Matrix
+	glMatrixMode(GL_PROJECTION);
+
+	// Set The Projection Matrix
+	glLoadMatrixf (mpActiveCamera->GetProj().AsFloatPointer());
+
+	// Refresh the worl view matrix
+	RefreshWorldView();
 }
