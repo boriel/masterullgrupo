@@ -1,8 +1,9 @@
-#include <windows.h>
+//#include <windows.h>
 
 
 #include "Game.h"
-#include "..\Utility\Console.h"
+//#include "..\Utility\Console.h"
+
 #include "..\Window\Window.h"
 #include "..\Graphics\GraphicManager.h"
 
@@ -41,8 +42,6 @@ bool cGame::Init()
 
 
 	
-
-
 	return lbResult;
 }
 
@@ -53,7 +52,7 @@ bool cGame::Deinit()
 	
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
-
+	
 	return lbResult;
 }
 
@@ -74,7 +73,7 @@ void cGame::Update(float lfTimestep)
 	if (mbFinish)
 		return;
 	
-
+	
 
 }
 
@@ -143,14 +142,16 @@ void cGame::LoadResources ()
 		SetFilename("Config.xml");
 	
 	LoadPropertiesXML ((char*)msFilename.c_str()); //inicializamos el level 
-
+	
 }
 
 // Load file and concatenate with string
 void cGame::SetFilename(char *lsFilename)
 {
+	
 	string lsFile (".\\Data\\" + string(lsFilename));
 	msFilename = lsFile;
+	
 }
 
 //Load All properties of XML

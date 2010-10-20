@@ -2,34 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Utility">
-      <UniqueIdentifier>{5be3554a-9500-4d9c-8877-d37aaec3f861}</UniqueIdentifier>
+      <UniqueIdentifier>{27beecfb-96d8-4b76-84ff-ebf8d93c07b7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game">
-      <UniqueIdentifier>{89d391f8-1382-4aa9-b4c4-4783782f2485}</UniqueIdentifier>
+      <UniqueIdentifier>{c2e93943-001f-41ac-a12c-6b7c60e563e7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Window">
-      <UniqueIdentifier>{762e5f4f-df1a-47a2-988f-f63d8a84cd4d}</UniqueIdentifier>
+      <UniqueIdentifier>{0af638b5-b73d-4a77-99e3-f7c4aeaa0ad6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Graphics">
-      <UniqueIdentifier>{57e57b90-9a0c-4cc8-861e-57e18d622b1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Data">
-      <UniqueIdentifier>{df15c34a-03c2-45f3-82ec-dc39888da515}</UniqueIdentifier>
+      <UniqueIdentifier>{e70a21b1-d642-4047-9d62-609108ae0f95}</UniqueIdentifier>
     </Filter>
     <Filter Include="MathLib">
-      <UniqueIdentifier>{a17d7b99-39b0-4e17-9250-310f94281cc3}</UniqueIdentifier>
+      <UniqueIdentifier>{39bbafce-7dd4-46f1-80d3-1fc226745a66}</UniqueIdentifier>
     </Filter>
     <Filter Include="MathLib\MathUtils">
-      <UniqueIdentifier>{c89f2753-373f-4543-8c21-4611b9d12416}</UniqueIdentifier>
+      <UniqueIdentifier>{6da10130-a3f4-4968-a5cf-285ce4227d08}</UniqueIdentifier>
     </Filter>
     <Filter Include="MathLib\Matrix">
-      <UniqueIdentifier>{ff1bde3d-9823-4b35-9621-684de310ca71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MathLib\Quaternion">
-      <UniqueIdentifier>{ef42c3bc-c0db-4949-8d39-4fbe450db2f3}</UniqueIdentifier>
+      <UniqueIdentifier>{2075ee31-e9c6-4929-a4f0-a1f04e43bdeb}</UniqueIdentifier>
     </Filter>
     <Filter Include="MathLib\Vec">
-      <UniqueIdentifier>{8ed98f3a-ffc1-42c8-906e-c9c0b43e8df4}</UniqueIdentifier>
+      <UniqueIdentifier>{32a852e0-9f94-4406-93e9-e800cfb7debc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Quaternion">
+      <UniqueIdentifier>{1afcd501-64f0-447b-9bab-197570e5b055}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,19 +36,19 @@
     <ClInclude Include="Game\Game.h">
       <Filter>Game</Filter>
     </ClInclude>
-    <ClInclude Include="Utility\Console.h">
-      <Filter>Utility</Filter>
+    <ClInclude Include="Window\ApplicationProperties.h">
+      <Filter>Window</Filter>
     </ClInclude>
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Window\ApplicationProperties.h">
-      <Filter>Window</Filter>
-    </ClInclude>
-    <ClInclude Include="Graphics\GraphicManager.h">
+    <ClInclude Include="Graphics\Camera.h">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\GLHeaders.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\GraphicManager.h">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="MathLib\MathConst.h">
@@ -111,9 +108,6 @@
     <ClInclude Include="MathLib\Vec\VecLib.h">
       <Filter>MathLib\Vec</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\Camera.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -122,6 +116,9 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Camera.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\GraphicManager.cpp">
       <Filter>Graphics</Filter>
@@ -135,13 +132,5 @@
     <ClCompile Include="MathLib\Vec\Vec.cpp">
       <Filter>MathLib\Vec</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Camera.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Data\Config.xml">
-      <Filter>Data</Filter>
-    </None>
   </ItemGroup>
 </Project>
