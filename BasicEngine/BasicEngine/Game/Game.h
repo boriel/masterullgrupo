@@ -14,6 +14,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 
 
 #include "..\Utility\Singleton.h"
+
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 
@@ -28,13 +29,14 @@ class cGame : public cSingleton<cGame>
 
 	private: 	//variables
 		bool mbFinish;
+		
 		cApplicationProperties mProperties;
 		
 		string msFilename;  // Resources or Properties file
 		TiXmlDocument mDoc;
 
 		cCamera m3DCamera;
-
+		
 	protected:
 		cGame () { ; } //Protected Constructor
 
@@ -54,9 +56,11 @@ class cGame : public cSingleton<cGame>
 		void SetFilename (char* lsFilename);
 
 	private:  //métodos
+		
 		void LoadResources(); //Read resources for the game (window properties)
 		bool LoadPropertiesXML(const char* lacLevelFile);
 		bool LoadTagConfigXML();
+
 
 };
 
