@@ -54,14 +54,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OIS.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\dll\</AdditionalLibraryDirectories>
+      <ImportLibrary>C:\Visual Studio 2010\Projects\Master Videojuegos ULL\04 Aplicación Práctica Básica de Videojuegos\Práctica 02 SVN Google Code (masterullgrupo)\BasicEngine\BasicEngine\Input\ois\lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -73,7 +74,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -87,9 +88,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\InputConfiguration.cpp" />
+    <ClInclude Include="Game\InputConfiguration.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\GLHeaders.h" />
     <ClInclude Include="Graphics\GraphicManager.h" />
+    <ClInclude Include="Input\GenericDevice.h" />
+    <ClInclude Include="Input\InputAction.h" />
+    <ClInclude Include="Input\InputEntry.h" />
+    <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Input\KeyBoard.h" />
     <ClInclude Include="MathLib\MathConst.h" />
     <ClInclude Include="MathLib\MathLib.h" />
     <ClInclude Include="MathLib\MathUtils\LinearInterpolator.h" />
@@ -117,6 +125,9 @@
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\GraphicManager.cpp" />
+    <ClCompile Include="Input\InputAction.cpp" />
+    <ClCompile Include="Input\InputManager.cpp" />
+    <ClCompile Include="Input\KeyBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />

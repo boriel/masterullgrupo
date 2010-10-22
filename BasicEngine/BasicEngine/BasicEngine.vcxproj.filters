@@ -28,6 +28,9 @@
     <Filter Include="MathLib\Quaternion">
       <UniqueIdentifier>{1afcd501-64f0-447b-9bab-197570e5b055}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{c8e4a46d-48bf-46ca-b3c8-424471d512f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -108,6 +111,27 @@
     <ClInclude Include="MathLib\Vec\VecLib.h">
       <Filter>MathLib\Vec</Filter>
     </ClInclude>
+    <ClInclude Include="Input\GenericDevice.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputAction.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputEntry.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyBoard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\InputConfiguration.cpp">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\InputConfiguration.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -131,6 +155,15 @@
     </ClCompile>
     <ClCompile Include="MathLib\Vec\Vec.cpp">
       <Filter>MathLib\Vec</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputAction.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\KeyBoard.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
