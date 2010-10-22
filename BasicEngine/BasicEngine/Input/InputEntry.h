@@ -5,8 +5,8 @@ Clase InputEntry. Esta clase tiene como finalidad identificar desde el InputMana
 			del InputManager
 */
 
-#ifndef Input_H
-#define Input_H
+#ifndef InputEntry_H
+#define InputEntry_H
 
 
 class cInputEntry
