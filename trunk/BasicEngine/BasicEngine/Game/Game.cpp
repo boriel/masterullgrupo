@@ -10,7 +10,7 @@
 
 
 
-extern tActionMapping kaActionMapping[];
+//extern tActionMapping kaActionMapping[];
 
 //Inicializa el juego
 bool cGame::Init()
@@ -46,7 +46,7 @@ bool cGame::Init()
 
 
 	// Init Input Manager
-	cInputManager::Get().Init( kaActionMapping, eIA_Count );
+	//cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
 	return lbResult;
 }
