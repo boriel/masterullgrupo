@@ -18,6 +18,12 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 
+//#include "InputConfiguration.h"
+//#include "..\Input\InputManager.h"
+
+//extern tActionMapping kaActionMapping[];
+
+
 //using namespace std;
 
 class cGame : public cSingleton<cGame>
@@ -51,7 +57,6 @@ class cGame : public cSingleton<cGame>
 		inline bool HasFinished() { return mbFinish; }  // Get if the game finished
 		inline void SetFinished (bool lbValue) { mbFinish = lbValue; }
 		
-	
 
 		void SetFilename (char* lsFilename);
 

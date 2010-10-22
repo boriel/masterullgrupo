@@ -2,11 +2,15 @@
 
 
 #include "Game.h"
-//#include "..\Utility\Console.h"
 
 #include "..\Window\Window.h"
 #include "..\Graphics\GraphicManager.h"
+#include "..\Input\InputManager.h"
+#include "InputConfiguration.h"
 
+
+
+extern tActionMapping kaActionMapping[];
 
 //Inicializa el juego
 bool cGame::Init()
@@ -41,6 +45,8 @@ bool cGame::Init()
 	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 
 
+	// Init Input Manager
+	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
 	return lbResult;
 }
@@ -53,6 +59,8 @@ bool cGame::Deinit()
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
+	cInputManager::Get().Deinit();
+
 	return lbResult;
 }
 
@@ -67,14 +75,15 @@ void cGame::Update(float lfTimestep)
 	//OutputDebugString (lsTime.c_str());
 	
 	cWindow::Get().Update();
-	// Check if we need to close the application
 
-	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();
+	cInputManager::Get().Update(lfTimestep);
+
+	// Check if we need to close the application
+	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
+	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();	//|| IsPressed(eIA_CloseApplication);
 	if (mbFinish)
 		return;
 	
-	
-
 }
 
 
