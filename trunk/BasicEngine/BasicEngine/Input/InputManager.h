@@ -39,18 +39,7 @@ struct tActionMapping
 
 class cInputManager : public cSingleton<cInputManager>
 {
-	friend class cSingleton<cInputManager>;
-
-	private:
-		std::vector <cInputAction> mActions; //se encarga de mantener el estado de cada una de las acciones. 
-		std::vector <cGenericDevice *> mDevices;
-		std::vector <std::vector <cInputEntry> > mMapped;
-
-		// Specific OIS vars
-		friend class cKeyboard;
-		OIS::InputManager* mpOISInputManager;
-
-
+	
 	public:
 		void Init(const tActionMapping laActionMapping[], unsigned luiActionCount);
 		void Deinit();
@@ -59,11 +48,22 @@ class cInputManager : public cSingleton<cInputManager>
 
 		inline cInputAction &GetAction(const int &liActionId) { return mActions[liActionId]; }
 
+		friend class cSingleton<cInputManager>;
+
 	protected:
 		cInputManager() { ; } // Protected constructor
 
 	private:
 		float Check(int liDevice, int liChannel);
+
+		std::vector <cInputAction> mActions; //se encarga de mantener el estado de cada una de las acciones. 
+		std::vector <cGenericDevice *> mDevices;
+		std::vector <std::vector <cInputEntry> > mMapped;
+
+		// Specific OIS vars
+		friend class cKeyboard;
+		OIS::InputManager* mpOISInputManager;
+
 
 };
 

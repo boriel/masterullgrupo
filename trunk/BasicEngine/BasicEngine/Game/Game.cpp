@@ -5,12 +5,12 @@
 
 #include "..\Window\Window.h"
 #include "..\Graphics\GraphicManager.h"
-#include "..\Input\InputManager.h"
-#include "InputConfiguration.h"
+//#include "..\Input\InputManager.h"
+//#include "InputConfiguration.h"
 
 
 
-//extern tActionMapping kaActionMapping[];
+extern tActionMapping kaActionMapping[];
 
 //Inicializa el juego
 bool cGame::Init()
@@ -44,6 +44,7 @@ bool cGame::Init()
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 
+	//kaActionMapping[0].miAction = 1; //ej mal puesto, borrar
 
 	// Init Input Manager
 	//cInputManager::Get().Init( kaActionMapping, eIA_Count );

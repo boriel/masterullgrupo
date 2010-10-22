@@ -18,18 +18,17 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 
-//#include "InputConfiguration.h"
-//#include "..\Input\InputManager.h"
+#include "InputConfiguration.h"
+#include "..\Input\InputManager.h"
 
-//extern tActionMapping kaActionMapping[];
+
+extern tActionMapping kaActionMapping[];
 
 
 //using namespace std;
 
 class cGame : public cSingleton<cGame>
 {
-		
-
 		friend class cSingleton<cGame>;
 	
 
