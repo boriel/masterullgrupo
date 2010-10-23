@@ -123,9 +123,6 @@
     <ClInclude Include="Input\KeyBoard.h">
       <Filter>Input</Filter>
     </ClInclude>
-    <ClInclude Include="Game\InputConfiguration.cpp">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="Game\InputConfiguration.h">
       <Filter>Game</Filter>
     </ClInclude>
@@ -159,10 +156,13 @@
     <ClCompile Include="Input\InputAction.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="Input\InputManager.cpp">
+    <ClCompile Include="Input\KeyBoard.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="Input\KeyBoard.cpp">
+    <ClCompile Include="Game\InputConfiguration.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputManager.cpp">
       <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>

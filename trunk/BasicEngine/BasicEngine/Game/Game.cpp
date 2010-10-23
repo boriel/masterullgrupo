@@ -5,10 +5,8 @@
 
 #include "..\Window\Window.h"
 #include "..\Graphics\GraphicManager.h"
-//#include "..\Input\InputManager.h"
-//#include "InputConfiguration.h"
-
-
+#include "..\Input\InputManager.h"
+#include "InputConfiguration.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -47,7 +45,7 @@ bool cGame::Init()
 	//kaActionMapping[0].miAction = 1; //ej mal puesto, borrar
 
 	// Init Input Manager
-	//cInputManager::Get().Init( kaActionMapping, eIA_Count );
+	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
 	return lbResult;
 }
@@ -81,7 +79,8 @@ void cGame::Update(float lfTimestep)
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
-	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();	//|| IsPressed(eIA_CloseApplication);
+	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed(eIA_CloseApplication);  //ERROR: No funciona el #define este
+	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
 	if (mbFinish)
 		return;
 	

@@ -16,7 +16,7 @@ Clase InputManager. Esta clase se encarga de actualizar y leer los dispositivos,
 
 
 
-#define IsPressed (ACTION) cInputManager::Get().GetAction( ACTION ).GetIsPressed()
+#define IsPressed (ACTION) cInputManager::Get().GetAction( ACTION ).GetIsPressed();
 
 class OIS::InputManager;
 
@@ -46,7 +46,7 @@ class cInputManager : public cSingleton<cInputManager>
 		void Update(const float &lfTimestep);
 
 
-		inline cInputAction &GetAction(const int &liActionId) { return mActions[liActionId]; }
+		inline cInputAction &GetAction(const int &liActionId) { return mActions[liActionId]; };
 
 		friend class cSingleton<cInputManager>;
 
