@@ -98,6 +98,7 @@
     <ClInclude Include="Input\InputEntry.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Input\KeyBoard.h" />
+    <ClInclude Include="Input\Pad.h" />
     <ClInclude Include="MathLib\MathConst.h" />
     <ClInclude Include="MathLib\MathLib.h" />
     <ClInclude Include="MathLib\MathUtils\LinearInterpolator.h" />
@@ -129,6 +130,7 @@
     <ClCompile Include="Input\InputAction.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Input\KeyBoard.cpp" />
+    <ClCompile Include="Input\Pad.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />

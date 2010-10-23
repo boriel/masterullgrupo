@@ -10,6 +10,7 @@ Clase InputManager. Esta clase se encarga de actualizar y leer los dispositivos,
 #include "InputAction.h"
 #include "InputEntry.h"
 #include "KeyBoard.h"
+#include "Pad.h"
 //#include "GenericDevice.h"
 
 #include "..\Utility\Singleton.h"
@@ -62,6 +63,7 @@ class cInputManager : public cSingleton<cInputManager>
 
 		// Specific OIS vars
 		friend class cKeyboard;
+		friend class cPad;
 		OIS::InputManager* mpOISInputManager;
 
 
