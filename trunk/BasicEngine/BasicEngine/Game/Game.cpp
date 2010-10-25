@@ -42,8 +42,6 @@ bool cGame::Init()
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 
-	//kaActionMapping[0].miAction = 1; //ej mal puesto, borrar
-
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
@@ -53,8 +51,6 @@ bool cGame::Init()
 //Destrucutor del juego
 bool cGame::Deinit()
 {
-	//bool lbResult = cWindow::Get().Deinit();
-	
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
@@ -67,10 +63,7 @@ bool cGame::Deinit()
 //update del juego
 void cGame::Update(float lfTimestep)
 {
-	//std::string lsTime = "aaa";
-
 	//hacer el contador de 5 segundos
-
 	//OutputDebugString (lsTime.c_str());
 	
 	cWindow::Get().Update();
@@ -79,7 +72,6 @@ void cGame::Update(float lfTimestep)
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
-	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed(eIA_CloseApplication);  //ERROR: No funciona el #define este
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
 	if (mbFinish)
 		return;
@@ -96,12 +88,9 @@ void cGame::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 	
-	
 	// Render Here!!
-
 	cGraphicManager::Get().DrawPoint(cVec3 (0,0,-5), cVec3 (1,0,0)); //Creamos un punto de ejemplo
 	cGraphicManager::Get().DrawLine(cVec3 (0,1,-2), cVec3 (1,0,-3), cVec3 (0,1,0)); //creamos un ejemplo de una linea
-
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -123,8 +112,6 @@ void cGame::Render()
 	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f), cVec3(1.0f, 0.0f, 1.0f) );
 	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f), cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f));
 
-
-
 	//otros ejes
 	lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
 	cGraphicManager::Get().SetWorldMatrix (lWorld);
@@ -132,11 +119,7 @@ void cGame::Render()
 	// Render the debug lines
 	cGraphicManager::Get().DrawGrid();
 	cGraphicManager::Get().DrawAxis();
-
-
-	
 	cGraphicManager::Get().SwapBuffer();
-	
 }
 
 
@@ -213,7 +196,6 @@ bool cGame::LoadTagConfigXML()
 	else
 		return false;
 	
-
 	if (lElement->Attribute("Width") != NULL ) 
 		mProperties.muiWidth = atoi (lElement->Attribute("Width"));
 	else

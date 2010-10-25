@@ -11,8 +11,7 @@ main.cpp
 #include <windows.h>
 #include <stdlib.h>
 #include "Game\Game.h"
-
-//using namespace std;
+#include "Utility\Debug.h"
 
 
 int WINAPI WinMain (HINSTANCE hInstance,          // Instance
@@ -21,8 +20,11 @@ int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 										int nCmdShow                  // Windows Show State
 										) 
 {
+	// Inicializa la clase cDebug (si se compila en modo Debug)
+	DEBUG_INIT();
 
-	cGame::Get().Init();  
+	DEBUG_MSG("Inicializando cGame");
+	cGame::Get().Init();
 
 	unsigned long luiLastTime = timeGetTime();
 	while (!cGame::Get().HasFinished())
@@ -38,10 +40,11 @@ int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 		//Render
 		cGame::Get().Render();
 	}
-	cGame::Get().Deinit();
-	
 
-	
+	DEBUG_MSG("Deinicializando la clase cGame");
+	cGame::Get().Deinit();
+
+	DEBUG_DEINIT();
 
 	return 0;
 }
