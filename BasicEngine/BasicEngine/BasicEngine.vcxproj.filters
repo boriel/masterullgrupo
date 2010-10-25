@@ -132,6 +132,9 @@
     <ClInclude Include="Input\Pad.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\Debug.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="Input\Pad.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\Debug.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

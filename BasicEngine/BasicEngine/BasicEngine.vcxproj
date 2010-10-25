@@ -125,6 +125,7 @@
     <ClInclude Include="MathLib\Vec\Vec4.h" />
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
+    <ClInclude Include="Utility\Debug.h" />
     <ClInclude Include="Utility\Singleton.h" />
     <ClInclude Include="Window\ApplicationProperties.h" />
     <ClInclude Include="Window\Window.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />
     <ClCompile Include="MathLib\Vec\Vec.cpp" />
+    <ClCompile Include="Utility\Debug.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

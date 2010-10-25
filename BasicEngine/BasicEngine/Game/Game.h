@@ -22,11 +22,6 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 //#include "..\Input\InputManager.h"
 
 
-//extern tActionMapping kaActionMapping[];
-
-
-//using namespace std;
-
 class cGame : public cSingleton<cGame>
 {
 		friend class cSingleton<cGame>;
@@ -67,6 +62,5 @@ class cGame : public cSingleton<cGame>
 
 
 };
-
 
 #endif
