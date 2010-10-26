@@ -177,5 +177,8 @@
     <ClCompile Include="Utility\Debug.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Window\ApplicationProperties.cpp">
+      <Filter>Window</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,7 +23,9 @@ int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 	// Inicializa la clase cDebug (si se compila en modo Debug)
 	DEBUG_INIT();
 
+	
 	DEBUG_MSG("Inicializando cGame");
+	
 	cGame::Get().Init();
 
 	unsigned long luiLastTime = timeGetTime();

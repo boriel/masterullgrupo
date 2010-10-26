@@ -1,3 +1,8 @@
+/*
+Class Debug.h 
+	Esta clase la usaremos para mostrar y depurar por consola. Sólo la usaremos en modo Debug.
+*/
+
 #ifndef __DEBUG_H__
 #define __DEBUG_H__
 
@@ -13,20 +18,20 @@
 
 class cDebug: public cSingleton<cDebug>
 {
-friend class cSingleton<cDebug>;
-private:
-	HANDLE mHandle;
+	friend class cSingleton<cDebug>;
+	private:
+		HANDLE mHandle;
 
 	
-protected:
-	cDebug();
+	protected:
+		cDebug();
 
-public:
-	bool Init(void);
-	bool Deinit(void);
+	public:
+		bool Init(void);
+		bool Deinit(void);
 
-	// Escribe en la consola la cadena pasada por parametro
-	int WriteStr(const char *s);
+		// Escribe en la consola la cadena pasada por parametro
+		int WriteStr(const char *s);
 };
 
 
