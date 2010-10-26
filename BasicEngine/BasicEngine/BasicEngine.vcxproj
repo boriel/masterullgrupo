@@ -144,6 +144,7 @@
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />
     <ClCompile Include="MathLib\Vec\Vec.cpp" />
     <ClCompile Include="Utility\Debug.cpp" />
+    <ClCompile Include="Window\ApplicationProperties.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
