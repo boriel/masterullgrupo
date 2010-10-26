@@ -48,8 +48,10 @@ public:
 
 #else
 
+// En modo release, estas macros se traducen a código vacío
 #define DEBUG_INIT()  /*  */
 #define DEBUG_DEINIT() /*  */
+#define DEBUG_PRINTF(...) /*  */
 #define DEBUG_MSG(...) /*  */
 
 #	endif
