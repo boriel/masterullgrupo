@@ -10,6 +10,7 @@
 
 extern tActionMapping kaActionMapping[];
 
+
 //Inicializa el juego
 bool cGame::Init()
 {
@@ -66,7 +67,8 @@ void cGame::Update(float lfTimestep)
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
-	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
+	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
+	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed( eIA_CloseApplication );
 	if (mbFinish)
 		return;
 	

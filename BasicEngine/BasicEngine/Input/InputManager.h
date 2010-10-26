@@ -15,9 +15,7 @@ Clase InputManager. Esta clase se encarga de actualizar y leer los dispositivos,
 
 #include "..\Utility\Singleton.h"
 
-
-
-#define IsPressed (ACTION) cInputManager::Get().GetAction( ACTION ).GetIsPressed();
+#define IsPressed(ACTION) cInputManager::Get().GetAction( ACTION ).GetIsPressed()
 
 class OIS::InputManager;
 
