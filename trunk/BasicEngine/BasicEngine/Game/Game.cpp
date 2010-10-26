@@ -192,17 +192,17 @@ bool cGame::LoadTagConfigXML()
 		return false;
 
 	if (lElement->Attribute("Bits") != NULL ) 
-		mProperties.muiBits = atoi (lElement->Attribute("Bits"));
+		lElement->Attribute("Bits", (int *)&mProperties.muiBits);
 	else
 		return false;
 	
-	if (lElement->Attribute("Width") != NULL ) 
-		mProperties.muiWidth = atoi (lElement->Attribute("Width"));
+	if (lElement->Attribute("Width") != NULL )
+		lElement->Attribute("Width", (int *)&mProperties.muiWidth);
 	else
 		return false;
 
 	if (lElement->Attribute("Height") != NULL )
-		mProperties.muiHeight = atoi (lElement->Attribute("Height"));
+		lElement->Attribute("Height", (int *)&mProperties.muiHeight);
 	else
 		return false;
 
