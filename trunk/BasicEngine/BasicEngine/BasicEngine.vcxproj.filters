@@ -31,6 +31,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{c8e4a46d-48bf-46ca-b3c8-424471d512f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{a81205aa-4551-47a9-8ce3-9f0bb75453f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -135,6 +138,18 @@
     <ClInclude Include="Utility\Debug.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\Resource.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\ResourceHandle.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\InternalResource.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\ResourceManager.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -179,6 +194,12 @@
     </ClCompile>
     <ClCompile Include="Window\ApplicationProperties.cpp">
       <Filter>Window</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\ResourceHandle.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\ResourceManager.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
