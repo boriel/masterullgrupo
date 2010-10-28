@@ -7,7 +7,7 @@ Class Debug.h
 #define __DEBUG_H__
 
 // Sólo definimos la clase y la macro si está definida la macro _DEBUG (en modo Debug es automático)
-#	ifdef _DEBUG
+# ifdef _DEBUG
 
 
 #include <stdio.h>
