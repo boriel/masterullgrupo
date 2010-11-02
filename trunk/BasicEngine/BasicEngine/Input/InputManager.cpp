@@ -33,11 +33,15 @@ void cInputManager::Init(const tActionMapping laActionMapping[], unsigned luiAct
 
 	//inicializamos devices
 	cGenericDevice *lpKeyboard = new cKeyboard;
-	lpKeyboard->Init();
+	cGenericDevice *lpMouse = new cMouse;
 
-	//this needs to math with the enum eDevices
+	lpKeyboard->Init();
+	lpMouse->Init();
+
+	//this needs to match with the enum eDevices
 	//eKeyboard = 0 -> keyboard in the index 0 of the vector
 	mDevices.push_back(lpKeyboard);
+	mDevices.push_back(lpMouse);
 
 	//initializing the actions vector
 	mActions.resize(luiActionCount);

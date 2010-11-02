@@ -26,7 +26,14 @@ void cMouse::Deinit(void)
 }
 
 
-bool cMouse::buttonPressed(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton)
+bool cMouse::mouseMoved(const OIS::MouseEvent &lArg)
+{
+	
+	return true;
+}
+
+
+bool cMouse::mousePressed(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton)
 {
 	assert(liButton < kuiMouseButtons);
 	mabInputBuffer[liButton] = true;
@@ -34,7 +41,7 @@ bool cMouse::buttonPressed(const OIS::MouseEvent &lArg, OIS::MouseButtonID liBut
 	return true;
 }
 
-bool cMouse::buttonReleased(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton)
+bool cMouse::mouseReleased(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton)
 {
 	assert(liButton < kuiMouseButtons);
 	mabInputBuffer[liButton] = false;

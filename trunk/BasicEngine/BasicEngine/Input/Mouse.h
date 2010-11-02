@@ -42,8 +42,9 @@ public:
     inline bool IsValid(void) { return mbIsValid; }
 
     // Listeners for the Mouse
-    bool buttonPressed(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton);
-    bool buttonReleased(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton);
+	virtual bool mouseMoved(const OIS::MouseEvent &lArg);
+    virtual bool mousePressed(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton);
+    virtual bool mouseReleased(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton);
 
 private:
 	static const unsigned kuiMouseButtons = 8;
