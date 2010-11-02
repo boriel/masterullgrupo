@@ -150,6 +150,9 @@
     <ClInclude Include="Utilities\ResourceManager.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Input\Mouse.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="Utilities\ResourceManager.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Mouse.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

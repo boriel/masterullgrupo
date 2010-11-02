@@ -11,6 +11,7 @@ Clase InputManager. Esta clase se encarga de actualizar y leer los dispositivos,
 #include "InputEntry.h"
 #include "KeyBoard.h"
 #include "Pad.h"
+#include "Mouse.h"
 //#include "GenericDevice.h"
 
 #include "..\Utility\Singleton.h"
@@ -23,7 +24,8 @@ class OIS::InputManager;
 //Identifica los dispositivos de entrada a traves de un enum
 enum eDevices
 {
-	eKeyboard = 0
+	eKeyboard = 0,
+	eMouse = 1
 };
 
 
@@ -62,9 +64,8 @@ class cInputManager : public cSingleton<cInputManager>
 		// Specific OIS vars
 		friend class cKeyboard;
 		friend class cPad;
+		friend class cMouse;
 		OIS::InputManager* mpOISInputManager;
-
-
 };
 
 

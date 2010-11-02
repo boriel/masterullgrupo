@@ -23,7 +23,10 @@ bool cDebug::Init(void)
 bool cDebug::Deinit(void)
 {
 	// Release the console
-	return (bool)FreeConsole();
+	if (FreeConsole())
+		return true;
+
+	return false;
 }
 
 int cDebug::WriteStr(const char *s)
