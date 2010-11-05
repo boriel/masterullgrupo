@@ -1,6 +1,19 @@
+#include <string.h>
 #include "Debug.h"
 
+
 #ifdef _DEBUG
+
+
+// Devuelve el nombre de fichero (ignorando el directorio)
+const char *__basename(const char *fname)
+{
+	const char *result = strrchr(fname, '\\');
+	if (result)
+		return result + 1;
+
+	return fname;
+}
 
 
 cDebug::cDebug(void)

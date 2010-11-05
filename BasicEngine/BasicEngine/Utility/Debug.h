@@ -16,6 +16,8 @@ Class Debug.h
 
 #define _CON_BUFF_SIZE	4096
 
+const char *__basename(const char *fname);
+
 class cDebug: public cSingleton<cDebug>
 {
 	friend class cSingleton<cDebug>;
@@ -46,7 +48,7 @@ class cDebug: public cSingleton<cDebug>
 }
 	
 #define DEBUG_MSG(...) { \
-			DEBUG_PRINTF("%s[%u]: ", __FILE__, __LINE__); \
+			DEBUG_PRINTF("%s[%u]: ", __basename(__FILE__), __LINE__); \
 			DEBUG_PRINTF(__VA_ARGS__); \
 			DEBUG_PRINTF("\n"); \
 		}
