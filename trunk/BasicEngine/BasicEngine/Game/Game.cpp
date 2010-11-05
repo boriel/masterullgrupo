@@ -7,6 +7,7 @@
 #include "..\Graphics\GraphicManager.h"
 #include "..\Input\InputManager.h"
 #include "InputConfiguration.h"
+#include "../Graphics/Textures/TextureManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -19,6 +20,7 @@ bool cGame::Init()
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
 	mProperties.Init();
 
+	
 	bool lbResult = cWindow::Get().Init(mProperties);
 
 	// Init OpenGL
@@ -31,11 +33,30 @@ bool cGame::Init()
 			cWindow::Get().Deinit();
 	}
 
+	//Iniciando las texturas
+	cTextureManager::Get().Init(4096); // no tengo claro todavia que valor va en el init
+
+
 	//Iniciando la camara
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
+
+
+	//Iniciando Camara 2D
+	float lfRight = (float)mProperties.muiWidth / 2.0f;
+	float lfLeft = -lfRight;
+	float lfTop = (float)mProperties.muiHeight / 2.0f;
+	float lfBottom = -lfTop;
+	m2DCamera.Init();
+	m2DCamera.SetOrtho(lfLeft, lfRight, lfBottom, lfTop, 0.1f, 100.0f);
+	//m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
+	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f), cVec3 (0, 1, 0) );
+
+	// Init the Font
+	//mFont.Init("./Data/Fonts/Test1.fnt");
+
 
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
@@ -50,6 +71,11 @@ bool cGame::Deinit()
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
 	cInputManager::Get().Deinit();
+
+
+	//mFont.Deinit();
+
+	cTextureManager::Get().Deinit();
 
 	return lbResult;
 }
@@ -116,6 +142,10 @@ void cGame::Render()
 	cGraphicManager::Get().DrawGrid();
 	cGraphicManager::Get().DrawAxis();
 	cGraphicManager::Get().SwapBuffer();
+
+
+	//RenderFuentes();
+
 }
 
 
@@ -131,4 +161,54 @@ void cGame::LoadResources ()
 }
 
 
+//Rendreizamos una fuente en pantalla siguiendo el orden
+void cGame::RenderFuentes ()
+{
+	// 1) Clean Buffers
+	// -------------------------------------------------------------
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// 2) Activate the 3D Camera
+	// -------------------------------------------------------------
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+
+	// 3) Render Solid 3D
+	// -------------------------------------------------------------
+	// Set the world matrix
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+	// Render the debug lines
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f),
+	cVec3(1.0f, 0.0f, 1.0f) );
+	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f),
+	cVec3(-1.5f, 0.0f, 1.5f),
+	cVec3(1.0f, 1.0f, 0.0f) );
+
+	// 4) Render 3D with transparency
+	// -------------------------------------------------------------
+
+	// 5) Activate 2D Camera
+	// -------------------------------------------------------------
+	cGraphicManager::Get().ActivateCamera( &m2DCamera );
+
+	// 6) Render 2D Elements
+	// -------------------------------------------------------------
+	//Draw some strings
+	mFont.SetColour (1.0f, 0.0f, 1.0f);
+	mFont.Write(0,200,0, "Renderizando algo en cGame-Render-RenderFuentes", 0, FONT_ALIGN_CENTER);
+
+	mFont.SetColour (0.0f, 1.0f, 1.0f);
+	mFont.Write(0,200,0, "Renderizando \nvarias \nlineas", 0, FONT_ALIGN_CENTER);
+
+
+	// 7) Postprocessing
+	// -------------------------------------------------------------
+
+	// 8) Swap Buffers
+	// -------------------------------------------------------------
+	cGraphicManager::Get().SwapBuffer();
+}
 

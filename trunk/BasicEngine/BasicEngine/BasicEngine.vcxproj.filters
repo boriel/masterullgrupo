@@ -34,6 +34,15 @@
     <Filter Include="Utilities">
       <UniqueIdentifier>{a81205aa-4551-47a9-8ce3-9f0bb75453f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Textures">
+      <UniqueIdentifier>{501fef5d-d48d-48a6-8a67-cf3ffb940af9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Textures\SOIL">
+      <UniqueIdentifier>{9fd7f6a4-3891-4007-ba7e-bac5e5a0cc63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Fonts">
+      <UniqueIdentifier>{21157547-92ae-40de-bdfa-3044630af334}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -153,6 +162,36 @@
     <ClInclude Include="Input\Mouse.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Textures\SOIL\image_DXT.h">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\SOIL\image_helper.h">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\SOIL\SOIL.h">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\SOIL\stb_image_aug.h">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\SOIL\stbi_DDS_aug.h">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\SOIL\stbi_DDS_aug_c.h">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\TextureManager.h">
+      <Filter>Graphics\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Textures\Texture.h">
+      <Filter>Graphics\Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Fonts\acgfx_font.h">
+      <Filter>Graphics\Fonts</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Fonts\acutil_unicode.h">
+      <Filter>Graphics\Fonts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -206,6 +245,30 @@
     </ClCompile>
     <ClCompile Include="Input\Mouse.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Textures\SOIL\image_DXT.c">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Textures\SOIL\image_helper.c">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Textures\SOIL\SOIL.c">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Textures\SOIL\stb_image_aug.c">
+      <Filter>Graphics\Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Textures\TextureManager.cpp">
+      <Filter>Graphics\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Textures\Texture.cpp">
+      <Filter>Graphics\Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Fonts\acgfx_font.cpp">
+      <Filter>Graphics\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Fonts\acutil_unicode.cpp">
+      <Filter>Graphics\Fonts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
