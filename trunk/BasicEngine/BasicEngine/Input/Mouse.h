@@ -27,6 +27,10 @@ enum eMouse
 
    eMouse_ButtonLast = eMouse_Button7, // Puede ser necesario ponero a ButtonRight
 
+   eMouse_AxisX,
+   eMouse_AxisY,
+   eMouse_AxisZ,
+
    eMouse_Total
 };
 
@@ -46,12 +50,18 @@ public:
     virtual bool mousePressed(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton);
     virtual bool mouseReleased(const OIS::MouseEvent &lArg, OIS::MouseButtonID liButton);
 
+	inline float getX() { return X; }
+	inline float getY() { return Y; }
+	inline float getZ() { return Z; }
+
 private:
 	static const unsigned kuiMouseButtons = 8;
 	bool mabInputBuffer[kuiMouseButtons];
 	bool mbIsValid;
+	float mafInput[eMouse_Total];
 
     OIS::Mouse* mpOISMouse;
+	float X, Y, Z;
 };
 
 
