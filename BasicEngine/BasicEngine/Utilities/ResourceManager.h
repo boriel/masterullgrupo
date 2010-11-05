@@ -58,6 +58,7 @@ class cResourceManager
 		virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile ) { return NULL; };  //carga el recurso desde fichero
 		virtual cResource * LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID ) {return NULL;}  //carga el recurso desde memoria
 
+	public:
 		cResourceHandle FindResource( std::string lacNameID );
 		void UnloadResource( cResourceHandle * lpHandle );
 };

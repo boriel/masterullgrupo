@@ -15,6 +15,8 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 
+#include "../Graphics/Fonts/acgfx_font.h"
+
 //#include "InputConfiguration.h"
 //#include "..\Input\InputManager.h"
 
@@ -30,6 +32,8 @@ class cGame : public cSingleton<cGame>
 		cApplicationProperties mProperties;
 		
 		cCamera m3DCamera;
+		cCamera m2DCamera;
+		cFont mFont;
 		
 	protected:
 		cGame () { ; } //Protected Constructor
@@ -49,6 +53,8 @@ class cGame : public cSingleton<cGame>
 	private:  //métodos
 		
 		void LoadResources(); //Read resources for the game (window properties)
+
+		void RenderFuentes();
 
 
 };
