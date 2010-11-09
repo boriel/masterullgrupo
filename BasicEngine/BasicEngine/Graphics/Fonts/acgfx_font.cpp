@@ -37,6 +37,8 @@
 #include "../Textures/Texture.h"
 #include <cassert>
 #pragma warning( disable : 4996 )
+
+#include "..\..\Utility\Debug.h"
 // > This is a modification of the original code
 
 #define LOG(X) printf X
@@ -709,6 +711,8 @@ int CFontLoaderTextFormat::Load()
 {
 	string line;
 
+	
+
 	while( !feof(f) )
 	{
 		// Read until line feed (or EOF)
@@ -726,6 +730,8 @@ int CFontLoaderTextFormat::Load()
 			}
 		}
 
+		if (line == "") break; //Yorman
+
 		// Skip white spaces
 		int pos = SkipWhiteSpace(line, 0);
 
@@ -733,6 +739,9 @@ int CFontLoaderTextFormat::Load()
 		int pos2 = FindEndOfToken(line, pos);
 		string token = line.substr(pos, pos2-pos);
 
+		//DEBUG_MSG("%d - %s", ++i, token.c_str());
+		
+		
 		// Interpret line
 		if( token == "info" )
 			InterpretInfo(line, pos2);
@@ -837,7 +846,8 @@ void CFontLoaderTextFormat::InterpretKerning(string &str, int start)
 		else if( token == "amount" )
 			amount = strtol(value.c_str(), 0, 10);
 
-		if( pos == str.size() ) break;
+		//if( pos == str.size() ) break;  //orig
+		if( pos2 == str.size() -1 ) break;  //Yorman
 	}
 
 	// Store the attributes
@@ -895,7 +905,8 @@ void CFontLoaderTextFormat::InterpretChar(string &str, int start)
 		else if( token == "chnl" )
 			chnl = strtol(value.c_str(), 0, 10);
 
-		if( pos == str.size() ) break;
+		//if( pos == str.size() ) break;  //orig
+		if( pos2 >= str.size() -1 ) break;  //Yorman
 	}
 
 	// Store the attributes
@@ -941,7 +952,8 @@ void CFontLoaderTextFormat::InterpretCommon(string &str, int start)
 		else if( token == "packed" )
 			packed = strtol(value.c_str(), 0, 10);
 
-		if( pos == str.size() ) break;
+		//if( pos == str.size() ) break; //orig
+		if( pos2 == str.size() - 1) break; //Yorman
 	}
 
 	SetCommonInfo(fontHeight, base, scaleW, scaleH, pages, packed ? true : false);
@@ -961,7 +973,10 @@ void CFontLoaderTextFormat::InterpretInfo(string &str, int start)
 		string token = str.substr(pos, pos2-pos);
 
 		pos = SkipWhiteSpace(str, pos2);
-		if( pos == str.size() || str[pos] != '=' ) break;
+		if( pos == str.size() || str[pos] != '=' ) 
+			break;
+
+
 
 		pos = SkipWhiteSpace(str, pos+1);
 		pos2 = FindEndOfToken(str, pos);
@@ -971,7 +986,12 @@ void CFontLoaderTextFormat::InterpretInfo(string &str, int start)
 		if( token == "outline" )
 			outlineThickness = (short)strtol(value.c_str(), 0, 10);
 
-		if( pos == str.size() ) break;
+		//if( pos >= str.size() ) break; //orig
+		//Yorman
+		if( pos2 >= str.size() -1) 
+			break;
+
+
 	}
 
 	SetFontInfo(outlineThickness);
@@ -1004,7 +1024,8 @@ void CFontLoaderTextFormat::InterpretPage(string &str, int start, const char *fo
 		else if( token == "file" )
 			file = value.substr(1, value.length()-2);
 
-		if( pos == str.size() ) break;
+		//if( pos >= str.size() ) break; //orig
+		if( pos2 >= str.size() - 1) break; //Yorman
 	}
 
 	LoadPage(id, file.c_str(), fontFile);
