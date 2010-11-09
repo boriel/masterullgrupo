@@ -51,7 +51,7 @@ bool cMouse::mouseMoved(const OIS::MouseEvent &lArg)
 	mafInput[eMouse_AxisY] = (float)(Y / lArg.state.height);
 	mafInput[eMouse_AxisZ] = (float)(Z / lArg.state.Z.abs);
 
-	DEBUG_MSG("X: %f, Y: %f, Z: %f", mafInput[eMouse_AxisX], mafInput[eMouse_AxisY], mafInput[eMouse_AxisZ]);
+	//DEBUG_MSG("X: %f, Y: %f, Z: %f", mafInput[eMouse_AxisX], mafInput[eMouse_AxisY], mafInput[eMouse_AxisZ]);
 	return true;
 }
 

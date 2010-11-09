@@ -55,7 +55,7 @@ bool cGame::Init()
 	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f), cVec3 (0, 1, 0) );
 
 	// Init the Font
-	//mFont.Init("./Data/Fonts/Test1.fnt");
+	mFont.Init("./Data/Fonts/Test1.fnt");
 
 
 	// Init Input Manager
@@ -73,7 +73,7 @@ bool cGame::Deinit()
 	cInputManager::Get().Deinit();
 
 
-	//mFont.Deinit();
+	mFont.Deinit();
 
 	cTextureManager::Get().Deinit();
 
@@ -104,7 +104,7 @@ void cGame::Update(float lfTimestep)
 //render del juego
 void cGame::Render() 
 {
-	
+	/*
 	//Mostrar el contador
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -143,8 +143,8 @@ void cGame::Render()
 	cGraphicManager::Get().DrawAxis();
 	cGraphicManager::Get().SwapBuffer();
 
-
-	//RenderFuentes();
+	*/
+	RenderFuentes();
 
 }
 
