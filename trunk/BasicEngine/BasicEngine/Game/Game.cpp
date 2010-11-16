@@ -197,11 +197,11 @@ void cGame::RenderFuentes ()
 	// 6) Render 2D Elements
 	// -------------------------------------------------------------
 	//Draw some strings
-	mFont.SetColour (1.0f, 0.0f, 1.0f);
+	mFont.SetColour (1.0f, 0.0f, 0.0f);
 	mFont.Write(0,200,0, "Renderizando algo en cGame-Render-RenderFuentes", 0, FONT_ALIGN_CENTER);
 
 	mFont.SetColour (0.0f, 1.0f, 1.0f);
-	mFont.Write(0,200,0, "Renderizando \nvarias \nlineas", 0, FONT_ALIGN_CENTER);
+	mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
 
 
 	// 7) Postprocessing

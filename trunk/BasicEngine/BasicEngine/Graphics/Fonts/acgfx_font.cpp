@@ -767,10 +767,7 @@ int CFontLoaderTextFormat::SkipWhiteSpace(string &str, int start)
 	while( n < str.size() )
 	{
 		char ch = str[n];
-		if( ch != ' ' && 
-			ch != '\t' && 
-			ch != '\r' && 
-			ch != '\n' )
+		if( ch != ' ' && 	ch != '\t' && ch != '\r' &&  ch != '\n' )
 			break;
 
 		++n;
@@ -1024,7 +1021,7 @@ void CFontLoaderTextFormat::InterpretPage(string &str, int start, const char *fo
 		else if( token == "file" )
 			file = value.substr(1, value.length()-2);
 
-		//if( pos >= str.size() ) break; //orig
+		//if( pos == str.size() ) break; //orig
 		if( pos2 >= str.size() - 1) break; //Yorman
 	}
 
