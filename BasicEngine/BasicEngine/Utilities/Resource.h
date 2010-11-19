@@ -1,6 +1,6 @@
 /*
 Class cResource:
-		Con esto cargaremos un elemento (o recurso) del juego.
+		Con esto cargaremos un elemento (o recurso, eje texturas, sonidos, mallas, ...) del juego.
 */
 
 

@@ -1,0 +1,50 @@
+/*
+Class cCharacterManager: Se encargará de gestionar los personajes del juego.
+
+
+*/
+
+
+#ifndef CHARACTER_MANAGER_H
+#define CHARACTER_MANAGER_H
+
+#include <list>
+
+#include "..\Utility\Singleton.h"
+
+#include "Character.h"
+
+
+
+class cCharacterManager : public cSingleton<cCharacterManager>
+{
+	private:
+		typedef std::list<cCharacter *> cCharacterList;
+		typedef cCharacterList::iterator cCharacterListIt;
+		cCharacterList mCharacters; //Lista de personajes
+
+	public:
+		
+		bool Init();
+		
+		void Update( float lfTimestep ); //Llama al Update de todos personajes
+		
+		void Render(); //Llama al Render de todos personajes
+		
+		bool Deinit(); //Llama al Deinit de todos personajes
+		
+		//Crea un nuevo personaje, llama a su Init() y lo añade a la lista.
+		//Devuelve un puntero al personaje creado
+		cCharacter* CreateCharacter();
+		
+		void DestroyCharacter(cCharacter* lpCharacter); //Elimina al personaje de la lista y llama a su Deinit()
+
+};
+
+
+
+
+
+
+
+#endif

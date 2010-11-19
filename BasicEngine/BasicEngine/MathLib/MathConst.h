@@ -9,4 +9,6 @@
 ///	Constante Epsilon: Un valor suficientemente peque&ntilde;o como para ser despreciable 
 #define EPSILON (0.00001f)
 
+//Constante definida para el Character en IA de la práctica
+#define HALF_PI (PI / 2.0f )
 #endif

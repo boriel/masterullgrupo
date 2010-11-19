@@ -59,6 +59,7 @@
       <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -84,6 +85,7 @@
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -95,6 +97,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character\Character.h" />
+    <ClInclude Include="Character\CharacterManager.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\InputConfiguration.h" />
     <ClInclude Include="Graphics\Camera.h" />
@@ -117,6 +121,30 @@
     <ClInclude Include="Input\KeyBoard.h" />
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Input\Pad.h" />
+    <ClInclude Include="Lua\LuaManager.h" />
+    <ClInclude Include="Lua\src\lapi.h" />
+    <ClInclude Include="Lua\src\lauxlib.h" />
+    <ClInclude Include="Lua\src\lcode.h" />
+    <ClInclude Include="Lua\src\ldebug.h" />
+    <ClInclude Include="Lua\src\ldo.h" />
+    <ClInclude Include="Lua\src\lfunc.h" />
+    <ClInclude Include="Lua\src\lgc.h" />
+    <ClInclude Include="Lua\src\llex.h" />
+    <ClInclude Include="Lua\src\llimits.h" />
+    <ClInclude Include="Lua\src\lmem.h" />
+    <ClInclude Include="Lua\src\lobject.h" />
+    <ClInclude Include="Lua\src\lopcodes.h" />
+    <ClInclude Include="Lua\src\lparser.h" />
+    <ClInclude Include="Lua\src\lstate.h" />
+    <ClInclude Include="Lua\src\lstring.h" />
+    <ClInclude Include="Lua\src\ltable.h" />
+    <ClInclude Include="Lua\src\ltm.h" />
+    <ClInclude Include="Lua\src\lua.h" />
+    <ClInclude Include="Lua\src\luaconf.h" />
+    <ClInclude Include="Lua\src\lualib.h" />
+    <ClInclude Include="Lua\src\lundump.h" />
+    <ClInclude Include="Lua\src\lvm.h" />
+    <ClInclude Include="Lua\src\lzio.h" />
     <ClInclude Include="MathLib\MathConst.h" />
     <ClInclude Include="MathLib\MathLib.h" />
     <ClInclude Include="MathLib\MathUtils\LinearInterpolator.h" />
@@ -136,7 +164,6 @@
     <ClInclude Include="MathLib\Vec\Vec4.h" />
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
-    <ClInclude Include="Utilities\InternalResource.h" />
     <ClInclude Include="Utilities\Resource.h" />
     <ClInclude Include="Utilities\ResourceHandle.h" />
     <ClInclude Include="Utilities\ResourceManager.h" />
@@ -146,6 +173,8 @@
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Character\Character.cpp" />
+    <ClCompile Include="Character\CharacterManager.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\InputConfiguration.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
@@ -163,6 +192,37 @@
     <ClCompile Include="Input\KeyBoard.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Input\Pad.cpp" />
+    <ClCompile Include="Lua\LuaManager.cpp" />
+    <ClCompile Include="Lua\src\lapi.c" />
+    <ClCompile Include="Lua\src\lauxlib.c" />
+    <ClCompile Include="Lua\src\lbaselib.c" />
+    <ClCompile Include="Lua\src\lcode.c" />
+    <ClCompile Include="Lua\src\ldblib.c" />
+    <ClCompile Include="Lua\src\ldebug.c" />
+    <ClCompile Include="Lua\src\ldo.c" />
+    <ClCompile Include="Lua\src\ldump.c" />
+    <ClCompile Include="Lua\src\lfunc.c" />
+    <ClCompile Include="Lua\src\lgc.c" />
+    <ClCompile Include="Lua\src\linit.c" />
+    <ClCompile Include="Lua\src\liolib.c" />
+    <ClCompile Include="Lua\src\llex.c" />
+    <ClCompile Include="Lua\src\lmathlib.c" />
+    <ClCompile Include="Lua\src\lmem.c" />
+    <ClCompile Include="Lua\src\loadlib.c" />
+    <ClCompile Include="Lua\src\lobject.c" />
+    <ClCompile Include="Lua\src\lopcodes.c" />
+    <ClCompile Include="Lua\src\loslib.c" />
+    <ClCompile Include="Lua\src\lparser.c" />
+    <ClCompile Include="Lua\src\lstate.c" />
+    <ClCompile Include="Lua\src\lstring.c" />
+    <ClCompile Include="Lua\src\lstrlib.c" />
+    <ClCompile Include="Lua\src\ltable.c" />
+    <ClCompile Include="Lua\src\ltablib.c" />
+    <ClCompile Include="Lua\src\ltm.c" />
+    <ClCompile Include="Lua\src\lundump.c" />
+    <ClCompile Include="Lua\src\lvm.c" />
+    <ClCompile Include="Lua\src\lzio.c" />
+    <ClCompile Include="Lua\src\print.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />

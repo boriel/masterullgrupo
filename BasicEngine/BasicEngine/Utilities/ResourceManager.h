@@ -25,13 +25,28 @@ Class ResourceManager: 			Interfaz para poder acceder al recuro:
 #ifndef RESOURCE_MANAGER_H
 #define RESOURCE_MANAGER_H
 
-#include "ResourceHandle.h"
-#include "InternalResource.h"
-#include "Resource.h"
-
 #include <vector>
 #include <list>
 #include <string>
+#include <tinystr.h>
+#include <tinyxml.h>
+#include <windows.h>
+
+
+#include "ResourceHandle.h"
+//#include "Resource.h"
+
+class cResource;
+
+
+struct cInternalResource
+{
+	unsigned int muiKey;  
+	cResource * mpResource;  
+};
+
+
+
 
 class cResourceManager
 {
@@ -46,7 +61,7 @@ class cResourceManager
 		std::vector<cInternalResource> maResources;
 		std::list<unsigned> mFreeResourceSlot;					//lista adicional que guarda todos los índices de casillas que están libres
 
-		int muiNextKey;					//es la clave que se asignará al siguiente recurso que se almacene
+		int muiNextKey;					//es la clave que se asigna
 		unsigned muiMaxSize;		//es el número máximo de recursos que podemos almacenar en la estructura
 
 	 //Como pueden comprobar, la función es protegida y la clase tiene como clase amiga al	handle. Esto quiere decir que sólo un handle llamar a esta función para acceder al recurso.
@@ -61,6 +76,13 @@ class cResourceManager
 	public:
 		cResourceHandle FindResource( std::string lacNameID );
 		void UnloadResource( cResourceHandle * lpHandle );
+
+	private:
+		//bool LoadTagResourceXml(std::string lsTag);
+		//string msFilename;  // Resources or Properties file
+		//TiXmlDocument mDoc;
+
+
 };
 
 

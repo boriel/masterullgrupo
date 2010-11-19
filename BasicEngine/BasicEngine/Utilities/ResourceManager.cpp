@@ -1,9 +1,10 @@
-
 #include "ResourceManager.h"
 
-#include "Resource.h"
-
 #include <cassert>
+#include <stdio.h>
+
+
+#include "Resource.h"
 
 void cResourceManager::Init( unsigned luiMaxSize )
 {
@@ -25,6 +26,11 @@ void cResourceManager::Init( unsigned luiMaxSize )
 
 	// Prepare the first key
 	muiNextKey = kuiInvalidKey + 1;
+
+
+	//incializando el nombre del fichero de recursos del nombre del xml
+	//msFilename = (".\\Data\\" + std::string("Resource.xml"));
+
 }
 
 
@@ -183,8 +189,7 @@ cResourceHandle cResourceManager::LoadResource( std::string lacNameID, void * lp
 	if ( !lHandle.IsValidHandle() )
 	{
 		// Load the Resource
-		cResource * lpResource = LoadResourceInternal( lacNameID,
-		lpMemoryData, luiTypeID );
+		cResource * lpResource = LoadResourceInternal( lacNameID,	lpMemoryData, luiTypeID );
 
 		if (lpResource)
 		{
@@ -200,3 +205,37 @@ cResourceHandle cResourceManager::LoadResource( std::string lacNameID, void * lp
 
 	return lHandle;
 }
+
+
+/*
+//Leemeos un recurso concreto de un xml, el tag de la fuente
+bool cResourceManager::LoadTagResourceXml(std::string lsTag)
+{
+	
+	mDoc.LoadFile ((char*)msFilename.c_str());
+	if (!mDoc.LoadFile())
+	{
+		OutputDebugString ("XML Load: FAILED\n");
+		return false;
+	}
+
+	
+	TiXmlElement *lElement;
+	lElement = mDoc.FirstChildElement (lsTag);
+
+	if (lsTag == "Font")
+	{
+		if (lElement->Attribute("Fichero") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+			std::string lsFont = ((char*)lElement->Attribute("Fichero"));
+		else
+			return false;
+
+
+
+	}
+
+
+	return true;
+	
+}
+*/
