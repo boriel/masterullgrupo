@@ -730,7 +730,7 @@ int CFontLoaderTextFormat::Load()
 			}
 		}
 
-		if (line == "") break; //Yorman
+		//if (line == "") break; //Yorman
 
 		// Skip white spaces
 		int pos = SkipWhiteSpace(line, 0);
@@ -843,8 +843,8 @@ void CFontLoaderTextFormat::InterpretKerning(string &str, int start)
 		else if( token == "amount" )
 			amount = strtol(value.c_str(), 0, 10);
 
-		//if( pos == str.size() ) break;  //orig
-		if( pos2 == str.size() -1 ) break;  //Yorman
+		if( pos == str.size() ) break;  //orig
+		//if( pos2 == str.size() -1 ) break;  //Yorman
 	}
 
 	// Store the attributes
@@ -949,8 +949,8 @@ void CFontLoaderTextFormat::InterpretCommon(string &str, int start)
 		else if( token == "packed" )
 			packed = strtol(value.c_str(), 0, 10);
 
-		//if( pos == str.size() ) break; //orig
-		if( pos2 == str.size() - 1) break; //Yorman
+		if( pos == str.size() ) break; //orig
+		//if( pos2 == str.size() - 1) break; //Yorman
 	}
 
 	SetCommonInfo(fontHeight, base, scaleW, scaleH, pages, packed ? true : false);
@@ -983,10 +983,8 @@ void CFontLoaderTextFormat::InterpretInfo(string &str, int start)
 		if( token == "outline" )
 			outlineThickness = (short)strtol(value.c_str(), 0, 10);
 
-		//if( pos >= str.size() ) break; //orig
-		//Yorman
-		if( pos2 >= str.size() -1) 
-			break;
+		if( pos >= str.size() ) break; //orig
+		//if( pos2 >= str.size() -1) 	break; //Yorman
 
 
 	}
@@ -1021,8 +1019,8 @@ void CFontLoaderTextFormat::InterpretPage(string &str, int start, const char *fo
 		else if( token == "file" )
 			file = value.substr(1, value.length()-2);
 
-		//if( pos == str.size() ) break; //orig
-		if( pos2 >= str.size() - 1) break; //Yorman
+		if( pos == str.size() ) break; //orig
+		//if( pos2 >= str.size() - 1) break; //Yorman
 	}
 
 	LoadPage(id, file.c_str(), fontFile);
