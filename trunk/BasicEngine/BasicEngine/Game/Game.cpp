@@ -34,7 +34,7 @@ bool cGame::Init()
 	}
 
 	//Iniciando las texturas
-	cTextureManager::Get().Init(4096); // no tengo claro todavia que valor va en el init
+	cTextureManager::Get().Init(2); 
 
 
 	//Iniciando la camara
@@ -57,10 +57,20 @@ bool cGame::Init()
 	// Init the Font
 	mFont.Init("./Data/Fonts/Test1.fnt");
 
-
+	
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
+	cResourceHandle lRH = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
+	//cResourceHandle lRH = cTextureManager::Get().FindResource("Font");
+	
+	cResource* lResource = lRH.GetResource();
+	
+
+	
+	
+
+
 	return lbResult;
 }
 
