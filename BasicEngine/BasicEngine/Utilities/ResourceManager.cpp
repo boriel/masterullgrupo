@@ -6,6 +6,8 @@
 
 #include "Resource.h"
 
+#include "..\Graphics\Fonts\acgfx_font.h"
+
 void cResourceManager::Init( unsigned luiMaxSize )
 {
 	muiMaxSize = luiMaxSize;
@@ -29,7 +31,9 @@ void cResourceManager::Init( unsigned luiMaxSize )
 
 
 	//incializando el nombre del fichero de recursos del nombre del xml
-	//msFilename = (".\\Data\\" + std::string("Resource.xml"));
+	msFilename = (".\\Data\\" + std::string("Resources.xml"));
+
+	LoadResourcesXml(msFilename.c_str());
 
 }
 
@@ -207,11 +211,11 @@ cResourceHandle cResourceManager::LoadResource( std::string lacNameID, void * lp
 }
 
 
-/*
-//Leemeos un recurso concreto de un xml, el tag de la fuente
-bool cResourceManager::LoadTagResourceXml(std::string lsTag)
+//Leemeos todos los recursos desde un xml
+bool cResourceManager::LoadResourcesXml(std::string lsResource)
 {
-	
+
+	/*
 	mDoc.LoadFile ((char*)msFilename.c_str());
 	if (!mDoc.LoadFile())
 	{
@@ -233,9 +237,19 @@ bool cResourceManager::LoadTagResourceXml(std::string lsTag)
 
 
 	}
+	*/
 
+	std::string lacFont = "./Data/Fonts/Test1.fnt";
+	cFont lFont;
+	lFont.Init(lacFont.c_str());
+	
+	//LoadResource("Font", &lFont, 10);
+	
+	//LoadResource("Font", "./Data/Fonts/Test1_0.tga");
+	
+
+	maResources;
 
 	return true;
 	
 }
-*/

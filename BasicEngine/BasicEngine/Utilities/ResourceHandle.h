@@ -65,8 +65,8 @@ class cResourceHandle
 		//Funciones
 		cResourceHandle() { mpManager = NULL; muiKey = kuiInvalidKey; }
 		
-		inline bool IsValidHandle() { return muiKey != kuiInvalidKey; }
-		inline void Invalidate() { muiKey = kuiInvalidKey; }
+		inline bool IsValidHandle() { return muiKey != kuiInvalidKey; }		// Comprueba si el handle es válido
+		inline void Invalidate() { muiKey = kuiInvalidKey; }							// Para invalidar el handle
 		inline unsigned GetID() { return muiID; }
 		inline unsigned GetKey() { return muiKey; }
 
@@ -75,6 +75,7 @@ class cResourceHandle
 		friend class cResourceManager;
 
 		void Init( cResourceManager * lpManager, unsigned luiID, unsigned luiKey);
+
 		cResourceManager* mpManager;
 		unsigned int muiID;
 		unsigned int muiKey;

@@ -115,7 +115,7 @@ cFont::cFont()
 	scale = 1.0f;
 	hasOutline = false;
 	encoding = NONE;
-   SetColour(1.0f, 1.0f, 1.0f);
+  SetColour(1.0f, 1.0f, 1.0f);
 }
 
 void cFont::Deinit()
@@ -730,7 +730,7 @@ int CFontLoaderTextFormat::Load()
 			}
 		}
 
-		if (line == "") break; //Yorman
+		if (line == "") break; //Yorman y José Manuel (añadido)
 
 		// Skip white spaces
 		int pos = SkipWhiteSpace(line, 0);
@@ -844,7 +844,7 @@ void CFontLoaderTextFormat::InterpretKerning(string &str, int start)
 			amount = strtol(value.c_str(), 0, 10);
 
 		//if( pos == str.size() ) break;  //orig Jesús
-		if( pos2 == str.size() -1 ) break;  //Yorman
+		if( pos2 == str.size() -1 ) break;  //Yorman  y José Manuel (añadido)
 	}
 
 	// Store the attributes
@@ -903,7 +903,7 @@ void CFontLoaderTextFormat::InterpretChar(string &str, int start)
 			chnl = strtol(value.c_str(), 0, 10);
 
 		//if( pos == str.size() ) break;  //orig Jesús
-		if( pos2 >= str.size() -1 ) break;  //Yorman
+		if( pos2 >= str.size() -1 ) break;  //Yorman  y José Manuel (añadido)
 	}
 
 	// Store the attributes
@@ -950,7 +950,7 @@ void CFontLoaderTextFormat::InterpretCommon(string &str, int start)
 			packed = strtol(value.c_str(), 0, 10);
 
 		//if( pos == str.size() ) break; //orig Jesús
-		if( pos2 == str.size() - 1) break; //Yorman
+		if( pos2 == str.size() - 1) break; //Yorman  y José Manuel (añadido)
 	}
 
 	SetCommonInfo(fontHeight, base, scaleW, scaleH, pages, packed ? true : false);
@@ -984,7 +984,7 @@ void CFontLoaderTextFormat::InterpretInfo(string &str, int start)
 			outlineThickness = (short)strtol(value.c_str(), 0, 10);
 
 		//if( pos >= str.size() ) break; //orig Jesús
-		if( pos2 >= str.size() -1) 	break; //Yorman
+		if( pos2 >= str.size() -1) 	break; //Yorman  y José Manuel (añadido)
 
 
 	}
@@ -1020,7 +1020,7 @@ void CFontLoaderTextFormat::InterpretPage(string &str, int start, const char *fo
 			file = value.substr(1, value.length()-2);
 
 		//if( pos == str.size() ) break; //orig Jesús
-		if( pos2 >= str.size() - 1) break; //Yorman
+		if( pos2 >= str.size() - 1) break; //Yorman  y José Manuel (añadido)
 	}
 
 	LoadPage(id, file.c_str(), fontFile);

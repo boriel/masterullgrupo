@@ -38,11 +38,11 @@ Class ResourceManager: 			Interfaz para poder acceder al recuro:
 
 class cResource;
 
-
+//Esta esctructura es lo que se guardará en el vector que contendrá los recursos
 struct cInternalResource
 {
-	unsigned int muiKey;  
-	cResource * mpResource;  
+	unsigned int muiKey;			// Clave del recurso
+	cResource * mpResource;		// Puntero al recurso
 };
 
 
@@ -78,8 +78,8 @@ class cResourceManager
 		void UnloadResource( cResourceHandle * lpHandle );
 
 	private:
-		//bool LoadTagResourceXml(std::string lsTag);
-		//string msFilename;  // Resources or Properties file
+		bool LoadResourcesXml(std::string lsResource);
+		std::string msFilename;  // Resources or Properties file
 		//TiXmlDocument mDoc;
 
 
