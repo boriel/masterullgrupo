@@ -245,7 +245,8 @@ bool cResourceManager::LoadResourcesXml(std::string lsResource)
 	
 	//LoadResource("Font", &lFont, 10);
 	
-	//LoadResource("Font", "./Data/Fonts/Test1_0.tga");
+	//LoadResource("Font2", "./Data/Fonts/Test1_0.tga");
+	LoadResource("Font2", ".\\Data\\Fonts\\Test1_0.tga");
 	
 
 	maResources;
