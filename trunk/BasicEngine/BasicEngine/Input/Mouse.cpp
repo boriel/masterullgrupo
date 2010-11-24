@@ -2,6 +2,7 @@
 #include "Mouse.h"
 #include "InputManager.h"
 #include "..\Utility\Debug.h"
+#include "..\Window\Window.h"
 
 void cMouse::Init(void)
 {
@@ -12,7 +13,11 @@ void cMouse::Init(void)
 	assert(cInputManager::Get().mpOISInputManager);
 	OIS::InputManager* lpOISInputManager = cInputManager::Get().mpOISInputManager;
 	mpOISMouse = (OIS::Mouse*)lpOISInputManager->createInputObject(OIS::OISMouse, true);
-	
+
+	const OIS::MouseState &ms = mpOISMouse->getMouseState();
+	ms.width = cWindow::Get().GetWidth();  // WIDTH
+	ms.height = cWindow::Get().GetHeight(); // HEIGHT
+		
 	mpOISMouse->setEventCallback( this );
 	mbIsValid = true;
 }
@@ -29,29 +34,15 @@ void cMouse::Deinit(void)
 
 bool cMouse::mouseMoved(const OIS::MouseEvent &lArg)
 {
-//	mpOISMouse->mState.w
-
-	X += (float)lArg.state.X.rel;
-	if (X < 0) X = 0;
-	if (X > (float)lArg.state.width)
-		X = (float)lArg.state.width;
-
-	Y += (float)lArg.state.Y.rel;
-	if (Y < 0) Y = 0;
-	if (Y > (float)lArg.state.height)
-		Y = (float)lArg.state.height;
-
-	Z += (float)lArg.state.Z.rel;
-	if (Z < 0) Z = 0;
-	if (Z > (float)lArg.state.Z.abs)
-		Z = (float)lArg.state.Z.abs;
-
+	X = (float)lArg.state.X.abs;
+	Y = (float)lArg.state.Y.abs;
+	Z = (float)lArg.state.Z.abs;
 
 	mafInput[eMouse_AxisX] = (float)(X / lArg.state.width);
 	mafInput[eMouse_AxisY] = (float)(Y / lArg.state.height);
 	mafInput[eMouse_AxisZ] = (float)(Z / lArg.state.Z.abs);
 
-	//DEBUG_MSG("X: %f, Y: %f, Z: %f", mafInput[eMouse_AxisX], mafInput[eMouse_AxisY], mafInput[eMouse_AxisZ]);
+	DEBUG_MSG("X: %f, Y: %f, Z: %f", mafInput[eMouse_AxisX], mafInput[eMouse_AxisY], mafInput[eMouse_AxisZ]);
 	return true;
 }
 
