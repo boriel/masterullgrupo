@@ -24,7 +24,6 @@ class cDebug: public cSingleton<cDebug>
 	private:
 		HANDLE mHandle;
 
-	
 	protected:
 		cDebug();
 
@@ -48,7 +47,7 @@ class cDebug: public cSingleton<cDebug>
 }
 	
 #define DEBUG_MSG(...) { \
-			DEBUG_PRINTF("%s[%u]: ", __basename(__FILE__), __LINE__); \
+			DEBUG_PRINTF("DEBUG %s[%u]: ", __basename(__FILE__), __LINE__); \
 			DEBUG_PRINTF(__VA_ARGS__); \
 			DEBUG_PRINTF("\n"); \
 		}
