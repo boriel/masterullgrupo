@@ -8,6 +8,7 @@
 #include "..\Input\InputManager.h"
 #include "InputConfiguration.h"
 #include "../Graphics/Textures/TextureManager.h"
+#include "../Lua/LuaManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -57,6 +58,8 @@ bool cGame::Init()
 	// Init the Font
 	mFont.Init("./Data/Fonts/Test1.fnt");
 
+	// Init the Lua Manager
+	cLuaManager::Get().Init();
 	
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
@@ -66,13 +69,10 @@ bool cGame::Init()
 	
 	cResource* lResource = lRH.GetResource();
 	
-
 	
-	
-
-
 	return lbResult;
 }
+
 
 //Destrucutor del juego
 bool cGame::Deinit()
@@ -81,11 +81,9 @@ bool cGame::Deinit()
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
 	cInputManager::Get().Deinit();
-
-
 	mFont.Deinit();
-
 	cTextureManager::Get().Deinit();
+	cLuaManager::Get().Deinit();
 
 	return lbResult;
 }
