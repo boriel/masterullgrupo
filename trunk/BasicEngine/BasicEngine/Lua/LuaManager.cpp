@@ -1,7 +1,8 @@
+#include <cassert>
 
 #include "LuaManager.h"
+#include "../Utility/Debug.h"
 
-#include <cassert>
 
 
 cLuaManager::cLuaManager()
@@ -52,7 +53,8 @@ bool cLuaManager::CheckError( int liError )
 		assert( mpLuaContext );
 
 		//Mostramos el mensaje de error
-		printf( "Error: %s\n", lua_tostring( mpLuaContext, -1 ) );
+		//printf( "Error: %s\n", lua_tostring( mpLuaContext, -1 ) );
+		DEBUG_MSG("LuaError: %s\n", lua_tostring(mpLuaContext, -1));
 
 		//Sacamos el mensaje del top de la pila
 		lua_pop( mpLuaContext, 1 );

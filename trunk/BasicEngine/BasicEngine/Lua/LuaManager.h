@@ -20,11 +20,6 @@ extern "C"
 }
 
 
-
-
-
-
-
 class cLuaManager : public cSingleton<cLuaManager>
 {
 	public:
@@ -36,9 +31,6 @@ class cLuaManager : public cSingleton<cLuaManager>
 		void Register( const char* lacFuncName, lua_CFunction lpFunc );
 
 		inline lua_State* GetContext() { return mpLuaContext; }
-
-
-
 		
 		void PushArg( int liArg );
 		void PushArg( long liArg );
@@ -46,7 +38,6 @@ class cLuaManager : public cSingleton<cLuaManager>
 		void PushArg( const char* lacArg );
 		void PushArg( std::string &lacArg );
 		void PushArg( bool lbArg );
-		
 
 		void GetRetValue( int* liRet );
 		void GetRetValue( float* lfRet );
@@ -55,15 +46,10 @@ class cLuaManager : public cSingleton<cLuaManager>
 		void GetRetValue( const char* lacRet );
 		void GetRetValue( bool* lbRet );
 
-
 		void Pop( unsigned int luiNValues );
-
-
 
 		template <class T, class U, class Z>
 		bool CallLua( const char* lacFuncName, T lArg1, U lArg2, Z* lpRet);
-
-
 
 		friend class cSingleton<cLuaManager>;
 		
