@@ -1,9 +1,11 @@
-#include <string.h>
-#include "Debug.h"
-
-
 #ifdef _DEBUG
 
+#include <string.h>
+#include <stdio.h>
+#include <io.h>
+#include <fcntl.h>
+
+#include "Debug.h"
 
 // Devuelve el nombre de fichero (ignorando el directorio)
 const char *__basename(const char *fname)
@@ -23,12 +25,20 @@ cDebug::cDebug(void)
 
 bool cDebug::Init(void)
 {
+	FILE *hf;
+	int hCrt;
+
 	if (!AllocConsole())
 		return false;
 
 	mHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (mHandle == INVALID_HANDLE_VALUE)
 		return false;
+
+	hCrt = _open_osfhandle((long)GetStdHandle(STD_OUTPUT_HANDLE), _O_TEXT);
+	hf = _fdopen(hCrt, "w");
+	*stdout = *hf;
+	setvbuf( stdout, NULL, _IONBF, 0 );
 
 	return true;
 }
