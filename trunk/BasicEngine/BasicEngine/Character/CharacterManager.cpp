@@ -38,5 +38,9 @@ bool cCharacterManager::Deinit()
 
 cCharacter* cCharacterManager::CreateCharacter()
 {
-	return new cCharacter();
+	cCharacter *result = new cCharacter();
+	assert(result);
+	mCharacters.push_back(result);
+
+	return result;
 }
