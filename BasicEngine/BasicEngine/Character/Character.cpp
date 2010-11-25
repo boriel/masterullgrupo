@@ -25,16 +25,20 @@ void cCharacter::Render()
 
 void cCharacter::Init()
 {
+	mpActiveBehaviour = NULL; // Ya se hace en el constructor
 }
 
 
 void cCharacter::Update( float lfTimestep)
 {
+	mpActiveBehaviour->Update(lfTimestep);
 }
 
 
 void cCharacter::Deinit()
 {
+	if (mpActiveBehaviour != NULL)
+		mpActiveBehaviour->Deinit();
 }
 
 
@@ -42,7 +46,19 @@ void cCharacter::Deinit()
 cCharacter::cCharacter():
 	mfYaw(0), 		//Orientación del personaje (yaw)
 	mfSpeed(0),		//Velocidad máxima del personaje
-	mfAngSpeed(0)	//Velocidad angular del personaje
+	mfAngSpeed(0),	//Velocidad angular del personaje
+	mpActiveBehaviour(NULL)
 {
 }
 
+
+void cCharacter::SetPosition(const cVec3 &lnewPos)
+{
+	mPosition = lnewPos;
+}
+
+
+void cCharacter::SetYaw(float lfYaw)
+{
+	mfYaw = lfYaw;
+}

@@ -9,7 +9,7 @@ Class Character: Esta clase representa al personaje
 
 
 #include "..\MathLib\MathLib.h"
-
+#include "Behaviour\behaviourbase.h"
 
 
 class cCharacter
@@ -20,6 +20,7 @@ class cCharacter
 		float mfYaw;		//Orientación del personaje (yaw)
 		float mfSpeed;		//Velocidad máxima del personaje
 		float mfAngSpeed;	//Velocidad angular del personaje
+		cBehaviourBase *mpActiveBehaviour;
 		
 	public:
 
@@ -56,6 +57,9 @@ class cCharacter
 
 		// Constructor de Oficio
 		cCharacter();
+
+		inline void SetActiveBehaviour( cBehaviourBase *lpBehaviour ) { mpActiveBehaviour = lpBehaviour; }
+		inline cBehaviourBase* GetActiveBehaviour() { return mpActiveBehaviour; }
 };
 
 
