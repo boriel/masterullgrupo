@@ -97,6 +97,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character\Behaviour\behaviourbase.h" />
+    <ClInclude Include="Character\Behaviour\ChaserBase.h" />
+    <ClInclude Include="Character\Behaviour\ChaserNoOrientation.h" />
+    <ClInclude Include="Character\Behaviour\ChaserSnapOrientation.h" />
+    <ClInclude Include="Character\Behaviour\ChaserWithOrientation.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterManager.h" />
     <ClInclude Include="Game\Game.h" />
@@ -173,6 +178,10 @@
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Character\Behaviour\chaserbase.cpp" />
+    <ClCompile Include="Character\Behaviour\ChaserNoOrientation.cpp" />
+    <ClCompile Include="Character\Behaviour\ChaserSnapOrientation.cpp" />
+    <ClCompile Include="Character\Behaviour\ChaserWithOrientation.cpp" />
     <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\CharacterManager.cpp" />
     <ClCompile Include="Game\Game.cpp" />
