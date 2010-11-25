@@ -24,7 +24,9 @@ class cCamera
 
 		inline void RefreshViewProj() { mViewProj = mView * mProj; } //Actualiza la matrix mViewProj
 
+		void SetLookAt (const cVec3 &lvPosition, const cVec3 &lvTarget);
 		void SetLookAt (const cVec3 &lvPosition, const cVec3 &lvTarget, const cVec3 &lvUpWorld);
+		
 		void SetOrtho (float lfLeft, float lfRight, float lfBottom, float lfTop, float lfZNear, float lfZNFar);
 		void SetPerspective (float lfFVOVY_Rad, float lfAspect, float lfZNear, float lfZFar);
 

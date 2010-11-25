@@ -17,9 +17,9 @@ class cCharacter
 
 	private:
 		cVec3 mPosition;	//Posición del personaje
-		float mfYaw;			//Orientación del personaje (yaw)
+		float mfYaw;		//Orientación del personaje (yaw)
 		float mfSpeed;		//Velocidad máxima del personaje
-		float mfAngSpeed; //Velocidad angular del personaje
+		float mfAngSpeed;	//Velocidad angular del personaje
 		
 	public:
 
@@ -31,8 +31,6 @@ class cCharacter
 		//pequeña línea que parte de dicho punto que representa la orientación
 		//del personaje.
 		void Render();
-		
-		
 		
 		//Getters
 		inline const cVec3 &GetPosition() const { return mPosition; }
@@ -55,7 +53,9 @@ class cCharacter
 		void SetYaw( float lfYaw );
 		void SetSpeed( float lfSpeed );
 		void SetAngSpeed( float lfAngSpeed );
-		
+
+		// Constructor de Oficio
+		cCharacter();
 };
 
 

@@ -52,6 +52,9 @@
     <Filter Include="Lua\src">
       <UniqueIdentifier>{a89fd686-3895-465e-a3ae-3f3040be9c41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Character\Behaviour">
+      <UniqueIdentifier>{8a62c32f-dc5d-47ce-856b-096f854fe913}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
