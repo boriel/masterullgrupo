@@ -4,7 +4,7 @@
 
 tActionMapping kaActionMapping[] = {
 	{ eIA_CloseApplication, eKeyboard, OIS::KC_ESCAPE },
-	{ eIA_CloseApplication, eMouse, eMouse_Button0}, 
+	{ eIA_CloseApplication, eMouse, eMouse_Button1}, // Se sale con el botón izquierdo
 	{ -1, -1, -1 } // End of the table (Marca el final de la tabla)
 	//{eIA_Up, eKeyboard, VK_UP },
 	//{eIA_Down, eKeyboard, VK_DOWN },

@@ -3,12 +3,13 @@
 
 #include "Game.h"
 
-#include "..\Window\Window.h"
-#include "..\Graphics\GraphicManager.h"
-#include "..\Input\InputManager.h"
+#include "../Window/Window.h"
+#include "../Graphics/GraphicManager.h"
+#include "../Input/InputManager.h"
 #include "InputConfiguration.h"
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Lua/LuaManager.h"
+#include "../Character/CharacterManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -37,13 +38,17 @@ bool cGame::Init()
 	//Iniciando las texturas
 	cTextureManager::Get().Init(2); 
 
+	//Inicializamos el Gestor de Personajes
+	cCharacterManager::Get().Init();
 
 	//Iniciando la camara
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
-	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
+	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 
+	// Ponemos la cámara en modo cenital (mirando desde arriba)
+	m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f));
 
 	//Iniciando Camara 2D
 	float lfRight = (float)mProperties.muiWidth / 2.0f;
@@ -54,7 +59,7 @@ bool cGame::Init()
 	m2DCamera.SetOrtho(lfLeft, lfRight, lfBottom, lfTop, 0.1f, 100.0f);
 	//m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
 	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f), cVec3 (0, 1, 0) );
-
+	
 	// Init the Font
 	mFont.Init("./Data/Fonts/Test1.fnt");
 
@@ -84,6 +89,7 @@ bool cGame::Deinit()
 	mFont.Deinit();
 	cTextureManager::Get().Deinit();
 	cLuaManager::Get().Deinit();
+	cCharacterManager::Get().Deinit();
 
 	return lbResult;
 }
@@ -152,8 +158,8 @@ void cGame::Render()
 	cGraphicManager::Get().SwapBuffer();
 
 	*/
+	cCharacterManager::Get().Render();
 	RenderFuentes();
-
 }
 
 
@@ -189,11 +195,10 @@ void cGame::RenderFuentes ()
 	// Render the debug lines
 	cGraphicManager::Get().DrawGrid();
 	cGraphicManager::Get().DrawAxis();
-	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f),
+	/* cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f),
 	cVec3(1.0f, 0.0f, 1.0f) );
 	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f),
-	cVec3(-1.5f, 0.0f, 1.5f),
-	cVec3(1.0f, 1.0f, 0.0f) );
+		cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f) ); */
 
 	// 4) Render 3D with transparency
 	// -------------------------------------------------------------
@@ -205,11 +210,11 @@ void cGame::RenderFuentes ()
 	// 6) Render 2D Elements
 	// -------------------------------------------------------------
 	//Draw some strings
-	mFont.SetColour (1.0f, 0.0f, 0.0f);
-	mFont.Write(0,200,0, "Renderizando algo en cGame-Render-RenderFuentes", 0, FONT_ALIGN_CENTER);
+	//mFont.SetColour (1.0f, 0.0f, 0.0f);
+	//mFont.Write(0,200,0, "Renderizando algo en cGame-Render-RenderFuentes", 0, FONT_ALIGN_CENTER);
 
-	mFont.SetColour (0.0f, 1.0f, 1.0f);
-	mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
+	//mFont.SetColour (0.0f, 1.0f, 1.0f);
+	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
 
 
 	// 7) Postprocessing

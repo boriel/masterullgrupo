@@ -12,6 +12,8 @@ main.cpp
 #include <stdlib.h>
 #include "Game\Game.h"
 #include "Utility\Debug.h"
+#include "Lua\LuaManager.h"
+#include "Character\CharacterManager.h"
 
 
 int WINAPI WinMain (HINSTANCE hInstance,          // Instance
@@ -22,11 +24,11 @@ int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 {
 	// Inicializa la clase cDebug (si se compila en modo Debug)
 	DEBUG_INIT();
-
-	
 	DEBUG_MSG("Inicializando cGame");
 	
 	cGame::Get().Init();
+
+	//int res = cLuaManager::Get().DoFile("data/scripts/test1.lua");
 
 	unsigned long luiLastTime = timeGetTime();
 	while (!cGame::Get().HasFinished())

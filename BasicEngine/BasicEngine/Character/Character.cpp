@@ -21,3 +21,28 @@ void cCharacter::Render()
 	cGraphicManager::Get().DrawLine( cVec3(0.0f, 0.0f, 0.0f), cVec3(0.0f, 0.0f, 1.0f), cVec3(1.0f, 0.0f, 0.0f) );
 
 }
+
+
+void cCharacter::Init()
+{
+}
+
+
+void cCharacter::Update( float lfTimestep)
+{
+}
+
+
+void cCharacter::Deinit()
+{
+}
+
+
+// Constructo de oficio
+cCharacter::cCharacter():
+	mfYaw(0), 		//Orientación del personaje (yaw)
+	mfSpeed(0),		//Velocidad máxima del personaje
+	mfAngSpeed(0)	//Velocidad angular del personaje
+{
+}
+
