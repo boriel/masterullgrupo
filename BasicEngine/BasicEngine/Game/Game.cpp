@@ -55,10 +55,11 @@ bool cGame::Init()
 	float lfLeft = -lfRight;
 	float lfTop = (float)mProperties.muiHeight / 2.0f;
 	float lfBottom = -lfTop;
+	
 	m2DCamera.Init();
 	m2DCamera.SetOrtho(lfLeft, lfRight, lfBottom, lfTop, 0.1f, 100.0f);
-	//m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
-	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f), cVec3 (0, 1, 0) );
+	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
+	//m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f), cVec3 (0, 1, 0) );
 	
 	// Init the Font
 	mFont.Init("./Data/Fonts/Test1.fnt");
@@ -73,6 +74,9 @@ bool cGame::Init()
 	//cResourceHandle lRH = cTextureManager::Get().FindResource("Font");
 	
 	cResource* lResource = lRH.GetResource();
+
+	// Añade un personaje al gestor
+	cCharacterManager::Get().CreateCharacter();
 	
 	
 	return lbResult;
@@ -156,10 +160,20 @@ void cGame::Render()
 	cGraphicManager::Get().DrawGrid();
 	cGraphicManager::Get().DrawAxis();
 	cGraphicManager::Get().SwapBuffer();
-
 	*/
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+
+#	ifdef _DEBUG
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+#	endif
+
 	cCharacterManager::Get().Render();
 	RenderFuentes();
+
+	// Al final del ciclo de renderizado, volcamos el buffer
+	cGraphicManager::Get().SwapBuffer();
 }
 
 
@@ -180,21 +194,21 @@ void cGame::RenderFuentes ()
 {
 	// 1) Clean Buffers
 	// -------------------------------------------------------------
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// 2) Activate the 3D Camera
 	// -------------------------------------------------------------
-	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+	// cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
 	// 3) Render Solid 3D
 	// -------------------------------------------------------------
 	// Set the world matrix
-	cMatrix lWorld;
-	lWorld.LoadIdentity();
-	cGraphicManager::Get().SetWorldMatrix(lWorld);
+	// cMatrix lWorld;
+	// lWorld.LoadIdentity();
+	// cGraphicManager::Get().SetWorldMatrix(lWorld);
 	// Render the debug lines
-	cGraphicManager::Get().DrawGrid();
-	cGraphicManager::Get().DrawAxis();
+	// cGraphicManager::Get().DrawGrid();
+	// cGraphicManager::Get().DrawAxis();
 	/* cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f),
 	cVec3(1.0f, 0.0f, 1.0f) );
 	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f),
@@ -210,8 +224,8 @@ void cGame::RenderFuentes ()
 	// 6) Render 2D Elements
 	// -------------------------------------------------------------
 	//Draw some strings
-	//mFont.SetColour (1.0f, 0.0f, 0.0f);
-	//mFont.Write(0,200,0, "Renderizando algo en cGame-Render-RenderFuentes", 0, FONT_ALIGN_CENTER);
+	mFont.SetColour (1.0f, 0.0f, 0.0f);
+	mFont.Write(0,200,0, "Pulse ESC o Boton Izquierdo para salir", 0, FONT_ALIGN_CENTER);
 
 	//mFont.SetColour (0.0f, 1.0f, 1.0f);
 	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
@@ -222,6 +236,6 @@ void cGame::RenderFuentes ()
 
 	// 8) Swap Buffers
 	// -------------------------------------------------------------
-	cGraphicManager::Get().SwapBuffer();
+	// cGraphicManager::Get().SwapBuffer();
 }
 
