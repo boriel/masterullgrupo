@@ -15,9 +15,11 @@ class cChaserBase: public cBehaviourBase {
 protected:
 	cCharacter *mpCharacter;
 	cVec3 mTarget;
+	cVec3 lDistanceVec;  // Vector de distancia entre el objetivo y el personaje
+	float lfDistance; // Distancia al cuadrado
 
 public:
-	void SetTarget(const cVec3 &lTarget) { mTarget = lTarget; }
+	void SetTarget(const cVec3 &lTarget);
 	cChaserBase(): mpCharacter(NULL) {}
 	
 	// Estos métodos serán comunes a todos los perseguidores

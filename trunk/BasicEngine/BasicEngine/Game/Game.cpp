@@ -10,6 +10,8 @@
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Lua/LuaManager.h"
 #include "../Character/CharacterManager.h"
+#include "../Character/Behaviour/BehaviourManager.h"
+#include "../Character/Behaviour/ChaserBase.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -21,6 +23,8 @@ bool cGame::Init()
 	
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
 	mProperties.Init();
+
+	cCharacter *c1, *c2, *c3, *c4; // Personajes
 
 	
 	bool lbResult = cWindow::Get().Init(mProperties);
@@ -76,8 +80,45 @@ bool cGame::Init()
 	cResource* lResource = lRH.GetResource();
 
 	// Añade un personaje al gestor
-	cCharacterManager::Get().CreateCharacter();
+	c1 = cCharacterManager::Get().CreateCharacter();
+	c1->Init();
+
+	// Añade un personaje al gestor
+	c2 = cCharacterManager::Get().CreateCharacter();
+	c2->Init();
+
+	// Añade un personaje al gestor
+	c3 = cCharacterManager::Get().CreateCharacter();
+	c3->Init();
+
+	// Añade un personaje al gestor
+	c4 = cCharacterManager::Get().CreateCharacter();
+	c4->Init();
 	
+	c1->SetPosition(cVec3(2, 0, 0));
+	c2->SetPosition(cVec3(0, 0, 2));
+	c3->SetPosition(cVec3(2, 0, 2));
+	c4->SetPosition(cVec3(5, 0, -5)); // Punto de llegada
+
+	c1->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_NO_ORIENTATION));
+	c2->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_SNAP_ORIENTATION));
+	c3->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_WITH_ORIENTATION));
+
+	c1->GetActiveBehaviour()->Init(c1);
+	c2->GetActiveBehaviour()->Init(c2);
+	c3->GetActiveBehaviour()->Init(c3);
+
+	c1->SetSpeed(1.0f);
+	c2->SetSpeed(1.0f);
+	c3->SetSpeed(1.0f);
+
+	c1->SetAngSpeed(0.5f);	
+	c2->SetAngSpeed(0.5f);
+	c3->SetAngSpeed(0.5f);
+
+	((cChaserBase *)c1->GetActiveBehaviour())->SetTarget(c4->GetPosition());
+	((cChaserBase *)c2->GetActiveBehaviour())->SetTarget(c4->GetPosition());
+	((cChaserBase *)c3->GetActiveBehaviour())->SetTarget(c4->GetPosition());
 	
 	return lbResult;
 }
@@ -106,7 +147,7 @@ void cGame::Update(float lfTimestep)
 	//OutputDebugString (lsTime.c_str());
 	
 	cWindow::Get().Update();
-
+	cCharacterManager::Get().Update(lfTimestep);
 	cInputManager::Get().Update(lfTimestep);
 
 	// Check if we need to close the application
@@ -165,6 +206,10 @@ void cGame::Render()
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
 #	ifdef _DEBUG
+	// Los ejes y la rejilla solo aparecen en modo de depuración
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
 	cGraphicManager::Get().DrawGrid();
 	cGraphicManager::Get().DrawAxis();
 #	endif
