@@ -5,7 +5,7 @@ void cChaserNoOrientation::Update(float lfTimestep)
 {
 	//Calcular el vector distancia (diferencia entre la posición del
 	//perseguidor y la posición del objetivo a perseguir)
-	lDistanceVec = mpCharacter->GetPosition() - mTarget;
+	lDistanceVec = mTarget - mpCharacter->GetPosition();
 	lfDistance = lDistanceVec.Length();
 
 	//Calcular la distancia que se moverá el perseguidor teniendo en

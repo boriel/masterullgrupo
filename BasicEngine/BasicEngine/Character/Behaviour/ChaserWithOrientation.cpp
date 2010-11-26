@@ -6,6 +6,11 @@ void cChaserWithOrientation::Update(float lfTimestep)
 	float lfAngle;
 	float lfAngleDisplacement;
 
+	//Calcular el vector distancia (diferencia entre la posición del
+	//perseguidor y la posición del objetivo a perseguir)
+	lDistanceVec = mTarget - mpCharacter->GetPosition();
+	lfDistance = lDistanceVec.Length();
+
 	cPlane lPlane;
 
 	//Si la distancia al objetivo es prácticamente cero, lo ha alcanzado.
@@ -71,11 +76,6 @@ void cChaserWithOrientation::Update(float lfTimestep)
 		mpCharacter->SetYaw(mpCharacter->GetYaw() + lfAngle);
 	else
 		mpCharacter->SetYaw(mpCharacter->GetYaw() - lfAngle);
-
-	//Calcular el vector distancia (diferencia entre la posición del
-	//perseguidor y la posición del objetivo a perseguir)
-	lDistanceVec = mpCharacter->GetPosition() - mTarget;
-	lfDistance = lDistanceVec.Length();
 
 	//Calcular la distancia que se moverá el perseguidor teniendo en
 	//cuenta su velocidad máxima

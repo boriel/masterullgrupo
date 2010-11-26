@@ -29,9 +29,10 @@ void cCharacter::Init()
 }
 
 
-void cCharacter::Update( float lfTimestep)
+void cCharacter::Update( float lfTimestep )
 {
-	mpActiveBehaviour->Update(lfTimestep);
+	if (mpActiveBehaviour != NULL)
+		mpActiveBehaviour->Update(lfTimestep);
 }
 
 
@@ -61,4 +62,15 @@ void cCharacter::SetPosition(const cVec3 &lnewPos)
 void cCharacter::SetYaw(float lfYaw)
 {
 	mfYaw = lfYaw;
+}
+
+
+void cCharacter::SetSpeed(float lfSpeed)
+{
+	mfSpeed = lfSpeed;
+}
+
+void cCharacter::SetAngSpeed(float lfAngSpeed)
+{
+	mfAngSpeed = lfAngSpeed;
 }

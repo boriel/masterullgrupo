@@ -294,6 +294,9 @@
     <ClInclude Include="Character\Behaviour\ChaserWithOrientation.h">
       <Filter>Character\Behaviour</Filter>
     </ClInclude>
+    <ClInclude Include="Character\Behaviour\BehaviourManager.h">
+      <Filter>Character\Behaviour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -481,6 +484,9 @@
       <Filter>Character\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="Character\Behaviour\ChaserWithOrientation.cpp">
+      <Filter>Character\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Behaviour\BehaviourManager.cpp">
       <Filter>Character\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
