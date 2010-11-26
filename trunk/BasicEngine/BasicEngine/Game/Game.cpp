@@ -134,8 +134,9 @@ bool cGame::Deinit()
 	mFont.Deinit();
 	cTextureManager::Get().Deinit();
 	cLuaManager::Get().Deinit();
+	cBehaviourManager::Get().Deinit();
 	cCharacterManager::Get().Deinit();
-
+	
 	return lbResult;
 }
 

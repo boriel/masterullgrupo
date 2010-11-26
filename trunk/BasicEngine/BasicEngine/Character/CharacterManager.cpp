@@ -26,14 +26,30 @@ void cCharacterManager::Render()
 		
 
 //Llama al Deinit de todos personajes
+//Y los elimina de la memoria
+
 bool cCharacterManager::Deinit()
 {
-	for (cCharacterListIt i = mCharacters.begin(); i != mCharacters.end(); i++) {
-		(*i)->Deinit();
+	while (!mCharacters.empty()) {
+		(*mCharacters.begin())->Deinit();
+		DestroyCharacter(*mCharacters.begin());
 	}
 
 	return true;
 }
+
+
+
+void cCharacterManager::DestroyCharacter(cCharacter *lpCharacter)
+{
+	for (cCharacterListIt i = mCharacters.begin(); i != mCharacters.end(); i++) {
+		if ((*i) == lpCharacter) {
+			mCharacters.erase(i);
+			break;
+		}
+	}
+}
+
 
 
 cCharacter* cCharacterManager::CreateCharacter()

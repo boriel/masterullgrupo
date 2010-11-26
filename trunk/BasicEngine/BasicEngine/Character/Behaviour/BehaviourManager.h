@@ -25,7 +25,6 @@ private:
 
 public:
 	bool Init();
-	void Update(float lfTimestep);
 	bool Deinit();
 
 	cBehaviourBase* CreateBehaviour( eBehaviours leBehaviour );
