@@ -9,16 +9,13 @@ bool cBehaviourManager::Init()
 }
 
 
-void cBehaviourManager::Update(float lfTimestep)
-{
-}
-
-
 void cBehaviourManager::DestroyBehaviour(cBehaviourBase *lpBehaviour)
 {
 	for (cBehaviourListIt i = mBehaviours.begin(); i != mBehaviours.end(); i++) {
-		if ((*i) == lpBehaviour)
+		if ((*i) == lpBehaviour) {
 			mBehaviours.erase(i);
+			break;
+		}
 	}
 }
 
@@ -45,6 +42,8 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour )
 			// Aquí debería ir una excepción
 			throw;
 	}
+
+	mBehaviours.push_back(result);
 
 	return result;
 }
