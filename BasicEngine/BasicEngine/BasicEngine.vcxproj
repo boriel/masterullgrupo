@@ -127,6 +127,7 @@
     <ClInclude Include="Input\KeyBoard.h" />
     <ClInclude Include="Input\Mouse.h" />
     <ClInclude Include="Input\Pad.h" />
+    <ClInclude Include="Lua\LuaFunctions.h" />
     <ClInclude Include="Lua\LuaManager.h" />
     <ClInclude Include="Lua\src\lapi.h" />
     <ClInclude Include="Lua\src\lauxlib.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Input\KeyBoard.cpp" />
     <ClCompile Include="Input\Mouse.cpp" />
     <ClCompile Include="Input\Pad.cpp" />
+    <ClCompile Include="Lua\LuaFunctions.cpp" />
     <ClCompile Include="Lua\LuaManager.cpp" />
     <ClCompile Include="Lua\src\lapi.c" />
     <ClCompile Include="Lua\src\lauxlib.c" />
