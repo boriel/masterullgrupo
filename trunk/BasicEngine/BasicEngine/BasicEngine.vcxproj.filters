@@ -297,6 +297,9 @@
     <ClInclude Include="Character\Behaviour\BehaviourManager.h">
       <Filter>Character\Behaviour</Filter>
     </ClInclude>
+    <ClInclude Include="Lua\LuaFunctions.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -488,6 +491,9 @@
     </ClCompile>
     <ClCompile Include="Character\Behaviour\BehaviourManager.cpp">
       <Filter>Character\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Lua\LuaFunctions.cpp">
+      <Filter>Lua</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
