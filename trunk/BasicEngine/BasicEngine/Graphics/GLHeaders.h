@@ -12,8 +12,11 @@ With this we will avoid future problems
 
 
 #include <windows.h>
+
+#include "GLee/GLee.h"
 #include <gl/gl.h>
 #include <gl/glu.h>
+
 
 
 #endif
