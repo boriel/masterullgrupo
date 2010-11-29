@@ -55,6 +55,18 @@
     <Filter Include="Character\Behaviour">
       <UniqueIdentifier>{8a62c32f-dc5d-47ce-856b-096f854fe913}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\GLee">
+      <UniqueIdentifier>{a8ad4bfc-9c19-4dbe-9ffa-d17c0773172a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamepLay">
+      <UniqueIdentifier>{b5376fae-6c81-4f9a-940b-541a013f623b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GamepLay\Scene">
+      <UniqueIdentifier>{fdb9b4b3-e2cb-4c9c-a2b5-c90d77f2cb3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Meshes">
+      <UniqueIdentifier>{4a5cc3fe-c9a7-4763-95ea-5047510a4fe9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -300,6 +312,24 @@
     <ClInclude Include="Lua\LuaFunctions.h">
       <Filter>Lua</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\GLee\GLee.h">
+      <Filter>Graphics\GLee</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Scene\SceneManager.h">
+      <Filter>GamepLay\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Scene\SceneManager.h">
+      <Filter>GamepLay\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay\Scene\Scene.h">
+      <Filter>GamepLay\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Meshes\MeshManager.h">
+      <Filter>Graphics\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Meshes\Mesh.h">
+      <Filter>Graphics\Meshes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -494,6 +524,21 @@
     </ClCompile>
     <ClCompile Include="Lua\LuaFunctions.cpp">
       <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\GLee\GLee.c">
+      <Filter>Graphics\GLee</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Scene\Scene.cpp">
+      <Filter>GamepLay\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Scene\SceneManager.cpp">
+      <Filter>GamepLay\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Meshes\MeshManager.cpp">
+      <Filter>Graphics\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Meshes\Mesh.cpp">
+      <Filter>Graphics\Meshes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

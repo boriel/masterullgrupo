@@ -56,7 +56,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes;.\Graphics\Meshes\assimp\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
@@ -64,8 +64,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\lib\debug;$(DXSDK_DIR)Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;assimp.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\lib\debug;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\</AdditionalLibraryDirectories>
       <ImportLibrary>
       </ImportLibrary>
     </Link>
@@ -83,7 +83,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Libraries\TinyXML\include; .\Input\ois\includes;.\Graphics\Meshes\assimp\include</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
@@ -92,8 +92,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxml_STL.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\lib\release;$(DXSDK_DIR)Lib\x86</AdditionalLibraryDirectories>
+      <AdditionalDependencies>dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxml_STL.lib;assimp.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\lib\release;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -105,13 +105,18 @@
     <ClInclude Include="Character\Behaviour\ChaserWithOrientation.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterManager.h" />
+    <ClInclude Include="Gameplay\Scene\Scene.h" />
+    <ClInclude Include="Gameplay\Scene\SceneManager.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\InputConfiguration.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Fonts\acgfx_font.h" />
     <ClInclude Include="Graphics\Fonts\acutil_unicode.h" />
+    <ClInclude Include="Graphics\GLee\GLee.h" />
     <ClInclude Include="Graphics\GLHeaders.h" />
     <ClInclude Include="Graphics\GraphicManager.h" />
+    <ClInclude Include="Graphics\Meshes\Mesh.h" />
+    <ClInclude Include="Graphics\Meshes\MeshManager.h" />
     <ClInclude Include="Graphics\Textures\SOIL\image_DXT.h" />
     <ClInclude Include="Graphics\Textures\SOIL\image_helper.h" />
     <ClInclude Include="Graphics\Textures\SOIL\SOIL.h" />
@@ -187,12 +192,17 @@
     <ClCompile Include="Character\Behaviour\ChaserWithOrientation.cpp" />
     <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\CharacterManager.cpp" />
+    <ClCompile Include="Gameplay\Scene\SceneManager.cpp" />
+    <ClCompile Include="Gameplay\Scene\Scene.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\InputConfiguration.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Fonts\acgfx_font.cpp" />
     <ClCompile Include="Graphics\Fonts\acutil_unicode.cpp" />
+    <ClCompile Include="Graphics\GLee\GLee.c" />
     <ClCompile Include="Graphics\GraphicManager.cpp" />
+    <ClCompile Include="Graphics\Meshes\Mesh.cpp" />
+    <ClCompile Include="Graphics\Meshes\MeshManager.cpp" />
     <ClCompile Include="Graphics\Textures\SOIL\image_DXT.c" />
     <ClCompile Include="Graphics\Textures\SOIL\image_helper.c" />
     <ClCompile Include="Graphics\Textures\SOIL\SOIL.c" />
