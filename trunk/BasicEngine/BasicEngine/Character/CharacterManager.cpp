@@ -3,6 +3,8 @@
 
 bool cCharacterManager::Init()
 {
+	miIdCounter = 0;
+
 	return true;
 }
 
@@ -27,7 +29,6 @@ void cCharacterManager::Render()
 
 //Llama al Deinit de todos personajes
 //Y los elimina de la memoria
-
 bool cCharacterManager::Deinit()
 {
 	while (!mCharacters.empty()) {
@@ -54,7 +55,7 @@ void cCharacterManager::DestroyCharacter(cCharacter *lpCharacter)
 
 cCharacter* cCharacterManager::CreateCharacter()
 {
-	cCharacter *result = new cCharacter();
+	cCharacter *result = new cCharacter(++miIdCounter);
 	assert(result);
 	mCharacters.push_back(result);
 

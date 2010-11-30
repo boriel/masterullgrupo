@@ -21,6 +21,7 @@ class cCharacter
 		float mfSpeed;		//Velocidad máxima del personaje
 		float mfAngSpeed;	//Velocidad angular del personaje
 		cBehaviourBase *mpActiveBehaviour;
+		int miId;			// ID del personaje
 		
 	public:
 
@@ -56,10 +57,11 @@ class cCharacter
 		void SetAngSpeed( float lfAngSpeed );
 
 		// Constructor de Oficio
-		cCharacter();
+		cCharacter(int liId = 0);
 
 		inline void SetActiveBehaviour( cBehaviourBase *lpBehaviour ) { mpActiveBehaviour = lpBehaviour; }
 		inline cBehaviourBase* GetActiveBehaviour() { return mpActiveBehaviour; }
+		inline int GetId() { return miId; }
 };
 
 

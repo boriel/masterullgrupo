@@ -22,6 +22,7 @@ class cCharacterManager : public cSingleton<cCharacterManager>
 		typedef std::list<cCharacter *> cCharacterList;
 		typedef cCharacterList::iterator cCharacterListIt;
 		cCharacterList mCharacters; //Lista de personajes
+		int miIdCounter; // Contador de instancias de personaje. Se usará para ir generando ID's
 
 	public:
 		

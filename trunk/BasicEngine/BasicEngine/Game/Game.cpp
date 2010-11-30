@@ -9,6 +9,7 @@
 #include "InputConfiguration.h"
 #include "../Graphics/Textures/TextureManager.h"
 #include "../Lua/LuaManager.h"
+#include "../Lua/LuaFunctions.h"
 #include "../Character/CharacterManager.h"
 #include "../Character/Behaviour/BehaviourManager.h"
 #include "../Character/Behaviour/ChaserBase.h"
@@ -70,6 +71,9 @@ bool cGame::Init()
 
 	// Init the Lua Manager
 	cLuaManager::Get().Init();
+
+	//Registramos las funciones de C++ que se llamarán desde Lua
+	RegisterLuaFunctions();
 	
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
@@ -79,6 +83,7 @@ bool cGame::Init()
 	
 	cResource* lResource = lRH.GetResource();
 
+	/* // El siguiente código es de la práctica 2 y se comenta
 	// Añade un personaje al gestor
 	c1 = cCharacterManager::Get().CreateCharacter();
 	c1->Init();
@@ -119,6 +124,7 @@ bool cGame::Init()
 	((cChaserBase *)c1->GetActiveBehaviour())->SetTarget(c4->GetPosition());
 	((cChaserBase *)c2->GetActiveBehaviour())->SetTarget(c4->GetPosition());
 	((cChaserBase *)c3->GetActiveBehaviour())->SetTarget(c4->GetPosition());
+	*/
 	
 	return lbResult;
 }
