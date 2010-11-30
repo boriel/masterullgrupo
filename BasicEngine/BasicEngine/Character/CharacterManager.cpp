@@ -61,3 +61,14 @@ cCharacter* cCharacterManager::CreateCharacter()
 
 	return result;
 }
+
+
+cCharacter *cCharacterManager::GetCharacter(int liId)
+{
+	for (cCharacterListIt i = mCharacters.begin(); i != mCharacters.end(); i++) {
+		if ((*i)->GetId() == liId)
+			return (*i);
+	}
+
+	return NULL; // Not se encontró
+}

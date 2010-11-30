@@ -330,6 +330,9 @@
     <ClInclude Include="Graphics\Meshes\Mesh.h">
       <Filter>Graphics\Meshes</Filter>
     </ClInclude>
+    <ClInclude Include="Character\Behaviour\patrol.h">
+      <Filter>Character\Behaviour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -539,6 +542,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\Meshes\Mesh.cpp">
       <Filter>Graphics\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Behaviour\patrol.cpp">
+      <Filter>Character\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

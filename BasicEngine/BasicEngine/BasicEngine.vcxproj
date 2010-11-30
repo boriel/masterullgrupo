@@ -103,6 +103,7 @@
     <ClInclude Include="Character\Behaviour\ChaserNoOrientation.h" />
     <ClInclude Include="Character\Behaviour\ChaserSnapOrientation.h" />
     <ClInclude Include="Character\Behaviour\ChaserWithOrientation.h" />
+    <ClInclude Include="Character\Behaviour\patrol.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterManager.h" />
     <ClInclude Include="Gameplay\Scene\Scene.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="Character\Behaviour\ChaserNoOrientation.cpp" />
     <ClCompile Include="Character\Behaviour\ChaserSnapOrientation.cpp" />
     <ClCompile Include="Character\Behaviour\ChaserWithOrientation.cpp" />
+    <ClCompile Include="Character\Behaviour\patrol.cpp" />
     <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\CharacterManager.cpp" />
     <ClCompile Include="Gameplay\Scene\SceneManager.cpp" />

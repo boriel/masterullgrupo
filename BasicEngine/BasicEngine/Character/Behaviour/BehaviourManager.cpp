@@ -2,6 +2,7 @@
 #include "ChaserNoOrientation.h"
 #include "ChaserSnapOrientation.h"
 #include "ChaserWithOrientation.h"
+#include "patrol.h"
 
 bool cBehaviourManager::Init()
 {
@@ -37,6 +38,9 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour )
 		case eCHASER_WITH_ORIENTATION:
 			result = new cChaserWithOrientation();
 			break;
+
+		case ePATROL:
+			result = new cPatrol();
 
 		default:
 			// Aquí debería ir una excepción

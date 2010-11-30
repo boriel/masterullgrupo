@@ -33,6 +33,8 @@ class cCharacterManager : public cSingleton<cCharacterManager>
 		void Render(); //Llama al Render de todos personajes
 		
 		bool Deinit(); //Llama al Deinit de todos personajes
+
+		cCharacter *GetCharacter(int liId); // Devuelve el personaje dado su ID
 		
 		//Crea un nuevo personaje, llama a su Init() y lo añade a la lista.
 		//Devuelve un puntero al personaje creado
