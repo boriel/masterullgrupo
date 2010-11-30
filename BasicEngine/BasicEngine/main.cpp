@@ -28,7 +28,7 @@ int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 	
 	cGame::Get().Init();
 
-	//int res = cLuaManager::Get().DoFile("data/scripts/test1.lua");
+	int res = cLuaManager::Get().DoFile("data/scripts/practica3.lua");
 
 	unsigned long luiLastTime = timeGetTime();
 	while (!cGame::Get().HasFinished())
