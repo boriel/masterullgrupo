@@ -255,14 +255,14 @@ void cGame::RenderFuentes ()
 	// 3) Render Solid 3D
 	// -------------------------------------------------------------
 	// Set the world matrix
-	// cMatrix lWorld;
-	// lWorld.LoadIdentity();
-	// cGraphicManager::Get().SetWorldMatrix(lWorld);
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
 	// Render the debug lines
 	// cGraphicManager::Get().DrawGrid();
 	// cGraphicManager::Get().DrawAxis();
-	/* cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f),
-	cVec3(1.0f, 0.0f, 1.0f) );
+	/* cGraphicManager::Get().DrawPoint( cVec3(1.0f, 0.0f, 2.0f),
+		cVec3(1.0f, 0.0f, 1.0f) );
 	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f),
 		cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f) ); */
 

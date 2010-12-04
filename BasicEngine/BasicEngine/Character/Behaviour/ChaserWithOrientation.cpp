@@ -10,7 +10,7 @@ void cChaserWithOrientation::Update(float lfTimestep)
 	//perseguidor y la posición del objetivo a perseguir)
 	cVec3 lDistanceVec = mTarget - mpCharacter->GetPosition();
 	float lfDistance = lDistanceVec.Length();
-
+	
 	cPlane lPlane;
 
 	//Si la distancia al objetivo es prácticamente cero, lo ha alcanzado.
