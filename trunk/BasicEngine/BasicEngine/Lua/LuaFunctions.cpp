@@ -19,7 +19,7 @@
 namespace LUA {
 
 
-// Esta función un personaje en (0, 0, 0) y 
+// Esta función crea un personaje en (0, 0, 0) y 
 // le pone como meta las coordenadas X, Y, Z
 // y la velocidad tangencial y angular pasadas por LUA
 int CreatePatrol(lua_State *lpLuaContext)
@@ -56,7 +56,7 @@ int CreatePatrol(lua_State *lpLuaContext)
 	return 1;
 }
 
-
+// Establece el Objetivo de un caracterd, pasándole su ID
 int SetPatrolTarget(lua_State *lpLuaContext)
 {
 	//Comprobamos que el contexto de Lua no es NULL
@@ -80,6 +80,7 @@ int SetPatrolTarget(lua_State *lpLuaContext)
 	//Devolvemos el número de valores de retorno
 	return 0;
 }
+
 
 };
 
