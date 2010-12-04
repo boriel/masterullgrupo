@@ -103,7 +103,7 @@ bool cLuaManager::CallLua( const char* lacFuncName, Z* lpRet)
 
 	//Si la función esta definida en Lua...
 	//La funcion devuelve un valor
-	if ( lpRet )
+	if ( lpRet != NULL )
 	{
 		//Llamamos a la funcion
 		lua_call( mpLuaContext, 0, 1 );
@@ -148,7 +148,7 @@ bool cLuaManager::CallLua( const char* lacFuncName, T lArg1, Z* lpRet)
 	PushArg( lArg1 );
 	
 	//La funcion devuelve un valor
-	if ( lpRet )
+	if ( lpRet != NULL )
 	{
 		//Llamamos a la funcion
 		lua_call( mpLuaContext, 1, 1 );
@@ -196,7 +196,7 @@ bool cLuaManager::CallLua( const char* lacFuncName, T lArg1, U lArg2, Z* lpRet)
 	PushArg( lArg2 );
 	
 	//La funcion devuelve un valor
-	if ( lpRet )
+	if ( lpRet != NULL )
 	{
 		//Llamamos a la funcion
 		lua_call( mpLuaContext, 2, 1 );
@@ -248,7 +248,7 @@ bool cLuaManager::CallLua( const char* lacFuncName, T lArg1, U lArg2, V lArg3, Z
 
 	
 	//La funcion devuelve un valor
-	if ( lpRet )
+	if ( lpRet != NULL )
 	{
 		//Llamamos a la funcion
 		lua_call( mpLuaContext, 3, 1 );

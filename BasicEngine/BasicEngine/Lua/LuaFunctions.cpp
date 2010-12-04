@@ -8,6 +8,8 @@
 #include "LuaManager.h"
 #include "LuaFunctions.h"
 
+#include <deque>
+
 
 // Macro para registrar funciones en Lua
 #define REG_LUA_FUNC(x, y) cLuaManager::Get().Register(x, y)
@@ -47,7 +49,7 @@ int CreatePatrol(lua_State *lpLuaContext)
 
 	//DEBUG_MSG("Param1: %f, Param2: %f, Param3: %f\n", lfX, lfY, lfZ);
 
-	// Ponemos el resultado en la pila, para que LUA lo recoja
+	// Ponemos el resultado en la pila, para que LUA lo recojaque a
 	lua_pushinteger(lpLuaContext, lpCharacter->GetId());
 
 	//Devolvemos el número de valores de retorno
@@ -73,7 +75,7 @@ int SetPatrolTarget(lua_State *lpLuaContext)
 	float lfY = (float)luaL_checknumber(lpLuaContext, 3);
 	float lfZ = (float)luaL_checknumber(lpLuaContext, 4);
 	
-	((cPatrol *)mpCharacter->GetActiveBehaviour())->SetTargetWaypoint(cVec3(lfX, lfY, lfZ));
+	((cPatrol *)mpCharacter->GetActiveBehaviour())->SetTargetWayPoint(cVec3(lfX, lfY, lfZ));
 
 	//Devolvemos el número de valores de retorno
 	return 0;
