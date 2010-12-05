@@ -20,6 +20,9 @@ void cLuaManager::Init()
 
 	//Cargamos las librerias de Lua
 	luaL_openlibs( mpLuaContext );
+
+	//Para mostrar los errores de ejecución 
+	lua_atpanic(mpLuaContext, FuncPanic);
 }
 
 void cLuaManager::Deinit()
@@ -89,9 +92,6 @@ void cLuaManager::Register( const char* lacFuncName, lua_CFunction lpFunc )
 	//Publicamos la funcion en Lua
 	lua_register( mpLuaContext, lacFuncName, lpFunc );
 }
-
-
-
 
 
 
@@ -180,9 +180,15 @@ void cLuaManager::Pop( unsigned int luiNValues )
 
 
 
+int cLuaManager::FuncPanic(lua_State *lpContext)
+{
+	assert(lpContext);
+	DEBUG_MSG("Lua Error: %s\n", lua_tostring(lpContext, -1));
+	//Sacamos el mensaje del top de la pila
+	lua_pop( lpContext, 1 );
 
-
-
+	return 1;
+}
 
 
 

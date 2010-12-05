@@ -50,19 +50,22 @@ class cLuaManager : public cSingleton<cLuaManager>
 
 		// Función con 0 parámetros y uno de retorno
 		template <class Z>
-		bool CallLua( const char* lacFuncName, Z* lpRet);
+		bool CallLua( const char* lacFuncName, Z* lpRet = NULL);
 
 		// Función con 1 parámetro y otro de retorno
 		template <class T, class Z>
-		bool CallLua( const char* lacFuncName, T lArg1, Z* lpRet);
+		bool CallLua( const char* lacFuncName, T lArg1, Z* lpRet = NULL);
 
 		// Función con 2 parámetros y uno de retorno
 		template <class T, class U, class Z>
-		bool CallLua( const char* lacFuncName, T lArg1, U lArg2, Z* lpRet);
+		bool CallLua( const char* lacFuncName, T lArg1, U lArg2, Z* lpRet = NULL);
 
 		// Función con 3 parámetros y uno de retorno
 		template <class T, class U, class V, class Z>
-		bool CallLua( const char* lacFuncName, T lArg1, U lArg2, V lArg3, Z* lpRet);
+		bool CallLua( const char* lacFuncName, T lArg1, U lArg2, V lArg3, Z* lpRet = NULL);
+
+		// Función de depuración para LUA
+		static int FuncPanic(lua_State *lpContext);
 
 		friend class cSingleton<cLuaManager>;
 		
