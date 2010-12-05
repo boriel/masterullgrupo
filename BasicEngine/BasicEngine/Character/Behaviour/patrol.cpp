@@ -3,6 +3,7 @@
 #include "../../Lua/LuaManager.h"
 #include "BehaviourManager.h"
 #include "../CharacterManager.h"
+#include "../../Game/Game.h"
 #include "patrol.h"
 
 
@@ -30,9 +31,9 @@ void cPatrol::Update(float lfTimestep)
 {
 	cCharacter *lpEnemyCharacter = cCharacterManager::Get().GetCharacter(miEnemyId);
 	float lfDistance;
-
+	
 	if (lpEnemyCharacter != NULL) {
-		lfDistance = mpCharacter->GetPosition().DistanceSqrTo(lpEnemyCharacter->GetPosition());
+		lfDistance = mpCharacter->GetPosition().DistanceTo(lpEnemyCharacter->GetPosition());
 		if (mfAwareRadius > lfDistance) // Está dentro del radio de acción? Pues lo perseguimos!
 			SetTargetWayPoint(cCharacterManager::Get().GetCharacter(miEnemyId)->GetPosition());
 		else // Si no, seguimos con el circuito, preguntando a LUA el punto actual
@@ -41,7 +42,13 @@ void cPatrol::Update(float lfTimestep)
 
 	if (!mpBehaviour->EndPointReached()) {
 		mpBehaviour->Update(lfTimestep);
-	} else { // Llamara función LUA que obtiene el nuevo punto
+	} else { 
+		// Comprobamos si hemos alcanzado al jugador
+		if (lpEnemyCharacter != NULL && mpCharacter->GetPosition() == lpEnemyCharacter->GetPosition()) {
+			cGame::Get().SetFinished(true);
+			return;
+		}
+ 		// Llamara función LUA que obtiene el nuevo punto
 		cLuaManager::Get().CallLua<int, int>("NextEndPoint", mpCharacter->GetId());
 	}	
 }

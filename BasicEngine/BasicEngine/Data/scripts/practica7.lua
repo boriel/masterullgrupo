@@ -8,7 +8,7 @@ gTARGETS = {
             {{3, 0, 3}, {-3, 0, 3}, {-3, 0, -3}, {3, 0, -3}} -- Personaje 2 // El patrullero
             }
 
-gRADIUS = 3.5 -- Radio de sensibilidad
+gRADIUS = 3 -- Radio de sensibilidad
 
 --DEFINICIÓN DE FUNCIONES--
 -- Dibuja el path de un personaje 
