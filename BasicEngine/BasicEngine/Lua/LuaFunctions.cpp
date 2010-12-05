@@ -41,9 +41,9 @@ int CreatePatrol(lua_State *lpLuaContext)
 	
 	cCharacter *lpCharacter = cCharacterManager::Get().CreateCharacter();
 	lpCharacter->Init();
-	lpCharacter->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_WITH_ORIENTATION));
+	lpCharacter->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(ePATROL));
 	lpCharacter->GetActiveBehaviour()->Init(lpCharacter);
-	((cChaserBase *)lpCharacter->GetActiveBehaviour())->SetTarget(cVec3(lfX, lfY, lfZ));
+	((cPatrol *)lpCharacter->GetActiveBehaviour())->SetTargetWayPoint(cVec3(lfX, lfY, lfZ));
 	lpCharacter->SetSpeed(lfSpeed);
 	lpCharacter->SetAngSpeed(lfAngSpeed);
 
