@@ -8,6 +8,32 @@ gTARGETS = {
             }
 
 --DEFINICIÓN DE FUNCIONES--
+-- Dibuja el path de un personaje 
+function DrawPathFor(lId)
+    local lRuta = gTARGETS[lId]
+    local i
+
+    for i = 1, #lRuta - 1 do
+        local lA = lRuta[i]
+        local lB = lRuta[i + 1]
+        DrawLine(lA[1], lA[2], lA[3], lB[1], lB[2], lB[3])
+    end
+
+    lA = lRuta[#lRuta]
+    lB = lRuta[1]
+    DrawLine(lA[1], lA[2], lA[3], lB[1], lB[2], lB[3])
+end
+
+
+-- Dibuja el path de todos los personajes
+function DrawPath()
+    local i
+
+    for i = 1, #gaSTATES do
+        DrawPathFor(i)
+    end
+end
+
 
 function NextEndPoint(lId)
     -- Obtiene los estados del personaje
@@ -18,6 +44,8 @@ function NextEndPoint(lId)
 
     -- Ahora obtiene su nueva posicion
     local lNewTarget = lTargets[gaSTATES[lId]]
+
+    DrawPath(lId)
 
     -- Ahora actualiza el objetivo en el personaje
     print("Nuevo objetivo para ID " .. lId .. ": " ..
