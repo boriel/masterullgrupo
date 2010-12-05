@@ -2,6 +2,7 @@
 #include <cassert>
 #include "../../Lua/LuaManager.h"
 #include "BehaviourManager.h"
+#include "../CharacterManager.h"
 #include "patrol.h"
 
 
@@ -13,6 +14,8 @@ void cPatrol::Init(cCharacter *lpCharacter)
 	mTargetWayPoint = mpCharacter->GetPosition();
 	mpBehaviour->Init(lpCharacter);
 	mpBehaviour->SetTarget(mTargetWayPoint);
+	miEnemyId = 0; // El 0 no existe como Id
+	mfAwareRadius = 0;
 }
 
 
@@ -25,11 +28,21 @@ void cPatrol::Deinit()
 
 void cPatrol::Update(float lfTimestep)
 {
+	cCharacter *lpEnemyCharacter = cCharacterManager::Get().GetCharacter(miEnemyId);
+	float lfDistance;
+
+	if (lpEnemyCharacter != NULL) {
+		lfDistance = mpCharacter->GetPosition().DistanceSqrTo(lpEnemyCharacter->GetPosition());
+		if (mfAwareRadius > lfDistance) // Está dentro del radio de acción? Pues lo perseguimos!
+			SetTargetWayPoint(cCharacterManager::Get().GetCharacter(miEnemyId)->GetPosition());
+		else // Si no, seguimos con el circuito, preguntando a LUA el punto actual
+			cLuaManager::Get().CallLua<int, int>("CurrentEndPoint", mpCharacter->GetId());
+	}
+
 	if (!mpBehaviour->EndPointReached()) {
 		mpBehaviour->Update(lfTimestep);
 	} else { // Llamara función LUA que obtiene el nuevo punto
 		cLuaManager::Get().CallLua<int, int>("NextEndPoint", mpCharacter->GetId());
-		// mpBehaviour->SetTarget(mTargetWayPoint);
 	}	
 }
 
@@ -40,4 +53,16 @@ void cPatrol::SetTargetWayPoint(const cVec3 &lTargetWayPoint)
 	mpBehaviour->SetTarget(mTargetWayPoint);
 }
 
+
+void cPatrol::SetAwareRadius(float lfAwareRadius)
+{
+	if (lfAwareRadius >= 0)
+		mfAwareRadius = lfAwareRadius;
+}
+
+
+void cPatrol::SetEnemyId(int liEnemyId)
+{
+	miEnemyId = liEnemyId;
+}
 

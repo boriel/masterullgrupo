@@ -18,7 +18,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "../Graphics/Fonts/acgfx_font.h"
 
 // Fichero de LUA a cargar
-#define LUA_FILE "data/scripts/practica6.lua"
+#define LUA_FILE "data/scripts/practica7.lua"
 
 
 class cGame : public cSingleton<cGame>

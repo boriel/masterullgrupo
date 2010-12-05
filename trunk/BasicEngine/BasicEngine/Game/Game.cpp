@@ -223,7 +223,7 @@ void cGame::Render()
 #	endif
 
 	//Pintar el circuito 
-	// cLuaManager::Get().CallLua("DrawPath", (int *)NULL);
+	cLuaManager::Get().CallLua("DrawPath", (int *)NULL);
 
 	cCharacterManager::Get().Render();
 	RenderFuentes();
