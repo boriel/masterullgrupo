@@ -71,7 +71,6 @@ bool cGame::Init()
 
 	// Init the Lua Manager
 	cLuaManager::Get().Init();
-
 	//Registramos las funciones de C++ que se llamarán desde Lua
 	RegisterLuaFunctions();
 	
@@ -82,6 +81,7 @@ bool cGame::Init()
 	//cResourceHandle lRH = cTextureManager::Get().FindResource("Font");
 	
 	cResource* lResource = lRH.GetResource();
+	int liLuaRes = cLuaManager::Get().DoFile("data/scripts/practica4.lua");
 
 	/* // El siguiente código es de la práctica 2 y se comenta
 	// Añade un personaje al gestor
