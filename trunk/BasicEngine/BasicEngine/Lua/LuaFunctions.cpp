@@ -40,7 +40,7 @@ int CreatePatrol(lua_State *lpLuaContext)
 	float lfSpeed = (float)luaL_checknumber(lpLuaContext, 4);
 	float lfAngSpeed = (float)luaL_checknumber(lpLuaContext, 5);
 	int liEnemyId = (int)luaL_checkinteger(lpLuaContext, 6);
-	float lfAwareRadius = (float)luaL_checkinteger(lpLuaContext, 7);
+	float lfAwareRadius = (float)luaL_checknumber(lpLuaContext, 7);
 	
 	cCharacter *lpCharacter = cCharacterManager::Get().CreateCharacter();
 	lpCharacter->Init();
