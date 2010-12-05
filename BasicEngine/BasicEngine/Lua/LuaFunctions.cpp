@@ -31,14 +31,16 @@ int CreatePatrol(lua_State *lpLuaContext)
 	//Cogemos el numero de argumentos de la pila de Lua
 	int liArgCount = lua_gettop( lpLuaContext );
 
-	//Comprobamos que recibimos 5 argumentos
-	assert( liArgCount == 5 );
+	//Comprobamos que recibimos 7 argumentos
+	assert( liArgCount == 7 );
 
 	float lfX = (float)luaL_checknumber(lpLuaContext, 1);
 	float lfY = (float)luaL_checknumber(lpLuaContext, 2);
 	float lfZ = (float)luaL_checknumber(lpLuaContext, 3);
 	float lfSpeed = (float)luaL_checknumber(lpLuaContext, 4);
 	float lfAngSpeed = (float)luaL_checknumber(lpLuaContext, 5);
+	int liEnemyId = (int)luaL_checkinteger(lpLuaContext, 6);
+	float lfAwareRadius = (float)luaL_checkinteger(lpLuaContext, 7);
 	
 	cCharacter *lpCharacter = cCharacterManager::Get().CreateCharacter();
 	lpCharacter->Init();
@@ -47,6 +49,8 @@ int CreatePatrol(lua_State *lpLuaContext)
 	((cPatrol *)lpCharacter->GetActiveBehaviour())->SetTargetWayPoint(cVec3(lfX, lfY, lfZ));
 	lpCharacter->SetSpeed(lfSpeed);
 	lpCharacter->SetAngSpeed(lfAngSpeed);
+	((cPatrol *)lpCharacter->GetActiveBehaviour())->SetEnemyId(liEnemyId);
+	((cPatrol *)lpCharacter->GetActiveBehaviour())->SetAwareRadius(lfAwareRadius);
 
 	//DEBUG_MSG("Param1: %f, Param2: %f, Param3: %f\n", lfX, lfY, lfZ);
 
@@ -118,6 +122,38 @@ int DrawLine(lua_State *lpLuaContext)
 }
 
 
+
+// Dibuja un círculo por pantalla
+int DrawCircle(lua_State *lpLuaContext)
+{
+	float lfRadius; // Variables intermedias para capturar valores de LUA
+	int liId;
+	cVec3 lPos;
+
+	//Comprobamos que el contexto de Lua no es NULL
+	assert( lpLuaContext );
+	
+	//Cogemos el numero de argumentos de la pila de Lua
+	int liArgCount = lua_gettop( lpLuaContext );
+
+	//Comprobamos que recibimos 2 argumentos
+	assert( liArgCount == 2 );
+
+	liId = (int)luaL_checkinteger(lpLuaContext, 1);
+	lPos = cCharacterManager::Get().GetCharacter(liId)->GetPosition();
+	lfRadius = (float)luaL_checknumber(lpLuaContext, 2);
+
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+	cGraphicManager::Get().DrawCircle(lPos, lfRadius, cVec3(1.0f, 1.0f, 0.0f));
+
+	//Devolvemos el número de valores de retorno
+	return 0;
+}
+
+
+
 // Crea un personaje cPlayerController desde Lua
 int CreatePlayer(lua_State *lpLuaContext)
 {
@@ -160,6 +196,7 @@ void RegisterLuaFunctions()
 	REG_LUA_FUNC("CreatePatrol", LUA::CreatePatrol);
 	REG_LUA_FUNC("SetPatrolTarget", LUA::SetPatrolTarget);
 	REG_LUA_FUNC("DrawLine", LUA::DrawLine);
+	REG_LUA_FUNC("DrawCircle", LUA::DrawCircle);
 	REG_LUA_FUNC("CreatePlayer", LUA::CreatePlayer);
 }
 
