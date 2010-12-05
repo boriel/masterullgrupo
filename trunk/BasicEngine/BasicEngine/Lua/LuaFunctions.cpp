@@ -4,6 +4,7 @@
 #include "../Character/Behaviour/BehaviourManager.h"
 #include "../Character/Behaviour/ChaserBase.h"
 #include "../Character/Behaviour/patrol.h"
+#include "../Graphics/GraphicManager.h"
 
 #include "LuaManager.h"
 #include "LuaFunctions.h"
@@ -82,6 +83,41 @@ int SetPatrolTarget(lua_State *lpLuaContext)
 }
 
 
+// Dibuja una linea por pantalla
+int DrawLine(lua_State *lpLuaContext)
+{
+	cVec3 lA, lB; // Origen y destino de la linea
+	float lfX, lfY, lfZ; // Variables intermedias para capturar valores de LUA
+
+	//Comprobamos que el contexto de Lua no es NULL
+	assert( lpLuaContext );
+	
+	//Cogemos el numero de argumentos de la pila de Lua
+	int liArgCount = lua_gettop( lpLuaContext );
+
+	//Comprobamos que recibimos 6 argumentos
+	assert( liArgCount == 6 );
+
+	lfX = (float)luaL_checknumber(lpLuaContext, 1);
+	lfY = (float)luaL_checknumber(lpLuaContext, 2);
+	lfZ = (float)luaL_checknumber(lpLuaContext, 3);
+	lA = cVec3(lfX, lfY, lfZ);
+
+	lfX = (float)luaL_checknumber(lpLuaContext, 4);
+	lfY = (float)luaL_checknumber(lpLuaContext, 5);
+	lfZ = (float)luaL_checknumber(lpLuaContext, 6);
+	lB = cVec3(lfX, lfY, lfZ);
+
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+	cGraphicManager::Get().DrawLine(lA, lB, cVec3(1.0f, 1.0f, 0.0f));
+
+	//Devolvemos el número de valores de retorno
+	return 0;
+}
+
+
 };
 
 
@@ -89,5 +125,6 @@ void RegisterLuaFunctions()
 {
 	REG_LUA_FUNC("CreatePatrol", LUA::CreatePatrol);
 	REG_LUA_FUNC("SetPatrolTarget", LUA::SetPatrolTarget);
+	REG_LUA_FUNC("DrawLine", LUA::DrawLine);
 }
 
