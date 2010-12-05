@@ -333,6 +333,9 @@
     <ClInclude Include="Character\Behaviour\patrol.h">
       <Filter>Character\Behaviour</Filter>
     </ClInclude>
+    <ClInclude Include="Character\Behaviour\PlayerController.h">
+      <Filter>Character\Behaviour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -544,6 +547,9 @@
       <Filter>Graphics\Meshes</Filter>
     </ClCompile>
     <ClCompile Include="Character\Behaviour\patrol.cpp">
+      <Filter>Character\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Character\Behaviour\playercontroller.cpp">
       <Filter>Character\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
