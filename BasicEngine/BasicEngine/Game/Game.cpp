@@ -64,7 +64,8 @@ bool cGame::Init()
 	m2DCamera.Init();
 	m2DCamera.SetOrtho(lfLeft, lfRight, lfBottom, lfTop, 0.1f, 100.0f);
 	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
-	//m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f), cVec3 (0, 1, 0) );
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 	
 	// Init the Font
 	mFont.Init("./Data/Fonts/Test1.fnt");
@@ -81,7 +82,7 @@ bool cGame::Init()
 	//cResourceHandle lRH = cTextureManager::Get().FindResource("Font");
 	
 	cResource* lResource = lRH.GetResource();
-	int liLuaRes = cLuaManager::Get().DoFile("data/scripts/practica4.lua");
+	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE);
 
 	/* // El siguiente código es de la práctica 2 y se comenta
 	// Añade un personaje al gestor
