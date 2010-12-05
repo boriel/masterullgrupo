@@ -41,6 +41,7 @@ cBehaviourBase* cBehaviourManager::CreateBehaviour( eBehaviours leBehaviour )
 
 		case ePATROL:
 			result = new cPatrol();
+			break;
 
 		default:
 			// Aquí debería ir una excepción
