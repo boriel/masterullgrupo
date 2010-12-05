@@ -24,6 +24,7 @@ class cGraphicManager : public cSingleton<cGraphicManager>
 		//Funciones auxiliares de renderizado
 		void DrawPoint (const cVec3 &lvPosition, const cVec3 &lvColor);
 		void DrawLine (const cVec3 &lvPosition1, const cVec3 &lvPosition2, const cVec3 &lvColor);
+		void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const cVec3 &lvColor);
 		void DrawGrid();
 		void DrawAxis();
 
