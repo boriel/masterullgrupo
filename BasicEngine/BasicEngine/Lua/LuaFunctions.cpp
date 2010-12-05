@@ -118,13 +118,48 @@ int DrawLine(lua_State *lpLuaContext)
 }
 
 
+// Crea un personaje cPlayerController desde Lua
+int CreatePlayer(lua_State *lpLuaContext)
+{
+	float lfX, lfY, lfZ, lfSpeed, lfAngSpeed; // Variables intermedias para capturar valores de LUA
+
+	//Comprobamos que el contexto de Lua no es NULL
+	assert( lpLuaContext );
+	
+	//Cogemos el numero de argumentos de la pila de Lua
+	int liArgCount = lua_gettop( lpLuaContext );
+
+	//Comprobamos que recibimos 5 argumentos
+	assert( liArgCount == 5 );
+
+	lfX = (float)luaL_checknumber(lpLuaContext, 1);
+	lfY = (float)luaL_checknumber(lpLuaContext, 2);
+	lfZ = (float)luaL_checknumber(lpLuaContext, 3);
+	lfSpeed = (float)luaL_checknumber(lpLuaContext, 4);
+	lfAngSpeed = (float)luaL_checknumber(lpLuaContext, 5);
+
+	cCharacter *lpCharacter = cCharacterManager::Get().CreateCharacter();
+	lpCharacter->Init();
+	lpCharacter->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(ePLAYER_CONTROLLER));
+	lpCharacter->GetActiveBehaviour()->Init(lpCharacter);
+	lpCharacter->SetPosition(cVec3(lfX, lfY, lfZ));
+	lpCharacter->SetSpeed(lfSpeed);
+	lpCharacter->SetAngSpeed(lfAngSpeed);
+
+	// Ponemos el resultado en la pila, para que LUA lo recojaque a
+	lua_pushinteger(lpLuaContext, lpCharacter->GetId());
+
+	//Devolvemos el número de valores de retorno
+	return 1;
 };
 
+} // Fin del Espacio de Nombres LUA::
 
 void RegisterLuaFunctions()
 {
 	REG_LUA_FUNC("CreatePatrol", LUA::CreatePatrol);
 	REG_LUA_FUNC("SetPatrolTarget", LUA::SetPatrolTarget);
 	REG_LUA_FUNC("DrawLine", LUA::DrawLine);
+	REG_LUA_FUNC("CreatePlayer", LUA::CreatePlayer);
 }
 

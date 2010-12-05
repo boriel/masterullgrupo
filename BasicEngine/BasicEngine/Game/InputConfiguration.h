@@ -9,11 +9,9 @@ File inputConfiguration.h: Contiene un enum con las posibles acciones que tiene
 
 enum eInputActions {
 	eIA_CloseApplication = 0,
-	//eIA_Up,
-	//eIA_Down,
-	//eIA_Left,
-	//eIA_Right,
-	//eIA_Accept,
+	eIA_TurnLeft,
+	eIA_TurnRight,
+	eIA_Advance,
 
 	eIA_Count
 };
