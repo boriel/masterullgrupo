@@ -12,15 +12,11 @@ private:
 	cChaserWithOrientation *mpBehaviour;
 	cVec3 mTargetWayPoint;
 
-	// Función propia para llamar a LUA
-	// No podemos usar las templates de función (por ahora) porque
-	// no hay ninguna para recibir más de tres elementos
-	cVec3 NextEndPoint();
-
 public:
-	void Init(cCharacter *lpCharacter);
-	void Deinit();
-	void Update(float lfTimestep);
+	virtual void Init(cCharacter *lpCharacter);
+	virtual void Deinit();
+	virtual void Update(float lfTimestep);
+
 	void SetTargetWayPoint(const cVec3 &lTargetWayPoint);
 
 	inline const cVec3 &GetTargetWayPoint() const { return mTargetWayPoint; }
