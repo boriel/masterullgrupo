@@ -5,7 +5,8 @@ Class cMesh:
 	tarjeta gráfica.
 
 */
-/*
+
+
 #ifndef MESH_H
 #define MESH_H
 
@@ -35,4 +36,3 @@ class cMesh : public cResource
 };
 
 #endif
-*/

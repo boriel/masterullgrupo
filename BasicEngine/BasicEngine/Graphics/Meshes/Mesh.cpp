@@ -1,4 +1,4 @@
-/*
+
 #include "Mesh.h"
 
 #include "../GLHeaders.h"
@@ -180,4 +180,3 @@ void cMesh::RenderMesh()
 	//podríamos sacarlas fuera y hacerlas sólo una vez por frame.
 
 }
-*/

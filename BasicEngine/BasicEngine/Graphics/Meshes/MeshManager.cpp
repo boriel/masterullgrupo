@@ -1,4 +1,4 @@
-/*
+
 #include "MeshManager.h"
 #include "Mesh.h"
 
@@ -7,7 +7,7 @@ cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lp
 {
 	cMesh * lpMesh = new cMesh();
 	
-	if (!lpMesh->Init( lacNameID, lpMemoryData ))
+	if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID ))
 	{
 		delete lpMesh;
 		return NULL;
@@ -15,4 +15,3 @@ cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lp
 
 	return lpMesh;
 }
-*/

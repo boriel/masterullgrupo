@@ -13,6 +13,10 @@
 #include "../Character/CharacterManager.h"
 #include "../Character/Behaviour/BehaviourManager.h"
 #include "../Character/Behaviour/ChaserBase.h"
+#include "../Gameplay/Scene/SceneManager.h"
+#include "..\Graphics\Meshes\MeshManager.h"
+#include "..\Gameplay\Scene\Scene.h"
+
 
 extern tActionMapping kaActionMapping[];
 
@@ -41,7 +45,7 @@ bool cGame::Init()
 	}
 
 	//Iniciando las texturas
-	cTextureManager::Get().Init(2); 
+	cTextureManager::Get().Init(4); //Espacio reservado máximo para la carga
 
 	//Inicializamos el Gestor de Personajes
 	cCharacterManager::Get().Init();
@@ -127,6 +131,16 @@ bool cGame::Init()
 	((cChaserBase *)c3->GetActiveBehaviour())->SetTarget(c4->GetPosition());
 	*/
 	
+  // Init MeshManager
+  cMeshManager::Get().Init(10);
+
+
+	// Init SceneManager
+  cSceneManager::Get().Init(10);
+
+	mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
+	
+
 	return lbResult;
 }
 
@@ -171,62 +185,19 @@ void cGame::Update(float lfTimestep)
 //render del juego
 void cGame::Render() 
 {
-	/*
-	//Mostrar el contador
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+
+	//RenderTest();
+
+	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
+
+	//RenderLua();
 	
-	// Render Here!!
-	cGraphicManager::Get().DrawPoint(cVec3 (0,0,-5), cVec3 (1,0,0)); //Creamos un punto de ejemplo
-	cGraphicManager::Get().DrawLine(cVec3 (0,1,-2), cVec3 (1,0,-3), cVec3 (0,1,0)); //creamos un ejemplo de una linea
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// Activate the 3D Camera
-	cGraphicManager::Get().ActivateCamera( &m3DCamera );
-
-	// Set the world matrix
-	cMatrix lWorld;
-	lWorld.LoadIdentity();
-	cGraphicManager::Get().SetWorldMatrix(lWorld);
-
-	//lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
-	//cGraphicManager::Get().SetWorldMatrix (lWorld);
-
-	// Render the debug lines
-	cGraphicManager::Get().DrawGrid();
-	cGraphicManager::Get().DrawAxis();
-
-	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f), cVec3(1.0f, 0.0f, 1.0f) );
-	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f), cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f));
-
-	//otros ejes
-	lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
-	cGraphicManager::Get().SetWorldMatrix (lWorld);
-
-	// Render the debug lines
-	cGraphicManager::Get().DrawGrid();
-	cGraphicManager::Get().DrawAxis();
-	cGraphicManager::Get().SwapBuffer();
-	*/
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	cGraphicManager::Get().ActivateCamera( &m3DCamera );
-
-#	ifdef _DEBUG
-	// Los ejes y la rejilla solo aparecen en modo de depuración
-	cMatrix lWorld;
-	lWorld.LoadIdentity();
-	cGraphicManager::Get().SetWorldMatrix(lWorld);
-	cGraphicManager::Get().DrawGrid();
-	cGraphicManager::Get().DrawAxis();
-#	endif
-
-	//Pintar el circuito 
-	cLuaManager::Get().CallLua("DrawPath", (int *)NULL);
-
-	cCharacterManager::Get().Render();
 	RenderFuentes();
+
+	RenderMalla();
+
 
 	// Al final del ciclo de renderizado, volcamos el buffer
 	cGraphicManager::Get().SwapBuffer();
@@ -236,12 +207,43 @@ void cGame::Render()
 
 //FUNCTIONS
 
-//Load all resources
-void cGame::LoadResources ()
+//Load all resources, no usada por ahora
+void cGame::LoadResources () {}
+
+
+void cGame::RenderMalla()
+{
+	glDisable(GL_TEXTURE_2D);
+	m3DCamera.SetLookAt(cVec3(1.0f, 1.0f, 1.0f), cVec3(0.0f, 0.0f, 0.0f) );
+	((cScene *)mScene.GetResource())->Render();
+	glEnable(GL_TEXTURE_2D);
+}
+
+
+//Para los ejercicios de LUA
+void cGame::RenderLua ()
+{
+	//Pintar el circuito 
+	cLuaManager::Get().CallLua("DrawPath", (int *)NULL);
+
+	cCharacterManager::Get().Render();
+
+}
+
+
+
+
+void cGame::RenderRejilla ()
 {
 	
-	
-	
+#	ifdef _DEBUG
+	// Los ejes y la rejilla solo aparecen en modo de depuración
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+#	endif
 }
 
 
@@ -295,3 +297,47 @@ void cGame::RenderFuentes ()
 	// cGraphicManager::Get().SwapBuffer();
 }
 
+
+//testeando los primeros ejercicios del render
+void cGame::RenderTest()
+{
+	/*
+	//Mostrar el contador
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	
+	// Render Here!!
+	cGraphicManager::Get().DrawPoint(cVec3 (0,0,-5), cVec3 (1,0,0)); //Creamos un punto de ejemplo
+	cGraphicManager::Get().DrawLine(cVec3 (0,1,-2), cVec3 (1,0,-3), cVec3 (0,1,0)); //creamos un ejemplo de una linea
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// Activate the 3D Camera
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+
+	// Set the world matrix
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+
+	//lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
+	//cGraphicManager::Get().SetWorldMatrix (lWorld);
+
+	// Render the debug lines
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+
+	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f), cVec3(1.0f, 0.0f, 1.0f) );
+	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f), cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f));
+
+	//otros ejes
+	lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
+	cGraphicManager::Get().SetWorldMatrix (lWorld);
+
+	// Render the debug lines
+	cGraphicManager::Get().DrawGrid();
+	cGraphicManager::Get().DrawAxis();
+	cGraphicManager::Get().SwapBuffer();
+	*/
+}
