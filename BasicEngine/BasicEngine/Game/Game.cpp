@@ -169,7 +169,7 @@ void cGame::Update(float lfTimestep)
 	//OutputDebugString (lsTime.c_str());
 	
 	cWindow::Get().Update();
-	cCharacterManager::Get().Update(lfTimestep);
+	//cCharacterManager::Get().Update(lfTimestep);  //Carga del Character de LUA, comentado por ahora
 	cInputManager::Get().Update(lfTimestep);
 
 	// Check if we need to close the application
