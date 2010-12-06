@@ -1,4 +1,4 @@
-/*
+
 
 #include "Scene.h"
 
@@ -7,8 +7,10 @@
 #include <aiPostProcess.h> // Post processing flags
 #include <cassert>
 
-#include "..\..\Utilities\ResourceHandle.h"
 
+#include "SceneManager.h"
+#include "..\..\Graphics\Meshes\MeshManager.h"
+#include "..\..\Graphics\Meshes\Mesh.h"
 
 bool cScene::Init( const std::string &lacNameID, const std::string &lacFile )
 {
@@ -53,7 +55,7 @@ void cScene::Deinit()
 //cMeshManager que sigue el patrón de recursos que ya hemos usado con anterioridad
 void cScene::ProcessScene( const aiScene* lpScene )
 {
-
+	
 	// Meshes
 	for (unsigned luiIndex = 0;luiIndex < lpScene->mNumMeshes;++luiIndex)
 	{
@@ -63,14 +65,19 @@ void cScene::ProcessScene( const aiScene* lpScene )
 		lHandle = cMeshManager::Get().LoadResource(lacMeshName,	lpScene->mMeshes[luiIndex], 0);
 		mMeshList.push_back(lHandle);
 	}
+	
 
 }
 
 void cScene::Render()
 {
-	for ( cMeshHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
-		((cMesh *)lpIt->GetResource())->RenderMesh();
 	
+	//for ( cMeshHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
+	//	((cMesh *)lpIt->GetResource())->RenderMesh();
+
+	for ( cResourceHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
+		((cMesh*)lpIt->GetResource())->RenderMesh();
+
+
 }
 
-*/

@@ -1,7 +1,7 @@
 /*
 class cMeshManager
 */
-/*
+
 
 #ifndef MESH_MANAGER_H
 #define MESH_MANAGER_H
@@ -22,4 +22,3 @@ class cMeshManager : public cResourceManager, public cSingleton<cMeshManager>
 };
 
 #endif
-*/

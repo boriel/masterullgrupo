@@ -5,12 +5,15 @@ Class cScene:
 */
 
 
-/*
+
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "..\..\Utilities\Resource.h"
 #include <vector>
+
+#include "..\..\Utilities\Resource.h"
+#include "..\..\Utilities\ResourceHandle.h"
+
 
 struct aiScene;
 
@@ -38,4 +41,3 @@ class cScene : public cResource
 
 
 #endif
-*/

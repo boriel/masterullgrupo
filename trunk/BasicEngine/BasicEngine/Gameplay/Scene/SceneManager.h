@@ -14,7 +14,7 @@ lo contrario, liberamos la memoria y devolvemos NULL.
 */
 
 
-/*
+
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
 
@@ -32,11 +32,9 @@ class cSceneManager : public cResourceManager, public cSingleton<cSceneManager>
 		cSceneManager() { ; } // Protected constructor
 	
 	private:
-		virtual cResource * LoadResourceInternal( std::string lacNameID,
-		const std::string &lacFile );
+		virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile );
 };
 
 
 #endif
 
-*/

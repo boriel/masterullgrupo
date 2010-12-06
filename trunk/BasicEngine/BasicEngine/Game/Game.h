@@ -16,6 +16,8 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Graphics\Camera.h"
 
 #include "../Graphics/Fonts/acgfx_font.h"
+//#include "..\Gameplay\Scene\Scene.h"
+
 
 // Fichero de LUA a cargar
 #define LUA_FILE "data/scripts/practica7.lua"
@@ -34,6 +36,7 @@ class cGame : public cSingleton<cGame>
 		cCamera m3DCamera;
 		cCamera m2DCamera;
 		cFont mFont;
+		cResourceHandle mScene;
 		
 	protected:
 		cGame () { ; } //Protected Constructor
@@ -55,6 +58,10 @@ class cGame : public cSingleton<cGame>
 		void LoadResources(); //Read resources for the game (window properties)
 
 		void RenderFuentes();
+		void RenderRejilla();
+		void RenderLua();
+		void RenderTest();
+		void RenderMalla();
 
 
 };
