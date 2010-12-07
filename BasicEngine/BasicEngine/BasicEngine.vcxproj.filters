@@ -67,6 +67,9 @@
     <Filter Include="Graphics\Meshes">
       <UniqueIdentifier>{4a5cc3fe-c9a7-4763-95ea-5047510a4fe9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Materials">
+      <UniqueIdentifier>{9703539f-1b96-42e1-b36e-769886c74dbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -336,6 +339,21 @@
     <ClInclude Include="Character\Behaviour\PlayerController.h">
       <Filter>Character\Behaviour</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialData.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\FileUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Materials\MaterialManager.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Materials\Material.h">
+      <Filter>Graphics\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Fonts\FontManager.h">
+      <Filter>Graphics\Fonts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -551,6 +569,18 @@
     </ClCompile>
     <ClCompile Include="Character\Behaviour\playercontroller.cpp">
       <Filter>Character\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\FileUtils.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\MaterialManager.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Materials\Material.cpp">
+      <Filter>Graphics\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Fonts\FontManager.cpp">
+      <Filter>Graphics\Fonts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

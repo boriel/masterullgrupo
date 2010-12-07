@@ -37,6 +37,7 @@ class cGame : public cSingleton<cGame>
 		cCamera m2DCamera;
 		cFont mFont;
 		cResourceHandle mScene;
+		cResourceHandle mFontHandle;
 		
 	protected:
 		cGame () { ; } //Protected Constructor

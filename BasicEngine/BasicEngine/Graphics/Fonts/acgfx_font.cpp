@@ -157,6 +157,9 @@ int cFont::Init(const char *fontFile)
 	return r;
 }
 
+
+
+
 void cFont::SetTextEncoding(EFontTextEncoding encoding)
 {
 	this->encoding = encoding;

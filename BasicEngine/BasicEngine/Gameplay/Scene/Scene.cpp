@@ -11,6 +11,10 @@
 #include "SceneManager.h"
 #include "..\..\Graphics\Meshes\MeshManager.h"
 #include "..\..\Graphics\Meshes\Mesh.h"
+#include "../../Graphics/Materials/MaterialData.h"
+#include "../../Graphics/Materials/Material.h"
+#include "../../Graphics/Materials/MaterialManager.h"
+#include "../../Utilities/FileUtils.h"
 
 bool cScene::Init( const std::string &lacNameID, const std::string &lacFile )
 {
@@ -67,6 +71,34 @@ void cScene::ProcessScene( const aiScene* lpScene )
 	}
 	
 
+	
+	// Materials
+	assert(lpScene->HasMaterials());
+	for (unsigned luiIndex = 0;luiIndex<lpScene->mNumMaterials;++luiIndex)
+	{
+		// Access the material name
+		aiString lName;
+		lpScene->mMaterials[luiIndex]->Get(AI_MATKEY_NAME, lName);
+
+		// Fill in the material data structure
+		cMaterialData lMaterialData;
+		lMaterialData.macPath = cFileUtils::GetDirectory(macFile);
+		lMaterialData.mpMaterial = lpScene->mMaterials[luiIndex];
+
+		// Load the resource
+		cResourceHandle lHandle;
+		lHandle = cMaterialManager::Get().LoadResource(lName.data, &lMaterialData, 0);
+
+		// Save the material on a vector in the Scene
+		mMaterialList.push_back(lHandle);
+		int liMaterialIndex = lpScene->mMeshes[luiIndex]->mMaterialIndex;
+		mMeshMaterialIndexList.push_back(liMaterialIndex);
+	
+	}
+	
+	
+
+
 }
 
 void cScene::Render()
@@ -77,6 +109,22 @@ void cScene::Render()
 
 	for ( cResourceHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
 		((cMesh*)lpIt->GetResource())->RenderMesh();
+
+	
+	for (unsigned luiIndex = 0; luiIndex < mMeshList.size();++luiIndex)
+	{
+		// Get material index
+		unsigned luiMaterialIndex = mMeshMaterialIndexList[luiIndex];
+
+		// Set the material
+		void * lpResource = mMaterialList[luiMaterialIndex].GetResource();
+		((cMaterial *)lpResource)->SetMaterial();
+
+		// Render Mesh
+		lpResource = mMeshList[luiIndex].GetResource();
+		((cMesh *)lpResource)->RenderMesh();
+	}
+	
 
 
 }

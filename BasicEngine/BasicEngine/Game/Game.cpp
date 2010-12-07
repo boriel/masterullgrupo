@@ -16,6 +16,8 @@
 #include "../Gameplay/Scene/SceneManager.h"
 #include "..\Graphics\Meshes\MeshManager.h"
 #include "..\Gameplay\Scene\Scene.h"
+#include "../Graphics/Fonts/FontManager.h"
+#include "../Graphics/Materials/MaterialManager.h"
 
 
 extern tActionMapping kaActionMapping[];
@@ -45,7 +47,7 @@ bool cGame::Init()
 	}
 
 	//Iniciando las texturas
-	cTextureManager::Get().Init(4); //Espacio reservado máximo para la carga
+	cTextureManager::Get().Init(10); //Espacio reservado máximo para la carga
 
 	//Inicializamos el Gestor de Personajes
 	cCharacterManager::Get().Init();
@@ -81,12 +83,42 @@ bool cGame::Init()
 	
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
+
+
+
 	
-	cResourceHandle lRH = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
+	//cResourceHandle lRH = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
 	//cResourceHandle lRH = cTextureManager::Get().FindResource("Font");
 	
-	cResource* lResource = lRH.GetResource();
-	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE);
+	
+	//mFontHandle = cFontManager::Get()..LoadResource("Font1", "./Data/Fonts/Test1.fnt");
+	//mFontHandle = cTextureManager::Get().LoadResource("Font2", "./Data/Fonts/Test2.fnt");
+
+	//mFontHandle = cTextureManager::Get().LoadResource("Font2", "./Data/Fonts/Test2.fnt");
+
+	//mFontHandle = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
+
+	//cResource* lResource = lRH.GetResource();
+
+	
+	////mFontHandle = cTextureManager::Get().LoadResource("Font1", "./Data/Fonts/Test1.fnt");
+	//mFontHandle = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
+	////mFontHandle = cTextureManager::Get().FindResource("Font1");
+ // cResource * lpResource = mFontHandle.GetResource();
+ // cFont * lpFont = (cFont*)lpResource;
+	//mFont = *lpFont;
+	
+	//mFontHandle = cFontManager::Get().LoadResource("Font1", "./Data/Fonts/Test1.fnt");
+	////mFontHandle = cFontManager::Get().FindResource("Font1");
+	//cResource * lpResource = mFontHandle.GetResource();
+	//cFont * lpFont = (cFont*)lpResource;
+	//mFont = *lpFont;
+
+	
+
+
+
+	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua
 
 	/* // El siguiente código es de la práctica 2 y se comenta
 	// Añade un personaje al gestor
@@ -138,6 +170,10 @@ bool cGame::Init()
 	// Init SceneManager
   cSceneManager::Get().Init(10);
 
+
+	//Init Material Manager
+	cMaterialManager::Get().Init(10);
+
 	mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
 	
 
@@ -153,10 +189,14 @@ bool cGame::Deinit()
 	
 	cInputManager::Get().Deinit();
 	mFont.Deinit();
+	cSceneManager::Get().Deinit();
+	cMeshManager::Get().Deinit();
+	cInputManager::Get().Deinit();
 	cTextureManager::Get().Deinit();
 	cLuaManager::Get().Deinit();
 	cBehaviourManager::Get().Deinit();
 	cCharacterManager::Get().Deinit();
+
 	
 	return lbResult;
 }
@@ -213,10 +253,10 @@ void cGame::LoadResources () {}
 
 void cGame::RenderMalla()
 {
-	glDisable(GL_TEXTURE_2D);
+	//glDisable(GL_TEXTURE_2D);
 	m3DCamera.SetLookAt(cVec3(1.0f, 1.0f, 1.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	((cScene *)mScene.GetResource())->Render();
-	glEnable(GL_TEXTURE_2D);
+	//glEnable(GL_TEXTURE_2D);
 }
 
 
@@ -284,6 +324,8 @@ void cGame::RenderFuentes ()
 	//Draw some strings
 	mFont.SetColour (1.0f, 0.0f, 0.0f);
 	mFont.Write(0,200,0, "Pulse ESC o Boton Izquierdo para salir", 0, FONT_ALIGN_CENTER);
+
+	
 
 	//mFont.SetColour (0.0f, 1.0f, 1.0f);
 	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);

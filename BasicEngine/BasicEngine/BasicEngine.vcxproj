@@ -114,9 +114,13 @@
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Fonts\acgfx_font.h" />
     <ClInclude Include="Graphics\Fonts\acutil_unicode.h" />
+    <ClInclude Include="Graphics\Fonts\FontManager.h" />
     <ClInclude Include="Graphics\GLee\GLee.h" />
     <ClInclude Include="Graphics\GLHeaders.h" />
     <ClInclude Include="Graphics\GraphicManager.h" />
+    <ClInclude Include="Graphics\Materials\Material.h" />
+    <ClInclude Include="Graphics\Materials\MaterialData.h" />
+    <ClInclude Include="Graphics\Materials\MaterialManager.h" />
     <ClInclude Include="Graphics\Meshes\Mesh.h" />
     <ClInclude Include="Graphics\Meshes\MeshManager.h" />
     <ClInclude Include="Graphics\Textures\SOIL\image_DXT.h" />
@@ -178,6 +182,7 @@
     <ClInclude Include="MathLib\Vec\Vec4.h" />
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
+    <ClInclude Include="Utilities\FileUtils.h" />
     <ClInclude Include="Utilities\Resource.h" />
     <ClInclude Include="Utilities\ResourceHandle.h" />
     <ClInclude Include="Utilities\ResourceManager.h" />
@@ -203,8 +208,11 @@
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Fonts\acgfx_font.cpp" />
     <ClCompile Include="Graphics\Fonts\acutil_unicode.cpp" />
+    <ClCompile Include="Graphics\Fonts\FontManager.cpp" />
     <ClCompile Include="Graphics\GLee\GLee.c" />
     <ClCompile Include="Graphics\GraphicManager.cpp" />
+    <ClCompile Include="Graphics\Materials\Material.cpp" />
+    <ClCompile Include="Graphics\Materials\MaterialManager.cpp" />
     <ClCompile Include="Graphics\Meshes\Mesh.cpp" />
     <ClCompile Include="Graphics\Meshes\MeshManager.cpp" />
     <ClCompile Include="Graphics\Textures\SOIL\image_DXT.c" />
@@ -254,6 +262,7 @@
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />
     <ClCompile Include="MathLib\Vec\Vec.cpp" />
+    <ClCompile Include="Utilities\FileUtils.cpp" />
     <ClCompile Include="Utilities\ResourceHandle.cpp" />
     <ClCompile Include="Utilities\ResourceManager.cpp" />
     <ClCompile Include="Utility\Debug.cpp" />
