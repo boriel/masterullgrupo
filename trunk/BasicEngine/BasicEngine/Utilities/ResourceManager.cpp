@@ -239,15 +239,20 @@ bool cResourceManager::LoadResourcesXml(std::string lsResource)
 	}
 	*/
 
-	std::string lacFont = "./Data/Fonts/Test1.fnt";
-	cFont lFont;
-	lFont.Init(lacFont.c_str());
+	//std::string lacFont = "./Data/Fonts/Test1.fnt";
+	//cFont lFont;
+	//lFont.Init(lacFont.c_str());
 	
 	//LoadResource("Font", &lFont, 10);
 	
+
 	//LoadResource("Font2", "./Data/Fonts/Test1_0.tga");
-	LoadResource("Font2", ".\\Data\\Fonts\\Test1_0.tga");
+	//LoadResource("Font3", ".\\Data\\Fonts\\Test1_0.tga");
 	
+	
+	//LoadResource("Font1", "./Data/Fonts/Test1.fnt");
+
+	//LoadResource("Font2", ".\\Data\\Fonts\\Test2.fnt");
 
 	maResources;
 

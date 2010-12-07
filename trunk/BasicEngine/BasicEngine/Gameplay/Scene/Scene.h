@@ -34,7 +34,11 @@ class cScene : public cResource
 
 		typedef std::vector<cResourceHandle> cResourceHandleList;
 		typedef cResourceHandleList::iterator cResourceHandleListIt;
+		
 		cResourceHandleList mMeshList;
+		cResourceHandleList mMaterialList;
+		
+		std::vector<unsigned> mMeshMaterialIndexList; //un vector adicional en la clase escena que nos indicará que material se debe usar para cada malla
 
 		void ProcessScene( const aiScene* lpScene );
 };

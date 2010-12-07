@@ -33,6 +33,7 @@
 // This is a modification of the original code <
 //#include "../../Utility/ResourceHandle.h"
 #include "../../Utilities/ResourceHandle.h"  //Yorman
+#include "../../Utilities/Resource.h" //Yorman
 #include <vector>
 #include <string>
 #include <map>
@@ -64,7 +65,8 @@ enum EFontTextEncoding
 	UTF16
 };
 
-class cFont
+//class cFont //orig
+class cFont : public cResource  //Yorman
 {
 public:
 	cFont();
