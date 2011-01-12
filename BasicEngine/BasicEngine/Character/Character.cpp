@@ -43,7 +43,7 @@ void cCharacter::Deinit()
 }
 
 
-// Constructo de oficio
+// Constructor de oficio
 cCharacter::cCharacter(int liId):
 	mfYaw(0), 		//Orientación del personaje (yaw)
 	mfSpeed(0),		//Velocidad máxima del personaje

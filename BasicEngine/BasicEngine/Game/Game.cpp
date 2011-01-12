@@ -225,22 +225,48 @@ void cGame::Update(float lfTimestep)
 //render del juego
 void cGame::Render() 
 {
+	// ORDEN DE PINTADO
+	// 1) Clean Buffers
+	// 2) Activate the 3D Camera
+	// 3) Render Solid 3D
+	// 4) Render 3D with transparency
+	// 5) Activate 2D Camera
+	// 6) Render 2D Elements
+	// 7) Postprocessing
+	// 8) Swap Buffers
+
+
+	// 1) Clean Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+	// 2) Activate the 3D Camera
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
+
+	// 3) Render Solid 3D
 	//RenderTest();
-
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
-
-	//RenderLua();
-	
-	RenderFuentes();
-
 	RenderMalla();
 
+	// 4) Render 3D with transparency
 
-	// Al final del ciclo de renderizado, volcamos el buffer
-	cGraphicManager::Get().SwapBuffer();
+
+	// 5) Activate 2D Camera
+	cGraphicManager::Get().ActivateCamera( &m2DCamera );
+
+	// 6) Render 2D Elements
+	//RenderLua();
+	RenderFuentes();
+
+
+	// 7) Postprocessing
+
+
+	// 8) Swap Buffers
+	cGraphicManager::Get().SwapBuffer();  // Al final del ciclo de renderizado, volcamos el buffer
+
+
 }
 
 
@@ -253,8 +279,15 @@ void cGame::LoadResources () {}
 
 void cGame::RenderMalla()
 {
+
+	// Set the world matrix
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+
+
 	//glDisable(GL_TEXTURE_2D);
-	m3DCamera.SetLookAt(cVec3(1.0f, 1.0f, 1.0f), cVec3(0.0f, 0.0f, 0.0f) );
+	m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
 }
@@ -272,7 +305,7 @@ void cGame::RenderLua ()
 
 
 
-
+//Renderizamos la rejilla en caso de que sea debug la compilación
 void cGame::RenderRejilla ()
 {
 	
@@ -287,56 +320,19 @@ void cGame::RenderRejilla ()
 }
 
 
+
 //Rendreizamos una fuente en pantalla siguiendo el orden
 void cGame::RenderFuentes ()
 {
-	// 1) Clean Buffers
-	// -------------------------------------------------------------
-	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// 2) Activate the 3D Camera
-	// -------------------------------------------------------------
-	// cGraphicManager::Get().ActivateCamera( &m3DCamera );
-
-	// 3) Render Solid 3D
-	// -------------------------------------------------------------
-	// Set the world matrix
-	cMatrix lWorld;
-	lWorld.LoadIdentity();
-	cGraphicManager::Get().SetWorldMatrix(lWorld);
-	// Render the debug lines
-	// cGraphicManager::Get().DrawGrid();
-	// cGraphicManager::Get().DrawAxis();
-	/* cGraphicManager::Get().DrawPoint( cVec3(1.0f, 0.0f, 2.0f),
-		cVec3(1.0f, 0.0f, 1.0f) );
-	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f),
-		cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f) ); */
-
-	// 4) Render 3D with transparency
-	// -------------------------------------------------------------
-
-	// 5) Activate 2D Camera
-	// -------------------------------------------------------------
-	cGraphicManager::Get().ActivateCamera( &m2DCamera );
-
-	// 6) Render 2D Elements
-	// -------------------------------------------------------------
 	//Draw some strings
 	mFont.SetColour (1.0f, 0.0f, 0.0f);
-	mFont.Write(0,200,0, "Pulse ESC o Boton Izquierdo para salir", 0, FONT_ALIGN_CENTER);
+	mFont.Write(0,200,0, "Pulse ESC o el Botón Izquierdo para salir", 0, FONT_ALIGN_CENTER);
 
 	
 
 	//mFont.SetColour (0.0f, 1.0f, 1.0f);
 	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
 
-
-	// 7) Postprocessing
-	// -------------------------------------------------------------
-
-	// 8) Swap Buffers
-	// -------------------------------------------------------------
-	// cGraphicManager::Get().SwapBuffer();
 }
 
 
