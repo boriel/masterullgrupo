@@ -107,6 +107,7 @@
     <ClInclude Include="Character\Behaviour\PlayerController.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterManager.h" />
+    <ClInclude Include="Gameplay\Scene\Object.h" />
     <ClInclude Include="Gameplay\Scene\Scene.h" />
     <ClInclude Include="Gameplay\Scene\SceneManager.h" />
     <ClInclude Include="Game\Game.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Character\Behaviour\playercontroller.cpp" />
     <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\CharacterManager.cpp" />
+    <ClCompile Include="Gameplay\Scene\Object.cpp" />
     <ClCompile Include="Gameplay\Scene\SceneManager.cpp" />
     <ClCompile Include="Gameplay\Scene\Scene.cpp" />
     <ClCompile Include="Game\Game.cpp" />

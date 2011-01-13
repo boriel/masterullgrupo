@@ -354,6 +354,9 @@
     <ClInclude Include="Graphics\Fonts\FontManager.h">
       <Filter>Graphics\Fonts</Filter>
     </ClInclude>
+    <ClInclude Include="Gameplay\Scene\Object.h">
+      <Filter>GamepLay\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -581,6 +584,9 @@
     </ClCompile>
     <ClCompile Include="Graphics\Fonts\FontManager.cpp">
       <Filter>Graphics\Fonts</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay\Scene\Object.cpp">
+      <Filter>GamepLay\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

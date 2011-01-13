@@ -13,9 +13,11 @@ Class cScene:
 
 #include "..\..\Utilities\Resource.h"
 #include "..\..\Utilities\ResourceHandle.h"
-
+#include "Object.h"
 
 struct aiScene;
+struct aiNode;
+
 
 class cScene : public cResource
 {
@@ -27,6 +29,8 @@ class cScene : public cResource
 		virtual bool IsLoaded() { return mbLoaded; }
 		void Update( float lfTimestep );
 		void Render();
+
+		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
 	
 	private:
 		std::string macFile;
@@ -41,6 +45,10 @@ class cScene : public cResource
 		std::vector<unsigned> mMeshMaterialIndexList; //un vector adicional en la clase escena que nos indicará que material se debe usar para cada malla
 
 		void ProcessScene( const aiScene* lpScene );
+		
+		typedef std::vector<cObject *> cObjectList;
+		cObjectList mObjectList;
+		
 };
 
 

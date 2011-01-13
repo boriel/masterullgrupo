@@ -57,9 +57,12 @@ bool cGame::Init()
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
+	
 
 	// Ponemos la cámara en modo cenital (mirando desde arriba)
 	m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f));
+	
+
 
 	//Iniciando Camara 2D
 	float lfRight = (float)mProperties.muiWidth / 2.0f;
@@ -287,7 +290,8 @@ void cGame::RenderMalla()
 
 
 	//glDisable(GL_TEXTURE_2D);
-	m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
+	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
+	m3DCamera.SetLookAt(cVec3(5.0f, 5.0f, 5.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
 }
