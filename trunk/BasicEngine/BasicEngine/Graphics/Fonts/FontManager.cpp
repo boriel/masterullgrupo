@@ -8,8 +8,8 @@ cResource* cFontManager::LoadResourceInternal( std::string lacNameID, const std:
 {
 	cFont* lpFont = new cFont();
 
-	//if (!lpFont->Init( lacNameID, lacFile ))
-	if (!lpFont->Init( lacFile.c_str()))
+	if (!lpFont->Init( lacNameID, lacFile ))
+	//if (!lpFont->Init( lacFile.c_str()))
 	{
 		delete lpFont;
 		return NULL;

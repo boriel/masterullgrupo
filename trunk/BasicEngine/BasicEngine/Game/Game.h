@@ -15,7 +15,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 
-#include "../Graphics/Fonts/acgfx_font.h"
+#include "..\Graphics\Fonts\acgfx_font.h"
 //#include "..\Gameplay\Scene\Scene.h"
 
 
@@ -58,6 +58,7 @@ class cGame : public cSingleton<cGame>
 		
 		void LoadResources(); //Read resources for the game (window properties)
 
+		void SetTheWorldMatrix();
 		void RenderFuentes();
 		void RenderRejilla();
 		void RenderLua();

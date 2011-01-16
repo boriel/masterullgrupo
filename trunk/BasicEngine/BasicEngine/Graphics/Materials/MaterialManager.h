@@ -20,8 +20,7 @@ class cMaterialManager : public cResourceManager, public cSingleton<cMaterialMan
 	protected:
 		cMaterialManager() { ; } // Protected constructor
 	private:
-		virtual cResource * LoadResourceInternal( std::string lacNameID,
-		void * lpMemoryData, int liDataType );
+		virtual cResource * LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int liDataType );
 };
 
 

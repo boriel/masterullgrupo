@@ -1,4 +1,13 @@
 <?xml version="1.0" ?>
-<Font Fichero="./Data/Fonts/Test1.fnt">
-  
-</Font>
+<Resources>
+
+  <Fonts>
+    <Font Name="Font1" File="./Data/Fonts/Test1.fnt" />
+    <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />
+  </Fonts>
+
+  <Scenes>
+     <Scene Name="Dragon" File="./Data/Scene/dragonsmall.DAE" />
+  </Scenes>
+
+</Resources>

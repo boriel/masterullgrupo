@@ -33,7 +33,7 @@ void cResourceManager::Init( unsigned luiMaxSize )
 	//incializando el nombre del fichero de recursos del nombre del xml
 	msFilename = (".\\Data\\" + std::string("Resources.xml"));
 
-	LoadResourcesXml(msFilename.c_str());
+	//LoadResourcesXml(msFilename.c_str());
 
 }
 
@@ -73,7 +73,7 @@ cResource * cResourceManager::GetResource( cResourceHandle *lpHandle )
 	unsigned luiIndex = lpHandle->GetID();
 	assert( luiIndex < muiMaxSize );
 	
-	if ( maResources[luiIndex].muiKey == lpHandle->GetKey()	&& maResources[luiIndex].mpResource->IsLoaded() )
+	if ( maResources[luiIndex].muiKey == lpHandle->GetKey()	&& maResources[luiIndex].mpResource->IsLoaded() ) 
 		return maResources[luiIndex].mpResource;
 	
 	return NULL;
@@ -212,50 +212,73 @@ cResourceHandle cResourceManager::LoadResource( std::string lacNameID, void * lp
 
 
 //Leemeos todos los recursos desde un xml
-bool cResourceManager::LoadResourcesXml(std::string lsResource)
+cResourceHandle cResourceManager::LoadResourcesXml(std::string lsResource)
 {
 
-	/*
-	mDoc.LoadFile ((char*)msFilename.c_str());
-	if (!mDoc.LoadFile())
+	cResourceHandle lHandle; 
+	
+	//lHandle = LoadResource("Font1", "./Data/Fonts/Test1.fnt");
+	//lHandle = LoadResource("Font3", "./Data/Fonts/Test3.fnt");
+
+	TiXmlDocument lDoc;
+
+	lDoc.LoadFile ((char*)msFilename.c_str());
+	if (!lDoc.LoadFile())
 	{
 		OutputDebugString ("XML Load: FAILED\n");
-		return false;
+		return lHandle;  //vacio imagino 
 	}
 
 	
-	TiXmlElement *lElement;
-	lElement = mDoc.FirstChildElement (lsTag);
+	TiXmlElement *lpElementResources;
+	lpElementResources = lDoc.FirstChildElement ("Resources");
 
-	if (lsTag == "Font")
+	//Fuentes
+	if (lsResource == "Fonts")
 	{
-		if (lElement->Attribute("Fichero") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-			std::string lsFont = ((char*)lElement->Attribute("Fichero"));
-		else
-			return false;
+		TiXmlElement *lpElement;
+		lpElement =  lpElementResources->FirstChildElement (lsResource); 
+
+		for (lpElement = lpElement->FirstChildElement("Font"); lpElement; lpElement = lpElement->NextSiblingElement()) 
+		{
+			std::string lsName, lsFile;
+			
+			if (lpElement->Attribute("Name") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsName = ((char*)lpElement->Attribute("Name"));
+
+			if (lpElement->Attribute("File") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsFile = ((char*)lpElement->Attribute("File"));
+
+			lHandle = LoadResource(lsName, lsFile);
+		}
+	}
 
 
+	//Escena
+	if (lsResource == "Scenes")
+	{
+		TiXmlElement *lpElement;
+		lpElement =  lpElementResources->FirstChildElement (lsResource); 
+
+		for (lpElement = lpElement->FirstChildElement("Scene"); lpElement; lpElement = lpElement->NextSiblingElement()) 
+		{
+			std::string lsName, lsFile;
+			
+			if (lpElement->Attribute("Name") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsName = ((char*)lpElement->Attribute("Name"));
+
+			if (lpElement->Attribute("File") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsFile = ((char*)lpElement->Attribute("File"));
+
+			lHandle = LoadResource(lsName, lsFile);
+		}
 
 	}
-	*/
 
-	//std::string lacFont = "./Data/Fonts/Test1.fnt";
-	//cFont lFont;
-	//lFont.Init(lacFont.c_str());
+	//Nota: se escena y fuentes coincide en sus atributos (Name y File) podemos unirlos, pero no se si se añadirá mas cosas a los mismos y portano difieran en el xml
+
+
 	
-	//LoadResource("Font", &lFont, 10);
-	
-
-	//LoadResource("Font2", "./Data/Fonts/Test1_0.tga");
-	//LoadResource("Font3", ".\\Data\\Fonts\\Test1_0.tga");
-	
-	
-	//LoadResource("Font1", "./Data/Fonts/Test1.fnt");
-
-	//LoadResource("Font2", ".\\Data\\Fonts\\Test2.fnt");
-
-	maResources;
-
-	return true;
+	return lHandle;
 	
 }
