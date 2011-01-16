@@ -135,6 +135,50 @@ void cFont::Deinit()
    // > This is a modification of the original code 
 }
 
+
+//Añadiendo un nuevo Init para la practica opcional de cargarlo por recursos
+bool cFont::Init(const std::string &lacNameID, const std::string &lacFile)
+{
+	macFile = lacFile;
+	mbLoaded = false;
+
+	SetNameID(lacNameID);
+
+	if (!Init(lacFile.c_str()) )
+	{
+		mbLoaded = true;
+		return true;
+	}
+
+
+
+
+	/*
+	//Probando haciendolo aqui, ya que si no vuelve a entrar en cResourceManager::LoadResource por el Loader->Load()
+
+	// Load the font
+	const char *lacFontFile = lacFile.c_str();
+
+	FILE *f = fopen(lacFontFile, "rb");
+	
+	// Determine format by reading the first bytes of the file
+	char str[4] = {0};
+	fread(str, 3, 1, f);
+	fseek(f, 0, SEEK_SET);
+
+	CFontLoader *loader = 0;
+	if( strcmp(str, "BMF") == 0 )
+		loader = new CFontLoaderBinaryFormat(f, this, lacFontFile);
+	else
+		loader = new CFontLoaderTextFormat(f, this, lacFontFile);
+	*/
+	
+	
+
+	return false;
+}
+
+
 int cFont::Init(const char *fontFile)
 {
 	// Load the font
@@ -625,7 +669,7 @@ void CFontLoader::LoadPage(int id, const char *pageFile, const char *fontFile)
 	str += pageFile;
   
    // This is a modification of the original code <
-   cResourceHandle lHandle = cTextureManager::Get().LoadResource(str.c_str(),str.c_str());
+  cResourceHandle lHandle = cTextureManager::Get().LoadResource(str.c_str(),str.c_str());
 	font->pages[id] = lHandle;
    // > This is a modification of the original code 
 }

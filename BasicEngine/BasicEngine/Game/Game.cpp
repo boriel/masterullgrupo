@@ -3,21 +3,21 @@
 
 #include "Game.h"
 
-#include "../Window/Window.h"
-#include "../Graphics/GraphicManager.h"
-#include "../Input/InputManager.h"
+#include "..\Window\Window.h"
+#include "..\Graphics\GraphicManager.h"
+#include "..\Input\InputManager.h"
 #include "InputConfiguration.h"
-#include "../Graphics/Textures/TextureManager.h"
-#include "../Lua/LuaManager.h"
-#include "../Lua/LuaFunctions.h"
-#include "../Character/CharacterManager.h"
-#include "../Character/Behaviour/BehaviourManager.h"
-#include "../Character/Behaviour/ChaserBase.h"
-#include "../Gameplay/Scene/SceneManager.h"
+#include "..\Graphics\Textures\TextureManager.h"
+#include "..\Lua\LuaManager.h"
+#include "..\Lua\LuaFunctions.h"
+#include "..\Character\CharacterManager.h"
+#include "..\Character\Behaviour\BehaviourManager.h"
+#include "..\Character\Behaviour\ChaserBase.h"
+#include "..\Gameplay\Scene\SceneManager.h"
 #include "..\Graphics\Meshes\MeshManager.h"
 #include "..\Gameplay\Scene\Scene.h"
-#include "../Graphics/Fonts/FontManager.h"
-#include "../Graphics/Materials/MaterialManager.h"
+#include "..\Graphics\Fonts\FontManager.h"
+#include "..\Graphics\Materials\MaterialManager.h"
 
 
 extern tActionMapping kaActionMapping[];
@@ -77,7 +77,7 @@ bool cGame::Init()
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 	
 	// Init the Font
-	mFont.Init("./Data/Fonts/Test1.fnt");
+	mFont.Init("./Data/Fonts/Test2.fnt");
 
 	// Init the Lua Manager
 	cLuaManager::Get().Init();
@@ -88,35 +88,17 @@ bool cGame::Init()
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 
 
+		
+	cFontManager::Get().Init(5);
+	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
 
-	
-	//cResourceHandle lRH = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
-	//cResourceHandle lRH = cTextureManager::Get().FindResource("Font");
-	
-	
-	//mFontHandle = cFontManager::Get()..LoadResource("Font1", "./Data/Fonts/Test1.fnt");
-	//mFontHandle = cTextureManager::Get().LoadResource("Font2", "./Data/Fonts/Test2.fnt");
-
-	//mFontHandle = cTextureManager::Get().LoadResource("Font2", "./Data/Fonts/Test2.fnt");
-
-	//mFontHandle = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
-
-	//cResource* lResource = lRH.GetResource();
-
-	
-	////mFontHandle = cTextureManager::Get().LoadResource("Font1", "./Data/Fonts/Test1.fnt");
-	//mFontHandle = cTextureManager::Get().FindResource(".\\Data\\Fonts\\Test1_0.tga");
-	////mFontHandle = cTextureManager::Get().FindResource("Font1");
- // cResource * lpResource = mFontHandle.GetResource();
- // cFont * lpFont = (cFont*)lpResource;
-	//mFont = *lpFont;
-	
+	//Empezando de nuevo las priebas para la parte opcional de la practica 4 de gestionar las fuentes
 	//mFontHandle = cFontManager::Get().LoadResource("Font1", "./Data/Fonts/Test1.fnt");
-	////mFontHandle = cFontManager::Get().FindResource("Font1");
+	//mFontHandle = cFontManager::Get().LoadResource("Font3", "./Data/Fonts/Test3.fnt");
+	
+	//pruebas para ver si guardo y despues usarlo es esta forma
 	//cResource * lpResource = mFontHandle.GetResource();
 	//cFont * lpFont = (cFont*)lpResource;
-	//mFont = *lpFont;
-
 	
 
 
@@ -176,8 +158,9 @@ bool cGame::Init()
 
 	//Init Material Manager
 	cMaterialManager::Get().Init(10);
-
-	mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
+	
+	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
 	
 
 	return lbResult;
@@ -248,22 +231,30 @@ void cGame::Render()
 
 
 	// 3) Render Solid 3D
+	SetTheWorldMatrix();
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	RenderMalla();
+
 
 	// 4) Render 3D with transparency
 
 
 	// 5) Activate 2D Camera
 	cGraphicManager::Get().ActivateCamera( &m2DCamera );
+	//cGraphicManager::Get().RefreshWorldView(); ya esto lo hace el Activate Camera
+
 
 	// 6) Render 2D Elements
+	SetTheWorldMatrix();
 	//RenderLua();
-	RenderFuentes();
+	RenderFuentes();	
+	
+
 
 
 	// 7) Postprocessing
+
 
 
 	// 8) Swap Buffers
@@ -279,15 +270,17 @@ void cGame::Render()
 //Load all resources, no usada por ahora
 void cGame::LoadResources () {}
 
-
-void cGame::RenderMalla()
+// Set the world matrix 
+void cGame::SetTheWorldMatrix() 
 {
-
-	// Set the world matrix
+	// Set the world matrix 
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
+}
 
+void cGame::RenderMalla()
+{
 
 	//glDisable(GL_TEXTURE_2D);
 	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
@@ -295,6 +288,30 @@ void cGame::RenderMalla()
 	((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
 }
+
+
+//Rendreizamos una fuente en pantalla siguiendo el orden
+void cGame::RenderFuentes ()
+{
+	//Draw some strings
+	mFont.SetColour (1.0f, 0.0f, 0.0f);
+	mFont.Write(0,200,0, "Pulse ESC o el Botón Izquierdo para salir", 0, FONT_ALIGN_CENTER);
+
+	//mFont.SetColour (0.0f, 1.0f, 1.0f);
+	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
+
+	
+	//pruebas para ver si guardo y despues usarlo es esta forma
+	cResource * lpResource = mFontHandle.GetResource();
+	cFont * lpFont = (cFont*)lpResource;
+	cFont lFont = *lpFont;
+	lFont.SetColour (1.0f, 0.0f, 0.0f);
+	lFont.Write(0,-100,0, "Pintando desde el HANDLE de fuentes", 0, FONT_ALIGN_CENTER);
+	
+
+}
+
+
 
 
 //Para los ejercicios de LUA
@@ -315,29 +332,17 @@ void cGame::RenderRejilla ()
 	
 #	ifdef _DEBUG
 	// Los ejes y la rejilla solo aparecen en modo de depuración
+	/*
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
+	*/
 	cGraphicManager::Get().DrawGrid();
 	cGraphicManager::Get().DrawAxis();
 #	endif
 }
 
 
-
-//Rendreizamos una fuente en pantalla siguiendo el orden
-void cGame::RenderFuentes ()
-{
-	//Draw some strings
-	mFont.SetColour (1.0f, 0.0f, 0.0f);
-	mFont.Write(0,200,0, "Pulse ESC o el Botón Izquierdo para salir", 0, FONT_ALIGN_CENTER);
-
-	
-
-	//mFont.SetColour (0.0f, 1.0f, 1.0f);
-	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
-
-}
 
 
 //testeando los primeros ejercicios del render

@@ -1,5 +1,5 @@
 /*
-Class FontManager:  NO HACE NADA POR AHORA
+Class FontManager:  Se encargará de gestionar las fuentes
 */
 
 

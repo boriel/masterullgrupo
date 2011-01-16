@@ -66,14 +66,16 @@ enum EFontTextEncoding
 };
 
 //class cFont //orig
-class cFont : public cResource  //Yorman
+class cFont : public cResource  //modificado
 {
 public:
 	cFont();
 
    // This is a modification of the original code <
 	int Init(const char *fontFile);
-   void Deinit();
+	bool Init(const std::string &lacNameID, const std::string &lacFile); //Modificacion, haciendo un nuevo init
+  void Deinit();
+	virtual bool IsLoaded() { return mbLoaded; }  //modificacion
    // > This is a modification of the original code
 
 	void SetTextEncoding(EFontTextEncoding encoding);
@@ -122,6 +124,8 @@ protected:
 // This is a modification of the original code <
 	std::map<int, SCharDescr*> chars;
 	std::vector<cResourceHandle> pages;    
+	std::string macFile;  //modificacion
+	bool mbLoaded;  //modificacion
 // > This is a modification of the original code
 };
 

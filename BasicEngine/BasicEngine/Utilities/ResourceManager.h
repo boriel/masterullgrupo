@@ -76,11 +76,11 @@ class cResourceManager
 	public:
 		cResourceHandle FindResource( std::string lacNameID );
 		void UnloadResource( cResourceHandle * lpHandle );
+		cResourceHandle LoadResourcesXml(std::string lsResource);
 
 	private:
-		bool LoadResourcesXml(std::string lsResource);
 		std::string msFilename;  // Resources or Properties file
-		//TiXmlDocument mDoc;
+		
 
 
 };
