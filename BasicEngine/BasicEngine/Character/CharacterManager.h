@@ -18,6 +18,11 @@ Class cCharacterManager: Se encargará de gestionar los personajes del juego.
 
 class cCharacterManager : public cSingleton<cCharacterManager>
 {
+	friend class cSingleton<cCharacterManager>;
+
+	protected:
+		cCharacterManager() { ; } // Protected constructor
+	
 	private:
 		typedef std::list<cCharacter *> cCharacterList;
 		typedef cCharacterList::iterator cCharacterListIt;

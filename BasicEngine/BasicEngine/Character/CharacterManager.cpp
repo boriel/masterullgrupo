@@ -46,6 +46,7 @@ void cCharacterManager::DestroyCharacter(cCharacter *lpCharacter)
 	for (cCharacterListIt i = mCharacters.begin(); i != mCharacters.end(); i++) {
 		if ((*i) == lpCharacter) {
 			mCharacters.erase(i);
+			delete lpCharacter;
 			break;
 		}
 	}
