@@ -24,6 +24,10 @@ class cMesh : public cResource
 		virtual void Deinit();
 		virtual bool IsLoaded() { return mbLoaded; }
 		void RenderMesh();
+
+		inline unsigned	getVertices() { return mVboVertices; }
+		inline unsigned getIndex() { return mVboIndex; }
+
 	
 	private:
 		unsigned muiIndexCount;  // número de índices que contiene la malla
