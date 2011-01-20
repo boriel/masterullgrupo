@@ -11,10 +11,25 @@
     <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Meshes\Mesh.cpp">
+      <Filter>Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Meshes\MeshManager.cpp">
+      <Filter>Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\GLee\GLee.c">
+      <Filter>GLee</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">
       <UniqueIdentifier>{0b141547-f978-4417-8bca-60860e699ff1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Meshes">
+      <UniqueIdentifier>{0b95391d-b4fc-4631-bca3-2d13bd13373a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLee">
+      <UniqueIdentifier>{f38533ac-4a6a-4de9-8b08-e0240b60a5e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +44,15 @@
     </ClInclude>
     <ClInclude Include="..\BasicEngine\Utilities\ResourceManager.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Meshes\Mesh.h">
+      <Filter>Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Meshes\MeshManager.h">
+      <Filter>Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\GLee\GLee.h">
+      <Filter>GLee</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

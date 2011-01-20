@@ -52,14 +52,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;_DEBUG;_CONSOLE;_MBCS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\BasicEngine\Libraries\TinyXML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\BasicEngine\Graphics\Meshes\assimp\include;..\BasicEngine\Libraries\TinyXML\include</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\BasicEngine\Graphics\Meshes\assimp\lib;..\BasicEngine\Libraries\TinyXML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\BasicEngine\Graphics\GLee;..\BasicEngine\Graphics\Meshes\assimp\lib;..\BasicEngine\Libraries\TinyXML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;Glee.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,12 +80,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\BasicEngine\Graphics\GLee\GLee.c" />
+    <ClCompile Include="..\BasicEngine\Graphics\Meshes\Mesh.cpp" />
+    <ClCompile Include="..\BasicEngine\Graphics\Meshes\MeshManager.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\FileUtils.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\ResourceHandle.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp" />
     <ClCompile Include="meshbin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\BasicEngine\Graphics\GLee\GLee.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Meshes\Mesh.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Meshes\MeshManager.h" />
     <ClInclude Include="..\BasicEngine\Utilities\FileUtils.h" />
     <ClInclude Include="..\BasicEngine\Utilities\Resource.h" />
     <ClInclude Include="..\BasicEngine\Utilities\ResourceHandle.h" />
