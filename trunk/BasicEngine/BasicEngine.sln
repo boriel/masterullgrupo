@@ -8,6 +8,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicEngine", "BasicEngine\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OIS_VS2010", "BasicEngine\Input\OIS_VS2010.vcxproj", "{CFC90933-1F42-4728-A4DC-A14EEF4D2F84}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "meshbin", "meshbin\meshbin.vcxproj", "{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -28,6 +30,12 @@ Global
 		{CFC90933-1F42-4728-A4DC-A14EEF4D2F84}.Release|Win32.ActiveCfg = Release|Win32
 		{CFC90933-1F42-4728-A4DC-A14EEF4D2F84}.Release|Win32.Build.0 = Release|Win32
 		{CFC90933-1F42-4728-A4DC-A14EEF4D2F84}.Release|x64.ActiveCfg = Release|Win32
+		{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}.Debug|Win32.Build.0 = Debug|Win32
+		{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}.Debug|x64.ActiveCfg = Debug|Win32
+		{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}.Release|Win32.ActiveCfg = Release|Win32
+		{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}.Release|Win32.Build.0 = Release|Win32
+		{BA4CCBA6-0B39-41B0-A3A2-99ED9B1B29E7}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
