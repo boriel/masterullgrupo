@@ -19,7 +19,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -39,7 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\BasicEngine\Libraries\TinyXML\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -50,11 +51,15 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TIXML_USE_STL;WIN32;_DEBUG;_CONSOLE;_MBCS</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\BasicEngine\Libraries\TinyXML\include</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\BasicEngine\Graphics\Meshes\assimp\lib;..\BasicEngine\Libraries\TinyXML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,7 +83,6 @@
     <ClCompile Include="..\BasicEngine\Utilities\FileUtils.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\ResourceHandle.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp" />
-    <ClCompile Include="..\BasicEngine\Utility\Debug.cpp" />
     <ClCompile Include="meshbin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -86,8 +90,6 @@
     <ClInclude Include="..\BasicEngine\Utilities\Resource.h" />
     <ClInclude Include="..\BasicEngine\Utilities\ResourceHandle.h" />
     <ClInclude Include="..\BasicEngine\Utilities\ResourceManager.h" />
-    <ClInclude Include="..\BasicEngine\Utility\Debug.h" />
-    <ClInclude Include="..\BasicEngine\Utility\Singleton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
