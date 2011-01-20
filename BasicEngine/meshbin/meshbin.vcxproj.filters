@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="meshbin.cpp" />
+    <ClCompile Include="..\BasicEngine\Utility\Debug.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Utilities\FileUtils.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Utilities\ResourceHandle.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{6105f73e-f4aa-402f-9179-512af720edae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{0b141547-f978-4417-8bca-60860e699ff1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\BasicEngine\Utility\Debug.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utility\Singleton.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utilities\FileUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utilities\Resource.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utilities\ResourceHandle.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utilities\ResourceManager.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
