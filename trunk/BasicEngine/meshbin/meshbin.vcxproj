@@ -21,6 +21,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Static</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -59,7 +60,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\BasicEngine\Graphics\GLee;..\BasicEngine\Graphics\Meshes\assimp\lib;..\BasicEngine\Libraries\TinyXML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;Glee.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;Glee.lib;OpenGL32.lib;Glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,18 +81,67 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\BasicEngine\Gameplay\Scene\Object.cpp" />
+    <ClCompile Include="..\BasicEngine\Gameplay\Scene\Scene.cpp" />
+    <ClCompile Include="..\BasicEngine\Gameplay\Scene\SceneManager.cpp" />
     <ClCompile Include="..\BasicEngine\Graphics\GLee\GLee.c" />
+    <ClCompile Include="..\BasicEngine\Graphics\GraphicManager.cpp" />
+    <ClCompile Include="..\BasicEngine\Graphics\Materials\Material.cpp" />
+    <ClCompile Include="..\BasicEngine\Graphics\Materials\MaterialManager.cpp" />
     <ClCompile Include="..\BasicEngine\Graphics\Meshes\Mesh.cpp" />
     <ClCompile Include="..\BasicEngine\Graphics\Meshes\MeshManager.cpp" />
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\image_DXT.c" />
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\image_helper.c" />
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\SOIL.c" />
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\stb_image_aug.c" />
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\Texture.cpp" />
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\TextureManager.cpp" />
+    <ClCompile Include="..\BasicEngine\MathLib\Matrix\Matrix.cpp" />
+    <ClCompile Include="..\BasicEngine\MathLib\Quaternion\QuaternionFunc.cpp" />
+    <ClCompile Include="..\BasicEngine\MathLib\Vec\Vec.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\FileUtils.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\ResourceHandle.cpp" />
     <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp" />
     <ClCompile Include="meshbin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\BasicEngine\Gameplay\Scene\Object.h" />
+    <ClInclude Include="..\BasicEngine\Gameplay\Scene\Scene.h" />
+    <ClInclude Include="..\BasicEngine\Gameplay\Scene\SceneManager.h" />
     <ClInclude Include="..\BasicEngine\Graphics\GLee\GLee.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\GraphicManager.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Materials\Material.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Materials\MaterialData.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Materials\MaterialManager.h" />
     <ClInclude Include="..\BasicEngine\Graphics\Meshes\Mesh.h" />
     <ClInclude Include="..\BasicEngine\Graphics\Meshes\MeshManager.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\image_DXT.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\image_helper.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\SOIL.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stbi_DDS_aug.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stbi_DDS_aug_c.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stb_image_aug.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\Texture.h" />
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\TextureManager.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathConst.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathLib.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\LinearInterpolator.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\LinearSplitFunction.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\MathUtilsLib.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\Plane.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\Matrix.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\Matrix44Col.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\Matrix44Row.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\MatrixFunc.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\MatrixLib.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Quaternion\Quaternion.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Quaternion\QuaternionFunc.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Quaternion\QuaternionLib.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec2.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec3.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec4.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\VecFunc.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\VecLib.h" />
     <ClInclude Include="..\BasicEngine\Utilities\FileUtils.h" />
     <ClInclude Include="..\BasicEngine\Utilities\Resource.h" />
     <ClInclude Include="..\BasicEngine\Utilities\ResourceHandle.h" />

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "../BasicEngine/Gameplay/Scene/SceneManager.h"
 #include "../BasicEngine/Graphics/Meshes/MeshManager.h"
 #include "../BasicEngine/Graphics/Meshes/Mesh.h"
 
@@ -22,10 +23,10 @@ int main(int argc, char *argv[])
 	if (argc != 3)
 		usage();
 
+	cSceneManager::Get().Init(10);
 	cMeshManager::Get().Init(10);
-	lScene = cMeshManager::Get().LoadResource("dragon", "./dragonsmall.DAE");
-	lpMesh = (cMesh *)lScene.GetResource();
-
+	lScene = cSceneManager::Get().LoadResource("dragon", "dragonsmall.DAE");
+	
 	printf("%i %i\n", lpMesh->getVertices(), lpMesh->getIndex());
 
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");

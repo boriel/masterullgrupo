@@ -20,6 +20,49 @@
     <ClCompile Include="..\BasicEngine\Graphics\GLee\GLee.c">
       <Filter>GLee</Filter>
     </ClCompile>
+    <ClCompile Include="..\BasicEngine\Gameplay\Scene\Object.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Gameplay\Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Gameplay\Scene\Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Materials\Material.cpp">
+      <Filter>Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Materials\MaterialManager.cpp">
+      <Filter>Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\GraphicManager.cpp" />
+    <ClCompile Include="..\BasicEngine\MathLib\Matrix\Matrix.cpp">
+      <Filter>MathLib\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\MathLib\Vec\Vec.cpp">
+      <Filter>MathLib\Vec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\MathLib\Quaternion\QuaternionFunc.cpp">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\Texture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\TextureManager.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\image_DXT.c">
+      <Filter>Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\image_helper.c">
+      <Filter>Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\SOIL.c">
+      <Filter>Textures\SOIL</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\stb_image_aug.c">
+      <Filter>Textures\SOIL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Utilities">
@@ -30,6 +73,33 @@
     </Filter>
     <Filter Include="GLee">
       <UniqueIdentifier>{f38533ac-4a6a-4de9-8b08-e0240b60a5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{76be86d0-e195-41a7-9367-9bf9c4b8256f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Materials">
+      <UniqueIdentifier>{a31e2a44-0430-4edd-b6ca-9d9295af4957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib">
+      <UniqueIdentifier>{76ffe979-692e-4f17-8133-1e94e1c708d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\MathUtils">
+      <UniqueIdentifier>{da9b4f1b-c1f0-4c78-adaa-0684a683a051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Matrix">
+      <UniqueIdentifier>{56685781-f102-48e1-8707-6fd95721ff30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Vec">
+      <UniqueIdentifier>{2c3d570c-6ec1-454d-a476-102613247647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MathLib\Quaternion">
+      <UniqueIdentifier>{03be7cf4-aa07-495f-84fe-daac1dd49255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{bcc93e61-ef74-49b7-a339-f404da9827c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures\SOIL">
+      <UniqueIdentifier>{13c0ed5d-d281-401e-a5b5-cd946c54db33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +123,106 @@
     </ClInclude>
     <ClInclude Include="..\BasicEngine\Graphics\GLee\GLee.h">
       <Filter>GLee</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Gameplay\Scene\Object.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Gameplay\Scene\Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Gameplay\Scene\SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Materials\Material.h">
+      <Filter>Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Materials\MaterialData.h">
+      <Filter>Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Materials\MaterialManager.h">
+      <Filter>Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\GraphicManager.h" />
+    <ClInclude Include="..\BasicEngine\MathLib\MathConst.h">
+      <Filter>MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\MathLib.h">
+      <Filter>MathLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\LinearInterpolator.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\LinearSplitFunction.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\MathUtilsLib.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\MathUtils\Plane.h">
+      <Filter>MathLib\MathUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\Matrix.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\Matrix44Col.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\Matrix44Row.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\MatrixFunc.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Matrix\MatrixLib.h">
+      <Filter>MathLib\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec2.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec3.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec4.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\VecFunc.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Vec\VecLib.h">
+      <Filter>MathLib\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Quaternion\Quaternion.h">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Quaternion\QuaternionFunc.h">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\MathLib\Quaternion\QuaternionLib.h">
+      <Filter>MathLib\Quaternion</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\Texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\TextureManager.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\image_DXT.h">
+      <Filter>Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\image_helper.h">
+      <Filter>Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\SOIL.h">
+      <Filter>Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stbi_DDS_aug.h">
+      <Filter>Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stbi_DDS_aug_c.h">
+      <Filter>Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stb_image_aug.h">
+      <Filter>Textures\SOIL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
