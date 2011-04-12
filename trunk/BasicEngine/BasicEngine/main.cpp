@@ -2,6 +2,7 @@
 main.cpp
 	Parte Principal de nuestro "Game". Aquí comienza todo con la funcion main()
 
+
 */
 
 #include <stdio.h>
