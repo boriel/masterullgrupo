@@ -53,14 +53,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;_DEBUG;_CONSOLE;_MBCS</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\BasicEngine\Graphics\Meshes\assimp\include;..\BasicEngine\Libraries\TinyXML\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\BasicEngine\Graphics\Meshes\assimp\include;..\BasicEngine\Libraries\TinyXML\include;;$(CG_INC_PATH)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\BasicEngine\Graphics\GLee;..\BasicEngine\Graphics\Meshes\assimp\lib;..\BasicEngine\Libraries\TinyXML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;Glee.lib;OpenGL32.lib;Glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\BasicEngine\Graphics\GLee;..\BasicEngine\Graphics\Meshes\assimp\lib;..\BasicEngine\Libraries\TinyXML\lib;%(AdditionalLibraryDirectories);$(CG_LIB_PATH)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>tinyxmld_STL.lib;assimp.lib;Glee.lib;OpenGL32.lib;Glu32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);cg.lib;cgGL.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
