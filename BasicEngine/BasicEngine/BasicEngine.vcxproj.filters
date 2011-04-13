@@ -70,6 +70,9 @@
     <Filter Include="Graphics\Meshes">
       <UniqueIdentifier>{2fe5153d-d3d1-4793-9411-83de01880b8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Effects">
+      <UniqueIdentifier>{47df0202-2923-4d70-a22b-903de8d61a88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -357,6 +360,12 @@
     <ClInclude Include="Graphics\Meshes\MeshManager.h">
       <Filter>Graphics\Meshes</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Effects\EffectManager.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Effects\Effect.h">
+      <Filter>Graphics\Effects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -587,6 +596,12 @@
     </ClCompile>
     <ClCompile Include="Graphics\Meshes\MeshManager.cpp">
       <Filter>Graphics\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Effects\EffectManager.cpp">
+      <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Effects\Effect.cpp">
+      <Filter>Graphics\Effects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

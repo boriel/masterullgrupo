@@ -14,8 +14,10 @@ With this we will avoid future problems
 #include <windows.h>
 
 #include "GLee/GLee.h"
-#include <gl/gl.h>
-#include <gl/glu.h>
+#include <Cg/cg.h>
+#include <Cg/cgGL.h>
+#include <gl/gl.h> // Header File For The OpenGL32 Library
+#include <gl/glu.h> // Header File For The GLu32 Library
 
 
 
