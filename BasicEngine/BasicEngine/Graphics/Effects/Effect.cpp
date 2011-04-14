@@ -25,6 +25,7 @@ bool cEffect::Init( const std::string &lacNameID, const std::string &lacFile )
 	mTechnique = NULL;
 	mCurrentPass = NULL;
 	mbLoaded = false;
+	macLastTecnique = "Technique"; //temporal Yorman quitar!!
 
 	// Loading of the effect
 	CGcontext lCGContext = cEffectManager::Get().GetCGContext();

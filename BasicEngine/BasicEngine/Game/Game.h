@@ -38,6 +38,8 @@ class cGame : public cSingleton<cGame>
 		cFont mFont;
 		cResourceHandle mScene;
 		cResourceHandle mFontHandle;
+
+
 		
 	protected:
 		cGame () { ; } //Protected Constructor
@@ -53,6 +55,9 @@ class cGame : public cSingleton<cGame>
 		inline bool HasFinished() { return mbFinish; }  // Get if the game finished
 		inline void SetFinished (bool lbValue) { mbFinish = lbValue; }
 		
+		inline float GetAcumulatedTime() { return mfAcTime; } //calcular el tiempo en segundos desde que comenzó la aplicación a ejecutar
+		float mfAcTime; 
+
 
 	private:  //métodos
 		
@@ -60,6 +65,7 @@ class cGame : public cSingleton<cGame>
 
 		void SetTheWorldMatrix();
 		void RenderFuentes();
+		void RenderFuentes2();
 		void RenderRejilla();
 		void RenderLua();
 		void RenderTest();
