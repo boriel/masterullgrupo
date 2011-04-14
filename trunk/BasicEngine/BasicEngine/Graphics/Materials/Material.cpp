@@ -2,7 +2,7 @@
 #include "Material.h"
 
 #include "MaterialData.h"
-#include "../../Utilities/FileUtils.h"
+#include "../../Utility/FileUtils.h"
 #include "../../Graphics/Textures/TextureManager.h"
 #include "../../Graphics/Textures/Texture.h"
 #include "../../Graphics/GLHeaders.h"

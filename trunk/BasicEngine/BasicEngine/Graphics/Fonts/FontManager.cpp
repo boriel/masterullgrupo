@@ -2,7 +2,7 @@
 
 #include "acgfx_font.h"
 
-#include "..\..\Utilities\Resource.h"
+#include "..\..\Utility\Resource.h"
 
 cResource* cFontManager::LoadResourceInternal( std::string lacNameID, const std::string &lacFile )
 {

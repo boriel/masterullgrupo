@@ -11,8 +11,8 @@ Class Material.h:
 #include <aiPostProcess.h> // Post processing flags
 #include <cassert>
 
-#include "../../Utilities/Resource.h"
-#include "../../Utilities/ResourceHandle.h"
+#include "../../Utility/Resource.h"
+#include "../../Utility/ResourceHandle.h"
 
 
 

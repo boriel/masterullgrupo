@@ -12,7 +12,7 @@ Class cMesh:
 
 
 #include <string>
-#include "../../Utilities/Resource.h"
+#include "../../Utility/Resource.h"
 
 struct aiMesh;
 

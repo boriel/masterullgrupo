@@ -8,7 +8,7 @@ Class FontManager:  Se encargará de gestionar las fuentes
 #define FONT_MANAGER_H
 
 
-#include "../../Utilities/ResourceManager.h"
+#include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
 

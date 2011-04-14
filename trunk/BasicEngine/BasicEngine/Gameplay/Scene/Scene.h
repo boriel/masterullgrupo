@@ -11,8 +11,8 @@ Class cScene:
 
 #include <vector>
 
-#include "..\..\Utilities\Resource.h"
-#include "..\..\Utilities\ResourceHandle.h"
+#include "..\..\Utility\Resource.h"
+#include "..\..\Utility\ResourceHandle.h"
 #include "Object.h"
 
 struct aiScene;

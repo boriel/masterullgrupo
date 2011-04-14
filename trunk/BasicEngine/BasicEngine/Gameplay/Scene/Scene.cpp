@@ -14,7 +14,7 @@
 #include "../../Graphics/Materials/MaterialData.h"
 #include "../../Graphics/Materials/Material.h"
 #include "../../Graphics/Materials/MaterialManager.h"
-#include "../../Utilities/FileUtils.h"
+#include "../../Utility/FileUtils.h"
 
 #include "..\..\MathLib\MathLib.h"
 

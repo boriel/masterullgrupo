@@ -19,7 +19,7 @@ lo contrario, liberamos la memoria y devolvemos NULL.
 #define SCENE_MANAGER_H
 
 
-#include "../../Utilities/ResourceManager.h"
+#include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
 

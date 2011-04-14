@@ -10,8 +10,8 @@ Class cEffect:
 #include <string>
 #include "../GLHeaders.h"
 #include "../../MathLib/MathLib.h"
-#include "../../Utilities/Resource.h"
-#include "../../Utilities/ResourceHandle.h"
+#include "../../Utility/Resource.h"
+#include "../../Utility/ResourceHandle.h"
 
 class cEffect : public cResource
 {

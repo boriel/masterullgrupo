@@ -32,8 +32,8 @@
 
 // This is a modification of the original code <
 //#include "../../Utility/ResourceHandle.h"
-#include "../../Utilities/ResourceHandle.h"  //Yorman
-#include "../../Utilities/Resource.h" //Yorman
+#include "../../Utility/ResourceHandle.h"  //Yorman
+#include "../../Utility/Resource.h" //Yorman
 #include <vector>
 #include <string>
 #include <map>

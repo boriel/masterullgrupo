@@ -8,8 +8,8 @@ Class MaterialManager.h
 
 
 #include "../../Utility/Singleton.h"
-#include "../../Utilities/Resource.h"
-#include "../../Utilities/ResourceManager.h"
+#include "../../Utility/Resource.h"
+#include "../../Utility/ResourceManager.h"
 
 
 class cMaterialManager : public cResourceManager, public cSingleton<cMaterialManager>

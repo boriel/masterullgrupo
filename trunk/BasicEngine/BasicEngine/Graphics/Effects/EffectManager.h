@@ -9,7 +9,7 @@ Class: cEffectManager
 #define EFFECT_MANAGER_H
 
 #include "../GLHeaders.h"
-#include "../../Utilities/ResourceManager.h"
+#include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
 class cEffectManager : public cResourceManager, public cSingleton<cEffectManager>
