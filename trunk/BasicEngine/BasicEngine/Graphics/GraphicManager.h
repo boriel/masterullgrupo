@@ -40,6 +40,11 @@ class cGraphicManager : public cSingleton<cGraphicManager>
 		cCamera* mpActiveCamera;
 		cMatrix mWorldMatrix;
 	
+		cMatrix mWVPMatrix;
+		cCamera * GetActiveCamera() { return mpActiveCamera; }
+		const cMatrix &GetWVPMatrix() { return mWVPMatrix; }
+
+
 		friend class cSingleton<cGraphicManager>;
 
 	protected:

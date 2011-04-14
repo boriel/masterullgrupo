@@ -42,6 +42,31 @@ void cObject::Update( float lfTimestep )
 //junto con la matriz de mundo correspondiente
 void cObject::Render()
 {
+
+	// Set World Matrix
+	cGraphicManager::Get().SetWorldMatrix(mWorldMatrix);
+	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
+	{
+		// Set the material
+		cMaterial * lpMaterial = ( cMaterial *)
+		mMaterialHandles[luiIndex].GetResource();
+		cMesh *lpMesh = (cMesh *)mMeshHandles[luiIndex].GetResource();
+
+		// Prepare all the parameters for the render
+		lpMaterial->PrepareRender();
+	
+		// Set the first pass
+		bool lbContinue = lpMaterial->SetFirstPass();
+		while (lbContinue)
+		{
+			// Render Mesh
+			lpMesh->RenderMesh();
+			// Prepare the next pass
+			lbContinue = lpMaterial->SetNextPass();
+			}
+	}
+	/*
+	viejo borrar
 	// Set World Matrix
 	cGraphicManager::Get().SetWorldMatrix(mWorldMatrix);
 	
@@ -58,4 +83,5 @@ void cObject::Render()
 		assert(lpResource);
 		((cMesh *)lpResource)->RenderMesh();
 	}
+	*/
 }

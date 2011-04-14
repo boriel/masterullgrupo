@@ -18,6 +18,7 @@
 #include "..\Gameplay\Scene\Scene.h"
 #include "..\Graphics\Fonts\FontManager.h"
 #include "..\Graphics\Materials\MaterialManager.h"
+#include "..\Graphics\Effects\EffectManager.h"
 
 
 extern tActionMapping kaActionMapping[];
@@ -148,6 +149,9 @@ bool cGame::Init()
 	((cChaserBase *)c3->GetActiveBehaviour())->SetTarget(c4->GetPosition());
 	*/
 	
+
+	
+
   // Init MeshManager
   cMeshManager::Get().Init(10);
 
@@ -159,9 +163,17 @@ bool cGame::Init()
 	//Init Material Manager
 	cMaterialManager::Get().Init(10);
 	
+
+	cEffectManager::Get().Init(10);
+
+
 	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
 	
+
+	
+
+	mfAcTime = 0.0f;
 
 	return lbResult;
 }
@@ -183,6 +195,7 @@ bool cGame::Deinit()
 	cBehaviourManager::Get().Deinit();
 	cCharacterManager::Get().Deinit();
 
+	cEffectManager::Get().Deinit();
 	
 	return lbResult;
 }
@@ -195,6 +208,7 @@ void cGame::Update(float lfTimestep)
 	//OutputDebugString (lsTime.c_str());
 	
 	cWindow::Get().Update();
+	mfAcTime += lfTimestep;
 	//cCharacterManager::Get().Update(lfTimestep);  //Carga del Character de LUA, comentado por ahora
 	cInputManager::Get().Update(lfTimestep);
 
@@ -249,6 +263,7 @@ void cGame::Render()
 	SetTheWorldMatrix();
 	//RenderLua();
 	RenderFuentes();	
+	//RenderFuentes2();	
 	
 
 
@@ -311,8 +326,16 @@ void cGame::RenderFuentes ()
 
 }
 
-
-
+void cGame::RenderFuentes2 () {
+	// 6) Render 2D Elements
+	// -------------------------------------------------------------
+	//Draw some strings
+	glEnable(GL_TEXTURE_2D);
+	mFont.SetColour( 1.0f, 0.0f, 0.0f );
+	mFont.Write(0,200,0, "Año Totó pingüino() ¡!¿?", 0,	FONT_ALIGN_CENTER);
+	mFont.SetColour( 0.0f, 1.0f, 1.0f );
+	mFont.WriteBox(100,100,0,100, "Esto es un test \nmultilinea", 0,	FONT_ALIGN_CENTER);
+}
 
 //Para los ejercicios de LUA
 void cGame::RenderLua ()

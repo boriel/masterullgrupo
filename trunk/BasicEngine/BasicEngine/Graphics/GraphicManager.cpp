@@ -279,6 +279,9 @@ void cGraphicManager::RefreshWorldView()
 	
 	// Set The View Matrix
 	glLoadMatrixf (lWorldView.AsFloatPointer());
+
+
+	mWVPMatrix = lWorldView * mpActiveCamera->GetProj();
 }
 
 
