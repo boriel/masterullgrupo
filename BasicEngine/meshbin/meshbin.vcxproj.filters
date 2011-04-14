@@ -2,15 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="meshbin.cpp" />
-    <ClCompile Include="..\BasicEngine\Utilities\FileUtils.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\BasicEngine\Utilities\ResourceHandle.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="..\BasicEngine\Graphics\Meshes\Mesh.cpp">
       <Filter>Meshes</Filter>
     </ClCompile>
@@ -63,11 +54,17 @@
     <ClCompile Include="..\BasicEngine\Graphics\Textures\SOIL\stb_image_aug.c">
       <Filter>Textures\SOIL</Filter>
     </ClCompile>
+    <ClCompile Include="..\BasicEngine\Utility\FileUtils.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Utility\ResourceHandle.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\BasicEngine\Utility\ResourceManager.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Utilities">
-      <UniqueIdentifier>{0b141547-f978-4417-8bca-60860e699ff1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Meshes">
       <UniqueIdentifier>{0b95391d-b4fc-4631-bca3-2d13bd13373a}</UniqueIdentifier>
     </Filter>
@@ -101,20 +98,11 @@
     <Filter Include="Textures\SOIL">
       <UniqueIdentifier>{13c0ed5d-d281-401e-a5b5-cd946c54db33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{0b141547-f978-4417-8bca-60860e699ff1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\BasicEngine\Utilities\FileUtils.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\BasicEngine\Utilities\Resource.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\BasicEngine\Utilities\ResourceHandle.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\BasicEngine\Utilities\ResourceManager.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\BasicEngine\Graphics\Meshes\Mesh.h">
       <Filter>Meshes</Filter>
     </ClInclude>
@@ -223,6 +211,18 @@
     </ClInclude>
     <ClInclude Include="..\BasicEngine\Graphics\Textures\SOIL\stb_image_aug.h">
       <Filter>Textures\SOIL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utility\FileUtils.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utility\Resource.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utility\ResourceHandle.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\BasicEngine\Utility\ResourceManager.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -31,9 +31,6 @@
     <Filter Include="Input">
       <UniqueIdentifier>{c8e4a46d-48bf-46ca-b3c8-424471d512f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utilities">
-      <UniqueIdentifier>{a81205aa-4551-47a9-8ce3-9f0bb75453f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics\Textures">
       <UniqueIdentifier>{501fef5d-d48d-48a6-8a67-cf3ffb940af9}</UniqueIdentifier>
     </Filter>
@@ -176,15 +173,6 @@
     </ClInclude>
     <ClInclude Include="Utility\Debug.h">
       <Filter>Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Resource.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\ResourceHandle.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\ResourceManager.h">
-      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Input\Mouse.h">
       <Filter>Input</Filter>
@@ -339,9 +327,6 @@
     <ClInclude Include="Graphics\Materials\MaterialData.h">
       <Filter>Graphics\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\FileUtils.h">
-      <Filter>Utilities</Filter>
-    </ClInclude>
     <ClInclude Include="Graphics\Materials\MaterialManager.h">
       <Filter>Graphics\Materials</Filter>
     </ClInclude>
@@ -365,6 +350,18 @@
     </ClInclude>
     <ClInclude Include="Graphics\Effects\Effect.h">
       <Filter>Graphics\Effects</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\FileUtils.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Resource.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ResourceHandle.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\ResourceManager.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -410,12 +407,6 @@
     </ClCompile>
     <ClCompile Include="Window\ApplicationProperties.cpp">
       <Filter>Window</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\ResourceHandle.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities\ResourceManager.cpp">
-      <Filter>Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Input\Mouse.cpp">
       <Filter>Input</Filter>
@@ -576,9 +567,6 @@
     <ClCompile Include="Character\Behaviour\playercontroller.cpp">
       <Filter>Character\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="Utilities\FileUtils.cpp">
-      <Filter>Utilities</Filter>
-    </ClCompile>
     <ClCompile Include="Graphics\Materials\MaterialManager.cpp">
       <Filter>Graphics\Materials</Filter>
     </ClCompile>
@@ -602,6 +590,15 @@
     </ClCompile>
     <ClCompile Include="Graphics\Effects\Effect.cpp">
       <Filter>Graphics\Effects</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\FileUtils.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\ResourceHandle.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\ResourceManager.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

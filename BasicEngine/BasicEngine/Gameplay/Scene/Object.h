@@ -13,7 +13,7 @@ Class Object: La clase Object contendrá las mallas, los materiales y la matriz d
 #include <string>
 #include <vector>
 
-#include "..\..\Utilities\ResourceHandle.h"
+#include "..\..\Utility\ResourceHandle.h"
 #include "..\..\MathLib\MathLib.h"
 
 

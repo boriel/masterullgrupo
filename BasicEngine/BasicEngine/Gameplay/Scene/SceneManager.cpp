@@ -1,7 +1,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
-#include "..\..\Utilities\Resource.h"
+#include "..\..\Utility\Resource.h"
 
 cResource* cSceneManager::LoadResourceInternal( std::string lacNameID, const std::string &lacFile )
 {

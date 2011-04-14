@@ -12,8 +12,8 @@ Class TextureManager:
 
 
 #include "../../Utility/Singleton.h"
-#include "../../Utilities/Resource.h"
-#include "../../Utilities/ResourceManager.h"
+#include "../../Utility/Resource.h"
+#include "../../Utility/ResourceManager.h"
 
 
 class cTextureManager : public cResourceManager, public cSingleton<cTextureManager>

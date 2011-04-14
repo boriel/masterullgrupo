@@ -16,7 +16,7 @@ class texture
 
 #include <string>
 
-#include "../../Utilities/Resource.h"
+#include "../../Utility/Resource.h"
 
 class cTexture : public cResource
 {

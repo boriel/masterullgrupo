@@ -42,6 +42,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath)</IncludePath>
+    <OutDir>bin\Debug\$(ConfigurationName)</OutDir>
+    <IntDir>obj\Debug\$(ConfigurationName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -99,9 +101,9 @@
     <ClCompile Include="..\BasicEngine\MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="..\BasicEngine\MathLib\Quaternion\QuaternionFunc.cpp" />
     <ClCompile Include="..\BasicEngine\MathLib\Vec\Vec.cpp" />
-    <ClCompile Include="..\BasicEngine\Utilities\FileUtils.cpp" />
-    <ClCompile Include="..\BasicEngine\Utilities\ResourceHandle.cpp" />
-    <ClCompile Include="..\BasicEngine\Utilities\ResourceManager.cpp" />
+    <ClCompile Include="..\BasicEngine\Utility\FileUtils.cpp" />
+    <ClCompile Include="..\BasicEngine\Utility\ResourceHandle.cpp" />
+    <ClCompile Include="..\BasicEngine\Utility\ResourceManager.cpp" />
     <ClCompile Include="meshbin.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,10 +144,10 @@
     <ClInclude Include="..\BasicEngine\MathLib\Vec\Vec4.h" />
     <ClInclude Include="..\BasicEngine\MathLib\Vec\VecFunc.h" />
     <ClInclude Include="..\BasicEngine\MathLib\Vec\VecLib.h" />
-    <ClInclude Include="..\BasicEngine\Utilities\FileUtils.h" />
-    <ClInclude Include="..\BasicEngine\Utilities\Resource.h" />
-    <ClInclude Include="..\BasicEngine\Utilities\ResourceHandle.h" />
-    <ClInclude Include="..\BasicEngine\Utilities\ResourceManager.h" />
+    <ClInclude Include="..\BasicEngine\Utility\FileUtils.h" />
+    <ClInclude Include="..\BasicEngine\Utility\Resource.h" />
+    <ClInclude Include="..\BasicEngine\Utility\ResourceHandle.h" />
+    <ClInclude Include="..\BasicEngine\Utility\ResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
