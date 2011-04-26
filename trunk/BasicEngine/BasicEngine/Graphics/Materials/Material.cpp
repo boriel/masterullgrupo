@@ -62,7 +62,8 @@ bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liD
 	strcpy(lacEffectName, "simple"); //Puesto a mano
 	lShaderPath << "./Data/Shader/" << lacEffectName << ".fx";
 	//lShaderPath << "./Data/Shader/simple.fx";  //puesto a mano ver que hay que hacer para pillar el que es
-	mEffect = cEffectManager::Get().LoadResource( lacEffectName, lShaderPath.str() );
+	//mEffect = cEffectManager::Get().LoadResource( lacEffectName, lShaderPath.str() );
+	mEffect = cEffectManager::Get().LoadResource("simple", "./Data/Shader/simple.fx"); //a mano
 
 	assert(mEffect.IsValidHandle());
 	mbLoaded = mEffect.IsValidHandle();
