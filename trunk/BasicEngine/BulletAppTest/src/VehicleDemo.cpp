@@ -173,44 +173,6 @@ void VehicleDemo::initPhysics()
 
 
 
-	// --> Yorman comienzo pruebas
-
-	btCollisionShape* colShape = new btBoxShape(btVector3(SCALING * 1, SCALING * 1, SCALING * 1));
-	//btCollisionShape* colShape = new btSphereShape(btScalar(1.));
-	m_collisionShapes.push_back(colShape);
-
-	btScalar	mass(1.f);
-
-	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
-
-	btVector3 localInertia(0,0,0);
-	if (isDynamic)
-		colShape->calculateLocalInertia(mass,localInertia);
-
-	float start_x = START_POS_X;
-	float start_y = START_POS_Y;
-	float start_z = START_POS_Z;
-
-	/// Create Dynamic Objects
-	btTransform startTransform;
-	startTransform.setIdentity();
-
-	startTransform.setOrigin(SCALING*btVector3(btScalar(2.0 + start_x), btScalar(20+2.0 + start_y), btScalar(2.0 + start_z)));
-			
-	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
-	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
-	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState,colShape,localInertia);
-	btRigidBody* body = new btRigidBody(rbInfo);
-				
-
-	m_dynamicsWorld->addRigidBody(body);
-
-
-	// --> Yorman fin pruebas
-
-
-
 
 	//m_dynamicsWorld->setGravity(btVector3(0,0,0));
 btTransform tr;
@@ -432,8 +394,52 @@ const float TRIANGLE_SIZE=20.f;
 		}
 	}
 
-	
+		
 	setCameraDistance(26.f);
+
+
+
+
+
+	// --> Yorman comienzo pruebas
+
+	btCollisionShape* colShape = new btBoxShape(btVector3(SCALING * 1, SCALING * 1, SCALING * 1));
+	//btCollisionShape* colShape = new btSphereShape(btScalar(1.));
+	m_collisionShapes.push_back(colShape);
+
+	btScalar	mass(1.f);
+
+	//rigidbody is dynamic if and only if mass is non zero, otherwise static
+	bool isDynamic = (mass != 0.f);
+
+	btVector3 localInertia(0,0,0);
+	if (isDynamic)
+		colShape->calculateLocalInertia(mass, localInertia);
+
+	float start_x = START_POS_X;
+	float start_y = START_POS_Y;
+	float start_z = START_POS_Z;
+
+	/// Create Dynamic Objects
+	btTransform startTransform;
+	startTransform.setIdentity();
+
+	startTransform.setOrigin(SCALING*btVector3(btScalar(2.0 + start_x), btScalar(20+2.0 + start_y), btScalar(2.0 + start_z)));
+			
+	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
+	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, colShape, localInertia);
+	
+	btRigidBody* body = new btRigidBody(rbInfo);
+				
+	m_dynamicsWorld->addRigidBody(body);
+
+
+	// --> Yorman fin pruebas
+
+
+
+
 
 }
 
