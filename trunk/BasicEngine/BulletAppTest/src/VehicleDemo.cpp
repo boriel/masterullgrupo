@@ -407,7 +407,7 @@ const float TRIANGLE_SIZE=20.f;
 	//btCollisionShape* colShape = new btSphereShape(btScalar(1.));
 	m_collisionShapes.push_back(colShape);
 
-	btScalar	mass(1.f);
+	btScalar mass(1.f);
 
 	//rigidbody is dynamic if and only if mass is non zero, otherwise static
 	bool isDynamic = (mass != 0.f);
@@ -424,7 +424,7 @@ const float TRIANGLE_SIZE=20.f;
 	btTransform startTransform;
 	startTransform.setIdentity();
 
-	startTransform.setOrigin(SCALING*btVector3(btScalar(2.0 + start_x), btScalar(20+2.0 + start_y), btScalar(2.0 + start_z)));
+	startTransform.setOrigin(SCALING * btVector3(btScalar(2.0 + start_x), btScalar(20+2.0 + start_y), btScalar(2.0 + start_z)));
 			
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
@@ -433,7 +433,9 @@ const float TRIANGLE_SIZE=20.f;
 	btRigidBody* body = new btRigidBody(rbInfo);
 				
 	m_dynamicsWorld->addRigidBody(body);
+	
 
+	
 
 	// --> Yorman fin pruebas
 

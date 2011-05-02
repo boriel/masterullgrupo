@@ -17,5 +17,8 @@
     <ClInclude Include="src\VehicleDemo.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\HelloWorld.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
