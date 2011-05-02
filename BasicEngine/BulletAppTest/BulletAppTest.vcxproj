@@ -83,6 +83,7 @@
     <ClCompile Include="src\VehicleDemo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\HelloWorld.h" />
     <ClInclude Include="src\VehicleDemo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
