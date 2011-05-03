@@ -39,7 +39,7 @@ public:  //métodos
 	inline bool HasFinished() { return mbFinish; }  // Get if the game finished
 	inline void SetFinished (bool lbValue) { mbFinish = lbValue; }
 	inline float GetAcumulatedTime() { return mfAcTime; } //calcular el tiempo en segundos desde que comenzó la aplicación a ejecutar
-	float mfAcTime; //TODO: ¿Variable pública?
+	float mfAcTime; //Tiempo desde que empezó la aplicación. La necesitan los shaders.
 
 private:  //métodos
 	void LoadResources(); //Read resources for the game (window properties)

@@ -162,31 +162,22 @@ void cGame::Render()
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	RenderMalla();
 
-
 	// 4) Render 3D with transparency
-
 
 	// 5) Activate 2D Camera
 	cGraphicManager::Get().ActivateCamera( &m2DCamera );
 	//cGraphicManager::Get().RefreshWorldView(); ya esto lo hace el Activate Camera
-
 
 	// 6) Render 2D Elements
 	SetTheWorldMatrix();
 	//RenderLua();
 	RenderFuentes();	
 	//RenderFuentes2();	
-	
-
-
 
 	// 7) Postprocessing
 
-
-
 	// 8) Swap Buffers
 	cGraphicManager::Get().SwapBuffer();  // Al final del ciclo de renderizado, volcamos el buffer
-
 
 }
 
@@ -206,16 +197,13 @@ void cGame::SetTheWorldMatrix()
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-void cGame::RenderMalla()
-{
-
+void cGame::RenderMalla() {
 	//glDisable(GL_TEXTURE_2D);
 	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
-	m3DCamera.SetLookAt(cVec3(5.0f, 5.0f, 5.0f), cVec3(0.0f, 0.0f, 0.0f) );
+	m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
 }
-
 
 //Rendreizamos una fuente en pantalla siguiendo el orden
 void cGame::RenderFuentes ()

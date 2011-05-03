@@ -169,12 +169,10 @@ void cGraphicManager::DrawLine (const cVec3 &lvPosition1, const cVec3 &lvPositio
 	glEnable(GL_TEXTURE_2D);
 }
 
-
-//Renderizado de una circunferencia centrada en lvPosition
-//Es en 2D, a lo largo del plano XZ (vista desde "arriba") -- Se podría generalizar
-void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const cVec3 &lvColor)
-{
-	float lfStep = 1.0 / lfRadius; // Una pequeña corrección de "aliasing"
+void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const cVec3 &lvColor) {
+	//Renderizado de una circunferencia centrada en lvPosition
+	//Es en 2D, a lo largo del plano XZ (vista desde "arriba") -- Se podría generalizar
+	float lfStep = 1.0f / lfRadius; // Una pequeña corrección de "aliasing"
 	float lfNextS;
 
 	for (float s = 0; s < 2 * PI; s = lfNextS) {
