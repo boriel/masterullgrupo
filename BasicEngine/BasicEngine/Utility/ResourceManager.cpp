@@ -1,23 +1,17 @@
 #include "ResourceManager.h"
-
 #include <cassert>
 #include <stdio.h>
-
-
 #include "Resource.h"
-
 #include "..\Graphics\Fonts\acgfx_font.h"
 
-void cResourceManager::Init( unsigned luiMaxSize )
-{
+void cResourceManager::Init( unsigned luiMaxSize ) {
 	muiMaxSize = luiMaxSize;
 	
 	// Initialize the structures
 	maResources.resize( muiMaxSize );
 	mFreeResourceSlot.clear();
 	
-	for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex )
-	{
+	for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex ) {
 		// Initialize the resource slot
 		maResources[luiIndex].muiKey = kuiInvalidKey;
 		maResources[luiIndex].mpResource = NULL;
@@ -29,19 +23,14 @@ void cResourceManager::Init( unsigned luiMaxSize )
 	// Prepare the first key
 	muiNextKey = kuiInvalidKey + 1;
 
-
 	//incializando el nombre del fichero de recursos del nombre del xml
 	msFilename = (".\\Data\\" + std::string("Resources.xml"));
-
 	//LoadResourcesXml(msFilename.c_str());
-
 }
 
 
-void cResourceManager::Deinit()
-{
-	for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex )
-	{
+void cResourceManager::Deinit() {
+	for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex ) {
 		// Is a valid resource?
 		if ( maResources[luiIndex].muiKey != kuiInvalidKey )
 		{
