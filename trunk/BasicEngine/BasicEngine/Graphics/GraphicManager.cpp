@@ -1,15 +1,11 @@
-
+/* File: GraphicManager.cpp */
 #include <assert.h>
 #include "GraphicManager.h"
 
-
-
-bool cGraphicManager::Init (cWindow * lpWindow)
-{
+bool cGraphicManager::Init (cWindow * lpWindow) {
 	bool lbRet = CreateContext (lpWindow);
 	
-	if (lbRet)
-		InitializeGLState();
+	if (lbRet) InitializeGLState();
 
 	 mpActiveCamera = NULL;
 	 mWorldMatrix.LoadIdentity();
@@ -17,35 +13,24 @@ bool cGraphicManager::Init (cWindow * lpWindow)
 	return lbRet;
 }
 
-
-bool cGraphicManager::Deinit()
-{
-	if (mHRC)
-	{
-		if (!wglMakeCurrent(NULL,NULL))
-		{
+bool cGraphicManager::Deinit() {
+	if (mHRC) {
+		if (!wglMakeCurrent(NULL,NULL)) {
 			MessageBox(NULL, "Release Of DC And RC Failed.", "SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		}
-		if (!wglDeleteContext(mHRC))
-		{
+		if (!wglDeleteContext(mHRC)) {
 			MessageBox(NULL, "Release Rendering Context Failed.", "SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		}
 		mHRC = NULL;
 	}
-
 	mpWindow = NULL;
-
-	 mpActiveCamera = NULL;
-	 mWorldMatrix  = NULL;
-
+	mpActiveCamera = NULL;
+	mWorldMatrix  = NULL;
 
 	return true;
 }
 
-
-//Crea el contexto de renderizado
-bool cGraphicManager::CreateContext( cWindow * lpWindow )
-{
+bool cGraphicManager::CreateContext( cWindow * lpWindow ) { //Crea el contexto de renderizado
 	assert(lpWindow);
 
 	static PIXELFORMATDESCRIPTOR lPfp=
@@ -66,23 +51,20 @@ bool cGraphicManager::CreateContext( cWindow * lpWindow )
 	};
 
 	HDC &lDC = lpWindow->GetHDC();
-	if (!lDC)
-	{
+	if (!lDC) {
 		Deinit();
 		MessageBox(NULL,"Can't Create A GL Device Context.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		return false;
 	}
 	
 	mPixelFormat = ChoosePixelFormat(lDC,&lPfp);
-	if (!mPixelFormat)
-	{
+	if (!mPixelFormat) {
 		Deinit();
 		MessageBox(NULL,"Can't Find A Suitable PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		return false;
 	}
 
-	if(!SetPixelFormat(lDC,mPixelFormat,&lPfp))
-	{
+	if(!SetPixelFormat(lDC,mPixelFormat,&lPfp)) {
 		Deinit();
 		MessageBox(NULL,"Can't Set The PixelFormat.","ERROR",MB_OK|MB_ICONEXCLAMATION);
 		return false;
@@ -205,27 +187,21 @@ void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const
 	}
 }
 
-
-//Renderizado de una malla o rejilla
-void cGraphicManager::DrawGrid()
-{
+void cGraphicManager::DrawGrid() { //Renderizado de una malla o rejilla
 	glDisable(GL_TEXTURE_2D);
 
 	// GRID
 	glLineWidth (1);
 	glColor3f (1.0f, 1.0f, 1.0f);
 	glBegin(GL_LINES);
-	for (float lfxtmp = -10.0; lfxtmp <= 10.0; lfxtmp += 1.0)
-	{
+	for (float lfxtmp = -10.0; lfxtmp <= 10.0; lfxtmp += 1.0) {
 		glVertex3f (lfxtmp, 0.0f,-10.0);
 		glVertex3f (lfxtmp, 0.0f, 10.0);
 		glVertex3f (-10.0, 0.0f, lfxtmp);
 		glVertex3f ( 10.0, 0.0f, lfxtmp);
 	};
 	glEnd ();
-
 	glEnable(GL_TEXTURE_2D);
-
 }
 
 

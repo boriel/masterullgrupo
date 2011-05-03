@@ -1,8 +1,8 @@
 /*
 Class: cEffectManager
 
-			Gestiona los resources del tipo Effect, se encarga de inicializar y liberar la librería CG, así como de almacenar su contexto (CGcontext).
-
+Gestiona los resources del tipo Effect, se encarga de inicializar y 
+liberar la librería CG, así como de almacenar su contexto (CGcontext).
 */
 
 #ifndef EFFECT_MANAGER_H
@@ -12,8 +12,7 @@ Class: cEffectManager
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
-class cEffectManager : public cResourceManager, public cSingleton<cEffectManager>
-{
+class cEffectManager : public cResourceManager, public cSingleton<cEffectManager> {
 	public:
 		friend class cSingleton<cEffectManager>;
 		inline CGcontext GetCGContext() { return mCGContext; }
@@ -26,6 +25,5 @@ class cEffectManager : public cResourceManager, public cSingleton<cEffectManager
 		virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile );
 		CGcontext mCGContext;
 };
-
 
 #endif
