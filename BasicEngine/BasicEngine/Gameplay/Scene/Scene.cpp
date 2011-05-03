@@ -1,12 +1,10 @@
 
-
 #include "Scene.h"
 
 #include <assimp.hpp> // C++ importer interface
 #include <aiScene.h> // Output data structure
 #include <aiPostProcess.h> // Post processing flags
 #include <cassert>
-
 
 #include "SceneManager.h"
 #include "..\..\Graphics\Meshes\MeshManager.h"
@@ -15,11 +13,9 @@
 #include "../../Graphics/Materials/Material.h"
 #include "../../Graphics/Materials/MaterialManager.h"
 #include "../../Utility/FileUtils.h"
-
 #include "..\..\MathLib\MathLib.h"
 
-bool cScene::Init( const std::string &lacNameID, const std::string &lacFile )
-{
+bool cScene::Init( const std::string &lacNameID, const std::string &lacFile ) {
 	macFile = lacFile;
 	mbLoaded = false;
 
@@ -28,10 +24,10 @@ bool cScene::Init( const std::string &lacNameID, const std::string &lacFile )
 
 	// Load the scene
 	const aiScene* lpScene = lImporter.ReadFile( lacFile.c_str(),
-																							aiProcess_CalcTangentSpace |
-																							aiProcess_Triangulate |
-																							aiProcess_JoinIdenticalVertices |
-																							aiProcess_SortByPType);
+												aiProcess_CalcTangentSpace |
+													aiProcess_Triangulate |
+											aiProcess_JoinIdenticalVertices |
+													aiProcess_SortByPType);
 
 	// If the import failed, report it
 	if( !lpScene )
@@ -47,29 +43,19 @@ bool cScene::Init( const std::string &lacNameID, const std::string &lacFile )
 	return true;
 }
 
-
-//Destrucyendo la memoria
-void cScene::Deinit()
-{
-	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex )
-	{
+void cScene::Deinit() { //Destruyendo la memoria
+	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex ) {
 		mObjectList[luiIndex]->Deinit();
 		delete mObjectList[luiIndex];
 	}
 }
 
-
-//Update
-void cScene::Update( float lfTimestep )
-{
+void cScene::Update( float lfTimestep ) { //Update
 	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex )
 		mObjectList[luiIndex]->Update(lfTimestep);
 }
 
-
-//Render
-void cScene::Render()
-{
+void cScene::Render() {//Render
 	
 	//for ( cMeshHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
 	//	((cMesh *)lpIt->GetResource())->RenderMesh();

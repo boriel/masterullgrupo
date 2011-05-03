@@ -24,46 +24,28 @@
 extern tActionMapping kaActionMapping[];
 
 
-//Inicializa el juego
-bool cGame::Init()
-{
+bool cGame::Init() { //Inicializa el juego
 	mbFinish = false;
 	
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
 	mProperties.Init();
-
-	cCharacter *c1, *c2, *c3, *c4; // Personajes
-
+	//cCharacter *c1, *c2, *c3, *c4; //Personajes. Se comenta porque no se están usando
 	
 	bool lbResult = cWindow::Get().Init(mProperties);
-
-	// Init OpenGL
-	if ( lbResult )
-	{
+	if ( lbResult ) { // Init OpenGL
 		lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
-		
-		// Kill Window
-		if (!lbResult)
-			cWindow::Get().Deinit();
+		if (!lbResult) cWindow::Get().Deinit();	// Kill Window
 	}
 
-	//Iniciando las texturas
-	cTextureManager::Get().Init(10); //Espacio reservado máximo para la carga
-
-	//Inicializamos el Gestor de Personajes
-	cCharacterManager::Get().Init();
+	cTextureManager::Get().Init(10); //Iniciando las texturas. Espacio reservado máximo para la carga=10
+	cCharacterManager::Get().Init(); //Inicializamos el Gestor de Personajes
 
 	//Iniciando la camara
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
-	
-
-	// Ponemos la cámara en modo cenital (mirando desde arriba)
-	m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f));
-	
-
+	m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f)); //Cámara en modo cenital (mirando desde arriba)
 
 	//Iniciando Camara 2D
 	float lfRight = (float)mProperties.muiWidth / 2.0f;
@@ -76,23 +58,16 @@ bool cGame::Init()
 	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
-	
-	// Init the Font
-	mFont.Init("./Data/Fonts/Test2.fnt");
 
-	// Init the Lua Manager
-	cLuaManager::Get().Init();
-	//Registramos las funciones de C++ que se llamarán desde Lua
-	RegisterLuaFunctions();
+	cLuaManager::Get().Init(); //Init the Lua Manager
+	RegisterLuaFunctions(); //Registramos las funciones de C++ que se llamarán desde Lua
 	
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
-
-
 		
+	mFont.Init("./Data/Fonts/Test2.fnt"); // Init the Font
 	cFontManager::Get().Init(5);
 	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
-
 	//Empezando de nuevo las priebas para la parte opcional de la practica 4 de gestionar las fuentes
 	//mFontHandle = cFontManager::Get().LoadResource("Font1", "./Data/Fonts/Test1.fnt");
 	//mFontHandle = cFontManager::Get().LoadResource("Font3", "./Data/Fonts/Test3.fnt");
@@ -100,78 +75,19 @@ bool cGame::Init()
 	//pruebas para ver si guardo y despues usarlo es esta forma
 	//cResource * lpResource = mFontHandle.GetResource();
 	//cFont * lpFont = (cFont*)lpResource;
-	
 
-
-
-	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua
-
-	/* // El siguiente código es de la práctica 2 y se comenta
-	// Añade un personaje al gestor
-	c1 = cCharacterManager::Get().CreateCharacter();
-	c1->Init();
-
-	// Añade un personaje al gestor
-	c2 = cCharacterManager::Get().CreateCharacter();
-	c2->Init();
-
-	// Añade un personaje al gestor
-	c3 = cCharacterManager::Get().CreateCharacter();
-	c3->Init();
-
-	// Añade un personaje al gestor
-	c4 = cCharacterManager::Get().CreateCharacter();
-	c4->Init();
-	
-	c1->SetPosition(cVec3(2, 0, 0));
-	c2->SetPosition(cVec3(0, 0, 2));
-	c3->SetPosition(cVec3(2, 0, 2));
-	c4->SetPosition(cVec3(5, 0, -5)); // Punto de llegada
-
-	c1->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_NO_ORIENTATION));
-	c2->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_SNAP_ORIENTATION));
-	c3->SetActiveBehaviour(cBehaviourManager::Get().CreateBehaviour(eCHASER_WITH_ORIENTATION));
-
-	c1->GetActiveBehaviour()->Init(c1);
-	c2->GetActiveBehaviour()->Init(c2);
-	c3->GetActiveBehaviour()->Init(c3);
-
-	c1->SetSpeed(1.0f);
-	c2->SetSpeed(1.0f);
-	c3->SetSpeed(1.0f);
-
-	c1->SetAngSpeed(0.5f);	
-	c2->SetAngSpeed(0.5f);
-	c3->SetAngSpeed(0.5f);
-
-	((cChaserBase *)c1->GetActiveBehaviour())->SetTarget(c4->GetPosition());
-	((cChaserBase *)c2->GetActiveBehaviour())->SetTarget(c4->GetPosition());
-	((cChaserBase *)c3->GetActiveBehaviour())->SetTarget(c4->GetPosition());
-	*/
-	
+	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 
 	
+	cMeshManager::Get().Init(10); // Init MeshManager	
+	cSceneManager::Get().Init(10); // Init SceneManager
 
-  // Init MeshManager
-  cMeshManager::Get().Init(10);
-
-
-	// Init SceneManager
-  cSceneManager::Get().Init(10);
-
-
-	//Init Material Manager
-	cMaterialManager::Get().Init(10);
-	
-
+	cMaterialManager::Get().Init(10); //Init Material Manager
 	cEffectManager::Get().Init(10);
 
-
+	//TODO: SceneManager debe ir despúes de MaterialManager y EffectManager
 	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
-	
-
-	
 
 	mfAcTime = 0.0f;
 
@@ -179,9 +95,7 @@ bool cGame::Init()
 }
 
 
-//Destrucutor del juego
-bool cGame::Deinit()
-{
+bool cGame::Deinit() { //Destructor del juego
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
@@ -201,9 +115,7 @@ bool cGame::Deinit()
 }
 
 
-//update del juego
-void cGame::Update(float lfTimestep)
-{
+void cGame::Update(float lfTimestep) { //update del juego
 	//hacer el contador de 5 segundos
 	//OutputDebugString (lsTime.c_str());
 	
