@@ -4,16 +4,16 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 */
 
 
-#ifndef Game_H
-#define Game_H
+#ifndef GAME_H
+#define GAME_H
 
 #include <stdio.h>
 #include "..\Utility\Singleton.h"
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 #include "..\Graphics\Fonts\acgfx_font.h"
-//#include "..\Gameplay\Scene\Scene.h"
-
+// #include "..\Gameplay\Scene\Scene.h"
+//TODO
 // Fichero de LUA a cargar
 #define LUA_FILE "data/scripts/practica7.lua"
 
@@ -45,10 +45,8 @@ private:  //métodos
 	void LoadResources(); //Read resources for the game (window properties)
 	void SetTheWorldMatrix();
 	void RenderFuentes();
-	void RenderFuentes2();
 	void RenderRejilla();
 	void RenderLua();
-	void RenderTest();
 	void RenderMalla();
 };
 

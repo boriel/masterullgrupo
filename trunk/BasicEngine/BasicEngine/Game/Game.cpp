@@ -170,17 +170,13 @@ void cGame::Render()
 
 	// 6) Render 2D Elements
 	SetTheWorldMatrix();
-	//RenderLua();
 	RenderFuentes();	
-	//RenderFuentes2();	
 
 	// 7) Postprocessing
 
 	// 8) Swap Buffers
 	cGraphicManager::Get().SwapBuffer();  // Al final del ciclo de renderizado, volcamos el buffer
-
 }
-
 
 
 //FUNCTIONS
@@ -188,10 +184,7 @@ void cGame::Render()
 //Load all resources, no usada por ahora
 void cGame::LoadResources () {}
 
-// Set the world matrix 
-void cGame::SetTheWorldMatrix() 
-{
-	// Set the world matrix 
+void cGame::SetTheWorldMatrix() { // Set the world matrix 
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
@@ -205,9 +198,9 @@ void cGame::RenderMalla() {
 	//glEnable(GL_TEXTURE_2D);
 }
 
-//Rendreizamos una fuente en pantalla siguiendo el orden
-void cGame::RenderFuentes ()
-{
+
+void cGame::RenderFuentes () { //Renderizamos una fuente en pantalla siguiendo el orden
+	/*
 	//Draw some strings
 	mFont.SetColour (1.0f, 0.0f, 0.0f);
 	mFont.Write(0,200,0, "Pulse ESC o el Botón Izquierdo para salir", 0, FONT_ALIGN_CENTER);
@@ -222,13 +215,8 @@ void cGame::RenderFuentes ()
 	cFont lFont = *lpFont;
 	lFont.SetColour (1.0f, 0.0f, 0.0f);
 	lFont.Write(0,-100,0, "Pintando desde el HANDLE de fuentes", 0, FONT_ALIGN_CENTER);
-	
+	*/
 
-}
-
-void cGame::RenderFuentes2 () {
-	// 6) Render 2D Elements
-	// -------------------------------------------------------------
 	//Draw some strings
 	glEnable(GL_TEXTURE_2D);
 	mFont.SetColour( 1.0f, 0.0f, 0.0f );
@@ -237,22 +225,13 @@ void cGame::RenderFuentes2 () {
 	mFont.WriteBox(100,100,0,100, "Esto es un test \nmultilinea", 0,	FONT_ALIGN_CENTER);
 }
 
-//Para los ejercicios de LUA
-void cGame::RenderLua ()
-{
+void cGame::RenderLua () { //Para los ejercicios de LUA
 	//Pintar el circuito 
 	cLuaManager::Get().CallLua("DrawPath", (int *)NULL);
-
 	cCharacterManager::Get().Render();
-
 }
 
-
-
-//Renderizamos la rejilla en caso de que sea debug la compilación
-void cGame::RenderRejilla ()
-{
-	
+void cGame::RenderRejilla () { //Renderizamos la rejilla en caso de que sea debug la compilación
 #	ifdef _DEBUG
 	// Los ejes y la rejilla solo aparecen en modo de depuración
 	/*
@@ -265,49 +244,3 @@ void cGame::RenderRejilla ()
 #	endif
 }
 
-
-
-
-//testeando los primeros ejercicios del render
-void cGame::RenderTest()
-{
-	/*
-	//Mostrar el contador
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
-	
-	// Render Here!!
-	cGraphicManager::Get().DrawPoint(cVec3 (0,0,-5), cVec3 (1,0,0)); //Creamos un punto de ejemplo
-	cGraphicManager::Get().DrawLine(cVec3 (0,1,-2), cVec3 (1,0,-3), cVec3 (0,1,0)); //creamos un ejemplo de una linea
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// Activate the 3D Camera
-	cGraphicManager::Get().ActivateCamera( &m3DCamera );
-
-	// Set the world matrix
-	cMatrix lWorld;
-	lWorld.LoadIdentity();
-	cGraphicManager::Get().SetWorldMatrix(lWorld);
-
-	//lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
-	//cGraphicManager::Get().SetWorldMatrix (lWorld);
-
-	// Render the debug lines
-	cGraphicManager::Get().DrawGrid();
-	cGraphicManager::Get().DrawAxis();
-
-	cGraphicManager::Get().DrawPoint( cVec3(1.5f, 0.0f, 1.5f), cVec3(1.0f, 0.0f, 1.0f) );
-	cGraphicManager::Get().DrawLine( cVec3(-1.5f, 0.0f, -1.5f), cVec3(-1.5f, 0.0f, 1.5f), cVec3(1.0f, 1.0f, 0.0f));
-
-	//otros ejes
-	lWorld.LoadTranslation (cVec3 (1, 0, -1.5));
-	cGraphicManager::Get().SetWorldMatrix (lWorld);
-
-	// Render the debug lines
-	cGraphicManager::Get().DrawGrid();
-	cGraphicManager::Get().DrawAxis();
-	cGraphicManager::Get().SwapBuffer();
-	*/
-}
