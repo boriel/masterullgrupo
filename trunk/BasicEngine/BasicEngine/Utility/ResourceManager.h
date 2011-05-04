@@ -46,7 +46,7 @@ struct cInternalResource {
 
 class cResourceManager {
 public:
-	void Init( unsigned luiMaxSize );
+	virtual void Init( unsigned luiMaxSize );  //Lo ponemos virtual para poder inicializar la libreria Cal3d de forma adecuada
 	void Deinit();
 
 	cResourceHandle LoadResource( std::string lacNameID, const std::string &lacFile ); //una función virtual y será la que implemente cada manager para cargar el recurso específico.

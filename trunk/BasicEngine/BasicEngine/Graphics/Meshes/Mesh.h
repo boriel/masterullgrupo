@@ -16,7 +16,9 @@ Class cMesh:
 
 #include "../../Utility/Resource.h"
 
-
+//constantes que identifican si la malla es de tipo estática o esqueletal
+static int kuiStaticMesh = 0;
+static int kuiSkeletalMesh = 1;
 
 struct aiMesh;
 
@@ -24,16 +26,21 @@ class cMesh : public cResource
 {
 	public:
 		cMesh() { mbLoaded = false; }
-		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int luiTypeID );
+		//virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int luiTypeID );  //cambio el nombre ultimo valor, imaigno que no será importante
+		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType );
+		void Reload( void * lpMemoryData );
 		virtual void Deinit();
 		virtual bool IsLoaded() { return mbLoaded; }
-		void RenderMesh();
+		virtual void RenderMesh();
+		virtual void Update(float lfTimestep) {}
 
-		inline unsigned	getVertices() { return mVboVertices; }
-		inline unsigned getIndex() { return mVboIndex; }
+		//Estos dos inline los borro en la pag 59 de los apuntes, no están
+		//inline unsigned	getVertices() { return mVboVertices; }
+		//inline unsigned getIndex() { return mVboIndex; }
 
 	
-	private:
+	protected:
+		//std:string macFile; //creo que no lo usamos por ahora
 		unsigned muiIndexCount;  // número de índices que contiene la malla
 		bool mbLoaded;
 

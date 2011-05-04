@@ -70,6 +70,9 @@
     <Filter Include="Graphics\Effects">
       <UniqueIdentifier>{47df0202-2923-4d70-a22b-903de8d61a88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Skeletal">
+      <UniqueIdentifier>{dc98c8d0-d8af-4c04-8633-74c79b871fd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -363,6 +366,9 @@
     <ClInclude Include="Utility\ResourceManager.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Skeletal\SkeletalMesh.h">
+      <Filter>Graphics\Skeletal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -599,6 +605,9 @@
     </ClCompile>
     <ClCompile Include="Utility\ResourceManager.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Skeletal\Skeletal.cpp">
+      <Filter>Graphics\Skeletal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

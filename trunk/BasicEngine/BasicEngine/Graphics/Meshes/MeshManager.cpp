@@ -5,13 +5,24 @@
 
 cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID )
 {
-	cMesh * lpMesh = new cMesh();
-	
-	if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID ))
+
+	if (luiTypeID == kuiStaticMesh)
 	{
-		delete lpMesh;
-		return NULL;
+		cMesh * lpMesh = new cMesh();
+	
+		if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID ))
+		{
+			delete lpMesh;
+			return NULL;
+		}
+
+		return lpMesh;
+	}
+	else if (luiTypeID == kuiSkeletalMesh)
+	{
+		//cMesh*lpMesh=(cMesh*)cSkeletalManager::Get().CreateSkeletalMesh( (char*)lpMemoryData);
+		//return lpMesh;
 	}
 
-	return lpMesh;
+	return NULL;
 }
