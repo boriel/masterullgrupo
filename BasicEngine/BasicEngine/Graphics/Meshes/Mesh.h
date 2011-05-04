@@ -12,7 +12,11 @@ Class cMesh:
 
 
 #include <string>
+#include <vector>
+
 #include "../../Utility/Resource.h"
+
+
 
 struct aiMesh;
 
@@ -36,7 +40,9 @@ class cMesh : public cResource
 		unsigned mVboVertices;
 		unsigned mVboNormals;
 		unsigned mVboIndex;
-		unsigned mVboTexture;
+		//unsigned mVboTexture; //cambiado esto por un stl vector
+		std::vector<unsigned> maVboTexture;
+
 };
 
 #endif

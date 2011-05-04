@@ -10,18 +10,40 @@
 bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID)
 {
 
+	//macFile = "";
+
 	//En primer lugar crearemos el buffer de índices
-	
 	aiMesh* lpAiMesh = (aiMesh*)lpMemoryData;
+
+	// Get the number of texture coordinates
+	unsigned luiTextureCoordinateCount = lpAiMesh->GetNumUVChannels();
+	assert(luiTextureCoordinateCount <= 4);
+	maVboTexture.resize(luiTextureCoordinateCount);
+
 
 	glGenBuffers(1, &mVboVertices);
 	assert(glGetError() == GL_NO_ERROR);
 
 
+	// Creating all the texture coordinate buffers
+	for(unsigned luiIndex = 0; luiIndex < luiTextureCoordinateCount; ++luiIndex)
+	{
+		glGenBuffers(1, &maVboTexture[luiIndex]);
+		assert(glGetError() == GL_NO_ERROR);
+	}
+
+	//Estas lineas están mas abajo colocadas
+	//glGenBuffers(1, &mVboNormals);
+	//assert(glGetError() == GL_NO_ERROR);
+
+	//glGenBuffers(1, &mVboIndex);
+	//assert(glGetError() == GL_NO_ERROR);
+
+
 	//Una vez que hemos creado el buffer,
 	//debemos indicarle a OpenGL que las siguientes llamadas se refieren al buffer de
 	//vértices, por lo que ejecutamos:
-
+	//Position
 	glBindBuffer(GL_ARRAY_BUFFER, mVboVertices);
 	assert(glGetError() == GL_NO_ERROR);
 
@@ -44,7 +66,8 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	
 	glGenBuffers(1, &mVboNormals);
 	assert(glGetError() == GL_NO_ERROR);
-
+	
+	//Normals
 	// Check that the mesh has normals
 	assert(lpAiMesh->HasNormals());
 	glBindBuffer(GL_ARRAY_BUFFER, mVboNormals);
@@ -58,6 +81,35 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	//inicialización del buffer es bastante simple. Esto no sucede con las coordenadas de
 	//textura, por lo que tenemos que componer primero el buffer en memoria:
 
+
+
+
+	// Reading all the texture coordinate
+	unsigned luiTexCoordNum = lpAiMesh->mNumVertices;
+	unsigned luiTexCoordFloats = 2 * luiTexCoordNum;
+	float* lpTexCoordinates = new float[ luiTexCoordFloats ];
+	for(unsigned luiTexCoordChannel = 0; luiTexCoordChannel < luiTextureCoordinateCount; ++luiTexCoordChannel)
+	{
+		unsigned luiInc = 0;
+		for ( unsigned luiTexIndex = 0;	luiTexIndex < luiTexCoordNum; ++luiTexIndex )
+		{
+			lpTexCoordinates[luiInc++] =
+			lpAiMesh->mTextureCoords[luiTexCoordChannel][luiTexIndex].x;
+			lpTexCoordinates[luiInc++] = (1.0f -
+			lpAiMesh->mTextureCoords[luiTexCoordChannel][luiTexIndex].y);
+			// OpenGL Correction
+		}
+		glBindBuffer(GL_ARRAY_BUFFER, maVboTexture[luiTexCoordChannel]);
+		assert(glGetError() == GL_NO_ERROR);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * luiTexCoordFloats,
+		lpTexCoordinates, GL_STATIC_DRAW);
+		assert(glGetError() == GL_NO_ERROR);
+	}
+	delete [] lpTexCoordinates;
+
+
+
+	/* Se elimino al cambio  de vecctores de las coordenadas
 
 	assert(lpAiMesh->HasTextureCoords(0));
 	unsigned luiTexCoordNum = lpAiMesh->mNumVertices;
@@ -93,11 +145,13 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	//hubiera más, habría que repetir este código por cada juego de coordenadas. Ya sólo nos
 	//queda la carga del buffer de índices, que también nos fuerza a componer primero el
 	//buffer en memoria:
+	*/
 
 	// Index
 	muiIndexCount = lpAiMesh->mNumFaces * 3;
 	unsigned* lpIndex = new unsigned[ muiIndexCount ];
-	luiIndex = 0;
+	
+	unsigned luiIndex = 0;
 	for(unsigned luiFaceIndex=0;luiFaceIndex<lpAiMesh->mNumFaces;++luiFaceIndex )
 	{
 		// Make sure that each face has 3 vertex
@@ -132,7 +186,11 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 void cMesh::Deinit()
 {
 	glDeleteBuffers(1, &mVboVertices);
-	glDeleteBuffers(1, &mVboTexture);
+	
+	for(unsigned luiTexCoordChannel = 0; luiTexCoordChannel < maVboTexture.size(); ++luiTexCoordChannel)
+		glDeleteBuffers(1, &maVboTexture[luiTexCoordChannel]);
+
+	//glDeleteBuffers(1, &mVboTexture);  //eliminado
 	glDeleteBuffers(1, &mVboNormals);
 	glDeleteBuffers(1, &mVboIndex);
 }
@@ -153,12 +211,29 @@ void cMesh::RenderMesh()
 	glNormalPointer(GL_FLOAT, sizeof(float) * 3, 0);
 	assert(glGetError() == GL_NO_ERROR);
 	
+	// Set all the UV channels to the render
+	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+	static GLenum meTextureChannelEnum[] = { GL_TEXTURE0, GL_TEXTURE1, GL_TEXTURE2, GL_TEXTURE3 };
+	for(unsigned luiTexCoordChannel = 0;
+	luiTexCoordChannel < maVboTexture.size(); ++luiTexCoordChannel)
+	{
+		// Texture coordinates
+		glClientActiveTexture(meTextureChannelEnum[luiTexCoordChannel]);
+		glBindBuffer(GL_ARRAY_BUFFER, maVboTexture[luiTexCoordChannel]);
+		assert(glGetError() == GL_NO_ERROR);
+		glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, 0);
+		assert(glGetError() == GL_NO_ERROR);
+	}
+
+
+	/*  cambiada esta parte por las coordenadas
 	// Texture coordinates
 	glBindBuffer(GL_ARRAY_BUFFER, mVboTexture);
 	assert(glGetError() == GL_NO_ERROR);
 	glTexCoordPointer(2, GL_FLOAT, sizeof(float)*2, 0);
 	assert(glGetError() == GL_NO_ERROR);
-	
+	*/
+
 	// Index
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mVboIndex);
 	assert(glGetError() == GL_NO_ERROR);

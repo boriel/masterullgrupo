@@ -424,15 +424,16 @@ const float TRIANGLE_SIZE=20.f;
 	btTransform startTransform;
 	startTransform.setIdentity();
 
-	startTransform.setOrigin(SCALING * btVector3(btScalar(2.0 + start_x), btScalar(20+2.0 + start_y), btScalar(2.0 + start_z)));
+	startTransform.setOrigin(SCALING * btVector3(btScalar(2.0 + start_x), btScalar(20 + 2.0 + start_y), btScalar(2.0 + start_z)));
 			
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, colShape, localInertia);
 	
 	btRigidBody* body = new btRigidBody(rbInfo);
-				
+					
 	m_dynamicsWorld->addRigidBody(body);
+	
 	
 
 	
