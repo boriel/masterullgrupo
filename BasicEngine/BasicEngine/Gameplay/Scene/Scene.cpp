@@ -100,13 +100,16 @@ void cScene::ProcessScene( const aiScene* lpScene )
 {
 	
 	// Meshes
-	for (unsigned luiIndex = 0;luiIndex < lpScene->mNumMeshes;++luiIndex)
+	for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMeshes; ++luiIndex)
 	{
 		char lacMeshName[512];
 		sprintf( lacMeshName, "%s_%d", macFile.c_str(), luiIndex);
 		cResourceHandle lHandle;
-		lHandle = cMeshManager::Get().LoadResource(lacMeshName,	lpScene->mMeshes[luiIndex], 0);
+		lHandle = cMeshManager::Get().LoadResource(lacMeshName,	lpScene->mMeshes[luiIndex], kuiStaticMesh); //De esta forma podemos identificar en el MeshManager que tipo de malla queremos cargar y que tipo de dato recibimos como segundo argumento
 		mMeshList.push_back(lHandle);
+		
+		int liMaterialIndex = lpScene->mMeshes[luiIndex]->mMaterialIndex;
+		mMeshMaterialIndexList.push_back(liMaterialIndex);
 	}
 	
 
