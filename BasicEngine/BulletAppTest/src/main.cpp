@@ -16,15 +16,9 @@ GLDebugDrawer	gDebugDrawer;
 //Demo del helloWorld
 #include "HelloWorld.h"
 
-
-
-
-
-
 //Cabeceras para encontrar las funciones de abajo
 int DemoVehicle (int argc, char** argv);
 int DemoHelloWorld();
-
 
 
 //Main Principal
@@ -33,8 +27,8 @@ int main(int argc, char** argv)
 
 	//Para ir probando cosas o demas demos en este espaci, comentamos y hacemos la llamada a la funcion
 
-	DemoVehicle (argc, argv);
-	//DemoHelloWorld();
+	//DemoVehicle (argc, argv);
+	DemoHelloWorld();
 
 
 }
