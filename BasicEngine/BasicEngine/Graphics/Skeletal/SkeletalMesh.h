@@ -1,43 +1,30 @@
 /*
-class cSkeletalMesh: 
+class SkeletalMesh:  es la que nos va permitir ver el esqueleto y asignarle algunas animaciones.
 
-
-Cal3D funciona siguiendo un modelo “core-instance”, esto es que entre
-distintos modelos animados de un mismo tipo existen unos datos que son comunes y
-otros que dependen de cada instancia.
-
-De esta forma, toda la información que es común se pone en una clase llamada “core” y
-toda la información que depende de la instancia se pone en una clase llamada
-“instance”. De esta forma se evita duplicar datos en memoria innecesariamente.
-
-esta clase tiene que gestionar dos tipos de resources, por
-lo que usaremos el sistema que ya tiene implementado el ResourceManager para
-gestionar los cores y añadimos una lista de SkeletalMesh (definiremos esta clase en las
-siguientes secciones) que representa la instancia del modelo esqueletal. Para crear las
-instancias hemos añadido la función CreateSkeletalMesh, que recibe el nombre del core
-que debe usarse para crear la instancia.
 
 */
 
 /*
-#ifndef SKELETAL_MESH
-#define SKELETAL_MESH
+#ifndef SKELETAL_MESH_H
+#define SKELETAL_MESH_H
 
-
-class cSkeletalMesh;
-
-class cSkeletalManager : public cResourceManager, public cSingleton<cSkeletalManager>
+class cSkeletalMesh : public cMesh
 {
 	public:
-		virtual void Init( unsigned luiMaxSize );
-		friend class cSingleton<cSkeletalManager>;
-		cSkeletalMesh * CreateSkeletalMesh( const std::string& lacCoreModelName );
-
-	protected:
-		cSkeletalManager() { ; } // Protected constructor
+		cSkeletalMesh(): cMesh() { }
+		friend class cSkeletalCoreModel;
+		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType);
+		virtual void Deinit();
+		virtual void Update(float lfTimestep);
+		virtual void RenderMesh() { ; }
+		virtual bool IsLoaded() { return (mpCal3DModel != NULL); }
+		void RenderSkeleton();
+		bool PlayAnim(const std::string & lacAnimName, float lfWeight, float lfDelayIn, float lfDelayOut = 0.0f);
+		void StopAnim(const std::string & lacAnimName, float lfDelayOut = 0.0f);
 
 	private:
-		virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile );
+		CalModel * mpCal3DModel;
+		cSkeletalCoreModel * mpCoreModel;
 };
 
 

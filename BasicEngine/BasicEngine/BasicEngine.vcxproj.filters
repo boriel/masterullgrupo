@@ -366,6 +366,12 @@
     <ClInclude Include="Utility\ResourceManager.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\Skeletal\SkeletalManager.h">
+      <Filter>Graphics\Skeletal</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Skeletal\SkeletalCoreModel.h">
+      <Filter>Graphics\Skeletal</Filter>
+    </ClInclude>
     <ClInclude Include="Graphics\Skeletal\SkeletalMesh.h">
       <Filter>Graphics\Skeletal</Filter>
     </ClInclude>
@@ -606,7 +612,13 @@
     <ClCompile Include="Utility\ResourceManager.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\Skeletal\Skeletal.cpp">
+    <ClCompile Include="Graphics\Skeletal\SkeletalManager.cpp">
+      <Filter>Graphics\Skeletal</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Skeletal\SkeletalCoreModel.cpp">
+      <Filter>Graphics\Skeletal</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Skeletal\SkeletalMesh.cpp">
       <Filter>Graphics\Skeletal</Filter>
     </ClCompile>
   </ItemGroup>
