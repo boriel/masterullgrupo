@@ -126,6 +126,8 @@
     <ClInclude Include="Graphics\Materials\MaterialManager.h" />
     <ClInclude Include="Graphics\Meshes\Mesh.h" />
     <ClInclude Include="Graphics\Meshes\MeshManager.h" />
+    <ClInclude Include="Graphics\Skeletal\SkeletalCoreModel.h" />
+    <ClInclude Include="Graphics\Skeletal\SkeletalManager.h" />
     <ClInclude Include="Graphics\Skeletal\SkeletalMesh.h" />
     <ClInclude Include="Graphics\Textures\SOIL\image_DXT.h" />
     <ClInclude Include="Graphics\Textures\SOIL\image_helper.h" />
@@ -222,7 +224,9 @@
     <ClCompile Include="Graphics\Materials\MaterialManager.cpp" />
     <ClCompile Include="Graphics\Meshes\Mesh.cpp" />
     <ClCompile Include="Graphics\Meshes\MeshManager.cpp" />
-    <ClCompile Include="Graphics\Skeletal\Skeletal.cpp" />
+    <ClCompile Include="Graphics\Skeletal\SkeletalCoreModel.cpp" />
+    <ClCompile Include="Graphics\Skeletal\SkeletalManager.cpp" />
+    <ClCompile Include="Graphics\Skeletal\SkeletalMesh.cpp" />
     <ClCompile Include="Graphics\Textures\SOIL\image_DXT.c" />
     <ClCompile Include="Graphics\Textures\SOIL\image_helper.c" />
     <ClCompile Include="Graphics\Textures\SOIL\SOIL.c" />
