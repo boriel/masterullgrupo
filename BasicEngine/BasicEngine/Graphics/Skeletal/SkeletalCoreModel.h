@@ -16,12 +16,18 @@ cargarse para este core.
 
 */
 
-/*
+
 #ifndef SKELETAL_CORE_MODEL_H
 #define SKELETAL_CORE_MODEL_H
 
 
 #include <string>
+#include <list>
+
+//#include "cal3d\coremodel.h"
+#include "cal3d\cal3d.h"
+
+
 
 #include "..\..\Utility\Resource.h"
 
@@ -77,4 +83,3 @@ class cSkeletalCoreModel : public cResource
 
 
 #endif
-*/

@@ -4,9 +4,16 @@ class SkeletalMesh:  es la que nos va permitir ver el esqueleto y asignarle algu
 
 */
 
-/*
 #ifndef SKELETAL_MESH_H
 #define SKELETAL_MESH_H
+
+
+#include "cal3d\cal3d.h"
+
+//#include "cal3d\model.h"
+//#include "cal3d\mixer.h"
+
+#include "..\Meshes\Mesh.h"
 
 class cSkeletalMesh : public cMesh
 {
@@ -30,4 +37,3 @@ class cSkeletalMesh : public cMesh
 
 
 #endif
-*/

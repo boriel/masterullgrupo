@@ -652,3 +652,34 @@ std::list<CalAnimationCycle *> & CalMixer::getAnimationCycle()
 } 
 
 //****************************************************************************//
+
+
+//Nuevo implementacion añadida
+//Esta función lo que hace es buscar la animación correspondiente y llamar a la función
+//que creamos antes (remove en animation_action)
+bool CalMixer::removeAction(int liId, float lfDelayOut)
+{
+	// get the core animation
+	CalCoreAnimation *lpCoreAnimation;
+	lpCoreAnimation = m_pModel->getCoreModel()->getCoreAnimation(liId);
+
+	if(lpCoreAnimation == 0)
+		return false;
+	
+	// update all active animation actions of this model
+	std::list<CalAnimationAction *>::iterator lpIt;
+	lpIt = m_listAnimationAction.begin();
+	while(lpIt != m_listAnimationAction.end())
+	{
+		// find the specified action and remove it
+		if((*lpIt)->getCoreAnimation() == lpCoreAnimation )
+		{
+			// found, so remove with delayOut
+			(*lpIt)->remove(lfDelayOut);
+			return true;
+		}
+	lpIt++;
+	}
+
+	return false;
+}

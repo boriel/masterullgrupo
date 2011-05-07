@@ -12,7 +12,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 #include "..\Graphics\Fonts\acgfx_font.h"
-// #include "..\Gameplay\Scene\Scene.h"
+// #include "..\Game\Scene\Scene.h"
 //TODO
 // Fichero de LUA a cargar
 #define LUA_FILE "data/scripts/practica7.lua"
@@ -27,6 +27,8 @@ private: 	//variables
 	cFont mFont;
 	cResourceHandle mScene;
 	cResourceHandle mFontHandle;
+
+	cResourceHandle mSkeletalMesh;
 
 protected:
 	cGame () { ; } //Protected Constructor
@@ -48,6 +50,8 @@ private:  //métodos
 	void RenderRejilla();
 	void RenderLua();
 	void RenderMalla();
+	void RenderSkeletal();
+	//void SkeletalKeyMove();
 };
 
 #endif

@@ -13,12 +13,14 @@
 #include "..\Character\CharacterManager.h"
 #include "..\Character\Behaviour\BehaviourManager.h"
 #include "..\Character\Behaviour\ChaserBase.h"
-#include "..\Gameplay\Scene\SceneManager.h"
+#include "..\Game\Scene\SceneManager.h"
 #include "..\Graphics\Meshes\MeshManager.h"
-#include "..\Gameplay\Scene\Scene.h"
+#include "..\Game\Scene\Scene.h"
 #include "..\Graphics\Fonts\FontManager.h"
 #include "..\Graphics\Materials\MaterialManager.h"
 #include "..\Graphics\Effects\EffectManager.h"
+#include "..\Graphics\Skeletal\SkeletalManager.h"
+#include "..\Graphics\Skeletal\SkeletalMesh.h"
 
 
 extern tActionMapping kaActionMapping[];
@@ -86,8 +88,18 @@ bool cGame::Init() { //Inicializa el juego
 	cEffectManager::Get().Init(10);
 
 	//TODO: SceneManager debe ir despúes de MaterialManager y EffectManager
-	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen
-	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");
+	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");  //Para cargarla directamente
+
+	
+	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
+	cSkeletalManager::Get().Init(10);
+	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
+	mSkeletalMesh = cMeshManager::Get().LoadResource("Skeleton1", "Skeleton", kuiSkeletalMesh);
+	cSkeletalMesh* lpSkeletonMesh= (cSkeletalMesh*)mSkeletalMesh.GetResource();
+	lpSkeletonMesh->PlayAnim("Idle", 1.0f, 1.0f);
+
+
 
 	mfAcTime = 0.0f;
 
@@ -124,6 +136,35 @@ void cGame::Update(float lfTimestep) { //update del juego
 	//cCharacterManager::Get().Update(lfTimestep);  //Carga del Character de LUA, comentado por ahora
 	cInputManager::Get().Update(lfTimestep);
 
+	//Actualizando la mmala del esqueleto
+	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
+	lpSkeletonMesh->Update(lfTimestep);
+
+	static bool mbJogging = false;
+	if (BecomePressed( eIA_PlayJog ) && !mbJogging)
+	{
+		mbJogging = true;
+		lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
+		lpSkeletonMesh->StopAnim("Idle", 0.1f);
+	}
+	else if (BecomePressed( eIA_StopJog ) && mbJogging)
+	{
+		mbJogging = false;
+		lpSkeletonMesh->PlayAnim("Idle", 1.0f, 0.1f);
+		lpSkeletonMesh->StopAnim("Jog", 0.1f);
+	}
+	if (BecomePressed( eIA_PlayWave ))
+	{
+		lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f, 0.1f);
+	}
+	else if (BecomePressed( eIA_StopWave ))
+	{
+		lpSkeletonMesh->StopAnim("Wave", 0.1f);
+	}
+
+
+
+
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
@@ -132,6 +173,7 @@ void cGame::Update(float lfTimestep) { //update del juego
 		return;
 	
 }
+
 
 
 //render del juego
@@ -161,6 +203,7 @@ void cGame::Render()
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	RenderMalla();
+	RenderSkeletal();
 
 	// 4) Render 3D with transparency
 
@@ -198,6 +241,11 @@ void cGame::RenderMalla() {
 	//glEnable(GL_TEXTURE_2D);
 }
 
+void cGame::RenderSkeletal ()
+{
+	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
+	lpSkeletonMesh->RenderSkeleton();
+}
 
 void cGame::RenderFuentes () { //Renderizamos una fuente en pantalla siguiendo el orden
 	/*
