@@ -8,6 +8,12 @@
 // your option) any later version.                                            //
 //****************************************************************************//
 
+//Notas: 07-05-2011
+//Cal3D no nos da la funcionalidad necesaria para
+//eliminar una acción de forma suave, por lo que tenemos que modificar la librería para
+//añadir dicha funcionalidad
+
+
 #ifndef CAL_ANIMATION_ACTION_H
 #define CAL_ANIMATION_ACTION_H
 
@@ -28,12 +34,19 @@ public:
   bool execute(float delayIn, float delayOut, float weightTarget = 1.0f,bool autoLock=false);
   bool update(float deltaTime);
 
+	
+	void remove(float lfDelayOut); //Añadidos el método
+
 private:
   float m_delayIn;
   float m_delayOut;
   float m_delayTarget;
   float m_weightTarget;
   bool  m_autoLock; 
+
+	float mfTotalTime;  //Añadido
+	
+
 };
 
 #endif

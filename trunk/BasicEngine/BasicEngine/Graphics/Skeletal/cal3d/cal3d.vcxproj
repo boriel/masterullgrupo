@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>.\..\..\..\bin\Debug\</OutDir>
-    <IntDir>.\..\..\..\obj\Debug\</IntDir>
+    <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <TargetName>cal3d_d</TargetName>
   </PropertyGroup>

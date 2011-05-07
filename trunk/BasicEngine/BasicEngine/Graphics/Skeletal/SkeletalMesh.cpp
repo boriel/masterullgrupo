@@ -1,4 +1,4 @@
-/*
+
 #include "SkeletalMesh.h"
 #include "../GLHeaders.h"
 #include <assimp.hpp> // C++ importer interface
@@ -9,11 +9,13 @@
 #include "../GraphicManager.h"
 #include "../../MathLib/MathLib.h"
 
+//include "cal3d\skeleton.h"
+
+
 
 bool cSkeletalMesh::Init( const std::string &lacNameID, void * lpMemoryData, int liDataType )
 {
-	cSkeletalCoreModel * lpCoreModel =
-	(cSkeletalCoreModel *)lpMemoryData;
+	cSkeletalCoreModel * lpCoreModel = (cSkeletalCoreModel *)lpMemoryData;
 	lpCoreModel->CreateInstance(this);
 	return true;
 }
@@ -103,6 +105,6 @@ void cSkeletalMesh::RenderSkeleton(void)
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
-*/
+
 
 

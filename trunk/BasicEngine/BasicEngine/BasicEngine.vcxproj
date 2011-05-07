@@ -64,8 +64,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;assimp.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib;cg.lib;cgGL.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\lib\debug;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\;C:\Program Files (x86)\NVIDIA Corporation\Cg\lib;$(CG_LIB_PATH)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;assimp.lib;cal3d_d.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib;cg.lib;cgGL.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\Libraries\TinyXML\lib;.\Input\ois\lib\debug;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\;C:\Program Files (x86)\NVIDIA Corporation\Cg\lib;$(CG_LIB_PATH);.\Graphics\bin\Debug</AdditionalLibraryDirectories>
       <ImportLibrary>
       </ImportLibrary>
     </Link>
@@ -107,11 +107,11 @@
     <ClInclude Include="Character\Behaviour\PlayerController.h" />
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterManager.h" />
-    <ClInclude Include="Gameplay\Scene\Object.h" />
-    <ClInclude Include="Gameplay\Scene\Scene.h" />
-    <ClInclude Include="Gameplay\Scene\SceneManager.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\InputConfiguration.h" />
+    <ClInclude Include="Game\Scene\Object.h" />
+    <ClInclude Include="Game\Scene\Scene.h" />
+    <ClInclude Include="Game\Scene\SceneManager.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Effects\Effect.h" />
     <ClInclude Include="Graphics\Effects\EffectManager.h" />
@@ -207,11 +207,11 @@
     <ClCompile Include="Character\Behaviour\playercontroller.cpp" />
     <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\CharacterManager.cpp" />
-    <ClCompile Include="Gameplay\Scene\Object.cpp" />
-    <ClCompile Include="Gameplay\Scene\SceneManager.cpp" />
-    <ClCompile Include="Gameplay\Scene\Scene.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\InputConfiguration.cpp" />
+    <ClCompile Include="Game\Scene\Object.cpp" />
+    <ClCompile Include="Game\Scene\Scene.cpp" />
+    <ClCompile Include="Game\Scene\SceneManager.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Effects\Effect.cpp" />
     <ClCompile Include="Graphics\Effects\EffectManager.cpp" />

@@ -171,6 +171,8 @@ public:
   std::vector<CalAnimation *> &getAnimationVector();
   std::list<CalAnimationAction *> &getAnimationActionList();
   std::list<CalAnimationCycle *> &getAnimationCycle();  
+
+	bool removeAction(int liId, float lfDelayOut); //Añadido
   
 protected:
   CalModel *m_pModel;

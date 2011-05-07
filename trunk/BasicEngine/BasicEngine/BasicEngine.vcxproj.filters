@@ -55,12 +55,6 @@
     <Filter Include="Graphics\GLee">
       <UniqueIdentifier>{a8ad4bfc-9c19-4dbe-9ffa-d17c0773172a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GamepLay">
-      <UniqueIdentifier>{b5376fae-6c81-4f9a-940b-541a013f623b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GamepLay\Scene">
-      <UniqueIdentifier>{fdb9b4b3-e2cb-4c9c-a2b5-c90d77f2cb3c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics\Materials">
       <UniqueIdentifier>{9703539f-1b96-42e1-b36e-769886c74dbe}</UniqueIdentifier>
     </Filter>
@@ -72,6 +66,9 @@
     </Filter>
     <Filter Include="Graphics\Skeletal">
       <UniqueIdentifier>{dc98c8d0-d8af-4c04-8633-74c79b871fd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{c7828add-d843-4847-aca5-234213d654dc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -312,15 +309,6 @@
     <ClInclude Include="Graphics\GLee\GLee.h">
       <Filter>Graphics\GLee</Filter>
     </ClInclude>
-    <ClInclude Include="Gameplay\Scene\SceneManager.h">
-      <Filter>GamepLay\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameplay\Scene\SceneManager.h">
-      <Filter>GamepLay\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameplay\Scene\Scene.h">
-      <Filter>GamepLay\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Character\Behaviour\patrol.h">
       <Filter>Character\Behaviour</Filter>
     </ClInclude>
@@ -338,9 +326,6 @@
     </ClInclude>
     <ClInclude Include="Graphics\Fonts\FontManager.h">
       <Filter>Graphics\Fonts</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameplay\Scene\Object.h">
-      <Filter>GamepLay\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Meshes\Mesh.h">
       <Filter>Graphics\Meshes</Filter>
@@ -374,6 +359,15 @@
     </ClInclude>
     <ClInclude Include="Graphics\Skeletal\SkeletalMesh.h">
       <Filter>Graphics\Skeletal</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Object.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Scene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\SceneManager.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -567,12 +561,6 @@
     <ClCompile Include="Graphics\GLee\GLee.c">
       <Filter>Graphics\GLee</Filter>
     </ClCompile>
-    <ClCompile Include="Gameplay\Scene\Scene.cpp">
-      <Filter>GamepLay\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Gameplay\Scene\SceneManager.cpp">
-      <Filter>GamepLay\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Character\Behaviour\patrol.cpp">
       <Filter>Character\Behaviour</Filter>
     </ClCompile>
@@ -587,9 +575,6 @@
     </ClCompile>
     <ClCompile Include="Graphics\Fonts\FontManager.cpp">
       <Filter>Graphics\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="Gameplay\Scene\Object.cpp">
-      <Filter>GamepLay\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Meshes\Mesh.cpp">
       <Filter>Graphics\Meshes</Filter>
@@ -620,6 +605,15 @@
     </ClCompile>
     <ClCompile Include="Graphics\Skeletal\SkeletalMesh.cpp">
       <Filter>Graphics\Skeletal</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Object.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Scene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\SceneManager.cpp">
+      <Filter>Game\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

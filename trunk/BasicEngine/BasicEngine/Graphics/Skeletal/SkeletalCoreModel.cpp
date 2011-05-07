@@ -1,5 +1,13 @@
-/*
 #include "SkeletalCoreModel.h"
+
+#include <tinystr.h>
+#include <tinyxml.h>
+#include <Windows.h>
+
+#include "cal3d\cal3d.h"
+#include "..\..\Utility\FileUtils.h"
+#include "SkeletalMesh.h"
+
 
 
 //El código se limita a leer valores del XML y a hacer llamadas directas a Cal3D usando un CalCoreModel
@@ -128,4 +136,3 @@ sAnimationDef * cSkeletalCoreModel::GetAnimationDef(const std::string lacAnim)
 }
 
 
-*/

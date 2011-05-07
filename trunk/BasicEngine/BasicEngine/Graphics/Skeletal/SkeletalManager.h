@@ -19,7 +19,7 @@ que debe usarse para crear la instancia.
 
 */
 
-/*
+
 #ifndef SKELETAL_MESH
 #define SKELETAL_MESH
 
@@ -45,4 +45,3 @@ class cSkeletalManager : public cResourceManager, public cSingleton<cSkeletalMan
 
 
 #endif
-*/

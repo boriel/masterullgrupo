@@ -30,6 +30,9 @@ CalAnimationAction::CalAnimationAction(CalCoreAnimation* pCoreAnimation)
 : CalAnimation(pCoreAnimation)
 {
   setType(TYPE_ACTION);
+	
+	mfTotalTime = pCoreAnimation->getDuration(); //Añadido
+
 }
 
 
@@ -125,7 +128,8 @@ bool CalAnimationAction::update(float deltaTime)
     // check if we are still in the OUT phase
     if(getTime() < getCoreAnimation()->getDuration())
     {
-      setWeight((getCoreAnimation()->getDuration() - getTime()) / m_delayOut * m_weightTarget);
+      //setWeight((getCoreAnimation()->getDuration() - getTime()) / m_delayOut * m_weightTarget);  //original
+			setWeight((mfTotalTime - getTime()) / m_delayOut * m_weightTarget);  //Cambiado
     }
     else
     {
@@ -140,3 +144,21 @@ bool CalAnimationAction::update(float deltaTime)
 }
 
 //****************************************************************************//
+
+
+//Implementación del método que hemos puesto
+void CalAnimationAction::remove(float lfDelayOut)
+{
+	float lfCurrentTime = getTime();
+
+	// Calculate the remaining time to finish the action
+	float lfRemainingTime = mfTotalTime - getTime();
+
+	// Calculate the duration of the animation if we ask in lfDelay secs
+	float lfRequestedDuration = lfCurrentTime + lfDelayOut;
+
+	m_weightTarget = getWeight();
+	m_delayOut = std::min( lfDelayOut, lfRemainingTime );
+	mfTotalTime = std::min( mfTotalTime, lfRequestedDuration );
+	setState( STATE_OUT );
+}

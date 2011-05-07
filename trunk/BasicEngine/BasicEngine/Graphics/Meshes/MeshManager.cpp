@@ -1,5 +1,6 @@
 #include "MeshManager.h"
 #include "Mesh.h"
+#include "..\Skeletal\SkeletalManager.h"
 
 
 cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID )
@@ -19,8 +20,8 @@ cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lp
 	}
 	else if (luiTypeID == kuiSkeletalMesh)
 	{
-		//cMesh*lpMesh=(cMesh*)cSkeletalManager::Get().CreateSkeletalMesh( (char*)lpMemoryData);
-		//return lpMesh;
+		cMesh*lpMesh=(cMesh*)cSkeletalManager::Get().CreateSkeletalMesh( (char*)lpMemoryData);
+		return lpMesh;
 	}
 
 	return NULL;
