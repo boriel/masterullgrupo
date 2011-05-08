@@ -96,9 +96,17 @@ bool cGame::Init() { //Inicializa el juego
 	cSkeletalManager::Get().Init(10);
 	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
 	mSkeletalMesh = cMeshManager::Get().LoadResource("Skeleton1", "Skeleton", kuiSkeletalMesh);
-	cSkeletalMesh* lpSkeletonMesh= (cSkeletalMesh*)mSkeletalMesh.GetResource();
+	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	lpSkeletonMesh->PlayAnim("Idle", 1.0f, 1.0f);
 
+	cResourceHandle lMaterial = cMaterialManager::Get().LoadResource("Skeleton", "./Data/Material/SkeletonMaterial.xml");
+	assert(lMaterial.IsValidHandle());
+	
+	//mObject.Init();
+	mObject.AddMesh(mSkeletalMesh, lMaterial);
+	cMatrix lMatrix;
+	lMatrix.LoadScale(0.01f);
+	mObject.SetWorldMatrix(lMatrix);
 
 
 	mfAcTime = 0.0f;
@@ -138,7 +146,8 @@ void cGame::Update(float lfTimestep) { //update del juego
 
 	//Actualizando la mmala del esqueleto
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
-	lpSkeletonMesh->Update(lfTimestep);
+	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
+	mObject.Update(lfTimestep);
 
 	static bool mbJogging = false;
 	if (BecomePressed( eIA_PlayJog ) && !mbJogging)
@@ -200,9 +209,10 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
+	m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
-	RenderMalla();
+	//RenderMalla(); //Por ahora dibuja el dragon
 	RenderSkeletal();
 
 	// 4) Render 3D with transparency
@@ -236,13 +246,14 @@ void cGame::SetTheWorldMatrix() { // Set the world matrix
 void cGame::RenderMalla() {
 	//glDisable(GL_TEXTURE_2D);
 	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
-	m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
+	//m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
 }
 
 void cGame::RenderSkeletal ()
 {
+	mObject.Render();
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	lpSkeletonMesh->RenderSkeleton();
 }

@@ -33,6 +33,12 @@ void cObject::AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHan
 //Update
 void cObject::Update( float lfTimestep )
 {
+	//Recorre todas las mallas y las actualiza
+	for ( unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex )
+	{
+		cMesh *lpMesh = (cMesh *)mMeshHandles[luiIndex].GetResource();
+		lpMesh->Update(lfTimestep);
+	}
 
 }
 
@@ -48,12 +54,12 @@ void cObject::Render()
 	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
 	{
 		// Set the material
-		cMaterial * lpMaterial = ( cMaterial *)
-		mMaterialHandles[luiIndex].GetResource();
+		cMaterial * lpMaterial = ( cMaterial *)mMaterialHandles[luiIndex].GetResource();
 		cMesh *lpMesh = (cMesh *)mMeshHandles[luiIndex].GetResource();
 
 		// Prepare all the parameters for the render
 		lpMaterial->PrepareRender();
+		lpMesh->PrepareRender (mMaterialHandles[luiIndex]);
 	
 		// Set the first pass
 		bool lbContinue = lpMaterial->SetFirstPass();

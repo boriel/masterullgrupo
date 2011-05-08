@@ -5,6 +5,7 @@ Class MaterialManager.h
 #ifndef MATERIAL_MANAGER_H
 #define MATERIAL_MANAGER_H
 
+
 #include "../../Utility/Singleton.h"
 #include "../../Utility/Resource.h"
 #include "../../Utility/ResourceManager.h"
@@ -18,6 +19,7 @@ protected:
 
 private:
 	virtual cResource * LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int liDataType );
+	cResource * cMaterialManager::LoadResourceInternal( std::string lacNameID, const std::string &lacFile );
 };
 
 #endif

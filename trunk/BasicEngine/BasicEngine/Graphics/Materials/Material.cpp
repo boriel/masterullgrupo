@@ -87,6 +87,58 @@ bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liD
 	*/
 }
 
+//Se hizo nuevo para la parte de los materiales del skeleton
+bool cMaterial::Init( const std::string &lacNameID, const std::string &lacFile )
+{
+	// Load an XML with a material
+	macFile = lacFile;
+
+	// Load the XML file
+	TiXmlDocument doc( lacFile.c_str() );
+	bool lbLoadOk = doc.LoadFile();
+	
+	if ( lbLoadOk )
+	{
+		OutputDebugString("XML Load: OK\n");
+	}
+	else
+	{
+		OutputDebugString("XML Load: FAILED\n");
+		return false;
+	}
+
+	TiXmlHandle lhDoc(&doc);
+	TiXmlElement* lpElem;
+	TiXmlHandle lhRoot(0);
+	lpElem = lhDoc.FirstChildElement().Element();
+	assert(lpElem);
+
+	// save this for later
+	lhRoot = TiXmlHandle(lpElem);
+	std::string lacEffectName = lhRoot.ToElement()->Attribute("effectName");
+	std::string lacEffectPath = lhRoot.ToElement()->Attribute("effectPath");
+	mEffect = cEffectManager::Get().LoadResource(lacEffectName, lacEffectPath );
+	
+	// Read all the animations
+	maTextureData.resize(0);
+	lpElem=lhRoot.FirstChild( "Texture" ).Element();
+
+	for( lpElem; lpElem; lpElem = lpElem->NextSiblingElement("Texture"))
+	{
+		cTextureData lData;
+		std::string lacTextureFile = lpElem->Attribute("file");
+		lData.macShaderTextureID = lpElem->Attribute("name");
+		lData.mTexture = cTextureManager::Get().LoadResource(lacTextureFile, lacTextureFile);
+		assert(lData.mTexture.IsValidHandle());
+		maTextureData.push_back(lData);
+	}
+	mbLoaded = mEffect.IsValidHandle();
+
+	return mbLoaded;
+}
+
+
+
 
 void cMaterial::Deinit()
 {
