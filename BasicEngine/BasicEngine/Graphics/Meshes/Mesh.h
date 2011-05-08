@@ -15,6 +15,7 @@ Class cMesh:
 #include <vector>
 
 #include "../../Utility/Resource.h"
+#include "../../Utility/ResourceHandle.h"
 
 //constantes que identifican si la malla es de tipo estática o esqueletal
 static int kuiStaticMesh = 0;
@@ -38,6 +39,7 @@ class cMesh : public cResource
 		//inline unsigned	getVertices() { return mVboVertices; }
 		//inline unsigned getIndex() { return mVboIndex; }
 
+		virtual void PrepareRender(cResourceHandle lMaterial) { ; }
 	
 	protected:
 		//std:string macFile; //creo que no lo usamos por ahora

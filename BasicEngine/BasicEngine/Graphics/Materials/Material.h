@@ -31,30 +31,35 @@ renderizar la geometría.
 #include "../../Utility/Resource.h"
 #include "../../Utility/ResourceHandle.h"
 
-struct cTextureData {
+struct cTextureData 
+{
 	std::string macShaderTextureID;
 	cResourceHandle mTexture;
 };
 
-class cMaterial : public cResource {
-public:
-	cMaterial() { mbLoaded = false; }
-	virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType);
-	virtual void Deinit();
-	virtual bool IsLoaded() { return mbLoaded; }
+class cMaterial : public cResource 
+{
+	public:
+		cMaterial() { mbLoaded = false; }
+		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType);
+		bool cMaterial::Init( const std::string &lacNameID, const std::string &lacFile );
+		virtual void Deinit();
+		virtual bool IsLoaded() { return mbLoaded; }
 		
-	//void SetMaterial();  //Reemplazamos esta función por las 3 funciones de abajo
-	void PrepareRender();
-	bool SetFirstPass();
-	bool SetNextPass();
+		//void SetMaterial();  //Reemplazamos esta función por las 3 funciones de abajo
+		void PrepareRender();
+		bool SetFirstPass();
+		bool SetNextPass();
 	
-private:
-	void ReadAllTextures(aiMaterial * lpAiMaterial, cMaterialData * lpMaterialData);
-	std::string macFile;
-	std::vector<cTextureData> maTextureData;
-	cResourceHandle mEffect;
-	//cResourceHandle mDiffuseTexture; //eliminando un textura para hacer una estructura de multiples texturas
-	bool mbLoaded;
+		cResourceHandle GetEffect() { return mEffect; }
+
+	private:
+		void ReadAllTextures(aiMaterial * lpAiMaterial, cMaterialData * lpMaterialData);
+		std::string macFile;
+		std::vector<cTextureData> maTextureData;
+		cResourceHandle mEffect;
+		//cResourceHandle mDiffuseTexture; //eliminando un textura para hacer una estructura de multiples texturas
+		bool mbLoaded;
 };
 
 #endif

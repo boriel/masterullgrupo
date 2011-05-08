@@ -7,6 +7,7 @@
 #include <cassert>
 #include "EffectManager.h"
 #include "../Textures/Texture.h"
+#include <Windows.h>
 
 //Lo primero que hacemos en esta función es inicializar los atributos de la clase. Después
 //cargamos el fichero de efectos y comprobamos que no se ha producido error alguno
@@ -135,5 +136,49 @@ void cEffect::SetParam(const std::string &lacName, cResourceHandle lParamValue )
 		cTexture * lpTexture = (cTexture*)lParamValue.GetResource();
 		unsigned luiTextureHandle = lpTexture->GetTextureHandle();
 		cgGLSetupSampler(lParam, luiTextureHandle);
+	}
+}
+
+//Los efectos Cg son un poco restrictivos a la hora de pasar un array de flotantes al
+//shader y te exigen que rellenes todo el buffer disponible en el shader, de lo contrario
+//dará un error y no realizará la acción. Es por eso que se comprueba el tamaño del
+//buffer a rellenar y si es mayor que el que intentamos setear entonces usamos un array
+//auxiliar para rellenar todo el buffer.
+void cEffect::SetParam(const std::string &lacName, const float * lfParam, unsigned liCount )
+{
+	static const unsigned kuiAuxiliarBuffer = 256 * 4;
+	static float gFullArray[kuiAuxiliarBuffer];
+	CGparameter lParam = cgGetNamedEffectParameter(mEffect, lacName.c_str());
+	
+	if (lParam)
+	{
+		int liNRows = cgGetParameterRows(lParam);
+		int liNCols = cgGetParameterColumns(lParam);
+		int liASize = cgGetArrayTotalSize(lParam);
+		int liNTotal = liNRows*liNCols;
+		
+		if (liASize > 0)
+		{
+			liNTotal *= liASize;
+			
+			if ( liCount < liNTotal )
+			{
+				assert(kuiAuxiliarBuffer > liNTotal);
+				assert(kuiAuxiliarBuffer > liCount);
+				memcpy(gFullArray, lfParam, sizeof(float) * liCount);
+				cgSetParameterValuefr(lParam, liNTotal, gFullArray);
+			}
+			else
+			{
+				cgSetParameterValuefr(lParam, liCount, lfParam);
+			}
+			CGerror err = cgGetError();
+			
+			if (err != CG_NO_ERROR)
+			{
+				OutputDebugString(cgGetErrorString( err ));
+				OutputDebugString("\n");
+			}
+		}
 	}
 }

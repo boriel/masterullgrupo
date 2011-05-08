@@ -23,11 +23,13 @@ class cSkeletalMesh : public cMesh
 		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType);
 		virtual void Deinit();
 		virtual void Update(float lfTimestep);
-		virtual void RenderMesh() { ; }
+		virtual void RenderMesh(); // { ; }
 		virtual bool IsLoaded() { return (mpCal3DModel != NULL); }
 		void RenderSkeleton();
 		bool PlayAnim(const std::string & lacAnimName, float lfWeight, float lfDelayIn, float lfDelayOut = 0.0f);
 		void StopAnim(const std::string & lacAnimName, float lfDelayOut = 0.0f);
+		
+		void PrepareRender(cResourceHandle lMaterial);
 
 	private:
 		CalModel * mpCal3DModel;

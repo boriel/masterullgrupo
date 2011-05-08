@@ -70,6 +70,19 @@ class cSkeletalCoreModel : public cResource
 		std::list<sAnimationDef> mAnimationDefs;
 		std::list<int> mMeshIndexes;
 		CalCoreModel * mpCoreModel;
+
+		//Para crear el buffers
+		void CreateBuffers();
+		void ReleaseBuffers();
+
+		// Vertex Buffers
+		unsigned mVboVertices;
+		std::vector<unsigned> maVboTexture;
+		unsigned mVboNormals;
+		unsigned mVboWeight;
+		unsigned mVboBoneIx;
+		unsigned mVboIndex;
+		unsigned muiIndexCount;
 };
 
 
