@@ -22,6 +22,7 @@ int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 										LPSTR lpCmdLine,              // Command line parameters 
 										int nCmdShow                  // Windows Show State
 										) 
+
 {
 	// Inicializa la clase cDebug (si se compila en modo Debug)
 	DEBUG_INIT();

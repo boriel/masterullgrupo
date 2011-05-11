@@ -88,8 +88,12 @@ bool cGame::Init() { //Inicializa el juego
 	cEffectManager::Get().Init(10);
 
 	//TODO: SceneManager debe ir despúes de MaterialManager y EffectManager
-	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
-	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");  //Para cargarla directamente
+	//mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
+	mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");  //Para cargarla directamente
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboBlender.dae");  //Para cargarla directamente
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax.DAE");  //Para cargarla directamente
+	
+	
 
 	
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
@@ -212,8 +216,8 @@ void cGame::Render()
 	m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
-	//RenderMalla(); //Por ahora dibuja el dragon
-	RenderSkeletal();
+	RenderMalla(); //Por ahora dibuja el dragon
+	//RenderSkeletal();
 
 	// 4) Render 3D with transparency
 
