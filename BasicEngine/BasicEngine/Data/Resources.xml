@@ -7,8 +7,10 @@
   </Fonts>
 
   <Scenes>
-    <Scene Name="Dragon" File="./Data/Scene/dragonsmall.DAE" />
+    <Scene Name="Dragon" File="./Data/Scene/dragonsmall.DAE" /> 
 	<!-- <Scene Name="CuboBlender" File="./Data/Scene/cuboBlender.dae" /> -->
+	<!-- <Scene Name="Dragon" File="./Data/Scene/sueloMax.DAE" />
+	<Scene Name="Dragon" File="./Data/Scene/cuboMax.DAE" /> -->
   </Scenes>
 
 </Resources>

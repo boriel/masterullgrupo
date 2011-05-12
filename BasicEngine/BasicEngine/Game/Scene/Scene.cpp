@@ -23,7 +23,7 @@ bool cScene::Init( const std::string &lacNameID, const std::string &lacFile ) {
 	Assimp::Importer lImporter;
 
 	// Load the scene
-	const aiScene* lpScene = lImporter.ReadFile( lacFile.c_str(), aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices |	aiProcess_SortByPType );
+	const aiScene* lpScene = lImporter.ReadFile( lacFile.c_str(), aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType );
 
 	// If the import failed, report it
 	if( !lpScene )
