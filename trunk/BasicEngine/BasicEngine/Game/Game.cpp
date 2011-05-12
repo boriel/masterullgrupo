@@ -89,10 +89,13 @@ bool cGame::Init() { //Inicializa el juego
 
 	//TODO: SceneManager debe ir despúes de MaterialManager y EffectManager
 	//mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
-	mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");  //Para cargarla directamente
-	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboBlender.dae");  //Para cargarla directamente
-	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax.DAE");  //Para cargarla directamente
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/dragonsmall.DAE");  //Para cargarla directamente
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboBlender02.obj");  //Para cargarla directamente
+	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax02.DAE");  //Para cargarla directamente
 	
+	//Estas dos van bien, a lo mejor sería convenniete ponerlas en el xml. Tambien hay que ver donde pintarlas!
+	//mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	mScene = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 	
 
 	

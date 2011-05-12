@@ -4,7 +4,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BasicEngine", "BasicEngine\BasicEngine.vcxproj", "{B125919C-684B-48ED-9BB2-6E6F1BD28C8A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{CFC90933-1F42-4728-A4DC-A14EEF4D2F84} = {CFC90933-1F42-4728-A4DC-A14EEF4D2F84}
+<<<<<<< .mine
+		{271C4AD6-670C-280A-356B-5B5066959EC2} = {271C4AD6-670C-280A-356B-5B5066959EC2}
+=======
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8} = {FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}
+>>>>>>> .r120
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OIS_VS2010", "BasicEngine\Input\OIS_VS2010.vcxproj", "{CFC90933-1F42-4728-A4DC-A14EEF4D2F84}"
@@ -25,7 +29,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BulletAppTest", "BulletAppT
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLSupport", "bullet-2.78\msvc\2008\Demos\OpenGL\OpenGLSupport.vcxproj", "{8D7F86F9-92DE-412A-BA72-88D24927E63E}"
 EndProject
+<<<<<<< .mine
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d", "BasicEngine\Graphics\Skeletal\cal3d\cal3d.vcxproj", "{271C4AD6-670C-280A-356B-5B5066959EC2}"
+=======
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d", "BasicEngine\Graphics\Skeletal\cal3d\cal3d.vcxproj", "{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}"
+>>>>>>> .r120
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +131,20 @@ Global
 		{8D7F86F9-92DE-412A-BA72-88D24927E63E}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
 		{8D7F86F9-92DE-412A-BA72-88D24927E63E}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
 		{8D7F86F9-92DE-412A-BA72-88D24927E63E}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|Win32
+<<<<<<< .mine
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.Debug|Win32.Build.0 = Debug|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.Debug|x64.ActiveCfg = Debug|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.MinSizeRel|Win32.ActiveCfg = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.MinSizeRel|Win32.Build.0 = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.MinSizeRel|x64.ActiveCfg = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.Release|Win32.ActiveCfg = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.Release|Win32.Build.0 = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.Release|x64.ActiveCfg = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.RelWithDebInfo|Win32.Build.0 = Release|Win32
+		{271C4AD6-670C-280A-356B-5B5066959EC2}.RelWithDebInfo|x64.ActiveCfg = Release|Win32
+=======
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}.Debug|Win32.ActiveCfg = Debug|Win32
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}.Debug|Win32.Build.0 = Debug|Win32
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}.Debug|x64.ActiveCfg = Debug|Win32
@@ -135,6 +157,7 @@ Global
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}.RelWithDebInfo|Win32.Build.0 = Release|Win32
 		{FEC33AC7-8BC7-7BE5-0C64-0F2AA13B6BB8}.RelWithDebInfo|x64.ActiveCfg = Release|Win32
+>>>>>>> .r120
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
