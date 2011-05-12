@@ -149,7 +149,7 @@ void VehicleDemo::initPhysics() {
 	m_forwardAxis = 1;
 #endif
 
-	btCollisionShape* groundShape = new btBoxShape(btVector3(50,3,50));
+	btCollisionShape* groundShape = new btBoxShape(btVector3(50,3,50)); //Figura del suelo
 	m_collisionShapes.push_back(groundShape);
 	m_collisionConfiguration = new btDefaultCollisionConfiguration();
 	m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
@@ -162,20 +162,16 @@ void VehicleDemo::initPhysics() {
 	m_dynamicsWorld->setGravity(btVector3(0,0,-10));
 #endif 
 
-
-
-
-
 	//m_dynamicsWorld->setGravity(btVector3(0,0,0));
-btTransform tr;
-tr.setIdentity();
+	btTransform tr;
+	tr.setIdentity();
 
 //either use heightfield or triangle mesh
 #define  USE_TRIMESH_GROUND 1
 #ifdef USE_TRIMESH_GROUND
 	int i;
 
-const float TRIANGLE_SIZE=20.f;
+	const float TRIANGLE_SIZE=20.f;
 
 	//create a triangle-mesh ground
 	int vertStride = sizeof(btVector3);
