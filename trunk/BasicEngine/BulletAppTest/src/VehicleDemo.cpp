@@ -42,12 +42,12 @@ subject to the following restrictions:
 		btVector3 wheelAxleCS(-1,0,0);
 #endif
 
-#include "GLDebugDrawer.h"
+//David: Supongo que las librerías GL son de GLUT y no hacen falta para la física?
+#include "GLDebugDrawer.h" 
+#include "GL_ShapeDrawer.h"
+#include "GlutStuff.h"
 #include <stdio.h> //printf debugging
 
-#include "GL_ShapeDrawer.h"
-
-#include "GlutStuff.h"
 #include "VehicleDemo.h"
 
 const int maxProxies = 32766;
@@ -89,27 +89,24 @@ btScalar suspensionRestLength(0.6);
 ////////////////////////////////////
 
 
-
-
 VehicleDemo::VehicleDemo() : m_carChassis(0), m_cameraHeight(4.f), m_minCameraDistance(3.f), m_maxCameraDistance(10.f), m_indexVertexArrays(0), m_vertices(0)
-{
+{ //Constructor con parámetros por defecto
 	m_vehicle = 0;
 	m_wheelShape = 0;
 	m_cameraPosition = btVector3(30,30,30);
 }
 
-VehicleDemo::~VehicleDemo()
-{
-		//cleanup in the reverse order of creation/initialization
+VehicleDemo::~VehicleDemo() {
+	//David: Éste el destructor
+	
+	//cleanup in the reverse order of creation/initialization
 
 	//remove the rigidbodies from the dynamics world and delete them
 	int i;
-	for (i=m_dynamicsWorld->getNumCollisionObjects()-1; i>=0 ;i--)
-	{
+	for (i=m_dynamicsWorld->getNumCollisionObjects()-1; i>=0 ;i--) {
 		btCollisionObject* obj = m_dynamicsWorld->getCollisionObjectArray()[i];
 		btRigidBody* body = btRigidBody::upcast(obj);
-		if (body && body->getMotionState())
-		{
+		if (body && body->getMotionState()) {
 			delete body->getMotionState();
 		}
 		m_dynamicsWorld->removeCollisionObject( obj );
@@ -117,8 +114,7 @@ VehicleDemo::~VehicleDemo()
 	}
 
 	//delete collision shapes
-	for (int j=0;j<m_collisionShapes.size();j++)
-	{
+	for (int j=0;j<m_collisionShapes.size();j++) {
 		btCollisionShape* shape = m_collisionShapes[j];
 		delete shape;
 	}
@@ -130,9 +126,7 @@ VehicleDemo::~VehicleDemo()
 	delete m_dynamicsWorld;
 
 	delete m_vehicleRayCaster;
-
 	delete m_vehicle;
-
 	delete m_wheelShape;
 
 	//delete solver
@@ -145,12 +139,10 @@ VehicleDemo::~VehicleDemo()
 	delete m_dispatcher;
 
 	delete m_collisionConfiguration;
-
 }
 
-void VehicleDemo::initPhysics()
-{
-	
+void VehicleDemo::initPhysics() {
+	//David: realmente inicializa la demo
 
 #ifdef FORCE_ZAXIS_UP
 	m_cameraUp = btVector3(0,0,1);
