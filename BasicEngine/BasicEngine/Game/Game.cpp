@@ -241,12 +241,11 @@ void cGame::RenderMalla() {
 	//glDisable(GL_TEXTURE_2D);
 	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	//m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
-	((cScene *)mCubo.GetResource())->Render();
-	((cScene *)mScene.GetResource())->Render();
-
+	((cScene *) cSceneManager::Get().FindResourceA("CuboMax").GetResource())->Render();
+	((cScene *) cSceneManager::Get().FindResourceA("SueloMax").GetResource())->Render();
+	//((cScene *)mCubo.GetResource())->Render();
+	//((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
-
-
 }
 
 void cGame::RenderSkeletal ()

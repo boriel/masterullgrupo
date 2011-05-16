@@ -31,10 +31,8 @@ class cGame : public cSingleton<cGame>
 		cResourceHandle mCubo;
 		cResourceHandle mScene;
 		cResourceHandle mFontHandle;
-
 		cResourceHandle mSkeletalMesh;
 		cObject mObject;  //nuevo para el skeleton
-
 
 	protected:
 		cGame () { ; } //Protected Constructor
