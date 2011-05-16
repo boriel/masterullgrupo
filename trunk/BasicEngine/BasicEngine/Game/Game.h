@@ -3,7 +3,6 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 				Inicializacion - Update - Render - Destrucción
 */
 
-
 #ifndef GAME_H
 #define GAME_H
 
@@ -29,6 +28,7 @@ class cGame : public cSingleton<cGame>
 		cCamera m3DCamera;
 		cCamera m2DCamera;
 		cFont mFont;
+		cResourceHandle mCubo;
 		cResourceHandle mScene;
 		cResourceHandle mFontHandle;
 
