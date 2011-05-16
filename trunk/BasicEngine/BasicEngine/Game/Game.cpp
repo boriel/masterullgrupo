@@ -79,7 +79,7 @@ bool cGame::Init() { //Inicializa el juego
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
 	cMeshManager::Get().Init(10); // Init MeshManager	
-	cSceneManager::Get().Init(10); // Init SceneManager
+	cSceneManager::Get().Init(12); // Init SceneManager
 
 	cMaterialManager::Get().Init(10); //Init Material Manager
 	cEffectManager::Get().Init(10);
@@ -91,12 +91,15 @@ bool cGame::Init() { //Inicializa el juego
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax02.DAE");  //Para cargarla directamente
 	
 	//Estas dos van bien, a lo mejor sería convenniete ponerlas en el xml. Tambien hay que ver donde pintarlas!
-	//cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
-	//cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
+	cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 	
 	//mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
-	mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
-	mCubo = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
+	//mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	//mCubo = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
+
+	
+
 
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
 	cSkeletalManager::Get().Init(10);
@@ -237,15 +240,22 @@ void cGame::SetTheWorldMatrix() { // Set the world matrix
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-void cGame::RenderMalla() {
+void cGame::RenderMalla() 
+{
 	//glDisable(GL_TEXTURE_2D);
 	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	//m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
-	((cScene *) cSceneManager::Get().FindResourceA("CuboMax").GetResource())->Render();
-	((cScene *) cSceneManager::Get().FindResourceA("SueloMax").GetResource())->Render();
-	//((cScene *)mCubo.GetResource())->Render();
 	//((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
+
+	//((cScene *) cSceneManager::Get().FindResourceA("CuboMax").GetResource())->Render();
+	//((cScene *) cSceneManager::Get().FindResourceA("SueloMax").GetResource())->Render();
+
+	
+	unsigned int luiNextkey = cSceneManager::Get().GetNextKey();
+	for (int i = 0; i < luiNextkey - 1; i++)
+		((cScene *)cSceneManager::Get().FindResourceIndice(i).GetResource())->Render();
+
 }
 
 void cGame::RenderSkeletal ()
