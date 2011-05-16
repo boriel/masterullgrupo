@@ -94,7 +94,7 @@ bool cGame::Init() { //Inicializa el juego
 	//cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
 	//cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 	
-	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
+	//mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
 	mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
 	mCubo = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 
