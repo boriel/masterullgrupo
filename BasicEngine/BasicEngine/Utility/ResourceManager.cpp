@@ -98,6 +98,37 @@ cResourceHandle cResourceManager::FindResource( std::string lacNameID )
 }
 
 
+
+cResourceHandle cResourceManager::FindResourceIndice( int liIndice )
+{
+	cResourceHandle lHandle;
+	
+	//for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex )
+	if (liIndice < muiMaxSize)
+	{
+			// Is a valid resource?
+		if ( maResources[liIndice].muiKey != kuiInvalidKey )
+		{
+			// Check that all is right
+			assert( maResources[liIndice].mpResource );
+			assert( maResources[liIndice].mpResource->IsLoaded() );
+
+
+			lHandle.Init(this, liIndice, maResources[liIndice].muiKey);
+
+		}
+	}
+	
+	return lHandle;
+}
+
+
+
+
+
+
+
+
 //Si queremos liberar el recurso apuntado por un handle usaríamos la función pública
 //Si se encuentra el recurso indicado por el handle, se libera, se limpia la casilla del
 //vector y se añade a la lista de índices disponibles el índice de la casilla.

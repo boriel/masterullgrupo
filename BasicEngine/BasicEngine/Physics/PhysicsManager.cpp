@@ -1,3 +1,4 @@
+/*
 #include "PhysicsManager.h"
 
 #include "btBulletDynamicsCommon.h"
@@ -492,3 +493,4 @@ bool cPhysicsManager::Deinit(){
 
 	return true;
 }
+*/

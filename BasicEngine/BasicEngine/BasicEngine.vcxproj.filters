@@ -375,6 +375,7 @@
     <ClInclude Include="Physics\PhysicsManager.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Physics\PhysicsManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -624,5 +625,6 @@
     <ClCompile Include="Physics\PhysicsManager.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Physics\PhysicsManager.cpp" />
   </ItemGroup>
 </Project>
