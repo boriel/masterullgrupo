@@ -46,7 +46,7 @@ void cScene::Deinit() { //Destruyendo la memoria
 	}
 }
 
-void cScene::Update( float lfTimestep ) { //Update
+void cScene::Update( float lfTimestep ) { // Update
 	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex )
 		mObjectList[luiIndex]->Update(lfTimestep);
 }
