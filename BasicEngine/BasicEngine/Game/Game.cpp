@@ -94,11 +94,18 @@ bool cGame::Init() { //Inicializa el juego
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax02.DAE");  //Para cargarla directamente
 	
 	//Estas dos van bien, a lo mejor sería convenniete ponerlas en el xml. Tambien hay que ver donde pintarlas!
-	//mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
-	mScene = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
+	//cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	//cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 	
+	
+	
+	mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
+	mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	mScene = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 
 	
+	
+
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
 	cSkeletalManager::Get().Init(10);
 	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
@@ -256,6 +263,8 @@ void cGame::RenderMalla() {
 	//m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
 	((cScene *)mScene.GetResource())->Render();
 	//glEnable(GL_TEXTURE_2D);
+
+
 }
 
 void cGame::RenderSkeletal ()

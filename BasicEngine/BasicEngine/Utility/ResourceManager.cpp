@@ -24,7 +24,7 @@ void cResourceManager::Init( unsigned luiMaxSize ) {
 	muiNextKey = kuiInvalidKey + 1;
 
 	//incializando el nombre del fichero de recursos del nombre del xml
-	//msFilename = (".\\Data\\" + std::string("Resources.xml")); //Yorman quitado por ahora, ver si hay que ponerlo
+	msFilename = (".\\Data\\" + std::string("Resources.xml")); //Yorman quitado por ahora, ver si hay que ponerlo, si es necesario, ver como quitarlo de aqui
 	//LoadResourcesXml(msFilename.c_str());
 }
 
