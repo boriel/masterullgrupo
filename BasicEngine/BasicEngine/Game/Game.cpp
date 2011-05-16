@@ -98,12 +98,6 @@ bool cGame::Init() { //Inicializa el juego
 	mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
 	mScene = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 
-	
-<<<<<<< .mine
-=======
-	
-
->>>>>>> .r123
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
 	cSkeletalManager::Get().Init(10);
 	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
