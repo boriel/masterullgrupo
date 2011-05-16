@@ -8,7 +8,7 @@ Referencia: http://bulletphysics.com/Bullet/BulletFull/
 Manual de usuario: http://bulletphysics.com/ftp/pub/test/physics/Bullet_User_Manual.pdf
 */
 
-/*
+
 #pragma once
 
 #include "..\..\Utility\Singleton.h"
@@ -76,4 +76,3 @@ public:
 
 private:
 };
-*/
