@@ -1,15 +1,15 @@
 /*
-class yPhysichsManager
+class cPhysichsManager
 
-haciendo pruebas con la física, para hacer un manager y usarlo. Por ahora le pongo la "y" porque haremos varios experimentos y depsués la unificaremos.
+haciendo pruebas con la física, para hacer un manager y usarlo. 
 
 
 
 */
 
 
-#ifndef Y_PHYSICS_MANAGER_H
-#define Y_PHYSICS_MANAGER_H
+#ifndef PHYSICS_MANAGER_H
+#define PHYSICS_MANAGER_H
 
 #include "..\Utility\Singleton.h"
 
@@ -18,9 +18,9 @@ haciendo pruebas con la física, para hacer un manager y usarlo. Por ahora le pon
 #include <iostream>
 
 
-class ycPhysicsManager : public cSingleton<ycPhysicsManager> 
+class cPhysicsManager : public cSingleton<cPhysicsManager> 
 {
-	friend class cSingleton<ycPhysicsManager>;
+	friend class cSingleton<cPhysicsManager>;
 
 	public:
 		bool Init();

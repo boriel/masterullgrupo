@@ -1,10 +1,10 @@
 
-#include "yPhysicsManager.h"
+#include "PhysicsManager.h"
 
 
 
 //Inicializando la clase
-bool ycPhysicsManager::Init ()
+bool cPhysicsManager::Init ()
 {
 
 
@@ -28,7 +28,7 @@ bool ycPhysicsManager::Init ()
 }
 
 
-bool ycPhysicsManager::Deinit ()
+bool cPhysicsManager::Deinit ()
 {
 	
 	// Clean up behind ourselves like good little programmers

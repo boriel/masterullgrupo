@@ -5,11 +5,11 @@ clase
 
 */
 
-#ifndef Y_PHYSICS_H
-#define Y_PHYSICS_H
+#ifndef PHYSICS_OBJECT_H
+#define PHYSICS_OBJECT_H
 
 
-class ycPhysics 
+class cPhysicsObject
 {
 
 
