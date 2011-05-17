@@ -6,8 +6,8 @@
       <authoring_tool>FBX COLLADA exporter</authoring_tool>
       <comments></comments>
     </contributor>
-    <created>2011-05-12T18:38:11Z</created>
-    <modified>2011-05-12T18:38:11Z</modified>
+    <created>2011-05-17T18:31:03Z</created>
+    <modified>2011-05-17T18:31:03Z</modified>
     <revision></revision>
     <title></title>
     <subject></subject>
@@ -17,7 +17,7 @@
   </asset>
   <library_images>
     <image id="Map__1-image" name="Map__1">
-      <init_from>file://images/CuboTextura.jpg</init_from>
+      <init_from>file://images\CuboTextura.jpg</init_from>
     </image>
   </library_images>
   <library_materials>
@@ -267,7 +267,7 @@
   <library_visual_scenes>
     <visual_scene id="RootNode" name="RootNode">
       <node id="Suelo" name="Suelo">
-        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000 0.000000 0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000 1.979710 0.000000 -1.000000 0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
         <instance_geometry url="#Suelo-lib">
           <bind_material>
             <technique_common>

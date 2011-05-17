@@ -127,12 +127,14 @@ bool cGame::Init() { //Inicializa el juego
 
 
 
+
+	/*
 	//TODO. Para quitar (David)
 	cHelloWorldDavid *lpCubo=new cHelloWorldDavid();
 	lpCubo->Init();
 	lpCubo->Update();
 	lpCubo->Deinit();
-
+	*/
 
 	return lbResult;
 }
@@ -154,6 +156,8 @@ bool cGame::Deinit() { //Destructor del juego
 
 	cEffectManager::Get().Deinit();
 	
+	cPhysicsManager::Get().Deinit();
+
 	return lbResult;
 }
 
@@ -224,7 +228,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara
+	m3DCamera.SetLookAt(cVec3(6.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	RenderMalla(); //Por ahora dibuja el dragon

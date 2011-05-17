@@ -23,6 +23,7 @@ bool cPhysicsManager::Init ()
 	mDynamicsWorld->setGravity(btVector3(0,-10,0));
  
 
+
 	return true;
 	
 }
