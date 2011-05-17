@@ -21,10 +21,9 @@
 #include "..\Graphics\Effects\EffectManager.h"
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
-//#include "..\Physics\HelloWorldDavid.h"
+#include "..\Physics\HelloWorldDavid.h"
 
 extern tActionMapping kaActionMapping[];
-
 
 bool cGame::Init() { //Inicializa el juego
 	mbFinish = false;
@@ -119,6 +118,11 @@ bool cGame::Init() { //Inicializa el juego
 
 
 	mfAcTime = 0.0f;
+
+	cHelloWorldDavid *lpCubo=new cHelloWorldDavid();
+	//lpCubo->Init();
+	//lpCubo->Update();
+	//lpCubo->Deinit();
 
 	return lbResult;
 }

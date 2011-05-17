@@ -15,7 +15,7 @@ void cHelloWorldDavid::Init() {
 	mpSolver = new btSequentialImpulseConstraintSolver; // The actual physics solver
  
 	// The world.
-	btDiscreteDynamicsWorld* mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, 
+	mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, 
 		mpBroadphase, mpSolver, mpCollisionConfiguration);
 	mpDynamicsWorld->setGravity(btVector3(0,-10,0));
  

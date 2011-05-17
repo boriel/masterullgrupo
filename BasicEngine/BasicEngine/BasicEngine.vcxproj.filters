@@ -375,6 +375,9 @@
     <ClInclude Include="Physics\yPhysicsManager.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\HelloWorldDavid.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -622,6 +625,9 @@
       <Filter>Game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Physics\yPhysicsManager.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\HelloWorldDavid.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
