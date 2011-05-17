@@ -1,7 +1,7 @@
 #include "HelloWorldDavid.h"
 #include <iostream>
 
-void HelloWorldDavid::Init() {
+void cHelloWorldDavid::Init() {
 	std::cout << "Hello World! Init" << std::endl;
  
 	//========================
@@ -37,7 +37,7 @@ void HelloWorldDavid::Init() {
 	mpDynamicsWorld->addRigidBody(mpFallRigidBody);
 }
 
-void HelloWorldDavid::Update() { //Update
+void cHelloWorldDavid::Update() { //Update
 	for (int i=0 ; i<300 ; i++)  {
 		mpDynamicsWorld->stepSimulation(1/60.f,10);
  
@@ -48,7 +48,7 @@ void HelloWorldDavid::Update() { //Update
 	}
 }
 
-void HelloWorldDavid::Deinit() { //Deinit
+void cHelloWorldDavid::Deinit() { //Deinit
 	mpDynamicsWorld->removeRigidBody(mpFallRigidBody);
 	delete mpFallRigidBody->getMotionState();
 	delete mpFallRigidBody;

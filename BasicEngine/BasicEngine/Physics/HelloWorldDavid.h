@@ -9,8 +9,8 @@ Ejemplo de Hello world de la web de http://www.bulletphysics.org/mediawiki-1.5.8
 //#include "GlutStuff.h"
 //#include "GLDebugDrawer.h"
 #include "btBulletDynamicsCommon.h" //creo que para este ejemplo tampoco hace falta
- 
-class HelloWorldDavid {
+
+class cHelloWorldDavid {
 private:
 	btDiscreteDynamicsWorld* mpDynamicsWorld; // The world.
 	btRigidBody* mpFallRigidBody;
