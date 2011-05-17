@@ -21,7 +21,7 @@
 #include "..\Graphics\Effects\EffectManager.h"
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
-
+//#include "..\Physics\HelloWorldDavid.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -253,9 +253,8 @@ void cGame::RenderMalla()
 
 	
 	unsigned int luiNextkey = cSceneManager::Get().GetNextKey();
-	for (int i = 0; i < luiNextkey - 1; i++)
+	for (unsigned int i = 0; i < luiNextkey - 1; i++)
 		((cScene *)cSceneManager::Get().FindResourceIndice(i).GetResource())->Render();
-
 }
 
 void cGame::RenderSkeletal ()

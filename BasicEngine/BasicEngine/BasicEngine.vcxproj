@@ -188,7 +188,6 @@
     <ClInclude Include="MathLib\Vec\Vec4.h" />
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
-    <ClInclude Include="Physics\HelloWorldDavid.h" />
     <ClInclude Include="Utility\Debug.h" />
     <ClInclude Include="Utility\FileUtils.h" />
     <ClInclude Include="Utility\Resource.h" />
