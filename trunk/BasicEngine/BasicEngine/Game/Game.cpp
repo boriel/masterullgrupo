@@ -22,6 +22,7 @@
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
 #include "..\Physics\HelloWorldDavid.h"
+#include "..\Physics\yPhysicsManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -116,11 +117,22 @@ bool cGame::Init() { //Inicializa el juego
 
 	mfAcTime = 0.0f;
 
+
+
+
+	
+	//Pruebas de Yorman
+	ycPhysicsManager::Get().Init();
+
+
+
+
 	//TODO. Para quitar (David)
 	cHelloWorldDavid *lpCubo=new cHelloWorldDavid();
 	lpCubo->Init();
 	lpCubo->Update();
 	lpCubo->Deinit();
+
 
 	return lbResult;
 }
@@ -160,18 +172,22 @@ void cGame::Update(float lfTimestep) { //update del juego
 	mObject.Update(lfTimestep);
 
 	static bool mbJogging = false;
-	if (BecomePressed( eIA_PlayJog ) && !mbJogging) {
+	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
+	{
 		mbJogging = true;
 		lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
 		lpSkeletonMesh->StopAnim("Idle", 0.1f);
-	} else if (BecomePressed( eIA_StopJog ) && mbJogging) {
+	} else if (BecomePressed( eIA_StopJog ) && mbJogging) 
+	{
 		mbJogging = false;
 		lpSkeletonMesh->PlayAnim("Idle", 1.0f, 0.1f);
 		lpSkeletonMesh->StopAnim("Jog", 0.1f);
 	}
-	if (BecomePressed( eIA_PlayWave )) {
+	if (BecomePressed( eIA_PlayWave )) 
+	{
 		lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f, 0.1f);
-	} else if (BecomePressed( eIA_StopWave )) {
+	} else if (BecomePressed( eIA_StopWave )) 
+	{
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
 
