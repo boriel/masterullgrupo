@@ -97,9 +97,6 @@ bool cGame::Init() { //Inicializa el juego
 	//mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
 	//mCubo = cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 
-	
-
-
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
 	cSkeletalManager::Get().Init(10);
 	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
@@ -119,10 +116,11 @@ bool cGame::Init() { //Inicializa el juego
 
 	mfAcTime = 0.0f;
 
+	//TODO. Para quitar (David)
 	cHelloWorldDavid *lpCubo=new cHelloWorldDavid();
-	//lpCubo->Init();
-	//lpCubo->Update();
-	//lpCubo->Deinit();
+	lpCubo->Init();
+	lpCubo->Update();
+	lpCubo->Deinit();
 
 	return lbResult;
 }

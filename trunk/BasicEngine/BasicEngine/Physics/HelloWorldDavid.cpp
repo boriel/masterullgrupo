@@ -25,7 +25,7 @@ void cHelloWorldDavid::Init() {
  
 	btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-1,0)));
 	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,mpGroundShape,btVector3(0,0,0));
-	btRigidBody* mpGroundRigidBody = new btRigidBody(groundRigidBodyCI);
+	mpGroundRigidBody = new btRigidBody(groundRigidBodyCI);
 	mpDynamicsWorld->addRigidBody(mpGroundRigidBody);
  
 	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,50,0)));
@@ -33,7 +33,7 @@ void cHelloWorldDavid::Init() {
 	btVector3 fallInertia(0,0,0);
 	mpFallShape->calculateLocalInertia(mass,fallInertia);
 	btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,mpFallShape,fallInertia);
-	btRigidBody* mpFallRigidBody = new btRigidBody(fallRigidBodyCI);
+	mpFallRigidBody = new btRigidBody(fallRigidBodyCI);
 	mpDynamicsWorld->addRigidBody(mpFallRigidBody);
 }
 
