@@ -14,7 +14,6 @@ haciendo pruebas con la física, para hacer un manager y usarlo. Por ahora le pon
 #include "..\Utility\Singleton.h"
 
 #include "btBulletDynamicsCommon.h"
-//#include "BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
 
 #include <iostream>
 
@@ -32,9 +31,12 @@ class ycPhysicsManager : public cSingleton<ycPhysicsManager>
 
 		btDiscreteDynamicsWorld* mDynamicsWorld;
 
-
-
 	private:
+		btBroadphaseInterface* mBroadphase;
+		btDefaultCollisionConfiguration* mCollisionConfiguration;
+		btCollisionDispatcher* mDispatcher;
+		btSequentialImpulseConstraintSolver* mSolver;
+
 
 };
 
