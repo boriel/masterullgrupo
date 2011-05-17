@@ -22,7 +22,7 @@
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
 #include "..\Physics\HelloWorldDavid.h"
-#include "..\Physics\yPhysicsManager.h"
+#include "..\Physics\PhysicsManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -122,7 +122,7 @@ bool cGame::Init() { //Inicializa el juego
 
 	
 	//Pruebas de Yorman
-	ycPhysicsManager::Get().Init();
+	cPhysicsManager::Get().Init();
 
 
 
