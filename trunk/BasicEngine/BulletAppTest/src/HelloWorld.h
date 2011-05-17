@@ -6,9 +6,9 @@ Ejemplo de Hello world de la web de http://www.bulletphysics.org/mediawiki-1.5.8
 #ifndef HELLO_WORLD
 #define HELLO_WORLD
 
-#include "GlutStuff.h"
-#include "GLDebugDrawer.h"
-#include "btBulletDynamicsCommon.h"
+//#include "GlutStuff.h"
+//#include "GLDebugDrawer.h"
+#include "btBulletDynamicsCommon.h" //creo que para este ejemplo tampoco hace falta
 
 
 
