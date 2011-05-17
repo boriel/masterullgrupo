@@ -4,7 +4,7 @@ Test para probar la librería Bullet
 
 //DEMO_1: HelloWorld
 //DEMO_2: Vehicle
-#define DEMO_2
+#define DEMO_1
 
 //Demo del Vehicle
 #include "VehicleDemo.h"
