@@ -1,43 +1,32 @@
 
 #include "PhysicsManager.h"
 
-
-
-//Inicializando la clase
-bool cPhysicsManager::Init ()
-{
-
+bool cPhysicsManager::Init () { //Inicializando la clase
 
 	// Build the broadphase
-	mBroadphase = new btDbvtBroadphase();
+	mpBroadphase = new btDbvtBroadphase();
  
 	// Set up the collision configuration and dispatcher
-	mCollisionConfiguration = new btDefaultCollisionConfiguration();
-	mDispatcher = new btCollisionDispatcher(mCollisionConfiguration);
+	mpCollisionConfiguration = new btDefaultCollisionConfiguration();
+	mpDispatcher = new btCollisionDispatcher(mpCollisionConfiguration);
  
 	// The actual physics solver
-	mSolver = new btSequentialImpulseConstraintSolver;
+	mpSolver = new btSequentialImpulseConstraintSolver;
  
 	// The world.
-	mDynamicsWorld = new btDiscreteDynamicsWorld(mDispatcher, mBroadphase, mSolver, mCollisionConfiguration);
-	mDynamicsWorld->setGravity(btVector3(0,-10,0));
+	mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, mpBroadphase, mpSolver, mpCollisionConfiguration);
+	mpDynamicsWorld->setGravity(btVector3(0,-10,0));
  
-
-
-	return true;
-	
+	return true;	
 }
 
-
-bool cPhysicsManager::Deinit ()
-{
-	
+bool cPhysicsManager::Deinit () {
 	// Clean up behind ourselves like good little programmers
-	delete mDynamicsWorld;
-	delete mSolver;
-	delete mDispatcher;
-	delete mCollisionConfiguration;
-	delete mBroadphase;
+	delete mpDynamicsWorld;
+	delete mpSolver;
+	delete mpDispatcher;
+	delete mpCollisionConfiguration;
+	delete mpBroadphase;
  
 	return true;
 }
