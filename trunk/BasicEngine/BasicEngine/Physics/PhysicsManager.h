@@ -17,6 +17,7 @@ class cPhysicsManager : public cSingleton<cPhysicsManager> {
 	public:
 		bool Init();
 		bool Deinit();
+		void Update(float lfTimestep); // Function to update the world
 		btDiscreteDynamicsWorld* GetDynamicsWorld(void) { return mpDynamicsWorld;}
 
 	private:
