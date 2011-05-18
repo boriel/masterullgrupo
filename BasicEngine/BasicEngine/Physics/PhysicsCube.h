@@ -23,8 +23,8 @@ private:
 	btBroadphaseInterface* mpBroadphase;
 
 public:
-	void Init(void);
-	void Update(void);
+	void Init(btDiscreteDynamicsWorld* lpDynamicsWorld);
+	void Update(float lfTimestep);
 	void Deinit(void);
 };
 
