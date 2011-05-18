@@ -1,27 +1,33 @@
 
 #include "PhysicsManager.h"
 
-bool cPhysicsManager::Init () { //Inicializando la clase
 
-	// Build the broadphase
-	mpBroadphase = new btDbvtBroadphase();
- 
+bool cPhysicsManager::Init () {
+	//========================
+	//Creando el mundo físico
+	mpBroadphase = new btDbvtBroadphase(); // Build the broadphase
+
 	// Set up the collision configuration and dispatcher
 	mpCollisionConfiguration = new btDefaultCollisionConfiguration();
 	mpDispatcher = new btCollisionDispatcher(mpCollisionConfiguration);
- 
-	// The actual physics solver
-	mpSolver = new btSequentialImpulseConstraintSolver;
+	
+	mpSolver = new btSequentialImpulseConstraintSolver; // The actual physics solver
  
 	// The world.
-	mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, mpBroadphase, mpSolver, mpCollisionConfiguration);
+	mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, 
+		mpBroadphase, mpSolver, mpCollisionConfiguration);
 	mpDynamicsWorld->setGravity(btVector3(0,-10,0));
  
+	//TODO: Prueba temporal
+	lpTemp=new cPhysicsCube();
+	lpTemp->Init(mpDynamicsWorld);
+
 	return true;	
 }
 
 bool cPhysicsManager::Deinit () {
-	// Clean up behind ourselves like good little programmers
+	lpTemp->Deinit();
+
 	delete mpDynamicsWorld;
 	delete mpSolver;
 	delete mpDispatcher;
@@ -32,4 +38,5 @@ bool cPhysicsManager::Deinit () {
 }
 
 void cPhysicsManager::Update(float lfTimestep) { //update
+	lpTemp->Update(lfTimestep);
 }

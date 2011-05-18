@@ -21,7 +21,6 @@
 #include "..\Graphics\Effects\EffectManager.h"
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
-#include "..\Physics\PhysicsCube.h"
 #include "..\Physics\PhysicsManager.h"
 
 extern tActionMapping kaActionMapping[];
@@ -117,24 +116,10 @@ bool cGame::Init() { //Inicializa el juego
 
 	mfAcTime = 0.0f;
 
-
-
-
-	
-	//Pruebas de Yorman
+	//TODO: Pruebas de Yorman-David
 	cPhysicsManager::Get().Init();
-
-
-
-
-
-	/*
-	//TODO. Para quitar (David)
-	cHelloWorldDavid *lpCubo=new cHelloWorldDavid();
-	lpCubo->Init();
-	lpCubo->Update();
-	lpCubo->Deinit();
-	*/
+	cPhysicsManager::Get().Update(1/60.f);
+	cPhysicsManager::Get().Deinit();
 
 	return lbResult;
 }

@@ -1,23 +1,10 @@
 #include "PhysicsCube.h"
 #include <iostream>
 
-void cPhysicsCube::Init() {
-	std::cout << "Hello World! Init" << std::endl;
+void cPhysicsCube::Init(btDiscreteDynamicsWorld* lpDynamicsWorld) {
+	std::cout << "Cubo.Init()" << std::endl;
+	mpDynamicsWorld = lpDynamicsWorld;
  
-	//========================
-	//Creando el objeto físico
-	mpBroadphase = new btDbvtBroadphase(); // Build the broadphase
-
-	// Set up the collision configuration and dispatcher
-	mpCollisionConfiguration = new btDefaultCollisionConfiguration();
-	mpDispatcher = new btCollisionDispatcher(mpCollisionConfiguration);
-	
-	mpSolver = new btSequentialImpulseConstraintSolver; // The actual physics solver
- 
-	// The world.
-	mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, 
-		mpBroadphase, mpSolver, mpCollisionConfiguration);
-	mpDynamicsWorld->setGravity(btVector3(0,-10,0));
  
 	// Do_everything_else_here
 	mpGroundShape = new btStaticPlaneShape(btVector3(0,1,0),1); 
@@ -37,9 +24,10 @@ void cPhysicsCube::Init() {
 	mpDynamicsWorld->addRigidBody(mpFallRigidBody);
 }
 
-void cPhysicsCube::Update() { //Update
+void cPhysicsCube::Update(float lfTimestep) { //Update
 	for (int i=0 ; i<300 ; i++)  {
-		mpDynamicsWorld->stepSimulation(1/60.f,10);
+		//mpDynamicsWorld->stepSimulation(1/60.f,10);
+		mpDynamicsWorld->stepSimulation(lfTimestep,10);
  
 		btTransform trans;
 		mpFallRigidBody->getMotionState()->getWorldTransform(trans);
@@ -59,12 +47,5 @@ void cPhysicsCube::Deinit() { //Deinit
  
 	delete mpFallShape;
 	delete mpGroundShape;
- 
-	// Clean up behind ourselves like good little programmers
-	delete mpDynamicsWorld;
-	delete mpSolver;
-	delete mpDispatcher;
-	delete mpCollisionConfiguration;
-	delete mpBroadphase;
-}
+ }
 
