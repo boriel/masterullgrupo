@@ -11,7 +11,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
 #include "..\Graphics\Fonts\acgfx_font.h"
-#include "Scene\Object.h"
+#include "Scene\SubModel.h"
 
 // #include "..\Game\Scene\Scene.h"
 //TODO
@@ -32,7 +32,7 @@ class cGame : public cSingleton<cGame>
 		cResourceHandle mScene;
 		cResourceHandle mFontHandle;
 		cResourceHandle mSkeletalMesh;
-		cObject mObject;  //nuevo para el skeleton
+		cSubModel mObject;  //nuevo para el skeleton
 
 	protected:
 		cGame () { ; } //Protected Constructor

@@ -11,25 +11,27 @@ escena con ese fichero y si todo ha ido bien, devolveremos la escena recién carg
 lo contrario, liberamos la memoria y devolvemos NULL.
 
 
+clase cambiada: ModelManager: Se encarga de cargar y gestionar los modelos cargados
+
 */
 
 
 
-#ifndef SCENE_MANAGER_H
-#define SCENE_MANAGER_H
+#ifndef MODEL_MANAGER_H
+#define MODEL_MANAGER_H
 
 
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
 
-class cSceneManager : public cResourceManager, public cSingleton<cSceneManager>
+class cModelManager : public cResourceManager, public cSingleton<cModelManager>
 {
 	public:
-		friend class cSingleton<cSceneManager>;
+		friend class cSingleton<cModelManager>;
 	
 	protected:
-		cSceneManager() { ; } // Protected constructor
+		cModelManager() { ; } // Protected constructor
 	
 	private:
 		virtual cResource * LoadResourceInternal( std::string lacNameID, const std::string &lacFile );

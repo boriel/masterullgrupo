@@ -1,12 +1,12 @@
 
-#include "Scene.h"
+#include "Model.h"
 
 #include <assimp.hpp> // C++ importer interface
 #include <aiScene.h> // Output data structure
 #include <aiPostProcess.h> // Post processing flags
 #include <cassert>
 
-#include "SceneManager.h"
+#include "ModelManager.h"
 #include "..\..\Graphics\Meshes\MeshManager.h"
 #include "..\..\Graphics\Meshes\Mesh.h"
 #include "../../Graphics/Materials/MaterialData.h"
@@ -15,7 +15,8 @@
 #include "../../Utility/FileUtils.h"
 #include "..\..\MathLib\MathLib.h"
 
-bool cScene::Init( const std::string &lacNameID, const std::string &lacFile ) {
+bool cModel::Init( const std::string &lacNameID, const std::string &lacFile ) 
+{
 	macFile = lacFile;
 	mbLoaded = false;
 
@@ -39,19 +40,25 @@ bool cScene::Init( const std::string &lacNameID, const std::string &lacFile ) {
 	return true;
 }
 
-void cScene::Deinit() { //Destruyendo la memoria
+//Destruyendo la memoria
+void cModel::Deinit() 
+{ 
 	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex ) {
 		mObjectList[luiIndex]->Deinit();
 		delete mObjectList[luiIndex];
 	}
 }
 
-void cScene::Update( float lfTimestep ) { // Update
+//Update
+void cModel::Update( float lfTimestep ) 
+{ 
 	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex )
 		mObjectList[luiIndex]->Update(lfTimestep);
 }
 
-void cScene::Render() {//Render
+//Render
+void cModel::Render() 
+{
 	
 	//for ( cMeshHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
 	//	((cMesh *)lpIt->GetResource())->RenderMesh();
@@ -92,7 +99,7 @@ void cScene::Render() {//Render
 //contiene las meshes en sí mismas. Por lo tanto lo que haremos será acceder a todas esas
 //mallas y cargarlas dentro de una clase cMesh que estará gestionada por una clase
 //cMeshManager que sigue el patrón de recursos que ya hemos usado con anterioridad
-void cScene::ProcessScene( const aiScene* lpScene )
+void cModel::ProcessScene( const aiScene* lpScene )
 {
 	
 	// Meshes
@@ -158,7 +165,7 @@ void cScene::ProcessScene( const aiScene* lpScene )
 //A continuación se comprueba si este nodo tiene alguna malla asociada y de ser así, crea
 //un nuevo cObject y establece sus datos, para añadir finalmente el objeto a un vector
 
-void cScene::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
+void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 {
 	// if node has meshes, create a new scene object for it
 	cMatrix lNodeTransform( cVec4(lpNode->mTransformation.a1,
@@ -182,21 +189,21 @@ void cScene::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 
 	if( lpNode->mNumMeshes > 0)
 	{
-		cObject *lpObject = new cObject;
-		lpObject->Init();
-		lpObject->SetName( lpNode->mName.data );
-		lpObject->SetWorldMatrix(lTransform);
+		cSubModel *lpSubModel = new cSubModel;
+		lpSubModel->Init();
+		lpSubModel->SetName( lpNode->mName.data );
+		lpSubModel->SetWorldMatrix(lTransform);
 
 		for (unsigned luiIndex=0;luiIndex<lpNode->mNumMeshes;++luiIndex)
 		{
 			unsigned luiMeshIndex = lpNode->mMeshes[luiIndex];
 			unsigned luiMaterialIndex;
 			luiMaterialIndex = mMeshMaterialIndexList[luiMeshIndex];
-			lpObject->AddMesh( mMeshList[luiMeshIndex],
+			lpSubModel->AddMesh( mMeshList[luiMeshIndex],
 			mMaterialList[luiMaterialIndex] );
 		}
 
-	mObjectList.push_back(lpObject);
+	mObjectList.push_back(lpSubModel);
 	}
 
 	// continue for all child nodes

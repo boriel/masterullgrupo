@@ -13,9 +13,9 @@
 #include "..\Character\CharacterManager.h"
 #include "..\Character\Behaviour\BehaviourManager.h"
 #include "..\Character\Behaviour\ChaserBase.h"
-#include "..\Game\Scene\SceneManager.h"
+#include "..\Game\Scene\ModelManager.h"
 #include "..\Graphics\Meshes\MeshManager.h"
-#include "..\Game\Scene\Scene.h"
+#include "..\Game\Scene\Model.h"
 #include "..\Graphics\Fonts\FontManager.h"
 #include "..\Graphics\Materials\MaterialManager.h"
 #include "..\Graphics\Effects\EffectManager.h"
@@ -79,7 +79,7 @@ bool cGame::Init() { //Inicializa el juego
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
 	cMeshManager::Get().Init(10); // Init MeshManager	
-	cSceneManager::Get().Init(12); // Init SceneManager
+	cModelManager::Get().Init(12); // Init SceneManager
 
 	cMaterialManager::Get().Init(10); //Init Material Manager
 	cEffectManager::Get().Init(10);
@@ -91,8 +91,8 @@ bool cGame::Init() { //Inicializa el juego
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax02.DAE");  //Para cargarla directamente
 	
 	//Estas dos van bien, a lo mejor sería convenniete ponerlas en el xml. Tambien hay que ver donde pintarlas!
-	cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
-	cSceneManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
+	cModelManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	cModelManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 	
 	//mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
 	//mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
@@ -146,7 +146,7 @@ bool cGame::Deinit() { //Destructor del juego
 	
 	cInputManager::Get().Deinit();
 	mFont.Deinit();
-	cSceneManager::Get().Deinit();
+	cModelManager::Get().Deinit();
 	cMeshManager::Get().Deinit();
 	cInputManager::Get().Deinit();
 	cTextureManager::Get().Deinit();
@@ -274,9 +274,9 @@ void cGame::RenderMalla()
 	//((cScene *) cSceneManager::Get().FindResourceA("SueloMax").GetResource())->Render();
 
 	
-	unsigned int luiNextkey = cSceneManager::Get().GetNextKey();
+	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
-		((cScene *)cSceneManager::Get().FindResourceIndice(i).GetResource())->Render();
+		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
 }
 
 void cGame::RenderSkeletal ()
