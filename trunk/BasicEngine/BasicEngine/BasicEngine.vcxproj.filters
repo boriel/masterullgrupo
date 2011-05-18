@@ -363,9 +363,6 @@
     <ClInclude Include="Graphics\Skeletal\SkeletalMesh.h">
       <Filter>Graphics\Skeletal</Filter>
     </ClInclude>
-    <ClInclude Include="Physics\HelloWorldDavid.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
     <ClInclude Include="Physics\PhysicsManager.h">
       <Filter>Physics</Filter>
     </ClInclude>
@@ -380,6 +377,9 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\ModelManager.h">
       <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsCube.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -618,9 +618,6 @@
     <ClCompile Include="Graphics\Skeletal\SkeletalMesh.cpp">
       <Filter>Graphics\Skeletal</Filter>
     </ClCompile>
-    <ClCompile Include="Physics\HelloWorldDavid.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Physics\PhysicsManager.cpp">
       <Filter>Physics</Filter>
     </ClCompile>
@@ -635,6 +632,9 @@
     </ClCompile>
     <ClCompile Include="Game\Scene\ModelManager.cpp">
       <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsCube.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@
 #include "..\Graphics\Effects\EffectManager.h"
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
-#include "..\Physics\HelloWorldDavid.h"
+#include "..\Physics\PhysicsCube.h"
 #include "..\Physics\PhysicsManager.h"
 
 extern tActionMapping kaActionMapping[];

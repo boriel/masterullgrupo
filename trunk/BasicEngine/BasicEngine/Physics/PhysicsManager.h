@@ -1,10 +1,6 @@
 /*
 class cPhysichsManager
-
 haciendo pruebas con la física, para hacer un manager y usarlo. 
-
-
-
 */
 
 
@@ -12,32 +8,23 @@ haciendo pruebas con la física, para hacer un manager y usarlo.
 #define PHYSICS_MANAGER_H
 
 #include "..\Utility\Singleton.h"
-
 #include "btBulletDynamicsCommon.h"
+#include <iostream> //TODO para quitar, sólo está para debug
 
-#include <iostream>
-
-
-class cPhysicsManager : public cSingleton<cPhysicsManager> 
-{
+class cPhysicsManager : public cSingleton<cPhysicsManager> {
 	friend class cSingleton<cPhysicsManager>;
 
 	public:
 		bool Init();
 		bool Deinit();
-
-
-	public:
-
-		btDiscreteDynamicsWorld* mDynamicsWorld;
+		btDiscreteDynamicsWorld* GetDynamicsWorld(void) { return mpDynamicsWorld;}
 
 	private:
-		btBroadphaseInterface* mBroadphase;
-		btDefaultCollisionConfiguration* mCollisionConfiguration;
-		btCollisionDispatcher* mDispatcher;
-		btSequentialImpulseConstraintSolver* mSolver;
-
-
+		btDiscreteDynamicsWorld* mpDynamicsWorld;
+		btBroadphaseInterface* mpBroadphase;
+		btDefaultCollisionConfiguration* mpCollisionConfiguration;
+		btCollisionDispatcher* mpDispatcher;
+		btSequentialImpulseConstraintSolver* mpSolver;
 };
 
 #endif
