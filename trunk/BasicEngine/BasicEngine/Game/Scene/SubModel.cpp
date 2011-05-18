@@ -9,7 +9,7 @@
 void cSubModel::Init()
 {
 	macName = "";
-	mWorldMatrix.LoadIdentity();
+	mLocalMatrix.LoadIdentity();
 	mMeshHandles.resize(0);
 	mMaterialHandles.resize(0);
 }
@@ -46,11 +46,13 @@ void cSubModel::Update( float lfTimestep )
 
 //La función Render, que lo que hará será iterar por las mallas y materiales y establecerlos, 
 //junto con la matriz de mundo correspondiente
-void cSubModel::Render()
+//void cSubModel::Render()
+void cSubModel::Render(cMatrix &lWorld)
 {
 
 	// Set World Matrix
-	cGraphicManager::Get().SetWorldMatrix(mWorldMatrix);
+	//cGraphicManager::Get().SetWorldMatrix(mLocalMatrix);
+	cGraphicManager::Get().SetWorldMatrix(mLocalMatrix * lWorld);
 	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
 	{
 		// Set the material

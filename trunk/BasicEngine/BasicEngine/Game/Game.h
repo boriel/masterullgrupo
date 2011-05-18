@@ -32,7 +32,7 @@ class cGame : public cSingleton<cGame>
 		cResourceHandle mScene;
 		cResourceHandle mFontHandle;
 		cResourceHandle mSkeletalMesh;
-		cSubModel mObject;  //nuevo para el skeleton
+		cSubModel mSubModel;  //nuevo para el skeleton
 
 	protected:
 		cGame () { ; } //Protected Constructor

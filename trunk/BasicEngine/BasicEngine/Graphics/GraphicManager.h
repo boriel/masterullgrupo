@@ -28,6 +28,7 @@ public:
 	void DrawAxis();
 
 	void SetWorldMatrix (const cMatrix &lMatrix);
+	cMatrix GetWorldMatrix () { return mWorldMatrix; } //añadida esta línea
 	void RefreshWorldView ();
 	void ActivateCamera (cCamera* lpCamera);
 

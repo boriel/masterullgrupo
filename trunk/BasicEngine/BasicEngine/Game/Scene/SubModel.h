@@ -29,19 +29,20 @@ class cSubModel
 		void Deinit();
 		
 		virtual void Update( float lfTimestep );
-		virtual void Render();
+		//virtual void Render();
+		virtual void Render(cMatrix &lWorld);
 		
 		inline string GetName() { return macName; }
 		inline void SetName(const string &lacName) { macName = lacName; }
-		inline void SetWorldMatrix(const cMatrix& lWorld) {	mWorldMatrix = lWorld; }
+		inline void SetLocalMatrix(const cMatrix& lWorld) {	mLocalMatrix = lWorld; }
 		
-		inline cMatrix GetWorldMatrix( const cMatrix& lWorld ) {	return mWorldMatrix; }
+		inline cMatrix GetLocalMatrix( const cMatrix& lWorld ) {	return mLocalMatrix; }
 		
 		void AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHandle );
 
 	protected:
 		string macName;
-		cMatrix mWorldMatrix;
+		cMatrix mLocalMatrix;
 
 		std::vector<cResourceHandle> mMeshHandles;
 		std::vector<cResourceHandle> mMaterialHandles;

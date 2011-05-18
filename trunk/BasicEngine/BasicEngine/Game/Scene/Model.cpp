@@ -14,6 +14,7 @@
 #include "../../Graphics/Materials/MaterialManager.h"
 #include "../../Utility/FileUtils.h"
 #include "..\..\MathLib\MathLib.h"
+#include "..\..\Graphics\GraphicManager.h"
 
 bool cModel::Init( const std::string &lacNameID, const std::string &lacFile ) 
 {
@@ -57,7 +58,8 @@ void cModel::Update( float lfTimestep )
 }
 
 //Render
-void cModel::Render() 
+//void cModel::Render() 
+void cModel::Render(cMatrix &lWorld) 
 {
 	
 	//for ( cMeshHandleListIt lpIt = mMeshList.begin();	lpIt != mMeshList.end(); ++lpIt )
@@ -83,11 +85,17 @@ void cModel::Render()
 	}
 	*/
 
+	/*
 	//Render Objects
-	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex )
+	for (unsigned luiIndex = 0; luiIndex < mObjectList.size(); ++luiIndex )
 		mObjectList[luiIndex]->Render();
-	
-	
+	*/
+
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectList.size(); ++luiIndex )
+		mObjectList[luiIndex]->Render(lWorld);
+
+
 }
 
 
@@ -192,7 +200,7 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 		cSubModel *lpSubModel = new cSubModel;
 		lpSubModel->Init();
 		lpSubModel->SetName( lpNode->mName.data );
-		lpSubModel->SetWorldMatrix(lTransform);
+		lpSubModel->SetLocalMatrix(lTransform);
 
 		for (unsigned luiIndex=0;luiIndex<lpNode->mNumMeshes;++luiIndex)
 		{
