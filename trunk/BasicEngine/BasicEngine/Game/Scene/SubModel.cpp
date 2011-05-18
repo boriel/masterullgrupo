@@ -1,4 +1,4 @@
-#include "Object.h"
+#include "SubModel.h"
 
 
 #include "..\..\Graphics\GraphicManager.h"
@@ -6,7 +6,7 @@
 #include "..\..\Graphics\Meshes\Mesh.h"
 
 //Inicialización
-void cObject::Init()
+void cSubModel::Init()
 {
 	macName = "";
 	mWorldMatrix.LoadIdentity();
@@ -16,14 +16,14 @@ void cObject::Init()
 
 
 
-void cObject::Deinit()
+void cSubModel::Deinit()
 {
 	mMeshHandles.resize(0);
 	mMaterialHandles.resize(0);
 }
 
 //Añade los dos parametros que entra por la función a los arrays
-void cObject::AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHandle )
+void cSubModel::AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHandle )
 {
 	mMeshHandles.push_back( lMeshHandle );
 	mMaterialHandles.push_back( lMaterialHandle );
@@ -31,7 +31,7 @@ void cObject::AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHan
 
 
 //Update
-void cObject::Update( float lfTimestep )
+void cSubModel::Update( float lfTimestep )
 {
 	//Recorre todas las mallas y las actualiza
 	for ( unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex )
@@ -46,7 +46,7 @@ void cObject::Update( float lfTimestep )
 
 //La función Render, que lo que hará será iterar por las mallas y materiales y establecerlos, 
 //junto con la matriz de mundo correspondiente
-void cObject::Render()
+void cSubModel::Render()
 {
 
 	// Set World Matrix

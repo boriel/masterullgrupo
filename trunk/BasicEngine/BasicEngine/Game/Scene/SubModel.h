@@ -3,12 +3,13 @@ Class Object: La clase Object contendrá las mallas, los materiales y la matriz d
 							Nuestra clase objeto tendrá un nombre que identificará al objeto, una matriz de mundo y dos vectores que almacenarán las mallas y los materiales.
 
 							
+							Nota: clase cambiada: Es un conjunto de mallas que comparte su matriz local y que contiene la informacion del material
 
 	
 */
 
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef SUBMODEL_H
+#define SUBMODEL_H
 
 #include <string>
 #include <vector>
@@ -20,7 +21,7 @@ Class Object: La clase Object contendrá las mallas, los materiales y la matriz d
 using namespace std;
 
 
-class cObject
+class cSubModel
 {
 	
 	public:

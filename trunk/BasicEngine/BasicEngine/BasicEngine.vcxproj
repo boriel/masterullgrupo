@@ -109,9 +109,9 @@
     <ClInclude Include="Character\CharacterManager.h" />
     <ClInclude Include="Game\Game.h" />
     <ClInclude Include="Game\InputConfiguration.h" />
-    <ClInclude Include="Game\Scene\Object.h" />
-    <ClInclude Include="Game\Scene\Scene.h" />
-    <ClInclude Include="Game\Scene\SceneManager.h" />
+    <ClInclude Include="Game\Scene\SubModel.h" />
+    <ClInclude Include="Game\Scene\Model.h" />
+    <ClInclude Include="Game\Scene\ModelManager.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Effects\Effect.h" />
     <ClInclude Include="Graphics\Effects\EffectManager.h" />
@@ -212,9 +212,9 @@
     <ClCompile Include="Character\CharacterManager.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game\InputConfiguration.cpp" />
-    <ClCompile Include="Game\Scene\Object.cpp" />
-    <ClCompile Include="Game\Scene\Scene.cpp" />
-    <ClCompile Include="Game\Scene\SceneManager.cpp" />
+    <ClCompile Include="Game\Scene\SubModel.cpp" />
+    <ClCompile Include="Game\Scene\Model.cpp" />
+    <ClCompile Include="Game\Scene\ModelManager.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\Effects\Effect.cpp" />
     <ClCompile Include="Graphics\Effects\EffectManager.cpp" />

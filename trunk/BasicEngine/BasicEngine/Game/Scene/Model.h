@@ -1,28 +1,30 @@
 /*
-Class cScene:
+Class cScene: (clase cambiada)
 
+
+Class cModel: Es un conjunto de submodelos
 
 */
 
 
 
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef MODEL_H
+#define MODEL_H
 
 #include <vector>
 
 #include "..\..\Utility\Resource.h"
 #include "..\..\Utility\ResourceHandle.h"
-#include "Object.h"
+#include "SubModel.h"
 
 struct aiScene;
 struct aiNode;
 
 
-class cScene : public cResource
+class cModel : public cResource
 {
 	public:
-		cScene() { mbLoaded = false; }
+		cModel() { mbLoaded = false; }
 	
 		virtual bool Init( const std::string &lacNameID, const std::string &lacFile );
 		virtual void Deinit();
@@ -46,7 +48,7 @@ class cScene : public cResource
 
 		void ProcessScene( const aiScene* lpScene );
 		
-		typedef std::vector<cObject *> cObjectList;
+		typedef std::vector<cSubModel *> cObjectList;
 		cObjectList mObjectList;
 		
 };
