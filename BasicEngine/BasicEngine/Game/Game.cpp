@@ -108,11 +108,11 @@ bool cGame::Init() { //Inicializa el juego
 	cResourceHandle lMaterial = cMaterialManager::Get().LoadResource("Skeleton", "./Data/Material/SkeletonMaterial.xml");
 	assert(lMaterial.IsValidHandle());
 	
-	//mObject.Init();
-	mObject.AddMesh(mSkeletalMesh, lMaterial);
+	//mSubModel.Init();
+	mSubModel.AddMesh(mSkeletalMesh, lMaterial);
 	cMatrix lMatrix;
 	lMatrix.LoadScale(0.01f);
-	mObject.SetWorldMatrix(lMatrix);
+	mSubModel.SetLocalMatrix(lMatrix);
 
 
 	mfAcTime = 0.0f;
@@ -173,7 +173,7 @@ void cGame::Update(float lfTimestep) { //update del juego
 	//Actualizando la mmala del esqueleto
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
-	mObject.Update(lfTimestep);
+	mSubModel.Update(lfTimestep);
 
 	static bool mbJogging = false;
 	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
@@ -256,7 +256,9 @@ void cGame::Render()
 //Load all resources, no usada por ahora
 void cGame::LoadResources () {}
 
-void cGame::SetTheWorldMatrix() { // Set the world matrix 
+ // Set the world matrix 
+void cGame::SetTheWorldMatrix() 
+{
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
@@ -276,12 +278,13 @@ void cGame::RenderMalla()
 	
 	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
-		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
+		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
+		//((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
 }
 
 void cGame::RenderSkeletal ()
 {
-	mObject.Render();
+	mSubModel.Render(cGraphicManager::Get().GetWorldMatrix());
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	lpSkeletonMesh->RenderSkeleton();
 }

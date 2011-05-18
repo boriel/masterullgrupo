@@ -242,6 +242,7 @@ void cGraphicManager::SetWorldMatrix (const cMatrix &lMatrix)
 }
 
 
+
 void cGraphicManager::RefreshWorldView()
 {
 	// Select The Modelview Matrix
