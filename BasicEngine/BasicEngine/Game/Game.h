@@ -18,8 +18,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 // Fichero de LUA a cargar
 #define LUA_FILE "data/scripts/practica7.lua"
 
-class cGame : public cSingleton<cGame> 
-{
+class cGame : public cSingleton<cGame> {
 	friend class cSingleton<cGame>;
 
 	private: 	//variables

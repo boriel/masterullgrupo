@@ -30,3 +30,6 @@ bool cPhysicsManager::Deinit () {
  
 	return true;
 }
+
+void cPhysicsManager::Update(float lfTimestep) { //update
+}
