@@ -55,6 +55,7 @@ class cGame : public cSingleton<cGame> {
 		void RenderRejilla();
 		void RenderLua();
 		void RenderMalla();
+		void RenderObject();
 		void RenderSkeletal();
 		//void SkeletalKeyMove();
 };

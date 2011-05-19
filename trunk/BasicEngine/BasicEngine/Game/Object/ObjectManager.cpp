@@ -22,6 +22,14 @@ bool cObjectManager::Init()
 }
 
 
+void cObjectManager::Render(cMatrix &lWorld)
+{
+	
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
+		mObject[luiIndex]->Render(lWorld);
+}
+
+
 //Leemeos todos los recursos desde un xml
 bool cObjectManager::LoadObjectsXml(std::string lsResource)
 {
