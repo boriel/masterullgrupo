@@ -16,9 +16,10 @@
   </Scenes>
 
   <Objects>
+<!--
 	<Object Type="Player" Position="10,30,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
 	<Object Type="Enemy" Position="40,40,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
-	
+-->	
 	<Object Type="Suelo" Position="40,40,15" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
 	<Object Type="Item" Position="40,40,15" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
 	
