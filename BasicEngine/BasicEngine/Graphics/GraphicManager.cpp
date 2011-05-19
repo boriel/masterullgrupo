@@ -2,7 +2,8 @@
 #include <assert.h>
 #include "GraphicManager.h"
 
-bool cGraphicManager::Init (cWindow * lpWindow) {
+bool cGraphicManager::Init (cWindow * lpWindow) 
+{
 	bool lbRet = CreateContext (lpWindow);
 	
 	if (lbRet) InitializeGLState();
@@ -13,9 +14,12 @@ bool cGraphicManager::Init (cWindow * lpWindow) {
 	return lbRet;
 }
 
-bool cGraphicManager::Deinit() {
-	if (mHRC) {
-		if (!wglMakeCurrent(NULL,NULL)) {
+bool cGraphicManager::Deinit() 
+{
+	if (mHRC) 
+	{
+		if (!wglMakeCurrent(NULL,NULL)) 
+		{
 			MessageBox(NULL, "Release Of DC And RC Failed.", "SHUTDOWN ERROR", MB_OK | MB_ICONINFORMATION);
 		}
 		if (!wglDeleteContext(mHRC)) {
@@ -30,7 +34,9 @@ bool cGraphicManager::Deinit() {
 	return true;
 }
 
-bool cGraphicManager::CreateContext( cWindow * lpWindow ) { //Crea el contexto de renderizado
+//Crea el contexto de renderizado
+bool cGraphicManager::CreateContext( cWindow * lpWindow ) 
+{ 
 	assert(lpWindow);
 
 	static PIXELFORMATDESCRIPTOR lPfp=
@@ -169,7 +175,8 @@ void cGraphicManager::DrawLine (const cVec3 &lvPosition1, const cVec3 &lvPositio
 	glEnable(GL_TEXTURE_2D);
 }
 
-void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const cVec3 &lvColor) {
+void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const cVec3 &lvColor) 
+{
 	//Renderizado de una circunferencia centrada en lvPosition
 	//Es en 2D, a lo largo del plano XZ (vista desde "arriba") -- Se podría generalizar
 	float lfStep = 1.0f / lfRadius; // Una pequeña corrección de "aliasing"

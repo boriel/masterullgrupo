@@ -22,6 +22,7 @@
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
 #include "..\Physics\PhysicsManager.h"
+#include "Object\ObjectManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -90,8 +91,9 @@ bool cGame::Init() { //Inicializa el juego
 	//mScene = cSceneManager::Get().LoadResource("TestLevel", "./Data/Scene/cuboMax02.DAE");  //Para cargarla directamente
 	
 	//Estas dos van bien, a lo mejor sería convenniete ponerlas en el xml. Tambien hay que ver donde pintarlas!
-	cModelManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
-	cModelManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
+	//cModelManager::Get().LoadResourcesXml("Scenes");
+	//cModelManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
+	//cModelManager::Get().LoadResource("CuboMax", "./Data/Scene/cuboMax.DAE");  //Cubo: 1*1*1
 	
 	//mScene = cSceneManager::Get().LoadResourcesXml("Scenes");  //cargando desde XML el dragon y mas cosas si se ponen //ESTA ES LA QUE USAMOS!!!!
 	//mScene = cSceneManager::Get().LoadResource("SueloMax", "./Data/Scene/sueloMax.DAE");  //Suelo Medida 100*100*3
@@ -116,7 +118,22 @@ bool cGame::Init() { //Inicializa el juego
 
 	mfAcTime = 0.0f;
 
-	cPhysicsManager::Get().Init(); //Init Physic World
+
+	//Pruebas Yorman
+	cObjectManager::Get().Init();  //Esto tambien carga los recursos, cModelManager::Get() dentro de Init
+	
+
+
+
+
+
+
+	////TODO: Pruebas de David
+	//cPhysicsManager::Get().Init();
+	//cPhysicsManager::Get().Update(1/60.f);
+	//cPhysicsManager::Get().Deinit();
+
+
 
 	return lbResult;
 }
@@ -138,13 +155,13 @@ bool cGame::Deinit() { //Destructor del juego
 
 	cEffectManager::Get().Deinit();
 	
-	cPhysicsManager::Get().Deinit(); //Liberamos la física
+	//cPhysicsManager::Get().Deinit();
 
 	return lbResult;
 }
 
 void cGame::Update(float lfTimestep) { //update del juego
-	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
+	//cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
 	cWindow::Get().Update();
 	mfAcTime += lfTimestep;

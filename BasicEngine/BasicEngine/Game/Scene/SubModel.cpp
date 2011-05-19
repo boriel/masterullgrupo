@@ -53,6 +53,7 @@ void cSubModel::Render(cMatrix &lWorld)
 	// Set World Matrix
 	//cGraphicManager::Get().SetWorldMatrix(mLocalMatrix);
 	cGraphicManager::Get().SetWorldMatrix(mLocalMatrix * lWorld);
+
 	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
 	{
 		// Set the material
