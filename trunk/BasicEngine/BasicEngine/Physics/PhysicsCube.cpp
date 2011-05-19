@@ -1,11 +1,11 @@
 #include "PhysicsCube.h"
-#include <iostream>
+#include "PhysicsManager.h"
+//#include <iostream>
 
-void cPhysicsCube::Init(btDiscreteDynamicsWorld* lpDynamicsWorld) {
-	std::cout << "Cubo.Init()" << std::endl;
-	mpDynamicsWorld = lpDynamicsWorld;
- 
- 
+void cPhysicsCube::Init() {
+	//std::cout << "Cubo.Init()" << std::endl;
+	mpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+  
 	// Do_everything_else_here
 	mpGroundShape = new btStaticPlaneShape(btVector3(0,1,0),1); 
 	mpFallShape = new btSphereShape(1);
@@ -32,7 +32,7 @@ void cPhysicsCube::Update(float lfTimestep) { //Update
 		btTransform trans;
 		mpFallRigidBody->getMotionState()->getWorldTransform(trans);
  
-		std::cout << "sphere height: " << trans.getOrigin().getY() << std::endl;
+		//std::cout << "sphere height: " << trans.getOrigin().getY() << std::endl;
 	}
 }
 

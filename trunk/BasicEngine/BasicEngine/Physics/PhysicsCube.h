@@ -13,17 +13,18 @@ Ejemplo de Hello world de la web de http://www.bulletphysics.org/mediawiki-1.5.8
 class cPhysicsCube {
 private:
 	btDiscreteDynamicsWorld* mpDynamicsWorld; // The world.
+
 	btRigidBody* mpFallRigidBody;
 	btRigidBody* mpGroundRigidBody;
 	btCollisionShape* mpFallShape;
 	btCollisionShape* mpGroundShape;
-	btSequentialImpulseConstraintSolver* mpSolver;
-	btCollisionDispatcher* mpDispatcher;
-	btDefaultCollisionConfiguration* mpCollisionConfiguration;
-	btBroadphaseInterface* mpBroadphase;
+	//btSequentialImpulseConstraintSolver* mpSolver;
+	//btCollisionDispatcher* mpDispatcher;
+	//btDefaultCollisionConfiguration* mpCollisionConfiguration;
+	//btBroadphaseInterface* mpBroadphase;
 
 public:
-	void Init(btDiscreteDynamicsWorld* lpDynamicsWorld);
+	void Init();
 	void Update(float lfTimestep);
 	void Deinit(void);
 };
