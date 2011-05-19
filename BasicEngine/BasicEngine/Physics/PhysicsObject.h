@@ -14,6 +14,7 @@ public:
 	virtual void Init( const std::string &lacNameID) = 0;
 	virtual void Update(void) = 0;
 	virtual void Deinit(void) = 0;
+	std::string GetNameID(void) { return macNameID; }
 	ePhysicObjectType GetType(void) { return meType; }
 
 protected:
