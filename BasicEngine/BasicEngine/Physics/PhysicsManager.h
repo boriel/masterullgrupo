@@ -10,7 +10,7 @@ haciendo pruebas con la física, para hacer un manager y usarlo.
 #include "..\Utility\Singleton.h"
 #include "btBulletDynamicsCommon.h"
 #include <iostream> //TODO para quitar, sólo está para debug
-#include "PhysicsCube.h"
+#include "Objects\PhysicsCube.h"
 
 class cPhysicsManager : public cSingleton<cPhysicsManager> {
 	friend class cSingleton<cPhysicsManager>;

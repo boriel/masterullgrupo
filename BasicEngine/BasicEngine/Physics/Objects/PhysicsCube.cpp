@@ -1,5 +1,5 @@
 #include "PhysicsCube.h"
-#include "PhysicsManager.h"
+#include "..\PhysicsManager.h"
 //#include <iostream>
 
 void cPhysicsCube::Init() {
