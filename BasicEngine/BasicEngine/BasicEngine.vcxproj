@@ -189,6 +189,7 @@
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
     <ClInclude Include="Physics\Objects\PhysicsCube.h" />
+    <ClInclude Include="Physics\PhysicObjectType.h" />
     <ClInclude Include="Physics\PhysicsObject.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
     <ClInclude Include="Utility\Debug.h" />
