@@ -3,29 +3,22 @@ Ejemplo de Hello world de la web de http://www.bulletphysics.org/mediawiki-1.5.8
 
 */
 
-#ifndef _HELLO_WORLD_DAVID
-#define _HELLO_WORLD_DAVID
+#ifndef PHYSICS_CUBE_H
+#define PHYSICS_CUBE_H
 
-//#include "GlutStuff.h"
-//#include "GLDebugDrawer.h"
+#include "..\PhysicsObject.h"
 #include "btBulletDynamicsCommon.h" //creo que para este ejemplo tampoco hace falta
 
-class cPhysicsCube {
+class cPhysicsCube : public cPhysicsObject {
 private:
-	btDiscreteDynamicsWorld* mpDynamicsWorld; // The world.
-
 	btRigidBody* mpFallRigidBody;
 	btRigidBody* mpGroundRigidBody;
 	btCollisionShape* mpFallShape;
 	btCollisionShape* mpGroundShape;
-	//btSequentialImpulseConstraintSolver* mpSolver;
-	//btCollisionDispatcher* mpDispatcher;
-	//btDefaultCollisionConfiguration* mpCollisionConfiguration;
-	//btBroadphaseInterface* mpBroadphase;
 
 public:
-	void Init();
-	void Update(float lfTimestep);
+	void Init(void);
+	void Update(void);
 	void Deinit(void);
 };
 

@@ -1,10 +1,11 @@
 #include "PhysicsCube.h"
 #include "..\PhysicsManager.h"
-//#include <iostream>
+#include <iostream>
 
 void cPhysicsCube::Init() {
 	//std::cout << "Cubo.Init()" << std::endl;
-	mpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
   
 	// Do_everything_else_here
 	mpGroundShape = new btStaticPlaneShape(btVector3(0,1,0),1); 
@@ -13,7 +14,7 @@ void cPhysicsCube::Init() {
 	btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,-1,0)));
 	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0,groundMotionState,mpGroundShape,btVector3(0,0,0));
 	mpGroundRigidBody = new btRigidBody(groundRigidBodyCI);
-	mpDynamicsWorld->addRigidBody(mpGroundRigidBody);
+	lpDynamicsWorld->addRigidBody(mpGroundRigidBody);
  
 	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,50,0)));
 	btScalar mass = 1;
@@ -21,27 +22,24 @@ void cPhysicsCube::Init() {
 	mpFallShape->calculateLocalInertia(mass,fallInertia);
 	btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,mpFallShape,fallInertia);
 	mpFallRigidBody = new btRigidBody(fallRigidBodyCI);
-	mpDynamicsWorld->addRigidBody(mpFallRigidBody);
+	lpDynamicsWorld->addRigidBody(mpFallRigidBody);
 }
 
-void cPhysicsCube::Update(float lfTimestep) { //Update
-	for (int i=0 ; i<300 ; i++)  {
-		//mpDynamicsWorld->stepSimulation(1/60.f,10);
-		mpDynamicsWorld->stepSimulation(lfTimestep,10);
+void cPhysicsCube::Update(void) { //Update
+	btTransform trans;
+	mpFallRigidBody->getMotionState()->getWorldTransform(trans);
  
-		btTransform trans;
-		mpFallRigidBody->getMotionState()->getWorldTransform(trans);
- 
-		//std::cout << "sphere height: " << trans.getOrigin().getY() << std::endl;
-	}
+	std::cout << "sphere height: " << trans.getOrigin().getY() << std::endl;
 }
 
 void cPhysicsCube::Deinit() { //Deinit
-	mpDynamicsWorld->removeRigidBody(mpFallRigidBody);
+	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	lpDynamicsWorld->removeRigidBody(mpFallRigidBody);
 	delete mpFallRigidBody->getMotionState();
 	delete mpFallRigidBody;
  
-	mpDynamicsWorld->removeRigidBody(mpGroundRigidBody);
+	lpDynamicsWorld->removeRigidBody(mpGroundRigidBody);
 	delete mpGroundRigidBody->getMotionState();
 	delete mpGroundRigidBody;
  
