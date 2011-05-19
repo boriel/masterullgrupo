@@ -116,10 +116,7 @@ bool cGame::Init() { //Inicializa el juego
 
 	mfAcTime = 0.0f;
 
-	//TODO: Pruebas de Yorman-David
-	cPhysicsManager::Get().Init();
-	cPhysicsManager::Get().Update(1/60.f);
-	cPhysicsManager::Get().Deinit();
+	cPhysicsManager::Get().Init(); //Init Physic World
 
 	return lbResult;
 }
@@ -141,14 +138,13 @@ bool cGame::Deinit() { //Destructor del juego
 
 	cEffectManager::Get().Deinit();
 	
-	cPhysicsManager::Get().Deinit();
+	cPhysicsManager::Get().Deinit(); //Liberamos la física
 
 	return lbResult;
 }
 
 void cGame::Update(float lfTimestep) { //update del juego
-	//hacer el contador de 5 segundos
-	//OutputDebugString (lsTime.c_str());
+	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
 	cWindow::Get().Update();
 	mfAcTime += lfTimestep;
