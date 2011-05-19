@@ -3,16 +3,15 @@ class cPhysichsManager
 haciendo pruebas con la física, para hacer un manager y usarlo. 
 */
 
-
 #ifndef PHYSICS_MANAGER_H
 #define PHYSICS_MANAGER_H
 
+#include "..\Utility/ResourceManager.h"
 #include "..\Utility\Singleton.h"
 #include "btBulletDynamicsCommon.h"
-#include <iostream> //TODO para quitar, sólo está para debug
 #include "Objects\PhysicsCube.h"
 
-class cPhysicsManager : public cSingleton<cPhysicsManager> {
+class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManager> {
 	friend class cSingleton<cPhysicsManager>;
 
 	public:

@@ -12,21 +12,16 @@ lo contrario, liberamos la memoria y devolvemos NULL.
 
 
 clase cambiada: ModelManager: Se encarga de cargar y gestionar los modelos cargados
-
 */
-
-
 
 #ifndef MODEL_MANAGER_H
 #define MODEL_MANAGER_H
-
 
 #include "../../Utility/ResourceManager.h"
 #include "../../Utility/Singleton.h"
 
 
-class cModelManager : public cResourceManager, public cSingleton<cModelManager>
-{
+class cModelManager : public cResourceManager, public cSingleton<cModelManager> {
 	public:
 		friend class cSingleton<cModelManager>;
 	

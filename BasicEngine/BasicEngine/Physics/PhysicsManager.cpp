@@ -1,7 +1,6 @@
 
 #include "PhysicsManager.h"
 
-
 bool cPhysicsManager::Init () {
 	//========================
 	//Creando el mundo físico
@@ -38,5 +37,10 @@ bool cPhysicsManager::Deinit () {
 }
 
 void cPhysicsManager::Update(float lfTimestep) { //update
-	lpTemp->Update(lfTimestep);
+	//Actualizamos todos los objetos físicos
+	//A lo mejor esto no hace falta...
+	lpTemp->Update();
+
+	//mpDynamicsWorld->stepSimulation(1/60.f,10);
+	mpDynamicsWorld->stepSimulation(lfTimestep,10); //Actualizamos el mundo
 }
