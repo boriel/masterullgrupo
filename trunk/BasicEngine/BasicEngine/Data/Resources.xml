@@ -6,6 +6,7 @@
     <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />
   </Fonts>
 
+  <!-- No usado Scenes -->
   <Scenes>
     <Scene Name="Dragon" File="./Data/Scene/dragonsmall.DAE" /> 
 	<!-- <Scene Name="CuboBlender" File="./Data/Scene/cuboBlender.dae" /> -->
@@ -14,4 +15,14 @@
 	<!-- <Scene Name="sueloMax" File="./Data/Scene/sueloMax.DAE" />  -->
   </Scenes>
 
+  <Objects>
+	<Object Type="Player" Position="10,30,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
+	<Object Type="Enemy" Position="40,40,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
+	
+	<Object Type="Suelo" Position="40,40,15" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
+	<Object Type="Item" Position="40,40,15" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
+	
+  </Objects>
+  
+  
 </Resources>

@@ -76,6 +76,9 @@
     <Filter Include="Physics\Objects">
       <UniqueIdentifier>{c544184b-6859-4064-b4e0-0cfba469c382}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game\Object">
+      <UniqueIdentifier>{6047d9b6-33b1-4deb-8695-42b8c85df144}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -387,6 +390,12 @@
     <ClInclude Include="Physics\PhysicObjectType.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Object\Object.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\ObjectManager.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -641,6 +650,12 @@
     </ClCompile>
     <ClCompile Include="Physics\Objects\PhysicsCube.cpp">
       <Filter>Physics\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Object.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\ObjectManager.cpp">
+      <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
