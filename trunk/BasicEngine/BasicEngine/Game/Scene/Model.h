@@ -1,12 +1,7 @@
 /*
 Class cScene: (clase cambiada)
-
-
 Class cModel: Es un conjunto de submodelos
-
 */
-
-
 
 #ifndef MODEL_H
 #define MODEL_H

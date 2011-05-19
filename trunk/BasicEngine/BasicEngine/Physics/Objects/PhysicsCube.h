@@ -17,7 +17,7 @@ private:
 	btCollisionShape* mpGroundShape;
 
 public:
-	void Init(void);
+    void Init( const std::string &lacNameID);
 	void Update(void);
 	void Deinit(void);
 };
