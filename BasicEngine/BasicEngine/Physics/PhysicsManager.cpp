@@ -19,7 +19,7 @@ bool cPhysicsManager::Init () {
  
 	//TODO: Prueba temporal
 	lpTemp=new cPhysicsCube();
-	lpTemp->Init();
+	lpTemp->Init("Cubo");
 
 	return true;	
 }

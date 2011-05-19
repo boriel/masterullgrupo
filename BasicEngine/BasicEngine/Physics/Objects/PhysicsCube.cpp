@@ -1,8 +1,11 @@
 #include "PhysicsCube.h"
 #include "..\PhysicsManager.h"
 #include <iostream>
+#include <string>
 
-void cPhysicsCube::Init() {
+void cPhysicsCube::Init( const std::string &lacNameID) {
+	macNameID = lacNameID;
+
 	//std::cout << "Cubo.Init()" << std::endl;
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
