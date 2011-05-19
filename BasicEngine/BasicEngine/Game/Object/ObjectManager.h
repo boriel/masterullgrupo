@@ -20,7 +20,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		friend class cSingleton<cObjectManager>;
 		
 		bool Init();
-	
+		void Render(cMatrix &lWorld);
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);

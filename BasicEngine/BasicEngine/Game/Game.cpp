@@ -229,7 +229,8 @@ void cGame::Render()
 	m3DCamera.SetLookAt(cVec3(6.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
-	RenderMalla(); //Por ahora dibuja el dragon
+	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
+	RenderObject(); //Dibujando con la nueva representacion de objetos
 	//RenderSkeletal();
 
 	// 4) Render 3D with transparency
@@ -262,6 +263,14 @@ void cGame::SetTheWorldMatrix()
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
+void cGame::RenderObject ()
+{
+	
+	cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
+	cObjectManager::Get().Render(lWorld);
+}
+
+
 void cGame::RenderMalla() 
 {
 	//glDisable(GL_TEXTURE_2D);
@@ -278,6 +287,7 @@ void cGame::RenderMalla()
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
 		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
 		//((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
+
 }
 
 void cGame::RenderSkeletal ()
