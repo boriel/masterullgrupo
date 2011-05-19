@@ -5,6 +5,7 @@
 
 void cPhysicsCube::Init( const std::string &lacNameID) {
 	macNameID = lacNameID;
+	meType =  ePO_Cube;
 
 	//std::cout << "Cubo.Init()" << std::endl;
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
