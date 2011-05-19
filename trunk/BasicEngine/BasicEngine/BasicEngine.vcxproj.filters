@@ -73,6 +73,9 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{67be8172-894d-4be2-8161-b1a3343f8bb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Objects">
+      <UniqueIdentifier>{c544184b-6859-4064-b4e0-0cfba469c382}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -378,8 +381,8 @@
     <ClInclude Include="Game\Scene\ModelManager.h">
       <Filter>Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Physics\PhysicsCube.h">
-      <Filter>Physics</Filter>
+    <ClInclude Include="Physics\Objects\PhysicsCube.h">
+      <Filter>Physics\Objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -633,8 +636,8 @@
     <ClCompile Include="Game\Scene\ModelManager.cpp">
       <Filter>Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Physics\PhysicsCube.cpp">
-      <Filter>Physics</Filter>
+    <ClCompile Include="Physics\Objects\PhysicsCube.cpp">
+      <Filter>Physics\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
