@@ -20,8 +20,9 @@
 	<Object Type="Player" Position="10,30,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
 	<Object Type="Enemy" Position="40,40,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
 -->	
-	<Object Type="Suelo" Position="40,40,15" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
-	<Object Type="Item" Position="40,40,15" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
+	
+	<Object Type="Pista" Position="0,-3,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
+	<Object Type="Player" Position="0,0,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
 	
   </Objects>
   

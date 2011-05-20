@@ -5,28 +5,59 @@
 #include <Windows.h>
 
 #include "..\Scene\ModelManager.h"
+#include "ObjectPlayer.h"
 
 bool cObjectManager::Init() 
 {
 	msFilename = (".\\Data\\" + std::string("Resources.xml"));
 
+
+
+	//Lemeos desde un xml
 	LoadObjectsXml("Objects");
 
 	//Inicializando los recursos aqui
-	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+		cModelManager::Get().LoadResource(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetModelFile());
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
+
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
+	
 		
 
 
 	return true;
 }
 
+void cObjectManager::Update(float lfTimestep)
+{
+	//Actualizando el Player
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
+		mObjectPlayer[luiIndex]->Update(lfTimestep);
+	
+
+}
+
 
 void cObjectManager::Render(cMatrix &lWorld)
 {
-	
+	//Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, auqnue no se vea por la camara
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
+		mObjectPista[luiIndex]->Render(lWorld);
+
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
+		mObjectPlayer[luiIndex]->Render(lWorld);
+
+
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
 		mObject[luiIndex]->Render(lWorld);
+
+
 }
 
 
@@ -82,14 +113,35 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			//Podríamos searar aqui por tipo para pasarlos a diferentes listas
 
 			cObject* lObject = new cObject;
+			
 
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
 			(*lObject).SetModelFile(lsModelFile);
 			(*lObject).SetPosition(lVec3);
+			(*lObject).Init(); //Para inicializar la matriz de mundo por la posicion
 
+			
+			//Sería mejor un switch? no lo se, o un enumerado con los tipos de cosas que hayan?
+			/* pruebas borrar
+			cObjectPlayer* lOP = new cObjectPlayer;
 
-			mObject.push_back(lObject);
+			(*lOP).Update(5.5f);
+
+			
+			cObject *ll = new cObjectPlayer();
+
+			(*ll).Update(5.5f);
+
+			ll = (cObjectPlayer*) lObject;
+			*/
+			if (lsType == "Player")
+				mObjectPlayer.push_back((cObjectPlayer*)  lObject);  //no cambia a cObjectPlayer!!!!!!
+			else if (lsType == "Pista")
+				mObjectPista.push_back(lObject);
+			else //General
+				mObject.push_back(lObject);
+
 
 
 		}
@@ -102,6 +154,9 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 	return true;
 
 }
+
+
+
 
 
 //para hacer un split de un string

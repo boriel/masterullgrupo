@@ -21,19 +21,21 @@ class cObjectManager : public cSingleton<cObjectManager>
 		
 		bool Init();
 		void Render(cMatrix &lWorld);
+		void Update(float lfTimestep);
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
-		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);
+		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
+		
 
 
 	private:
 		typedef std::vector<cObject *> cObjectList;
-		cObjectList mObject;
-		//Probablemente hay que hacer varias listas par alos diferentes tipos de objetos
+		cObjectList mObject;  //Objetos en general que no se donde clasificarlos por ahora ....
+		cObjectList mObjectPlayer;
+		cObjectList mObjectPista;
 
 		std::string msFilename;  // Resources or Properties file
-
 
 
 };

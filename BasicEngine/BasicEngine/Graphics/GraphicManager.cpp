@@ -192,14 +192,17 @@ void cGraphicManager::DrawCircle (const cVec3 &lvPosition, float lfRadius, const
 	}
 }
 
-void cGraphicManager::DrawGrid() { //Renderizado de una malla o rejilla
+//Renderizado de una malla o rejilla
+void cGraphicManager::DrawGrid() 
+{ 
 	glDisable(GL_TEXTURE_2D);
 
 	// GRID
 	glLineWidth (1);
 	glColor3f (1.0f, 1.0f, 1.0f);
 	glBegin(GL_LINES);
-	for (float lfxtmp = -10.0; lfxtmp <= 10.0; lfxtmp += 1.0) {
+	for (float lfxtmp = -10.0; lfxtmp <= 10.0; lfxtmp += 1.0) 
+	{
 		glVertex3f (lfxtmp, 0.0f,-10.0);
 		glVertex3f (lfxtmp, 0.0f, 10.0);
 		glVertex3f (-10.0, 0.0f, lfxtmp);
