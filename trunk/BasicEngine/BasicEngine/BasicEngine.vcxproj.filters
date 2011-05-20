@@ -396,6 +396,9 @@
     <ClInclude Include="Game\Object\ObjectManager.h">
       <Filter>Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Object\ObjectPlayer.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -655,6 +658,9 @@
       <Filter>Game\Object</Filter>
     </ClCompile>
     <ClCompile Include="Game\Object\ObjectManager.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\ObjectPlayer.cpp">
       <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>

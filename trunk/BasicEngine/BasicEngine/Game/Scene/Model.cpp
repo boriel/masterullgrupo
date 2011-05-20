@@ -44,7 +44,8 @@ bool cModel::Init( const std::string &lacNameID, const std::string &lacFile )
 //Destruyendo la memoria
 void cModel::Deinit() 
 { 
-	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex ) {
+	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex ) 
+	{
 		mObjectList[luiIndex]->Deinit();
 		delete mObjectList[luiIndex];
 	}

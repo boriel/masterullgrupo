@@ -52,7 +52,9 @@ void cSubModel::Render(cMatrix &lWorld)
 
 	// Set World Matrix
 	//cGraphicManager::Get().SetWorldMatrix(mLocalMatrix);
+	//cMatrix lPruebas = mLocalMatrix * lWorld;
 	cGraphicManager::Get().SetWorldMatrix(mLocalMatrix * lWorld);
+	//cGraphicManager::Get().SetWorldMatrix(lWorld);
 
 	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
 	{

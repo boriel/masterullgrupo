@@ -198,6 +198,12 @@ void cGame::Update(float lfTimestep) { //update del juego
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed( eIA_CloseApplication );
 	if (mbFinish) return;
+
+	
+	cObjectManager::Get().Update(lfTimestep);
+
+	
+
 }
 
 
@@ -226,7 +232,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.SetLookAt(cVec3(6.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara
+	m3DCamera.SetLookAt(cVec3(8.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
