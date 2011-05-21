@@ -27,6 +27,7 @@ class cPhysicsPlayer : public cPhysicsObject
 		void Deinit(void);
 
 		cVec3 GetPosition ();
+		cMatrix cPhysicsPlayer::GetMatrixWorld();
 		
 };
 

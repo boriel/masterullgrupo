@@ -463,7 +463,7 @@ void VehicleDemo::renderme()
 
 
 	DemoApplication::renderme();
-
+	
 }
 
 void VehicleDemo::clientMoveAndDisplay()
@@ -657,7 +657,7 @@ void VehicleDemo::specialKeyboard(int key, int x, int y)
 
 void	VehicleDemo::updateCamera()
 {
-	
+
 //#define DISABLE_CAMERA 1
 #ifdef DISABLE_CAMERA
 	DemoApplication::updateCamera();
