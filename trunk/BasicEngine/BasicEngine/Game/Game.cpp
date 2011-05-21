@@ -1,5 +1,3 @@
-//#include <windows.h>
-
 
 #include "Game.h"
 
@@ -26,9 +24,8 @@
 
 extern tActionMapping kaActionMapping[];
 
-//Inicializa el juego
-bool cGame::Init() 
-{ 
+
+bool cGame::Init() { //Inicializa el juego
 	mbFinish = false;
 	
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
@@ -117,34 +114,17 @@ bool cGame::Init()
 	lMatrix.LoadScale(0.01f);
 	mSubModel.SetLocalMatrix(lMatrix);
 
-
 	mfAcTime = 0.0f;
-
 
 	//Pruebas Yorman
 	cPhysicsManager::Get().Init();
 	cObjectManager::Get().Init();  //Esto tambien carga los recursos, cModelManager::Get() dentro de Init
 	
-
-
-
-
-
-
-	////TODO: Pruebas de David
-	//cPhysicsManager::Get().Init();
-	//cPhysicsManager::Get().Update(1/60.f);
-	//cPhysicsManager::Get().Deinit();
-
-
-
 	return lbResult;
 }
 
 
-//Destructor del juego
-bool cGame::Deinit() 
-{
+bool cGame::Deinit() { //Destructor del juego
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
@@ -161,15 +141,12 @@ bool cGame::Deinit()
 	cCharacterManager::Get().Deinit();
 
 	cEffectManager::Get().Deinit();
-	
-	
 
 	return lbResult;
 }
 
-//update del juego
-void cGame::Update(float lfTimestep) 
-{ 
+
+void cGame::Update(float lfTimestep) { //update del juego
 	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
 	cWindow::Get().Update();
@@ -181,24 +158,22 @@ void cGame::Update(float lfTimestep)
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 	mSubModel.Update(lfTimestep);
+	
+	cObjectManager::Get().Update(lfTimestep);
 
 	static bool mbJogging = false;
-	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
-	{
+	if (BecomePressed( eIA_PlayJog ) && !mbJogging) {
 		mbJogging = true;
 		lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
 		lpSkeletonMesh->StopAnim("Idle", 0.1f);
-	} else if (BecomePressed( eIA_StopJog ) && mbJogging) 
-	{
+	} else if (BecomePressed( eIA_StopJog ) && mbJogging) {
 		mbJogging = false;
 		lpSkeletonMesh->PlayAnim("Idle", 1.0f, 0.1f);
 		lpSkeletonMesh->StopAnim("Jog", 0.1f);
 	}
-	if (BecomePressed( eIA_PlayWave )) 
-	{
+	if (BecomePressed( eIA_PlayWave )) {
 		lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f, 0.1f);
-	} else if (BecomePressed( eIA_StopWave )) 
-	{
+	} else if (BecomePressed( eIA_StopWave )) {
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
 
@@ -207,19 +182,9 @@ void cGame::Update(float lfTimestep)
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed( eIA_CloseApplication );
 	if (mbFinish) return;
-
-	
-	cObjectManager::Get().Update(lfTimestep);
-
-	
-
 }
 
-
-
-//render del juego
-void cGame::Render() 
-{
+void cGame::Render() { //render del juego
 	// ORDEN DE PINTADO
 	// 1) Clean Buffers
 	// 2) Activate the 3D Camera
@@ -230,14 +195,11 @@ void cGame::Render()
 	// 7) Postprocessing
 	// 8) Swap Buffers
 
-
 	// 1) Clean Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 	// 2) Activate the 3D Camera
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
-
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
@@ -270,43 +232,27 @@ void cGame::Render()
 //Load all resources, no usada por ahora
 void cGame::LoadResources () {}
 
- // Set the world matrix 
-void cGame::SetTheWorldMatrix() 
-{
+ 
+void cGame::SetTheWorldMatrix() { // Set the world matrix 
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-void cGame::RenderObject ()
-{
-	
+void cGame::RenderObject () {
 	cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
 	cObjectManager::Get().Render(lWorld);
 }
 
 
-void cGame::RenderMalla() 
-{
-	//glDisable(GL_TEXTURE_2D);
-	//m3DCamera.SetLookAt(cVec3(15.0f, 15.0f, 15.0f), cVec3(0.0f, 0.0f, 0.0f) );
-	//m3DCamera.SetLookAt(cVec3(3.0f, 3.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) );
-	//((cScene *)mScene.GetResource())->Render();
-	//glEnable(GL_TEXTURE_2D);
-
-	//((cScene *) cSceneManager::Get().FindResourceA("CuboMax").GetResource())->Render();
-	//((cScene *) cSceneManager::Get().FindResourceA("SueloMax").GetResource())->Render();
-
-	
+void cGame::RenderMalla() {	
 	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
 		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
 		//((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
-
 }
 
-void cGame::RenderSkeletal ()
-{
+void cGame::RenderSkeletal () {
 	mSubModel.Render(cGraphicManager::Get().GetWorldMatrix());
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	lpSkeletonMesh->RenderSkeleton();
