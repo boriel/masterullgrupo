@@ -1,23 +1,19 @@
 /*
 Class Camera.h. 
 		Esta clase contendrá la cámera, que es lo que se nos muestra en la pantalla.
-		
 */
 
-#ifndef Camera_H
-#define Camera_H
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include "..\MathLib\MathLib.h"
 
-
 class cCamera
 {
-
 	private:
 		cMatrix mView;
 		cMatrix mProj;
 		cMatrix mViewProj;
-
 
 	public:
 		void Init();
@@ -28,7 +24,6 @@ class cCamera
 		
 		void SetOrtho (float lfLeft, float lfRight, float lfBottom, float lfTop, float lfZNear, float lfZNFar);
 		void SetPerspective (float lfFVOVY_Rad, float lfAspect, float lfZNear, float lfZFar);
-
 
 		//Nos devuelven información relativa a la orientación y posición de la cámara
 		cVec3 GetFront ()			const { mView.GetFront();			}
@@ -41,9 +36,6 @@ class cCamera
 		const cMatrix &GetView() const { return mView; }
 		const cMatrix &GetProj() const { return mProj; }
 		const cMatrix &GetViewProj() const { return mViewProj; }
-
 };
-
-
 
 #endif
