@@ -20,6 +20,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		friend class cSingleton<cObjectManager>;
 		
 		bool Init();
+		void Deinit();
 		void Render(cMatrix &lWorld);
 		void Update(float lfTimestep);
 

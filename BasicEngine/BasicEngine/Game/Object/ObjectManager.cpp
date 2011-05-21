@@ -33,6 +33,22 @@ bool cObjectManager::Init()
 	return true;
 }
 
+void cObjectManager::Deinit()
+{
+		//Inicializando los recursos aqui
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+		mObjectPlayer[luiIndex]->Deinit();
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+		mObjectPista[luiIndex]->Deinit();
+
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
+		mObject[luiIndex]->Deinit();
+	
+
+	//Eliminar la memoria, pendiente por hacer
+}
+
 void cObjectManager::Update(float lfTimestep)
 {
 	//Actualizando el Player
@@ -125,19 +141,19 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa		
 			if (lsType == "Player")
 			{
-				cObjectPlayer* lObjectPlayer = new cObjectPlayer(*lObject);
-				mObjectPlayer.push_back(lObjectPlayer);
+				cObject* lObjectPtr = new cObjectPlayer(*lObject);
+				mObjectPlayer.push_back(lObjectPtr);
 			}
 			else if (lsType == "Pista")
 			{
-				cObjectPista* lObjectPista = new cObjectPista(*lObject);
-				mObjectPista.push_back(lObjectPista);
+				cObject* lObjectPtr = new cObjectPista(*lObject);
+				mObjectPista.push_back(lObjectPtr);
 			}
 			else //General
 			{
-				cObject* lObjectTemp = new cObject(*lObject);
-				(*lObjectTemp).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo
-				mObject.push_back(lObjectTemp);
+				cObject* lObjectPtr = new cObject(*lObject);
+				(*lObjectPtr).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo
+				mObject.push_back(lObjectPtr);
 			}
 
 			

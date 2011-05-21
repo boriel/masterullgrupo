@@ -10,6 +10,7 @@ class Object.h: Contiene los objetos del mundo
 #include <string>
 
 #include "..\..\MathLib\MathLib.h"
+#include "..\..\Physics\PhysicsObject.h"
 
 using namespace std;
 
@@ -56,7 +57,7 @@ class cObject
 		string msModelFile;
 	
 		
-
+		cPhysicsObject* mPhysicsObject;
 
 
 };
