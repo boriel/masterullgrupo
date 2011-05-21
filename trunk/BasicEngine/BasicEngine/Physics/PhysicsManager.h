@@ -12,7 +12,8 @@ haciendo pruebas con la física, para hacer un manager y usarlo.
 #include "Objects\PhysicsCube.h"
 #include "PhysicObjectType.h"
 
-class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManager> {
+class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManager> 
+{
 	friend class cSingleton<cPhysicsManager>;
 
 	public:
@@ -28,7 +29,7 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		btCollisionDispatcher* mpDispatcher;
 		btSequentialImpulseConstraintSolver* mpSolver;
 
-		cPhysicsCube *lpTemp; //TODO para quitar
+		//cPhysicsCube *lpTemp; //TODO para quitar
 };
 
 #endif

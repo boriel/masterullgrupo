@@ -402,6 +402,12 @@
     <ClInclude Include="Game\Object\ObjectPista.h">
       <Filter>Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\Objects\PhysicsPlayer.h">
+      <Filter>Physics\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\Objects\PhysicsPista.h">
+      <Filter>Physics\Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -668,6 +674,12 @@
     </ClCompile>
     <ClCompile Include="Game\Object\ObjectPista.cpp">
       <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Objects\PhysicsPlayer.cpp">
+      <Filter>Physics\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Objects\PhysicsPista.cpp">
+      <Filter>Physics\Objects</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -26,7 +26,9 @@
 
 extern tActionMapping kaActionMapping[];
 
-bool cGame::Init() { //Inicializa el juego
+//Inicializa el juego
+bool cGame::Init() 
+{ 
 	mbFinish = false;
 	
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
@@ -120,6 +122,7 @@ bool cGame::Init() { //Inicializa el juego
 
 
 	//Pruebas Yorman
+	cPhysicsManager::Get().Init();
 	cObjectManager::Get().Init();  //Esto tambien carga los recursos, cModelManager::Get() dentro de Init
 	
 
@@ -139,10 +142,14 @@ bool cGame::Init() { //Inicializa el juego
 }
 
 
-bool cGame::Deinit() { //Destructor del juego
+//Destructor del juego
+bool cGame::Deinit() 
+{
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
+	cPhysicsManager::Get().Deinit();
+
 	cInputManager::Get().Deinit();
 	mFont.Deinit();
 	cModelManager::Get().Deinit();
@@ -155,13 +162,15 @@ bool cGame::Deinit() { //Destructor del juego
 
 	cEffectManager::Get().Deinit();
 	
-	//cPhysicsManager::Get().Deinit();
+	
 
 	return lbResult;
 }
 
-void cGame::Update(float lfTimestep) { //update del juego
-	//cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
+//update del juego
+void cGame::Update(float lfTimestep) 
+{ 
+	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
 	cWindow::Get().Update();
 	mfAcTime += lfTimestep;
@@ -232,7 +241,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.SetLookAt(cVec3(8.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources

@@ -22,7 +22,7 @@
 -->	
 	
 	<Object Type="Pista" Position="0,-3,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
-	<Object Type="Player" Position="0,0,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
+	<Object Type="Player" Position="-5,3,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
 	<Object Type="Dragon" Position="0,0,0" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
 	
   </Objects>

@@ -27,6 +27,12 @@ void cObject::Init()
 }
 
 
+void cObject::Deinit()
+{
+	//
+}
+
+
 
 void cObject::Render(cMatrix &lWorld)
 {
@@ -40,6 +46,7 @@ void cObject::Render(cMatrix &lWorld)
 
 void cObject::Update( float lfTimestep )
 {
-
+	mPhysicsObject->Update();	
 	
+	//mPhysicsObject->
 }

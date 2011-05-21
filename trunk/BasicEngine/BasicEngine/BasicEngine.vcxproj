@@ -193,6 +193,8 @@
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
     <ClInclude Include="Physics\Objects\PhysicsCube.h" />
+    <ClInclude Include="Physics\Objects\PhysicsPista.h" />
+    <ClInclude Include="Physics\Objects\PhysicsPlayer.h" />
     <ClInclude Include="Physics\PhysicObjectType.h" />
     <ClInclude Include="Physics\PhysicsObject.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
@@ -287,6 +289,8 @@
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />
     <ClCompile Include="MathLib\Vec\Vec.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsCube.cpp" />
+    <ClCompile Include="Physics\Objects\PhysicsPista.cpp" />
+    <ClCompile Include="Physics\Objects\PhysicsPlayer.cpp" />
     <ClCompile Include="Physics\PhysicsObject.cpp" />
     <ClCompile Include="Physics\PhysicsManager.cpp" />
     <ClCompile Include="Utility\Debug.cpp" />
