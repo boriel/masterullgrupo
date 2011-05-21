@@ -3,6 +3,7 @@
 #include "..\Scene\Model.h"
 #include "..\Scene\ModelManager.h"
 
+#include "..\..\Graphics\GraphicManager.h"
 
 void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile)
 {
@@ -40,7 +41,10 @@ void cObject::Render(cMatrix &lWorld)
 	//Pintando el modelo
 	//((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(lWorld);
 	((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(mWorldMatrix);
-	
+
+#if _DEBUG
+	cGraphicManager::Get().DrawAxis();
+#endif	
 	
 }
 
