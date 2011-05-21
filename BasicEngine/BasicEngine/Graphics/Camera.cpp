@@ -1,19 +1,12 @@
 #include "Camera.h"
 
-
 //Inicializacion
 void cCamera::Init()
 {
 	mView.LoadIdentity();
 	mProj.LoadIdentity();
 	mViewProj.LoadIdentity();
-
 }
-
-
-
-
-
 
 //FUNCIONES
 
