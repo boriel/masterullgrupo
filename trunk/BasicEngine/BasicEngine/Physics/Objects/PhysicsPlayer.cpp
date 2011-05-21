@@ -76,29 +76,66 @@ cVec3 cPhysicsPlayer::GetPosition ()
 {
 	cVec3 lPosition;
 
-	btTransform trans;
-	mpFallRigidBody->getMotionState()->getWorldTransform(trans);
+	btTransform lbtTransform;
+	mpFallRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 
-	
 
-	lPosition.x = trans.getOrigin().getX();
-	lPosition.y = trans.getOrigin().getY();
-	lPosition.z = trans.getOrigin().getZ();
+	lPosition.x = lbtTransform.getOrigin().getX();
+	lPosition.y = lbtTransform.getOrigin().getY();
+	lPosition.z = lbtTransform.getOrigin().getZ();
 
 	return lPosition;
 }
 
 
-//Obtenemos la matrix de mundo del objeto
-cMatrix cPhysicsPlayer::GetMatrixWorld()
+//no estoy seguro que necesitemos esto
+cQuaternion cPhysicsPlayer::GetQuatRotation()
 {
-	cMatrix lMatrixWorld;
+	//cVec3 lVecRotation;
+	cQuaternion lQuatRotation;
 
 	//implementarlo
 	
+	btTransform lbtTransform;
+	mpFallRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+
+	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
+	
+
+	lQuatRotation.x = lbtQuaternion.getX();
+	lQuatRotation.y = lbtQuaternion.getY();
+	lQuatRotation.z = lbtQuaternion.getZ();
+	lQuatRotation.w = lbtQuaternion.getW();
+
+	//std::cout << "PlayerRotX: " << lbtQuaternion.getX() << std::endl;
+	//std::cout << "PlayerRotY: " << lbtQuaternion.getY() << std::endl;
+	//std::cout << "PlayerRotZ: " << lbtQuaternion.getZ() << std::endl;
+	//std::cout << "PlayerRotW: " << lbtQuaternion.getW() << std::endl;
+
+	return lQuatRotation;
+}
 
 
-	return lMatrixWorld;
+//Obtenemos la matrix de mundo del objeto
+void cPhysicsPlayer::Pruebas()
+{
+	cMatrix lMatrix;
+
+	//implementarlo
+	
+	btTransform lbtTransform;
+	mpFallRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+
+	btMatrix3x3 btlMatrix = lbtTransform.getBasis();
+	
+	btCollisionShape* btlShape = mpFallRigidBody->getCollisionShape();
+
+
+	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
+	
+
+
+	
 }
 
 
