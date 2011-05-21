@@ -32,6 +32,9 @@ class cGame : public cSingleton<cGame> {
 		cResourceHandle mFontHandle;
 		cResourceHandle mSkeletalMesh;
 		cSubModel mSubModel;  //nuevo para el skeleton
+		cVec3 *mpCamera3DPosition;
+		cVec3 *mpCamera3DTarget;
+		float mfDespX;
 
 	protected:
 		cGame () { ; } //Protected Constructor

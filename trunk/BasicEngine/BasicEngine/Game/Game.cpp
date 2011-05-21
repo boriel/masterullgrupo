@@ -40,13 +40,17 @@ bool cGame::Init() { //Inicializa el juego
 	cTextureManager::Get().Init(10); //Iniciando las texturas. Espacio reservado máximo para la carga=10
 	cCharacterManager::Get().Init(); //Inicializamos el Gestor de Personajes
 
-	//Iniciando la camara
+	//Init CAMERA-3D
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
-	m3DCamera.SetLookAt( cVec3(0.001f, 10.0f, 0.0f), cVec3(0.0f, 0.0f, 0.0f)); //Cámara en modo cenital (mirando desde arriba)
+	mpCamera3DPosition = new cVec3(10.0f, 4.0f, 3.0f);
+	mpCamera3DTarget = new cVec3(0.0f, 0.0f, 0.0f);
+	mfDespX=-0.04;
 
+	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget)); //Cámara en modo cenital (mirando desde arriba)
+	
 	//Iniciando Camara 2D
 	float lfRight = (float)mProperties.muiWidth / 2.0f;
 	float lfLeft = -lfRight;
@@ -167,6 +171,13 @@ void cGame::Update(float lfTimestep) { //update del juego
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed( eIA_CloseApplication );
 	if (mbFinish) return;
+
+	//TODO. [David] Pruebas de cámara
+	float lfPosX = mpCamera3DPosition->x;
+	if (lfPosX<-12.0f) mfDespX=+0.04;
+	if (lfPosX>12.0f) mfDespX=-0.04;
+
+	mpCamera3DPosition->x = lfPosX+mfDespX; 
 }
 
 void cGame::Render() { //render del juego
@@ -188,7 +199,9 @@ void cGame::Render() { //render del juego
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));
+	//m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
