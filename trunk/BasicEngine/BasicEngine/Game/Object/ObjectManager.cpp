@@ -6,6 +6,7 @@
 
 #include "..\Scene\ModelManager.h"
 #include "ObjectPlayer.h"
+#include "ObjectPista.h"
 
 bool cObjectManager::Init() 
 {
@@ -20,7 +21,7 @@ bool cObjectManager::Init()
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetModelFile());
 
-	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
@@ -107,54 +108,55 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			double ldY = strtod(lTokens[1].c_str(), NULL);
 			double ldZ = strtod(lTokens[2].c_str(), NULL);
 
-			cVec3 lVec3((float)ldX, (float)ldY, (float)ldZ);
+			cVec3 lPosition((float)ldX, (float)ldY, (float)ldZ);
 		
 
-			//Podríamos searar aqui por tipo para pasarlos a diferentes listas
+			//ESTO NO TIRA, NO GRABA EL LOBJECT, MIRARLO!!!
 
 			cObject* lObject = new cObject;
-			
 
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
 			(*lObject).SetModelFile(lsModelFile);
-			(*lObject).SetPosition(lVec3);
-			(*lObject).Init(); //Para inicializar la matriz de mundo por la posicion
+			(*lObject).SetPosition(lPosition);
 
 			
-			//Sería mejor un switch? no lo se, o un enumerado con los tipos de cosas que hayan?
-			/* pruebas borrar
-			cObjectPlayer* lOP = new cObjectPlayer;
 
-			(*lOP).Update(5.5f);
-
-			
-			cObject *ll = new cObjectPlayer();
-
-			(*ll).Update(5.5f);
-
-			ll = (cObjectPlayer*) lObject;
-			*/
+			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa		
 			if (lsType == "Player")
-				mObjectPlayer.push_back((cObjectPlayer*)  lObject);  //no cambia a cObjectPlayer!!!!!!
+			{
+				cObjectPlayer* lObjectPlayer = new cObjectPlayer(*lObject);
+				mObjectPlayer.push_back(lObjectPlayer);
+			}
 			else if (lsType == "Pista")
-				mObjectPista.push_back(lObject);
+			{
+				cObjectPista* lObjectPista = new cObjectPista(*lObject);
+				mObjectPista.push_back(lObjectPista);
+			}
 			else //General
-				mObject.push_back(lObject);
+			{
+				cObject* lObjectTemp = new cObject(*lObject);
+				(*lObjectTemp).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo
+				mObject.push_back(lObjectTemp);
+			}
 
-
-
+			
+			delete lObject;  //ya no nos hace falta, porque copiamos los parámetros y en el último caso lo duplicamos
 		}
 	}
-
-
-
 
 	
 	return true;
 
 }
 
+
+void cObjectManager::CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile)
+{
+
+
+				
+}
 
 
 

@@ -3,6 +3,18 @@
 #include "..\Scene\Model.h"
 #include "..\Scene\ModelManager.h"
 
+
+void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile)
+{
+	mPosition = lPosition;
+	msType = lsType;
+	msModelName = lsModelName;
+	msModelFile = lsModelFile;
+
+	Init();  
+
+}
+
 void cObject::Init()
 {
 	//Inicializanzado la matrix de mundo a la identidad

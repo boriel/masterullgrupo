@@ -1,12 +1,14 @@
-#include "ObjectPlayer.h"
+#include "ObjectPista.h"
 
 
-cObjectPlayer::cObjectPlayer (cObject lObject)
+
+cObjectPista::cObjectPista (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile());
+
 }
 
-void cObjectPlayer::Update( float lfTimestep )
+void cObjectPista::Update( float lfTimestep )
 {
 
 

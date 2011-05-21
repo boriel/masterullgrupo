@@ -1,11 +1,11 @@
 /*
-Class ObjectPlayer:
+Class ObjectPista:
 
 */
 
 
-#ifndef OBJECT_PLAYER_H
-#define OBJECT_PLAYER_H
+#ifndef OBJECT_PISTA_H
+#define OBJECT_PISTA_H
 
 #include <string>
 
@@ -13,12 +13,12 @@ Class ObjectPlayer:
 #include "..\..\MathLib\MathLib.h"
 
 
-class cObjectPlayer : public cObject
+class cObjectPista : public cObject
 {
 
 	public: 
-		cObjectPlayer () {}
-		cObjectPlayer (cObject lObject);
+		cObjectPista () {}
+		cObjectPista (cObject lObject);
 		
 		virtual void Update( float lfTimestep );
 

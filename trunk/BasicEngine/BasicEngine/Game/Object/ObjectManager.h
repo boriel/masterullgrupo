@@ -26,8 +26,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 	private:
 		bool LoadObjectsXml(std::string lsResource);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
-		
-
+		void CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 
 	private:
 		typedef std::vector<cObject *> cObjectList;
