@@ -111,6 +111,7 @@
     <ClInclude Include="Game\InputConfiguration.h" />
     <ClInclude Include="Game\Object\Object.h" />
     <ClInclude Include="Game\Object\ObjectManager.h" />
+    <ClInclude Include="Game\Object\ObjectPista.h" />
     <ClInclude Include="Game\Object\ObjectPlayer.h" />
     <ClInclude Include="Game\Scene\SubModel.h" />
     <ClInclude Include="Game\Scene\Model.h" />
@@ -218,6 +219,7 @@
     <ClCompile Include="Game\InputConfiguration.cpp" />
     <ClCompile Include="Game\Object\Object.cpp" />
     <ClCompile Include="Game\Object\ObjectManager.cpp" />
+    <ClCompile Include="Game\Object\ObjectPista.cpp" />
     <ClCompile Include="Game\Object\ObjectPlayer.cpp" />
     <ClCompile Include="Game\Scene\SubModel.cpp" />
     <ClCompile Include="Game\Scene\Model.cpp" />
