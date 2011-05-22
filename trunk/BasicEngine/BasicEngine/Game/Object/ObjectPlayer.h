@@ -20,8 +20,8 @@ class cObjectPlayer : public cObject
 		cObjectPlayer () {}
 		cObjectPlayer (cObject lObject);
 		
-		virtual void Update( float lfTimestep );
-
+		virtual void Update (float lfTimestep);
+		virtual void Render (cMatrix &lWorld);
 
 
 };
