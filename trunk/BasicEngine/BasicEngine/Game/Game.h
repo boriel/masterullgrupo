@@ -13,8 +13,6 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Graphics\Fonts\acgfx_font.h"
 #include "Scene\SubModel.h"
 
-// #include "..\Game\Scene\Scene.h"
-//TODO
 // Fichero de LUA a cargar
 #define LUA_FILE "data/scripts/practica7.lua"
 
@@ -49,16 +47,14 @@ class cGame : public cSingleton<cGame> {
 		inline float GetAcumulatedTime() { return mfAcTime; } //calcular el tiempo en segundos desde que comenzó la aplicación a ejecutar
 		float mfAcTime; //Tiempo desde que empezó la aplicación. La necesitan los shaders.
 
-		
-
 	private:  //métodos
 		void LoadResources(); //Read resources for the game (window properties)
 		void SetTheWorldMatrix();
-		void RenderFuentes();
+		void RenderTexts();
 		void RenderRejilla();
 		void RenderLua();
-		void RenderMalla();
-		void RenderObject();
+		void RenderModels();
+		void RenderObjects();
 		void RenderSkeletal();
 		//void SkeletalKeyMove();
 };

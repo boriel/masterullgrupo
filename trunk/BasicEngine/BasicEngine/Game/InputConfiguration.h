@@ -12,11 +12,11 @@ enum eInputActions {
 	eIA_TurnLeft,
 	eIA_TurnRight,
 	eIA_Advance,
+	eIA_Back,
 	eIA_PlayJog,
 	eIA_StopJog,
 	eIA_PlayWave,
 	eIA_StopWave,
-
 	eIA_Count
 };
 
