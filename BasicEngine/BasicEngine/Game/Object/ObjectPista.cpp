@@ -17,3 +17,12 @@ void cObjectPista::Update( float lfTimestep )
 
 	
 }
+
+void cObjectPista::Render (cMatrix &lWorld) 
+{
+	cObject::Render(lWorld);
+
+#ifdef _DEBUG
+	((cPhysicsPista*) mPhysicsObject)->RenderObjectDebug();
+#endif
+}

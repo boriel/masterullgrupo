@@ -14,10 +14,11 @@ Ejemplo de Hello world de la web de http://www.bulletphysics.org/mediawiki-1.5.8
 class cPhysicsPlayer : public cPhysicsObject 
 {
 	private:
-		btRigidBody* mpFallRigidBody;
+		btRigidBody* mpRigidBody;
 		//btRigidBody* mpGroundRigidBody;
-		btCollisionShape* mpFallShape;
+		btCollisionShape* mpbtShape;
 		//btCollisionShape* mpGroundShape;
+		
 
 	public:
 		void Init( const std::string &lacNameID) { macNameID = lacNameID; }
@@ -29,6 +30,9 @@ class cPhysicsPlayer : public cPhysicsObject
 		cVec3 GetPosition ();
 		cQuaternion GetQuatRotation();
 		void Pruebas();
+		btTransform GetTransform() { btTransform lbtTransform; mpRigidBody->getMotionState()->getWorldTransform(lbtTransform); return lbtTransform; }  //no se si cargarme esta linea
+		void RenderObjectDebug();
+
 		
 };
 

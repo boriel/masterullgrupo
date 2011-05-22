@@ -12,6 +12,7 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 	//mPhysicsObject->Init("Player");
 	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
 
+	
 }
 
 
@@ -35,6 +36,11 @@ void cObjectPlayer::Update( float lfTimestep )
 	mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	mWorldMatrix.SetPosition(mPosition);
 
+
+	//((cPhysicsPlayer*)mPhysicsObject)->Pruebas();
+
+	
+
   //cGraphicManager::Get().DrawAxis();
 
 /*
@@ -51,4 +57,17 @@ void cObjectPlayer::Update( float lfTimestep )
 	//mWorldMatrix.SetPosition(mPosition);
 
 	
+}
+
+
+void cObjectPlayer::Render (cMatrix &lWorld) 
+{
+	cObject::Render(lWorld);
+
+#ifdef _DEBUG
+	//mPhysicsObject->RenderTransformDebug(((cPhysicsPlayer *)mPhysicsObject)->GetTransform(), 1.0);
+	//mPhysicsObject->RenderObjectDebug(((cPhysicsPlayer *)mPhysicsObject)->GetTransform(), 1.0);
+	((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
+#endif
+	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
 }

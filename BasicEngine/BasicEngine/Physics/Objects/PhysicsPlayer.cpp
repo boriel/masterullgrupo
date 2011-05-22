@@ -26,29 +26,34 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition)
 	lpDynamicsWorld->addRigidBody(mpGroundRigidBody);
 */
 	
-	btVector3 btPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
+	btVector3 lbtPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
 
-	mpFallShape = new btSphereShape(1);
-	mpFallShape = new btBoxShape(btVector3(1,1,1)); //intentado dibujar un cubo
+	//mpFallShape = new btSphereShape(1);
+	mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5)); //intentado dibujar un cubo
+	//mpbtShape = new btBoxShape(btVector3(0, 0, 0.5)); //intentado dibujar un cubo
+	//mpbtShape = new btBoxShape(lbtPosition); //intentado dibujar un cubo
+
+	
 
 	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,50,0)));
 	
-	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1), btPosition));
+	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition));
+	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1)));
 	btScalar mass = 1;
-	btVector3 fallInertia(0,0,0);
-	mpFallShape->calculateLocalInertia(mass,fallInertia);
-	btRigidBody::btRigidBodyConstructionInfo fallRigidBodyCI(mass,fallMotionState,mpFallShape,fallInertia);
-	mpFallRigidBody = new btRigidBody(fallRigidBodyCI);
-	lpDynamicsWorld->addRigidBody(mpFallRigidBody);
+	btVector3 fallInertia(0, 0, 0);
+	mpbtShape->calculateLocalInertia (mass, fallInertia);
+	btRigidBody::btRigidBodyConstructionInfo lRigidBodyCI (mass, fallMotionState, mpbtShape, fallInertia);
+	mpRigidBody = new btRigidBody(lRigidBodyCI);
+	lpDynamicsWorld->addRigidBody(mpRigidBody);
 }
 
 
 void cPhysicsPlayer::Update(void) 
 { //Update
 	btTransform trans;
-	mpFallRigidBody->getMotionState()->getWorldTransform(trans);
+	mpRigidBody->getMotionState()->getWorldTransform(trans);
  
-	std::cout << "sphere heigh (Player): " << trans.getOrigin().getY() << std::endl;
+	std::cout << "Player: (" << trans.getOrigin().getX() << "," <<  trans.getOrigin().getY() << "," << trans.getOrigin().getZ() << ")" << std::endl;
 }
 
 
@@ -57,15 +62,15 @@ void cPhysicsPlayer::Deinit()
 { //Deinit
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
-	lpDynamicsWorld->removeRigidBody(mpFallRigidBody);
-	delete mpFallRigidBody->getMotionState();
-	delete mpFallRigidBody;
+	lpDynamicsWorld->removeRigidBody(mpRigidBody);
+	delete mpRigidBody->getMotionState();
+	delete mpRigidBody;
  
 	//lpDynamicsWorld->removeRigidBody(mpGroundRigidBody);
 	//delete mpGroundRigidBody->getMotionState();
 	//delete mpGroundRigidBody;
  
-	delete mpFallShape;
+	delete mpbtShape;
 	//delete mpGroundShape;
  }
 
@@ -77,7 +82,7 @@ cVec3 cPhysicsPlayer::GetPosition ()
 	cVec3 lPosition;
 
 	btTransform lbtTransform;
-	mpFallRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+	mpRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 
 
 	lPosition.x = lbtTransform.getOrigin().getX();
@@ -97,7 +102,7 @@ cQuaternion cPhysicsPlayer::GetQuatRotation()
 	//implementarlo
 	
 	btTransform lbtTransform;
-	mpFallRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+	mpRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 
 	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
 	
@@ -124,18 +129,93 @@ void cPhysicsPlayer::Pruebas()
 	//implementarlo
 	
 	btTransform lbtTransform;
-	mpFallRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+	mpRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 
 	btMatrix3x3 btlMatrix = lbtTransform.getBasis();
 	
-	btCollisionShape* btlShape = mpFallRigidBody->getCollisionShape();
+	btCollisionShape* btlShape = mpRigidBody->getCollisionShape();
+
+
+
+
+	
+	//http://bulletphysics.org/Bullet/phpBB3/viewtopic.php?t=5469  //Si es una composicion
+	if (mpRigidBody->getCollisionShape()->isCompound())
+	{
+		btCompoundShape * compound = (btCompoundShape *)mpRigidBody->getCollisionShape();
+    for(int i=0 ; i < compound->getNumChildShapes(); i++)
+    {
+			btCollisionShape * child = compound->getChildShape(i);
+    }
+	}
+
 
 
 	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
 	
 
 
+	//cPhysicsManager::Get().GetDynamicsWorld()->getDebugDrawer() ->setDebugMode(1);
+
+	//btIDebugDraw * btIlDW = new btIDebugDraw();
+	btIDebugDraw *m_debugDrawer ;
+
+	m_debugDrawer->DBG_DrawWireframe;
+
+	//cPhysicsManager::Get().GetDynamicsWorld()->setDebugDrawer();
+	  //getDebugDrawer()->drawTransform(worldTransform,1);
+
+	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//lpDynamicsWorld->debugDrawObject(lbtTransform, btlShape, btVector3(1,0,0));
+
+
+	//GLDebugDrawer	gDebugDrawer;
+	//lpDynamicsWorld->setDebugDrawer(&gDebugDrawer);
+
+
+	//lpDynamicsWorld->getDebugDrawer()->drawTransform(lbtTransform, 1);
+	//m_debugDrawer->drawLine(btVector3(1,0,0),btVector3(1,0,0),btVector3(1,0,0));
+
 	
+	RenderTransformDebug(lbtTransform, 1.0);
+
+	
+
 }
 
 
+
+
+void cPhysicsPlayer::RenderObjectDebug()
+{
+
+	//btTransform lbtTransform = GetTransform();
+
+	btTransform lbtTransform; 
+	mpRigidBody->getMotionState()->getWorldTransform(lbtTransform); 
+
+	//Pintando los ejes de coordenadas
+	RenderTransformDebug(lbtTransform, 1.0);
+
+
+	
+	
+	//Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
+	btCollisionShape* lbtShape = mpRigidBody->getCollisionShape();
+	const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtShape);
+	btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
+	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
+	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
+
+
+
+	//mPhysicsObject->RenderTransformDebug(((cPhysicsPlayer *)mPhysicsObject)->GetTransform(), 1.0);
+
+
+
+	//const btBoxShape* boxShape = static_cast<const btBoxShape*>(shape);
+	//			btVector3 halfExtents = boxShape->getHalfExtentsWithMargin();
+	//			getDebugDrawer()->drawBox(-halfExtents,halfExtents,worldTransform,color);
+	//			break;
+
+}

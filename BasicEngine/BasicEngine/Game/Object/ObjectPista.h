@@ -21,6 +21,7 @@ class cObjectPista : public cObject
 		cObjectPista (cObject lObject);
 		
 		virtual void Update( float lfTimestep );
+		void Render (cMatrix &lWorld);
 
 
 

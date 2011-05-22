@@ -24,8 +24,9 @@
 
 extern tActionMapping kaActionMapping[];
 
-
-bool cGame::Init() { //Inicializa el juego
+//Inicializa el juego
+bool cGame::Init() 
+{ 
 	mbFinish = false;
 	
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
@@ -112,8 +113,9 @@ bool cGame::Init() { //Inicializa el juego
 	return lbResult;
 }
 
-
-bool cGame::Deinit() { //Destructor del juego
+//Destructor del juego
+bool cGame::Deinit() 
+{ 
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
@@ -134,8 +136,9 @@ bool cGame::Deinit() { //Destructor del juego
 	return lbResult;
 }
 
-
-void cGame::Update(float lfTimestep) { //update del juego
+//update del juego
+void cGame::Update(float lfTimestep) 
+{ 
 	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
 	cWindow::Get().Update();
@@ -151,18 +154,22 @@ void cGame::Update(float lfTimestep) { //update del juego
 	cObjectManager::Get().Update(lfTimestep);
 
 	static bool mbJogging = false;
-	if (BecomePressed( eIA_PlayJog ) && !mbJogging) {
+	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
+	{
 		mbJogging = true;
 		lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
 		lpSkeletonMesh->StopAnim("Idle", 0.1f);
-	} else if (BecomePressed( eIA_StopJog ) && mbJogging) {
+	} else if (BecomePressed( eIA_StopJog ) && mbJogging) 
+	{
 		mbJogging = false;
 		lpSkeletonMesh->PlayAnim("Idle", 1.0f, 0.1f);
 		lpSkeletonMesh->StopAnim("Jog", 0.1f);
 	}
-	if (BecomePressed( eIA_PlayWave )) {
+	if (BecomePressed( eIA_PlayWave )) 
+	{
 		lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f, 0.1f);
-	} else if (BecomePressed( eIA_StopWave )) {
+	} else if (BecomePressed( eIA_StopWave )) 
+	{
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
 
@@ -180,7 +187,9 @@ void cGame::Update(float lfTimestep) { //update del juego
 	mpCamera3DPosition->x = lfPosX+mfDespX; 
 }
 
-void cGame::Render() { //render del juego
+//render del juego
+void cGame::Render() 
+{ 
 	// ORDEN DE PINTADO
 	// 1) Clean Buffers
 	// 2) Activate the 3D Camera
@@ -198,9 +207,9 @@ void cGame::Render() { //render del juego
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
 	// 3) Render Solid 3D
-	SetTheWorldMatrix();
-	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));
-	//m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	//SetTheWorldMatrix();
+	//m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
+	m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
@@ -230,33 +239,39 @@ void cGame::Render() { //render del juego
 //Load all resources, no usada por ahora
 void cGame::LoadResources () {}
 
- 
-void cGame::SetTheWorldMatrix() { // Set the world matrix 
+// Set the world matrix  
+void cGame::SetTheWorldMatrix() 
+{ 
 	cMatrix lWorld;
 	lWorld.LoadIdentity();
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-void cGame::RenderObject () {
+void cGame::RenderObject () 
+{
 	cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
 	cObjectManager::Get().Render(lWorld);
 }
 
 
-void cGame::RenderMalla() {	
+void cGame::RenderMalla() 
+{	
 	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
 		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
 		//((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
 }
 
-void cGame::RenderSkeletal () {
+void cGame::RenderSkeletal () 
+{
 	mSubModel.Render(cGraphicManager::Get().GetWorldMatrix());
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	lpSkeletonMesh->RenderSkeleton();
 }
 
-void cGame::RenderFuentes () { //Renderizamos una fuente en pantalla siguiendo el orden
+//Renderizamos una fuente en pantalla siguiendo el orden
+void cGame::RenderFuentes () 
+{ 
 	/*
 	//Draw some strings
 	mFont.SetColour (1.0f, 0.0f, 0.0f);
@@ -281,13 +296,17 @@ void cGame::RenderFuentes () { //Renderizamos una fuente en pantalla siguiendo e
 	mFont.WriteBox(100,100,0,100, "Esto es un test \nmultilinea", 0,	FONT_ALIGN_CENTER);
 }
 
-void cGame::RenderLua () { //Para los ejercicios de LUA
+//Para los ejercicios de LUA
+void cGame::RenderLua () 
+{ 
 	//Pintar el circuito 
 	cLuaManager::Get().CallLua("DrawPath", (int *)NULL);
 	cCharacterManager::Get().Render();
 }
 
-void cGame::RenderRejilla () { //Renderizamos la rejilla en caso de que sea debug la compilación
+//Renderizamos la rejilla en caso de que sea debug la compilación
+void cGame::RenderRejilla () 
+{ 
 #	ifdef _DEBUG
 	// Los ejes y la rejilla solo aparecen en modo de depuración
 	/*

@@ -17,6 +17,7 @@ void cPhysicsPista::Init(const cVec3 &lPosition)
   
 	// Do_everything_else_here
 	mpGroundShape = new btStaticPlaneShape(btVector3(0,1,0),1); 
+	//mpGroundShape = new btStaticPlaneShape(btVector3(0,0,1),1); 
 
 	btVector3 btPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
 	btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1), btPosition));
@@ -81,3 +82,31 @@ void cPhysicsPista::Deinit()
 //
 //	return lPosition;
 //}
+
+
+
+void cPhysicsPista::RenderObjectDebug()
+{
+
+	//btTransform lbtTransform = GetTransform();
+
+	btTransform lbtTransform; 
+	mpGroundRigidBody->getMotionState()->getWorldTransform(lbtTransform); 
+
+	//Pintando los ejes de coordenadas
+	RenderTransformDebug(lbtTransform, 1.0);
+
+	
+	//Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
+	btCollisionShape* lbtShape = mpGroundRigidBody->getCollisionShape();
+	const btStaticPlaneShape* lbtStaticPlaneShape = static_cast<const btStaticPlaneShape*>(lbtShape);
+	btScalar lbtPlaneConst = lbtStaticPlaneShape->getPlaneConstant();
+	const btVector3& lbtPlaneNormal = lbtStaticPlaneShape->getPlaneNormal();
+	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
+	
+	RenderPlaneDebug(lbtPlaneNormal, lbtPlaneConst, lbtTransform, lbtColor);
+
+
+
+
+}

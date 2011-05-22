@@ -12,6 +12,7 @@ clase
 #include "PhysicObjectType.h"
 //#include "..\MathLib\MathLib.h"
 
+#include "btBulletDynamicsCommon.h" 
 
 class cPhysicsObject 
 {
@@ -24,6 +25,11 @@ class cPhysicsObject
 
 		
 		//cVec3 GetPosition ();
+		//Sacados de btlDebugDraw
+		void RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen);
+		void RenderBoxDebug(const btVector3& lbtMin, const btVector3& lbtMax, const btTransform& lbtTransform, const btVector3& lbtColor);
+		void RenderPlaneDebug(const btVector3& lbtPlaneNormal, btScalar lbtPlaneConst, const btTransform& lbtTransform, const btVector3& lbtColor);
+		
 
 	protected:
 		std::string macNameID;
