@@ -21,7 +21,8 @@ class cObjectManager : public cSingleton<cObjectManager>
 		
 		bool Init();
 		void Deinit();
-		void Render(cMatrix &lWorld);
+		//void Render(cMatrix &lWorld);
+		void Render();
 		void Update(float lfTimestep);
 
 	private:

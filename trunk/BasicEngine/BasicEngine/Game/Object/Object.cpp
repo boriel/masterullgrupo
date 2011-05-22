@@ -37,12 +37,14 @@ void cObject::Deinit()
 
 
 
-void cObject::Render(cMatrix &lWorld)
+//void cObject::Render(cMatrix &lWorld)
+void cObject::Render()
 {
+	
 
 	//Pintando el modelo
+	((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(mWorldMatrix);
 	//((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(lWorld);
-	//((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(mWorldMatrix);
 
 #if _DEBUG
 	cGraphicManager::Get().DrawAxis();

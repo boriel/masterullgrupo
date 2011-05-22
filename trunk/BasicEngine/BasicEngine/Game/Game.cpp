@@ -212,15 +212,16 @@ void cGame::Render()
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
 	// 3) Render Solid 3D
-	//SetTheWorldMatrix();
-	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
-	//m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	SetTheWorldMatrix();
+	//m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
+	m3DCamera.SetLookAt(cVec3(12.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
+	RenderSkeletal();
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
-	//RenderSkeletal();
+	
 
 	// 4) Render 3D with transparency
 
@@ -252,10 +253,21 @@ void cGame::SetTheWorldMatrix()
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-void cGame::RenderObjects() 
+
+//Dibujamos Todos los objetos
+void cGame::RenderObjects () 
 {
-	cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
-	cObjectManager::Get().Render(lWorld);
+	//cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
+	//cObjectManager::Get().Render(cGraphicManager::Get().GetWorldMatrix());
+	cObjectManager::Get().Render();
+
+	/*
+	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
+	for (unsigned int i = 0; i < luiNextkey - 1; i++)
+	{
+		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
+	}
+	*/
 }
 
 

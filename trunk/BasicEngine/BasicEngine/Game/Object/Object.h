@@ -28,8 +28,9 @@ class cObject
 		void Deinit();
 		
 		virtual void Update( float lfTimestep );
-		////virtual void Render();
-		virtual void Render(cMatrix &lWorld);
+		virtual void Render();
+		//virtual void Render(cMatrix &lWorld);
+		
 		
 		//inline string GetName() { return macName; }
 		//inline void SetName(const string &lacName) { macName = lacName; }
