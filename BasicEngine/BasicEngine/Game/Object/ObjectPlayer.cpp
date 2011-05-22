@@ -22,19 +22,36 @@ void cObjectPlayer::Update( float lfTimestep )
 
 	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
+	//PRUEBA1
 	//Estas dos lineas van bien, o eso parece
 	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	//mWorldMatrix.SetPosition(mPosition);
 	//mWorldMatrix.LoadTranslation(mPosition);  //creo que es lo mismo esto que el setposition
 
-	
-	//Primero ratamos la matriz
-	cQuaternion lQuatRot = ((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
-	mWorldMatrix.LoadRotation(cVec3(lQuatRot.x, lQuatRot.y, lQuatRot.z), lQuatRot.w);
-	
-	//Depsues trasladamos la matriz
+	////PRUEBA2 CASI FUNCIONA
+	////Primero rotamos la matriz
+	//cQuaternion lQuatRot = ((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
+	//mWorldMatrix.LoadRotation(cVec3(lQuatRot.x, lQuatRot.y, lQuatRot.z), lQuatRot.w);
+	////Depsues trasladamos la matriz
+	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
+	//mWorldMatrix.SetPosition(mPosition);
+
+
+	//cQuaternion lQuatRot = ((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
+	//mWorldMatrix.LoadRotation(cVec3(lQuatRot.x, lQuatRot.y, lQuatRot.z), lQuatRot.w);
+
 	mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	mWorldMatrix.SetPosition(mPosition);
+
+
+	//((cPhysicsPlayer*)mPhysicsObject)->Pruebas2();
+
+	
+	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
+	//mWorldMatrix.SetPosition(cVec3(mPosition.y, mPosition.z, mPosition.x));
+	
+
+
 
 
 	//((cPhysicsPlayer*)mPhysicsObject)->Pruebas();
@@ -60,9 +77,11 @@ void cObjectPlayer::Update( float lfTimestep )
 }
 
 
-void cObjectPlayer::Render (cMatrix &lWorld) 
+//void cObjectPlayer::Render (cMatrix &lWorld) 
+void cObjectPlayer::Render () 
 {
-	cObject::Render(lWorld);
+	//cObject::Render(lWorld);
+	cObject::Render();
 
 #ifdef _DEBUG
 	//mPhysicsObject->RenderTransformDebug(((cPhysicsPlayer *)mPhysicsObject)->GetTransform(), 1.0);

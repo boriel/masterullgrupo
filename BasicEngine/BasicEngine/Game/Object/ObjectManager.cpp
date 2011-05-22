@@ -59,20 +59,22 @@ void cObjectManager::Update(float lfTimestep)
 }
 
 
-void cObjectManager::Render(cMatrix &lWorld)
+//void cObjectManager::Render(cMatrix &lWorld)
+void cObjectManager::Render()
 {
 	//Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, auqnue no se vea por la camara
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
-		mObjectPista[luiIndex]->Render(lWorld);
+		mObjectPista[luiIndex]->Render();
+
 
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
-		mObjectPlayer[luiIndex]->Render(lWorld);
+		mObjectPlayer[luiIndex]->Render();
 
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
-		mObject[luiIndex]->Render(lWorld);
+		mObject[luiIndex]->Render();
 
 
 }

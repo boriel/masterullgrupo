@@ -29,7 +29,8 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition)
 	btVector3 lbtPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
 
 	//mpFallShape = new btSphereShape(1);
-	mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5)); //intentado dibujar un cubo
+	//mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5)); //parece este el bueno
+	mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
 	//mpbtShape = new btBoxShape(btVector3(0, 0, 0.5)); //intentado dibujar un cubo
 	//mpbtShape = new btBoxShape(lbtPosition); //intentado dibujar un cubo
 
@@ -106,7 +107,6 @@ cQuaternion cPhysicsPlayer::GetQuatRotation()
 
 	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
 	
-
 	lQuatRotation.x = lbtQuaternion.getX();
 	lQuatRotation.y = lbtQuaternion.getY();
 	lQuatRotation.z = lbtQuaternion.getZ();
@@ -121,6 +121,29 @@ cQuaternion cPhysicsPlayer::GetQuatRotation()
 }
 
 
+
+
+
+
+void cPhysicsPlayer::Pruebas2()
+{
+
+	btTransform lbtTransform;
+	mpRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+
+	btTransformUtil bb; 
+
+	
+
+
+}
+
+
+
+
+
+//NADA POR AHORA, NO LO QUEIRO BORRAR PORQUE HAY QUE HACER LA PARTE DE COMPUND DE LAS MALLAS
+//TAMBIEN HABRIA QUE PASAR EL RRIGIDBOY A LA CLASE PRINCIPAL
 //Obtenemos la matrix de mundo del objeto
 void cPhysicsPlayer::Pruebas()
 {

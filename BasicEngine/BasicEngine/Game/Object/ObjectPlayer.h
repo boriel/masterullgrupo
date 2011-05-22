@@ -21,7 +21,8 @@ class cObjectPlayer : public cObject
 		cObjectPlayer (cObject lObject);
 		
 		virtual void Update (float lfTimestep);
-		virtual void Render (cMatrix &lWorld);
+		//virtual void Render (cMatrix &lWorld);
+		virtual void Render ();
 
 
 };

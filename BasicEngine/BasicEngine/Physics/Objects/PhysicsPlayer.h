@@ -29,11 +29,12 @@ class cPhysicsPlayer : public cPhysicsObject
 
 		cVec3 GetPosition ();
 		cQuaternion GetQuatRotation();
-		void Pruebas();
+		
 		btTransform GetTransform() { btTransform lbtTransform; mpRigidBody->getMotionState()->getWorldTransform(lbtTransform); return lbtTransform; }  //no se si cargarme esta linea
 		void RenderObjectDebug();
 
-		
+		void Pruebas();		
+		void Pruebas2();
 };
 
 #endif
