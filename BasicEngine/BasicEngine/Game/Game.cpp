@@ -41,18 +41,22 @@ bool cGame::Init()
 	cTextureManager::Get().Init(10); //Iniciando las texturas. Espacio reservado máximo para la carga=10
 	cCharacterManager::Get().Init(); //Inicializamos el Gestor de Personajes
 
+	//==============
 	//Init CAMERA-3D
+	//==============
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
 	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 	mpCamera3DPosition = new cVec3(10.0f, 4.0f, 3.0f);
 	mpCamera3DTarget = new cVec3(0.0f, 0.0f, 0.0f);
-	mfDespX=-0.04;
+	mfDespX=-0.00f;
 
 	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget)); //Cámara en modo cenital (mirando desde arriba)
 	
+	//===================
 	//Iniciando Camara 2D
+	//===================
 	float lfRight = (float)mProperties.muiWidth / 2.0f;
 	float lfLeft = -lfRight;
 	float lfTop = (float)mProperties.muiHeight / 2.0f;
@@ -73,13 +77,7 @@ bool cGame::Init()
 	mFont.Init("./Data/Fonts/Test2.fnt"); // Init the Font
 	cFontManager::Get().Init(5);
 	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
-	//Empezando de nuevo las pruebas para la parte opcional de la practica 4 de gestionar las fuentes
-	//mFontHandle = cFontManager::Get().LoadResource("Font1", "./Data/Fonts/Test1.fnt");
 	
-	//pruebas para ver si guardo y despues usarlo es esta forma
-	//cResource * lpResource = mFontHandle.GetResource();
-	//cFont * lpFont = (cFont*)lpResource;
-
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
 	cMeshManager::Get().Init(10); // Init MeshManager	
@@ -172,6 +170,12 @@ void cGame::Update(float lfTimestep)
 	{
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
+	if (BecomePressed (eIA_Advance)) {
+		mfDespX=-0.04f;
+	}
+	if (BecomePressed (eIA_Back)) {
+		mfDespX=+0.04f;
+	}
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
@@ -181,10 +185,11 @@ void cGame::Update(float lfTimestep)
 
 	//TODO. [David] Pruebas de cámara
 	float lfPosX = mpCamera3DPosition->x;
-	if (lfPosX<-12.0f) mfDespX=+0.04;
-	if (lfPosX>12.0f) mfDespX=-0.04;
-
-	mpCamera3DPosition->x = lfPosX+mfDespX; 
+	if (lfPosX<-12.0f || lfPosX>12.0f) {
+		mfDespX=0.f;
+	} else {
+		mpCamera3DPosition->x = lfPosX+mfDespX; 
+	}
 }
 
 //render del juego
@@ -208,13 +213,13 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	//SetTheWorldMatrix();
-	//m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
-	m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
+	//m3DCamera.SetLookAt(cVec3(10.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
-	RenderObject(); //Dibujando con la nueva representacion de objetos
+	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	//RenderSkeletal();
 
 	// 4) Render 3D with transparency
@@ -225,7 +230,7 @@ void cGame::Render()
 
 	// 6) Render 2D Elements
 	SetTheWorldMatrix();
-	RenderFuentes();	
+	RenderTexts();	
 
 	// 7) Postprocessing
 
@@ -247,14 +252,14 @@ void cGame::SetTheWorldMatrix()
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-void cGame::RenderObject () 
+void cGame::RenderObjects() 
 {
 	cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
 	cObjectManager::Get().Render(lWorld);
 }
 
 
-void cGame::RenderMalla() 
+void cGame::RenderModels() 
 {	
 	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
@@ -270,30 +275,13 @@ void cGame::RenderSkeletal ()
 }
 
 //Renderizamos una fuente en pantalla siguiendo el orden
-void cGame::RenderFuentes () 
-{ 
-	/*
-	//Draw some strings
-	mFont.SetColour (1.0f, 0.0f, 0.0f);
-	mFont.Write(0,200,0, "Pulse ESC o el Botón Izquierdo para salir", 0, FONT_ALIGN_CENTER);
-
-	//mFont.SetColour (0.0f, 1.0f, 1.0f);
-	//mFont.WriteBox(100,100,0, 100, "Renderizando \nvarias \n lineas", 0, FONT_ALIGN_CENTER);
-	
-	//pruebas para ver si guardo y despues usarlo es esta forma
-	cResource * lpResource = mFontHandle.GetResource();
-	cFont * lpFont = (cFont*)lpResource;
-	cFont lFont = *lpFont;
-	lFont.SetColour (1.0f, 0.0f, 0.0f);
-	lFont.Write(0,-100,0, "Pintando desde el HANDLE de fuentes", 0, FONT_ALIGN_CENTER);
-	*/
-
+void cGame::RenderTexts() { 
 	//Draw some strings
 	glEnable(GL_TEXTURE_2D);
-	mFont.SetColour( 1.0f, 0.0f, 0.0f );
-	mFont.Write(0,200,0, "Año Totó pingüino() ¡!¿?", 0,	FONT_ALIGN_CENTER);
+	mFont.SetColour( 1.0f, 1.0f, 1.0f );
+	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
 	mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	mFont.WriteBox(100,100,0,100, "Esto es un test \nmultilinea", 0,	FONT_ALIGN_CENTER);
+	mFont.Write(0,-200,0, "UP DOWN para mover la cámara", 0,	FONT_ALIGN_CENTER);
 }
 
 //Para los ejercicios de LUA
