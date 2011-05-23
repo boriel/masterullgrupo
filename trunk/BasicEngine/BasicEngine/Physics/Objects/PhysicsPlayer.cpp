@@ -120,26 +120,13 @@ cQuaternion cPhysicsPlayer::GetQuatRotation()
 	return lQuatRotation;
 }
 
-
-
-
-
-
 void cPhysicsPlayer::Pruebas2()
 {
-
 	btTransform lbtTransform;
 	mpRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 
-	btTransformUtil bb; 
-
-	
-
-
+	//btTransformUtil bb; 
 }
-
-
-
 
 
 //NADA POR AHORA, NO LO QUEIRO BORRAR PORQUE HAY QUE HACER LA PARTE DE COMPUND DE LAS MALLAS
@@ -157,10 +144,6 @@ void cPhysicsPlayer::Pruebas()
 	btMatrix3x3 btlMatrix = lbtTransform.getBasis();
 	
 	btCollisionShape* btlShape = mpRigidBody->getCollisionShape();
-
-
-
-
 	
 	//http://bulletphysics.org/Bullet/phpBB3/viewtopic.php?t=5469  //Si es una composicion
 	if (mpRigidBody->getCollisionShape()->isCompound())
@@ -171,8 +154,6 @@ void cPhysicsPlayer::Pruebas()
 			btCollisionShape * child = compound->getChildShape(i);
     }
 	}
-
-
 
 	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
 	
