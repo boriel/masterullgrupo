@@ -40,8 +40,15 @@ void cObjectPlayer::Update( float lfTimestep )
 	//cQuaternion lQuatRot = ((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
 	//mWorldMatrix.LoadRotation(cVec3(lQuatRot.x, lQuatRot.y, lQuatRot.z), lQuatRot.w);
 
+	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
+	//mWorldMatrix.SetPosition(mPosition);
+
+
 	mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
+	cQuaternion lQuatRot=((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
+	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
+
 
 
 	//((cPhysicsPlayer*)mPhysicsObject)->Pruebas2();

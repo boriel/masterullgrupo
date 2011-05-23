@@ -5,6 +5,7 @@
 
 
 #include "..\PhysicsManager.h"
+#include "..\..\Graphics\GraphicManager.h"
 
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
 void cPhysicsPlayer::Init(const cVec3 &lPosition) 
@@ -192,6 +193,12 @@ void cPhysicsPlayer::Pruebas()
 
 void cPhysicsPlayer::RenderObjectDebug()
 {
+
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+
+
 
 	//btTransform lbtTransform = GetTransform();
 
