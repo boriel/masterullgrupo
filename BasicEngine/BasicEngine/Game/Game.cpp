@@ -50,7 +50,7 @@ bool cGame::Init()
 	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 	mpCamera3DPosition = new cVec3(10.0f, 4.0f, 3.0f);
 	mpCamera3DTarget = new cVec3(0.0f, 0.0f, 0.0f);
-	mfDespX=-0.00f;
+	mfDespX=0.00f;
 
 	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget)); //Cámara en modo cenital (mirando desde arriba)
 	
@@ -171,10 +171,12 @@ void cGame::Update(float lfTimestep)
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
 	if (BecomePressed (eIA_Advance)) {
-		mfDespX=-0.04f;
+		if ((mpCamera3DPosition->x)<0) mfDespX=+0.05f;
+		if ((mpCamera3DPosition->x)>0) mfDespX=-0.05f;
 	}
 	if (BecomePressed (eIA_Back)) {
-		mfDespX=+0.04f;
+		if ((mpCamera3DPosition->x)<0 && (mpCamera3DPosition->x)>12.0f) mfDespX=-0.05f;
+		if ((mpCamera3DPosition->x)>0 && (mpCamera3DPosition->x)<-12.0f) mfDespX=+0.05f;
 	}
 
 	// Check if we need to close the application
@@ -187,9 +189,8 @@ void cGame::Update(float lfTimestep)
 	float lfPosX = mpCamera3DPosition->x;
 	if (lfPosX<-12.0f || lfPosX>12.0f) {
 		mfDespX=0.f;
-	} else {
-		mpCamera3DPosition->x = lfPosX+mfDespX; 
 	}
+	mpCamera3DPosition->x = lfPosX+mfDespX; 
 }
 
 //render del juego
@@ -213,8 +214,8 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	//m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
-	m3DCamera.SetLookAt(cVec3(12.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
+	//m3DCamera.SetLookAt(cVec3(12.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
