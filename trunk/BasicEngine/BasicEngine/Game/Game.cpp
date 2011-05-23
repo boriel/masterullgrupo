@@ -175,8 +175,8 @@ void cGame::Update(float lfTimestep)
 		if ((mpCamera3DPosition->x)>0) mfDespX=-0.05f;
 	}
 	if (BecomePressed (eIA_Back)) {
-		if ((mpCamera3DPosition->x)<0 && (mpCamera3DPosition->x)>12.0f) mfDespX=-0.05f;
-		if ((mpCamera3DPosition->x)>0 && (mpCamera3DPosition->x)<-12.0f) mfDespX=+0.05f;
+		if ((mpCamera3DPosition->x)<0 && (mpCamera3DPosition->x)>-12.0f) mfDespX=-0.05f;
+		if ((mpCamera3DPosition->x)>0 && (mpCamera3DPosition->x)<+12.0f) mfDespX=+0.05f;
 	}
 
 	// Check if we need to close the application
@@ -187,10 +187,8 @@ void cGame::Update(float lfTimestep)
 
 	//TODO. [David] Pruebas de cámara
 	float lfPosX = mpCamera3DPosition->x;
-	if (lfPosX<-12.0f || lfPosX>12.0f) {
-		mfDespX=0.f;
-	}
 	mpCamera3DPosition->x = lfPosX+mfDespX; 
+	if (lfPosX<-12.0f || lfPosX>12.0f)	mfDespX=0.f;
 }
 
 //render del juego
