@@ -28,8 +28,6 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		btDefaultCollisionConfiguration* mpCollisionConfiguration;
 		btCollisionDispatcher* mpDispatcher;
 		btSequentialImpulseConstraintSolver* mpSolver;
-
-		//cPhysicsCube *lpTemp; //TODO para quitar
 };
 
 #endif

@@ -17,18 +17,11 @@ bool cPhysicsManager::Init ()
 	mpDynamicsWorld = new btDiscreteDynamicsWorld(mpDispatcher, mpBroadphase, mpSolver, mpCollisionConfiguration);
 	mpDynamicsWorld->setGravity(btVector3(0,-10,0));
  
-
-	//TODO: Prueba temporal
-	//lpTemp=new cPhysicsCube();
-	//lpTemp->Init("Cubo");
-
 	return true;	
 }
 
 bool cPhysicsManager::Deinit () 
 {
-	//lpTemp->Deinit();
-
 	delete mpDynamicsWorld;
 	delete mpSolver;
 	delete mpDispatcher;
@@ -41,10 +34,7 @@ bool cPhysicsManager::Deinit ()
 //update
 void cPhysicsManager::Update(float lfTimestep) 
 { 
-	//Actualizamos todos los objetos físicos
-	//A lo mejor esto no hace falta...
-	//lpTemp->Update();
-
+	//Actualizamos todos el mundo físicos
 	//mpDynamicsWorld->stepSimulation(1/60.f,10);
 	mpDynamicsWorld->stepSimulation(lfTimestep,10); //Actualizamos el mundo
 }
