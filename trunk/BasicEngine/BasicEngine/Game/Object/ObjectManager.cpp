@@ -55,6 +55,9 @@ void cObjectManager::Update(float lfTimestep)
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
 		mObjectPlayer[luiIndex]->Update(lfTimestep);
 	
+	//Actualizando la pista
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
+		mObjectPista[luiIndex]->Update(lfTimestep);
 
 }
 

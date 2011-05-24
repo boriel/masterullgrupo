@@ -24,9 +24,6 @@ void cObject::Init()
 
 	mWorldMatrix.SetPosition(mPosition);
 
-	//mWorldMatrix.LoadRotation(cVec3(0,1,0), 3.14f);
-	//mWorldMatrix.SetPosition(cVec3(0,-2,0));
-	//mWorldMatrix.LoadTranslation(mPosition);
 }
 
 
@@ -44,7 +41,7 @@ void cObject::Render()
 
 	//Pintando el modelo
 	((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(mWorldMatrix);
-	//((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(lWorld);
+	
 
 #if _DEBUG
 	cGraphicManager::Get().DrawAxis();
