@@ -14,9 +14,9 @@ Ejemplo de Hello world de la web de http://www.bulletphysics.org/mediawiki-1.5.8
 class cPhysicsPlayer : public cPhysicsObject 
 {
 	private:
-		btRigidBody* mpRigidBody;
+		//btRigidBody* mpRigidBody;
 		//btRigidBody* mpGroundRigidBody;
-		btCollisionShape* mpbtShape;
+		//btCollisionShape* mpbtShape;
 		//btCollisionShape* mpGroundShape;
 		
 
@@ -27,14 +27,14 @@ class cPhysicsPlayer : public cPhysicsObject
 		void Update(void);
 		void Deinit(void);
 
-		cVec3 GetPosition ();
-		cQuaternion GetQuatRotation();
+		//cVec3 GetPosition ();
+		//cQuaternion GetQuatRotation();
 		
-		btTransform GetTransform() { btTransform lbtTransform; mpRigidBody->getMotionState()->getWorldTransform(lbtTransform); return lbtTransform; }  //no se si cargarme esta linea
-		void RenderObjectDebug();
+		//btTransform GetTransform() { btTransform lbtTransform; mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform); return lbtTransform; }  //no se si cargarme esta linea
+		
 
 		void Pruebas();		
-		void Pruebas2();
+		
 };
 
 #endif

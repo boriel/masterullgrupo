@@ -134,3 +134,72 @@ void cPhysicsObject::RenderPlaneDebug (const btVector3& lbtPlaneNormal, btScalar
 	drawLine(transform*pt2,transform*pt3,color);
 */
 }
+
+
+void cPhysicsObject::RenderObjectDebug()
+{
+
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
+
+
+	btTransform lbtTransform; 
+	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform); 
+
+	//Pintando los ejes de coordenadas
+	RenderTransformDebug(lbtTransform, 1.0);
+
+
+	
+	
+	//Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
+	btCollisionShape* lbtShape = mpbtRigidBody->getCollisionShape();
+	const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtShape);
+	btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
+	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
+	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
+
+}
+
+
+
+//Obtenemos la posicion central del objeto
+cVec3 cPhysicsObject::GetPosition ()
+{
+	cVec3 lPosition;
+
+	btTransform lbtTransform;
+	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+
+
+	lPosition.x = lbtTransform.getOrigin().getX();
+	lPosition.y = lbtTransform.getOrigin().getY();
+	lPosition.z = lbtTransform.getOrigin().getZ();
+
+	return lPosition;
+}
+
+
+//no estoy seguro que necesitemos esto
+cQuaternion cPhysicsObject::GetQuatRotation()
+{
+	//cVec3 lVecRotation;
+	cQuaternion lQuatRotation;
+
+	//implementarlo
+	
+	btTransform lbtTransform;
+	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+
+	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
+	
+	lQuatRotation.x = lbtQuaternion.getX();
+	lQuatRotation.y = lbtQuaternion.getY();
+	lQuatRotation.z = lbtQuaternion.getZ();
+	lQuatRotation.w = lbtQuaternion.getW();
+
+
+	return lQuatRotation;
+}
+
