@@ -24,6 +24,8 @@ void cObject::Init()
 
 	mWorldMatrix.SetPosition(mPosition);
 
+	mfScale = 1.0f;
+
 }
 
 
