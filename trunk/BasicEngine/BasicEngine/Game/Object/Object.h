@@ -59,6 +59,7 @@ class cObject
 	
 		
 		cPhysicsObject* mPhysicsObject;
+		float mfScale;
 
 
 };
