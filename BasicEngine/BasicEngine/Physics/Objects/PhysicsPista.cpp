@@ -19,7 +19,7 @@ void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIni
 	btVector3 lbtPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
 
 	//mpbtShape = new btBoxShape(btVector3(25, 25, 25));
-	mpbtShape = new btBoxShape(btVector3(25, 0.5, 25));
+	mpbtShape = new btBoxShape(btVector3(25, 25, 1));
 	//mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
 	
 	btQuaternion lbtQuaternion;

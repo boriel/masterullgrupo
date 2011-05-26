@@ -4,10 +4,10 @@
     <contributor>
       <author>yormanh</author>
       <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
-      <source_data>file:///C:/Visual%20Studio%202010/Projects/Master%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20Code%20(masterullgrupo%20parte%20final)/BasicEngine/BasicEngine/Data/Scene/sueloMax.max</source_data>
+      <source_data>file:///F:/Ficheros/Cursos/M%C3%A1ster%20en%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20(Final)/BasicEngine/BasicEngine/Data/Scene/sueloMax.max</source_data>
     </contributor>
-    <created>2011-05-24T19:12:44</created>
-    <modified>2011-05-24T19:12:44</modified>
+    <created>2011-05-26T22:26:24</created>
+    <modified>2011-05-26T22:26:24</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -159,16 +159,20 @@
         <instance_light url="#EnvironmentAmbientLight"/>
       </node>
       <node id="node-SueloBox" name="SueloBox">
-        <translate>0 0 -0.5</translate>
-        <instance_geometry url="#geom-SueloBox">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="_1_-_Default_1" target="#_1_-_Default-material">
-                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <translate>0 -0.5 -2.18557e-8</translate>
+        <rotate>-1 0 0 -90</rotate>
+        <node>
+          <matrix>1 0 0 0 0 1 0 0 0 0 1 -0.5 0 0 0 1</matrix>
+          <instance_geometry url="#geom-SueloBox">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="_1_-_Default_1" target="#_1_-_Default-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
