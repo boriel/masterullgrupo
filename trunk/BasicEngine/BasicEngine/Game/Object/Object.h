@@ -46,6 +46,8 @@ class cObject
 		inline string GetModelFile () {return msModelFile; }
 		inline void SetPosition (cVec3 lPosition) { mPosition = lPosition; }
 		inline cVec3 GetPosition () { return mPosition; }
+		inline void SetCollision (cVec3 lCollision) { mCollision = lCollision; }  //a mano por ahora
+		inline cVec3 GetCollision () { return mCollision; } //a mano por ahora
 		
 
 	protected:
@@ -59,6 +61,7 @@ class cObject
 	
 		
 		cPhysicsObject* mPhysicsObject;
+		cVec3 mCollision; //temporal para meter los puntos de desde un xml
 		float mfScale;
 
 

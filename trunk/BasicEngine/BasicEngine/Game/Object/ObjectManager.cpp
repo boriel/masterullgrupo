@@ -108,8 +108,10 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 		for (lpElement = lpElement->FirstChildElement("Object"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 		{
-			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "";
+			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsCollX = "", lsCollY = "", lsCollZ = "";
 			float lfScale = 1.0f;
+			cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
+			
 			
 			
 			if (lpElement->Attribute("Type") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
@@ -127,6 +129,17 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			if (lpElement->Attribute("Scale") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsScale = ((char*)lpElement->Attribute("Scale"));
 
+			if (lpElement->Attribute("CollX") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsCollX = ((char*)lpElement->Attribute("CollX"));
+
+			if (lpElement->Attribute("CollY") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsCollY = ((char*)lpElement->Attribute("CollY"));
+
+			if (lpElement->Attribute("CollZ") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsCollZ = ((char*)lpElement->Attribute("CollZ"));
+
+
+
 			
 			vector<string> lTokens;
 			Tokenize(lsPosition, lTokens, ",");
@@ -141,7 +154,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			
 			if (lsScale != "")
 				lfScale = (float)atof(lsScale.c_str());
-
+			if ((lsCollX != "") && (lsCollY != "") && (lsCollZ != ""))
+				lCollision = cVec3 ((float)atof(lsCollX.c_str()), (float)atof(lsCollY.c_str()), (float)atof(lsCollZ.c_str()));
 
 
 			cObject* lObject = new cObject;
@@ -150,6 +164,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			(*lObject).SetModelName(lsModelName);
 			(*lObject).SetModelFile(lsModelFile);
 			(*lObject).SetPosition(lPosition);
+			(*lObject).SetCollision(lCollision);
+
 
 			
 
