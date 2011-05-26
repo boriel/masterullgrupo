@@ -40,6 +40,9 @@ class cPhysicsObject
 
 		btRigidBody* mpbtRigidBody;   //Cuerpo rigido o posicion
 		btCollisionShape* mpbtShape;  //malla de collsion
+
+		
+
 };
 
 #endif

@@ -10,7 +10,8 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 
 	mPhysicsObject = new cPhysicsPlayer;
 	//mPhysicsObject->Init("Player");
-	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
+	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
+	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetCollision());
 
 	
 }

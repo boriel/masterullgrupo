@@ -181,14 +181,12 @@ cVec3 cPhysicsObject::GetPosition ()
 }
 
 
-//no estoy seguro que necesitemos esto
+
 cQuaternion cPhysicsObject::GetQuatRotation()
 {
 	//cVec3 lVecRotation;
 	cQuaternion lQuatRotation;
 
-	//implementarlo
-	
 	btTransform lbtTransform;
 	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 

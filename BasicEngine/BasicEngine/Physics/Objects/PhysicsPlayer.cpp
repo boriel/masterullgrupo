@@ -8,7 +8,8 @@
 #include "..\..\Graphics\GraphicManager.h"
 
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
-void cPhysicsPlayer::Init(const cVec3 &lPosition) 
+//void cPhysicsPlayer::Init(const cVec3 &lPosition) 
+void cPhysicsPlayer::Init(const cVec3 &lPosition, const cVec3 &lCollision) 
 {
 	//macNameID = lacNameID;
 	meType =  ePO_Cube;
@@ -20,12 +21,19 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition)
 	
 	btVector3 lbtPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
 
-	mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
-
-	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform(btQuaternion(0,0,0,1),btVector3(0,50,0)));
 	
-	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition));
-	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1)));
+	//mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
+	mpbtShape = new btBoxShape(btVector3(2.2, 1.0, 1.0));  //NPI DE PORQUE NO CARGA DEL FICHERO. VER QUE PASA Y PORQUE NO LEE LOS VALORES del xml y estos si, ME VOY A DORMIR YA
+	//mpbtShape = new btBoxShape(btVector3(lCollision.x / 2.0f, lCollision.y / 2.0f, lCollision.z / 2.0f));  //haciendo el cubo con lo pasado en xml
+
+  //Funciona el cambio de eje, ya que al parecer desde max y opencollada siempre vienen la z up y no se como cambiarlo en max (y desde el dae es un coñazo a cada rato) pues cambio en codigo
+	btMatrix3x3 lbtMatrixYUp = btMatrix3x3(1,0,0, 0,1,0, 0,0,1);
+	btTransform lbtTransform = btTransform(lbtMatrixYUp);
+	lbtTransform.setRotation(btQuaternion(btVector3(1,0,0), -3.14159f / 2.0f));
+	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
+	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (lbtQuaternion, lbtPosition));
+
+	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition)); //Funciona para si ya viene todo dado cojonudo en el dae, orientado y todo
 	btScalar mass = 1;
 	btVector3 fallInertia(0, 0, 0);
 	mpbtShape->calculateLocalInertia (mass, fallInertia);
