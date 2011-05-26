@@ -104,10 +104,13 @@ bool cGame::Init()
 
 	mfAcTime = 0.0f;
 
+
 	//Pruebas Yorman
-	cPhysicsManager::Get().Init();
+	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico, sin objetos
 	cObjectManager::Get().Init();  //Esto tambien carga los recursos, cModelManager::Get() dentro de Init
 	
+
+
 	return lbResult;
 }
 

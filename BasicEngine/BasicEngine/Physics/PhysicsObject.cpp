@@ -201,3 +201,22 @@ cQuaternion cPhysicsObject::GetQuatRotation()
 	return lQuatRotation;
 }
 
+
+//con esto le damos la vuelta al eje que viene en max que es ZUP
+
+
+btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)
+{
+
+	btQuaternion lbtRotQuat = btQuaternion(lRotQuat.x, lRotQuat.y, lRotQuat.z, lRotQuat.w);
+
+
+	btMatrix3x3 lbtMatrix = btMatrix3x3(1,0,0, 0,1,0, 0,0,1);  //Identidad, no se is pasarán otra, es al principio solo
+	btTransform lbtTransform = btTransform(lbtMatrix);
+	//lbtTransform.setRotation(btQuaternion(btVector3(1,0,0), -3.14159f / 2.0f));  //ASÍ FUNCIONA 
+	//lbtTransform.setRotation(lbtRotQuat);  //NO VA, SEGURO PORQUE NO ENTIENDO LOS ANGULOS, NO SE PUEDE PASAR ASI DE FACIL
+	lbtTransform.setRotation(btQuaternion(btVector3(lRotQuat.x,lRotQuat.y,lRotQuat.z), lRotQuat.w));  //ASÍ FUNCIONA 
+	btQuaternion lbtQuaternion = lbtTransform.getRotation();
+
+	return lbtQuaternion;
+}

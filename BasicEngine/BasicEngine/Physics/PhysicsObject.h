@@ -32,6 +32,7 @@ class cPhysicsObject
 
 		cVec3 GetPosition ();
 		cQuaternion GetQuatRotation();
+		btQuaternion CambiarEje (const cQuaternion &lRotQuat);
 
 
 	protected:
@@ -39,8 +40,12 @@ class cPhysicsObject
 		ePhysicObjectType meType;
 
 		btRigidBody* mpbtRigidBody;   //Cuerpo rigido o posicion
-		btCollisionShape* mpbtShape;  //malla de collsion
+		btCollisionShape* mpbtShape;  //malla de collsion  (solo una malla)
+		//btAlignedObjectArray<btCollisionShape*> mapbtCollisionShapes;  //No hecho todavía, pero por aqui van los tiros!!!!
+		btScalar mbtMass;
+		btVector3 mbtFallInertia;
 
+		//btQuaternion CambiarEje(cVec3 lbtRot, float lfAngulo); //con esto le damos la vuelta al eje , ya que a saber como vienen las figuras NO USADO!!!!!!
 		
 
 };

@@ -8,7 +8,7 @@
 #include "..\..\Graphics\GraphicManager.h"
 
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
-void cPhysicsPista::Init(const cVec3 &lPosition) 
+void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
 {
 
 	//std::cout << "Cubo.Init()" << std::endl;
@@ -22,7 +22,14 @@ void cPhysicsPista::Init(const cVec3 &lPosition)
 	mpbtShape = new btBoxShape(btVector3(25, 0.5, 25));
 	//mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
 	
-	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition));
+	btQuaternion lbtQuaternion;
+	if (lRotacionInicial.w != 0)  //no pusieron ángulo o no rotacion en el xml
+		lbtQuaternion =  CambiarEje(lRotacionInicial);
+	else
+		lbtQuaternion = btQuaternion(0, 0, 0, 1);
+
+	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (lbtQuaternion, lbtPosition));
+	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition));
 	btScalar mass = 0.0f;
 	btVector3 fallInertia(0, 0, 0);
 	mpbtShape->calculateLocalInertia (mass, fallInertia);
