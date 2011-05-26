@@ -24,7 +24,7 @@ class cObject
 		//cObject(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 
 		void Init();
-		void Init (cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
+		void Init (cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial);
 		void Deinit();
 		
 		virtual void Update( float lfTimestep );
@@ -46,9 +46,10 @@ class cObject
 		inline string GetModelFile () {return msModelFile; }
 		inline void SetPosition (cVec3 lPosition) { mPosition = lPosition; }
 		inline cVec3 GetPosition () { return mPosition; }
-		inline void SetCollision (cVec3 lCollision) { mCollision = lCollision; }  //a mano por ahora
+		inline void SetCollision (cVec3 lCollision) { mCollision = lCollision; }  //a mano por ahora NO USADO!
 		inline cVec3 GetCollision () { return mCollision; } //a mano por ahora
-		
+		inline void SetRotacionInicial (cQuaternion lQuatRot) { mRotacionInicial = lQuatRot; }  
+		inline cQuaternion GetRotacionInicial () { return mRotacionInicial; }  
 
 	protected:
 		//string macName;
@@ -62,7 +63,9 @@ class cObject
 		
 		cPhysicsObject* mPhysicsObject;
 		cVec3 mCollision; //temporal para meter los puntos de desde un xml
-		float mfScale;
+		float mfScale;  //no se si usarlo, no se usa por ahora ni se pide
+		cQuaternion mRotacionInicial;  //NO ES QUATERNION PROPIEAMENTE DICHO, SON LSO DATOS A PELO DEL XML
+
 
 
 };

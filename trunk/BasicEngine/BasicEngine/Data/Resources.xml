@@ -26,8 +26,9 @@
 
 	<!-- <Object Type="Player" Position="5,40,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" /> -->
 
-	<Object Type="Player" Position="0,5,0" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  CollX="2.2" CollY="1" CollZ="1" />
-	
+
+	<Object Type="Player" Position="0,5,0" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
+
 	
 <!--	
 	<Object Type="Player" Position="0,10,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
@@ -48,6 +49,15 @@
 	<Object Type="Pista" Position="0,0,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" /> 
 	-->
   </Objects>
+  
+  
+  <ObjectsCollision>
+  
+	<ObjectCollision ModelName="CarJazz" >
+		<Shape X="2.2" Y="1" Z="1" />
+	</ObjectCollision>
+  
+  </ObjectsCollision>
   
   
 </Resources>

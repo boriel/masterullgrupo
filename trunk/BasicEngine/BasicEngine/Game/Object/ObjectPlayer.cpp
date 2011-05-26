@@ -6,12 +6,12 @@
 
 cObjectPlayer::cObjectPlayer (cObject lObject)
 {
-	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile());
+	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
 
 	mPhysicsObject = new cPhysicsPlayer;
 	//mPhysicsObject->Init("Player");
 	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
-	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetCollision());
+	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 
 	
 }

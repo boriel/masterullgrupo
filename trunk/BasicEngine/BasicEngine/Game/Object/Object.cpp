@@ -5,12 +5,13 @@
 
 #include "..\..\Graphics\GraphicManager.h"
 
-void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile)
+void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial)
 {
 	mPosition = lPosition;
 	msType = lsType;
 	msModelName = lsModelName;
 	msModelFile = lsModelFile;
+	mRotacionInicial = lRotacionInicial;
 
 	Init();  
 
