@@ -8,8 +8,7 @@ Class Camera.h.
 
 #include "..\MathLib\MathLib.h"
 
-class cCamera
-{
+class cCamera {
 	private:
 		cMatrix mView;
 		cMatrix mProj;

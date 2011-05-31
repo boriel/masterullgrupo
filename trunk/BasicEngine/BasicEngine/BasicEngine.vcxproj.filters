@@ -408,6 +408,9 @@
     <ClInclude Include="Physics\Objects\PhysicsPista.h">
       <Filter>Physics\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="Graphics\CameraNavigator.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -680,6 +683,9 @@
     </ClCompile>
     <ClCompile Include="Physics\Objects\PhysicsPista.cpp">
       <Filter>Physics\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\CameraNavigator.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

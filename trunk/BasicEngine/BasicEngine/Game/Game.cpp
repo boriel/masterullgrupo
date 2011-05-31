@@ -47,12 +47,7 @@ bool cGame::Init()
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
-	//m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
-	mpCamera3DPosition = new cVec3(10.0f, 4.0f, 3.0f);
-	mpCamera3DTarget = new cVec3(0.0f, 0.0f, 0.0f);
-	mfDespX=0.00f;
-
-	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget)); //Cámara en modo cenital (mirando desde arriba)
+	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 	
 	//===================
 	//Iniciando Camara 2D
@@ -104,12 +99,9 @@ bool cGame::Init()
 
 	mfAcTime = 0.0f;
 
-
 	//Pruebas Yorman
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico, sin objetos
 	cObjectManager::Get().Init();  //Esto tambien carga los recursos, cModelManager::Get() dentro de Init
-	
-
 
 	return lbResult;
 }
@@ -173,25 +165,12 @@ void cGame::Update(float lfTimestep)
 	{
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
-	if (BecomePressed (eIA_Advance)) {
-		if ((mpCamera3DPosition->x)<0) mfDespX=+0.05f;
-		if ((mpCamera3DPosition->x)>0) mfDespX=-0.05f;
-	}
-	if (BecomePressed (eIA_Back)) {
-		if ((mpCamera3DPosition->x)<0 && (mpCamera3DPosition->x)>-12.0f) mfDespX=-0.05f;
-		if ((mpCamera3DPosition->x)>0 && (mpCamera3DPosition->x)<+12.0f) mfDespX=+0.05f;
-	}
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
 	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed( eIA_CloseApplication );
 	if (mbFinish) return;
-
-	//TODO. [David] Pruebas de cámara
-	float lfPosX = mpCamera3DPosition->x;
-	mpCamera3DPosition->x = lfPosX+mfDespX; 
-	if (lfPosX<-12.0f || lfPosX>12.0f)	mfDespX=0.f;
 }
 
 //render del juego
@@ -215,8 +194,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.SetLookAt( (*mpCamera3DPosition), (*mpCamera3DTarget));  //Cámara en movimiento
-	//m3DCamera.SetLookAt(cVec3(12.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	m3DCamera.SetLookAt(cVec3(12.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
@@ -259,17 +237,8 @@ void cGame::SetTheWorldMatrix()
 //Dibujamos Todos los objetos
 void cGame::RenderObjects () 
 {
-	//cMatrix lWorld = cGraphicManager::Get().GetWorldMatrix(); //temporalmente
-	//cObjectManager::Get().Render(cGraphicManager::Get().GetWorldMatrix());
 	cObjectManager::Get().Render();
 
-	/*
-	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
-	for (unsigned int i = 0; i < luiNextkey - 1; i++)
-	{
-		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
-	}
-	*/
 }
 
 
@@ -278,7 +247,6 @@ void cGame::RenderModels()
 	unsigned int luiNextkey = cModelManager::Get().GetNextKey();
 	for (unsigned int i = 0; i < luiNextkey - 1; i++)
 		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
-		//((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render();
 }
 
 void cGame::RenderSkeletal () 
@@ -294,8 +262,8 @@ void cGame::RenderTexts() {
 	glEnable(GL_TEXTURE_2D);
 	mFont.SetColour( 1.0f, 1.0f, 1.0f );
 	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
-	mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	mFont.Write(0,-200,0, "UP DOWN para mover la cámara", 0,	FONT_ALIGN_CENTER);
+	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
+	//mFont.Write(0,-200,0, "UP DOWN para mover la cámara", 0,	FONT_ALIGN_CENTER);
 }
 
 //Para los ejercicios de LUA

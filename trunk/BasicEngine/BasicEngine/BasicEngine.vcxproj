@@ -117,6 +117,7 @@
     <ClInclude Include="Game\Scene\Model.h" />
     <ClInclude Include="Game\Scene\ModelManager.h" />
     <ClInclude Include="Graphics\Camera.h" />
+    <ClInclude Include="Graphics\CameraNavigator.h" />
     <ClInclude Include="Graphics\Effects\Effect.h" />
     <ClInclude Include="Graphics\Effects\EffectManager.h" />
     <ClInclude Include="Graphics\Fonts\acgfx_font.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="Game\Scene\Model.cpp" />
     <ClCompile Include="Game\Scene\ModelManager.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
+    <ClCompile Include="Graphics\CameraNavigator.cpp" />
     <ClCompile Include="Graphics\Effects\Effect.cpp" />
     <ClCompile Include="Graphics\Effects\EffectManager.cpp" />
     <ClCompile Include="Graphics\Fonts\acgfx_font.cpp" />
