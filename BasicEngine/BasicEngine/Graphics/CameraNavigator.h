@@ -11,7 +11,7 @@ class cCameraNavigator : public cCamera {
 	private:
 		cVec3 *mpPosition;
 		cVec3 *mpTarget;
-		float mfDespX;
+		cVec3 *mpMovement;
 
 	public:
 		void Init(void);
