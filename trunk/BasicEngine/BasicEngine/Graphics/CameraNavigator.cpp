@@ -1,9 +1,11 @@
 #include "CameraNavigator.h"
+#include "..\Input\InputManager.h"
+#include "..\Game\InputConfiguration.h"
 
 void cCameraNavigator::Init(void) { 
 	mpPosition = new cVec3(10.0f, 4.0f, 3.0f);
 	mpTarget = new cVec3(0.0f, 0.0f, 0.0f);
-	mfDespX=0.00f;
+	mpMovement= new cVec3(0.0f, 0.0f, 0.0f);
 
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
@@ -11,21 +13,24 @@ void cCameraNavigator::Init(void) {
 void cCameraNavigator::Deinit(void) {
 	delete mpPosition;
 	delete mpTarget;
+	delete mpMovement;
 }
 
 void cCameraNavigator::Update(void) {
-	/*	if (BecomePressed (eIA_Advance)) {
-		if ((mpCamera3DPosition->x)<0) mfDespX=+0.05f;
-		if ((mpCamera3DPosition->x)>0) mfDespX=-0.05f;
+	 cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
+
+	if (IsPressed (eIA_Advance)) {
+		if ((mpPosition->x)<0) mpMovement->x=+0.05f;
+		if ((mpPosition->x)>0) mpMovement->x=-0.05f;
 	}
-	if (BecomePressed (eIA_Back)) {
-		if ((mpCamera3DPosition->x)<0 && (mpCamera3DPosition->x)>-12.0f) mfDespX=-0.05f;
-		if ((mpCamera3DPosition->x)>0 && (mpCamera3DPosition->x)<+12.0f) mfDespX=+0.05f;
+	if (IsPressed (eIA_Back)) {
+		if ((mpPosition->x)<0 && (mpPosition->x)>-12.0f) mpMovement->x=-0.05f;
+		if ((mpPosition->x)>0 && (mpPosition->x)<+12.0f) mpMovement->x=+0.05f;
 	}
-	//TODO. [David] Pruebas de cámara
-	float lfPosX = mpCamera3DPosition->x;
-	mpCamera3DPosition->x = lfPosX+mfDespX; 
-	if (lfPosX<-12.0f || lfPosX>12.0f)	mfDespX=0.f;
-	*/
-	SetLookAt( (*mpPosition), (*mpTarget));  //Cámara en movimiento
+
+	float lfPosX = mpPosition->x;
+	mpPosition->x += mpMovement->x; 
+	if (lfPosX<-12.0f || lfPosX>12.0f)	mpMovement->x=0.f;
+	
+	SetLookAt( (*mpPosition), (*mpTarget)); 
 }
