@@ -47,7 +47,6 @@ bool cGame::Init()
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
-	m3DCamera.SetLookAt (cVec3 (5.0f, 5.f, 5.f), cVec3 (0.0f, 0.f, 0.f), cVec3 (0, 1, 0));
 	
 	//===================
 	//Iniciando Camara 2D
@@ -125,6 +124,7 @@ bool cGame::Deinit()
 	cCharacterManager::Get().Deinit();
 
 	cEffectManager::Get().Deinit();
+	m3DCamera.Deinit();
 
 	return lbResult;
 }
@@ -194,7 +194,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.SetLookAt(cVec3(12.0f, 4.0f, 3.0f), cVec3(0.0f, 0.0f, 0.0f) ); //Posicionando la camara (//orig 3,3,3
+	m3DCamera.Update();
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
@@ -202,7 +202,6 @@ void cGame::Render()
 	//RenderSkeletal();
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	
-
 	// 4) Render 3D with transparency
 
 	// 5) Activate 2D Camera

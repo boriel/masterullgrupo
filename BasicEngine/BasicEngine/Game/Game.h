@@ -10,6 +10,7 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 #include "..\Utility\Singleton.h"
 #include "..\Window\ApplicationProperties.h"
 #include "..\Graphics\Camera.h"
+#include "..\Graphics\CameraNavigator.h"
 #include "..\Graphics\Fonts\acgfx_font.h"
 #include "Scene\SubModel.h"
 
@@ -22,7 +23,7 @@ class cGame : public cSingleton<cGame> {
 	private: 	//variables
 		bool mbFinish;
 		cApplicationProperties mProperties;
-		cCamera m3DCamera;
+		cCameraNavigator m3DCamera;
 		cCamera m2DCamera;
 		cFont mFont;
 		cResourceHandle mCubo;

@@ -25,11 +25,11 @@ class cCamera {
 		void SetPerspective (float lfFVOVY_Rad, float lfAspect, float lfZNear, float lfZFar);
 
 		//Nos devuelven información relativa a la orientación y posición de la cámara
-		cVec3 GetFront ()			const { mView.GetFront();			}
-		cVec3 GetLeft ()			const { mView.GetLeft();			}
-		cVec3 GetRight ()			const { mView.GetRight();			}
-		cVec3 GetUp ()				const { mView.GetUp();				}
-		cVec3 Getposition ()	const { mView.GetPosition();	}
+		cVec3 GetFront ()			const { mView.GetFront();		}
+		cVec3 GetLeft ()			const { mView.GetLeft();		}
+		cVec3 GetRight ()			const { mView.GetRight();		}
+		cVec3 GetUp ()				const { mView.GetUp();			}
+		cVec3 GetPosition ()		const { mView.GetPosition();	}
 
 		//Nos devuelven las matrices con las que trabajamos
 		const cMatrix &GetView() const { return mView; }
