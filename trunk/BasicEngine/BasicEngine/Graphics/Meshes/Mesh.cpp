@@ -214,8 +214,7 @@ void cMesh::RenderMesh()
 	// Set all the UV channels to the render
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	static GLenum meTextureChannelEnum[] = { GL_TEXTURE0, GL_TEXTURE1, GL_TEXTURE2, GL_TEXTURE3 };
-	for(unsigned luiTexCoordChannel = 0;
-	luiTexCoordChannel < maVboTexture.size(); ++luiTexCoordChannel)
+	for(unsigned luiTexCoordChannel = 0; luiTexCoordChannel < maVboTexture.size(); ++luiTexCoordChannel)
 	{
 		// Texture coordinates
 		glClientActiveTexture(meTextureChannelEnum[luiTexCoordChannel]);

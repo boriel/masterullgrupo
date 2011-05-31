@@ -74,8 +74,8 @@ bool cGame::Init()
 	
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
-	cMeshManager::Get().Init(10); // Init MeshManager	
-	cModelManager::Get().Init(12); // Init SceneManager
+	cMeshManager::Get().Init(64); // Init MeshManager	
+	cModelManager::Get().Init(10); // Init SceneManager
 
 	cMaterialManager::Get().Init(10); //Init Material Manager
 	cEffectManager::Get().Init(10);
