@@ -20,7 +20,6 @@ void cCamera::SetLookAt (const cVec3 &lvPosition, const cVec3 &lvTarget, const c
 	RefreshViewProj();
 }
 
-
 //Matriz de proyeccíón ortogonal (con esta los objetos lejanos y cercanos se ven del mismo tamaño)
 //lfLeft, lfRight, lfBottom, lfTop: Tamaño del área a renderizar 
 //lfZNear, lfZNFar: el clipping con respecto a la distancia de la cámara, que mostrará por pantalla todo lo que se encuentre entre estos dos valores

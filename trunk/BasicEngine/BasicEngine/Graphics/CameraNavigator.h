@@ -19,20 +19,20 @@ enum eCameraNavigatorStates {
 };
 
 class cCameraNavigator : public cCamera {
-	private:
-		cVec3 *mpPosition;
-		cVec3 *mpTarget;
-		cVec3 *mpMovement;
-		eCameraNavigatorStates meState;
-		cVec3 *mpViewDir;
-		bool mbViewDirChanged;
+private:
+	cVec3 *mpPosition;
+	cVec3 *mpTarget;
+	cVec3 *mpMove;
+	eCameraNavigatorStates meState;
 
-		void GetViewDir (void);
-	public:
-		void Init(void);
-		void Deinit(void);
-		void Update(void);
-		void MoveForwards(GLfloat lfDistance);
+	void MoveForwards(GLfloat lfDistance);
+	void MoveHorizontal(GLfloat lfDistance);
+	void MoveVertical(GLfloat lfDistance);
+
+public:
+	void Init(void);
+	void Deinit(void);
+	void Update(void);
 };
 
 #endif
@@ -52,6 +52,10 @@ private:
 
 	int width,height;
 	float speed;
+		cVec3 *mpViewDir;
+		bool mbViewDirChanged;
+
+		void GetViewDir (void);
 
 public:
 	cCamera();						
