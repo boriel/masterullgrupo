@@ -22,11 +22,4 @@ enum eInputActions {
 	eIA_Count
 };
 
-////no va aquí, pero estaba haciendo pruebas por un error de linkado
-//tActionMapping kaActionMapping[] = {
-//	{ eIA_CloseApplication, eKeyboard, OIS::KC_ESCAPE },
-//	{ -1, -1, -1 } // End of the table (Marca el final de la tabla)
-//};
-
-
 #endif

@@ -6,10 +6,15 @@
 #define _CAMERA_NAVIGATOR_H
 
 #include "Camera.h"
+#include "GLHeaders.h"
+
+//#define PI			3.1415265359
+#define PIdiv180	0.0174529252
 
 enum eCameraNavigatorStates {
 	eCN_Stop = 0,
-	eCN_Movement,
+	eCN_Advance,
+	eCN_Back,
 	eCN_Count
 };
 
@@ -19,23 +24,19 @@ class cCameraNavigator : public cCamera {
 		cVec3 *mpTarget;
 		cVec3 *mpMovement;
 		eCameraNavigatorStates meState;
+		cVec3 *mpViewDir;
+		bool mbViewDirChanged;
 
+		void GetViewDir (void);
 	public:
 		void Init(void);
 		void Deinit(void);
 		void Update(void);
+		void MoveForwards(GLfloat lfDistance);
 };
 
 #endif
 /*
-
-#pragma once
-
-#include <gl\glut.h>
-
-#define PI			3.1415265359
-#define PIdiv180	0.0174529252
-
 
 #include "../../util/cVector3D.h" 
 
@@ -52,8 +53,6 @@ private:
 	int width,height;
 	float speed;
 
-	void GetViewDir (void);
-
 public:
 	cCamera();						
 	void Init(int w,int h,float s);	//necessary for input updates
@@ -65,7 +64,7 @@ public:
 	void GetPosition(cVector3D *pos);
 	void GetRotated(cVector3D *rot);
 	void SetPosition(cVector3D pos);
-	void MoveForwards(GLfloat distance);
+
 
 private:
 	void RotateX(GLfloat angle);
