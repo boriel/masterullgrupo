@@ -9,6 +9,8 @@ tActionMapping kaActionMapping[] = {
 	{ eIA_Back, eKeyboard, OIS::KC_DOWN },
 	{ eIA_MoveLeft, eKeyboard, OIS::KC_LEFT },
 	{ eIA_MoveRight, eKeyboard, OIS::KC_RIGHT },
+	{ eIA_MoveUp, eKeyboard, OIS::KC_A },
+	{ eIA_MoveDown, eKeyboard, OIS::KC_Z },
 	{ eIA_TurnLeft, eKeyboard, OIS::KC_O },
 	{ eIA_TurnRight, eKeyboard, OIS::KC_P },
 	{ eIA_PlayJog, eKeyboard, OIS::KC_Q },

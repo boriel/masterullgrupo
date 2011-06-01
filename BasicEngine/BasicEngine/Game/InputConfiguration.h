@@ -13,6 +13,8 @@ enum eInputActions {
 	eIA_Back,
 	eIA_MoveLeft,
 	eIA_MoveRight,
+	eIA_MoveUp,
+	eIA_MoveDown,
 	eIA_TurnLeft,
 	eIA_TurnRight,
 	eIA_PlayJog,
