@@ -75,10 +75,10 @@ bool cGame::Init()
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
 	cMeshManager::Get().Init(64); // Init MeshManager	
-	cModelManager::Get().Init(10); // Init SceneManager
+	cModelManager::Get().Init(64); // Init SceneManager
 
-	cMaterialManager::Get().Init(10); //Init Material Manager
-	cEffectManager::Get().Init(10);
+	cMaterialManager::Get().Init(64); //Init Material Manager
+	cEffectManager::Get().Init(64);
 	
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
 	cSkeletalManager::Get().Init(10);
