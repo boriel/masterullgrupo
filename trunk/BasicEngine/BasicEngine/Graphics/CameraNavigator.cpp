@@ -1,11 +1,13 @@
 #include "CameraNavigator.h"
 #include "..\Input\InputManager.h"
 #include "..\Game\InputConfiguration.h"
+#include "GLHeaders.h"
 
 void cCameraNavigator::Init(void) { 
 	mpPosition = new cVec3(12.0f, 4.0f, 3.0f);
 	mpTarget = new cVec3(0.0f, 0.0f, 0.0f);
 	mpMovement= new cVec3(0.0f, 0.0f, 0.0f);
+	mpViewDir= new cVec3(0.0f, 0.0f, 0.0f);
 	meState = eCN_Stop;
 
 	SetLookAt( (*mpPosition), (*mpTarget));
@@ -18,32 +20,58 @@ void cCameraNavigator::Deinit(void) {
 }
 
 void cCameraNavigator::Update(void) {
-	 cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
-
-	if (IsPressed (eIA_Advance)) {
-		if ((mpPosition->x)<0) mpMovement->x=+0.05f;
-		if ((mpPosition->x)>0) mpMovement->x=-0.05f;
+	if (BecomePressed (eIA_Advance)) {
+		if (meState==eCN_Advance||meState==eCN_Back) {
+			meState=eCN_Stop;
+		} else if (meState==eCN_Stop) meState=eCN_Advance; 
 	}
-	if (IsPressed (eIA_Back)) {
-		if ((mpPosition->x)<0 && (mpPosition->x)>-12.0f) mpMovement->x=-0.05f;
-		if ((mpPosition->x)>0 && (mpPosition->x)<+12.0f) mpMovement->x=+0.05f;
+	if (BecomePressed (eIA_Back)) {
+		if (meState==eCN_Advance||meState==eCN_Back) {
+			meState=eCN_Stop;
+		} else if (meState==eCN_Stop) meState=eCN_Back;
 	}
 
-	float lfPosX = mpPosition->x;
-	mpPosition->x += mpMovement->x; 
-	if (lfPosX<-12.0f || lfPosX>12.0f)	mpMovement->x=0.f;
-	
+	if (meState!=eCN_Stop) {
+		MoveForwards(0.1f);
+		if ((mpPosition->x)<=-12.0f || (mpPosition->x)>=12.0f)	{
+			meState=eCN_Stop;
+			mpMovement->x=0;
+		} 
+	}
 	SetLookAt( (*mpPosition), (*mpTarget)); 
+}
+
+void cCameraNavigator::MoveForwards(GLfloat lfDistance) {
+	//cVec3 lFront = GetFront();
+	GetViewDir();
+	mpMovement->x = (mpViewDir->x) * -lfDistance;
+	mpMovement->y = (mpViewDir->y) * -lfDistance;
+	mpMovement->z = (mpViewDir->z) * -lfDistance;
+	(*mpPosition)+=(*mpMovement);
+}
+
+void cCameraNavigator::GetViewDir(void) {
+	cVec3 lStep1, lStep2;
+	float lRotatedY=0;
+	float lRotatedX=0;
+	float lRotatedZ=0;
+
+	//Rotate around Y-axis:
+	lStep1.x = cos( (lRotatedY + 90.0) * PIdiv180);
+	lStep1.z = -sin( (lRotatedY + 90.0) * PIdiv180);
+	//Rotate around X-axis:
+	double cosX = cos (lRotatedX * PIdiv180);
+	lStep2.x = lStep1.x * cosX;
+	lStep2.z = lStep1.z * cosX;
+	lStep2.y = sin(lRotatedX * PIdiv180);
+	//Rotation around Z-axis not implemented, so:
+	mpViewDir->x = lStep2.x;
+	mpViewDir->y = lStep2.y;
+	mpViewDir->z = lStep2.z;
 }
 
 /*
 
-#include <math.h>
-#include "cCamera.h"
-
-cCamera::cCamera()
-{
-}
 void cCamera::Init(int w,int h,float s)
 {
 	//Init with standard OGL values:
@@ -117,20 +145,7 @@ void cCamera::Update(bool keys[],int mouseX,int mouseY)
 	if(keys[GLUT_KEY_RIGHT])	StrafeRight( speed);
 }
 
-void cCamera::GetViewDir(void)
-{
-	cVector3D Step1, Step2;
-	//Rotate around Y-axis:
-	Step1.x = cos( (RotatedY + 90.0) * PIdiv180);
-	Step1.z = -sin( (RotatedY + 90.0) * PIdiv180);
-	//Rotate around X-axis:
-	double cosX = cos (RotatedX * PIdiv180);
-	Step2.x = Step1.x * cosX;
-	Step2.z = Step1.z * cosX;
-	Step2.y = sin(RotatedX * PIdiv180);
-	//Rotation around Z-axis not implemented, so:
-	ViewDir = Step2;
-}
+
 
 void cCamera::RotateX (GLfloat angle)
 {
@@ -150,15 +165,6 @@ void cCamera::RotateZ (GLfloat angle)
 	ViewDirChanged = true;
 }
 
-void cCamera::MoveForwards( GLfloat distance )
-{
-	if (ViewDirChanged) GetViewDir();
-	cVector3D MoveVector;
-	MoveVector.x = ViewDir.x * -distance;
-	MoveVector.y = ViewDir.y * -distance;
-	MoveVector.z = ViewDir.z * -distance;
-	Position.Add(MoveVector);
-}
 
 void cCamera::StrafeRight ( GLfloat distance )
 {
