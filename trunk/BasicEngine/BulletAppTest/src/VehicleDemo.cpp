@@ -289,7 +289,7 @@ void VehicleDemo::initPhysics() {
 	m_collisionShapes.push_back(groundShape);
 
 	//create ground object
-	localCreateRigidBody(0,tr,groundShape);
+	localCreateRigidBody(0,tr,groundShape); //YORMAN ESTA FUNCION PUEDE ESTAR INTERESANTE
 
 #ifdef FORCE_ZAXIS_UP
 //   indexRightAxis = 0; 
