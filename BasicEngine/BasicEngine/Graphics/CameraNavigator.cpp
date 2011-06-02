@@ -2,9 +2,10 @@
 #include "..\Input\InputManager.h"
 #include "..\Game\InputConfiguration.h"
 #include "GLHeaders.h"
+#include <math.h>
 
 void cCameraNavigator::Init(void) { 
-	mpPosition = new cVec3(10.0f, 10.0f, 0.0f);
+	mpPosition = new cVec3(10.0f, 5.0f, 10.0f);
 	mpTarget = new cVec3(0.0f, 0.0f, 0.0f);
 	mpMove= new cVec3(0.0f, 0.0f, 0.0f);
 	meState = eCN_Stop;
@@ -21,24 +22,13 @@ void cCameraNavigator::Deinit(void) {
 void cCameraNavigator::Update(void) {
 	if (IsPressed (eIA_Advance)) MoveForwards(0.1f);
 	if (IsPressed (eIA_Back)) MoveForwards(-0.1f);
-	if (IsPressed (eIA_MoveLeft)) MoveHorizontal(-0.1f);
-	if (IsPressed (eIA_MoveRight)) MoveHorizontal(0.1f);
-	if (IsPressed (eIA_MoveUp)) MoveVertical(0.1f);
-	if (IsPressed (eIA_MoveDown)) MoveVertical(-0.1f);
+	if (IsPressed (eIA_TurnLeft)) RotateY(+0.05f);
+	if (IsPressed (eIA_TurnRight)) RotateY(-0.05f);
 }
 
 void cCameraNavigator::MoveForwards(GLfloat lfDistance) {
-	cVec3 lFront = GetView().GetFront().Normalize();
-	mpMove->x = (lFront.x) * lfDistance;
-	mpMove->y = (lFront.y) * lfDistance;
-	mpMove->z = (lFront.z) * lfDistance;
-	(*mpPosition)+=(*mpMove);
-	(*mpTarget)+=(*mpMove);
-	SetLookAt( (*mpPosition), (*mpTarget));
-}
-
-void cCameraNavigator::MoveHorizontal(GLfloat lfDistance) {
-	cVec3 lDirection = GetView().GetRight().Normalize();
+	//cVec3 lFront = GetView().GetFront().Normalize();
+	cVec3 lDirection = ((*mpTarget)-(*mpPosition)).Normalize();
 	mpMove->x = (lDirection.x) * lfDistance;
 	mpMove->y = (lDirection.y) * lfDistance;
 	mpMove->z = (lDirection.z) * lfDistance;
@@ -47,32 +37,22 @@ void cCameraNavigator::MoveHorizontal(GLfloat lfDistance) {
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
 
-void cCameraNavigator::MoveVertical(GLfloat lfDistance) {
-	cVec3 lDirection = GetView().GetUp().Normalize();
-	mpMove->x = (lDirection.x) * lfDistance;
-	mpMove->y = (lDirection.y) * lfDistance;
-	mpMove->z = (lDirection.z) * lfDistance;
-	(*mpPosition)+=(*mpMove);
-	(*mpTarget)+=(*mpMove);
+void cCameraNavigator::RotateY(GLfloat lfAngle) {
+	cVec3 lDirection = (*mpTarget)-(*mpPosition);
+	float x = lDirection.x;
+	float y = lDirection.y;
+	float z = lDirection.z;
+	float a = atan2(x,z);
+	float m = sqrt(x*x+z*z);
+
+	mpTarget->x=(sin(a+lfAngle))*m;
+	mpTarget->z=(cos(a+lfAngle))*m;
+
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
 
 /*
 
-void cCamera::Init(int w,int h,float s)
-{
-	//Init with standard OGL values:
-	Position = cVector3D(0.0,0.0,0.0);
-	ViewDir  = cVector3D(0.0,0.0,-1.0);
-	ViewDirChanged = false;
-	//Only to be sure:
-	RotatedX = RotatedY = RotatedZ = 0.0;
-	//Screen
-	width = w;
-	height = h;
-	//Step length
-	speed = s;
-}
 void cCamera::Look()
 {
 	glRotatef(-RotatedX , 1.0, 0.0, 0.0);
@@ -81,30 +61,7 @@ void cCamera::Look()
 	glTranslatef( -Position.x, -Position.y, -Position.z );
 }
 
-void cCamera::GetPosition(cVector3D *pos)
-{
-	*pos = Position;
-}
 
-void cCamera::SetPosition(cVector3D pos)
-{
-	Position.x = pos.x;
-	Position.y = pos.y;
-	Position.z = pos.z;
-}
-
-void cCamera::GetRotated(cVector3D *rot)
-{
-	*rot = cVector3D(RotatedX,RotatedY,RotatedZ);
-}
-
-void cCamera::Rotate(cVector3D v)
-{
-	RotatedX = v.x;
-	RotatedY = v.y;
-	RotatedZ = v.z;
-	ViewDirChanged = true;
-}
 
 void cCamera::Update(bool keys[],int mouseX,int mouseY)
 {
@@ -153,33 +110,5 @@ void cCameraNavigator::GetViewDir(void) {
 }
 
 
-void cCamera::RotateX (GLfloat angle)
-{
-	RotatedX += angle;
-	ViewDirChanged = true;
-}
-
-void cCamera::RotateY (GLfloat angle)
-{
-	RotatedY += angle;
-	ViewDirChanged = true;
-}
-
-void cCamera::RotateZ (GLfloat angle)
-{
-	RotatedZ += angle;
-	ViewDirChanged = true;
-}
-
-
-void cCamera::StrafeRight ( GLfloat distance )
-{
-	if (ViewDirChanged) GetViewDir();
-	cVector3D MoveVector;
-	MoveVector.z = -ViewDir.x * -distance;
-	MoveVector.y = 0.0;
-	MoveVector.x = ViewDir.z * -distance;
-	Position.Add(MoveVector);
-}
 
 */
