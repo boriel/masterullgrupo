@@ -31,13 +31,16 @@ void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIni
 
 	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (lbtQuaternion, lbtPosition));
 	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition));
-	btScalar mass = 0.0f;
-	btVector3 fallInertia(0, 0, 0);
-	mpbtShape->calculateLocalInertia (mass, fallInertia);
-	btRigidBody::btRigidBodyConstructionInfo lRigidBodyCI (mass, fallMotionState, mpbtShape, fallInertia);
+	//btScalar mass = 0.0f;
+	mbtMass = 0.0f;
+	//btVector3 fallInertia(0, 0, 0);
+	mbtFallInertia = btVector3(0,0,0);
+	mpbtShape->calculateLocalInertia (mbtMass, mbtFallInertia);
+	btRigidBody::btRigidBodyConstructionInfo lRigidBodyCI (mbtMass, fallMotionState, mpbtShape, mbtFallInertia);
 	//lRigidBodyCI.m_friction = 0.5f;
 	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
+	
 }
 
 

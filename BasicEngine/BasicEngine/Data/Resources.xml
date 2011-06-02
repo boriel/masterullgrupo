@@ -76,11 +76,11 @@
 	</ObjectCollision>
 
 	<ObjectCollision ModelName="L200" >
-		<COLBOX X="2.2" Y="1" Z="1" />
+		<COLBOX X="2.2" Y="1" Z="0.77" />
 	</ObjectCollision>
 
 	<ObjectCollision ModelName="Suelo" >
-		<COLBOX X="50" Y="50" Z="1" />
+		<COLBOX X="25" Y="25" Z="1" />
 	</ObjectCollision>
 
 	

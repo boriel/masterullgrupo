@@ -34,7 +34,9 @@ void cObject::Init()
 
 void cObject::Deinit()
 {
-	//
+	//Hacer mejor los deletes y la liberación de memoria, y las llamadas
+
+	delete mPhysicsObject;
 }
 
 
