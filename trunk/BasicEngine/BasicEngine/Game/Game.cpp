@@ -261,8 +261,8 @@ void cGame::RenderTexts() {
 	glEnable(GL_TEXTURE_2D);
 	mFont.SetColour( 1.0f, 1.0f, 1.0f );
 	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
-	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	//mFont.Write(0,-200,0, "UP DOWN para mover la cámara", 0,	FONT_ALIGN_CENTER);
+	mFont.SetColour( 0.0f, 1.0f, 1.0f );
+	mFont.Write(0,-200,0, "Usar cursores para mover la cámara", 0,	FONT_ALIGN_CENTER);
 }
 
 //Para los ejercicios de LUA
