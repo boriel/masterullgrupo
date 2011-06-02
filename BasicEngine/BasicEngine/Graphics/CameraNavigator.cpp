@@ -28,7 +28,9 @@ void cCameraNavigator::Update(void) {
 
 void cCameraNavigator::MoveForwards(GLfloat lfDistance) {
 	//cVec3 lFront = GetView().GetFront().Normalize();
-	cVec3 lDirection = ((*mpTarget)-(*mpPosition)).Normalize();
+	cVec3 lDirection = ((*mpTarget)-(*mpPosition));
+	lDirection.y=0;
+	lDirection=lDirection.Normalize();
 	mpMove->x = (lDirection.x) * lfDistance;
 	mpMove->y = (lDirection.y) * lfDistance;
 	mpMove->z = (lDirection.z) * lfDistance;
@@ -45,8 +47,9 @@ void cCameraNavigator::RotateY(GLfloat lfAngle) {
 	float a = atan2(x,z);
 	float m = sqrt(x*x+z*z);
 
-	mpTarget->x=(sin(a+lfAngle))*m;
-	mpTarget->z=(cos(a+lfAngle))*m;
+	mpTarget->x=mpPosition->x+(sin(a+lfAngle))*m;
+	mpTarget->y=mpPosition->y+y;
+	mpTarget->z=mpPosition->z+(cos(a+lfAngle))*m;
 
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
