@@ -26,8 +26,7 @@ private:
 	eCameraNavigatorStates meState;
 
 	void MoveForwards(GLfloat lfDistance);
-	void MoveHorizontal(GLfloat lfDistance);
-	void MoveVertical(GLfloat lfDistance);
+	void RotateY(GLfloat lfAngle);
 
 public:
 	void Init(void);
