@@ -29,12 +29,13 @@
 
 <!--   PLAYERS -->
 
-	<Object Type="Player" Position="0,5,0" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
+	<Object Type="Player" Position="-5,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
 
-<!--
-	<Object Type="Player" Position="0,5,0" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
--->
-<!--
+
+	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+
+	
+	<!--
 	<Object Type="Player" Position="0,10,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
 -->	
 
@@ -71,9 +72,18 @@
   <ObjectsCollision>
   
 	<ObjectCollision ModelName="CarJazz" >
-		<Shape X="2.2" Y="1" Z="1" />
+		<COLBOX X="2.2" Y="1" Z="1" />
 	</ObjectCollision>
-  
+
+	<ObjectCollision ModelName="L200" >
+		<COLBOX X="2.2" Y="1" Z="1" />
+	</ObjectCollision>
+
+	<ObjectCollision ModelName="Suelo" >
+		<COLBOX X="50" Y="50" Z="1" />
+	</ObjectCollision>
+
+	
   </ObjectsCollision>
   
   

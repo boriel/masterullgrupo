@@ -28,7 +28,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
-		bool LoadObjectsXmlCollision(std::string lsResource);
+		cVec3 LoadObjectsXmlCollision(std::string lsNameCollision);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
 		void CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 

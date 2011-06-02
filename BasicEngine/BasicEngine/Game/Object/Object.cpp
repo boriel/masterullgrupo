@@ -5,6 +5,7 @@
 
 #include "..\..\Graphics\GraphicManager.h"
 
+
 void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial)
 {
 	mPosition = lPosition;
@@ -26,6 +27,7 @@ void cObject::Init()
 	mWorldMatrix.SetPosition(mPosition);
 
 	mfScale = 1.0f;
+	mPhysicsObject = new cPhysicsObject;
 
 }
 
@@ -59,4 +61,10 @@ void cObject::Update( float lfTimestep )
 	mPhysicsObject->Update();	
 	
 	//mPhysicsObject->
+}
+
+//En teoría los hijos harán este trabajo
+void cObject::InitPhysics()
+{
+	Init();
 }

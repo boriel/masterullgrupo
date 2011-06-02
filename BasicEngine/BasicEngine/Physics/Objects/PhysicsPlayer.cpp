@@ -21,9 +21,9 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	
 	btVector3 lbtPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
 
-	
+	//El shape lo creamos de antemano
 	//mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
-	mpbtShape = new btBoxShape(btVector3(2.2, 1.0, 1.0));  //NPI DE PORQUE NO CARGA DEL FICHERO. VER QUE PASA Y PORQUE NO LEE LOS VALORES del xml y estos si, ME VOY A DORMIR YA
+	//mpbtShape = new btBoxShape(btVector3(2.2, 1.0, 1.0));  //NPI DE PORQUE NO CARGA DEL FICHERO. VER QUE PASA Y PORQUE NO LEE LOS VALORES del xml y estos si, ME VOY A DORMIR YA
 	//mpbtShape = new btBoxShape(btVector3(lCollision.x / 2.0f, lCollision.y / 2.0f, lCollision.z / 2.0f));  //haciendo el cubo con lo pasado en xml
 
 	btQuaternion lbtQuaternion;
