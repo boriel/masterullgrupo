@@ -8,16 +8,56 @@
 #include "ObjectPlayer.h"
 #include "ObjectPista.h"
 
+#include "..\..\Physics\Objects\PhysicsPlayer.h"
+#include "..\..\Physics\Objects\PhysicsPista.h"
+
+
 bool cObjectManager::Init() 
 {
 	msFilename = (".\\Data\\" + std::string("Resources.xml"));
 
-	mfPI = 3.1416;
+	mfPI = 3.14159;
 
 
 	//Lemeos desde un xml
 	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
 	//LoadObjectsXml("ObjectsCollision");  //Poniendo las collisiones
+
+
+
+	//Creando la Física de los objetos
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+	{
+		//lo saco del xml y creamos los shapes sobre la marcha
+		cVec3 lVec3 (LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName()));
+		cPhysicsObject *lpObjectPlayer = ((cObjectPlayer*)mObjectPlayer[luiIndex])->GetPtrPhysicsObject();
+		(*lpObjectPlayer).CreateBoxShape(lVec3);
+		((cObjectPlayer*)mObjectPlayer[luiIndex])->InitPhysics();  //Aqui tambien se podría hacer la llamada con el puntero, 
+		//((cPhysicsPlayer*)lpObjectPlayer)->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
+
+	}
+	
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+	{
+		cVec3 lVec3 (LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName()));
+		cPhysicsObject *lpObjectPista = ((cObjectPista*)mObjectPista[luiIndex])->GetPtrPhysicsObject();
+		(*lpObjectPista).CreateBoxShape(lVec3);
+		((cObjectPista*)mObjectPista[luiIndex])->InitPhysics();
+		//((cPhysicsPista*)lpObjectPista)->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
+	}
+
+	//NO IMPLEMENTADO DEL TODO LOS OBJECTS GENÉRICOS
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
+	{
+		cVec3 lVec3 (LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName()));
+		cPhysicsObject *lpObject = ((cObject*)mObject[luiIndex])->GetPtrPhysicsObject();
+		(*lpObject).CreateBoxShape(lVec3);
+		((cObject*)mObject[luiIndex])->InitPhysics();
+		//((cPhysicsObject*)lpObject)-> Init(); //
+	}
+	
+
+
 
 	//Inicializando los recursos aqui
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
@@ -188,6 +228,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
+			//Creamos tambien el objeto Físico
 			if (lsType == "Player")
 			{
 				cObject* lObjectPtr = new cObjectPlayer(*lObject);
@@ -201,7 +242,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			else //General
 			{
 				cObject* lObjectPtr = new cObject(*lObject);
-				(*lObjectPtr).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo QUITAR ESTE INIT PAR QUE TB LO HAGA EN EL CONSTRUCTOR!
+				//(*lObjectPtr).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo QUITAR ESTE INIT PAR QUE TB LO HAGA EN EL CONSTRUCTOR!
 				mObject.push_back(lObjectPtr);
 			}
 
@@ -215,9 +256,11 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 }
 
-bool cObjectManager::LoadObjectsXmlCollision(std::string lsResource)
+cVec3 cObjectManager::LoadObjectsXmlCollision(std::string lsNameCollision)
 {
 	TiXmlDocument lDoc;
+
+	cVec3 lVec3 (-1,-1,-1);
 
 	lDoc.LoadFile ((char*)msFilename.c_str());
 	if (!lDoc.LoadFile())
@@ -230,25 +273,48 @@ bool cObjectManager::LoadObjectsXmlCollision(std::string lsResource)
 	lpElementResources = lDoc.FirstChildElement ("Resources");
 
 	
-	if (lsResource == "ObjectsCollision")
+	TiXmlElement *lpElement;
+	lpElement =  lpElementResources->FirstChildElement ("ObjectsCollision"); 
+		
+
+	for (lpElement = lpElement->FirstChildElement("ObjectCollision"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 	{
-		TiXmlElement *lpElement;
-		lpElement =  lpElementResources->FirstChildElement (lsResource); 
-		
+		std::string  lsModelName, lsPosition, lsScale = "", lsX = "", lsY = "", lsZ = "";
+		float lfScale = 1.0f;
+		cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
 
 
 		
-		for (lpElement = lpElement->FirstChildElement("ObjectCollision"); lpElement; lpElement = lpElement->NextSiblingElement()) 
+		lsModelName = lpElement->Attribute("ModelName");
+
+		if (lsModelName == lsNameCollision)
 		{
-			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsCollX = "", lsCollY = "", lsCollZ = "";
-			float lfScale = 1.0f;
-			cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
-		
-		}
+		  TiXmlElement *lpElement2;
+			for (lpElement2 = lpElement->FirstChildElement("COLBOX"); lpElement2; lpElement2 = lpElement2->NextSiblingElement()) 
+			{
+				if (lpElement2->Attribute("X") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+					lsX = ((char*)lpElement2->Attribute("X"));
 
+				if (lpElement2->Attribute("Y") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+					lsY = ((char*)lpElement2->Attribute("Y"));
+
+				if (lpElement2->Attribute("Z") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+					lsZ = ((char*)lpElement2->Attribute("Z"));
+
+				float lfX = (float)atof(lsX.c_str());
+				float lfY = (float)atof(lsY.c_str());
+				float lfZ = (float)atof(lsZ.c_str());
+
+				lVec3.x = lfX;
+				lVec3.y = lfY;
+				lVec3.z = lfZ;
+			
+			}
+		}
 	}
 
-	return true;
+
+	return lVec3;
 }
 
 

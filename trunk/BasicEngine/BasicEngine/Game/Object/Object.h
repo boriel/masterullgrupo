@@ -30,6 +30,7 @@ class cObject
 		virtual void Update( float lfTimestep );
 		virtual void Render();
 		//virtual void Render(cMatrix &lWorld);
+		virtual void InitPhysics ();
 		
 		
 		//inline string GetName() { return macName; }
@@ -50,6 +51,8 @@ class cObject
 		inline cVec3 GetCollision () { return mCollision; } //a mano por ahora
 		inline void SetRotacionInicial (cQuaternion lQuatRot) { mRotacionInicial = lQuatRot; }  
 		inline cQuaternion GetRotacionInicial () { return mRotacionInicial; }  
+
+		inline cPhysicsObject* GetPtrPhysicsObject () {return mPhysicsObject; }
 
 	protected:
 		//string macName;

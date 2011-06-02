@@ -220,3 +220,15 @@ btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)
 
 	return lbtQuaternion;
 }
+
+
+
+bool cPhysicsObject::CreateBoxShape(cVec3 lVec3)
+{
+	if ((lVec3.x > 0) && (lVec3.y > 0) && (lVec3.z > 0))
+		mpbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+	else
+		return false;
+	
+	return true;
+}

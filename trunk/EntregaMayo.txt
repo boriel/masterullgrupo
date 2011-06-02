@@ -1,0 +1,14 @@
+--> Objetivo de la fase:
+- En esta entrega nos centraremos en demostrar que el juego es divertido. Lo más importante en este punto es que las mecánicas del juego estén implementadas, y se pueda jugar al juego (aunque no exista acabado visual).
+- Al final de esta entrega deberán evaluar la gameplay, y revisitar aquellos aspectos de la misma que no estén funcionando.
+- Como resultado final de esta fase, tendremos una demo jugable, con un único jugador.
+
+--> Tareas de la fase:
+- Integrar el motor de física escogido dentro de nuestro proyecto.
+- Control del personaje terminado: Poner un vehículo sencillo a correr, en un escenario usando los cursores. Empezaremos usando el vehículo simple (plataforma con cuatro ruedas) .
+- La cámara seguirá al vehículo principal. 
+- Se diseñará una primera versión de la pista, mediante el uso de rampas, paredes, y pequeños túneles si es posible.
+- Se colocarán en la superficie algunos obstáculos simples, para probar la colisión con los mismos. Empezaremos con objetos sencillos como otros vehículos simples, cubos, paredes, rampas, etc.
+
+
+--> Realizado en esta entrega
