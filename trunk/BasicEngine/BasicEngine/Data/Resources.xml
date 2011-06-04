@@ -29,12 +29,12 @@
 
 <!--   PLAYERS -->
 
-<!--
+
 	<Object Type="Player" Position="-5,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
 
 
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
--->
+
 	
 	<!--
 	<Object Type="Player" Position="0,10,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
@@ -44,9 +44,9 @@
 
 <!--   PISTAS  -->
 
-<!--
+
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
--->
+
 
 <!--
 	<Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/Basico.DAE" Rotation="1,0,0"  Angle="-90" />
