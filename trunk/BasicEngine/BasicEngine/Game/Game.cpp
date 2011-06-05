@@ -202,7 +202,7 @@ void cGame::Render()
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
-	//RenderSkeletal();
+	RenderSkeletal();
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	
 	// 4) Render 3D with transparency
