@@ -11,6 +11,7 @@ class Object.h: Contiene los objetos del mundo
 
 #include "..\..\MathLib\MathLib.h"
 #include "..\..\Physics\PhysicsObject.h"
+#include "..\..\Physics\PhysicsManager.h"
 
 using namespace std;
 
@@ -53,6 +54,7 @@ class cObject
 		inline cQuaternion GetRotacionInicial () { return mRotacionInicial; }  
 
 		inline cPhysicsObject* GetPtrPhysicsObject () {return mPhysicsObject; }
+		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mPhysicsObject = lPhysicsObject; }
 
 	protected:
 		//string macName;

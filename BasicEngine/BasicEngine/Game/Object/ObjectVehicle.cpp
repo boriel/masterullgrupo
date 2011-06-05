@@ -1,14 +1,14 @@
-#include "ObjectPlayer.h"
-#include "..\..\Physics\Objects\PhysicsPlayer.h"
+#include "ObjectVehicle.h"
+#include "..\..\Physics\Objects\PhysicsVehicle.h"
 #include "..\..\Game\Object\ObjectManager.h"
 
 //#include "..\..\Graphics\GraphicManager.h"
 
 
-cObjectPlayer::cObjectPlayer (cObject lObject)
+cObjectVehicle::cObjectVehicle (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
-	mPhysicsObject = new cPhysicsPlayer;
+	mPhysicsObject = new cPhysicsVehicle;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
 	//mPhysicsObject->Init("Player");
@@ -19,30 +19,29 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 }
 
 
-void cObjectPlayer::InitPhysics ()
+void cObjectVehicle::InitPhysics ()
 {
 	
 	
-	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
+	//((cPhysicsVehicle*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
+	((cPhysicsVehicle*)mPhysicsObject)->Init();
 }
 
 
-void cObjectPlayer::Update( float lfTimestep )
+void cObjectVehicle::Update( float lfTimestep )
 {
 
 	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
-	
 	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
-	mPosition = mPhysicsObject->GetPosition();
+	//mPosition = mPhysicsObject->GetPosition();
+	mPosition = ((cPhysicsVehicle*)mPhysicsObject)->GetPosition();
 	//cQuaternion lQuatRot=((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
-	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	//cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	cQuaternion lQuatRot=((cPhysicsVehicle*)mPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
-	
-	
-	
-	
+
 
 
 	
@@ -50,15 +49,13 @@ void cObjectPlayer::Update( float lfTimestep )
 
 
 //void cObjectPlayer::Render (cMatrix &lWorld) 
-void cObjectPlayer::Render () 
+void cObjectVehicle::Render () 
 {
 	//cObject::Render(lWorld);
-	cObject::Render();
-
+	//cObject::Render();
 
 #ifdef _DEBUG
-	((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
+	//((cPhysicsVehicle*) mPhysicsObject)->RenderObjectVehicleDebug();
 #endif
-
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
 }

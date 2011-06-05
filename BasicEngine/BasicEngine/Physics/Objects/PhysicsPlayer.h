@@ -21,6 +21,9 @@ class cPhysicsPlayer : public cPhysicsObject
 		
 
 	public:
+		cPhysicsPlayer () {}
+		//cPhysicsPlayer (cPhysicsObject lPhysicsObject);
+
 		void Init( const std::string &lacNameID) { macNameID = lacNameID; }
 		//cPhysicsPlayer () {}
 		//void Init(const cVec3 &lPosition);

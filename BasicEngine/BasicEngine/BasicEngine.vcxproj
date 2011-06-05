@@ -113,6 +113,8 @@
     <ClInclude Include="Game\Object\ObjectManager.h" />
     <ClInclude Include="Game\Object\ObjectPista.h" />
     <ClInclude Include="Game\Object\ObjectPlayer.h" />
+    <ClInclude Include="Game\Object\ObjectType.h" />
+    <ClInclude Include="Game\Object\ObjectVehicle.h" />
     <ClInclude Include="Game\Scene\SubModel.h" />
     <ClInclude Include="Game\Scene\Model.h" />
     <ClInclude Include="Game\Scene\ModelManager.h" />
@@ -196,6 +198,7 @@
     <ClInclude Include="Physics\Objects\PhysicsCube.h" />
     <ClInclude Include="Physics\Objects\PhysicsPista.h" />
     <ClInclude Include="Physics\Objects\PhysicsPlayer.h" />
+    <ClInclude Include="Physics\Objects\PhysicsVehicle.h" />
     <ClInclude Include="Physics\PhysicObjectType.h" />
     <ClInclude Include="Physics\PhysicsObject.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
@@ -224,6 +227,7 @@
     <ClCompile Include="Game\Object\ObjectManager.cpp" />
     <ClCompile Include="Game\Object\ObjectPista.cpp" />
     <ClCompile Include="Game\Object\ObjectPlayer.cpp" />
+    <ClCompile Include="Game\Object\ObjectVehicle.cpp" />
     <ClCompile Include="Game\Scene\SubModel.cpp" />
     <ClCompile Include="Game\Scene\Model.cpp" />
     <ClCompile Include="Game\Scene\ModelManager.cpp" />
@@ -293,6 +297,7 @@
     <ClCompile Include="Physics\Objects\PhysicsCube.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsPista.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsPlayer.cpp" />
+    <ClCompile Include="Physics\Objects\PhysicsVehicle.cpp" />
     <ClCompile Include="Physics\PhysicsObject.cpp" />
     <ClCompile Include="Physics\PhysicsManager.cpp" />
     <ClCompile Include="Utility\Debug.cpp" />

@@ -49,18 +49,24 @@ void cObject::Render()
 	//Pintando el modelo
 	((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(mWorldMatrix);
 	
-
+//Pintamos los ejes
 #if _DEBUG
 	cGraphicManager::Get().DrawAxis();
 #endif	
 	
+
+//Pintamos el debug
+#ifdef _DEBUG
+	//((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
+	//mPhysicsObject->RenderAllObjectDebug();
+#endif
 
 
 }
 
 void cObject::Update( float lfTimestep )
 {
-	mPhysicsObject->Update();	
+	//mPhysicsObject->Update();	//ya lo hace el manager
 	
 	//mPhysicsObject->
 }
