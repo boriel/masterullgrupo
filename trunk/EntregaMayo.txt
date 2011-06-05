@@ -12,3 +12,13 @@
 
 
 --> Realizado en esta entrega
+- Motor de física integrado, dibujamos nosotros pero no está bien definido ni estructurado, hay que mejorarlo comenzado por los shapes.
+- Sólo tenemos el control de la cámara. El control del personaje no está realizado.
+- La cámara se mueve y se dirige al 0,0,0.
+- Diseñada la versión de la pista, pero por problemas con la misma no se carga. Tenemos que averiguar por qué.
+- Pusimos un suelo y 2 coches. Los obstáculos todavía no, falta implementar su carga bien pero no sería incovenniete cargar más objetos.
+
+
+
+
+

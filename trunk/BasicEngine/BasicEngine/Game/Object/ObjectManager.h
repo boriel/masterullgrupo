@@ -11,6 +11,7 @@ class ObjectManager: Lista de objetos
 
 #include "Object.h"
 #include "..\..\Utility\Singleton.h"
+#include "ObjectType.h"
 
 
 class cObjectManager : public cSingleton<cObjectManager>
@@ -24,21 +25,31 @@ class cObjectManager : public cSingleton<cObjectManager>
 		//void Render(cMatrix &lWorld);
 		void Render();
 		void Update(float lfTimestep);
+		string ObtenerTipoObjeto(const string lsModelName);
 
+		cVec3 GetPosition(const string lsType, const string lsModelName);
+		cQuaternion GetRotacionInicial (const string lsType, const string lsModelName);
+		void InitPunterosFisica();
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
-		cVec3 LoadObjectsXmlCollision(std::string lsNameCollision);
+		//cVec3 LoadObjectsXmlCollision(std::string lsNameCollision);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
 		void CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
+
+		
 
 	private:
 		typedef std::vector<cObject *> cObjectList;
 		cObjectList mObject;  //Objetos en general que no se donde clasificarlos por ahora ....
 		cObjectList mObjectPlayer;
 		cObjectList mObjectPista;
+		cObjectList mObjectVehicle;  
 
-		std::string msFilename;  // Resources or Properties file
+		string msFilename;  // Resources or Properties file
+		vector<cObjectType> mObjectType;
+		bool ExisteTipoAndModelName(string lsModelName, string lsType);
+		
 
 		float mfPI;
 

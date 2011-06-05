@@ -14,6 +14,8 @@ clase
 
 #include "btBulletDynamicsCommon.h" 
 
+using namespace std;
+
 class cPhysicsObject 
 {
 	public:
@@ -29,6 +31,15 @@ class cPhysicsObject
 		void RenderBoxDebug(const btVector3& lbtMin, const btVector3& lbtMax, const btTransform& lbtTransform, const btVector3& lbtColor);
 		void RenderPlaneDebug(const btVector3& lbtPlaneNormal, btScalar lbtPlaneConst, const btTransform& lbtTransform, const btVector3& lbtColor);
 		void RenderObjectDebug();  //Probablemente no usada!
+		void RenderAllObjectDebug ();
+		void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
+		btRigidBody* LocalCreateRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
+
+		inline void SetTypeObject (string lsType) { msType = lsType; }
+		inline std::string GetTypeObject () { return msType; }
+		inline void SetModelName (string lsModelName) { msModelName = lsModelName; }
+		inline std::string GetModelName () {return msModelName; }
+
 
 		cVec3 GetPosition ();
 		cQuaternion GetQuatRotation();
@@ -40,6 +51,9 @@ class cPhysicsObject
 		std::string macNameID;
 		ePhysicObjectType meType;
 
+		std::string msModelName;
+		std::string msType;
+
 		btRigidBody* mpbtRigidBody;   //Cuerpo rigido o posicion
 		btCollisionShape* mpbtShape;  //malla de collsion  (solo una malla)
 		//btAlignedObjectArray<btCollisionShape*> mapbtCollisionShapes;  //No hecho todavía, pero por aqui van los tiros!!!!
@@ -48,6 +62,9 @@ class cPhysicsObject
 
 		//btQuaternion CambiarEje(cVec3 lbtRot, float lfAngulo); //con esto le damos la vuelta al eje , ya que a saber como vienen las figuras NO USADO!!!!!!
 		
+		//Para el Vehicle
+		btScalar	m_defaultContactProcessingThreshold;
+
 
 };
 

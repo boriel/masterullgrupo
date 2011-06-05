@@ -411,6 +411,15 @@
     <ClInclude Include="Graphics\CameraNavigator.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\Objects\PhysicsVehicle.h">
+      <Filter>Physics\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\ObjectVehicle.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\ObjectType.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -686,6 +695,12 @@
     </ClCompile>
     <ClCompile Include="Graphics\CameraNavigator.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Objects\PhysicsVehicle.cpp">
+      <Filter>Physics\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\ObjectVehicle.cpp">
+      <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

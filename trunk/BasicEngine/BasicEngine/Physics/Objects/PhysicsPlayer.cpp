@@ -7,6 +7,18 @@
 #include "..\PhysicsManager.h"
 #include "..\..\Graphics\GraphicManager.h"
 
+/*
+cPhysicsPlayer::cPhysicsPlayer (cPhysicsObject lPhysicsObject)
+{
+	//Init (lPhysicsObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
+	//mPhysicsObject = new cPhysicsPlayer;
+	this->SetModelName(lPhysicsObject.GetModelName());
+	this->SetModelName(lPhysicsObject.GetModelName());
+	
+}
+*/
+
+
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
 //void cPhysicsPlayer::Init(const cVec3 &lPosition) 
 void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 

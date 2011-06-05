@@ -7,9 +7,11 @@
 #include "..\Scene\ModelManager.h"
 #include "ObjectPlayer.h"
 #include "ObjectPista.h"
+#include "ObjectVehicle.h"
 
 #include "..\..\Physics\Objects\PhysicsPlayer.h"
 #include "..\..\Physics\Objects\PhysicsPista.h"
+#include "..\..\Physics\Objects\PhysicsVehicle.h"
 
 
 bool cObjectManager::Init() 
@@ -25,6 +27,8 @@ bool cObjectManager::Init()
 
 
 
+
+/*
 	//Creando la Física de los objetos
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
 	{
@@ -56,8 +60,18 @@ bool cObjectManager::Init()
 		//((cPhysicsObject*)lpObject)-> Init(); //
 	}
 	
+*/
 
+/*
+	//Creamos a mano	
+	cObject* lObject = new cObject;
+	cObject* lObjectPtr = new cObjectVehicle(*lObject);
+	mObjectVehicle.push_back(lObjectPtr);
 
+	//Iniciamos a mano
+	((cObjectVehicle*)mObjectVehicle[0])->InitPhysics();
+
+*/
 
 	//Inicializando los recursos aqui
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
@@ -87,6 +101,10 @@ void cObjectManager::Deinit()
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 		mObject[luiIndex]->Deinit();
 	
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+		mObjectVehicle[luiIndex]->Deinit();
+
+
 
 	//Eliminar la memoria, pendiente por hacer
 }
@@ -101,6 +119,11 @@ void cObjectManager::Update(float lfTimestep)
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
 		mObjectPista[luiIndex]->Update(lfTimestep);
 
+	
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
+		mObjectVehicle[luiIndex]->Update(lfTimestep);
+
+
 }
 
 
@@ -113,13 +136,16 @@ void cObjectManager::Render()
 		mObjectPista[luiIndex]->Render();
 
 
-
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
 		mObjectPlayer[luiIndex]->Render();
 
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
 		mObject[luiIndex]->Render();
+
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
+		mObjectVehicle[luiIndex]->Render();
 
 
 }
@@ -226,6 +252,15 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			(*lObject).SetModelFile(lsModelFile);
 
 			
+			
+			if (!ExisteTipoAndModelName(lsModelName, lsType))
+			{
+				cObjectType lObjectType;
+				lObjectType.SetModelName (lsModelName);
+				lObjectType.SetType (lsType);
+				mObjectType.push_back(lObjectType);
+			}
+
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
 			//Creamos tambien el objeto Físico
@@ -256,74 +291,47 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 }
 
-cVec3 cObjectManager::LoadObjectsXmlCollision(std::string lsNameCollision)
+bool cObjectManager::ExisteTipoAndModelName(string lsModelName, string lsType)
 {
-	TiXmlDocument lDoc;
+	bool lbResul = false;
 
-	cVec3 lVec3 (-1,-1,-1);
-
-	lDoc.LoadFile ((char*)msFilename.c_str());
-	if (!lDoc.LoadFile())
+	for (unsigned int luiIndex = 0; luiIndex < mObjectType.size(); luiIndex++)
 	{
-		OutputDebugString ("XML Load: FAILED\n");
-	}
-
-	
-	TiXmlElement *lpElementResources;
-	lpElementResources = lDoc.FirstChildElement ("Resources");
-
-	
-	TiXmlElement *lpElement;
-	lpElement =  lpElementResources->FirstChildElement ("ObjectsCollision"); 
-		
-
-	for (lpElement = lpElement->FirstChildElement("ObjectCollision"); lpElement; lpElement = lpElement->NextSiblingElement()) 
-	{
-		std::string  lsModelName, lsPosition, lsScale = "", lsX = "", lsY = "", lsZ = "";
-		float lfScale = 1.0f;
-		cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
-
-
-		
-		lsModelName = lpElement->Attribute("ModelName");
-
-		if (lsModelName == lsNameCollision)
+		if ((mObjectType[luiIndex].GetModelName().c_str() == lsModelName.c_str()) && (mObjectType[luiIndex].GetType().c_str() == lsType.c_str()))
 		{
-		  TiXmlElement *lpElement2;
-			for (lpElement2 = lpElement->FirstChildElement("COLBOX"); lpElement2; lpElement2 = lpElement2->NextSiblingElement()) 
-			{
-				if (lpElement2->Attribute("X") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-					lsX = ((char*)lpElement2->Attribute("X"));
-
-				if (lpElement2->Attribute("Y") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-					lsY = ((char*)lpElement2->Attribute("Y"));
-
-				if (lpElement2->Attribute("Z") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-					lsZ = ((char*)lpElement2->Attribute("Z"));
-
-				float lfX = (float)atof(lsX.c_str());
-				float lfY = (float)atof(lsY.c_str());
-				float lfZ = (float)atof(lsZ.c_str());
-
-				lVec3.x = lfX;
-				lVec3.y = lfY;
-				lVec3.z = lfZ;
-			
-			}
+			lbResul = true;
+			break;
 		}
 	}
 
+	return lbResul;
+}
 
-	return lVec3;
+
+
+string cObjectManager::ObtenerTipoObjeto(string lsModelName)
+{
+	string lsType = "";
+
+	for (unsigned int luiIndex = 0; luiIndex < mObjectType.size(); luiIndex++)
+	{
+		string lPrueba = mObjectType[luiIndex].GetModelName();
+		if (mObjectType[luiIndex].GetModelName() == lsModelName)
+		{
+			lsType = mObjectType[luiIndex].GetType();
+			break;
+		}
+	}
+
+	return lsType;
 }
 
 
 
 
 
-
 //para hacer un split de un string
-void  cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
+void cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
 {
     // Skip delimiters at beginning.
     string::size_type lastPos = str.find_first_not_of(delimiters, 0);
@@ -342,4 +350,64 @@ void  cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const
         // Find next "non-delimiter"
         pos = str.find_first_of(delimiters, lastPos);
     }
+}
+
+
+
+cVec3 cObjectManager::GetPosition(const string lsType, const string lsModelName)
+{
+	cVec3 lPosition(0,0,0);
+
+
+	if (lsType == "Pista")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+			if (mObjectPista[luiIndex]->GetModelName() == lsModelName)
+				return mObjectPista[luiIndex]->GetPosition();
+	}
+	else if (lsType == "Player")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+			if (mObjectPlayer[luiIndex]->GetModelName() == lsModelName)
+				return mObjectPlayer[luiIndex]->GetPosition();
+	}
+
+	return lPosition;
+}
+
+
+cQuaternion cObjectManager::GetRotacionInicial (const string lsType, const string lsModelName)
+{
+	cQuaternion lRotInicial (0,0,0,0);
+	if (lsType == "Pista")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+			if (mObjectPista[luiIndex]->GetModelName() == lsModelName)
+				return mObjectPista[luiIndex]->GetRotacionInicial();
+	}
+	else if (lsType == "Player")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+			if (mObjectPlayer[luiIndex]->GetModelName() == lsModelName)
+				return mObjectPlayer[luiIndex]->GetRotacionInicial();
+	}
+
+
+	return lRotInicial;
+}
+
+
+void cObjectManager::InitPunterosFisica()
+{
+	
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
+	{
+		mObjectPista[luiIndex]->SetPtrPhysicsObject(cPhysicsManager::Get().GetPhysicsObjectPtr(mObjectPista[luiIndex]->GetType(), mObjectPista[luiIndex]->GetModelName()));
+	}
+
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
+		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(cPhysicsManager::Get().GetPhysicsObjectPtr(mObjectPlayer[luiIndex]->GetType(), mObjectPlayer[luiIndex]->GetModelName()));
+
+
 }
