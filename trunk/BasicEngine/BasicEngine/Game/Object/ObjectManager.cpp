@@ -20,13 +20,9 @@ bool cObjectManager::Init()
 
 	mfPI = 3.14159;
 
-
 	//Lemeos desde un xml
 	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
 	//LoadObjectsXml("ObjectsCollision");  //Poniendo las collisiones
-
-
-
 
 /*
 	//Creando la Física de los objetos
@@ -82,9 +78,6 @@ bool cObjectManager::Init()
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
-	
-		
-
 
 	return true;
 }
@@ -104,8 +97,6 @@ void cObjectManager::Deinit()
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 		mObjectVehicle[luiIndex]->Deinit();
 
-
-
 	//Eliminar la memoria, pendiente por hacer
 }
 
@@ -122,39 +113,28 @@ void cObjectManager::Update(float lfTimestep)
 	
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 		mObjectVehicle[luiIndex]->Update(lfTimestep);
-
-
 }
-
 
 //void cObjectManager::Render(cMatrix &lWorld)
 void cObjectManager::Render()
 {
-	//Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, auqnue no se vea por la camara
-
+	//TODO: Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, auqnue no se vea por la camara
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
 		mObjectPista[luiIndex]->Render();
-
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
 		mObjectPlayer[luiIndex]->Render();
 
-
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
 		mObject[luiIndex]->Render();
 
-
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 		mObjectVehicle[luiIndex]->Render();
-
-
 }
-
 
 //Leemeos todos los recursos desde un xml
 bool cObjectManager::LoadObjectsXml(std::string lsResource)
 {
-
 	TiXmlDocument lDoc;
 
 	lDoc.LoadFile ((char*)msFilename.c_str());
@@ -181,8 +161,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
 			cQuaternion lQuatRot = cQuaternion(1,0,0,0);
 			
-			
-			
 			if (lpElement->Attribute("Type") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsType = ((char*)lpElement->Attribute("Type"));
 
@@ -203,8 +181,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 			if (lpElement->Attribute("Angle") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsAngle = ((char*)lpElement->Attribute("Angle"));
-
-
 
 			cObject* lObject = new cObject;
 
@@ -242,16 +218,11 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 				//lQuatRot = cQuaternion((float)ldX, (float)ldY, (float)ldZ, lfAngle * 2 *  (float) PI / (float) 360.0);
 				cQuaternion lQuatRot((float)ldX, (float)ldY, (float)ldZ, lfAngle * (float) mfPI / (float) 180.0);
 				(*lObject).SetRotacionInicial(lQuatRot);
-			}
-
-
-			
+			}	
 
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
-			(*lObject).SetModelFile(lsModelFile);
-
-			
+			(*lObject).SetModelFile(lsModelFile);	
 			
 			if (!ExisteTipoAndModelName(lsModelName, lsType))
 			{
@@ -260,7 +231,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 				lObjectType.SetType (lsType);
 				mObjectType.push_back(lObjectType);
 			}
-
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
 			//Creamos tambien el objeto Físico
@@ -280,12 +250,10 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 				//(*lObjectPtr).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo QUITAR ESTE INIT PAR QUE TB LO HAGA EN EL CONSTRUCTOR!
 				mObject.push_back(lObjectPtr);
 			}
-
 			
 			delete lObject;  //ya no nos hace falta, porque copiamos los parámetros y en el último caso lo duplicamos
 		}
 	}
-
 	
 	return true;
 
@@ -327,9 +295,6 @@ string cObjectManager::ObtenerTipoObjeto(string lsModelName)
 }
 
 
-
-
-
 //para hacer un split de un string
 void cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
 {
@@ -352,12 +317,9 @@ void cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const 
     }
 }
 
-
-
 cVec3 cObjectManager::GetPosition(const string lsType, const string lsModelName)
 {
 	cVec3 lPosition(0,0,0);
-
 
 	if (lsType == "Pista")
 	{
