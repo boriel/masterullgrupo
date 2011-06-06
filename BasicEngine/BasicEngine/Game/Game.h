@@ -20,8 +20,9 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 class cGame : public cSingleton<cGame> {
 	friend class cSingleton<cGame>;
 
-	private: 	//variables
+	private: //variables
 		bool mbFinish;
+		bool mbModeCamera;
 		cApplicationProperties mProperties;
 		cCameraNavigator m3DCamera;
 		cCamera m2DCamera;

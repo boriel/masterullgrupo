@@ -97,6 +97,7 @@ bool cGame::Init()
 	mSubModel.SetLocalMatrix(lMatrix);
 
 	mfAcTime = 0.0f;
+	mbModeCamera= true;
 
 	//Pruebas Yorman
 	cObjectManager::Get().Init();
@@ -169,6 +170,11 @@ void cGame::Update(float lfTimestep)
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
 
+	if (BecomePressed(eIA_ChangeMode)) {
+		if (mbModeCamera) mbModeCamera=false;
+		else mbModeCamera=true;
+	}
+
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
@@ -197,7 +203,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	m3DCamera.Update();
+	if (mbModeCamera) m3DCamera.Update();
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
@@ -264,8 +270,12 @@ void cGame::RenderTexts() {
 	glEnable(GL_TEXTURE_2D);
 	mFont.SetColour( 1.0f, 1.0f, 1.0f );
 	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
-	mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	mFont.Write(0,-200,0, "Usar cursores para mover la cámara", 0,	FONT_ALIGN_CENTER);
+	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
+	if (mbModeCamera) {
+		mFont.Write(0,-200,0, "Usar cursores para mover la cámara", 0,	FONT_ALIGN_CENTER);
+	} else {
+		mFont.Write(0,-200,0, "Usar cursores para mover el coche", 0,	FONT_ALIGN_CENTER);
+	}
 }
 
 //Para los ejercicios de LUA
