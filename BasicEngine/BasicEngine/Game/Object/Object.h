@@ -17,7 +17,6 @@ using namespace std;
 
 class cObject
 {
-	
 	public:
 		cObject() {}
 		//cObject(cObject lObject); //Ya está definido el constructor de copia
@@ -64,15 +63,11 @@ class cObject
 		string msType;
 		string msModelName;
 		string msModelFile;
-	
 		
 		cPhysicsObject* mPhysicsObject;
 		cVec3 mCollision; //temporal para meter los puntos de desde un xml
 		float mfScale;  //no se si usarlo, no se usa por ahora ni se pide
 		cQuaternion mRotacionInicial;  //NO ES QUATERNION PROPIEAMENTE DICHO, SON LSO DATOS A PELO DEL XML
-
-
-
 };
 
 

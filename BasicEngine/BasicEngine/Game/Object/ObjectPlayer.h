@@ -3,7 +3,6 @@ Class ObjectPlayer:
 
 */
 
-
 #ifndef OBJECT_PLAYER_H
 #define OBJECT_PLAYER_H
 
