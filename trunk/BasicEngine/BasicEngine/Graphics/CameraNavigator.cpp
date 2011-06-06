@@ -27,7 +27,6 @@ void cCameraNavigator::Update(void) {
 }
 
 void cCameraNavigator::MoveForwards(GLfloat lfDistance) {
-	//cVec3 lFront = GetView().GetFront().Normalize();
 	cVec3 lDirection = ((*mpTarget)-(*mpPosition));
 	lDirection.y=0;
 	lDirection=lDirection.Normalize();

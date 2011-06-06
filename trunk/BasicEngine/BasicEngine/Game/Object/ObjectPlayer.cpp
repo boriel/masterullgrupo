@@ -52,3 +52,12 @@ void cObjectPlayer::Render ()
 
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
 }
+
+void cObjectPlayer::MoveForwards(float lfDistance) {
+	cVec3 lDirection = GetWorldMatrix().GetFront().Normalize();
+	cVec3 lPosition = GetPosition();
+	//lDirection.y=0;
+	lDirection = lDirection * lfDistance; 
+	lPosition += lDirection;
+	SetPosition(lPosition);
+}

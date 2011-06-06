@@ -14,23 +14,19 @@ Class ObjectPlayer:
 
 class cObjectPlayer : public cObject
 {
+private:
+	void MoveForwards(float lfDistance);
 
-	public: 
-		cObjectPlayer () {}
-		cObjectPlayer (cObject lObject);
+public: 
+	cObjectPlayer () {}
+	cObjectPlayer (cObject lObject);
 		
-		virtual void Update (float lfTimestep);
-		//virtual void Render (cMatrix &lWorld);
-		virtual void Render ();
+	virtual void Update (float lfTimestep);
+	//virtual void Render (cMatrix &lWorld);
+	virtual void Render ();
 
-		virtual void InitPhysics();
-
+	virtual void InitPhysics();
 
 };
-
-
-
-
-
 
 #endif

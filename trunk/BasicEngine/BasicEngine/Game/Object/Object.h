@@ -38,6 +38,7 @@ class cObject
 		inline void SetWorldMatrix(const cMatrix& lWorld) {	mWorldMatrix = lWorld; }
 		
 		inline cMatrix GetWorldMatrix( const cMatrix& lWorld ) {	return mWorldMatrix; }
+		inline cMatrix GetWorldMatrix(void) {	return mWorldMatrix; }
 		
 		inline void SetType (string lsType) { msType = lsType; }
 		inline string GetType () { return msType; }
