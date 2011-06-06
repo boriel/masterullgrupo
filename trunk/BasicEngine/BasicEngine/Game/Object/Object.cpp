@@ -23,29 +23,22 @@ void cObject::Init()
 	//Inicializanzado la matrix de mundo a la identidad
 	//cMatrix lWorld;
 	mWorldMatrix.LoadIdentity();
-
 	mWorldMatrix.SetPosition(mPosition);
 
 	mfScale = 1.0f;
 	mPhysicsObject = new cPhysicsObject;
-
 }
 
 
 void cObject::Deinit()
 {
 	//Hacer mejor los deletes y la liberación de memoria, y las llamadas
-
 	delete mPhysicsObject;
 }
-
-
 
 //void cObject::Render(cMatrix &lWorld)
 void cObject::Render()
 {
-	
-
 	//Pintando el modelo
 	((cModel *)cModelManager::Get().FindResourceA(msModelName).GetResource())->Render(mWorldMatrix);
 	
@@ -53,22 +46,17 @@ void cObject::Render()
 #if _DEBUG
 	cGraphicManager::Get().DrawAxis();
 #endif	
-	
 
 //Pintamos el debug
 #ifdef _DEBUG
 	//((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
 	//mPhysicsObject->RenderAllObjectDebug();
 #endif
-
-
 }
 
 void cObject::Update( float lfTimestep )
 {
 	//mPhysicsObject->Update();	//ya lo hace el manager
-	
-	//mPhysicsObject->
 }
 
 //En teoría los hijos harán este trabajo
