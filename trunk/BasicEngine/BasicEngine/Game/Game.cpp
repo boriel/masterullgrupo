@@ -272,9 +272,10 @@ void cGame::RenderTexts() {
 	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
 	if (mbModeCamera) {
-		mFont.Write(0,-200,0, "Usar cursores para mover la cámara", 0,	FONT_ALIGN_CENTER);
+		mFont.Write(0,-200,0, "Cursor = CÁMARA, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
 	} else {
-		mFont.Write(0,-200,0, "Usar cursores para mover el coche", 0,	FONT_ALIGN_CENTER);
+		mFont.SetColour( 1.0f, 1.0f, 0.0f );
+		mFont.Write(0,-200,0, "Cursor = COCHE, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
 	}
 }
 

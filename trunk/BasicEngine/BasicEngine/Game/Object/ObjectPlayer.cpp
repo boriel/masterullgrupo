@@ -1,9 +1,8 @@
 #include "ObjectPlayer.h"
 #include "..\..\Physics\Objects\PhysicsPlayer.h"
 #include "..\..\Game\Object\ObjectManager.h"
-
-//#include "..\..\Graphics\GraphicManager.h"
-
+#include "..\InputConfiguration.h"
+#include "..\..\Input\InputManager.h"
 
 cObjectPlayer::cObjectPlayer (cObject lObject)
 {
@@ -18,21 +17,16 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 	
 }
 
-
 void cObjectPlayer::InitPhysics ()
 {
-	
-	
 	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 }
 
 
 void cObjectPlayer::Update( float lfTimestep )
 {
-
 	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
-	
 	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	mPosition = mPhysicsObject->GetPosition();
 	//cQuaternion lQuatRot=((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
@@ -40,11 +34,8 @@ void cObjectPlayer::Update( float lfTimestep )
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 	
-	
-	
-	
-
-
+	if (IsPressed(eIA_Advance)) {
+	}
 	
 }
 
@@ -54,7 +45,6 @@ void cObjectPlayer::Render ()
 {
 	//cObject::Render(lWorld);
 	cObject::Render();
-
 
 #ifdef _DEBUG
 	((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
