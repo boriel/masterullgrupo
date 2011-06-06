@@ -35,6 +35,7 @@ void cObjectPlayer::Update( float lfTimestep )
 	mWorldMatrix.SetPosition(mPosition);
 	
 	if (IsPressed(eIA_Advance)) {
+		MoveForwards(0.01);
 	}
 	
 }
