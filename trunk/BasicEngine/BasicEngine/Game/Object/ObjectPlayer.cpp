@@ -35,7 +35,7 @@ void cObjectPlayer::Update( float lfTimestep )
 	mWorldMatrix.SetPosition(mPosition);
 	
 	if (IsPressed(eIA_Advance)) {
-		MoveForwards(0.01);
+		MoveForwards(0.01f);
 	}
 	
 }
@@ -58,7 +58,7 @@ void cObjectPlayer::MoveForwards(float lfDistance) {
 	cVec3 lDirection = GetWorldMatrix().GetFront().Normalize();
 	cVec3 lPosition = GetPosition();
 	//lDirection.y=0;
-	lDirection = lDirection * lfDistance; 
+	lDirection.x += lfDistance; 
 	lPosition += lDirection;
 	SetPosition(lPosition);
 }
