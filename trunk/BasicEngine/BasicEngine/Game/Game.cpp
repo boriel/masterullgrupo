@@ -97,7 +97,7 @@ bool cGame::Init()
 	mSubModel.SetLocalMatrix(lMatrix);
 
 	mfAcTime = 0.0f;
-	mbModeCamera= true;
+	mbModeCamera= false;
 
 	//Pruebas Yorman
 	cObjectManager::Get().Init();
@@ -135,20 +135,20 @@ bool cGame::Deinit()
 
 //update del juego
 void cGame::Update(float lfTimestep) 
-{ 
-	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
-	
-	cWindow::Get().Update();
-	mfAcTime += lfTimestep;
-	//cCharacterManager::Get().Update(lfTimestep);  //Carga del Character de LUA, comentado por ahora
+{
 	cInputManager::Get().Update(lfTimestep);
-
 	//Actualizando la mmala del esqueleto
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
-	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
-	mSubModel.Update(lfTimestep);
+
+	if (!mbModeCamera) {
+		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
-	cObjectManager::Get().Update(lfTimestep);
+		cWindow::Get().Update();
+		mfAcTime += lfTimestep;
+		//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
+		mSubModel.Update(lfTimestep);	
+		cObjectManager::Get().Update(lfTimestep);
+	}
 
 	static bool mbJogging = false;
 	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
