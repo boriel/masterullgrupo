@@ -59,6 +59,6 @@ void cObjectPlayer::MoveForwards(float lfDistance) {
 	cVec3 lPosition = GetPosition();
 	//lDirection.y=0;
 	lDirection.x += lfDistance; 
-	lPosition += lDirection;
+	lPosition.x += 0.05;
 	SetPosition(lPosition);
 }

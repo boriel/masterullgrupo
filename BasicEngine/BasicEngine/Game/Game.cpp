@@ -12,8 +12,8 @@
 #include "..\Character\Behaviour\BehaviourManager.h"
 #include "..\Character\Behaviour\ChaserBase.h"
 #include "..\Game\Scene\ModelManager.h"
-#include "..\Graphics\Meshes\MeshManager.h"
 #include "..\Game\Scene\Model.h"
+#include "..\Graphics\Meshes\MeshManager.h"
 #include "..\Graphics\Fonts\FontManager.h"
 #include "..\Graphics\Materials\MaterialManager.h"
 #include "..\Graphics\Effects\EffectManager.h"
@@ -97,7 +97,7 @@ bool cGame::Init()
 	mSubModel.SetLocalMatrix(lMatrix);
 
 	mfAcTime = 0.0f;
-	mbModeCamera= false;
+	mbModeOnlyCamera= false;
 
 	//Pruebas Yorman
 	cObjectManager::Get().Init();
@@ -140,7 +140,7 @@ void cGame::Update(float lfTimestep)
 	//Actualizando la mmala del esqueleto
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 
-	if (!mbModeCamera) {
+	if (!mbModeOnlyCamera) {
 		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
 		cWindow::Get().Update();
@@ -171,8 +171,8 @@ void cGame::Update(float lfTimestep)
 	}
 
 	if (BecomePressed(eIA_ChangeMode)) {
-		if (mbModeCamera) mbModeCamera=false;
-		else mbModeCamera=true;
+		if (mbModeOnlyCamera) mbModeOnlyCamera=false;
+		else mbModeOnlyCamera=true;
 	}
 
 	// Check if we need to close the application
@@ -203,7 +203,7 @@ void cGame::Render()
 
 	// 3) Render Solid 3D
 	SetTheWorldMatrix();
-	if (mbModeCamera) m3DCamera.Update();
+	if (mbModeOnlyCamera) m3DCamera.Update();
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
@@ -271,7 +271,7 @@ void cGame::RenderTexts() {
 	mFont.SetColour( 1.0f, 1.0f, 1.0f );
 	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	if (mbModeCamera) {
+	if (mbModeOnlyCamera) {
 		mFont.Write(0,-200,0, "Cursor = CÁMARA, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
 	} else {
 		mFont.SetColour( 1.0f, 1.0f, 0.0f );
