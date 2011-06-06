@@ -22,7 +22,6 @@ void cObjectPlayer::InitPhysics ()
 	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 }
 
-
 void cObjectPlayer::Update( float lfTimestep )
 {
 	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
@@ -34,8 +33,8 @@ void cObjectPlayer::Update( float lfTimestep )
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 	
-	if (IsPressed(eIA_Advance)) {
-		MoveForwards(0.01f);
+	if (BecomePressed(eIA_Advance)) {
+		MoveForwards(0.001f);
 	}
 	
 }
@@ -59,6 +58,8 @@ void cObjectPlayer::MoveForwards(float lfDistance) {
 	cVec3 lPosition = GetPosition();
 	//lDirection.y=0;
 	lDirection.x += lfDistance; 
-	lPosition.x += 0.05;
+	lPosition.x += lfDistance;
+	//lPosition.z += lfDistance;
 	SetPosition(lPosition);
+	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 }
