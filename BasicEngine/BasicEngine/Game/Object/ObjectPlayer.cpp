@@ -51,6 +51,10 @@ void cObjectPlayer::MoveForwards(float lfDistance) {
 	cVec3 lDirection = GetWorldMatrix().GetFront().Normalize();
 	lDirection.x += lfDistance; 
 	mPosition.x += (lDirection.x*lfDistance);
+	mPosition.x += 0.001f;
 	//TODO: falta algo como PhysicsObject->SetPosition()
-//	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
+	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
+	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	((cPhysicsPlayer*)mPhysicsObject)->Init(mPosition,lQuatRot);
+	//this->InitPhysics();
 }
