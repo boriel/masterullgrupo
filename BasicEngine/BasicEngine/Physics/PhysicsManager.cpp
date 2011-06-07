@@ -43,7 +43,7 @@ bool cPhysicsManager::Init ()
 	mpbtDynamicsWorld->setGravity(btVector3(0,-10,0));
 
 	GLDebugDrawer*	gDebugDrawer = new GLDebugDrawer;
-	miDebugMode = 1;
+	miDebugMode = 0;  //0 = Sin debug
 	(*gDebugDrawer).setDebugMode(miDebugMode);
 
 	//m_debugMode |= btIDebugDraw::DBG_DrawWireframe;

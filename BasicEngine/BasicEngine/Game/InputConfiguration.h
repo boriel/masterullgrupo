@@ -18,6 +18,7 @@ enum eInputActions {
 	eIA_StopJog,
 	eIA_PlayWave,
 	eIA_StopWave,
+	eIA_ChangeModeDebug,
 	eIA_Count
 };
 
