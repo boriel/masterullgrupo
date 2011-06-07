@@ -27,7 +27,8 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	meType =  ePO_Cube;
 
 	//std::cout << "Cubo.Init()" << std::endl;
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
   
 	
@@ -72,7 +73,8 @@ void cPhysicsPlayer::Update(void)
 
 void cPhysicsPlayer::Deinit() 
 { //Deinit
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld->removeRigidBody(mpbtRigidBody);
 	delete mpbtRigidBody->getMotionState();

@@ -38,7 +38,7 @@ bool cGame::Init()
 		if (!lbResult) cWindow::Get().Deinit();	// Kill Window
 	}
 
-	cTextureManager::Get().Init(10); //Iniciando las texturas. Espacio reservado máximo para la carga=10
+	cTextureManager::Get().Init(20); //Iniciando las texturas. Espacio reservado máximo para la carga=10
 	cCharacterManager::Get().Init(); //Inicializamos el Gestor de Personajes
 
 	//==============
@@ -100,10 +100,10 @@ bool cGame::Init()
 	mbModeOnlyCamera= false;
 
 	//Pruebas Yorman
+	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico
 	cObjectManager::Get().Init();
-	cPhysicsManager::Get().Init();  //Configuracion de las collisiones
-	cPhysicsManager::Get().InitAllPhysics();  //iniciando las fisicas
-	cObjectManager::Get().InitPunterosFisica();
+	//cPhysicsManager::Get().InitAllPhysics();  //iniciando las fisicas
+	//cObjectManager::Get().InitPunterosFisica();
 	//cObjectManager::Get().Init();  //Esto tambien carga los recursos, cModelManager::Get() dentro de Init
 
 	return lbResult;
@@ -208,8 +208,9 @@ void cGame::Render()
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
-	RenderSkeletal();
+	//RenderSkeletal();
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
+	//RenderPhysicsObjects();
 	
 	// 4) Render 3D with transparency
 
@@ -246,8 +247,18 @@ void cGame::SetTheWorldMatrix()
 void cGame::RenderObjects () 
 {
 	cObjectManager::Get().Render();
-
 }
+
+
+//Dibujamos Todos los objetos
+void cGame::RenderPhysicsObjects () 
+{
+#if _DEBUG
+	cPhysicsManager::Get().Render();
+#endif
+}
+
+
 
 
 void cGame::RenderModels() 

@@ -5,6 +5,58 @@
 #include "..\Graphics\GraphicManager.h"
 #include "PhysicsManager.h"
 
+
+//Init General, se parece mucho al player y cube, pero irá cambiando
+void cPhysicsObject::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
+{
+	//macNameID = lacNameID;
+	meType =  ePO_Cube;
+
+	//std::cout << "Cubo.Init()" << std::endl;
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+  
+	
+	btVector3 lbtPosition = btVector3(lPosition.x, lPosition.y, lPosition.z);
+
+	//El shape lo creamos de antemano
+	//mpbtShape = new btBoxShape(btVector3(0.5, 0.5, 0.5));
+	//mpbtShape = new btBoxShape(btVector3(2.2, 1.0, 1.0));  //NPI DE PORQUE NO CARGA DEL FICHERO. VER QUE PASA Y PORQUE NO LEE LOS VALORES del xml y estos si, ME VOY A DORMIR YA
+	//mpbtShape = new btBoxShape(btVector3(lCollision.x / 2.0f, lCollision.y / 2.0f, lCollision.z / 2.0f));  //haciendo el cubo con lo pasado en xml
+
+	btQuaternion lbtQuaternion;
+	if (lRotacionInicial.w != 0)  //no pusieron ángulo o no rotacion en el xml
+		lbtQuaternion =  CambiarEje(lRotacionInicial);
+	else
+		lbtQuaternion = btQuaternion(0, 0, 0, 1);
+
+
+  //Funciona el cambio de eje, ya que al parecer desde max y opencollada siempre vienen la z up y no se como cambiarlo en max (y desde el dae es un coñazo a cada rato) pues cambio en codigo
+
+	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (lbtQuaternion, lbtPosition));
+	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition)); //Funciona para si ya viene todo dado cojonudo en el dae, orientado y todo
+	mbtMass = 1;
+	//btVector3 fallInertia(0, 0, 0);
+	mbtFallInertia = btVector3 (0,0,0);
+	mpbtShape->calculateLocalInertia (mbtMass, mbtFallInertia);
+	btRigidBody::btRigidBodyConstructionInfo lRigidBodyCI (mbtMass, fallMotionState, mpbtShape, mbtFallInertia);
+	//lRigidBodyCI.m_friction = 0.5f;
+	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
+	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 //Pintando el centro del objecto
 void cPhysicsObject::RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen)
 {
@@ -137,31 +189,6 @@ void cPhysicsObject::RenderPlaneDebug (const btVector3& lbtPlaneNormal, btScalar
 }
 
 
-void cPhysicsObject::RenderObjectDebug()
-{
-
-	cMatrix lWorld;
-	lWorld.LoadIdentity();
-	cGraphicManager::Get().SetWorldMatrix(lWorld);
-
-
-	btTransform lbtTransform; 
-	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform); 
-
-	//Pintando los ejes de coordenadas
-	RenderTransformDebug(lbtTransform, 1.0);
-
-
-	
-	
-	//Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
-	btCollisionShape* lbtShape = mpbtRigidBody->getCollisionShape();
-	const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtShape);
-	btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
-	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
-	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
-
-}
 
 
 
@@ -235,7 +262,7 @@ bool cPhysicsObject::CreateBoxShape(cVec3 lVec3)
 }
 
 
-btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape)
+btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape)
 {
 	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
 
@@ -264,7 +291,8 @@ btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform&
 
 	//m_dynamicsWorld->addRigidBody(body);
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
-	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld->addRigidBody(body);
 
 
@@ -277,178 +305,27 @@ void cPhysiscsObject:RenderAllObjectDebug ()
 }
 */
 
-void cPhysicsObject::RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color)
+
+//Intentado eliminar esta funcion para poner la otra de abajo
+void cPhysicsObject::RenderObjectDebug()
 {
-/*
-	// Draw a small simplex at the center of the object
-	getDebugDrawer()->drawTransform(worldTransform,1);
+	cMatrix lWorld;
+	lWorld.LoadIdentity();
+	cGraphicManager::Get().SetWorldMatrix(lWorld);
 
-	if (shape->getShapeType() == COMPOUND_SHAPE_PROXYTYPE)
-	{
-		const btCompoundShape* compoundShape = static_cast<const btCompoundShape*>(shape);
-		for (int i=compoundShape->getNumChildShapes()-1;i>=0;i--)
-		{
-			btTransform childTrans = compoundShape->getChildTransform(i);
-			const btCollisionShape* colShape = compoundShape->getChildShape(i);
-			debugDrawObject(worldTransform*childTrans,colShape,color);
-		}
+	btTransform lbtTransform; 
+	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform); 
 
-	} else
-	{
-		switch (shape->getShapeType())
-		{
+	//Pintando los ejes de coordenadas
+	RenderTransformDebug(lbtTransform, 1.0);
 
-		case BOX_SHAPE_PROXYTYPE:
-			{
-				const btBoxShape* boxShape = static_cast<const btBoxShape*>(shape);
-				btVector3 halfExtents = boxShape->getHalfExtentsWithMargin();
-				getDebugDrawer()->drawBox(-halfExtents,halfExtents,worldTransform,color);
-				break;
-			}
-
-		case SPHERE_SHAPE_PROXYTYPE:
-			{
-				const btSphereShape* sphereShape = static_cast<const btSphereShape*>(shape);
-				btScalar radius = sphereShape->getMargin();//radius doesn't include the margin, so draw with margin
-
-				getDebugDrawer()->drawSphere(radius, worldTransform, color);
-				break;
-			}
-		case MULTI_SPHERE_SHAPE_PROXYTYPE:
-			{
-				const btMultiSphereShape* multiSphereShape = static_cast<const btMultiSphereShape*>(shape);
-
-				btTransform childTransform;
-				childTransform.setIdentity();
-
-				for (int i = multiSphereShape->getSphereCount()-1; i>=0;i--)
-				{
-					childTransform.setOrigin(multiSphereShape->getSpherePosition(i));
-					getDebugDrawer()->drawSphere(multiSphereShape->getSphereRadius(i), worldTransform*childTransform, color);
-				}
-
-				break;
-			}
-		case CAPSULE_SHAPE_PROXYTYPE:
-			{
-				const btCapsuleShape* capsuleShape = static_cast<const btCapsuleShape*>(shape);
-
-				btScalar radius = capsuleShape->getRadius();
-				btScalar halfHeight = capsuleShape->getHalfHeight();
-
-				int upAxis = capsuleShape->getUpAxis();
-				getDebugDrawer()->drawCapsule(radius, halfHeight, upAxis, worldTransform, color);
-				break;
-			}
-		case CONE_SHAPE_PROXYTYPE:
-			{
-				const btConeShape* coneShape = static_cast<const btConeShape*>(shape);
-				btScalar radius = coneShape->getRadius();//+coneShape->getMargin();
-				btScalar height = coneShape->getHeight();//+coneShape->getMargin();
-
-				int upAxis= coneShape->getConeUpIndex();
-				getDebugDrawer()->drawCone(radius, height, upAxis, worldTransform, color);
-				break;
-
-			}
-		case CYLINDER_SHAPE_PROXYTYPE:
-			{
-				const btCylinderShape* cylinder = static_cast<const btCylinderShape*>(shape);
-				int upAxis = cylinder->getUpAxis();
-				btScalar radius = cylinder->getRadius();
-				btScalar halfHeight = cylinder->getHalfExtentsWithMargin()[upAxis];
-				getDebugDrawer()->drawCylinder(radius, halfHeight, upAxis, worldTransform, color);
-				break;
-			}
-
-		case STATIC_PLANE_PROXYTYPE:
-			{
-				const btStaticPlaneShape* staticPlaneShape = static_cast<const btStaticPlaneShape*>(shape);
-				btScalar planeConst = staticPlaneShape->getPlaneConstant();
-				const btVector3& planeNormal = staticPlaneShape->getPlaneNormal();
-				getDebugDrawer()->drawPlane(planeNormal, planeConst,worldTransform, color);
-				break;
-
-			}
-		default:
-			{
-
-				if (shape->isConcave())
-				{
-					btConcaveShape* concaveMesh = (btConcaveShape*) shape;
-
-					///@todo pass camera, for some culling? no -> we are not a graphics lib
-					btVector3 aabbMax(btScalar(BT_LARGE_FLOAT),btScalar(BT_LARGE_FLOAT),btScalar(BT_LARGE_FLOAT));
-					btVector3 aabbMin(btScalar(-BT_LARGE_FLOAT),btScalar(-BT_LARGE_FLOAT),btScalar(-BT_LARGE_FLOAT));
-
-					DebugDrawcallback drawCallback(getDebugDrawer(),worldTransform,color);
-					concaveMesh->processAllTriangles(&drawCallback,aabbMin,aabbMax);
-
-				}
-
-				if (shape->getShapeType() == CONVEX_TRIANGLEMESH_SHAPE_PROXYTYPE)
-				{
-					btConvexTriangleMeshShape* convexMesh = (btConvexTriangleMeshShape*) shape;
-					//todo: pass camera for some culling			
-					btVector3 aabbMax(btScalar(BT_LARGE_FLOAT),btScalar(BT_LARGE_FLOAT),btScalar(BT_LARGE_FLOAT));
-					btVector3 aabbMin(btScalar(-BT_LARGE_FLOAT),btScalar(-BT_LARGE_FLOAT),btScalar(-BT_LARGE_FLOAT));
-					//DebugDrawcallback drawCallback;
-					DebugDrawcallback drawCallback(getDebugDrawer(),worldTransform,color);
-					convexMesh->getMeshInterface()->InternalProcessAllTriangles(&drawCallback,aabbMin,aabbMax);
-				}
-
-
-				/// for polyhedral shapes
-				if (shape->isPolyhedral())
-				{
-					btPolyhedralConvexShape* polyshape = (btPolyhedralConvexShape*) shape;
-
-					int i;
-					if (polyshape->getConvexPolyhedron())
-					{
-						const btConvexPolyhedron* poly = polyshape->getConvexPolyhedron();
-						for (i=0;i<poly->m_faces.size();i++)
-						{
-							btVector3 centroid(0,0,0);
-							int numVerts = poly->m_faces[i].m_indices.size();
-							if (numVerts)
-							{
-								int lastV = poly->m_faces[i].m_indices[numVerts-1];
-								for (int v=0;v<poly->m_faces[i].m_indices.size();v++)
-								{
-									int curVert = poly->m_faces[i].m_indices[v];
-									centroid+=poly->m_vertices[curVert];
-									getDebugDrawer()->drawLine(worldTransform*poly->m_vertices[lastV],worldTransform*poly->m_vertices[curVert],color);
-									lastV = curVert;
-								}
-							}
-							centroid*= 1./btScalar(numVerts);
-
-							btVector3 normalColor(1,1,0);
-							btVector3 faceNormal(poly->m_faces[i].m_plane[0],poly->m_faces[i].m_plane[1],poly->m_faces[i].m_plane[2]);
-							getDebugDrawer()->drawLine(worldTransform*centroid,worldTransform*(centroid+faceNormal),normalColor);
-							
-							
-						}
-
-						
-					} else
-					{
-						for (i=0;i<polyshape->getNumEdges();i++)
-						{
-							btVector3 a,b;
-							polyshape->getEdge(i,a,b);
-							btVector3 wa = worldTransform * a;
-							btVector3 wb = worldTransform * b;
-							getDebugDrawer()->drawLine(wa,wb,color);
-						}
-					}
-
-
-				}
-			}
-		}
-	}
-*/
+	
+	//Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
+	btCollisionShape* lbtShape = mpbtRigidBody->getCollisionShape();
+	const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtShape);
+	btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
+	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
+	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
 }
+
 

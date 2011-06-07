@@ -12,7 +12,8 @@ void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIni
 {
 
 	//std::cout << "Cubo.Init()" << std::endl;
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
   
 	
@@ -59,7 +60,8 @@ void cPhysicsPista::Update(void)
 
 void cPhysicsPista::Deinit() 
 { //Deinit
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld->removeRigidBody(mpbtRigidBody);
 	delete mpbtRigidBody->getMotionState();

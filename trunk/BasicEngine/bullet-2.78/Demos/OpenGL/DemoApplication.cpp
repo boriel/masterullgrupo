@@ -363,7 +363,7 @@ void DemoApplication::keyboardCallback(unsigned char key, int x, int y)
 			m_debugMode |= btIDebugDraw::DBG_NoHelpText;
 		break;
 
-	case 'w':
+	case 'w':  //Yorman cambiando a modo debug
 		if (m_debugMode & btIDebugDraw::DBG_DrawWireframe)
 			m_debugMode = m_debugMode & (~btIDebugDraw::DBG_DrawWireframe);
 		else

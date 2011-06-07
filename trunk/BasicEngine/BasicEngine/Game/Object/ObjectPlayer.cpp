@@ -7,7 +7,7 @@
 cObjectPlayer::cObjectPlayer (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
-	mPhysicsObject = new cPhysicsPlayer;
+	//mPhysicsObject = new cPhysicsPlayer;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
 	//mPhysicsObject->Init("Player");
@@ -33,6 +33,7 @@ void cObjectPlayer::Update( float lfTimestep )
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
+
 }
 
 void cObjectPlayer::Render () 
@@ -41,7 +42,7 @@ void cObjectPlayer::Render ()
 	cObject::Render();
 
 #ifdef _DEBUG
-	((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
+	//((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
 #endif
 
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);

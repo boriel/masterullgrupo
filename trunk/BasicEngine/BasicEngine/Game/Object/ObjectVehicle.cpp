@@ -8,7 +8,7 @@
 cObjectVehicle::cObjectVehicle (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
-	mPhysicsObject = new cPhysicsVehicle;
+	//mPhysicsObject = new cPhysicsVehicle;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
 	//mPhysicsObject->Init("Player");
@@ -31,6 +31,7 @@ void cObjectVehicle::InitPhysics ()
 void cObjectVehicle::Update( float lfTimestep )
 {
 
+	/*
 	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
 	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
@@ -41,7 +42,7 @@ void cObjectVehicle::Update( float lfTimestep )
 	cQuaternion lQuatRot=((cPhysicsVehicle*)mPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
-
+	*/
 
 
 	

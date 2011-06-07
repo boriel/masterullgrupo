@@ -5,7 +5,7 @@
 cObjectPista::cObjectPista (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
-	mPhysicsObject = new cPhysicsPista;
+	//mPhysicsObject = new cPhysicsPista;
 
 	/*
 	mPhysicsObject = new cPhysicsPista;
@@ -39,6 +39,6 @@ void cObjectPista::Render ()
 	cObject::Render();
 
 #ifdef _DEBUG
-	((cPhysicsPista*) mPhysicsObject)->RenderObjectDebug();
+	//((cPhysicsPista*) mPhysicsObject)->RenderObjectDebug();
 #endif
 }
