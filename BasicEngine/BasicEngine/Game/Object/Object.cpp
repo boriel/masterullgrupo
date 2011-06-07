@@ -21,7 +21,6 @@ void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string ls
 void cObject::Init()
 {
 	//Inicializanzado la matrix de mundo a la identidad
-	//cMatrix lWorld;
 	mWorldMatrix.LoadIdentity();
 	mWorldMatrix.SetPosition(mPosition);
 
@@ -56,10 +55,10 @@ void cObject::Render()
 
 void cObject::Update( float lfTimestep )
 {
-	//mPhysicsObject->Update();	//ya lo hace el manager
+	//mPhysicsObject->Update();	//TODO: ya lo hace el manager
 }
 
-//En teoría los hijos harán este trabajo
+//TODO: En teoría los hijos harán este trabajo
 void cObject::InitPhysics()
 {
 	Init();

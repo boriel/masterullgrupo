@@ -33,13 +33,10 @@
 	<Object Type="Player" Position="-5,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
 
 
-	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
-
-	
 <!--
+	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 	<Object Type="Player" Position="0,10,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
 -->	
-
 
 
 <!--   PISTAS  -->
@@ -50,10 +47,6 @@
 
 <!--
 	<Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/Basico.DAE" Rotation="1,0,0"  Angle="-90" />
--->
-
-	
-	
 	<!--<Object Type="Pista" Position="0,-1,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />-->
 	<!--<Object Type="Pista" Position="0,0,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" />-->
 	
@@ -70,8 +63,7 @@
   </Objects>
   
   
-  <ObjectsCollision>
-  
+  <ObjectsCollision>  
 	<ObjectCollision ModelName="CarJazz" >
 		<COLBOX X="2.2" Y="1" Z="1" />
 	</ObjectCollision>
@@ -83,8 +75,6 @@
 	<ObjectCollision ModelName="Suelo" >
 		<COLBOX X="25" Y="25" Z="1" />
 	</ObjectCollision>
-
-	
   </ObjectsCollision>
   
   
