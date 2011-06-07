@@ -14,7 +14,6 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
 	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 */
-	
 }
 
 void cObjectPlayer::InitPhysics ()
