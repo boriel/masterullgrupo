@@ -14,5 +14,6 @@ tActionMapping kaActionMapping[] = {
 	{ eIA_StopJog, eKeyboard, OIS::KC_W },
 	{ eIA_PlayWave, eKeyboard, OIS::KC_E },
 	{ eIA_StopWave, eKeyboard, OIS::KC_R },
+	{ eIA_ChangeModeDebug, eKeyboard, OIS::KC_F9 },
 	{ -1, -1, -1 } // End of the table (Marca el final de la tabla)
 };
