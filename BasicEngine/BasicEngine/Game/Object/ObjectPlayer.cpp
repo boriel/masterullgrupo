@@ -23,19 +23,16 @@ void cObjectPlayer::InitPhysics ()
 
 void cObjectPlayer::Update( float lfTimestep )
 {
-	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
+	cObject::Update(lfTimestep); //TODO: Llmando al padre que tiene las fisicas generales, aunque esto no hace nada por ahora
 
-	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	mPosition = mPhysicsObject->GetPosition();
-	//cQuaternion lQuatRot=((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
+	if (BecomePressed(eIA_Advance)) {
+		MoveForwards(0.05f);
+	}
+
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
-	
-	if (BecomePressed(eIA_Advance)) {
-		MoveForwards(0.000f);
-	}
-	
 }
 
 void cObjectPlayer::Render () 
@@ -52,11 +49,8 @@ void cObjectPlayer::Render ()
 
 void cObjectPlayer::MoveForwards(float lfDistance) {
 	cVec3 lDirection = GetWorldMatrix().GetFront().Normalize();
-	cVec3 lPosition = GetPosition();
-	//lDirection.y=0;
 	lDirection.x += lfDistance; 
-	lPosition.x += lfDistance;
-	//lPosition.z += lfDistance;
-	SetPosition(lPosition);
-	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
+	mPosition.x += (lDirection.x*lfDistance);
+	//TODO: falta algo como PhysicsObject->SetPosition()
+//	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 }

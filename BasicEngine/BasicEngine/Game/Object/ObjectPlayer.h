@@ -26,7 +26,6 @@ public:
 	virtual void Render ();
 
 	virtual void InitPhysics();
-
 };
 
 #endif

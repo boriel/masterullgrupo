@@ -244,7 +244,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			else //General
 			{
 				cObject* lObjectPtr = new cObject(*lObject);
-				//(*lObjectPtr).Init(); //Como hay definido ya un constructor de copia, tengo que hacer el init por fuera y no como arriba que se invocaba al crearlo QUITAR ESTE INIT PAR QUE TB LO HAGA EN EL CONSTRUCTOR!
 				mObject.push_back(lObjectPtr);
 			}
 			
