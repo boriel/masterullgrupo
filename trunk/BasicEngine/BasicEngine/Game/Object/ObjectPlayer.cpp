@@ -34,13 +34,11 @@ void cObjectPlayer::Update( float lfTimestep )
 	mWorldMatrix.SetPosition(mPosition);
 	
 	if (BecomePressed(eIA_Advance)) {
-		MoveForwards(0.001f);
+		MoveForwards(0.000f);
 	}
 	
 }
 
-
-//void cObjectPlayer::Render (cMatrix &lWorld) 
 void cObjectPlayer::Render () 
 {
 	//cObject::Render(lWorld);
