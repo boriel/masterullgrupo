@@ -84,7 +84,8 @@ cPhysicsVehicle::cPhysicsVehicle()
 
 cPhysicsVehicle::~cPhysicsVehicle() 
 {
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 
 	//cleanup in the reverse order of creation/initialization
@@ -101,13 +102,14 @@ cPhysicsVehicle::~cPhysicsVehicle()
 		lpDynamicsWorld->removeCollisionObject( obj );
 		delete obj;
 	}
-/*
+
 	//delete collision shapes
-	for (int j=0;j<m_collisionShapes.size();j++) {
-		btCollisionShape* shape = m_collisionShapes[j];
-		delete shape;
+	for (int luiIndex = 0; luiIndex < mabtCollisionShapes.size(); luiIndex++) 
+	{
+		btCollisionShape* lbtShape = mabtCollisionShapes[luiIndex];
+		delete lbtShape;
 	}
-*/
+
 	delete m_indexVertexArrays;
 	delete m_vertices;
 
@@ -153,7 +155,8 @@ void cPhysicsVehicle::Init()
 
 	
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
-	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 
 
 #ifdef FORCE_ZAXIS_UP
@@ -164,8 +167,10 @@ void cPhysicsVehicle::Init()
 	btCollisionShape* groundShape = new btBoxShape(btVector3(50,3,50)); //Figura del suelo
 	//m_collisionShapes.push_back(groundShape);
 	//cPhysicsManager::mabtCollisionShapes.push_back(groundShape);
-	cPhysicsManager::Get().AddCollisionShape(groundShape);
+	//cPhysicsManager::Get().AddCollisionShape(groundShape);
+	mabtCollisionShapes.push_back(groundShape);
 
+	/*
 	m_collisionConfiguration = new btDefaultCollisionConfiguration();
 	m_dispatcher = new btCollisionDispatcher(m_collisionConfiguration);
 	btVector3 worldMin(-1000,-1000,-1000);
@@ -173,6 +178,7 @@ void cPhysicsVehicle::Init()
 	m_overlappingPairCache = new btAxisSweep3(worldMin,worldMax);
 	m_constraintSolver = new btSequentialImpulseConstraintSolver();
 	lpDynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_overlappingPairCache,m_constraintSolver,m_collisionConfiguration);
+*/	
 #ifdef FORCE_ZAXIS_UP
 	m_dynamicsWorld->setGravity(btVector3(0,0,-10));
 #endif 
@@ -184,8 +190,8 @@ void cPhysicsVehicle::Init()
 
 
 
-
 /*
+
 // HACIENDO EL SUELO y triangulándolo
 //either use heightfield or triangle mesh
 #define  USE_TRIMESH_GROUND 1
@@ -307,10 +313,11 @@ void cPhysicsVehicle::Init()
 
 #endif //
 
-	m_collisionShapes.push_back(groundShape);
+	//m_collisionShapes.push_back(groundShape);
+	cPhysicsManager::Get().AddCollisionShape(groundShape);
 
 	//create ground object
-	LocalCreateRigidBody(0,tr,groundShape); //YORMAN ESTA FUNCION PUEDE ESTAR INTERESANTE
+	LocalCreateRigidBody(0, tr, groundShape); //YORMAN ESTA FUNCION PUEDE ESTAR INTERESANTE
 
 */
 
@@ -332,10 +339,12 @@ void cPhysicsVehicle::Init()
 	localTrans.setOrigin(btVector3(0,0,1));
 #else
 	btCollisionShape* chassisShape = new btBoxShape(btVector3(1.f,0.5f,2.f));
-	cPhysicsManager::Get().AddCollisionShape(chassisShape);
+	//cPhysicsManager::Get().AddCollisionShape(chassisShape);
+	mabtCollisionShapes.push_back(chassisShape);
 
 	btCompoundShape* compound = new btCompoundShape();
-	cPhysicsManager::Get().AddCollisionShape(compound);
+	//cPhysicsManager::Get().AddCollisionShape(compound);
+	mabtCollisionShapes.push_back(compound);
 	btTransform localTrans;
 	localTrans.setIdentity();
 	//localTrans effectively shifts the center of mass with respect to the chassis
@@ -417,12 +426,14 @@ void cPhysicsVehicle::Init()
 
 
 
-/*
-	// --> Yorman comienzo pruebas
 
+	// --> Yorman comienzo pruebas
+/*
 	btCollisionShape* colShape = new btBoxShape(btVector3(SCALING * 1, SCALING * 1, SCALING * 1));
 	//btCollisionShape* colShape = new btSphereShape(btScalar(1.));
-	m_collisionShapes.push_back(colShape);
+	//m_collisionShapes.push_back(colShape);
+	//cPhysicsManager::Get().AddCollisionShape(colShape);
+	mabtCollisionShapes.push_back(colShape);
 
 	btScalar mass(1.f);
 
@@ -451,11 +462,9 @@ void cPhysicsVehicle::Init()
 					
 	//m_dynamicsWorld->addRigidBody(body);
 	lpDynamicsWorld->addRigidBody(body);
-	
-	
-
+*/	
 	// --> Yorman fin pruebas
-*/
+
 
 
 

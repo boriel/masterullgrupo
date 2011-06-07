@@ -29,11 +29,12 @@ class cObjectManager : public cSingleton<cObjectManager>
 
 		cVec3 GetPosition(const string lsType, const string lsModelName);
 		cQuaternion GetRotacionInicial (const string lsType, const string lsModelName);
-		void InitPunterosFisica();
+		//void InitPunterosFisica();
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
 		//cVec3 LoadObjectsXmlCollision(std::string lsNameCollision);
+		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
 		void CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 

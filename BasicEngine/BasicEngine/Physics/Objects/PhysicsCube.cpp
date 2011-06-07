@@ -8,7 +8,8 @@ void cPhysicsCube::Init( const std::string &lacNameID) {
 	meType =  ePO_Cube;
 
 	//std::cout << "Cubo.Init()" << std::endl;
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
   
 	// Do_everything_else_here
@@ -37,7 +38,8 @@ void cPhysicsCube::Update(void) { //Update
 }
 
 void cPhysicsCube::Deinit() { //Deinit
-	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	lpDynamicsWorld->removeRigidBody(mpFallRigidBody);
 	delete mpFallRigidBody->getMotionState();

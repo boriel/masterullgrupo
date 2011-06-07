@@ -18,25 +18,83 @@ bool cObjectManager::Init()
 {
 	msFilename = (".\\Data\\" + std::string("Resources.xml"));
 
-	mfPI = 3.14159;
+	mfPI = 3.14159f;
 
 	//Lemeos desde un xml
 	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
 	//LoadObjectsXml("ObjectsCollision");  //Poniendo las collisiones
 
-/*
+
 	//Creando la Física de los objetos
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
 	{
+		cPhysicsPlayer* lpPhysicsPlayer = new cPhysicsPlayer;
+		LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetType(), lpPhysicsPlayer);
+		lpPhysicsPlayer->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
+
+
+		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(lpPhysicsPlayer);
+
+
+		//ASIGNAR EL PUNTERO AL ARRAY
+
+		
+		//cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+
+		//lpPhysicsObject->Lo
+		//LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetType(), );
+
+
+
+		/*
 		//lo saco del xml y creamos los shapes sobre la marcha
 		cVec3 lVec3 (LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName()));
 		cPhysicsObject *lpObjectPlayer = ((cObjectPlayer*)mObjectPlayer[luiIndex])->GetPtrPhysicsObject();
 		(*lpObjectPlayer).CreateBoxShape(lVec3);
 		((cObjectPlayer*)mObjectPlayer[luiIndex])->InitPhysics();  //Aqui tambien se podría hacer la llamada con el puntero, 
 		//((cPhysicsPlayer*)lpObjectPlayer)->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
+		*/
 
 	}
-	
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+	{
+		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
+		LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetType(), lpPhysicsPista);
+		lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
+
+		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
+	}
+
+
+
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+	{
+		cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
+		LoadObjectsXmlCollision(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetType(), lpPhysicsVehicle);  //No hace nada por ahora
+		//lpPhysicsVehicle->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
+		lpPhysicsVehicle->Init();
+
+		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
+	}
+
+
+
+	//Objetos Generales con un box por ahora
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
+	{
+		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+
+		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+	}
+
+
+
+
+
+/*	
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 	{
 		cVec3 lVec3 (LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName()));
@@ -64,9 +122,35 @@ bool cObjectManager::Init()
 	cObject* lObjectPtr = new cObjectVehicle(*lObject);
 	mObjectVehicle.push_back(lObjectPtr);
 
-	//Iniciamos a mano
-	((cObjectVehicle*)mObjectVehicle[0])->InitPhysics();
+	cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
+	lpPhysicsVehicle->Init();
+	mObjectVehicle[0]->SetPtrPhysicsObject(lpPhysicsVehicle);
 
+
+
+	delete lObject;
+*/
+	//Iniciamos a mano
+	//((cObjectVehicle*)mObjectVehicle[0])->InitPhysics();
+
+	
+	/*
+	//a mano metemos un player tb
+	cObject* lObject2 = new cObject;
+	cObject* lObjectPtr2 = new cObjectPlayer(*lObject2);
+	lObjectPtr2->SetPosition(cVec3(1.0f, 0.0f, 1.0f));
+	lObjectPtr2->SetCollision(cVec3(2.0f, 2.0f, 2.0f));
+	lObjectPtr2->Init();
+	mObjectPlayer.push_back(lObjectPtr2);
+	delete lObject2;
+	*/
+
+/*
+	cVec3 lVec3 (2.0f, 2.0f, 2.0f);
+	cPhysicsObject *lpObjectPlayer = ((cObjectPlayer*)mObjectPlayer[luiIndex])->GetPtrPhysicsObject();
+	(*lpObjectPlayer).CreateBoxShape(lVec3);
+	((cObjectPlayer*)mObjectPlayer[luiIndex])->InitPhysics();  //Aqui tambien se podría hacer la llamada con el puntero, 
+		//((cPhysicsPlayer*)lpObjectPlayer)->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
 */
 
 	//Inicializando los recursos aqui
@@ -75,6 +159,9 @@ bool cObjectManager::Init()
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
+		
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
@@ -110,9 +197,15 @@ void cObjectManager::Update(float lfTimestep)
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
 		mObjectPista[luiIndex]->Update(lfTimestep);
 
-	
+
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 		mObjectVehicle[luiIndex]->Update(lfTimestep);
+
+	//Actualizando los objetos
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
+		mObject[luiIndex]->Update(lfTimestep);
+
+
 }
 
 //void cObjectManager::Render(cMatrix &lWorld)
@@ -241,10 +334,16 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 				cObject* lObjectPtr = new cObjectPista(*lObject);
 				mObjectPista.push_back(lObjectPtr);
 			}
-			else //General
+			else if (lsType == "Vehicle")
+			{
+				cObject* lObjectPtr = new cObjectVehicle(*lObject);
+				mObjectVehicle.push_back(lObjectPtr);
+			}
+			else if (lsType != "") //General
 			{
 				cObject* lObjectPtr = new cObject(*lObject);
 				mObject.push_back(lObjectPtr);
+				
 			}
 			
 			delete lObject;  //ya no nos hace falta, porque copiamos los parámetros y en el último caso lo duplicamos
@@ -354,7 +453,7 @@ cQuaternion cObjectManager::GetRotacionInicial (const string lsType, const strin
 	return lRotInicial;
 }
 
-
+/*
 void cObjectManager::InitPunterosFisica()
 {
 	
@@ -368,4 +467,117 @@ void cObjectManager::InitPunterosFisica()
 		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(cPhysicsManager::Get().GetPhysicsObjectPtr(mObjectPlayer[luiIndex]->GetType(), mObjectPlayer[luiIndex]->GetModelName()));
 
 
+}
+*/
+
+
+
+void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar, const std::string lsType,  cPhysicsObject* lpPhysicsObject)
+{
+	TiXmlDocument lDoc;
+
+	cVec3 lVec3 (-1,-1,-1);
+
+	msFilename = msFilename = (".\\Data\\" + std::string("Resources.xml"));
+
+	lDoc.LoadFile ((char*)msFilename.c_str());
+	if (!lDoc.LoadFile())
+	{
+		OutputDebugString ("XML Load: FAILED\n");
+	}
+
+	
+	TiXmlElement *lpElementResources;
+	lpElementResources = lDoc.FirstChildElement ("Resources");
+
+	
+	TiXmlElement *lpElement;
+	lpElement =  lpElementResources->FirstChildElement ("ObjectsCollision"); 
+		
+
+	for (lpElement = lpElement->FirstChildElement("ObjectCollision"); lpElement; lpElement = lpElement->NextSiblingElement()) 
+	{
+		std::string  lsModelName, lsPosition, lsScale = "", lsX = "", lsY = "", lsZ = "";
+		float lfScale = 1.0f;
+		cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
+
+
+		
+		lsModelName = lpElement->Attribute("ModelName");
+
+		
+		string lsType = cObjectManager::Get().ObtenerTipoObjeto(lsModelName);
+
+		
+		
+		//if (lsType != "")
+		if (lsModelName == lsModelNameBuscar)
+		{
+		  TiXmlElement *lpElement2;
+			for (lpElement2 = lpElement->FirstChildElement("COLBOX"); lpElement2; lpElement2 = lpElement2->NextSiblingElement()) 
+			{
+				if (lpElement2->Attribute("X") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+					lsX = ((char*)lpElement2->Attribute("X"));
+
+				if (lpElement2->Attribute("Y") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+					lsY = ((char*)lpElement2->Attribute("Y"));
+
+				if (lpElement2->Attribute("Z") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+					lsZ = ((char*)lpElement2->Attribute("Z"));
+
+				float lfX = (float)atof(lsX.c_str());
+				float lfY = (float)atof(lsY.c_str());
+				float lfZ = (float)atof(lsZ.c_str());
+
+				lVec3.x = lfX;
+				lVec3.y = lfY;
+				lVec3.z = lfZ;
+			
+				
+			}
+		}
+
+		//HACER EL array de shapes
+
+		if (lsType == "Player")
+		{
+			cPhysicsPlayer* lpPhysicsPlayer = (cPhysicsPlayer*)lpPhysicsObject;
+
+			//lpPhysicsPlayer->CreateBoxShape(lVec3);
+			(*lpPhysicsPlayer).CreateBoxShape(lVec3);
+			//(*lpPhysicsPlayer).SetTypeObject ("borrar el tipo de esta clase");
+
+			/*
+			cPhysicsObject* lPhysicsObjectPtr = new cPhysicsPlayer;
+			lPhysicsObjectPtr->CreateBoxShape(lVec3);
+			(*lPhysicsObjectPtr).SetTypeObject (lsType);
+			(*lPhysicsObjectPtr).SetModelName(lsModelName);
+			//mPhysicsPlayer.push_back(lPhysicsObjectPtr);
+			*/
+		}
+		else if (lsType == "Pista")
+		{
+			cPhysicsPista* lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
+
+			//lpPhysicsPlayer->CreateBoxShape(lVec3);
+			(*lpPhysicsPista).CreateBoxShape(lVec3);
+			//(*lpPhysicsPista).SetTypeObject ("borrar el tipo de esta clase ya no hace falta");
+		}
+		else if (lsType == "Vehicle") 		//Cargamos la fisica del vehicle, no implmento desde el xml todavía
+		{
+			cPhysicsVehicle* lpPhysicsVehicle = (cPhysicsVehicle*)lpPhysicsObject;
+		}
+		else if (lsType != "") //general
+		{
+			//cPhysicsObject* lpPhysicsObject = (cPhysicsObject*)lpPhysicsObject;
+			lpPhysicsObject->CreateBoxShape(lVec3);
+			
+		}
+
+
+
+	}
+
+
+	
 }

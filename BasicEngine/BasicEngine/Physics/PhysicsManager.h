@@ -14,6 +14,9 @@ haciendo pruebas con la física, para hacer un manager y usarlo.
 #include "..\MathLib\MathLib.h"
 
 
+#include "GL_ShapeDrawer.h"
+
+
 class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManager> 
 {
 	friend class cSingleton<cPhysicsManager>;
@@ -22,30 +25,46 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		bool Init();
 		bool Deinit();
 		void Update(float lfTimestep); // Function to update the world
+		void Render(); //para renderizar los collision shape
+		void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
 
-		btDiscreteDynamicsWorld* GetDynamicsWorld(void) { return mpDynamicsWorld;}
-		void LoadObjectsXmlCollision();
+		btDiscreteDynamicsWorld* GetDynamicsWorld(void) { return mpbtDynamicsWorld;}
+		//btDynamicsWorld* GetDynamicsWorld(void) { return mpbtDynamicsWorld;}
+		//void LoadObjectsXmlCollision();
 
-		void AddCollisionShape (btCollisionShape* lbtCollShape) { mabtCollisionShapes.push_back(lbtCollShape); }
-		void InitAllPhysics();
-		cPhysicsObject*	GetPhysicsObjectPtr (const string lsType, const string lsModelName);
+		//void AddCollisionShape (btCollisionShape* lbtCollShape) { mabtCollisionShapes.push_back(lbtCollShape); }
+		//void InitAllPhysics();
+		//cPhysicsObject*	GetPhysicsObjectPtr (const string lsType, const string lsModelName);
 
+		inline int GetDebugMode() { return miDebugMode; }
+		inline void SetDebugMode (int liDebugMode) { miDebugMode = liDebugMode; }
 	private:
-		btDiscreteDynamicsWorld* mpDynamicsWorld;
+		btDiscreteDynamicsWorld* mpbtDynamicsWorld;
+		//btDynamicsWorld* mpbtDynamicsWorld;
 		btBroadphaseInterface* mpBroadphase;
 		btDefaultCollisionConfiguration* mpCollisionConfiguration;
 		btCollisionDispatcher* mpDispatcher;
 		btSequentialImpulseConstraintSolver* mpSolver;
 
-		btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes; 
+		int miDebugMode;
+		GL_ShapeDrawer* mpShapeDrawer;
+		bool mEnableshadows;
 
-		typedef std::vector<cPhysicsObject *> cPhysicsObjectList;
-		cPhysicsObjectList mPhysicsObject;  //Objetos en general que no se donde clasificarlos por ahora ....
-		cPhysicsObjectList mPhysicsPlayer;
-		cPhysicsObjectList mPhysicsPista;
-		cPhysicsObjectList mPhysicsVehicle;  
+		//btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes; 
 
-		std::string msFilename;  // Resources or Properties file
+		//typedef std::vector<cPhysicsObject *> cPhysicsObjectList;
+		//cPhysicsObjectList mPhysicsObject;  //Objetos en general que no se donde clasificarlos por ahora ....
+		//cPhysicsObjectList mPhysicsPlayer;
+		//cPhysicsObjectList mPhysicsPista;
+		//cPhysicsObjectList mPhysicsVehicle;  
+
+		//std::string msFilename;  // Resources or Properties file
+
+		void RenderWorldDebug();
+
+		void MyInit();
+		void RenderMe();
+		void RenderScene(int liPass);
 
 //Sería interesante poner una lista de fisica asi como tenemos estrucurada la lista de objectos??
 

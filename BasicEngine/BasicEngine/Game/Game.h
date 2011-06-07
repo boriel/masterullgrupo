@@ -55,6 +55,7 @@ class cGame : public cSingleton<cGame> {
 		void RenderModels();
 		void RenderObjects();
 		void RenderSkeletal();
+		void RenderPhysicsObjects();
 };
 
 #endif

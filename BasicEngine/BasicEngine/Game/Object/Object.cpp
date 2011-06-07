@@ -25,7 +25,7 @@ void cObject::Init()
 	mWorldMatrix.SetPosition(mPosition);
 
 	mfScale = 1.0f;
-	mPhysicsObject = new cPhysicsObject;
+	//mPhysicsObject = new cPhysicsObject;
 }
 
 
@@ -48,14 +48,22 @@ void cObject::Render()
 
 //Pintamos el debug
 #ifdef _DEBUG
-	//((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
+	((cPhysicsObject*) mPhysicsObject)->RenderObjectDebug();  //No usar este para pintar, es desuso
 	//mPhysicsObject->RenderAllObjectDebug();
 #endif
 }
 
 void cObject::Update( float lfTimestep )
 {
+
+	
+	mPosition = mPhysicsObject->GetPosition();
+	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	lQuatRot.AsMatrix(mWorldMatrix);
+	mWorldMatrix.SetPosition(mPosition);
+
 	//mPhysicsObject->Update();	//TODO: ya lo hace el manager
+
 }
 
 //TODO: En teoría los hijos harán este trabajo

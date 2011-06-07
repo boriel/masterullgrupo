@@ -30,7 +30,7 @@ class VehicleDemo : public GlutDemoApplication
 	public:
 
 	btRigidBody* m_carChassis;
-
+	
 	btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 
 	class btBroadphaseInterface*	m_overlappingPairCache;
