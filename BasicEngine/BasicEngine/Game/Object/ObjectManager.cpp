@@ -140,19 +140,16 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 	lDoc.LoadFile ((char*)msFilename.c_str());
 	if (!lDoc.LoadFile())
 	{
-		OutputDebugString ("XML Load: FAILED\n");
+		OutputDebugString ("[cObjectManager] XML Load: FAILED\n");
 	}
-
 	
 	TiXmlElement *lpElementResources;
 	lpElementResources = lDoc.FirstChildElement ("Resources");
-
 	
 	if (lsResource == "Objects")
 	{
 		TiXmlElement *lpElement;
 		lpElement =  lpElementResources->FirstChildElement (lsResource); 
-		
 
 		for (lpElement = lpElement->FirstChildElement("Object"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 		{
@@ -184,7 +181,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 			cObject* lObject = new cObject;
 
-			//para encapsular esto entre llaves
+			//TODO: para encapsular esto entre llaves
 			{ 
 			vector<string> lTokens;
 			Tokenize(lsPosition, lTokens, ",");
