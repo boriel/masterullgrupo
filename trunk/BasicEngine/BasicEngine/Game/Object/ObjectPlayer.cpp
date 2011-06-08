@@ -26,8 +26,8 @@ void cObjectPlayer::Update( float lfTimestep )
 	cObject::Update(lfTimestep); //TODO: Llmando al padre que tiene las fisicas generales, aunque esto no hace nada por ahora
 
 	mPosition = mPhysicsObject->GetPosition();
-	if (BecomePressed(eIA_Advance)) {
-		MoveForwards(0.05f);
+	if (IsPressed(eIA_Advance)) {
+		MoveForwards(0.5f);
 	}
 
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
@@ -49,13 +49,9 @@ void cObjectPlayer::Render ()
 }
 
 void cObjectPlayer::MoveForwards(float lfDistance) {
-	cVec3 lDirection = GetWorldMatrix().GetFront().Normalize();
-	lDirection.x += lfDistance; 
-	mPosition.x += (lDirection.x*lfDistance);
-	mPosition.x += 0.001f;
-	//TODO: falta algo como PhysicsObject->SetPosition()
-	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
-	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
-	((cPhysicsPlayer*)mPhysicsObject)->Init(mPosition,lQuatRot);
-	//this->InitPhysics();
+	cVec3 lImpulse = GetWorldMatrix().GetFront().Normalize();
+	lImpulse.x = -lfDistance;
+	lImpulse.y = 0;
+	lImpulse.z = 0;
+	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lImpulse);
 }

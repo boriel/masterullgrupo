@@ -19,8 +19,9 @@ using namespace std;
 class cPhysicsObject 
 {
 	public:
-		//void Init( const std::string &lacNameID);
 		void Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial);
+		void ApplyImpulse(const cVec3 &lImpulse);
+
 		virtual void Update() {};
 		//void Deinit(void);
 		std::string GetNameID(void) { return macNameID; }
@@ -67,8 +68,6 @@ class cPhysicsObject
 		
 		//Para el Vehicle
 		btScalar	m_defaultContactProcessingThreshold;
-
-
 };
 
 #endif

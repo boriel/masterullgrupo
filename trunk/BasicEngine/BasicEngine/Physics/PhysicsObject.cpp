@@ -5,7 +5,6 @@
 #include "..\Graphics\GraphicManager.h"
 #include "PhysicsManager.h"
 
-
 //Init General, se parece mucho al player y cube, pero irá cambiando
 void cPhysicsObject::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
 {
@@ -46,16 +45,14 @@ void cPhysicsObject::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
 }
 
+void cPhysicsObject::ApplyImpulse(const cVec3 &lImpulse) 
+{	
+	//btVector3 lbtPosition = mpbtRigidBody->getWorldTransform().getOrigin();
+	btVector3 lbtPosition = btVector3(0,0,0);
+	btVector3 lbtImpulse = btVector3(lImpulse.x, lImpulse.y, lImpulse.z);
 
-
-
-
-
-
-
-
-
-
+	mpbtRigidBody->applyImpulse(lbtImpulse, lbtPosition);
+}
 
 //Pintando el centro del objecto
 void cPhysicsObject::RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen)
@@ -86,8 +83,6 @@ void cPhysicsObject::RenderTransformDebug(const btTransform& lbtTransform, btSca
 	
 	//cGraphicManager::Get().DrawLine(cVec3(0,0,0), cVec3(0,100,0), cVec3(0.7f, 0, 0));
 }
-
-
 
 //Pintando el cubo
 void cPhysicsObject::RenderBoxDebug(const btVector3& lbtMin, const btVector3& lbtMax, const btTransform& lbtTransform, const btVector3& lbtColor)
@@ -149,8 +144,6 @@ void cPhysicsObject::RenderBoxDebug(const btVector3& lbtMin, const btVector3& lb
 */
 }
 
-
-
 void cPhysicsObject::RenderPlaneDebug (const btVector3& lbtPlaneNormal, btScalar lbtPlaneConst, const btTransform& lbtTransform, const btVector3& lbtColor)
 {
 
@@ -188,10 +181,6 @@ void cPhysicsObject::RenderPlaneDebug (const btVector3& lbtPlaneNormal, btScalar
 */
 }
 
-
-
-
-
 //Obtenemos la posicion central del objeto
 cVec3 cPhysicsObject::GetPosition ()
 {
@@ -207,8 +196,6 @@ cVec3 cPhysicsObject::GetPosition ()
 
 	return lPosition;
 }
-
-
 
 cQuaternion cPhysicsObject::GetQuatRotation()
 {
@@ -229,10 +216,7 @@ cQuaternion cPhysicsObject::GetQuatRotation()
 	return lQuatRotation;
 }
 
-
 //con esto le damos la vuelta al eje que viene en max que es ZUP
-
-
 btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)
 {
 
@@ -249,8 +233,6 @@ btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)
 	return lbtQuaternion;
 }
 
-
-
 bool cPhysicsObject::CreateBoxShape(cVec3 lVec3)
 {
 	if ((lVec3.x > 0) && (lVec3.y > 0) && (lVec3.z > 0))
@@ -260,7 +242,6 @@ bool cPhysicsObject::CreateBoxShape(cVec3 lVec3)
 	
 	return true;
 }
-
 
 btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape)
 {
@@ -298,13 +279,6 @@ btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform&
 
 	return body;
 }
-
-/*
-void cPhysiscsObject:RenderAllObjectDebug ()
-{
-}
-*/
-
 
 //Intentado eliminar esta funcion para poner la otra de abajo
 void cPhysicsObject::RenderObjectDebug()

@@ -307,6 +307,9 @@
     <ClCompile Include="Window\ApplicationProperties.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Resources.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
