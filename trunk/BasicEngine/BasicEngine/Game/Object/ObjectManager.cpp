@@ -31,30 +31,7 @@ bool cObjectManager::Init()
 		cPhysicsPlayer* lpPhysicsPlayer = new cPhysicsPlayer;
 		LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetType(), lpPhysicsPlayer);
 		lpPhysicsPlayer->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
-
-
 		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(lpPhysicsPlayer);
-
-
-		//ASIGNAR EL PUNTERO AL ARRAY
-
-		
-		//cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-
-		//lpPhysicsObject->Lo
-		//LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetType(), );
-
-
-
-		/*
-		//lo saco del xml y creamos los shapes sobre la marcha
-		cVec3 lVec3 (LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName()));
-		cPhysicsObject *lpObjectPlayer = ((cObjectPlayer*)mObjectPlayer[luiIndex])->GetPtrPhysicsObject();
-		(*lpObjectPlayer).CreateBoxShape(lVec3);
-		((cObjectPlayer*)mObjectPlayer[luiIndex])->InitPhysics();  //Aqui tambien se podría hacer la llamada con el puntero, 
-		//((cPhysicsPlayer*)lpObjectPlayer)->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
-		*/
-
 	}
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
@@ -91,67 +68,6 @@ bool cObjectManager::Init()
 	}
 
 
-
-
-
-/*	
-	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
-	{
-		cVec3 lVec3 (LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName()));
-		cPhysicsObject *lpObjectPista = ((cObjectPista*)mObjectPista[luiIndex])->GetPtrPhysicsObject();
-		(*lpObjectPista).CreateBoxShape(lVec3);
-		((cObjectPista*)mObjectPista[luiIndex])->InitPhysics();
-		//((cPhysicsPista*)lpObjectPista)->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
-	}
-
-	//NO IMPLEMENTADO DEL TODO LOS OBJECTS GENÉRICOS
-	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
-	{
-		cVec3 lVec3 (LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName()));
-		cPhysicsObject *lpObject = ((cObject*)mObject[luiIndex])->GetPtrPhysicsObject();
-		(*lpObject).CreateBoxShape(lVec3);
-		((cObject*)mObject[luiIndex])->InitPhysics();
-		//((cPhysicsObject*)lpObject)-> Init(); //
-	}
-	
-*/
-
-/*
-	//Creamos a mano	
-	cObject* lObject = new cObject;
-	cObject* lObjectPtr = new cObjectVehicle(*lObject);
-	mObjectVehicle.push_back(lObjectPtr);
-
-	cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
-	lpPhysicsVehicle->Init();
-	mObjectVehicle[0]->SetPtrPhysicsObject(lpPhysicsVehicle);
-
-
-
-	delete lObject;
-*/
-	//Iniciamos a mano
-	//((cObjectVehicle*)mObjectVehicle[0])->InitPhysics();
-
-	
-	/*
-	//a mano metemos un player tb
-	cObject* lObject2 = new cObject;
-	cObject* lObjectPtr2 = new cObjectPlayer(*lObject2);
-	lObjectPtr2->SetPosition(cVec3(1.0f, 0.0f, 1.0f));
-	lObjectPtr2->SetCollision(cVec3(2.0f, 2.0f, 2.0f));
-	lObjectPtr2->Init();
-	mObjectPlayer.push_back(lObjectPtr2);
-	delete lObject2;
-	*/
-
-/*
-	cVec3 lVec3 (2.0f, 2.0f, 2.0f);
-	cPhysicsObject *lpObjectPlayer = ((cObjectPlayer*)mObjectPlayer[luiIndex])->GetPtrPhysicsObject();
-	(*lpObjectPlayer).CreateBoxShape(lVec3);
-	((cObjectPlayer*)mObjectPlayer[luiIndex])->InitPhysics();  //Aqui tambien se podría hacer la llamada con el puntero, 
-		//((cPhysicsPlayer*)lpObjectPlayer)->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
-*/
 
 	//Inicializando los recursos aqui
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
@@ -313,14 +229,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
 			(*lObject).SetModelFile(lsModelFile);	
-			
-			if (!ExisteTipoAndModelName(lsModelName, lsType))
-			{
-				cObjectType lObjectType;
-				lObjectType.SetModelName (lsModelName);
-				lObjectType.SetType (lsType);
-				mObjectType.push_back(lObjectType);
-			}
+
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
 			//Creamos tambien el objeto Físico
@@ -352,41 +261,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 	
 	return true;
 
-}
-
-bool cObjectManager::ExisteTipoAndModelName(string lsModelName, string lsType)
-{
-	bool lbResul = false;
-
-	for (unsigned int luiIndex = 0; luiIndex < mObjectType.size(); luiIndex++)
-	{
-		if ((mObjectType[luiIndex].GetModelName().c_str() == lsModelName.c_str()) && (mObjectType[luiIndex].GetType().c_str() == lsType.c_str()))
-		{
-			lbResul = true;
-			break;
-		}
-	}
-
-	return lbResul;
-}
-
-
-
-string cObjectManager::ObtenerTipoObjeto(string lsModelName)
-{
-	string lsType = "";
-
-	for (unsigned int luiIndex = 0; luiIndex < mObjectType.size(); luiIndex++)
-	{
-		string lPrueba = mObjectType[luiIndex].GetModelName();
-		if (mObjectType[luiIndex].GetModelName() == lsModelName)
-		{
-			lsType = mObjectType[luiIndex].GetType();
-			break;
-		}
-	}
-
-	return lsType;
 }
 
 
@@ -453,23 +327,6 @@ cQuaternion cObjectManager::GetRotacionInicial (const string lsType, const strin
 	return lRotInicial;
 }
 
-/*
-void cObjectManager::InitPunterosFisica()
-{
-	
-	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
-	{
-		mObjectPista[luiIndex]->SetPtrPhysicsObject(cPhysicsManager::Get().GetPhysicsObjectPtr(mObjectPista[luiIndex]->GetType(), mObjectPista[luiIndex]->GetModelName()));
-	}
-
-
-	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
-		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(cPhysicsManager::Get().GetPhysicsObjectPtr(mObjectPlayer[luiIndex]->GetType(), mObjectPlayer[luiIndex]->GetModelName()));
-
-
-}
-*/
-
 
 
 void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar, const std::string lsType,  cPhysicsObject* lpPhysicsObject)
@@ -506,7 +363,7 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 		lsModelName = lpElement->Attribute("ModelName");
 
 		
-		string lsType = cObjectManager::Get().ObtenerTipoObjeto(lsModelName);
+		//string lsType = cObjectManager::Get().ObtenerTipoObjeto(lsModelName);
 
 		
 		
@@ -537,7 +394,7 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 			}
 		}
 
-		//HACER EL array de shapes
+		//TODO: Yorman: HACER EL array de shapes
 
 		if (lsType == "Player")
 		{

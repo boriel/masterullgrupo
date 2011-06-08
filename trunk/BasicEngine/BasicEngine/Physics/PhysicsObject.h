@@ -29,11 +29,11 @@ class cPhysicsObject
 		
 		//cVec3 GetPosition ();
 		//Sacados de btlDebugDraw
-		void RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen);
-		void RenderBoxDebug(const btVector3& lbtMin, const btVector3& lbtMax, const btTransform& lbtTransform, const btVector3& lbtColor);
-		void RenderPlaneDebug(const btVector3& lbtPlaneNormal, btScalar lbtPlaneConst, const btTransform& lbtTransform, const btVector3& lbtColor);
-		void RenderObjectDebug();  //Probablemente no usada!
-		void RenderAllObjectDebug ();  //No usado
+		//void RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen);
+		//void RenderBoxDebug(const btVector3& lbtMin, const btVector3& lbtMax, const btTransform& lbtTransform, const btVector3& lbtColor);
+		//void RenderPlaneDebug(const btVector3& lbtPlaneNormal, btScalar lbtPlaneConst, const btTransform& lbtTransform, const btVector3& lbtColor);
+		//void RenderObjectDebug();  //Probablemente no usada!
+		//void RenderAllObjectDebug ();  //No usado
 		//void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
 		btRigidBody* LocalCreateRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
 		//void LoadObjectsXmlCollision();

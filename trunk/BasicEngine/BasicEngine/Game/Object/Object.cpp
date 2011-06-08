@@ -48,7 +48,7 @@ void cObject::Render()
 
 //Pintamos el debug
 #ifdef _DEBUG
-	((cPhysicsObject*) mPhysicsObject)->RenderObjectDebug();  //No usar este para pintar, es desuso
+	//((cPhysicsObject*) mPhysicsObject)->RenderObjectDebug();  //No usar este para pintar, es desuso
 	//mPhysicsObject->RenderAllObjectDebug();
 #endif
 }

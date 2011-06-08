@@ -8,18 +8,8 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
 	//mPhysicsObject = new cPhysicsPlayer;
-/*
-	mPhysicsObject = new cPhysicsPlayer;
-	//mPhysicsObject->Init("Player");
-	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
-	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
-*/
 }
 
-void cObjectPlayer::InitPhysics ()
-{
-	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
-}
 
 void cObjectPlayer::Update( float lfTimestep )
 {

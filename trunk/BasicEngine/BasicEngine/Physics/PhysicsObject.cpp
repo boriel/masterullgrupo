@@ -54,6 +54,16 @@ void cPhysicsObject::ApplyImpulse(const cVec3 &lImpulse)
 	mpbtRigidBody->applyImpulse(lbtImpulse, lbtPosition);
 }
 
+
+
+
+
+
+
+
+
+
+/*
 //Pintando el centro del objecto
 void cPhysicsObject::RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen)
 {
@@ -83,7 +93,10 @@ void cPhysicsObject::RenderTransformDebug(const btTransform& lbtTransform, btSca
 	
 	//cGraphicManager::Get().DrawLine(cVec3(0,0,0), cVec3(0,100,0), cVec3(0.7f, 0, 0));
 }
+*/
 
+
+/*
 //Pintando el cubo
 void cPhysicsObject::RenderBoxDebug(const btVector3& lbtMin, const btVector3& lbtMax, const btTransform& lbtTransform, const btVector3& lbtColor)
 {
@@ -128,22 +141,25 @@ void cPhysicsObject::RenderBoxDebug(const btVector3& lbtMin, const btVector3& lb
 	cGraphicManager::Get().DrawLine(cVec3 (lbt11a.getX(), lbt11a.getY(), lbt11a.getZ()), cVec3 (lbt11b.getX(), lbt11b.getY(), lbt11b.getZ()), lColor);
 	cGraphicManager::Get().DrawLine(cVec3 (lbt12a.getX(), lbt12a.getY(), lbt12a.getZ()), cVec3 (lbt12b.getX(), lbt12b.getY(), lbt12b.getZ()), lColor);
 
-/*
-	drawLine(trans * btVector3(bbMin[0], bbMin[1], bbMin[2]), trans * btVector3(bbMax[0], bbMin[1], bbMin[2]), color);
-	drawLine(trans * btVector3(bbMax[0], bbMin[1], bbMin[2]), trans * btVector3(bbMax[0], bbMax[1], bbMin[2]), color);
-	drawLine(trans * btVector3(bbMax[0], bbMax[1], bbMin[2]), trans * btVector3(bbMin[0], bbMax[1], bbMin[2]), color);
-	drawLine(trans * btVector3(bbMin[0], bbMax[1], bbMin[2]), trans * btVector3(bbMin[0], bbMin[1], bbMin[2]), color);
-	drawLine(trans * btVector3(bbMin[0], bbMin[1], bbMin[2]), trans * btVector3(bbMin[0], bbMin[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMax[0], bbMin[1], bbMin[2]), trans * btVector3(bbMax[0], bbMin[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMax[0], bbMax[1], bbMin[2]), trans * btVector3(bbMax[0], bbMax[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMin[0], bbMax[1], bbMin[2]), trans * btVector3(bbMin[0], bbMax[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMin[0], bbMin[1], bbMax[2]), trans * btVector3(bbMax[0], bbMin[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMax[0], bbMin[1], bbMax[2]), trans * btVector3(bbMax[0], bbMax[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMax[0], bbMax[1], bbMax[2]), trans * btVector3(bbMin[0], bbMax[1], bbMax[2]), color);
-	drawLine(trans * btVector3(bbMin[0], bbMax[1], bbMax[2]), trans * btVector3(bbMin[0], bbMin[1], bbMax[2]), color);
-*/
-}
 
+
+	//drawLine(trans * btVector3(bbMin[0], bbMin[1], bbMin[2]), trans * btVector3(bbMax[0], bbMin[1], bbMin[2]), color);
+	//drawLine(trans * btVector3(bbMax[0], bbMin[1], bbMin[2]), trans * btVector3(bbMax[0], bbMax[1], bbMin[2]), color);
+	//drawLine(trans * btVector3(bbMax[0], bbMax[1], bbMin[2]), trans * btVector3(bbMin[0], bbMax[1], bbMin[2]), color);
+	//drawLine(trans * btVector3(bbMin[0], bbMax[1], bbMin[2]), trans * btVector3(bbMin[0], bbMin[1], bbMin[2]), color);
+	//drawLine(trans * btVector3(bbMin[0], bbMin[1], bbMin[2]), trans * btVector3(bbMin[0], bbMin[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMax[0], bbMin[1], bbMin[2]), trans * btVector3(bbMax[0], bbMin[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMax[0], bbMax[1], bbMin[2]), trans * btVector3(bbMax[0], bbMax[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMin[0], bbMax[1], bbMin[2]), trans * btVector3(bbMin[0], bbMax[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMin[0], bbMin[1], bbMax[2]), trans * btVector3(bbMax[0], bbMin[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMax[0], bbMin[1], bbMax[2]), trans * btVector3(bbMax[0], bbMax[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMax[0], bbMax[1], bbMax[2]), trans * btVector3(bbMin[0], bbMax[1], bbMax[2]), color);
+	//drawLine(trans * btVector3(bbMin[0], bbMax[1], bbMax[2]), trans * btVector3(bbMin[0], bbMin[1], bbMax[2]), color);
+
+}
+*/
+
+/*
 void cPhysicsObject::RenderPlaneDebug (const btVector3& lbtPlaneNormal, btScalar lbtPlaneConst, const btTransform& lbtTransform, const btVector3& lbtColor)
 {
 
@@ -167,19 +183,23 @@ void cPhysicsObject::RenderPlaneDebug (const btVector3& lbtPlaneNormal, btScalar
 	cGraphicManager::Get().DrawLine(cVec3 (lbt03.getX(), lbt03.getY(), lbt03.getZ()), cVec3 (lbt04.getX(), lbt04.getY(), lbt04.getZ()), lColor);
 
 	
-	/*
-	btVector3 planeOrigin = planeNormal * planeConst;
-	btVector3 vec0,vec1;
-	btPlaneSpace1(planeNormal,vec0,vec1);
-	btScalar vecLen = 100.f;
-	btVector3 pt0 = planeOrigin + vec0*vecLen;
-	btVector3 pt1 = planeOrigin - vec0*vecLen;
-	btVector3 pt2 = planeOrigin + vec1*vecLen;
-	btVector3 pt3 = planeOrigin - vec1*vecLen;
-	drawLine(transform*pt0,transform*pt1,color);
-	drawLine(transform*pt2,transform*pt3,color);
-*/
+	
+	//btVector3 planeOrigin = planeNormal * planeConst;
+	//btVector3 vec0,vec1;
+	//btPlaneSpace1(planeNormal,vec0,vec1);
+	//btScalar vecLen = 100.f;
+	//btVector3 pt0 = planeOrigin + vec0*vecLen;
+	//btVector3 pt1 = planeOrigin - vec0*vecLen;
+	//btVector3 pt2 = planeOrigin + vec1*vecLen;
+	//btVector3 pt3 = planeOrigin - vec1*vecLen;
+	//drawLine(transform*pt0,transform*pt1,color);
+	//drawLine(transform*pt2,transform*pt3,color);
+
 }
+*/
+
+
+
 
 //Obtenemos la posicion central del objeto
 cVec3 cPhysicsObject::GetPosition ()
@@ -280,6 +300,15 @@ btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform&
 	return body;
 }
 
+
+/*
+void cPhysiscsObject:RenderAllObjectDebug ()
+{
+}
+*/
+
+/*
+
 //Intentado eliminar esta funcion para poner la otra de abajo
 void cPhysicsObject::RenderObjectDebug()
 {
@@ -301,5 +330,5 @@ void cPhysicsObject::RenderObjectDebug()
 	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
 	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
 }
-
+*/
 

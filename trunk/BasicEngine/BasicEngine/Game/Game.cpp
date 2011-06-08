@@ -175,6 +175,12 @@ void cGame::Update(float lfTimestep)
 		else mbModeOnlyCamera=true;
 	}
 
+	if (BecomePressed(eIA_ChangeModeDebug)) //F9
+	{
+		cPhysicsManager::Get().CambiarDebugMode();
+	}
+
+
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
@@ -210,7 +216,7 @@ void cGame::Render()
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
 	//RenderSkeletal();
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
-	RenderPhysicsObjects();
+	RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
 	
 	// 4) Render 3D with transparency
 
@@ -285,11 +291,11 @@ void cGame::RenderTexts() {
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
 	if (mbModeOnlyCamera) {
 		mFont.Write(0,-200,0, "Cursor = CÁMARA, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
-		//mFont.Write(0,-220,0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
+		mFont.Write(0,-220,0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
 	} else {
 		mFont.SetColour( 1.0f, 1.0f, 0.0f );
 		mFont.Write(0,-200,0, "Cursor = COCHE, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
-		//mFont.Write(0,-220,0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
+		mFont.Write(0,-220,0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
 	}
 }
 

@@ -50,8 +50,8 @@
 
 <!--
 	<Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/Basico.DAE" Rotation="1,0,0"  Angle="-90" />
-
 -->
+
 
 
 
@@ -92,6 +92,12 @@
 	<ObjectCollision ModelName="Suelo" >
 		<COLBOX X="25" Y="25" Z="1" />
 	</ObjectCollision>
+
+
+	<ObjectCollision ModelName="CircuitoBasico" >
+		<COLBOX X="25" Y="25" Z="1" />
+	</ObjectCollision>
+
 
 	<ObjectCollision ModelName="Vehicle" >
 		<!--  No implementado, lo carga en general -->

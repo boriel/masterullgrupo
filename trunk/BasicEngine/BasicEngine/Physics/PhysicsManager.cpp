@@ -8,7 +8,7 @@
 
 //para pintar el render
 #include "GlutStuff.h"
-#include "GLDebugDrawer.h"
+//#include "GLDebugDrawer.h"
 
 
 
@@ -42,12 +42,17 @@ bool cPhysicsManager::Init ()
 	//mpbtDynamicsWorld = new btDynamicsWorld(mpDispatcher, mpBroadphase, mpSolver, mpCollisionConfiguration);
 	mpbtDynamicsWorld->setGravity(btVector3(0,-10,0));
 
-	GLDebugDrawer*	gDebugDrawer = new GLDebugDrawer;
-	miDebugMode = 0;  //0 = Sin debug
-	(*gDebugDrawer).setDebugMode(miDebugMode);
+	//GLDebugDrawer*	gDebugDrawer = new GLDebugDrawer;
+	mpbtDebugDrawer = new GLDebugDrawer;
+
+
+	miDebugMode = 0;  //0 = Sin debug (solo render), //1 = Debug + Render, //2 = Debug Only (F9, F10, F11)
+	//mbDebugMode = false;
+	(*mpbtDebugDrawer).setDebugMode(miDebugMode);
 
 	//m_debugMode |= btIDebugDraw::DBG_DrawWireframe;
-	mpbtDynamicsWorld->setDebugDrawer(gDebugDrawer);
+	mpbtDynamicsWorld->setDebugDrawer(mpbtDebugDrawer);
+	
 
 	mpShapeDrawer = new GL_ShapeDrawer ();
 	mpShapeDrawer->enableTexture(true);
@@ -728,3 +733,19 @@ void cPhysicsManager::RenderObjectDebug(const btTransform& worldTransform, const
 
 }
 
+
+
+void cPhysicsManager::CambiarDebugMode()
+{
+
+	if (miDebugMode == 0)
+	{
+		miDebugMode = 1;
+		(*mpbtDebugDrawer).setDebugMode(miDebugMode);
+	}
+	else
+	{
+		miDebugMode = 0;
+		(*mpbtDebugDrawer).setDebugMode(miDebugMode);
+	}
+}
