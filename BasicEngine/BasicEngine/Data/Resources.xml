@@ -59,7 +59,7 @@
 
 <!--   OBJETOS SUELTOS   -->
 
-	<Object Type="Dragon" Position="3,5,-3" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
+	<Object Type="Dragon" Position="3,5,-5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 
 <!--
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
