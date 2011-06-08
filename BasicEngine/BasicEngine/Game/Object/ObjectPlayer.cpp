@@ -49,7 +49,7 @@ void cObjectPlayer::Render ()
 }
 
 void cObjectPlayer::MoveForwards(float lfDistance) {
-	cVec3 lImpulse = GetWorldMatrix().GetFront().Normalize();
+	cVec3 lImpulse = GetWorldMatrix().GetFront().Normalize(); //TODO: Debería usar este vector?
 	lImpulse.x = -lfDistance;
 	lImpulse.y = 0;
 	lImpulse.z = 0;
