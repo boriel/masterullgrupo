@@ -4,10 +4,10 @@
     <contributor>
       <author>yormanh</author>
       <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
-      <source_data>file:///F:/Ficheros/Cursos/M%C3%A1ster%20en%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20(Final)/BasicEngine/BasicEngine/Data/Objetos/Misiles/01/missiles01.max</source_data>
+      <source_data>file:///C:/Visual%20Studio%202010/Projects/Master%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20Code%20(masterullgrupo%20parte%20final)/BasicEngine/BasicEngine/Data/Objetos/Misiles/01/missiles01.max</source_data>
     </contributor>
-    <created>2011-06-04T15:17:45</created>
-    <modified>2011-06-04T15:17:45</modified>
+    <created>2011-06-08T18:33:19</created>
+    <modified>2011-06-08T18:33:19</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -308,6 +308,9 @@
       </node>
       <node id="node-MISSILE" name="MISSILE">
         <rotate>-0.8628562 0.3574068 0.3574068 -98.42105</rotate>
+        <rotate>0.2507732 0.623851 0.740218 -35.70148</rotate>
+        <scale>0.001895827 0.001895826 0.001895828</scale>
+        <rotate>0.2507732 0.623851 0.740218 35.70148</rotate>
         <node>
           <matrix>1 0 0 34.28572 0 1 0 -167.1429 0 0 1 -8.75135e-6 0 0 0 1</matrix>
           <instance_geometry url="#geom-MISSILE">
@@ -325,15 +328,18 @@
         </node>
       </node>
       <node id="node-COLBOX_MISSILE" name="COLBOX_MISSILE">
-        <translate>0 1.59538e-5 -364.9814</translate>
-        <scale>0.04071303 0.03500272 0.7995341</scale>
-        <instance_geometry url="#geom-COLBOX_MISSILE">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="ColorMaterial" target="#ColorEffectR8G110B135-material"/>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <translate>0 6.33243e-8 -0.04652083</translate>
+        <scale>7.71848e-5 6.63591e-5 0.001515778</scale>
+        <node>
+          <matrix>1 0 0 0 0 1 0 0 0 0 1 -461.3524 0 0 0 1</matrix>
+          <instance_geometry url="#geom-COLBOX_MISSILE">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="ColorMaterial" target="#ColorEffectR8G110B135-material"/>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
