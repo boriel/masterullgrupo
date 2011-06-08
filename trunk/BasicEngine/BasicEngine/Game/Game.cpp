@@ -215,8 +215,9 @@ void cGame::Render()
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
 	//RenderSkeletal();
-	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
+	RenderObjects(); //Dibujando con la nueva representacion de objetos
+	
 	
 	// 4) Render 3D with transparency
 
@@ -252,7 +253,9 @@ void cGame::SetTheWorldMatrix()
 //Dibujamos Todos los objetos
 void cGame::RenderObjects () 
 {
+#if _DEBUG
 	cObjectManager::Get().Render();
+#endif
 }
 
 
