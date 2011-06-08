@@ -18,6 +18,8 @@ void cObjectPlayer::Update( float lfTimestep )
 	mPosition = mPhysicsObject->GetPosition();
 	if (IsPressed(eIA_Advance)) {
 		MoveForwards(0.5f);
+	} else if (IsPressed(eIA_Back)) {
+		MoveForwards(-0.5f);
 	}
 
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
