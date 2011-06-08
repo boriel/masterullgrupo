@@ -420,9 +420,6 @@
     <ClInclude Include="Game\Object\ObjectVehicle.h">
       <Filter>Game\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Object\ObjectType.h">
-      <Filter>Game\Object</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">

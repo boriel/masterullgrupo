@@ -113,7 +113,6 @@
     <ClInclude Include="Game\Object\ObjectManager.h" />
     <ClInclude Include="Game\Object\ObjectPista.h" />
     <ClInclude Include="Game\Object\ObjectPlayer.h" />
-    <ClInclude Include="Game\Object\ObjectType.h" />
     <ClInclude Include="Game\Object\ObjectVehicle.h" />
     <ClInclude Include="Game\Scene\SubModel.h" />
     <ClInclude Include="Game\Scene\Model.h" />

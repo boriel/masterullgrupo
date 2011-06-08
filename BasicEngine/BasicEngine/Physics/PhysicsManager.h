@@ -13,8 +13,10 @@ haciendo pruebas con la física, para hacer un manager y usarlo.
 #include "PhysicObjectType.h"
 #include "..\MathLib\MathLib.h"
 
-
+//#include "GlutStuff.h"
 #include "GL_ShapeDrawer.h"
+#include "GLDebugDrawer.h"
+
 
 
 class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManager> 
@@ -32,12 +34,17 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		//btDynamicsWorld* GetDynamicsWorld(void) { return mpbtDynamicsWorld;}
 		//void LoadObjectsXmlCollision();
 
+
+		//inline void SetDebugMode (bool lbDebugMode) { mbDebugMode = lbDebugMode; }
+		//inline bool GetDebugMode () { return mbDebugMode; }
+
 		//void AddCollisionShape (btCollisionShape* lbtCollShape) { mabtCollisionShapes.push_back(lbtCollShape); }
 		//void InitAllPhysics();
 		//cPhysicsObject*	GetPhysicsObjectPtr (const string lsType, const string lsModelName);
 
 		inline int GetDebugMode() { return miDebugMode; }
 		inline void SetDebugMode (int liDebugMode) { miDebugMode = liDebugMode; }
+		void CambiarDebugMode();
 	private:
 		btDiscreteDynamicsWorld* mpbtDynamicsWorld;
 		//btDynamicsWorld* mpbtDynamicsWorld;
@@ -47,8 +54,10 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		btSequentialImpulseConstraintSolver* mpSolver;
 
 		int miDebugMode;
+		//bool mbDebugMode;
 		GL_ShapeDrawer* mpShapeDrawer;
 		bool mEnableshadows;
+		GLDebugDrawer* mpbtDebugDrawer;
 
 		//btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes; 
 

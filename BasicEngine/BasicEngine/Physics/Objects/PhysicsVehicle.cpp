@@ -525,7 +525,7 @@ cQuaternion cPhysicsVehicle::GetQuatRotation()
 }
 
 
-
+/*
 void cPhysicsVehicle::RenderObjectVehicleDebug()
 {
 
@@ -546,31 +546,32 @@ void cPhysicsVehicle::RenderObjectVehicleDebug()
 
 
 
-	/*
-	//Detectando todos los Shapes
-	for (unsigned int luiIndex = 0; luiIndex < m_collisionShapes.size(); luiIndex++) 
-	{
-		btCollisionShape* lbtCollisionShape = m_collisionShapes[luiIndex];
-		const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtCollisionShape);
-		btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
-		btVector3 lbtColor(0.0f, 1.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
-		RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
-	}
+	
+	////Detectando todos los Shapes
+	//for (unsigned int luiIndex = 0; luiIndex < m_collisionShapes.size(); luiIndex++) 
+	//{
+	//	btCollisionShape* lbtCollisionShape = m_collisionShapes[luiIndex];
+	//	const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtCollisionShape);
+	//	btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
+	//	btVector3 lbtColor(0.0f, 1.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
+	//	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
+	//}
 
-	btCollisionShape* lbtShape = m_vehicle->getRigidBody()->getCollisionShape();
-	*/
-
+	//btCollisionShape* lbtShape = m_vehicle->getRigidBody()->getCollisionShape();
 	
 
 	
+
 	
-/*	
-	//Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
-	//btCollisionShape* lbtShape = mpbtRigidBody->getCollisionShape();
-	btCollisionShape* lbtShape = m_vehicle->getRigidBody()->getCollisionShape();
-	const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtShape);
-	btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
-	btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
-	RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
-*/
+	
+
+	////Dibujando un cubo, sacado de btCollisionWorld.cpp 1217 (despues de mucho buscar y seguir codigo ...)
+	////btCollisionShape* lbtShape = mpbtRigidBody->getCollisionShape();
+	//btCollisionShape* lbtShape = m_vehicle->getRigidBody()->getCollisionShape();
+	//const btBoxShape* lbtBoxShape = static_cast<const btBoxShape*>(lbtShape);
+	//btVector3 lbtHalfExtents = lbtBoxShape->getHalfExtentsWithMargin();
+	//btVector3 lbtColor(1.0f, 0.0f, 0.0f); //si se pasa por parametro a lo mejor podemos dibujar cosas de muchos colores
+	//RenderBoxDebug(- lbtHalfExtents, lbtHalfExtents, lbtTransform, lbtColor);
+
 }
+*/
