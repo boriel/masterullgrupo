@@ -43,17 +43,10 @@
 
 
 <!--       VEHICLES       -->
-
 	<Object Type="Vehicle" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 
-	
-	
-
 <!--   PISTAS  -->
-
-
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
-
 
 <!--
 	<Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/Basico.DAE" Rotation="1,0,0"  Angle="-90" />
@@ -87,7 +80,6 @@
 	-->
   </Objects>
   
-  
   <ObjectsCollision>  
 	<ObjectCollision ModelName="CarJazz" >
 		<COLBOX X="2.2" Y="1" Z="1" />
@@ -100,7 +92,6 @@
 	<ObjectCollision ModelName="Suelo" >
 		<COLBOX X="25" Y="25" Z="1" />
 	</ObjectCollision>
-
 
 	<ObjectCollision ModelName="Vehicle" >
 		<!--  No implementado, lo carga en general -->

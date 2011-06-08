@@ -79,6 +79,9 @@
     <Filter Include="Game\Object">
       <UniqueIdentifier>{6047d9b6-33b1-4deb-8695-42b8c85df144}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{a9cae515-730d-41f1-9e54-be09f79e6b74}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -702,5 +705,10 @@
     <ClCompile Include="Game\Object\ObjectVehicle.cpp">
       <Filter>Game\Object</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Resources.xml">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>
