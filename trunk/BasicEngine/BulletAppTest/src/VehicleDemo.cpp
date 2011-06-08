@@ -611,7 +611,7 @@ void VehicleDemo::specialKeyboardUp(int key, int x, int y)
 void VehicleDemo::specialKeyboard(int key, int x, int y)
 {
 
-//	printf("key = %i x=%i y=%i\n",key,x,y);
+	//printf("key = %i x=%i y=%i\n",key,x,y);
 
     switch (key) 
     {

@@ -28,7 +28,7 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		bool Deinit();
 		void Update(float lfTimestep); // Function to update the world
 		void Render(); //para renderizar los collision shape
-		void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
+		//void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
 
 		btDiscreteDynamicsWorld* GetDynamicsWorld(void) { return mpbtDynamicsWorld;}
 		//btDynamicsWorld* GetDynamicsWorld(void) { return mpbtDynamicsWorld;}

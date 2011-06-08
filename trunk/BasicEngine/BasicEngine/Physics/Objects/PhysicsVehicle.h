@@ -12,6 +12,10 @@ class btCollisionShape;
 #include "..\PhysicsObject.h"
 
 
+#include "..\..\Game\InputConfiguration.h"
+
+
+
 
 class cPhysicsVehicle : public cPhysicsObject 
 {
@@ -72,7 +76,9 @@ class cPhysicsVehicle : public cPhysicsObject
 
 		cVec3 GetPosition ();
 		cQuaternion GetQuatRotation();
-		void RenderObjectVehicleDebug();
+		//void RenderObjectVehicleDebug();
+
+		void SpecialKeyboard(const unsigned int luiKey);
 
 };
 

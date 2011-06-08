@@ -122,6 +122,8 @@ void cObjectManager::Update(float lfTimestep)
 		mObject[luiIndex]->Update(lfTimestep);
 
 
+
+
 }
 
 //void cObjectManager::Render(cMatrix &lWorld)

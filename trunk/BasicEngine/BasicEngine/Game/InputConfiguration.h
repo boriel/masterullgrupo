@@ -19,6 +19,10 @@ enum eInputActions {
 	eIA_PlayWave,
 	eIA_StopWave,
 	eIA_ChangeModeDebug,
+	eIA_KeyI,
+	eIA_KeyK,
+	eIA_KeyJ,
+	eIA_KeyL,
 	eIA_Count
 };
 

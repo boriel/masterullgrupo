@@ -575,3 +575,81 @@ void cPhysicsVehicle::RenderObjectVehicleDebug()
 
 }
 */
+
+
+
+
+//void VehicleDemo::specialKeyboard(int key, int x, int y)
+void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
+{
+
+	switch (luiKey)
+	{
+		case eIA_KeyI:  //arriba
+			gEngineForce = maxEngineForce;
+			gBreakingForce = 0.f;
+			break;
+
+		case eIA_KeyK: //abajo
+			gBreakingForce = maxBreakingForce; 
+			gEngineForce = 0.f;
+			break;
+
+		case eIA_KeyJ:  //izquierda
+			gVehicleSteering += steeringIncrement;
+			if (gVehicleSteering > steeringClamp)
+				gVehicleSteering = steeringClamp;
+			break;
+
+		case eIA_KeyL: //derecha
+			gVehicleSteering -= steeringIncrement;
+			if (gVehicleSteering < -steeringClamp)
+				gVehicleSteering = -steeringClamp;
+			break;
+
+	}
+
+//	printf("key = %i x=%i y=%i\n",key,x,y);
+
+
+
+/*
+    switch (key) 
+    {
+    case GLUT_KEY_LEFT : 
+		{
+			gVehicleSteering += steeringIncrement;
+			if (	gVehicleSteering > steeringClamp)
+					gVehicleSteering = steeringClamp;
+
+		break;
+		}
+    case GLUT_KEY_RIGHT : 
+		{
+			gVehicleSteering -= steeringIncrement;
+			if (	gVehicleSteering < -steeringClamp)
+					gVehicleSteering = -steeringClamp;
+
+		break;
+		}
+    case GLUT_KEY_UP :
+		{
+			gEngineForce = maxEngineForce;
+			gBreakingForce = 0.f;
+		break;
+		}
+	case GLUT_KEY_DOWN :
+		{			
+			gBreakingForce = maxBreakingForce; 
+			gEngineForce = 0.f;
+		break;
+		}
+	default:
+		DemoApplication::specialKeyboard(key,x,y);
+        break;
+    }
+
+//	glutPostRedisplay();hasta
+*/
+
+}

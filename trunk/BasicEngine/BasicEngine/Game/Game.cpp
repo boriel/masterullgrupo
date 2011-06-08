@@ -147,7 +147,7 @@ void cGame::Update(float lfTimestep)
 		mfAcTime += lfTimestep;
 		//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 		mSubModel.Update(lfTimestep);	
-		cObjectManager::Get().Update(lfTimestep);
+		cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
 	}
 
 	static bool mbJogging = false;
@@ -179,6 +179,10 @@ void cGame::Update(float lfTimestep)
 	{
 		cPhysicsManager::Get().CambiarDebugMode();
 	}
+
+	
+
+	
 
 
 	// Check if we need to close the application
@@ -254,9 +258,14 @@ void cGame::SetTheWorldMatrix()
 void cGame::RenderObjects () 
 {
 #if _DEBUG
+	if (!cPhysicsManager::Get().GetDebugMode())
+		cObjectManager::Get().Render();
+#else
 	cObjectManager::Get().Render();
 #endif
+
 }
+
 
 
 //Dibujamos Todos los objetos

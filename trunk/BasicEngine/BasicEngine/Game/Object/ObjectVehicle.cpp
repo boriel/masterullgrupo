@@ -2,6 +2,10 @@
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
 #include "..\..\Game\Object\ObjectManager.h"
 
+#include "..\..\Input\InputManager.h"
+#include "..\InputConfiguration.h"
+
+
 //#include "..\..\Graphics\GraphicManager.h"
 
 
@@ -43,6 +47,18 @@ void cObjectVehicle::Update( float lfTimestep )
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 	*/
+
+
+	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica
+	if (BecomePressed(eIA_KeyI)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyI);
+	else if (BecomePressed(eIA_KeyK)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyK);
+	else if (BecomePressed(eIA_KeyJ)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
+	else if (BecomePressed(eIA_KeyL)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyL);
+	
 
 
 	
