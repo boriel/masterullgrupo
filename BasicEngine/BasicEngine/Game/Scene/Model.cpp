@@ -243,6 +243,29 @@ void cModel::ShowInfo(string lacFile) { //DAVID: pruebas para ver el contenido d
 		const aiNode *lNode = lpScene->mRootNode->mChildren[luiIndex];
 		cout << "* Node Children["<< luiIndex << "]=" << (lNode->mName.data);
 		cout << " (mNumMeshes=" << lNode->mNumMeshes << ")"<<endl;
-		//cout << " (mNumMeshes=" <<  lpScene->mRootNode->mChildren[0]-><< ")"<<endl;
 	}
+	cVec3 center=cVec3(0,0,0);
+	float lfRadio=0.0f;
+	for (unsigned int luiIndex=0; luiIndex<lpScene->mMeshes[0]->mNumVertices; luiIndex++) {
+		center.x+=lpScene->mMeshes[0]->mVertices[luiIndex].x;
+		center.y+=lpScene->mMeshes[0]->mVertices[luiIndex].y;
+		center.z+=lpScene->mMeshes[0]->mVertices[luiIndex].z;
+	}
+	center.x=center.x/(float)lpScene->mMeshes[0]->mNumVertices;
+	center.y=center.y/(float)lpScene->mMeshes[0]->mNumVertices;
+	center.z=center.z/(float)lpScene->mMeshes[0]->mNumVertices;
+	cout << " > Centro ("<<center.x<<", "<<center.y<<", "<<center.z<<" )"<<endl;
+
+	/*
+
+2) Y para el radio, se debe calcular la distancia entre el centro calculado y los vértices y tomar como radio la mayor distancia:
+
+radius = 0;
+foreach v in vertices
+   d = distance(centre, v)
+   if ( radius <  d) then
+      radius = d;
+   end
+end
+	*/
 }
