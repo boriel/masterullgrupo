@@ -27,6 +27,7 @@ class cModel : public cResource
 		void Render(cMatrix &lWorld);
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
 		void ShowInfo(string lacFile);
+		void ShowInfo(const aiScene* lpScene, string lacFile);
 	
 	private:
 		std::string macFile;
