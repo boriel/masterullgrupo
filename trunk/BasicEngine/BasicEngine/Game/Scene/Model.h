@@ -15,7 +15,6 @@ Class cModel: Es un conjunto de submodelos
 struct aiScene;
 struct aiNode;
 
-
 class cModel : public cResource
 {
 	public:
@@ -25,11 +24,9 @@ class cModel : public cResource
 		virtual void Deinit();
 		virtual bool IsLoaded() { return mbLoaded; }
 		void Update( float lfTimestep );
-		//void Render();
 		void Render(cMatrix &lWorld);
-
-
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
+		void ShowInfo(void);
 	
 	private:
 		std::string macFile;

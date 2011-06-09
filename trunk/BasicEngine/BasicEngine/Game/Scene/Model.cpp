@@ -1,11 +1,6 @@
 
 #include "Model.h"
 
-#include <assimp.hpp> // C++ importer interface
-#include <aiScene.h> // Output data structure
-#include <aiPostProcess.h> // Post processing flags
-#include <cassert>
-
 #include "ModelManager.h"
 #include "..\..\Graphics\Meshes\MeshManager.h"
 #include "..\..\Graphics\Meshes\Mesh.h"
@@ -15,6 +10,12 @@
 #include "../../Utility/FileUtils.h"
 #include "..\..\MathLib\MathLib.h"
 #include "..\..\Graphics\GraphicManager.h"
+
+#include <assimp.hpp> // C++ importer interface
+#include <aiScene.h> // Output data structure
+#include <aiPostProcess.h> // Post processing flags
+#include <cassert>
+#include <iostream>
 
 bool cModel::Init( const std::string &lacNameID, const std::string &lacFile ) 
 {
@@ -218,6 +219,22 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 	// continue for all child nodes
 	for(unsigned luiIndex = 0;luiIndex<lpNode->mNumChildren;++luiIndex)
 		ConvertNodesToObjects( lpNode->mChildren[luiIndex], lTransform);
-	
+}
 
+void cModel::ShowInfo(void) { //DAVID: pruebas para ver el contenido del modelo
+	Assimp::Importer lImporter; // Create an instance of the Importer class
+	
+	// Load the scene
+	const aiScene* lpScene = lImporter.ReadFile( macFile.c_str(), aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType );
+
+	if( !lpScene ) { // If the import failed, report it
+		cout << "[ERROR] Model.ShowInfo: " << lImporter.GetErrorString() << endl;;
+		return;
+	}
+
+	cout << "[INFO] Model.ShowInfo: " << macFile << endl;
+	for (unsigned int luiIndex=0; luiIndex<lpScene->mRootNode->mNumChildren; luiIndex++) {
+		aiString lsName = lpScene->mRootNode->mChildren[luiIndex]->mName;
+		cout << "* Node Children["<< luiIndex << "]=" << (lsName.data[lsName.length]) << endl;
+	}
 }
