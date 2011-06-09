@@ -159,7 +159,9 @@ void cModel::ProcessScene( const aiScene* lpScene )
 		ConvertNodesToObjects( lpScene->mRootNode, lMatrix );
 	}
 
+#ifdef _DEBUG
 	ShowInfo(macFile);
+#endif
 }
 
 
@@ -232,12 +234,15 @@ void cModel::ShowInfo(string lacFile) { //DAVID: pruebas para ver el contenido d
 		return;
 	}
 
+	cout << " " << endl;
 	cout << "[INFO] Model.ShowInfo: " << macFile << endl;
-	cout << "{ NumChildren=" << lpScene->mRootNode->mNumChildren << " , ";
-	cout << " NumMeshes=" << lpScene->mRootNode->mNumMeshes << "}"<<endl;
+	cout << "{ NumChildren=" << lpScene->mRootNode->mNumChildren << ", ";
+	cout << " NumMeshes=" << lpScene->mRootNode->mNumMeshes << ", ";
+	cout << " NumVertices[Mesh=0]=" << lpScene->mMeshes[0]->mNumVertices << "}"<<endl;
 	for (unsigned int luiIndex=0; luiIndex<lpScene->mRootNode->mNumChildren; luiIndex++) {
 		const aiNode *lNode = lpScene->mRootNode->mChildren[luiIndex];
 		cout << "* Node Children["<< luiIndex << "]=" << (lNode->mName.data);
 		cout << " (mNumMeshes=" << lNode->mNumMeshes << ")"<<endl;
+		//cout << " (mNumMeshes=" <<  lpScene->mRootNode->mChildren[0]-><< ")"<<endl;
 	}
 }
