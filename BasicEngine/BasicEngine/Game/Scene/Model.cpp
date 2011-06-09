@@ -160,7 +160,7 @@ void cModel::ProcessScene( const aiScene* lpScene )
 	}
 
 #ifdef _DEBUG
-	ShowInfo(macFile);
+	ShowInfo(lpScene,macFile);
 #endif
 }
 
@@ -223,7 +223,7 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 		ConvertNodesToObjects( lpNode->mChildren[luiIndex], lTransform);
 }
 
-void cModel::ShowInfo(string lacFile) { //DAVID: pruebas para ver el contenido del modelo
+void cModel::ShowInfo(string lacFile) { 
 	Assimp::Importer lImporter; // Create an instance of the Importer class
 	
 	// Load the scene
@@ -233,9 +233,13 @@ void cModel::ShowInfo(string lacFile) { //DAVID: pruebas para ver el contenido d
 		cout << "[ERROR] Model.ShowInfo: " << lImporter.GetErrorString() << endl;;
 		return;
 	}
+	ShowInfo(lpScene,macFile);
+}
+
+void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 
 	cout << " " << endl;
-	cout << "[INFO] Model.ShowInfo: " << macFile << endl;
+	cout << "[INFO] Model.ShowInfo: " << lacFile << endl;
 	cout << "{ NumChildren=" << lpScene->mRootNode->mNumChildren << ", ";
 	cout << " NumMeshes=" << lpScene->mRootNode->mNumMeshes << ", ";
 	cout << " NumVertices[Mesh=0]=" << lpScene->mMeshes[0]->mNumVertices << "}"<<endl;
