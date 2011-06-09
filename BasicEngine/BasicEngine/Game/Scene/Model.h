@@ -26,7 +26,7 @@ class cModel : public cResource
 		void Update( float lfTimestep );
 		void Render(cMatrix &lWorld);
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
-		void ShowInfo(void);
+		void ShowInfo(string lacFile);
 	
 	private:
 		std::string macFile;
