@@ -44,6 +44,7 @@ class cPhysicsVehicle : public cPhysicsObject
 		btVehicleRaycaster*	m_vehicleRayCaster;
 		btRaycastVehicle*	m_vehicle;
 		btCollisionShape*	m_wheelShape;
+		int miForwardAxis;
 
 		float	m_cameraHeight;
 

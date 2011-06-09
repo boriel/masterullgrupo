@@ -7,6 +7,12 @@
 #include "btBulletDynamicsCommon.h"
 
 //CONSTANTES QUE HAY QUE PASAR A LA CLASE VEHICLE
+//
+// By default, Bullet Vehicle uses Y as up axis.
+// You can override the up axis, for example Z-axis up. Enable this define to see how to:
+//#define FORCE_ZAXIS_UP 1
+//
+
 
 
 #ifdef FORCE_ZAXIS_UP
@@ -160,8 +166,9 @@ void cPhysicsVehicle::Init()
 
 
 #ifdef FORCE_ZAXIS_UP
-	m_cameraUp = btVector3(0,0,1);
-	m_forwardAxis = 1;
+	//m_cameraUp = btVector3(0,0,1);
+	//m_forwardAxis = 1;
+	miForwardAxis = 1;
 #endif
 
 	btCollisionShape* groundShape = new btBoxShape(btVector3(50,3,50)); //Figura del suelo
@@ -180,7 +187,8 @@ void cPhysicsVehicle::Init()
 	lpDynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_overlappingPairCache,m_constraintSolver,m_collisionConfiguration);
 */	
 #ifdef FORCE_ZAXIS_UP
-	m_dynamicsWorld->setGravity(btVector3(0,0,-10));
+	//m_dynamicsWorld->setGravity(btVector3(0,0,-10));
+	lpDynamicsWorld->setGravity(btVector3(0, 0, -10));
 #endif 
 
 

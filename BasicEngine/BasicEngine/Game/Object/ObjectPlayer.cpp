@@ -4,6 +4,8 @@
 #include "..\InputConfiguration.h"
 #include "..\..\Input\InputManager.h"
 
+#include "..\..\Graphics\GraphicManager.h"
+
 cObjectPlayer::cObjectPlayer (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
@@ -35,6 +37,7 @@ void cObjectPlayer::Render ()
 
 #ifdef _DEBUG
 	//((cPhysicsPlayer*) mPhysicsObject)->RenderObjectDebug();
+	//cGraphicManager::Get().DrawAxisGrande();  //temporal
 #endif
 
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
