@@ -29,12 +29,17 @@
 
 <!--   PLAYERS -->
 
-
+<!--
 	<Object Type="Player" Position="-5,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
+-->
+
 
 <!--
-	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+	<Object Type="Player" Position="-5,5,6" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"/>
 -->
+
+	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  />
+
 	
 <!--
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
@@ -43,10 +48,15 @@
 
 
 <!--       VEHICLES       -->
-	<Object Type="Vehicle" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
-  
-	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
 
+	<Object Type="Vehicle" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+
+
+	<Object Type="Player2" Position="5,5,-5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
+
+<!--
+	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
+-->
 
 	
 	
@@ -64,12 +74,17 @@
 
 
 <!--   OBJETOS SUELTOS   -->
-
+<!--
 	<Object Type="Dragon" Position="-3,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 
 
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
-	
+-->	
+
+
+	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" /> 
+
+
 	
 	<!--<Object Type="Pista" Position="0,-1,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />-->
 	<!--<Object Type="Pista" Position="0,0,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" />-->
@@ -121,6 +136,10 @@
 		<COLBOX X="1" Y="1" Z="1" />
 	</ObjectCollision>
 
+	<ObjectCollision ModelName="Rectangulo" >
+		<COLBOX X="1" Y="0.5" Z="1.5" />
+	</ObjectCollision>
+	
 	
   </ObjectsCollision>
   

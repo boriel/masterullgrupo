@@ -45,6 +45,7 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	else
 		lbtQuaternion = btQuaternion(0, 0, 0, 1);
 
+	//lbtQuaternion = btQuaternion(1,0,0,1);
 
   //Funciona el cambio de eje, ya que al parecer desde max y opencollada siempre vienen la z up y no se como cambiarlo en max (y desde el dae es un coñazo a cada rato) pues cambio en codigo
 

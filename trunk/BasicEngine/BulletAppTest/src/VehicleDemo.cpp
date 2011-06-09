@@ -94,6 +94,7 @@ VehicleDemo::VehicleDemo() : m_carChassis(0), m_cameraHeight(4.f), m_minCameraDi
 	m_vehicle = 0;
 	m_wheelShape = 0;
 	m_cameraPosition = btVector3(30,30,30);
+	
 }
 
 VehicleDemo::~VehicleDemo() {
