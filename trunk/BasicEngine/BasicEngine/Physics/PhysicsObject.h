@@ -21,6 +21,7 @@ class cPhysicsObject
 	public:
 		void Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial);
 		void ApplyImpulse(const cVec3 &lImpulse);
+		void ApplyImpulse(const cVec3 &lImpulse, const cVec3 &lRelPos);
 
 		virtual void Update() {};
 		//void Deinit(void);
