@@ -1,6 +1,7 @@
 #include "CameraNavigator.h"
 #include "..\Input\InputManager.h"
 #include "..\Game\InputConfiguration.h"
+#include "GraphicManager.h"
 #include "GLHeaders.h"
 #include <math.h>
 
@@ -53,64 +54,8 @@ void cCameraNavigator::RotateY(GLfloat lfAngle) {
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
 
-/*
-
-void cCamera::Look()
+void cCameraNavigator::Render()
 {
-	glRotatef(-RotatedX , 1.0, 0.0, 0.0);
-	glRotatef(-RotatedY , 0.0, 1.0, 0.0);
-	glRotatef(-RotatedZ , 0.0, 0.0, 1.0);
-	glTranslatef( -Position.x, -Position.y, -Position.z );
+	cVec3 lPoint = (*mpTarget);
+	cGraphicManager::Get().DrawPoint( lPoint, cVec3(1.0f, 0.0f, 0.0f) );
 }
-
-
-
-void cCamera::Update(bool keys[],int mouseX,int mouseY)
-{
-	int middleX,middleY;
-	float angle;
-
-	// Move the camera's view by the mouse
-	middleX = width  >> 1;
-	middleY = height >> 1;
-
-	if(mouseX!=middleX)
-	{
-		angle = (middleX - mouseX) / 50.0f;
-		RotateY(angle);
-	}
-	if(mouseY!=middleY)
-	{
-		angle = (middleY - mouseY) / 50.0f;
-		RotateX(angle);
-	}
-
-	if(keys[GLUT_KEY_UP])		MoveForwards(-speed);				
-	if(keys[GLUT_KEY_DOWN])		MoveForwards( speed);
-	if(keys[GLUT_KEY_LEFT])		StrafeRight(-speed);
-	if(keys[GLUT_KEY_RIGHT])	StrafeRight( speed);
-}
-
-void cCameraNavigator::GetViewDir(void) {
-	cVec3 lStep1, lStep2;
-	float lRotatedY=0;
-	float lRotatedX=0;
-	float lRotatedZ=0;
-
-	//Rotate around Y-axis:
-	lStep1.x = cos( (lRotatedY + 90.0) * PIdiv180);
-	lStep1.z = -sin( (lRotatedY + 90.0) * PIdiv180);
-	//Rotate around X-axis:
-	double cosX = cos (lRotatedX * PIdiv180);
-	lStep2.x = lStep1.x * cosX;
-	lStep2.z = lStep1.z * cosX;
-	lStep2.y = sin(lRotatedX * PIdiv180);
-	//Rotation around Z-axis not implemented, so:
-	mpViewDir->x = lStep2.x;
-	mpViewDir->y = lStep2.y;
-	mpViewDir->z = lStep2.z;
-}
-
-
-
-*/

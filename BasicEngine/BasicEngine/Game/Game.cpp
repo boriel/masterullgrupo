@@ -212,8 +212,6 @@ void cGame::Render()
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
 	// 3) Render Solid 3D
-	SetTheWorldMatrix();
-	if (mbModeOnlyCamera) m3DCamera.Update();
 
 	//RenderTest();
 	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
@@ -222,6 +220,11 @@ void cGame::Render()
 	RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	
+	SetTheWorldMatrix();
+	if (mbModeOnlyCamera) {
+		m3DCamera.Update();
+		//m3DCamera.Render();
+	}
 	
 	// 4) Render 3D with transparency
 
