@@ -46,22 +46,18 @@ void cPhysicsObject::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 }
 
 void cPhysicsObject::ApplyImpulse(const cVec3 &lImpulse) 
-{	
+{
 	//btVector3 lbtPosition = mpbtRigidBody->getWorldTransform().getOrigin();
-	btVector3 lbtPosition = btVector3(0,0,0);
+	ApplyImpulse(lImpulse, cVec3(0,0,0));
+}
+
+void cPhysicsObject::ApplyImpulse(const cVec3 &lImpulse, const cVec3 &lRelPos) 
+{	
+	btVector3 lbtPosition = btVector3(lRelPos.x, lRelPos.y, lRelPos.z);
 	btVector3 lbtImpulse = btVector3(lImpulse.x, lImpulse.y, lImpulse.z);
 
 	mpbtRigidBody->applyImpulse(lbtImpulse, lbtPosition);
 }
-
-
-
-
-
-
-
-
-
 
 /*
 //Pintando el centro del objecto

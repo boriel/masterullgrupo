@@ -15,7 +15,8 @@ Class ObjectPlayer:
 class cObjectPlayer : public cObject
 {
 private:
-	void MoveForwards(float lfDistance);
+	void MoveForwards(float lfImpulse);
+	void MoveLeft(float lfImpulse);
 
 public: 
 	cObjectPlayer () {}

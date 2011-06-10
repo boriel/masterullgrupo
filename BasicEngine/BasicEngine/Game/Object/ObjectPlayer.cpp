@@ -23,6 +23,11 @@ void cObjectPlayer::Update( float lfTimestep )
 	} else if (IsPressed(eIA_Back)) {
 		MoveForwards(-0.5f);
 	}
+	if (IsPressed(eIA_TurnLeft)) {
+		MoveLeft(0.4f);
+	} else if (IsPressed(eIA_TurnRight)) {
+		MoveLeft(-0.4f); 
+	}
 
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
@@ -43,10 +48,23 @@ void cObjectPlayer::Render ()
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
 }
 
-void cObjectPlayer::MoveForwards(float lfDistance) {
-	cVec3 lImpulse = GetWorldMatrix().GetFront().Normalize(); //TODO: Debería usar este vector?
-	lImpulse.x = -lfDistance;
-	lImpulse.y = 0;
-	lImpulse.z = 0;
-	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lImpulse);
+void cObjectPlayer::MoveForwards(float lfImpulse) {
+	cVec3 lvImpulse = GetWorldMatrix().GetFront().Normalize();
+	lvImpulse.x *= lfImpulse;
+	lvImpulse.y *= lfImpulse;
+	lvImpulse.z *= lfImpulse;
+	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse);
+}
+
+void cObjectPlayer::MoveLeft(float lfImpulse) {
+	cVec3 lvImpulse = GetWorldMatrix().GetLeft().Normalize();
+	lvImpulse.x *= lfImpulse;
+	lvImpulse.y *= lfImpulse;
+	lvImpulse.z *= lfImpulse;
+	cVec3 lvRelPos = GetWorldMatrix().GetFront().Normalize();
+	lvRelPos.x*=0.8;
+	lvRelPos.y*=0.8;
+	lvRelPos.z*=0.8;
+
+	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }
