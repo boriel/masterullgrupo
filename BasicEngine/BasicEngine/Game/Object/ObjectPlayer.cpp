@@ -24,9 +24,9 @@ void cObjectPlayer::Update( float lfTimestep )
 		MoveForwards(-0.5f);
 	}
 	if (IsPressed(eIA_TurnLeft)) {
-		MoveLeft(0.4f);
+		MoveLeft(0.3f);
 	} else if (IsPressed(eIA_TurnRight)) {
-		MoveLeft(-0.4f); 
+		MoveLeft(-0.3f); 
 	}
 
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
@@ -58,13 +58,15 @@ void cObjectPlayer::MoveForwards(float lfImpulse) {
 
 void cObjectPlayer::MoveLeft(float lfImpulse) {
 	cVec3 lvImpulse = GetWorldMatrix().GetLeft().Normalize();
+	lvImpulse += GetWorldMatrix().GetFront().Normalize();
+	lvImpulse = lvImpulse.Normalize();
 	lvImpulse.x *= lfImpulse;
 	lvImpulse.y *= lfImpulse;
 	lvImpulse.z *= lfImpulse;
 	cVec3 lvRelPos = GetWorldMatrix().GetFront().Normalize();
-	lvRelPos.x*=0.8;
-	lvRelPos.y*=0.8;
-	lvRelPos.z*=0.8;
+	lvRelPos.x*=0.6;
+	lvRelPos.y*=0.6;
+	lvRelPos.z*=0.6;
 
 	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }
