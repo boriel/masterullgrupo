@@ -30,6 +30,10 @@ void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIni
 	else
 		lbtQuaternion = btQuaternion(0, 0, 0, 1);
 
+	
+	//lbtQuaternion = btQuaternion(1, 0, 0, 3.1416 / 2);
+
+
 	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (lbtQuaternion, lbtPosition));
 	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition));
 	//btScalar mass = 0.0f;
@@ -41,6 +45,16 @@ void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIni
 	//lRigidBodyCI.m_friction = 0.5f;
 	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
+
+
+/*
+	cQuaternion lQuatRotation;
+
+	btTransform lbtTransform;
+	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+
+	btQuaternion lbtQuaternion2 =  lbtTransform.getRotation();
+*/	
 	
 }
 

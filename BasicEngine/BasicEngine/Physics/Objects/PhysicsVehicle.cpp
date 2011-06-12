@@ -596,27 +596,35 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 		case eIA_KeyI:  //arriba
 			gEngineForce = maxEngineForce;
 			gBreakingForce = 0.f;
+			//ApplyImpulse(cVec3(0,0,0), cVec3 (0,0,0));
+			
 			break;
 
 		case eIA_KeyK: //abajo
 			gBreakingForce = maxBreakingForce; 
 			gEngineForce = 0.f;
+			
 			break;
 
 		case eIA_KeyJ:  //izquierda
 			gVehicleSteering += steeringIncrement;
 			if (gVehicleSteering > steeringClamp)
 				gVehicleSteering = steeringClamp;
+			
 			break;
 
 		case eIA_KeyL: //derecha
 			gVehicleSteering -= steeringIncrement;
 			if (gVehicleSteering < -steeringClamp)
 				gVehicleSteering = -steeringClamp;
+			
 			break;
 
 	}
 
+	ClientMoveAndDisplay();
+
+	//printf ("Key = %i\n", luiKey);
 //	printf("key = %i x=%i y=%i\n",key,x,y);
 
 
@@ -659,5 +667,91 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 //	glutPostRedisplay();hasta
 */
+
+}
+
+
+void cPhysicsVehicle::ClientMoveAndDisplay()
+{
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+
+	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+	
+	{			
+		int wheelIndex = 2;
+		m_vehicle->applyEngineForce(gEngineForce,wheelIndex);
+		m_vehicle->setBrake(gBreakingForce,wheelIndex);
+		wheelIndex = 3;
+		m_vehicle->applyEngineForce(gEngineForce,wheelIndex);
+		m_vehicle->setBrake(gBreakingForce,wheelIndex);
+
+
+		wheelIndex = 0;
+		m_vehicle->setSteeringValue(gVehicleSteering,wheelIndex);
+		wheelIndex = 1;
+		m_vehicle->setSteeringValue(gVehicleSteering,wheelIndex);
+
+	}
+
+
+	float dt = getDeltaTimeMicroseconds() * 0.000001f;
+	
+	if (lpDynamicsWorld)
+	{
+		//during idle mode, just run 1 simulation step maximum
+		//int maxSimSubSteps = m_idle ? 1 : 2;
+		//if (m_idle)
+		//	dt = 1.0/420.f;
+
+		dt = 1.0/420.f;
+
+		int maxSimSubSteps = 1; //temp a mano
+		int numSimSteps = lpDynamicsWorld->stepSimulation(dt, maxSimSubSteps);
+		
+
+//#define VERBOSE_FEEDBACK
+#ifdef VERBOSE_FEEDBACK
+		if (!numSimSteps)
+			printf("Interpolated transforms\n");
+		else
+		{
+			if (numSimSteps > maxSimSubSteps)
+			{
+				//detect dropping frames
+				printf("Dropped (%i) simulation steps out of %i\n",numSimSteps - maxSimSubSteps,numSimSteps);
+			} else
+			{
+				printf("Simulated (%i) steps\n",numSimSteps);
+			}
+		}
+#endif //VERBOSE_FEEDBACK
+
+	}
+
+	
+	
+
+
+
+
+#ifdef USE_QUICKPROF 
+        btProfiler::beginBlock("render"); 
+#endif //USE_QUICKPROF 
+
+
+	//renderme(); 
+
+	//optional but useful: debug drawing
+	//if (lpDynamicsWorld)
+	//	lpDynamicsWorld->debugDrawWorld();
+
+#ifdef USE_QUICKPROF 
+        btProfiler::endBlock("render"); 
+#endif 
+	
+
+	glFlush();
+	//glutSwapBuffers();
 
 }

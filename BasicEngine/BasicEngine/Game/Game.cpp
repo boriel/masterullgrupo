@@ -306,11 +306,12 @@ void cGame::RenderTexts() {
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
 	if (mbModeOnlyCamera) {
 		mFont.Write(0,-200,0, "Cursor = CÁMARA, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
-		mFont.Write(0,-220,0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
+		mFont.Write(0,-220,0, "F9 = Debug -- I,J,K,L: Mover Vechicle", 0,	FONT_ALIGN_CENTER);
+		
 	} else {
 		mFont.SetColour( 1.0f, 1.0f, 0.0f );
 		mFont.Write(0,-200,0, "Cursor = COCHE, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
-		mFont.Write(0,-220,0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
+		mFont.Write(0,-220,0, "F9 = Debug  --  I,J,K,L: Mover Vechicle", 0,	FONT_ALIGN_CENTER);
 	}
 }
 

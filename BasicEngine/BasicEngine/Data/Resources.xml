@@ -29,17 +29,18 @@
 
 <!--   PLAYERS -->
 
-<!--
-	<Object Type="Player" Position="-5,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Rotation="1,0,0"  Angle="-90" />
--->
+
+	<Object Type="Player" Position="0,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
+
 
 
 <!--
 	<Object Type="Player" Position="-5,5,6" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"/>
 -->
 
+<!--
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  />
-
+-->
 	
 <!--
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
@@ -49,10 +50,15 @@
 
 <!--       VEHICLES       -->
 
-	<Object Type="Vehicle" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
+	
+<!--
+	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+-->
 
-
+<!--
 	<Object Type="Player2" Position="5,5,-5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
+-->
 
 <!--
 	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
@@ -62,9 +68,11 @@
 	
     <!--   PISTAS  -->
 
-
+	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE"  /> 
+	
+<!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
-
+-->
 <!--
 	<Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/Basico.DAE" Rotation="1,0,0"  Angle="-90" />
 -->
@@ -79,11 +87,11 @@
 
 
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
--->	
+-->
 
-
+<!--
 	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" /> 
-
+-->
 
 	
 	<!--<Object Type="Pista" Position="0,-1,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />-->
@@ -103,7 +111,7 @@
   
   <ObjectsCollision>  
 	<ObjectCollision ModelName="CarJazz" >
-		<COLBOX X="2.2" Y="1" Z="1" />
+		<COLBOX X="1" Y="1" Z="2.2" />
 	</ObjectCollision>
 
 	<ObjectCollision ModelName="L200" >
@@ -115,7 +123,7 @@
     </ObjectCollision>
     
 	<ObjectCollision ModelName="Suelo" >
-		<COLBOX X="25" Y="25" Z="1" />
+		<COLBOX X="25" Y="1" Z="25" />
 	</ObjectCollision>
 
 
@@ -124,7 +132,7 @@
 	</ObjectCollision>
 
 
-	<ObjectCollision ModelName="Vehicle" >
+	<ObjectCollision ModelName="VehicleRectangulo" >
 		<!--  No implementado, lo carga en general -->
 	</ObjectCollision>
 

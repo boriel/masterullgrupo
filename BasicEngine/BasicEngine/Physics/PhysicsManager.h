@@ -45,6 +45,11 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		inline int GetDebugMode() { return miDebugMode; }
 		inline void SetDebugMode (int liDebugMode) { miDebugMode = liDebugMode; }
 		void CambiarDebugMode();
+
+		//bool	GetIdle() const { return	mbIdle;	}
+		//void	SetIdle(bool lbIdle) { mbIdle = lbIdle;	}
+
+
 	private:
 		btDiscreteDynamicsWorld* mpbtDynamicsWorld;
 		//btDynamicsWorld* mpbtDynamicsWorld;
@@ -58,6 +63,7 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		GL_ShapeDrawer* mpShapeDrawer;
 		bool mEnableshadows;
 		GLDebugDrawer* mpbtDebugDrawer;
+		//bool mbIdle;
 
 		//btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes; 
 
@@ -74,6 +80,8 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		void MyInit();
 		void RenderMe();
 		void RenderScene(int liPass);
+
+
 
 //Sería interesante poner una lista de fisica asi como tenemos estrucurada la lista de objectos??
 

@@ -62,6 +62,7 @@ void cObject::Update( float lfTimestep )
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 
+
 	//mPhysicsObject->Update();	//TODO: ya lo hace el manager
 
 }
