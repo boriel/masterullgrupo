@@ -48,6 +48,10 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	//lbtQuaternion = btQuaternion(1,0,0,1);
 
   //Funciona el cambio de eje, ya que al parecer desde max y opencollada siempre vienen la z up y no se como cambiarlo en max (y desde el dae es un coñazo a cada rato) pues cambio en codigo
+	
+	//lbtQuaternion  = CambiarEje(cQuaternion(1,0,0, 3.1416/2));
+	
+
 
 	btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (lbtQuaternion, lbtPosition));
 	//btDefaultMotionState* fallMotionState =	new btDefaultMotionState(btTransform (btQuaternion(0, 0, 0, 1), lbtPosition)); //Funciona para si ya viene todo dado cojonudo en el dae, orientado y todo
@@ -59,6 +63,8 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	//lRigidBodyCI.m_friction = 0.5f;
 	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
+
+	
 }
 
 

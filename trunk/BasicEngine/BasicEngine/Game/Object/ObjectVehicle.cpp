@@ -35,8 +35,10 @@ void cObjectVehicle::InitPhysics ()
 void cObjectVehicle::Update( float lfTimestep )
 {
 
-	/*
-	cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
+	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
+
+	
+	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
 	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	//mPosition = mPhysicsObject->GetPosition();
@@ -46,21 +48,28 @@ void cObjectVehicle::Update( float lfTimestep )
 	cQuaternion lQuatRot=((cPhysicsVehicle*)mPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
-	*/
-
-
-	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica
-	if (BecomePressed(eIA_KeyI)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyI);
-	else if (BecomePressed(eIA_KeyK)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyK);
-	else if (BecomePressed(eIA_KeyJ)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
-	else if (BecomePressed(eIA_KeyL)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyL);
 	
 
 
+	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica
+	if (BecomePressed(eIA_KeyI) || IsPressed(eIA_KeyI)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyI);
+	else if (BecomePressed(eIA_KeyK) || IsPressed(eIA_KeyK)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyK);
+	else if (BecomePressed(eIA_KeyJ) || IsPressed(eIA_KeyJ)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
+	else if (BecomePressed(eIA_KeyL) || IsPressed(eIA_KeyL)) 
+		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyL);
+	
+	//cInputAction::GetPressedTime();
+
+	//cInputManager::Get().GetAction(eIA_KeyI).GetPressedTime();
+	
+	//cout << "cObjectVehicle::Update = (time) " << cInputManager::Get().GetAction(eIA_KeyJ).GetPressedTime() << endl;
+	//cout << "cObjectVehicle::Update = (pressed) " << cInputManager::Get().GetAction(eIA_KeyJ).GetBecomePressed () << endl;
+	//cout << "cObjectVehicle::Update = (released) " << cInputManager::Get().GetAction(eIA_KeyJ).GetBecomeReleased () << endl;
+	//cout << "cObjectVehicle::Update = (released) " << cInputManager::Get().GetAction(eIA_KeyJ).GetIsPressed() << endl;
+	
 	
 }
 
@@ -69,7 +78,7 @@ void cObjectVehicle::Update( float lfTimestep )
 void cObjectVehicle::Render () 
 {
 	//cObject::Render(lWorld);
-	//cObject::Render();
+	cObject::Render();
 
 #ifdef _DEBUG
 	//((cPhysicsVehicle*) mPhysicsObject)->RenderObjectVehicleDebug();

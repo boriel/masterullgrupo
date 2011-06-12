@@ -80,6 +80,25 @@ class cPhysicsVehicle : public cPhysicsObject
 		//void RenderObjectVehicleDebug();
 
 		void SpecialKeyboard(const unsigned int luiKey);
+		void ClientMoveAndDisplay();
+
+#ifdef USE_BT_CLOCK
+	btClock m_clock;
+#endif //USE_BT_CLOCK
+
+
+
+	btScalar	getDeltaTimeMicroseconds()
+	{
+#ifdef USE_BT_CLOCK
+		btScalar dt = (btScalar)m_clock.getTimeMicroseconds();
+		m_clock.reset();
+		return dt;
+#else
+		return btScalar(16666.);
+#endif
+	}
+
 
 };
 
