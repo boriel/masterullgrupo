@@ -1,8 +1,10 @@
 #include "CameraNavigator.h"
-#include "..\Input\InputManager.h"
-#include "..\Game\InputConfiguration.h"
 #include "GraphicManager.h"
 #include "GLHeaders.h"
+#include "..\Input\InputManager.h"
+#include "..\Game\InputConfiguration.h"
+#include "..\Game\Object\ObjectManager.h"
+#include "..\Game\Object\Object.h"
 #include <math.h>
 
 void cCameraNavigator::Init(void) { 
@@ -58,4 +60,13 @@ void cCameraNavigator::Render()
 {
 	cVec3 lPoint = (*mpTarget);
 	cGraphicManager::Get().DrawPoint( lPoint, cVec3(1.0f, 0.0f, 0.0f) );
+}
+
+void cCameraNavigator::FollowPlayer(void) {
+	cObject* lpObject=cObjectManager::Get().GetObjectA("Player","CarJazz");
+	cVec3 lvPosition=lpObject->GetPosition();
+	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront()*2;
+	lvPosition =lvPosition - lpObject->GetWorldMatrix().GetFront()*5;
+	lvPosition.y+=6;
+	SetLookAt(lvPosition,lvTarget);
 }

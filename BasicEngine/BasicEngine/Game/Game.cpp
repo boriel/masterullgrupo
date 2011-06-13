@@ -209,7 +209,8 @@ void cGame::Render()
 	
 	SetTheWorldMatrix();
 	m3DCamera.Update();
-	
+	//m3DCamera.FollowPlayer();
+
 	// 4) Render 3D with transparency
 
 	// 5) Activate 2D Camera

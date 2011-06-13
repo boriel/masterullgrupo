@@ -120,16 +120,12 @@ void cObjectManager::Update(float lfTimestep)
 	//Actualizando los objetos
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
 		mObject[luiIndex]->Update(lfTimestep);
-
-
-
-
 }
 
 //void cObjectManager::Render(cMatrix &lWorld)
 void cObjectManager::Render()
 {
-	//TODO: Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, auqnue no se vea por la camara
+	//TODO: Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, aunque no se vea por la camara
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
 		mObjectPista[luiIndex]->Render();
 
@@ -143,7 +139,7 @@ void cObjectManager::Render()
 		mObjectVehicle[luiIndex]->Render();
 }
 
-//Leemeos todos los recursos desde un xml
+//Leemos todos los recursos desde un xml
 bool cObjectManager::LoadObjectsXml(std::string lsResource)
 {
 	TiXmlDocument lDoc;
@@ -262,9 +258,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 	}
 	
 	return true;
-
 }
-
 
 //para hacer un split de un string
 void cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
@@ -308,7 +302,6 @@ cVec3 cObjectManager::GetPosition(const string lsType, const string lsModelName)
 	return lPosition;
 }
 
-
 cQuaternion cObjectManager::GetRotacionInicial (const string lsType, const string lsModelName)
 {
 	cQuaternion lRotInicial (0,0,0,0);
@@ -325,10 +318,26 @@ cQuaternion cObjectManager::GetRotacionInicial (const string lsType, const strin
 				return mObjectPlayer[luiIndex]->GetRotacionInicial();
 	}
 
-
 	return lRotInicial;
 }
 
+cObject *cObjectManager::GetObject(const string lsType, const string lsModelName) 
+{	//Devuelve puntero al Object solicitado
+	if (lsType == "Pista")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+			if (mObjectPista[luiIndex]->GetModelName() == lsModelName)
+				return mObjectPista[luiIndex];
+	}
+	else if (lsType == "Player")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+			if (mObjectPlayer[luiIndex]->GetModelName() == lsModelName)
+				return mObjectPlayer[luiIndex];
+	}
+
+	return NULL;
+}
 
 
 void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar, const std::string lsType,  cPhysicsObject* lpPhysicsObject)
@@ -344,30 +353,21 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 	{
 		OutputDebugString ("XML Load: FAILED\n");
 	}
-
-	
 	TiXmlElement *lpElementResources;
 	lpElementResources = lDoc.FirstChildElement ("Resources");
-
 	
 	TiXmlElement *lpElement;
 	lpElement =  lpElementResources->FirstChildElement ("ObjectsCollision"); 
-		
 
 	for (lpElement = lpElement->FirstChildElement("ObjectCollision"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 	{
 		std::string  lsModelName, lsPosition, lsScale = "", lsX = "", lsY = "", lsZ = "";
 		float lfScale = 1.0f;
 		cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
-
-
 		
 		lsModelName = lpElement->Attribute("ModelName");
 
-		
 		//string lsType = cObjectManager::Get().ObtenerTipoObjeto(lsModelName);
-
-		
 		
 		//if (lsType != "")
 		if (lsModelName == lsModelNameBuscar)
@@ -391,13 +391,10 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				lVec3.x = lfX;
 				lVec3.y = lfY;
 				lVec3.z = lfZ;
-			
-				
 			}
 		}
 
 		//TODO: Yorman: HACER EL array de shapes
-
 		if (lsType == "Player")
 		{
 			cPhysicsPlayer* lpPhysicsPlayer = (cPhysicsPlayer*)lpPhysicsObject;
@@ -430,13 +427,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 		{
 			//cPhysicsObject* lpPhysicsObject = (cPhysicsObject*)lpPhysicsObject;
 			lpPhysicsObject->CreateBoxShape(lVec3);
-			
 		}
-
-
-
 	}
-
-
-	
 }

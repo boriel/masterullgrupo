@@ -33,6 +33,7 @@ public:
 	void Deinit(void);
 	void Update(void);
 	void Render(void);
+	void FollowPlayer(void);
 	cVec3 GetTarget(void) { return cVec3(mpTarget->x,mpTarget->y,mpTarget->z); }
 };
 
