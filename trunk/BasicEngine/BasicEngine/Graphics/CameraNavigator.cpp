@@ -21,10 +21,10 @@ void cCameraNavigator::Deinit(void) {
 }
 
 void cCameraNavigator::Update(void) {
-	if (IsPressed (eIA_Advance)) MoveForwards(0.1f);
-	if (IsPressed (eIA_Back)) MoveForwards(-0.1f);
-	if (IsPressed (eIA_TurnLeft)) RotateY(+0.05f);
-	if (IsPressed (eIA_TurnRight)) RotateY(-0.05f);
+	if (IsPressed (eIA_CameraForward)) MoveForwards(0.1f);
+	if (IsPressed (eIA_CameraBack)) MoveForwards(-0.1f);
+	if (IsPressed (eIA_CameraLeft)) RotateY(+0.05f);
+	if (IsPressed (eIA_CameraRight)) RotateY(-0.05f);
 }
 
 void cCameraNavigator::MoveForwards(GLfloat lfDistance) {

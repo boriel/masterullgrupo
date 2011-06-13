@@ -18,15 +18,15 @@ void cObjectPlayer::Update( float lfTimestep )
 	cObject::Update(lfTimestep); //TODO: Llmando al padre que tiene las fisicas generales, aunque esto no hace nada por ahora
 
 	mPosition = mPhysicsObject->GetPosition();
-	if (IsPressed(eIA_Advance)) {
-		MoveForwards(0.5f);
-	} else if (IsPressed(eIA_Back)) {
-		MoveForwards(-0.5f);
+	if (IsPressed(eIA_PlayerForward)) {
+		MoveForwards(0.3f);
+	} else if (IsPressed(eIA_PlayerBack)) {
+		MoveForwards(-0.3f);
 	}
-	if (IsPressed(eIA_TurnLeft)) {
-		MoveLeft(0.3f);
-	} else if (IsPressed(eIA_TurnRight)) {
-		MoveLeft(-0.3f); 
+	if (IsPressed(eIA_PlayerLeft)) {
+		MoveLeft(0.1f);
+	} else if (IsPressed(eIA_PlayerRight)) {
+		MoveRight(0.1f); 
 	}
 
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
@@ -57,16 +57,21 @@ void cObjectPlayer::MoveForwards(float lfImpulse) {
 }
 
 void cObjectPlayer::MoveLeft(float lfImpulse) {
-	cVec3 lvImpulse = GetWorldMatrix().GetLeft().Normalize();
-	lvImpulse += GetWorldMatrix().GetFront().Normalize();
-	lvImpulse = lvImpulse.Normalize();
+	cVec3 lvImpulse = (2*GetWorldMatrix().GetFront() + GetWorldMatrix().GetLeft()).Normalize();
 	lvImpulse.x *= lfImpulse;
 	lvImpulse.y *= lfImpulse;
 	lvImpulse.z *= lfImpulse;
-	cVec3 lvRelPos = GetWorldMatrix().GetFront().Normalize();
-	lvRelPos.x*=0.6;
-	lvRelPos.y*=0.6;
-	lvRelPos.z*=0.6;
+	cVec3 lvRelPos = (0.6*GetWorldMatrix().GetFront().Normalize());
+
+	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
+}
+
+void cObjectPlayer::MoveRight(float lfImpulse) {
+	cVec3 lvImpulse = (2*GetWorldMatrix().GetFront() + GetWorldMatrix().GetRight() ).Normalize();
+	lvImpulse.x *= lfImpulse;
+	lvImpulse.y *= lfImpulse;
+	lvImpulse.z *= lfImpulse;
+	cVec3 lvRelPos = (0.6*GetWorldMatrix().GetFront().Normalize());
 
 	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }

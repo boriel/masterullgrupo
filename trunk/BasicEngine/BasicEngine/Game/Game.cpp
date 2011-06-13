@@ -97,7 +97,6 @@ bool cGame::Init()
 	mSubModel.SetLocalMatrix(lMatrix);
 
 	mfAcTime = 0.0f;
-	mbModeOnlyCamera= false;
 
 	//Pruebas Yorman
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico
@@ -140,15 +139,13 @@ void cGame::Update(float lfTimestep)
 	//Actualizando la mmala del esqueleto
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 
-	if (!mbModeOnlyCamera) {
-		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
+	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 	
-		cWindow::Get().Update();
-		mfAcTime += lfTimestep;
-		//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
-		mSubModel.Update(lfTimestep);	
-		cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
-	}
+	cWindow::Get().Update();
+	mfAcTime += lfTimestep;
+	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
+	mSubModel.Update(lfTimestep);	
+	cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
 
 	static bool mbJogging = false;
 	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
@@ -170,20 +167,10 @@ void cGame::Update(float lfTimestep)
 		lpSkeletonMesh->StopAnim("Wave", 0.1f);
 	}
 
-	if (BecomePressed(eIA_ChangeMode)) {
-		if (mbModeOnlyCamera) mbModeOnlyCamera=false;
-		else mbModeOnlyCamera=true;
-	}
-
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9
 	{
 		cPhysicsManager::Get().CambiarDebugMode();
 	}
-
-	
-
-	
-
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
@@ -221,10 +208,7 @@ void cGame::Render()
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	
 	SetTheWorldMatrix();
-	if (mbModeOnlyCamera) {
-		m3DCamera.Update();
-		//m3DCamera.Render();
-	}
+	m3DCamera.Update();
 	
 	// 4) Render 3D with transparency
 
@@ -256,7 +240,6 @@ void cGame::SetTheWorldMatrix()
 	cGraphicManager::Get().SetWorldMatrix(lWorld);
 }
 
-
 //Dibujamos Todos los objetos
 void cGame::RenderObjects () 
 {
@@ -269,8 +252,6 @@ void cGame::RenderObjects ()
 
 }
 
-
-
 //Dibujamos Todos los objetos
 void cGame::RenderPhysicsObjects () 
 {
@@ -279,9 +260,6 @@ void cGame::RenderPhysicsObjects ()
 		cPhysicsManager::Get().Render();
 #endif
 }
-
-
-
 
 void cGame::RenderModels() 
 {	
@@ -304,15 +282,8 @@ void cGame::RenderTexts() {
 	mFont.SetColour( 1.0f, 1.0f, 1.0f );
 	mFont.Write(0,200,0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	if (mbModeOnlyCamera) {
-		mFont.Write(0,-200,0, "Cursor = CÁMARA, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
-		mFont.Write(0,-220,0, "F9 = Debug -- I,J,K,L: Mover Vechicle", 0,	FONT_ALIGN_CENTER);
-		
-	} else {
-		mFont.SetColour( 1.0f, 1.0f, 0.0f );
-		mFont.Write(0,-200,0, "Cursor = COCHE, F1 = cambio de modo", 0,	FONT_ALIGN_CENTER);
-		mFont.Write(0,-220,0, "F9 = Debug  --  I,J,K,L: Mover Vechicle", 0,	FONT_ALIGN_CENTER);
-	}
+	mFont.Write(0,-200,0, "Cursor = Player -- Q,A,S,D: God Camera", 0,	FONT_ALIGN_CENTER);
+	mFont.Write(0,-220,0, "F9 = Debug -- I,J,K,L: Mover Vechicle", 0,	FONT_ALIGN_CENTER);
 }
 
 //Para los ejercicios de LUA

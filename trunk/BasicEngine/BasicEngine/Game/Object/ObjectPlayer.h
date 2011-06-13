@@ -17,6 +17,7 @@ class cObjectPlayer : public cObject
 private:
 	void MoveForwards(float lfImpulse);
 	void MoveLeft(float lfImpulse);
+	void MoveRight(float lfImpulse);
 
 public: 
 	cObjectPlayer () {}
