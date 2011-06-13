@@ -55,16 +55,10 @@ void cObject::Render()
 
 void cObject::Update( float lfTimestep )
 {
-
-	
 	mPosition = mPhysicsObject->GetPosition();
 	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
-
-
-	//mPhysicsObject->Update();	//TODO: ya lo hace el manager
-
 }
 
 //TODO: En teoría los hijos harán este trabajo

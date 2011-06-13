@@ -13,10 +13,8 @@ class ObjectManager: Lista de objetos
 #include "..\..\Utility\Singleton.h"
 //#include "ObjectType.h"
 
-
 class cObjectManager : public cSingleton<cObjectManager>
 {
-	
 	public:
 		friend class cSingleton<cObjectManager>;
 		
@@ -24,18 +22,16 @@ class cObjectManager : public cSingleton<cObjectManager>
 		void Deinit();
 		void Render();
 		void Update(float lfTimestep);
-		//string ObtenerTipoObjeto(const string lsModelName);
 
 		cVec3 GetPosition(const string lsType, const string lsModelName);
 		cQuaternion GetRotacionInicial (const string lsType, const string lsModelName);
+		cObject *GetObject(const string lsType, const string lsModelName);
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
 		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
 		//void CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
-
-		
 
 	private:
 		typedef std::vector<cObject *> cObjectList;
@@ -47,11 +43,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		string msFilename;  // Resources or Properties file
 		//vector<cObjectType> mObjectType;
 		bool ExisteTipoAndModelName(string lsModelName, string lsType);
-		
-
 		float mfPI;
-
-
 };
 
 

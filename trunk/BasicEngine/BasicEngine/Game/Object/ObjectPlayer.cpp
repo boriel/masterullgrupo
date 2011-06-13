@@ -15,9 +15,11 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 
 void cObjectPlayer::Update( float lfTimestep )
 {
-	cObject::Update(lfTimestep); //TODO: Llmando al padre que tiene las fisicas generales, aunque esto no hace nada por ahora
-
 	mPosition = mPhysicsObject->GetPosition();
+	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	lQuatRot.AsMatrix(mWorldMatrix);
+	mWorldMatrix.SetPosition(mPosition);
+
 	if (IsPressed(eIA_PlayerForward)) {
 		MoveForwards(0.3f);
 	} else if (IsPressed(eIA_PlayerBack)) {
@@ -28,10 +30,6 @@ void cObjectPlayer::Update( float lfTimestep )
 	} else if (IsPressed(eIA_PlayerRight)) {
 		MoveRight(0.1f); 
 	}
-
-	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
-	lQuatRot.AsMatrix(mWorldMatrix);
-	mWorldMatrix.SetPosition(mPosition);
 
 }
 
