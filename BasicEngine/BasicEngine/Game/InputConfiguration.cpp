@@ -5,10 +5,14 @@
 tActionMapping kaActionMapping[] = {
 	{ eIA_CloseApplication, eKeyboard, OIS::KC_ESCAPE },
 	{ eIA_CloseApplication, eMouse, eMouse_Button1}, // Se sale con el botón izquierdo
-	{ eIA_Advance, eKeyboard, OIS::KC_UP },
-	{ eIA_Back, eKeyboard, OIS::KC_DOWN },
-	{ eIA_TurnLeft, eKeyboard, OIS::KC_LEFT },
-	{ eIA_TurnRight, eKeyboard, OIS::KC_RIGHT },
+	{ eIA_PlayerForward, eKeyboard, OIS::KC_UP },
+	{ eIA_PlayerBack, eKeyboard, OIS::KC_DOWN },
+	{ eIA_PlayerLeft, eKeyboard, OIS::KC_LEFT },
+	{ eIA_PlayerRight, eKeyboard, OIS::KC_RIGHT },
+	{ eIA_CameraForward, eKeyboard, OIS::KC_Q },
+	{ eIA_CameraBack, eKeyboard, OIS::KC_A },
+	{ eIA_CameraLeft, eKeyboard, OIS::KC_S },
+	{ eIA_CameraRight, eKeyboard, OIS::KC_D },
 	{ eIA_ChangeMode, eKeyboard, OIS::KC_F1 },
 	{ eIA_PlayJog, eKeyboard, OIS::KC_Q },
 	{ eIA_StopJog, eKeyboard, OIS::KC_W },

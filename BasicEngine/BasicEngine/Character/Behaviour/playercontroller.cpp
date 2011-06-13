@@ -19,7 +19,7 @@ void cPlayerController::Init(cCharacter *lpCharacter)
 
 void cPlayerController::Update(float lfTimestep)
 {
-	if (IsPressed(eIA_Advance)) {
+	if (IsPressed(eIA_PlayerForward)) {
 		//Mover al personaje hacia adelante (en la dirección del Front)
 		//utilizando su velocidad máxima
 		//Calcular la distancia que se moverá el perseguidor teniendo en
@@ -28,14 +28,14 @@ void cPlayerController::Update(float lfTimestep)
 		mpCharacter->SetPosition(mpCharacter->GetPosition() + (lfDisplacement * mpCharacter->GetFront()));
 	}
 
-	if (IsPressed(eIA_TurnRight)) {
+	if (IsPressed(eIA_PlayerRight)) {
 		//Girar al personaje hacia la derecha utilizando su velocidad angular
 		//Sentido NEGATIVO
 		float lfAngleDisplacement = mpCharacter->GetAngSpeed() * lfTimestep;
 		mpCharacter->SetYaw(mpCharacter->GetYaw() - lfAngleDisplacement);
 	}
 
-	if (IsPressed(eIA_TurnLeft)) {
+	if (IsPressed(eIA_PlayerLeft)) {
 		//Girar al personaje hacia la derecha utilizando su velocidad angular
 		//Sentido POSITIVO
 		float lfAngleDisplacement = mpCharacter->GetAngSpeed() * lfTimestep;

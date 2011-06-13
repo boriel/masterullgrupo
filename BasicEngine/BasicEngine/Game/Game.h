@@ -22,7 +22,6 @@ class cGame : public cSingleton<cGame> {
 
 	private: //variables
 		bool mbFinish;
-		bool mbModeOnlyCamera;
 		cApplicationProperties mProperties;
 		cCameraNavigator m3DCamera;
 		cCamera m2DCamera;
