@@ -601,8 +601,10 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			break;
 
 		case eIA_KeyK: //abajo
-			gBreakingForce = maxBreakingForce; 
-			gEngineForce = 0.f;
+			//gBreakingForce = maxBreakingForce; 
+			//gEngineForce = 0.f;
+			gEngineForce = -maxEngineForce;
+			gBreakingForce = 0.f;
 			
 			break;
 
