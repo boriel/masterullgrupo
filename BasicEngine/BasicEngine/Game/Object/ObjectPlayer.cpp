@@ -21,7 +21,7 @@ void cObjectPlayer::Update( float lfTimestep )
 	if (IsPressed(eIA_PlayerForward)) {
 		MoveForwards(0.3f);
 	} else if (IsPressed(eIA_PlayerBack)) {
-		MoveForwards(-0.3f);
+		MoveForwards(-0.1f);
 	}
 	if (IsPressed(eIA_PlayerLeft)) {
 		MoveLeft(0.1f);
