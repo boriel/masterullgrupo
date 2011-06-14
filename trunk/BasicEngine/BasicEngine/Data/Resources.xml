@@ -68,8 +68,12 @@
 	
     <!--   PISTAS  -->
 
+	
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE"  /> 
 	
+<!--
+	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 
+-->	
 <!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
 -->
@@ -82,10 +86,10 @@
 
 
 <!--   OBJETOS SUELTOS   -->
+
+	<Object Type="Dragon" Position="0,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
+
 <!--
-	<Object Type="Dragon" Position="-3,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
-
-
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
 -->
 
@@ -126,6 +130,9 @@
 		<COLBOX X="25" Y="1" Z="25" />
 	</ObjectCollision>
 
+	<ObjectCollision ModelName="PistaCircular" >
+		<COLBOX X="25" Y="1" Z="25" />
+	</ObjectCollision>
 
 	<ObjectCollision ModelName="CircuitoBasico" >
 		<COLBOX X="25" Y="25" Z="1" />

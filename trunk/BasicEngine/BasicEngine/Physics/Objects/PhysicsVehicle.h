@@ -25,7 +25,7 @@ class cPhysicsVehicle : public cPhysicsObject
 		btRigidBody* m_carChassis;
 
 		//btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
-		btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes;
+		//btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes;
 
 		class btBroadphaseInterface*	m_overlappingPairCache;
 

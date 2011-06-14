@@ -374,10 +374,15 @@ void cPhysicsVehicle::Init()
 	{
 		
 		m_vehicleRayCaster = new btDefaultVehicleRaycaster(lpDynamicsWorld);
+		
 		m_vehicle = new btRaycastVehicle(m_tuning,m_carChassis,m_vehicleRayCaster);
 		
 		///never deactivate the vehicle
 		m_carChassis->setActivationState(DISABLE_DEACTIVATION);
+
+		
+		//btRigidBody* lbtrb =  m_vehicle->getRigidBody();
+
 
 		lpDynamicsWorld->addVehicle(m_vehicle);
 
@@ -436,7 +441,7 @@ void cPhysicsVehicle::Init()
 
 
 	// --> Yorman comienzo pruebas
-/*
+	/*
 	btCollisionShape* colShape = new btBoxShape(btVector3(SCALING * 1, SCALING * 1, SCALING * 1));
 	//btCollisionShape* colShape = new btSphereShape(btScalar(1.));
 	//m_collisionShapes.push_back(colShape);
@@ -470,7 +475,7 @@ void cPhysicsVehicle::Init()
 					
 	//m_dynamicsWorld->addRigidBody(body);
 	lpDynamicsWorld->addRigidBody(body);
-*/	
+	*/
 	// --> Yorman fin pruebas
 
 

@@ -61,6 +61,7 @@ class cPhysicsObject
 
 		btRigidBody* mpbtRigidBody;   //Cuerpo rigido o posicion
 		btCollisionShape* mpbtShape;  //malla de collsion  (solo una malla)
+		btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes;
 		//btAlignedObjectArray<btCollisionShape*> mapbtCollisionShapes;  //No hecho todavía, pero por aqui van los tiros!!!!
 		btScalar mbtMass;
 		btVector3 mbtFallInertia;
