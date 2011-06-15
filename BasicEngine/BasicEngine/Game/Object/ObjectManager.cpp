@@ -3,6 +3,7 @@
 #include <tinystr.h>
 #include <tinyxml.h>
 #include <Windows.h>
+#include <vector>
 
 #include "..\Scene\ModelManager.h"
 #include "ObjectPlayer.h"
@@ -298,6 +299,13 @@ cVec3 cObjectManager::GetPosition(const string lsType, const string lsModelName)
 			if (mObjectPlayer[luiIndex]->GetModelName() == lsModelName)
 				return mObjectPlayer[luiIndex]->GetPosition();
 	}
+	else  //general
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
+			if (mObject[luiIndex]->GetModelName() == lsModelName)
+				return mObject[luiIndex]->GetPosition();
+
+	}
 
 	return lPosition;
 }
@@ -392,41 +400,198 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				lVec3.y = lfY;
 				lVec3.z = lfZ;
 			}
-		}
+		
 
-		//TODO: Yorman: HACER EL array de shapes
-		if (lsType == "Player")
-		{
-			cPhysicsPlayer* lpPhysicsPlayer = (cPhysicsPlayer*)lpPhysicsObject;
+			//TODO: Yorman: HACER EL array de shapes
+			if (lsType == "Player")
+			{
+				cPhysicsPlayer* lpPhysicsPlayer = (cPhysicsPlayer*)lpPhysicsObject;
+				//(*lpPhysicsPlayer).CreateBoxShape(lVec3);
 
-			//lpPhysicsPlayer->CreateBoxShape(lVec3);
-			(*lpPhysicsPlayer).CreateBoxShape(lVec3);
-			//(*lpPhysicsPlayer).SetTypeObject ("borrar el tipo de esta clase");
+				(*lpPhysicsPlayer).SetMass(800.0f);
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
 
-			/*
-			cPhysicsObject* lPhysicsObjectPtr = new cPhysicsPlayer;
-			lPhysicsObjectPtr->CreateBoxShape(lVec3);
-			(*lPhysicsObjectPtr).SetTypeObject (lsType);
-			(*lPhysicsObjectPtr).SetModelName(lsModelName);
-			//mPhysicsPlayer.push_back(lPhysicsObjectPtr);
-			*/
-		}
-		else if (lsType == "Pista")
-		{
-			cPhysicsPista* lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				//lbtLocalTrans.setIdentity();
+				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+			
+				btRigidBody* lpbtRirigBody = (*lpPhysicsPlayer).LocalCreateRigidBody((*lpPhysicsPlayer).GetMass(), lbtLocalTrans, lbtShape);
+				(*lpPhysicsPlayer).SetRigidBody(lpbtRirigBody);
 
-			//lpPhysicsPlayer->CreateBoxShape(lVec3);
-			(*lpPhysicsPista).CreateBoxShape(lVec3);
-			//(*lpPhysicsPista).SetTypeObject ("borrar el tipo de esta clase ya no hace falta");
-		}
-		else if (lsType == "Vehicle") 		//Cargamos la fisica del vehicle, no implmento desde el xml todavía
-		{
-			cPhysicsVehicle* lpPhysicsVehicle = (cPhysicsVehicle*)lpPhysicsObject;
-		}
-		else if (lsType != "") //general
-		{
-			//cPhysicsObject* lpPhysicsObject = (cPhysicsObject*)lpPhysicsObject;
-			lpPhysicsObject->CreateBoxShape(lVec3);
+
+
+				/*
+				cPhysicsObject* lPhysicsObjectPtr = new cPhysicsPlayer;
+				lPhysicsObjectPtr->CreateBoxShape(lVec3);
+				(*lPhysicsObjectPtr).SetTypeObject (lsType);
+				(*lPhysicsObjectPtr).SetModelName(lsModelName);
+				//mPhysicsPlayer.push_back(lPhysicsObjectPtr);
+				*/
+
+
+			}
+			else if (lsType == "Pista")
+			{
+				cPhysicsPista* lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
+
+				//lpPhysicsPlayer->CreateBoxShape(lVec3);
+				//(*lpPhysicsPista).CreateBoxShape(lVec3);
+				(*lpPhysicsPista).SetMass(0.0f);
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				//lbtLocalTrans.setIdentity();
+				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+			
+				btRigidBody* lpbtRirigBody = (*lpPhysicsPista).LocalCreateRigidBody((*lpPhysicsPista).GetMass(), lbtLocalTrans, lbtShape);
+				(*lpPhysicsPista).SetRigidBody(lpbtRirigBody);
+
+				//(*lpPhysicsPista).SetTypeObject ("borrar el tipo de esta clase ya no hace falta");
+			}
+			else if (lsType == "Vehicle") 		//Cargamos la fisica del vehicle, no implmento desde el xml todavía
+			{
+				cPhysicsVehicle* lpPhysicsVehicle = (cPhysicsVehicle*)lpPhysicsObject;
+			}
+			else if (lsType == "Rampa")  //Pruebas por ahora
+			{
+				
+				(*lpPhysicsObject).SetMass(0.0f);
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				//lbtLocalTrans.setIdentity();
+				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+			
+				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+				
+
+/*
+				(*lpPhysicsObject).SetMass(0.0f);
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+				
+				btConvexHullShape* lbtShape = new btConvexHullShape();
+
+				//btVector3 labtVertices[8];
+				vector<btVector3> *labtVertices = new vector<btVector3>();
+
+
+				labtVertices->push_back( btVector3 (0,0,0));
+				//labtVertices[1] = btVector3 (1,1,1);
+				//labtVertices[2] = btVector3 (2,2,2);
+				//labtVertices[3] = btVector3 (3,3,3);
+				//labtVertices[4] = btVector3 (4,4,4);
+				//labtVertices[5] = btVector3 (5,5,5);
+				//labtVertices[6] = btVector3 (6,6,6);
+				//labtVertices[7] = btVector3 (7,7,7);
+				
+				for ( int i=0; i<4; ++i )
+					lbtShape->addPoint( labtVertices->  );
+					//lbtShape->addPoint( btVector3(i,i,i) );
+
+				btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+				lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
+
+				btVector3 aabbExtents = aabbMax - aabbMin;
+
+				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+
+*/
+
+
+
+
+
+
+
+				/*
+				(*lpPhysicsObject).SetMass(1.0f);
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				//lbtLocalTrans.setIdentity();
+				//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+				
+				
+				btVector3 aabbMin(-1000,-1000,-1000), aabbMax(1000,1000,1000);
+				bool useQuantizedAabbCompression = true;
+				
+				int totalTriangles = 1682, NUM_VERTS_X = 30, NUM_VERTS_Y = 30;
+				const int totalVerts = NUM_VERTS_X*NUM_VERTS_Y;
+				const float TRIANGLE_SIZE=8.f;
+				int indexStride = 3*sizeof(int);
+				int* gIndices = new int[totalTriangles*3];
+				static btVector3*	gVertices = new btVector3[totalVerts];
+				int vertStride = sizeof(btVector3);
+
+				int index=0;
+				for (int i=0;i < NUM_VERTS_X-1;i++)
+				{
+					for (int j=0;j<NUM_VERTS_Y-1;j++)
+					{
+						gIndices[index++] = j*NUM_VERTS_X+i;
+						gIndices[index++] = j*NUM_VERTS_X+i+1;
+						gIndices[index++] = (j+1)*NUM_VERTS_X+i+1;
+
+						gIndices[index++] = j*NUM_VERTS_X+i;
+						gIndices[index++] = (j+1)*NUM_VERTS_X+i+1;
+						gIndices[index++] = (j+1)*NUM_VERTS_X+i;
+					}
+				}
+
+				float offset = 0.f;
+				static float waveheight = 5.f;
+
+				for (int i=0;i<NUM_VERTS_X;i++)
+					{
+						for (int j=0;j<NUM_VERTS_Y;j++)
+						{
+							gVertices[i+j*NUM_VERTS_X].setValue((i-NUM_VERTS_X*0.5f)*TRIANGLE_SIZE,
+								//0.f,
+								waveheight*sinf((float)i+offset)*cosf((float)j+offset),
+								(j-NUM_VERTS_Y*0.5f)*TRIANGLE_SIZE);
+						}
+					}
+
+
+				//btTriangleIndexVertexArray* m_indexVertexArrays = new btTriangleIndexVertexArray(totalTriangles,	gIndices,	indexStride, totalVerts,(btScalar*) &gVertices[0].x(),vertStride);
+				btTriangleIndexVertexArray* m_indexVertexArrays = new btTriangleIndexVertexArray(totalTriangles,	gIndices,	indexStride, 900,(btScalar*) &gVertices[0].x(),vertStride);
+
+
+				btCollisionShape* lbtTrimeshShape  = new btBvhTriangleMeshShape(m_indexVertexArrays, useQuantizedAabbCompression, aabbMin, aabbMax);
+			
+				
+	
+				btConvexHullShape
+
+				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtTrimeshShape);
+				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+				*/
+
+			}
+			else if (lsType != "") //general
+			{
+				//cPhysicsObject* lpPhysicsObject = (cPhysicsObject*)lpPhysicsObject;
+				//lpPhysicsObject->CreateBoxShape(lVec3);
+
+				(*lpPhysicsObject).SetMass(1.0f);
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				//lbtLocalTrans.setIdentity();
+				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+			
+				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+
+			}
 		}
 	}
 }
+
+
+

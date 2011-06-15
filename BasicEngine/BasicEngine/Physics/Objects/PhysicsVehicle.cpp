@@ -198,8 +198,8 @@ void cPhysicsVehicle::Init()
 
 
 
-/*
 
+/*
 // HACIENDO EL SUELO y triangulándolo
 //either use heightfield or triangle mesh
 #define  USE_TRIMESH_GROUND 1
@@ -322,7 +322,8 @@ void cPhysicsVehicle::Init()
 #endif //
 
 	//m_collisionShapes.push_back(groundShape);
-	cPhysicsManager::Get().AddCollisionShape(groundShape);
+	//cPhysicsManager::Get().AddCollisionShape(groundShape);
+	mabtCollisionShapes.push_back(groundShape);
 
 	//create ground object
 	LocalCreateRigidBody(0, tr, groundShape); //YORMAN ESTA FUNCION PUEDE ESTAR INTERESANTE
@@ -361,7 +362,7 @@ void cPhysicsVehicle::Init()
 
 	compound->addChildShape(localTrans,chassisShape);
 
-	tr.setOrigin(btVector3(0,0.f,0));
+	tr.setOrigin(btVector3(0,0,0));
 
 	m_carChassis = LocalCreateRigidBody(800,tr,compound);//chassisShape);
 	//m_carChassis->setDamping(0.2,0.2);
@@ -606,10 +607,10 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			break;
 
 		case eIA_KeyK: //abajo
-			//gBreakingForce = maxBreakingForce; 
-			//gEngineForce = 0.f;
-			gEngineForce = -maxEngineForce;
-			gBreakingForce = 0.f;
+			gBreakingForce = maxBreakingForce; 
+			gEngineForce = 0.f;
+			//gEngineForce = -maxEngineForce;
+			//gBreakingForce = 0.f;
 			
 			break;
 

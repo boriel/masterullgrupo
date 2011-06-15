@@ -28,6 +28,11 @@ class cPhysicsObject
 		std::string GetNameID(void) { return macNameID; }
 		ePhysicObjectType GetType(void) { return meType; }
 		
+		btScalar GetMass () { return mbtMass; }
+		void SetMass (btScalar lbtMass) { mbtMass = lbtMass; }
+
+		void SetRigidBody (btRigidBody* lpbtRigidBody) {  mpbtRigidBody = lpbtRigidBody; }
+
 		//cVec3 GetPosition ();
 		//Sacados de btlDebugDraw
 		//void RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen);
@@ -36,7 +41,7 @@ class cPhysicsObject
 		//void RenderObjectDebug();  //Probablemente no usada!
 		//void RenderAllObjectDebug ();  //No usado
 		//void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
-		btRigidBody* LocalCreateRigidBody(float mass, const btTransform& startTransform,btCollisionShape* shape);
+		btRigidBody* LocalCreateRigidBody(float lfMass, const btTransform& lbtStartTransform,btCollisionShape* lbtShape);
 		//void LoadObjectsXmlCollision();
 
 		//inline void SetTypeObject (string lsType) { msType = lsType; }
