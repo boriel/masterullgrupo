@@ -8,7 +8,7 @@
 #include <math.h>
 
 void cCameraNavigator::Init(void) { 
-	mpPosition = new cVec3(20.0f, 5.0f, 5.0f);
+	mpPosition = new cVec3(25.0f, 5.0f, 0.0f);
 	mpTarget = new cVec3(0.0f, 0.0f, 0.0f);
 	mpMove= new cVec3(0.0f, 0.0f, 0.0f);
 	meState = eCN_Stop;

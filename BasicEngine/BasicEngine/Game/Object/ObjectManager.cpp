@@ -454,7 +454,7 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 			}
 			else if (lsType == "Rampa")  //Pruebas por ahora
 			{
-				
+				/*
 				(*lpPhysicsObject).SetMass(0.0f);
 				cVec3 lPosition = GetPosition(lsType, lsModelName);
 
@@ -464,33 +464,39 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 			
 				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-				
+				*/
 
-/*
+
 				(*lpPhysicsObject).SetMass(0.0f);
 				cVec3 lPosition = GetPosition(lsType, lsModelName);
 
-				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+				btTransform lbtLocalTrans (btQuaternion (0,1,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
 				//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
 				
 				btConvexHullShape* lbtShape = new btConvexHullShape();
 
-				//btVector3 labtVertices[8];
-				vector<btVector3> *labtVertices = new vector<btVector3>();
-
-
-				labtVertices->push_back( btVector3 (0,0,0));
-				//labtVertices[1] = btVector3 (1,1,1);
-				//labtVertices[2] = btVector3 (2,2,2);
-				//labtVertices[3] = btVector3 (3,3,3);
-				//labtVertices[4] = btVector3 (4,4,4);
-				//labtVertices[5] = btVector3 (5,5,5);
-				//labtVertices[6] = btVector3 (6,6,6);
-				//labtVertices[7] = btVector3 (7,7,7);
+				float lfScala = 2.0f;
 				
-				for ( int i=0; i<4; ++i )
-					lbtShape->addPoint( labtVertices->  );
-					//lbtShape->addPoint( btVector3(i,i,i) );
+				
+
+				lbtShape->addPoint( lfScala * btVector3(0,0,0) );
+				lbtShape->addPoint( lfScala * btVector3(0,0,1) );
+				lbtShape->addPoint( lfScala * btVector3(0,1,1) );
+				lbtShape->addPoint( lfScala * btVector3(0,1,0) );
+				lbtShape->addPoint( lfScala * btVector3(0,0,0) );
+				
+				lbtShape->addPoint( lfScala * btVector3(0,0,0) );
+				lbtShape->addPoint( lfScala * btVector3(1,0,0) );
+				lbtShape->addPoint( lfScala * btVector3(1,0,1) );
+				lbtShape->addPoint( lfScala * btVector3(0,0,1) );
+				lbtShape->addPoint( lfScala * btVector3(0,0,0) );
+
+				lbtShape->addPoint( lfScala * btVector3(0,1,0) );
+				lbtShape->addPoint( lfScala * btVector3(1,0,0) );
+				lbtShape->addPoint( lfScala * btVector3(1,0,1) );
+				lbtShape->addPoint( lfScala * btVector3(0,1,1) );
+				lbtShape->addPoint( lfScala * btVector3(0,1,0) );
+
 
 				btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
 				lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
@@ -500,7 +506,7 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 
-*/
+
 
 
 

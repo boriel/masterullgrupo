@@ -88,10 +88,10 @@
 
 <!--   OBJETOS SUELTOS   -->
 
-	<Object Type="Dragon" Position="0,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
+	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 	
 	
-	<Object Type="Rampa" Position="-10,5,15" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" /> 
+	<Object Type="Rampa" Position="0,0,20" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" /> 
 	
 	
 
