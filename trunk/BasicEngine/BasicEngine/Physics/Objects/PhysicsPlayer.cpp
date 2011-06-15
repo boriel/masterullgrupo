@@ -23,6 +23,7 @@ cPhysicsPlayer::cPhysicsPlayer (cPhysicsObject lPhysicsObject)
 //void cPhysicsPlayer::Init(const cVec3 &lPosition) 
 void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
 {
+/*
 	//macNameID = lacNameID;
 	meType =  ePO_Cube;
 
@@ -58,12 +59,15 @@ void cPhysicsPlayer::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	mbtMass = 1;
 	//btVector3 fallInertia(0, 0, 0);
 	mbtFallInertia = btVector3 (0,0,0);
+
+	
 	mpbtShape->calculateLocalInertia (mbtMass, mbtFallInertia);
+
 	btRigidBody::btRigidBodyConstructionInfo lRigidBodyCI (mbtMass, fallMotionState, mpbtShape, mbtFallInertia);
 	//lRigidBodyCI.m_friction = 0.5f;
 	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
-
+*/
 	
 }
 

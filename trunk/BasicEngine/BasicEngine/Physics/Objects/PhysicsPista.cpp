@@ -10,7 +10,7 @@
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
 void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
 {
-
+	/*
 	//std::cout << "Cubo.Init()" << std::endl;
 	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
@@ -45,7 +45,7 @@ void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIni
 	//lRigidBodyCI.m_friction = 0.5f;
 	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
-
+	*/
 
 /*
 	cQuaternion lQuatRotation;

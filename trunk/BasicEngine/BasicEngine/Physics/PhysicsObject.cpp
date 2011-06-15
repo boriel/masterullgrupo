@@ -8,6 +8,7 @@
 //Init General, se parece mucho al player y cube, pero irá cambiando
 void cPhysicsObject::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
 {
+/*
 	//macNameID = lacNameID;
 	meType =  ePO_Cube;
 
@@ -43,6 +44,7 @@ void cPhysicsObject::Init(const cVec3 &lPosition, const cQuaternion &lRotacionIn
 	//lRigidBodyCI.m_friction = 0.5f;
 	mpbtRigidBody = new btRigidBody(lRigidBodyCI);
 	lpDynamicsWorld->addRigidBody(mpbtRigidBody);
+*/
 }
 
 void cPhysicsObject::ApplyImpulse(const cVec3 &lImpulse) 
@@ -249,11 +251,17 @@ btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)
 	return lbtQuaternion;
 }
 
+//Ya esta no la usamos
 bool cPhysicsObject::CreateBoxShape(cVec3 lVec3)
 {
-	
+	//btCollisionShape* lpbtShape;
+
 	if ((lVec3.x > 0) && (lVec3.y > 0) && (lVec3.z > 0))
+	{
 		mpbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+		//lpbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+		//mabtCollisionShapes.push_back(lpbtShape);
+	}
 	else
 		return false;
 	
@@ -263,27 +271,27 @@ bool cPhysicsObject::CreateBoxShape(cVec3 lVec3)
 	return true;
 }
 
-btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform& startTransform, btCollisionShape* shape)
+btRigidBody* cPhysicsObject::LocalCreateRigidBody(float lfMass, const btTransform& lbtStartTransform, btCollisionShape* lbtShape)
 {
-	btAssert((!shape || shape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
+	btAssert((!lbtShape || lbtShape->getShapeType() != INVALID_SHAPE_PROXYTYPE));
 
 	//rigidbody is dynamic if and only if mass is non zero, otherwise static
-	bool isDynamic = (mass != 0.f);
+	bool lbIsDynamic = (lfMass != 0.f);
 
-	btVector3 localInertia(0,0,0);
-	if (isDynamic)
-		shape->calculateLocalInertia(mass,localInertia);
+	btVector3 lbtLocalInertia(0, 0, 0);
+	if (lbIsDynamic)
+		lbtShape->calculateLocalInertia(lfMass, lbtLocalInertia);
 
 	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
 
 #define USE_MOTIONSTATE 1
 #ifdef USE_MOTIONSTATE
-	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
+	btDefaultMotionState* lbtMyMotionState = new btDefaultMotionState(lbtStartTransform);
 
-	btRigidBody::btRigidBodyConstructionInfo cInfo(mass,myMotionState,shape,localInertia);
+	btRigidBody::btRigidBodyConstructionInfo cInfo(lfMass, lbtMyMotionState, lbtShape, lbtLocalInertia);
 
-	btRigidBody* body = new btRigidBody(cInfo);
-	body->setContactProcessingThreshold(m_defaultContactProcessingThreshold);
+	btRigidBody* lbtBody = new btRigidBody(cInfo);
+	//lbtBody->setContactProcessingThreshold(m_defaultContactProcessingThreshold);  //No se muy bien que hace esta línea, pero sin esto no colisiona
 
 #else
 	btRigidBody* body = new btRigidBody(mass,0,shape,localInertia);	
@@ -294,10 +302,10 @@ btRigidBody* cPhysicsObject::LocalCreateRigidBody(float mass, const btTransform&
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	//btDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	//lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
-	lpDynamicsWorld->addRigidBody(body);
+	lpDynamicsWorld->addRigidBody(lbtBody);
 
 
-	return body;
+	return lbtBody;
 }
 
 
