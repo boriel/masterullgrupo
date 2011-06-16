@@ -46,7 +46,7 @@ bool cGame::Init()
 	//==============
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
-	m3DCamera.SetPerspective (45.0f, lfAspect,0.1f,100.0f);
+	m3DCamera.SetPerspective (45.0f, lfAspect, 0.1f, 200.0f);
 	
 	//===================
 	//Iniciando Camara 2D
@@ -209,7 +209,7 @@ void cGame::Render()
 	
 	SetTheWorldMatrix();
 	m3DCamera.Update();
-	//m3DCamera.FollowPlayer();
+	//m3DCamera.FollowPlayer();  
 
 	// 4) Render 3D with transparency
 

@@ -343,6 +343,12 @@ cObject *cObjectManager::GetObject(const string lsType, const string lsModelName
 			if (mObjectPlayer[luiIndex]->GetModelName() == lsModelName)
 				return mObjectPlayer[luiIndex];
 	}
+	else if (lsType == "Vehicle")
+	{
+		for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+			if (mObjectVehicle[luiIndex]->GetModelName() == lsModelName)
+				return mObjectVehicle[luiIndex];
+	}
 
 	return NULL;
 }

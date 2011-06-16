@@ -15,6 +15,7 @@ bool cTexture::Init( const std::string &lacNameID, const std::string &lacFile )
 																						SOIL_FLAG_MIPMAPS | //que debe generar los mipmaps de la textura
 																						SOIL_FLAG_POWER_OF_TWO | //convertir la textura a potencia de dos
 																						SOIL_FLAG_COMPRESS_TO_DXT);  //comprimir la textura a formato dds
+	//printf ("%s\n", lacFile.c_str());  //Para saber en que textura falla, las veces que falla la importacion de un modelo
 	assert( muiTextureHandle != 0 );
 	return muiTextureHandle != 0;
 }
