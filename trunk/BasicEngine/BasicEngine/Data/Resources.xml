@@ -68,9 +68,13 @@
 	
     <!--   PISTAS  -->
 
-
+<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE"  /> 	
+	
+	
+<!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE"  /> 
-
+-->
+	
 	
 <!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 
@@ -144,6 +148,9 @@
 		<COLBOX X="25" Y="25" Z="1" />
 	</ObjectCollision>
 
+	<ObjectCollision ModelName="Billar" >
+		<COLBOX X="50" Y="1" Z="50" />
+	</ObjectCollision>
 
 	<ObjectCollision ModelName="VehicleRectangulo" >
 		<!--  No implementado, lo carga en general -->

@@ -63,7 +63,8 @@ void cCameraNavigator::Render()
 }
 
 void cCameraNavigator::FollowPlayer(void) {
-	cObject* lpObject=cObjectManager::Get().GetObjectA("Player","CarJazz");
+	//cObject* lpObject=cObjectManager::Get().GetObjectA("Player","CarJazz");
+	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","VehicleRectangulo");  //Esta mal el GetPosition
 	cVec3 lvPosition=lpObject->GetPosition();
 	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront()*2;
 	lvPosition =lvPosition - lpObject->GetWorldMatrix().GetFront()*5;
