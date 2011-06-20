@@ -596,7 +596,7 @@ void cPhysicsVehicle::RenderObjectVehicleDebug()
 //void VehicleDemo::specialKeyboard(int key, int x, int y)
 void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 {
-
+	
 	switch (luiKey)
 	{
 		case eIA_KeyI:  //arriba
@@ -635,7 +635,7 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 	//printf ("Key = %i\n", luiKey);
 //	printf("key = %i x=%i y=%i\n",key,x,y);
 
-
+	
 
 /*
     switch (key) 

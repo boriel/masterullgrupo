@@ -17,7 +17,9 @@ bool cApplicationProperties::Init()
 	string lsFile (".\\Data\\" + string("Config.xml"));
 	msFilename = lsFile;
 
+
 	LoadPropertiesXML ((char*)msFilename.c_str()); //inicializamos el level 
+	//mbFullscreen = true;
 
 	return true;
 }

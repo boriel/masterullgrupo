@@ -307,6 +307,7 @@
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\Config.xml" />
     <None Include="Data\Resources.xml">
       <SubType>Designer</SubType>
     </None>

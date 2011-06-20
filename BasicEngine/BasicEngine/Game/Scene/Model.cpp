@@ -126,7 +126,7 @@ void cModel::ProcessScene( const aiScene* lpScene )
 	
 	// Materials
 	assert(lpScene->HasMaterials());
-	for (unsigned luiIndex = 0;luiIndex<lpScene->mNumMaterials;++luiIndex)
+	for (unsigned luiIndex = 0; luiIndex<lpScene->mNumMaterials; ++luiIndex)
 	{
 		// Access the material name
 		aiString lName;
