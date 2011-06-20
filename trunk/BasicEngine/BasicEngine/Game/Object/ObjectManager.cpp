@@ -26,47 +26,7 @@ bool cObjectManager::Init()
 	//LoadObjectsXml("ObjectsCollision");  //Poniendo las collisiones
 
 
-	//Creando la Física de los objetos
-	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
-	{
-		cPhysicsPlayer* lpPhysicsPlayer = new cPhysicsPlayer;
-		LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetType(), lpPhysicsPlayer);
-		lpPhysicsPlayer->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
-		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(lpPhysicsPlayer);
-	}
 
-	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
-	{
-		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
-		LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetType(), lpPhysicsPista);
-		lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
-
-		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
-	}
-
-
-
-	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
-	{
-		cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
-		LoadObjectsXmlCollision(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetType(), lpPhysicsVehicle);  //No hace nada por ahora
-		//lpPhysicsVehicle->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
-		lpPhysicsVehicle->Init();
-
-		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
-	}
-
-
-
-	//Objetos Generales con un box por ahora
-	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
-	{
-		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
-		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
-
-		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-	}
 
 
 
@@ -82,6 +42,56 @@ bool cObjectManager::Init()
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
+
+
+
+
+
+	
+	//Creando la Física de los objetos  ( A LO MEJRO ALGO DE ESTO SE REPITA CON LA REUBICACION, MIRARLO! como que cargue dos veces la pista o algo asi Yorman OJO)
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+	{
+		cPhysicsPlayer* lpPhysicsPlayer = new cPhysicsPlayer;
+		LoadObjectsXmlCollision(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetType(), lpPhysicsPlayer);
+		lpPhysicsPlayer->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
+		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(lpPhysicsPlayer);
+	}
+	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+	{
+		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
+		LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetType(), lpPhysicsPista);
+		//lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
+		lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition());
+
+		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
+	}
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+	{
+		cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
+		LoadObjectsXmlCollision(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetType(), lpPhysicsVehicle);  //No hace nada por ahora
+		//lpPhysicsVehicle->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
+		lpPhysicsVehicle->Init();
+
+		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
+	}
+	//Objetos Generales con un box por ahora
+	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
+	{
+		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+
+		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+	}
+
+
+
+
+
+
+
+
+
 
 	return true;
 }
@@ -440,6 +450,12 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 			{
 				cPhysicsPista* lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
 
+				/*
+				cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+				lpPhysicsPista->Init(lPosition);
+				*/
+				
 				//lpPhysicsPlayer->CreateBoxShape(lVec3);
 				//(*lpPhysicsPista).CreateBoxShape(lVec3);
 				(*lpPhysicsPista).SetMass(0.0f);
@@ -453,6 +469,7 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				(*lpPhysicsPista).SetRigidBody(lpbtRirigBody);
 
 				//(*lpPhysicsPista).SetTypeObject ("borrar el tipo de esta clase ya no hace falta");
+				
 			}
 			else if (lsType == "Vehicle") 		//Cargamos la fisica del vehicle, no implmento desde el xml todavía
 			{

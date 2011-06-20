@@ -6,10 +6,44 @@
 
 #include "..\PhysicsManager.h"
 #include "..\..\Graphics\GraphicManager.h"
+#include "..\..\Game\Scene\ModelManager.h"
+#include "..\..\Game\Scene\Model.h"
 
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
-void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
+//void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
+void cPhysicsPista::Init(const cVec3 &lPosition) 
 {
+
+	//haciendo la pista para la de billar, despues habrá que ponerlo bonito
+
+	SetMass(0.0f);
+
+	//cResourceHandle cc = cModelManager::Get().FindResource("Box_Tapicera");
+	//string lsFilename = (".\\Data\\" + std::string("Resources.xml"));
+	cResourceHandle lRH = cModelManager::Get().FindResourceA("Billar");
+	
+	
+	cResource *lReso = lRH.GetResource();
+
+
+	btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+
+	
+	
+	
+
+	/*
+	btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
+	
+	btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+			
+	btRigidBody* lpbtRirigBody = LocalCreateRigidBody(GetMass(), lbtLocalTrans, lbtShape);
+	SetRigidBody(lpbtRirigBody);
+	*/
+
+
+
+
 	/*
 	//std::cout << "Cubo.Init()" << std::endl;
 	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();

@@ -13,12 +13,6 @@ cObjectPista::cObjectPista (cObject lObject)
 	*/
 }
 
-void cObjectPista::InitPhysics ()
-{
-	
-	((cPhysicsPista*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
-
-}
 
 void cObjectPista::Update( float lfTimestep )
 {

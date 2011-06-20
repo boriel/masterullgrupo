@@ -19,7 +19,8 @@ class cPhysicsPista : public cPhysicsObject
 
 	public:
 		void Init( const std::string &lacNameID) { macNameID = lacNameID; }
-		void Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial);
+		//void Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial);
+		void Init(const cVec3 &lPosition);
 		void Update(void);
 		void Deinit(void);
 		

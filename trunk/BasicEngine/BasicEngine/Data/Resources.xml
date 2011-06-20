@@ -29,9 +29,9 @@
 
 <!--   PLAYERS -->
 
-
+<!--
 	<Object Type="Player" Position="0,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
-
+-->
 
 
 <!--
@@ -50,7 +50,11 @@
 
 <!--       VEHICLES       -->
 
+	<Object Type="Vehicle" Position="0,5,-5" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
+
+<!--
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
+-->
 	
 <!--
 	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
