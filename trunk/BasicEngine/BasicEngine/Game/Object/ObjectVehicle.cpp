@@ -51,14 +51,14 @@ void cObjectVehicle::Update( float lfTimestep )
 	
 
 
-	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica
+	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else par aque coja 2 teclas presionadas)
 	if (BecomePressed(eIA_KeyI) || IsPressed(eIA_KeyI)) 
 		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyI);
-	else if (BecomePressed(eIA_KeyK) || IsPressed(eIA_KeyK)) 
+	if (BecomePressed(eIA_KeyK) || IsPressed(eIA_KeyK)) 
 		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyK);
-	else if (BecomePressed(eIA_KeyJ) || IsPressed(eIA_KeyJ)) 
+	if (BecomePressed(eIA_KeyJ) || IsPressed(eIA_KeyJ)) 
 		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
-	else if (BecomePressed(eIA_KeyL) || IsPressed(eIA_KeyL)) 
+	if (BecomePressed(eIA_KeyL) || IsPressed(eIA_KeyL)) 
 		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyL);
 	
 	//cInputAction::GetPressedTime();

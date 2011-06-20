@@ -62,12 +62,23 @@ void cCameraNavigator::Render()
 	cGraphicManager::Get().DrawPoint( lPoint, cVec3(1.0f, 0.0f, 0.0f) );
 }
 
-void cCameraNavigator::FollowPlayer(void) {
-	//cObject* lpObject=cObjectManager::Get().GetObjectA("Player","CarJazz");
-	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","VehicleRectangulo");  //Esta mal el GetPosition
+void cCameraNavigator::FollowPlayer(void) 
+{
+	/*
+	cObject* lpObject=cObjectManager::Get().GetObjectA("Player","CarJazz");
 	cVec3 lvPosition=lpObject->GetPosition();
 	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront()*2;
 	lvPosition =lvPosition - lpObject->GetWorldMatrix().GetFront()*5;
 	lvPosition.y+=6;
 	SetLookAt(lvPosition,lvTarget);
+	*/
+	
+	//Cambiadno la posicion de la camara
+	cObject* lpObject = cObjectManager::Get().GetObjectA("Vehicle", "VehicleRectangulo");  
+	cVec3 lvPosition=lpObject->GetPosition();
+	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront()*2;
+	lvPosition =lvPosition - lpObject->GetWorldMatrix().GetFront()*5;
+	lvPosition.y += 40;
+	SetLookAt(lvPosition, lvTarget);
+
 }

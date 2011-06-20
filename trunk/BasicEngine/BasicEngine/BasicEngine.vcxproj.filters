@@ -707,5 +707,8 @@
     <None Include="Data\Resources.xml">
       <Filter>Data</Filter>
     </None>
+    <None Include="Data\Config.xml">
+      <Filter>Data</Filter>
+    </None>
   </ItemGroup>
 </Project>
