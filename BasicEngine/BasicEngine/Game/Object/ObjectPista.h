@@ -25,7 +25,6 @@ class cObjectPista : public cObject
 		virtual void Render ();
 
 
-		virtual void InitPhysics ();
 
 
 

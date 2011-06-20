@@ -74,7 +74,8 @@ void cCameraNavigator::FollowPlayer(void)
 	*/
 	
 	//Cambiadno la posicion de la camara
-	cObject* lpObject = cObjectManager::Get().GetObjectA("Vehicle", "VehicleRectangulo");  
+	//cObject* lpObject = cObjectManager::Get().GetObjectA("Vehicle", "VehicleRectangulo");  
+	cObject* lpObject = cObjectManager::Get().GetObjectA("Vehicle", "CarJazzVehicle");  
 	cVec3 lvPosition=lpObject->GetPosition();
 	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront()*2;
 	lvPosition =lvPosition - lpObject->GetWorldMatrix().GetFront()*5;
