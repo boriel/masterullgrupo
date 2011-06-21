@@ -35,7 +35,12 @@ bool cObjectManager::Init()
 		cModelManager::Get().LoadResource(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetModelFile());
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
+	{
+		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
+		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
 		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
+
+	}
 		
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
@@ -56,6 +61,7 @@ bool cObjectManager::Init()
 		lpPhysicsPlayer->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
 		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(lpPhysicsPlayer);
 	}
+	
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 	{
 		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
@@ -65,6 +71,7 @@ bool cObjectManager::Init()
 
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
 	}
+	
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 	{
 		cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
@@ -613,12 +620,13 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
 				//lbtLocalTrans.setIdentity();
 				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+				
 			
 				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 
 			}
-		}
+	  }
 	}
 }
 

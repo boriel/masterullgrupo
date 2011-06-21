@@ -10,6 +10,9 @@
 #include "../../Utility/FileUtils.h"
 #include "..\..\MathLib\MathLib.h"
 #include "..\..\Graphics\GraphicManager.h"
+#include "..\Object\ObjectManager.h"
+
+#include "..\..\Physics\Objects\PhysicsPista.h"
 
 #include <assimp.hpp> // C++ importer interface
 #include <aiScene.h> // Output data structure
@@ -240,10 +243,42 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 	cout << "{ NumChildren=" << lpScene->mRootNode->mNumChildren << ", ";
 	cout << " NumMeshes=" << lpScene->mRootNode->mNumMeshes << ", ";
 	cout << " NumVertices[Mesh=0]=" << lpScene->mMeshes[0]->mNumVertices << "}"<<endl;
-	for (unsigned int luiIndex=0; luiIndex<lpScene->mRootNode->mNumChildren; luiIndex++) {
+	for (unsigned int luiIndex=0; luiIndex<lpScene->mRootNode->mNumChildren; luiIndex++) 
+	{
 		const aiNode *lNode = lpScene->mRootNode->mChildren[luiIndex];
 		cout << "* Node Children["<< luiIndex << "]=" << (lNode->mName.data);
 		cout << " (mNumMeshes=" << lNode->mNumMeshes << ")"<<endl;
+
+		/*
+		string lsNameData = lNode->mName.data;
+		if ((lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE") && (lsNameData == "Sphere_01"))
+		{
+			cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
+			cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
+			lpPhysicsObject->SetMass(0.0f);
+			
+			//Calculando radio
+			float lfRadius=0.0f;
+			
+			cVec3 lVertice= cVec3(	lpScene->mMeshes[0]->mVertices[luiIndex].x,	lpScene->mMeshes[0]->mVertices[luiIndex].y,		lpScene->mMeshes[0]->mVertices[luiIndex].z);
+			
+			cVec3 lvCenter2 = cVec3(0,0,0);
+
+			float lfDistance = (lvCenter2.DistanceTo(lVertice));
+			if (lfDistance > lfRadius) 
+				lfRadius = lfDistance;
+			
+
+			cout << "If: " << lpScene->mMeshes[0]->mVertices[luiIndex].x << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].y << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].z << " R: " << lfRadius << endl;
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpScene->mMeshes[0]->mVertices[luiIndex].x, lpScene->mMeshes[0]->mVertices[luiIndex].y, lpScene->mMeshes[0]->mVertices[luiIndex].z));
+			
+			btCollisionShape* lbtShape = new btSphereShape(lfRadius); 
+			
+			
+			btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
+			lpPhysicsObject->SetRigidBody(lpbtRirigBody);
+		}
+		*/
 	}
 
 	//Calculate vertix center
@@ -265,6 +300,9 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 		if (lfX<lvMin.x) lvMin.x=lfX;
 		if (lfY<lvMin.y) lvMin.y=lfY;
 		if (lfZ<lvMin.z) lvMin.z=lfZ;
+
+
+
 	}
 	cout <<" > Bounding Box"<<endl;
 	cout <<"   - X:{"<<lvMin.x<<", "<<lvMax.x<<"} Y:{"<<lvMin.y<<", "<<lvMax.y<<"} Z:{"<<lvMin.z<<", "<<lvMax.z<<"}"<<endl;
@@ -287,4 +325,31 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 		if (lfDistance>lfRadius) lfRadius=lfDistance;
 	}
 	cout << "   - Radio esfera = "<<lfRadius<<endl;
+
+	/*
+	//Prueba haciendo una pista los collision box directos
+	if (lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE")
+	{
+
+		cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
+		cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
+		//cPhysicsPista *lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
+	
+	
+	//lpPhysicsObject->LocalCreateSphereRigidBody(lfRadius, lvCenter);
+
+		lpPhysicsObject->SetMass(0.0f);
+		
+		btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lvCenter.x, lvCenter.y, lvCenter.z));
+		//lbtLocalTrans.setIdentity();
+		//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+		btCollisionShape* lbtShape = new btSphereShape(lfRadius);
+			
+		btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
+		lpPhysicsObject->SetRigidBody(lpbtRirigBody);
+	}
+	*/
+
 }
+
+

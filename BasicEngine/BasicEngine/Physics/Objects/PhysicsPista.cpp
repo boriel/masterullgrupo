@@ -8,11 +8,14 @@
 #include "..\..\Graphics\GraphicManager.h"
 #include "..\..\Game\Scene\ModelManager.h"
 #include "..\..\Game\Scene\Model.h"
+#include "..\..\Game\Scene\SubModel.h"
 
 //void cPhysicsPlayer::Init( const std::string &lacNameID) 
 //void cPhysicsPista::Init(const cVec3 &lPosition, const cQuaternion &lRotacionInicial) 
 void cPhysicsPista::Init(const cVec3 &lPosition) 
 {
+	/*
+	cout << "Begin: Prueba en Pista " << endl;
 
 	//haciendo la pista para la de billar, despues habrá que ponerlo bonito
 
@@ -29,7 +32,20 @@ void cPhysicsPista::Init(const cVec3 &lPosition)
 	btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
 
 	
+	cModel *lModel =	((cModel *)cModelManager::Get().FindResourceA("Billar").GetResource());
 	
+	typedef std::vector<cSubModel *> cObjectList;
+	cObjectList lObjectList = lModel->GetObjectList();
+
+	for (unsigned int luiIndex = 0; luiIndex < lObjectList.size(); luiIndex++)
+	{
+		cout << lObjectList[luiIndex]->GetName() << endl;
+		lObjectList[luiIndex]->
+	}
+	
+
+	cout << "End: Prueba en Pista" << endl;
+	*/
 	
 
 	/*
