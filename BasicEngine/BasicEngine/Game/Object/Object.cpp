@@ -25,7 +25,6 @@ void cObject::Init()
 	mWorldMatrix.SetPosition(mPosition);
 
 	mfScale = 1.0f;
-	//mPhysicsObject = new cPhysicsObject;
 }
 
 
@@ -45,12 +44,6 @@ void cObject::Render()
 #if _DEBUG
 	cGraphicManager::Get().DrawAxis();
 #endif	
-
-//Pintamos el debug
-#ifdef _DEBUG
-	//((cPhysicsObject*) mPhysicsObject)->RenderObjectDebug();  //No usar este para pintar, es desuso
-	//mPhysicsObject->RenderAllObjectDebug();
-#endif
 }
 
 void cObject::Update( float lfTimestep )
@@ -61,8 +54,64 @@ void cObject::Update( float lfTimestep )
 	mWorldMatrix.SetPosition(mPosition);
 }
 
-//TODO: En teoría los hijos harán este trabajo
 void cObject::InitPhysics()
 {
-	Init();
+	//Se supone que el objeto ya está inicializado, y su modelo cargado en ModelManager
+	//Ahora vamos a inicializar la física del Object, a partir de su tipo y de su Model.GetBounding()
+
+			/*
+		string lsNameData = lNode->mName.data;
+		if ((lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE") && (lsNameData == "Sphere_01"))
+		{
+			cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
+			cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
+			lpPhysicsObject->SetMass(0.0f);
+			
+			//Calculando radio
+			float lfRadius=0.0f;
+			
+			cVec3 lVertice= cVec3(	lpScene->mMeshes[0]->mVertices[luiIndex].x,	lpScene->mMeshes[0]->mVertices[luiIndex].y,		lpScene->mMeshes[0]->mVertices[luiIndex].z);
+			
+			cVec3 lvCenter2 = cVec3(0,0,0);
+
+			float lfDistance = (lvCenter2.DistanceTo(lVertice));
+			if (lfDistance > lfRadius) 
+				lfRadius = lfDistance;
+			
+
+			cout << "If: " << lpScene->mMeshes[0]->mVertices[luiIndex].x << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].y << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].z << " R: " << lfRadius << endl;
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpScene->mMeshes[0]->mVertices[luiIndex].x, lpScene->mMeshes[0]->mVertices[luiIndex].y, lpScene->mMeshes[0]->mVertices[luiIndex].z));
+			
+			btCollisionShape* lbtShape = new btSphereShape(lfRadius); 
+			
+			
+			btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
+			lpPhysicsObject->SetRigidBody(lpbtRirigBody);
+		}
+		*/
+
+		/*
+	//Prueba haciendo una pista los collision box directos
+	if (lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE")
+	{
+
+		cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
+		cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
+		//cPhysicsPista *lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
+	
+	
+	//lpPhysicsObject->LocalCreateSphereRigidBody(lfRadius, lvCenter);
+
+		lpPhysicsObject->SetMass(0.0f);
+		
+		btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lvCenter.x, lvCenter.y, lvCenter.z));
+		//lbtLocalTrans.setIdentity();
+		//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+		btCollisionShape* lbtShape = new btSphereShape(lfRadius);
+			
+		btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
+		lpPhysicsObject->SetRigidBody(lpbtRirigBody);
+	}
+	*/
+
 }
