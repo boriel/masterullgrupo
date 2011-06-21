@@ -160,7 +160,7 @@ void cModel::ProcessScene( const aiScene* lpScene )
 	}
 
 #ifdef _DEBUG
-	ShowInfo(lpScene,macFile);
+	ShowInfoScene(lpScene,macFile);
 #endif
 }
 
@@ -223,7 +223,7 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 		ConvertNodesToObjects( lpNode->mChildren[luiIndex], lTransform);
 }
 
-void cModel::ShowInfo(string lacFile) { 
+void cModel::ShowInfoFile(string lacFile) { 
 	Assimp::Importer lImporter; // Create an instance of the Importer class
 	
 	// Load the scene
@@ -233,24 +233,30 @@ void cModel::ShowInfo(string lacFile) {
 		cout << "[ERROR] Model.ShowInfo: " << lImporter.GetErrorString() << endl;;
 		return;
 	}
-	ShowInfo(lpScene,macFile);
+	ShowInfoScene(lpScene,macFile);
 }
 
-void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
+void cModel::ShowInfoScene(const aiScene* lpScene, string lacFile) {
 
 	cout << " " << endl;
 	cout << "[INFO] Model.ShowInfo: " << lacFile << endl;
 	cout << "{ NumChildren=" << lpScene->mRootNode->mNumChildren << ", ";
 	cout << " NumMeshes=" << lpScene->mRootNode->mNumMeshes << ", ";
 	cout << " NumVertices[Mesh=0]=" << lpScene->mMeshes[0]->mNumVertices << "}"<<endl;
-	for (unsigned int luiIndex=0; luiIndex<lpScene->mRootNode->mNumChildren; luiIndex++) 
+	
+	ShowInfoMesh(lpScene->mMeshes[0]); //FIXME
+	
+	for (unsigned int luiNodeIndex=0; luiNodeIndex<lpScene->mRootNode->mNumChildren; luiNodeIndex++) 
 	{
-		const aiNode *lNode = lpScene->mRootNode->mChildren[luiIndex];
-		cout << "* Node Children["<< luiIndex << "]=" << (lNode->mName.data);
-		cout << " (mNumMeshes=" << lNode->mNumMeshes << ")"<<endl;
+		const aiNode *lpNode = lpScene->mRootNode->mChildren[luiNodeIndex];
+		cout << "* Node Children["<< luiNodeIndex << "]=" << (lpNode->mName.data);
+		cout << " (mNumMeshes=" << lpNode->mNumMeshes << ")"<<endl;
 
-		//lpScene->mMeshes[0]
-		ShowInfoMesh(lpScene->mMeshes[0]);
+//		for (unsigned int luiMeshIndex=0; luiMeshIndex<lpNode->mNumMeshes;luiMeshIndex++)
+//		{
+//			ShowInfoMesh((aiMesh*) lpNode->mMeshes[luiMeshIndex]);
+//		}
+
 		/*
 		string lsNameData = lNode->mName.data;
 		if ((lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE") && (lsNameData == "Sphere_01"))
@@ -339,3 +345,4 @@ void cModel::ShowInfoMesh(aiMesh* lpMesh) {
 	float lfRadius=lvCenter.DistanceTo(lvMin);
 	cout << "   - Radio esfera = "<<lfRadius<<endl;
 }
+

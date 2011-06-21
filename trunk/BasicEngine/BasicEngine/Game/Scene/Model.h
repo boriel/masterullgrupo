@@ -27,8 +27,8 @@ class cModel : public cResource
 		void Update( float lfTimestep );
 		void Render(cMatrix &lWorld);
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
-		void ShowInfo(string lacFile);
-		void ShowInfo(const aiScene* lpScene, string lacFile);
+		void ShowInfoFile(string lacFile);
+		void ShowInfoScene(const aiScene* lpScene, string lacFile);
 		void ShowInfoMesh(aiMesh* lpMesh);
 		typedef std::vector<cSubModel *> cObjectList;  //Temporal esta linea
 		cObjectList GetObjectList() { return mObjectList; }
