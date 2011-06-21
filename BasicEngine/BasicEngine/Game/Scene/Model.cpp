@@ -291,9 +291,6 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 		lfX = lpScene->mMeshes[0]->mVertices[luiIndex].x;
 		lfY = lpScene->mMeshes[0]->mVertices[luiIndex].y;
 		lfZ = lpScene->mMeshes[0]->mVertices[luiIndex].z;
-		lvCenter.x += lfX; 
-		lvCenter.y += lfY;
-		lvCenter.z += lfZ;
 		if (lfX>lvMax.x) lvMax.x=lfX;
 		if (lfY>lvMax.y) lvMax.y=lfY;
 		if (lfZ>lvMax.z) lvMax.z=lfZ;
@@ -306,24 +303,13 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 	}
 	cout <<" > Bounding Box"<<endl;
 	cout <<"   - X:{"<<lvMin.x<<", "<<lvMax.x<<"} Y:{"<<lvMin.y<<", "<<lvMax.y<<"} Z:{"<<lvMin.z<<", "<<lvMax.z<<"}"<<endl;
-	cout <<"   - Centro ("<<(lvMax.x-abs(lvMin.x))/2<<", "<<(lvMax.y-abs(lvMin.y))/2<<", "<<(lvMax.z-abs(lvMin.z))/2<<") "<<endl;
+	lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
+	lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
+	lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
+	cout <<"   - Centro ("<<lvCenter.x<<", "<<lvCenter.y<<", "<<lvCenter.z<<") "<<endl;
 
-	lvCenter.x=lvCenter.x/(float)lpScene->mMeshes[0]->mNumVertices;
-	lvCenter.y=lvCenter.y/(float)lpScene->mMeshes[0]->mNumVertices;
-	lvCenter.z=lvCenter.z/(float)lpScene->mMeshes[0]->mNumVertices;
-	cout <<" > Bounding Sphere"<<endl;
-	cout <<"   - Centro de gravedad ("<<lvCenter.x<<", "<<lvCenter.y<<", "<<lvCenter.z<<" )"<<endl;
-
-	//Calculate radius of all vertices
-	float lfRadius=0.0f;
-	for (unsigned int luiIndex=0; luiIndex<lpScene->mMeshes[0]->mNumVertices; luiIndex++) {
-		cVec3 lVertice= cVec3(	lpScene->mMeshes[0]->mVertices[luiIndex].x,
-								lpScene->mMeshes[0]->mVertices[luiIndex].y,
-								lpScene->mMeshes[0]->mVertices[luiIndex].z);
-			
-		float lfDistance=(lvCenter.DistanceTo(lVertice));
-		if (lfDistance>lfRadius) lfRadius=lfDistance;
-	}
+	//Calculate radius
+	float lfRadius=lvCenter.DistanceTo(lvMin);
 	cout << "   - Radio esfera = "<<lfRadius<<endl;
 
 	/*

@@ -60,9 +60,8 @@
 	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 -->
 
-<!--
-	<Object Type="Player2" Position="5,5,-5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
--->
+	<Object Type="Player" Position="5,5,-5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
+
 
 <!--
 	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
