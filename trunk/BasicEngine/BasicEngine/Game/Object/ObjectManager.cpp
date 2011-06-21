@@ -91,15 +91,6 @@ bool cObjectManager::Init()
 		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
 	}
 
-
-
-
-
-
-
-
-
-
 	return true;
 }
 
@@ -140,10 +131,9 @@ void cObjectManager::Update(float lfTimestep)
 		mObject[luiIndex]->Update(lfTimestep);
 }
 
-//void cObjectManager::Render(cMatrix &lWorld)
 void cObjectManager::Render()
 {
-	//TODO: Por ahora todos, hay que cambiarlo, peor lo dibujamos todo, aunque no se vea por la camara
+	//TODO: Por ahora se dibuja todo, aunque no se vea por la camara
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
 		mObjectPista[luiIndex]->Render();
 

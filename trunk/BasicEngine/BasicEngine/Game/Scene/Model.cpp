@@ -104,9 +104,6 @@ void cModel::Render(cMatrix &lWorld)
 }
 
 
-
-
-
 //La clase lpScene cuenta con un atributo llamado mNumMeshes que contiene el
 //número de meshes que se encuentran en la escena y un array llamado mMeshes que
 //contiene las meshes en sí mismas. Por lo tanto lo que haremos será acceder a todas esas
@@ -159,9 +156,7 @@ void cModel::ProcessScene( const aiScene* lpScene )
 		ConvertNodesToObjects( lpScene->mRootNode, lMatrix );
 	}
 
-#ifdef _DEBUG
-	ShowInfoScene(lpScene,macFile);
-#endif
+	ProcessBoundingScene(lpScene,macFile); //Calcular el bounding del modelo
 }
 
 
@@ -223,7 +218,7 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 		ConvertNodesToObjects( lpNode->mChildren[luiIndex], lTransform);
 }
 
-void cModel::ShowInfoFile(string lacFile) { 
+void cModel::ProcessBoundingFile(string lacFile) { 
 	Assimp::Importer lImporter; // Create an instance of the Importer class
 	
 	// Load the scene
@@ -233,116 +228,68 @@ void cModel::ShowInfoFile(string lacFile) {
 		cout << "[ERROR] Model.ShowInfo: " << lImporter.GetErrorString() << endl;;
 		return;
 	}
-	ShowInfoScene(lpScene,macFile);
+	ProcessBoundingScene(lpScene,macFile);
 }
 
-void cModel::ShowInfoScene(const aiScene* lpScene, string lacFile) {
-
+void cModel::ProcessBoundingScene(const aiScene* lpScene, string lacFile) {
+#ifdef _DEBUG
 	cout << " " << endl;
 	cout << "[INFO] Model.ShowInfo: " << lacFile << endl;
 	cout << "{ NumChildren=" << lpScene->mRootNode->mNumChildren << ", ";
 	cout << " NumMeshes=" << lpScene->mRootNode->mNumMeshes << ", ";
 	cout << " NumVertices[Mesh=0]=" << lpScene->mMeshes[0]->mNumVertices << "}"<<endl;
-	
-	ShowInfoMesh(lpScene->mMeshes[0]); //FIXME
-	
+#endif
+
+	ProcessBoundingMesh(lpScene->mMeshes[0]); //FIXME: de momento sólo calculamos el bounding global
+
+#ifdef _DEBUG
 	for (unsigned int luiNodeIndex=0; luiNodeIndex<lpScene->mRootNode->mNumChildren; luiNodeIndex++) 
 	{
 		const aiNode *lpNode = lpScene->mRootNode->mChildren[luiNodeIndex];
 		cout << "* Node Children["<< luiNodeIndex << "]=" << (lpNode->mName.data);
 		cout << " (mNumMeshes=" << lpNode->mNumMeshes << ")"<<endl;
 
-//		for (unsigned int luiMeshIndex=0; luiMeshIndex<lpNode->mNumMeshes;luiMeshIndex++)
-//		{
-//			ShowInfoMesh((aiMesh*) lpNode->mMeshes[luiMeshIndex]);
-//		}
-
-		/*
-		string lsNameData = lNode->mName.data;
-		if ((lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE") && (lsNameData == "Sphere_01"))
+		//FIXME: Revisar cómo identificar los vértices de cada Malla y luego 
+		//procesar cada malla para obtener los bounding de cada una
+/*		for (unsigned int luiMeshIndex=0; luiMeshIndex<lpNode->mNumMeshes;luiMeshIndex++)
 		{
-			cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
-			cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
-			lpPhysicsObject->SetMass(0.0f);
-			
-			//Calculando radio
-			float lfRadius=0.0f;
-			
-			cVec3 lVertice= cVec3(	lpScene->mMeshes[0]->mVertices[luiIndex].x,	lpScene->mMeshes[0]->mVertices[luiIndex].y,		lpScene->mMeshes[0]->mVertices[luiIndex].z);
-			
-			cVec3 lvCenter2 = cVec3(0,0,0);
+			ShowInfoMesh((aiMesh*) lpNode->mMeshes[luiMeshIndex]);
+		}*/
 
-			float lfDistance = (lvCenter2.DistanceTo(lVertice));
-			if (lfDistance > lfRadius) 
-				lfRadius = lfDistance;
-			
-
-			cout << "If: " << lpScene->mMeshes[0]->mVertices[luiIndex].x << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].y << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].z << " R: " << lfRadius << endl;
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpScene->mMeshes[0]->mVertices[luiIndex].x, lpScene->mMeshes[0]->mVertices[luiIndex].y, lpScene->mMeshes[0]->mVertices[luiIndex].z));
-			
-			btCollisionShape* lbtShape = new btSphereShape(lfRadius); 
-			
-			
-			btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
-			lpPhysicsObject->SetRigidBody(lpbtRirigBody);
-		}
-		*/
 	}
-
-
-	/*
-	//Prueba haciendo una pista los collision box directos
-	if (lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE")
-	{
-
-		cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
-		cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
-		//cPhysicsPista *lpPhysicsPista = (cPhysicsPista*)lpPhysicsObject;
-	
-	
-	//lpPhysicsObject->LocalCreateSphereRigidBody(lfRadius, lvCenter);
-
-		lpPhysicsObject->SetMass(0.0f);
-		
-		btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lvCenter.x, lvCenter.y, lvCenter.z));
-		//lbtLocalTrans.setIdentity();
-		//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
-		btCollisionShape* lbtShape = new btSphereShape(lfRadius);
-			
-		btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
-		lpPhysicsObject->SetRigidBody(lpbtRirigBody);
-	}
-	*/
-
+#endif
 }
 
-void cModel::ShowInfoMesh(aiMesh* lpMesh) {
-	//Calculate vertix center
-	cVec3 lvCenter=cVec3(0,0,0);
-	cVec3 lvMax=cVec3(0,0,0);
-	cVec3 lvMin=cVec3(0,0,0);
+void cModel::ProcessBoundingMesh(aiMesh* lpMesh) {
+	mBounding.mvCenter=cVec3(0,0,0);
+	mBounding.mvMax=cVec3(0,0,0);
+	mBounding.mvMin=cVec3(0,0,0);
+
 	float lfX, lfY, lfZ;
 	
 	for (unsigned int luiIndex=0; luiIndex<(lpMesh->mNumVertices); luiIndex++) {
 		lfX = lpMesh->mVertices[luiIndex].x;
 		lfY = lpMesh->mVertices[luiIndex].y;
 		lfZ = lpMesh->mVertices[luiIndex].z;
-		if (lfX>lvMax.x) lvMax.x=lfX;
-		if (lfY>lvMax.y) lvMax.y=lfY;
-		if (lfZ>lvMax.z) lvMax.z=lfZ;
-		if (lfX<lvMin.x) lvMin.x=lfX;
-		if (lfY<lvMin.y) lvMin.y=lfY;
-		if (lfZ<lvMin.z) lvMin.z=lfZ;
+		if (lfX>mBounding.mvMax.x) mBounding.mvMax.x = lfX;
+		if (lfY>mBounding.mvMax.y) mBounding.mvMax.y = lfY;
+		if (lfZ>mBounding.mvMax.z) mBounding.mvMax.z = lfZ;
+		if (lfX<mBounding.mvMin.x) mBounding.mvMin.x = lfX;
+ 		if (lfY<mBounding.mvMin.y) mBounding.mvMin.y = lfY;
+		if (lfZ<mBounding.mvMin.z) mBounding.mvMax.z = lfZ;
 	}
-	cout <<" > Bounding Box"<<endl;
-	cout <<"   - X:{"<<lvMin.x<<", "<<lvMax.x<<"} Y:{"<<lvMin.y<<", "<<lvMax.y<<"} Z:{"<<lvMin.z<<", "<<lvMax.z<<"}"<<endl;
-	lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
-	lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
-	lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
-	cout <<"   - Centro ("<<lvCenter.x<<", "<<lvCenter.y<<", "<<lvCenter.z<<") "<<endl;
+	mBounding.mvCenter.x=(mBounding.mvMax.x-abs(mBounding.mvMin.x))/2;
+	mBounding.mvCenter.y=(mBounding.mvMax.y-abs(mBounding.mvMin.y))/2;
+	mBounding.mvCenter.z=(mBounding.mvMax.z-abs(mBounding.mvMin.z))/2;
+	mBounding.mfRadius=mBounding.mvCenter.DistanceTo(mBounding.mvMin);	//Calculate radius
 
-	//Calculate radius
-	float lfRadius=lvCenter.DistanceTo(lvMin);
-	cout << "   - Radio esfera = "<<lfRadius<<endl;
+#ifdef _DEBUG
+	cout << " > Bounding Box"<<endl;
+	cout << "   - X:{"<<mBounding.mvMin.x<<", "<<mBounding.mvMax.x;
+	cout << "} Y:{"<<mBounding.mvMin.y<<", "<<mBounding.mvMax.y;
+	cout << "} Z:{"<<mBounding.mvMin.z<<", "<<mBounding.mvMax.z<<"}"<<endl;
+	cout <<"   - Centro ("<<mBounding.mvCenter.x<<", "<<mBounding.mvCenter.y<<", "<<mBounding.mvCenter.z<<") "<<endl;
+	cout << "   - Radio esfera = "<<mBounding.mfRadius<<endl;
+#endif
 }
 
