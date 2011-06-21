@@ -42,7 +42,7 @@ class cPhysicsObject
 		//void RenderAllObjectDebug ();  //No usado
 		//void RenderObjectDebug(const btTransform& worldTransform, const btCollisionShape* shape, const btVector3& color);
 		btRigidBody* LocalCreateRigidBody(float lfMass, const btTransform& lbtStartTransform, btCollisionShape* lbtShape);
-		void LocalCreateSphereRigidBody(const float lfRadio, const cVec3 lPosition);
+		//void LocalCreateSphereRigidBody(const float lfRadio, const cVec3 lPosition);
 		//void LoadObjectsXmlCollision();
 
 		//inline void SetTypeObject (string lsType) { msType = lsType; }

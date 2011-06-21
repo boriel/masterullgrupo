@@ -341,9 +341,10 @@ void cPhysicsObject::RenderObjectDebug()
 */
 
 
-
+/*
 void cPhysicsObject::LocalCreateSphereRigidBody(float lfRadio, cVec3 lPosition)
 {
 
 	
 }
+*/
