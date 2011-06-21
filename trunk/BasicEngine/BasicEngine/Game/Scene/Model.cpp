@@ -249,6 +249,8 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 		cout << "* Node Children["<< luiIndex << "]=" << (lNode->mName.data);
 		cout << " (mNumMeshes=" << lNode->mNumMeshes << ")"<<endl;
 
+		//lpScene->mMeshes[0]
+		ShowInfoMesh(lpScene->mMeshes[0]);
 		/*
 		string lsNameData = lNode->mName.data;
 		if ((lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE") && (lsNameData == "Sphere_01"))
@@ -281,36 +283,6 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 		*/
 	}
 
-	//Calculate vertix center
-	cVec3 lvCenter=cVec3(0,0,0);
-	cVec3 lvMax=cVec3(0,0,0);
-	cVec3 lvMin=cVec3(0,0,0);
-	float lfX, lfY, lfZ;
-
-	for (unsigned int luiIndex=0; luiIndex<lpScene->mMeshes[0]->mNumVertices; luiIndex++) {
-		lfX = lpScene->mMeshes[0]->mVertices[luiIndex].x;
-		lfY = lpScene->mMeshes[0]->mVertices[luiIndex].y;
-		lfZ = lpScene->mMeshes[0]->mVertices[luiIndex].z;
-		if (lfX>lvMax.x) lvMax.x=lfX;
-		if (lfY>lvMax.y) lvMax.y=lfY;
-		if (lfZ>lvMax.z) lvMax.z=lfZ;
-		if (lfX<lvMin.x) lvMin.x=lfX;
-		if (lfY<lvMin.y) lvMin.y=lfY;
-		if (lfZ<lvMin.z) lvMin.z=lfZ;
-
-
-
-	}
-	cout <<" > Bounding Box"<<endl;
-	cout <<"   - X:{"<<lvMin.x<<", "<<lvMax.x<<"} Y:{"<<lvMin.y<<", "<<lvMax.y<<"} Z:{"<<lvMin.z<<", "<<lvMax.z<<"}"<<endl;
-	lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
-	lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
-	lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
-	cout <<"   - Centro ("<<lvCenter.x<<", "<<lvCenter.y<<", "<<lvCenter.z<<") "<<endl;
-
-	//Calculate radius
-	float lfRadius=lvCenter.DistanceTo(lvMin);
-	cout << "   - Radio esfera = "<<lfRadius<<endl;
 
 	/*
 	//Prueba haciendo una pista los collision box directos
@@ -338,4 +310,32 @@ void cModel::ShowInfo(const aiScene* lpScene, string lacFile) {
 
 }
 
+void cModel::ShowInfoMesh(aiMesh* lpMesh) {
+	//Calculate vertix center
+	cVec3 lvCenter=cVec3(0,0,0);
+	cVec3 lvMax=cVec3(0,0,0);
+	cVec3 lvMin=cVec3(0,0,0);
+	float lfX, lfY, lfZ;
+	
+	for (unsigned int luiIndex=0; luiIndex<(lpMesh->mNumVertices); luiIndex++) {
+		lfX = lpMesh->mVertices[luiIndex].x;
+		lfY = lpMesh->mVertices[luiIndex].y;
+		lfZ = lpMesh->mVertices[luiIndex].z;
+		if (lfX>lvMax.x) lvMax.x=lfX;
+		if (lfY>lvMax.y) lvMax.y=lfY;
+		if (lfZ>lvMax.z) lvMax.z=lfZ;
+		if (lfX<lvMin.x) lvMin.x=lfX;
+		if (lfY<lvMin.y) lvMin.y=lfY;
+		if (lfZ<lvMin.z) lvMin.z=lfZ;
+	}
+	cout <<" > Bounding Box"<<endl;
+	cout <<"   - X:{"<<lvMin.x<<", "<<lvMax.x<<"} Y:{"<<lvMin.y<<", "<<lvMax.y<<"} Z:{"<<lvMin.z<<", "<<lvMax.z<<"}"<<endl;
+	lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
+	lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
+	lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
+	cout <<"   - Centro ("<<lvCenter.x<<", "<<lvCenter.y<<", "<<lvCenter.z<<") "<<endl;
 
+	//Calculate radius
+	float lfRadius=lvCenter.DistanceTo(lvMin);
+	cout << "   - Radio esfera = "<<lfRadius<<endl;
+}
