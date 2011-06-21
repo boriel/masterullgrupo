@@ -60,7 +60,7 @@
 	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 -->
 
-	<Object Type="Player" Position="5,5,-5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
+	<Object Type="Player" Position="-5,5,9" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
 
 
 <!--
@@ -132,7 +132,7 @@
 	</ObjectCollision>
 
 	<ObjectCollision ModelName="L200" >
-		<COLBOX X="2.2" Y="1" Z="0.77" />
+		<COLBOX X="0.77" Y="1" Z="2.2" />
 	</ObjectCollision>
 
     <ObjectCollision ModelName="Misil" >

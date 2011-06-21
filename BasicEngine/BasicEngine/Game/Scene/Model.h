@@ -14,6 +14,7 @@ Class cModel: Es un conjunto de submodelos
 
 struct aiScene;
 struct aiNode;
+struct aiMesh;
 
 class cModel : public cResource
 {
@@ -28,6 +29,7 @@ class cModel : public cResource
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
 		void ShowInfo(string lacFile);
 		void ShowInfo(const aiScene* lpScene, string lacFile);
+		void ShowInfoMesh(aiMesh* lpMesh);
 		typedef std::vector<cSubModel *> cObjectList;  //Temporal esta linea
 		cObjectList GetObjectList() { return mObjectList; }
 
