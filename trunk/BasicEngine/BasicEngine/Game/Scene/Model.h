@@ -28,7 +28,9 @@ class cModel : public cResource
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
 		void ShowInfo(string lacFile);
 		void ShowInfo(const aiScene* lpScene, string lacFile);
-	
+		typedef std::vector<cSubModel *> cObjectList;  //Temporal esta linea
+		cObjectList GetObjectList() { return mObjectList; }
+
 	private:
 		std::string macFile;
 		bool mbLoaded;
@@ -43,7 +45,7 @@ class cModel : public cResource
 
 		void ProcessScene( const aiScene* lpScene );
 		
-		typedef std::vector<cSubModel *> cObjectList;
+		//typedef std::vector<cSubModel *> cObjectList;  //la puse publica temporalmente
 		cObjectList mObjectList;
 		
 };
