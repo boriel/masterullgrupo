@@ -15,8 +15,8 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 
 void cObjectPlayer::Update( float lfTimestep )
 {
-	mPosition = mPhysicsObject->GetPosition();
-	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	mPosition = mpPhysicsObject->GetPosition();
+	cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 
@@ -51,7 +51,7 @@ void cObjectPlayer::MoveForwards(float lfImpulse) {
 	lvImpulse.x *= lfImpulse;
 	lvImpulse.y *= lfImpulse;
 	lvImpulse.z *= lfImpulse;
-	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse);
+	((cPhysicsPlayer*)mpPhysicsObject)->ApplyImpulse(lvImpulse);
 }
 
 void cObjectPlayer::MoveLeft(float lfImpulse) {
@@ -61,7 +61,7 @@ void cObjectPlayer::MoveLeft(float lfImpulse) {
 	lvImpulse.z *= lfImpulse;
 	cVec3 lvRelPos = (0.6*GetWorldMatrix().GetFront().Normalize());
 
-	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
+	((cPhysicsPlayer*)mpPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }
 
 void cObjectPlayer::MoveRight(float lfImpulse) {
@@ -71,5 +71,5 @@ void cObjectPlayer::MoveRight(float lfImpulse) {
 	lvImpulse.z *= lfImpulse;
 	cVec3 lvRelPos = (0.6*GetWorldMatrix().GetFront().Normalize());
 
-	((cPhysicsPlayer*)mPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
+	((cPhysicsPlayer*)mpPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }

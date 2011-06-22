@@ -5,10 +5,6 @@
 #include "..\..\Input\InputManager.h"
 #include "..\InputConfiguration.h"
 
-
-//#include "..\..\Graphics\GraphicManager.h"
-
-
 cObjectVehicle::cObjectVehicle (cObject lObject)
 {
 	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
@@ -28,38 +24,32 @@ void cObjectVehicle::InitPhysics ()
 	
 	
 	//((cPhysicsVehicle*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
-	((cPhysicsVehicle*)mPhysicsObject)->Init();
+	((cPhysicsVehicle*)mpPhysicsObject)->Init();
 }
-
 
 void cObjectVehicle::Update( float lfTimestep )
 {
-
 	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
-
-	
 	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
 	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
 	//mPosition = mPhysicsObject->GetPosition();
-	mPosition = ((cPhysicsVehicle*)mPhysicsObject)->GetPosition();
+	mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
 	//cQuaternion lQuatRot=((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
 	//cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
-	cQuaternion lQuatRot=((cPhysicsVehicle*)mPhysicsObject)->GetQuatRotation();
+	cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
-	
-
 
 	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else par aque coja 2 teclas presionadas)
 	if (BecomePressed(eIA_KeyI) || IsPressed(eIA_KeyI)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyI);
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyI);
 	if (BecomePressed(eIA_KeyK) || IsPressed(eIA_KeyK)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyK);
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyK);
 	if (BecomePressed(eIA_KeyJ) || IsPressed(eIA_KeyJ)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
 	if (BecomePressed(eIA_KeyL) || IsPressed(eIA_KeyL)) 
-		((cPhysicsVehicle*)mPhysicsObject)->SpecialKeyboard(eIA_KeyL);
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyL);
 	
 	//cInputAction::GetPressedTime();
 
