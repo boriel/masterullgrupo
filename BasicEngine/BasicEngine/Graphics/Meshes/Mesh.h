@@ -6,22 +6,21 @@ Class cMesh:
 
 */
 
-
 #ifndef MESH_H
 #define MESH_H
-
 
 #include <string>
 #include <vector>
 
-#include "../../Utility/Resource.h"
-#include "../../Utility/ResourceHandle.h"
+#include "..\..\Utility\Resource.h"
+#include "..\..\Utility\ResourceHandle.h"
 
 //constantes que identifican si la malla es de tipo estática o esqueletal
 static int kuiStaticMesh = 0;
 static int kuiSkeletalMesh = 1;
 
 struct aiMesh;
+struct cVec3;
 
 class cMesh : public cResource
 {
@@ -46,12 +45,14 @@ class cMesh : public cResource
 		unsigned muiIndexCount;  // número de índices que contiene la malla
 		bool mbLoaded;
 
+		cVec3 *mpVertexPositionBuffer;
+		unsigned muiNumVertex;
+
 		unsigned mVboVertices;
 		unsigned mVboNormals;
 		unsigned mVboIndex;
 		//unsigned mVboTexture; //cambiado esto por un stl vector
 		std::vector<unsigned> maVboTexture;
-
 };
 
 #endif

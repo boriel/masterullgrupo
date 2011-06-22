@@ -18,12 +18,8 @@ cObjectVehicle::cObjectVehicle (cObject lObject)
 	
 }
 
-
 void cObjectVehicle::InitPhysics ()
 {
-	
-	
-	//((cPhysicsVehicle*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 	((cPhysicsVehicle*)mpPhysicsObject)->Init();
 }
 
