@@ -35,12 +35,9 @@ class cModel : public cResource
 		void Update( float lfTimestep );
 		void Render(cMatrix &lWorld);
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
-		void ProcessBoundingFile(string lacFile);
-		void ProcessBoundingScene(const aiScene* lpScene, string lacFile);
-		void ProcessBoundingMesh(aiMesh* lpMesh);
 		typedef std::vector<cSubModel *> cObjectList;  //Temporal esta linea
 		cObjectList GetObjectList() { return mObjectList; }
-		tBounding GetBounding() { return mBounding; }
+		std::vector<tBounding> GetBounding() { return mBounding; }
 
 	private:
 		std::string macFile;
@@ -53,10 +50,15 @@ class cModel : public cResource
 		cResourceHandleList mMaterialList;
 		
 		std::vector<unsigned> mMeshMaterialIndexList; //un vector adicional en la clase escena que nos indicará que material se debe usar para cada malla
+		std::vector<tBounding> mBounding; //Vector que guarda información de Bounding para cada Mesh del Modelo
 
 		void ProcessScene( const aiScene* lpScene );
-		cObjectList mObjectList;
-		tBounding mBounding; //Guarda información de Bounding del modelo, la usará cada Object al crear su Physic
+		void ProcessBounding();
+//		void ProcessBoundingFile(string lacFile);
+//		void ProcessBoundingScene(const aiScene* lpScene, string lacFile);
+//		void ProcessBoundingMesh(aiMesh* lpMesh);
+
+		cObjectList mObjectList; //FIXME: ¿esto para qué está?
 };
 
 #endif

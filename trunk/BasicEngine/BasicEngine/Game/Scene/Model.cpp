@@ -153,7 +153,7 @@ void cModel::ProcessScene( const aiScene* lpScene )
 		ConvertNodesToObjects( lpScene->mRootNode, lMatrix );
 	}
 
-	ProcessBoundingScene(lpScene,macFile); //Calcular el bounding del modelo
+	ProcessBounding(); //Calcular el bounding del modelo
 }
 
 
@@ -215,6 +215,21 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 		ConvertNodesToObjects( lpNode->mChildren[luiIndex], lTransform);
 }
 
+void cModel::ProcessBounding() {
+#ifdef _DEBUG
+	cout << " " << endl;
+	cout << "[BOUNDING] File: " << macFile << endl;
+	cout << " NumMeshes = " <<  mMeshList.size() << "}"<<endl;
+#endif
+
+	for(unsigned int luiMeshIndex=0; luiMeshIndex<mMeshList.size(); luiMeshIndex++) {
+	}
+
+#ifdef _DEBUG
+#endif
+}
+
+/*
 void cModel::ProcessBoundingFile(string lacFile) { 
 	Assimp::Importer lImporter; // Create an instance of the Importer class
 	
@@ -226,8 +241,9 @@ void cModel::ProcessBoundingFile(string lacFile) {
 		return;
 	}
 	ProcessBoundingScene(lpScene,macFile);
-}
+}*/
 
+/*
 void cModel::ProcessBoundingScene(const aiScene* lpScene, string lacFile) {
 #ifdef _DEBUG
 	cout << " " << endl;
@@ -248,15 +264,16 @@ void cModel::ProcessBoundingScene(const aiScene* lpScene, string lacFile) {
 
 		//FIXME: Revisar cómo identificar los vértices de cada Malla y luego 
 		//procesar cada malla para obtener los bounding de cada una
-/*		for (unsigned int luiMeshIndex=0; luiMeshIndex<lpNode->mNumMeshes;luiMeshIndex++)
-		{
-			ShowInfoMesh((aiMesh*) lpNode->mMeshes[luiMeshIndex]);
-		}*/
+//		for (unsigned int luiMeshIndex=0; luiMeshIndex<lpNode->mNumMeshes;luiMeshIndex++)
+//		{
+//			ShowInfoMesh((aiMesh*) lpNode->mMeshes[luiMeshIndex]);
+//		}
 
 	}
 #endif
-}
+}*/
 
+/*
 void cModel::ProcessBoundingMesh(aiMesh* lpMesh) {
 	mBounding.mvCenter=cVec3(0,0,0);
 	mBounding.mvMax=cVec3(0,0,0);
@@ -288,5 +305,5 @@ void cModel::ProcessBoundingMesh(aiMesh* lpMesh) {
 	cout <<"   - Centro ("<<mBounding.mvCenter.x<<", "<<mBounding.mvCenter.y<<", "<<mBounding.mvCenter.z<<") "<<endl;
 	cout << "   - Radio esfera = "<<mBounding.mfRadius<<endl;
 #endif
-}
+}*/
 
