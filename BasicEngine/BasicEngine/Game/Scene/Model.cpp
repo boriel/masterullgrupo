@@ -4,10 +4,10 @@
 #include "ModelManager.h"
 #include "..\..\Graphics\Meshes\MeshManager.h"
 #include "..\..\Graphics\Meshes\Mesh.h"
-#include "../../Graphics/Materials/MaterialData.h"
-#include "../../Graphics/Materials/Material.h"
-#include "../../Graphics/Materials/MaterialManager.h"
-#include "../../Utility/FileUtils.h"
+#include "..\..\Graphics\Materials/MaterialData.h"
+#include "..\..\Graphics\Materials/Material.h"
+#include "..\..\Graphics\Materials/MaterialManager.h"
+#include "..\..\Utility\FileUtils.h"
 #include "..\..\MathLib\MathLib.h"
 #include "..\..\Graphics\GraphicManager.h"
 #include "..\Object\ObjectManager.h"
@@ -96,11 +96,8 @@ void cModel::Render(cMatrix &lWorld)
 		mObjectList[luiIndex]->Render();
 	*/
 
-
 	for (unsigned luiIndex = 0; luiIndex < mObjectList.size(); ++luiIndex )
 		mObjectList[luiIndex]->Render(lWorld);
-
-
 }
 
 
