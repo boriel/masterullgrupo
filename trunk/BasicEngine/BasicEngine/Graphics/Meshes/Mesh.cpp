@@ -6,10 +6,10 @@
 #include <aiScene.h> // Output data structure
 #include <aiPostProcess.h> // Post processing flags
 #include <cassert>
+#include "..\..\MathLib\Vec\Vec3.h"
 
 bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID)
 {
-
 	//macFile = "";
 
 	//En primer lugar crearemos el buffer de índices
@@ -20,10 +20,8 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	assert(luiTextureCoordinateCount <= 4);
 	maVboTexture.resize(luiTextureCoordinateCount);
 
-
 	glGenBuffers(1, &mVboVertices);
 	assert(glGetError() == GL_NO_ERROR);
-
 
 	// Creating all the texture coordinate buffers
 	for(unsigned luiIndex = 0; luiIndex < luiTextureCoordinateCount; ++luiIndex)
@@ -31,14 +29,6 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 		glGenBuffers(1, &maVboTexture[luiIndex]);
 		assert(glGetError() == GL_NO_ERROR);
 	}
-
-	//Estas lineas están mas abajo colocadas
-	//glGenBuffers(1, &mVboNormals);
-	//assert(glGetError() == GL_NO_ERROR);
-
-	//glGenBuffers(1, &mVboIndex);
-	//assert(glGetError() == GL_NO_ERROR);
-
 
 	//Una vez que hemos creado el buffer,
 	//debemos indicarle a OpenGL que las siguientes llamadas se refieren al buffer de
@@ -51,6 +41,9 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * lpAiMesh->mNumVertices,	lpAiMesh->mVertices, GL_STATIC_DRAW);
 	assert(glGetError() == GL_NO_ERROR);
 
+	muiNumVertex = lpAiMesh->mNumVertices;
+	cVec3 *mpVertexPositionBuffer = new cVec3[muiNumVertex];
+	memcpy(mpVertexPositionBuffer, lpAiMesh->mVertices, sizeof(float) * 3 * muiNumVertex);
 
 	//El primer parámetro de la llamada le indica a OpenGL que es un array buffer normal y
 	//no uno de índices. A continuación se le indica cuanta memoria tiene que copiar en el
@@ -80,9 +73,6 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	//las normales están convenientemente almacenadas en la escena, por lo que la
 	//inicialización del buffer es bastante simple. Esto no sucede con las coordenadas de
 	//textura, por lo que tenemos que componer primero el buffer en memoria:
-
-
-
 
 	// Reading all the texture coordinate
 	unsigned luiTexCoordNum = lpAiMesh->mNumVertices;
