@@ -155,7 +155,7 @@ void cEffect::SetParam(const std::string &lacName, const float * lfParam, unsign
 		int liNRows = cgGetParameterRows(lParam);
 		int liNCols = cgGetParameterColumns(lParam);
 		int liASize = cgGetArrayTotalSize(lParam);
-		int liNTotal = liNRows*liNCols;
+		int liNTotal = liNRows * liNCols;
 		
 		if (liASize > 0)
 		{

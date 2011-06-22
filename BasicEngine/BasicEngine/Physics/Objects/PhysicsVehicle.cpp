@@ -40,9 +40,12 @@
 float	gfEngineForce = 0.f;
 float	gfBreakingForce = 0.f;
 
-float	gfMaxEngineForce = 1000.f; //this should be engine/velocity dependent
+float	gfMaxEngineForce = 2000.f; //this should be engine/velocity dependent
 float	gfMaxBreakingForce = 100.f;
 
+const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
+const float gkfDesAcelerar = 5.f;  //cuando suelta el acelerador
+const float gkfFrenar = 40.f;
 
 float	gfVehicleSteering = 0.f;
 float	gfSteeringIncrement = 0.04f;
@@ -487,6 +490,7 @@ void cPhysicsVehicle::Init()
 
 }
 
+/*
 void cPhysicsVehicle::Update(void) 
 { //Update
 
@@ -497,6 +501,8 @@ void cPhysicsVehicle::Update(void)
  
 	std::cout << "Vehicle: (" << lbtTransform.getOrigin().getX() << "," <<  lbtTransform.getOrigin().getY() << "," << lbtTransform.getOrigin().getZ() << ")" << std::endl;
 }
+*/
+
 
 
 
@@ -600,29 +606,31 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 	
 	switch (luiKey)
 	{
-		case eIA_KeyI:  //arriba
-			gfEngineForce = gfMaxEngineForce;
+		case eIA_Up:  //arriba
+			//gfEngineForce = gfMaxEngineForce;
+			if (gfEngineForce < gfMaxEngineForce)
+				gfEngineForce += gkfAcelerar;
 			gfBreakingForce = 0.f;
-			//ApplyImpulse(cVec3(0,0,0), cVec3 (0,0,0));
 			
 			break;
 
-		case eIA_KeyK: //abajo
+		case eIA_Down: //abajo
 			gfBreakingForce = gfMaxBreakingForce; 
 			gfEngineForce = 0.f;
+			//gfEngineForce -= gkfAcelerar;
 			//gEngineForce = -maxEngineForce;
 			//gBreakingForce = 0.f;
 			
 			break;
 
-		case eIA_KeyJ:  //izquierda
+		case eIA_Left:  //izquierda
 			gfVehicleSteering += gfSteeringIncrement;
 			if (gfVehicleSteering > gfSteeringClamp)
 				gfVehicleSteering = gfSteeringClamp;
 			
 			break;
 
-		case eIA_KeyL: //derecha
+		case eIA_Right: //derecha
 			gfVehicleSteering -= gfSteeringIncrement;
 			if (gfVehicleSteering < -gfSteeringClamp)
 				gfVehicleSteering = -gfSteeringClamp;
@@ -713,7 +721,7 @@ void cPhysicsVehicle::ClientMoveAndDisplay()
 		//if (m_idle)
 		//	dt = 1.0/420.f;
 
-		lfDeltaTime = 1.0f/420.f;
+		lfDeltaTime = 1.0f / 420.f;
 
 		int maxSimSubSteps = 1; //temp a mano
 		int numSimSteps = lpDynamicsWorld->stepSimulation(lfDeltaTime, maxSimSubSteps);
@@ -762,5 +770,35 @@ void cPhysicsVehicle::ClientMoveAndDisplay()
 
 	glFlush();
 	//glutSwapBuffers();
+
+}
+
+void cPhysicsVehicle::MostrarInfo ()
+{
+
+	btTransform lbtTransform;
+	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
+	//std::cout << "Vehicle: (" << lbtTransform.getOrigin().getX() << "," <<  lbtTransform.getOrigin().getY() << "," << lbtTransform.getOrigin().getZ() << ")" << std::endl;
+
+	/*
+	cout << "--------------------" << endl;
+	cout << "giRightIndex : " << giRightIndex  << endl;
+	cout << "giUpIndex : " << giUpIndex << endl;
+	cout << "giForwardIndex : " << giForwardIndex  << endl;
+	cout << "gvbtWheelDirectionCS0 : " << gvbtWheelDirectionCS0.getX() << "," << gvbtWheelDirectionCS0.getY() << "," << gvbtWheelDirectionCS0.getZ() << endl;
+	cout << "gvbtWheelAxleCS : " << gvbtWheelAxleCS.getX() << "," << gvbtWheelAxleCS.getY() << "," << gvbtWheelAxleCS.getZ() << endl;
+	*/
+
+	//cout << "--------------------" << endl;
+	//cout << "gfEngineForce: " << gfEngineForce << " - gfBreakingForce: " << gfBreakingForce << endl ;
+	//cout << "gfMaxEngineForce: " << gfMaxEngineForce << " - gfMaxBreakingForce: " << gfMaxBreakingForce << endl ;
+	//cout << "gfVehicleSteering: " << gfVehicleSteering << " - gfSteeringIncrement: " << gfSteeringIncrement << " - gfSteeringClamp: " << gfSteeringClamp  << endl ;
+	//cout << "gfWheelRadius: " << gfWheelRadius << " - gfWheelWidth: " << gfWheelWidth << " - gfWheelFriction: " << gfWheelFriction  << endl ;
+	//cout << "getLinearVelocity: " << mpbtVehicle->getRigidBody()->getLinearVelocity().getX() << "," << mpbtVehicle->getRigidBody()->getLinearVelocity().getY() << "," << mpbtVehicle->getRigidBody()->getLinearVelocity().getZ() << endl;
+	//cout << "getTotalForce: " << mpbtVehicle->getRigidBody()->getTotalForce().getX() << "," << mpbtVehicle->getRigidBody()->getTotalForce().getY() << "," << mpbtVehicle->getRigidBody()->getTotalForce().getZ() << endl;
+	//cout << "getTotalTorque: " << mpbtVehicle->getRigidBody()->getTotalTorque().getX() << "," << mpbtVehicle->getRigidBody()->getTotalTorque().getY() << "," << mpbtVehicle->getRigidBody()->getTotalTorque().getZ() << endl;
+	
+
+	
 
 }
