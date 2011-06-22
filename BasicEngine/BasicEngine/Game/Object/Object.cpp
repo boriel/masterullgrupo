@@ -63,14 +63,14 @@ void cObject::InitPhysics()
 		mpPhysicsObject->SetMass(0.0f);
 		cResourceHandle lpHandle = cModelManager::Get().FindResourceA(msModelName);
 		cModel* lpModel = (cModel*) lpHandle.GetResource();
-		float lfX =(lpModel->GetBounding()).mvMin.x;
+		/*float lfX =(lpModel->GetBounding()).mvMin.x;
 		float lfY =(lpModel->GetBounding()).mvMin.y;
 		float lfZ =(lpModel->GetBounding()).mvMin.z;
 
 		btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lfX, lfY, lfZ));			
 		btCollisionShape* lbtShape = new btSphereShape((lpModel->GetBounding()).mfRadius); 
 		btRigidBody* lpbtRirigBody = mpPhysicsObject->LocalCreateRigidBody(mpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
-		mpPhysicsObject->SetRigidBody(lpbtRirigBody);
+		mpPhysicsObject->SetRigidBody(lpbtRirigBody);*/
 	}
 
 		/*
