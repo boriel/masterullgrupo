@@ -22,52 +22,52 @@
 		btVector3 wheelDirectionCS0(0,0,-1);
 		btVector3 wheelAxleCS(1,0,0);
 #else
-		int rightIndex = 0;
-		int upIndex = 1;
-		int forwardIndex = 2;
-		btVector3 wheelDirectionCS0(0,-1,0);
-		btVector3 wheelAxleCS(-1,0,0);
+		int giRightIndex = 0;
+		int giUpIndex = 1;
+		int giForwardIndex = 2;
+		btVector3 gvbtWheelDirectionCS0(0, -1, 0);
+		btVector3 gvbtWheelAxleCS(-1, 0, 0);
 #endif
 
 
 
-const int maxProxies = 32766;
-const int maxOverlap = 65535;
+//const int gkiMaxProxies = 32766; //Al parecer no las uso
+//const int gkiMaxOverlap = 65535; //Al parecer no las uso
 
 ///btRaycastVehicle is the interface for the constraint that implements the raycast vehicle
 ///notice that for higher-quality slow-moving vehicles, another approach might be better
 ///implementing explicit hinged-wheel constraints with cylinder collision, rather then raycasts
-float	gEngineForce = 0.f;
-float	gBreakingForce = 0.f;
+float	gfEngineForce = 0.f;
+float	gfBreakingForce = 0.f;
 
-float	maxEngineForce = 1000.f;//this should be engine/velocity dependent
-float	maxBreakingForce = 100.f;
-
-
-float	gVehicleSteering = 0.f;
-float	steeringIncrement = 0.04f;
-float	steeringClamp = 0.3f;
-float	wheelRadius = 0.5f;
-float	wheelWidth = 0.4f;
-float	wheelFriction = 1000;//BT_LARGE_FLOAT;
-float	suspensionStiffness = 20.f;
-float	suspensionDamping = 2.3f;
-float	suspensionCompression = 4.4f;
-float	rollInfluence = 0.1f;//1.0f;
+float	gfMaxEngineForce = 1000.f; //this should be engine/velocity dependent
+float	gfMaxBreakingForce = 100.f;
 
 
-btScalar suspensionRestLength(0.6);
+float	gfVehicleSteering = 0.f;
+float	gfSteeringIncrement = 0.04f;
+float	gfSteeringClamp = 0.3f;
+float	gfWheelRadius = 0.5f;
+float	gfWheelWidth = 0.4f;
+float	gfWheelFriction = 1000; //BT_LARGE_FLOAT;
+float	gfSuspensionStiffness = 20.f;
+float	gfSuspensionDamping = 2.3f;
+float	gfSuspensionCompression = 4.4f;
+float	gfRollInfluence = 0.1f;//1.0f;
+
+
+btScalar gbtSuspensionRestLength(0.6f);
 
 #define CUBE_HALF_EXTENTS 1
 
 
 
 
-//Yorman begin  para borrar
-#define SCALING 1.
-#define START_POS_X -3
-#define START_POS_Y -1
-#define START_POS_Z 5
+//Yorman begin  para borrar, esta puesto por el cubo de pruebas
+//#define SCALING 1.
+//#define START_POS_X -3
+//#define START_POS_Y -1
+//#define START_POS_Z 5
 //Yorman end
 
 
@@ -77,11 +77,11 @@ btScalar suspensionRestLength(0.6);
 cPhysicsVehicle::cPhysicsVehicle() 
 	//: m_carChassis(0), m_cameraHeight(4.f), m_minCameraDistance(3.f), m_maxCameraDistance(10.f), m_indexVertexArrays(0), m_vertices(0)
 { //Constructor con parámetros por defecto
-	m_vehicle = 0;
-	m_wheelShape = 0;
+	mpbtVehicle = 0;
+	mpbtWheelShape = 0;
 	//m_cameraPosition = btVector3(30,30,30);
-	m_carChassis = 0;
-	m_cameraHeight = 4.f;
+	mpbtCarChassis = 0;
+	//m_cameraHeight = 4.f;
 	//m_minCameraDistance(3.f) 
 	//m_maxCameraDistance(10.f)
 	//m_indexVertexArrays(0)
@@ -97,16 +97,17 @@ cPhysicsVehicle::~cPhysicsVehicle()
 	//cleanup in the reverse order of creation/initialization
 
 	//remove the rigidbodies from the dynamics world and delete them
-	int i;
-	for (i=lpDynamicsWorld->getNumCollisionObjects()-1; i>=0 ;i--) 
+	
+	for (int luiIndex = lpDynamicsWorld->getNumCollisionObjects() - 1; luiIndex >= 0 ; luiIndex--) 
 	{
-		btCollisionObject* obj = lpDynamicsWorld->getCollisionObjectArray()[i];
-		btRigidBody* body = btRigidBody::upcast(obj);
-		if (body && body->getMotionState()) {
-			delete body->getMotionState();
-		}
-		lpDynamicsWorld->removeCollisionObject( obj );
-		delete obj;
+		btCollisionObject* lbtObject = lpDynamicsWorld->getCollisionObjectArray()[luiIndex];
+		btRigidBody* lbtRigidBody = btRigidBody::upcast(lbtObject);
+
+		if (lbtRigidBody && lbtRigidBody->getMotionState()) 
+			delete lbtRigidBody->getMotionState();
+		
+		lpDynamicsWorld->removeCollisionObject( lbtObject );
+		delete lbtObject;
 	}
 
 	//delete collision shapes
@@ -116,26 +117,26 @@ cPhysicsVehicle::~cPhysicsVehicle()
 		delete lbtShape;
 	}
 
-	delete m_indexVertexArrays;
-	delete m_vertices;
+	delete mpbtIndexVertexArrays;
+	delete mpbtVertices;
 
 	//delete dynamics world
 	delete lpDynamicsWorld;
 
-	delete m_vehicleRayCaster;
-	delete m_vehicle;
-	delete m_wheelShape;
+	delete mpbtVehicleRayCaster;
+	delete mpbtVehicle;
+	delete mpbtWheelShape;
 
 	//delete solver
-	delete m_constraintSolver;
+	delete mpbtConstraintSolver;
 
 	//delete broadphase
-	delete m_overlappingPairCache;
+	delete mpbtOverlappingPairCache;
 
 	//delete dispatcher
-	delete m_dispatcher;
+	delete mpbtDispatcher;
 
-	delete m_collisionConfiguration;
+	delete mpbtCollisionConfiguration;
 }
 
 
@@ -185,7 +186,7 @@ void cPhysicsVehicle::Init()
 	m_overlappingPairCache = new btAxisSweep3(worldMin,worldMax);
 	m_constraintSolver = new btSequentialImpulseConstraintSolver();
 	lpDynamicsWorld = new btDiscreteDynamicsWorld(m_dispatcher,m_overlappingPairCache,m_constraintSolver,m_collisionConfiguration);
-*/	
+  */	
 #ifdef FORCE_ZAXIS_UP
 	//m_dynamicsWorld->setGravity(btVector3(0,0,-10));
 	lpDynamicsWorld->setGravity(btVector3(0, 0, -10));
@@ -193,8 +194,8 @@ void cPhysicsVehicle::Init()
 
 
 	//m_dynamicsWorld->setGravity(btVector3(0,0,0));
-	btTransform tr;
-	tr.setIdentity();
+	btTransform lbtTransform;
+	lbtTransform.setIdentity();
 
 
 
@@ -347,90 +348,90 @@ void cPhysicsVehicle::Init()
 	//localTrans effectively shifts the center of mass with respect to the chassis
 	localTrans.setOrigin(btVector3(0,0,1));
 #else
-	btCollisionShape* chassisShape = new btBoxShape(btVector3(1.f,0.5f,2.f));
+	btCollisionShape* lbtChassisShape = new btBoxShape( btVector3 (1.f, 0.5f, 2.f) );
 	//cPhysicsManager::Get().AddCollisionShape(chassisShape);
-	mabtCollisionShapes.push_back(chassisShape);
+	mabtCollisionShapes.push_back( lbtChassisShape );
 
-	btCompoundShape* compound = new btCompoundShape();
+	btCompoundShape* lbtCompoundShape = new btCompoundShape();
 	//cPhysicsManager::Get().AddCollisionShape(compound);
-	mabtCollisionShapes.push_back(compound);
-	btTransform localTrans;
-	localTrans.setIdentity();
+	mabtCollisionShapes.push_back( lbtCompoundShape );
+	btTransform lbtLocalTransform;
+	lbtLocalTransform.setIdentity();
 	//localTrans effectively shifts the center of mass with respect to the chassis
-	localTrans.setOrigin(btVector3(0,1,0));
+	lbtLocalTransform.setOrigin(btVector3(0,1,0));
 #endif
 
-	compound->addChildShape(localTrans,chassisShape);
+	lbtCompoundShape->addChildShape(lbtLocalTransform, lbtChassisShape);
 
-	tr.setOrigin(btVector3(0,0,0));
+	lbtTransform.setOrigin(btVector3(0,0,0));
 
-	m_carChassis = LocalCreateRigidBody(800,tr,compound);//chassisShape);
+	mpbtCarChassis = LocalCreateRigidBody(800, lbtTransform, lbtCompoundShape); //chassisShape);
 	//m_carChassis->setDamping(0.2,0.2);
 	
-	m_wheelShape = new btCylinderShapeX(btVector3(wheelWidth,wheelRadius,wheelRadius));
+	mpbtWheelShape = new btCylinderShapeX(btVector3(gfWheelWidth, gfWheelRadius, gfWheelRadius));
 	
 	//clientResetScene();
 
 	/// create vehicle
 	{
 		
-		m_vehicleRayCaster = new btDefaultVehicleRaycaster(lpDynamicsWorld);
+		mpbtVehicleRayCaster = new btDefaultVehicleRaycaster(lpDynamicsWorld);
 		
-		m_vehicle = new btRaycastVehicle(m_tuning,m_carChassis,m_vehicleRayCaster);
+		mpbtVehicle = new btRaycastVehicle(mbtTuning, mpbtCarChassis, mpbtVehicleRayCaster);
 		
 		///never deactivate the vehicle
-		m_carChassis->setActivationState(DISABLE_DEACTIVATION);
+		mpbtCarChassis->setActivationState(DISABLE_DEACTIVATION);
 
 		
 		//btRigidBody* lbtrb =  m_vehicle->getRigidBody();
 
 
-		lpDynamicsWorld->addVehicle(m_vehicle);
+		lpDynamicsWorld->addVehicle(mpbtVehicle);
 
-		float connectionHeight = 1.2f;
+		float lfConnectionHeight = 1.2f;
 
 	
-		bool isFrontWheel=true;
+		bool lbIsFrontWheel=true;
 
 		//choose coordinate system
-		m_vehicle->setCoordinateSystem(rightIndex,upIndex,forwardIndex);
+		mpbtVehicle->setCoordinateSystem(giRightIndex, giUpIndex, giForwardIndex);
 
 #ifdef FORCE_ZAXIS_UP
 		btVector3 connectionPointCS0(CUBE_HALF_EXTENTS-(0.3*wheelWidth),2*CUBE_HALF_EXTENTS-wheelRadius, connectionHeight);
 #else
-		btVector3 connectionPointCS0(CUBE_HALF_EXTENTS-(0.3*wheelWidth),connectionHeight,2*CUBE_HALF_EXTENTS-wheelRadius);
+		btVector3 connectionPointCS0(CUBE_HALF_EXTENTS-(0.3f * gfWheelWidth), lfConnectionHeight, 2.0f * CUBE_HALF_EXTENTS - gfWheelRadius);
 #endif
 
-		m_vehicle->addWheel(connectionPointCS0,wheelDirectionCS0,wheelAxleCS,suspensionRestLength,wheelRadius,m_tuning,isFrontWheel);
+		mpbtVehicle->addWheel (connectionPointCS0, gvbtWheelDirectionCS0, gvbtWheelAxleCS, gbtSuspensionRestLength, gfWheelRadius, mbtTuning, lbIsFrontWheel);
 #ifdef FORCE_ZAXIS_UP
 		connectionPointCS0 = btVector3(-CUBE_HALF_EXTENTS+(0.3*wheelWidth),2*CUBE_HALF_EXTENTS-wheelRadius, connectionHeight);
 #else
-		connectionPointCS0 = btVector3(-CUBE_HALF_EXTENTS+(0.3*wheelWidth),connectionHeight,2*CUBE_HALF_EXTENTS-wheelRadius);
+		connectionPointCS0 = btVector3(-CUBE_HALF_EXTENTS+(0.3f * gfWheelWidth), lfConnectionHeight, 2 * CUBE_HALF_EXTENTS - gfWheelRadius);
 #endif
 
-		m_vehicle->addWheel(connectionPointCS0,wheelDirectionCS0,wheelAxleCS,suspensionRestLength,wheelRadius,m_tuning,isFrontWheel);
+		mpbtVehicle->addWheel (connectionPointCS0, gvbtWheelDirectionCS0, gvbtWheelAxleCS, gbtSuspensionRestLength, gfWheelRadius, mbtTuning, lbIsFrontWheel);
 #ifdef FORCE_ZAXIS_UP
 		connectionPointCS0 = btVector3(-CUBE_HALF_EXTENTS+(0.3*wheelWidth),-2*CUBE_HALF_EXTENTS+wheelRadius, connectionHeight);
 #else
-		connectionPointCS0 = btVector3(-CUBE_HALF_EXTENTS+(0.3*wheelWidth),connectionHeight,-2*CUBE_HALF_EXTENTS+wheelRadius);
+		connectionPointCS0 = btVector3(-CUBE_HALF_EXTENTS+(0.3f * gfWheelWidth), lfConnectionHeight, -2 * CUBE_HALF_EXTENTS + gfWheelRadius);
 #endif //FORCE_ZAXIS_UP
-		isFrontWheel = false;
-		m_vehicle->addWheel(connectionPointCS0,wheelDirectionCS0,wheelAxleCS,suspensionRestLength,wheelRadius,m_tuning,isFrontWheel);
+		lbIsFrontWheel = false;
+		mpbtVehicle->addWheel (connectionPointCS0, gvbtWheelDirectionCS0, gvbtWheelAxleCS, gbtSuspensionRestLength, gfWheelRadius, mbtTuning, lbIsFrontWheel);
 #ifdef FORCE_ZAXIS_UP
 		connectionPointCS0 = btVector3(CUBE_HALF_EXTENTS-(0.3*wheelWidth),-2*CUBE_HALF_EXTENTS+wheelRadius, connectionHeight);
 #else
-		connectionPointCS0 = btVector3(CUBE_HALF_EXTENTS-(0.3*wheelWidth),connectionHeight,-2*CUBE_HALF_EXTENTS+wheelRadius);
+		connectionPointCS0 = btVector3(CUBE_HALF_EXTENTS-(0.3f * gfWheelWidth), lfConnectionHeight, -2 * CUBE_HALF_EXTENTS + gfWheelRadius);
 #endif
-		m_vehicle->addWheel(connectionPointCS0,wheelDirectionCS0,wheelAxleCS,suspensionRestLength,wheelRadius,m_tuning,isFrontWheel);
+		mpbtVehicle->addWheel (connectionPointCS0, gvbtWheelDirectionCS0, gvbtWheelAxleCS, gbtSuspensionRestLength, gfWheelRadius, mbtTuning, lbIsFrontWheel);
 		
-		for (int i=0;i<m_vehicle->getNumWheels();i++)
+		for (int liIndex=0; liIndex < mpbtVehicle->getNumWheels(); liIndex++)
 		{
-			btWheelInfo& wheel = m_vehicle->getWheelInfo(i);
-			wheel.m_suspensionStiffness = suspensionStiffness;
-			wheel.m_wheelsDampingRelaxation = suspensionDamping;
-			wheel.m_wheelsDampingCompression = suspensionCompression;
-			wheel.m_frictionSlip = wheelFriction;
-			wheel.m_rollInfluence = rollInfluence;
+			btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
+			lbtWheelInfo.m_suspensionStiffness = gfSuspensionStiffness;
+			lbtWheelInfo.m_wheelsDampingRelaxation = gfSuspensionDamping;
+			lbtWheelInfo.m_wheelsDampingCompression = gfSuspensionCompression;
+			lbtWheelInfo.m_frictionSlip = gfWheelFriction;
+			lbtWheelInfo.m_rollInfluence = gfRollInfluence;
 		}
 	}
 
@@ -489,12 +490,12 @@ void cPhysicsVehicle::Init()
 void cPhysicsVehicle::Update(void) 
 { //Update
 
-	btTransform trans;
-	m_vehicle->getRigidBody()->getMotionState()->getWorldTransform(trans);
+	btTransform lbtTransform;
+	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
 	
 	//mpbtRigidBody->getMotionState()->getWorldTransform(trans);
  
-	std::cout << "Vehicle: (" << trans.getOrigin().getX() << "," <<  trans.getOrigin().getY() << "," << trans.getOrigin().getZ() << ")" << std::endl;
+	std::cout << "Vehicle: (" << lbtTransform.getOrigin().getX() << "," <<  lbtTransform.getOrigin().getY() << "," << lbtTransform.getOrigin().getZ() << ")" << std::endl;
 }
 
 
@@ -506,7 +507,7 @@ cVec3 cPhysicsVehicle::GetPosition ()
 
 	btTransform lbtTransform;
 	//mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
-	m_vehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
+	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
 
 
 	lPosition.x = lbtTransform.getOrigin().getX();
@@ -525,7 +526,7 @@ cQuaternion cPhysicsVehicle::GetQuatRotation()
 
 	btTransform lbtTransform;
 	//mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
-	m_vehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
+	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
 
 	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
 	
@@ -600,31 +601,31 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 	switch (luiKey)
 	{
 		case eIA_KeyI:  //arriba
-			gEngineForce = maxEngineForce;
-			gBreakingForce = 0.f;
+			gfEngineForce = gfMaxEngineForce;
+			gfBreakingForce = 0.f;
 			//ApplyImpulse(cVec3(0,0,0), cVec3 (0,0,0));
 			
 			break;
 
 		case eIA_KeyK: //abajo
-			gBreakingForce = maxBreakingForce; 
-			gEngineForce = 0.f;
+			gfBreakingForce = gfMaxBreakingForce; 
+			gfEngineForce = 0.f;
 			//gEngineForce = -maxEngineForce;
 			//gBreakingForce = 0.f;
 			
 			break;
 
 		case eIA_KeyJ:  //izquierda
-			gVehicleSteering += steeringIncrement;
-			if (gVehicleSteering > steeringClamp)
-				gVehicleSteering = steeringClamp;
+			gfVehicleSteering += gfSteeringIncrement;
+			if (gfVehicleSteering > gfSteeringClamp)
+				gfVehicleSteering = gfSteeringClamp;
 			
 			break;
 
 		case eIA_KeyL: //derecha
-			gVehicleSteering -= steeringIncrement;
-			if (gVehicleSteering < -steeringClamp)
-				gVehicleSteering = -steeringClamp;
+			gfVehicleSteering -= gfSteeringIncrement;
+			if (gfVehicleSteering < -gfSteeringClamp)
+				gfVehicleSteering = -gfSteeringClamp;
 			
 			break;
 
@@ -687,23 +688,23 @@ void cPhysicsVehicle::ClientMoveAndDisplay()
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	
 	{			
-		int wheelIndex = 2;
-		m_vehicle->applyEngineForce(gEngineForce,wheelIndex);
-		m_vehicle->setBrake(gBreakingForce,wheelIndex);
-		wheelIndex = 3;
-		m_vehicle->applyEngineForce(gEngineForce,wheelIndex);
-		m_vehicle->setBrake(gBreakingForce,wheelIndex);
+		int liWheelIndex = 2;
+		mpbtVehicle->applyEngineForce( gfEngineForce, liWheelIndex );
+		mpbtVehicle->setBrake( gfBreakingForce, liWheelIndex );
+		liWheelIndex = 3;
+		mpbtVehicle->applyEngineForce( gfEngineForce, liWheelIndex );
+		mpbtVehicle->setBrake( gfBreakingForce, liWheelIndex );
 
 
-		wheelIndex = 0;
-		m_vehicle->setSteeringValue(gVehicleSteering,wheelIndex);
-		wheelIndex = 1;
-		m_vehicle->setSteeringValue(gVehicleSteering,wheelIndex);
+		liWheelIndex = 0;
+		mpbtVehicle->setSteeringValue( gfVehicleSteering, liWheelIndex );
+		liWheelIndex = 1;
+		mpbtVehicle->setSteeringValue( gfVehicleSteering, liWheelIndex );
 
 	}
 
 
-	float dt = getDeltaTimeMicroseconds() * 0.000001f;
+	float lfDeltaTime = GetDeltaTimeMicroseconds() * 0.000001f;
 	
 	if (lpDynamicsWorld)
 	{
@@ -712,10 +713,10 @@ void cPhysicsVehicle::ClientMoveAndDisplay()
 		//if (m_idle)
 		//	dt = 1.0/420.f;
 
-		dt = 1.0/420.f;
+		lfDeltaTime = 1.0f/420.f;
 
 		int maxSimSubSteps = 1; //temp a mano
-		int numSimSteps = lpDynamicsWorld->stepSimulation(dt, maxSimSubSteps);
+		int numSimSteps = lpDynamicsWorld->stepSimulation(lfDeltaTime, maxSimSubSteps);
 		
 
 //#define VERBOSE_FEEDBACK
