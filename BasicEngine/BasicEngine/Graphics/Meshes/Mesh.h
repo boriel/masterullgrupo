@@ -39,6 +39,8 @@ class cMesh : public cResource
 		//inline unsigned getIndex() { return mVboIndex; }
 
 		virtual void PrepareRender(cResourceHandle lMaterial) { ; }
+		cVec3* GetVertexPositionBuffer() { return mpVertexPositionBuffer; }
+		unsigned int GetNumVertex() { return muiNumVertex; }
 	
 	protected:
 		//std:string macFile; //creo que no lo usamos por ahora

@@ -41,7 +41,8 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * lpAiMesh->mNumVertices,	lpAiMesh->mVertices, GL_STATIC_DRAW);
 	assert(glGetError() == GL_NO_ERROR);
 
-	muiNumVertex = lpAiMesh->mNumVertices;
+	//Almacenamos todos los vértices del Mesh
+	muiNumVertex = lpAiMesh->mNumVertices; 
 	cVec3 *mpVertexPositionBuffer = new cVec3[muiNumVertex];
 	memcpy(mpVertexPositionBuffer, lpAiMesh->mVertices, sizeof(float) * 3 * muiNumVertex);
 
