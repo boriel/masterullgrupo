@@ -10,7 +10,7 @@
 
 bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID)
 {
-	//macFile = "";
+	macNameID = lacNameID;
 
 	//En primer lugar crearemos el buffer de índices
 	aiMesh* lpAiMesh = (aiMesh*)lpMemoryData;

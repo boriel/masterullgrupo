@@ -43,7 +43,7 @@ class cMesh : public cResource
 		unsigned int GetNumVertex() { return muiNumVertex; }
 	
 	protected:
-		//std:string macFile; //creo que no lo usamos por ahora
+		std::string macNameID;
 		unsigned muiIndexCount;  // número de índices que contiene la malla
 		bool mbLoaded;
 
