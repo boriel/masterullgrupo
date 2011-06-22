@@ -70,6 +70,4 @@ class cObject
 		cQuaternion mRotacionInicial;  //NO ES QUATERNION PROPIEAMENTE DICHO, SON LSO DATOS A PELO DEL XML
 };
 
-
-
 #endif

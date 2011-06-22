@@ -16,23 +16,13 @@ cObjectPista::cObjectPista (cObject lObject)
 
 void cObjectPista::Update( float lfTimestep )
 {
-
-	//mPosition = ((cPhysicsPista*)mPhysicsObject)->GetPosition();
-	//mWorldMatrix.SetPosition(mPosition);
-
 	mPosition = ((cPhysicsPista*)mPhysicsObject)->GetPosition();
 	cQuaternion lQuatRot=((cPhysicsPista*)mPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 }
 
-//void cObjectPista::Render (cMatrix &lWorld) 
 void cObjectPista::Render () 
 {
-	//cObject::Render(lWorld);
 	cObject::Render();
-
-#ifdef _DEBUG
-	//((cPhysicsPista*) mPhysicsObject)->RenderObjectDebug();
-#endif
 }
