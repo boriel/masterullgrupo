@@ -6,8 +6,8 @@
       <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
       <source_data>file:///F:/Ficheros/Cursos/M%C3%A1ster%20en%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20(Final)/BasicEngine/BasicEngine/Data/Cars/L200/L200ZUP.max</source_data>
     </contributor>
-    <created>2011-06-09T23:23:27</created>
-    <modified>2011-06-09T23:23:27</modified>
+    <created>2011-06-22T02:32:29</created>
+    <modified>2011-06-22T02:32:29</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -403,91 +403,62 @@
       <node name="EnvironmentAmbientLight">
         <instance_light url="#EnvironmentAmbientLight"/>
       </node>
-      <node id="node-Group001" name="Group001">
-        <rotate>0.5773504 0.5773502 -0.5773502 -120</rotate>
-        <scale>0.2359474 0.2359474 0.2359474</scale>
-        <node id="node-Pickup_Truck" name="Pickup_Truck">
-          <translate>-0.1965591 3.385728 -2.38419e-7</translate>
-          <rotate>0.7071068 -1.45315e-7 -0.7071068 -180</rotate>
-          <scale>0.01980651 0.01980651 0.01980651</scale>
-          <node id="node-Right_Wiper" name="Right_Wiper">
-            <translate>-45.64116 216.1616 230.2819</translate>
-            <instance_geometry url="#geom-Right_Wiper">
-              <bind_material>
-                <technique_common>
-                  <instance_material symbol="Pickup_Truck_Texture_1" target="#Pickup_Truck_Texture-material">
-                    <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                  </instance_material>
-                </technique_common>
-              </bind_material>
-            </instance_geometry>
-          </node>
-          <node id="node-Left_Wiper" name="Left_Wiper">
-            <translate>42.59598 217.1198 225.6597</translate>
-            <instance_geometry url="#geom-Left_Wiper">
-              <bind_material>
-                <technique_common>
-                  <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
-                    <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                  </instance_material>
-                </technique_common>
-              </bind_material>
-            </instance_geometry>
-          </node>
-          <node id="node-Right_Rear" name="Right_Rear">
-            <translate>-137.715 66.51978 -247.0687</translate>
-            <instance_geometry url="#geom-Right_Rear">
-              <bind_material>
-                <technique_common>
-                  <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
-                    <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                  </instance_material>
-                </technique_common>
-              </bind_material>
-            </instance_geometry>
-          </node>
-          <node id="node-Left_Rear" name="Left_Rear">
-            <translate>137.715 66.51978 -247.0687</translate>
-            <instance_geometry url="#geom-Left_Rear">
-              <bind_material>
-                <technique_common>
-                  <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
-                    <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                  </instance_material>
-                </technique_common>
-              </bind_material>
-            </instance_geometry>
-          </node>
-          <node id="node-Left_Pivot" name="Left_Pivot">
-            <translate>128.0728 66.51976 305.7056</translate>
-            <node id="node-Left_Front" name="Left_Front">
-              <instance_geometry url="#geom-Left_Front">
-                <bind_material>
-                  <technique_common>
-                    <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
-                      <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                    </instance_material>
-                  </technique_common>
-                </bind_material>
-              </instance_geometry>
-            </node>
-          </node>
-          <node id="node-Right_Pivot" name="Right_Pivot">
-            <translate>-127.7153 66.51977 305.7056</translate>
-            <node id="node-Right_Front" name="Right_Front">
-              <instance_geometry url="#geom-Right_Front">
-                <bind_material>
-                  <technique_common>
-                    <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
-                      <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                    </instance_material>
-                  </technique_common>
-                </bind_material>
-              </instance_geometry>
-            </node>
-          </node>
-          <node id="node-TruckBody" name="TruckBody">
-            <instance_geometry url="#geom-TruckBody">
+      <node id="node-Pickup_Truck" name="Pickup_Truck">
+        <translate>0.01645628 -0.04637766 -0.7988536</translate>
+        <rotate>-1 0 0 -90.00002</rotate>
+        <scale>0.004673293 0.004673294 0.004673294</scale>
+        <node id="node-Right_Wiper" name="Right_Wiper">
+          <translate>-45.64116 216.1615 230.2819</translate>
+          <instance_geometry url="#geom-Right_Wiper">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Pickup_Truck_Texture_1" target="#Pickup_Truck_Texture-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="node-Left_Wiper" name="Left_Wiper">
+          <translate>42.59599 217.1198 225.6596</translate>
+          <instance_geometry url="#geom-Left_Wiper">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="node-Right_Rear" name="Right_Rear">
+          <translate>-137.715 66.51978 -247.0687</translate>
+          <instance_geometry url="#geom-Right_Rear">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="node-Left_Rear" name="Left_Rear">
+          <translate>137.715 66.51978 -247.0687</translate>
+          <instance_geometry url="#geom-Left_Rear">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
+        <node id="node-Left_Pivot" name="Left_Pivot">
+          <translate>128.0728 66.51978 305.7056</translate>
+          <node id="node-Left_Front" name="Left_Front">
+            <instance_geometry url="#geom-Left_Front">
               <bind_material>
                 <technique_common>
                   <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
@@ -497,6 +468,31 @@
               </bind_material>
             </instance_geometry>
           </node>
+        </node>
+        <node id="node-Right_Pivot" name="Right_Pivot">
+          <translate>-127.7154 66.51978 305.7056</translate>
+          <node id="node-Right_Front" name="Right_Front">
+            <instance_geometry url="#geom-Right_Front">
+              <bind_material>
+                <technique_common>
+                  <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
+                    <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                  </instance_material>
+                </technique_common>
+              </bind_material>
+            </instance_geometry>
+          </node>
+        </node>
+        <node id="node-TruckBody" name="TruckBody">
+          <instance_geometry url="#geom-TruckBody">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="Pickup_Truck_Texture" target="#Pickup_Truck_Texture-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
         </node>
       </node>
     </visual_scene>
