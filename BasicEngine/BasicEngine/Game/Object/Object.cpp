@@ -4,7 +4,7 @@
 #include "..\Scene\ModelManager.h"
 
 #include "..\..\Graphics\GraphicManager.h"
-
+#include "..\Scene\Model.h"
 
 void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial)
 {
@@ -59,36 +59,16 @@ void cObject::InitPhysics()
 	//Se supone que el objeto ya está inicializado, y su modelo cargado en ModelManager
 	//Ahora vamos a inicializar la física del Object, a partir de su tipo y de su Model.GetBounding()
 
-			/*
-		string lsNameData = lNode->mName.data;
-		if ((lacFile == "./Data/Circuitos/Billar/01/Billar01.DAE") && (lsNameData == "Sphere_01"))
-		{
-			cObject *lpObject = cObjectManager::Get().GetObject("Pista", "Billar");
-			cPhysicsObject *lpPhysicsObject = lpObject->GetPtrPhysicsObject();
-			lpPhysicsObject->SetMass(0.0f);
-			
-			//Calculando radio
-			float lfRadius=0.0f;
-			
-			cVec3 lVertice= cVec3(	lpScene->mMeshes[0]->mVertices[luiIndex].x,	lpScene->mMeshes[0]->mVertices[luiIndex].y,		lpScene->mMeshes[0]->mVertices[luiIndex].z);
-			
-			cVec3 lvCenter2 = cVec3(0,0,0);
-
-			float lfDistance = (lvCenter2.DistanceTo(lVertice));
-			if (lfDistance > lfRadius) 
-				lfRadius = lfDistance;
-			
-
-			cout << "If: " << lpScene->mMeshes[0]->mVertices[luiIndex].x << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].y << " , " << lpScene->mMeshes[0]->mVertices[luiIndex].z << " R: " << lfRadius << endl;
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpScene->mMeshes[0]->mVertices[luiIndex].x, lpScene->mMeshes[0]->mVertices[luiIndex].y, lpScene->mMeshes[0]->mVertices[luiIndex].z));
-			
-			btCollisionShape* lbtShape = new btSphereShape(lfRadius); 
-			
-			
-			btRigidBody* lpbtRirigBody = lpPhysicsObject->LocalCreateRigidBody(lpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
-			lpPhysicsObject->SetRigidBody(lpbtRirigBody);
-		}
-		*/
+	if (msType=="Pista") {
+		mPhysicsObject->SetMass(0.0f);
+		//Model* lpModel = cModelManager::Get().FindResourceA(msModelName);
+		//cVec3 lVertice= cVec3(lpModel-> ,	lpScene->mMeshes[0]->mVertices[luiIndex].y,		lpScene->mMeshes[0]->mVertices[luiIndex].z);
+		//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpScene->mMeshes[0]->mVertices[luiIndex].x, lpScene->mMeshes[0]->mVertices[luiIndex].y, lpScene->mMeshes[0]->mVertices[luiIndex].z));			
+		//btCollisionShape* lbtShape = new btSphereShape(lfRadius); 
+	
+		//btRigidBody* lpbtRirigBody = mpPhysicsObject->LocalCreateRigidBody(mpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
+		//mpPhysicsObject->SetRigidBody(lpbtRirigBody);
+	}
 
 		/*
 	//Prueba haciendo una pista los collision box directos
