@@ -9,10 +9,10 @@ File inputConfiguration.h: Contiene un enum con las posibles acciones que tiene
 
 enum eInputActions {
 	eIA_CloseApplication = 0,
-	eIA_PlayerForward,
-	eIA_PlayerBack,
-	eIA_PlayerLeft,
-	eIA_PlayerRight,
+	eIA_Up,
+	eIA_Down,
+	eIA_Left,
+	eIA_Right,
 	eIA_CameraForward,
 	eIA_CameraBack,
 	eIA_CameraLeft,
@@ -27,6 +27,11 @@ enum eInputActions {
 	eIA_KeyK,
 	eIA_KeyJ,
 	eIA_KeyL,
+	eIA_PlayerForward,
+	eIA_PlayerBack,
+	eIA_PlayerLeft,
+	eIA_PlayerRight,
+
 	eIA_Count
 };
 

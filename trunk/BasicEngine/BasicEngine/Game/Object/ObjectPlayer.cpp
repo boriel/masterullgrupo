@@ -20,6 +20,7 @@ void cObjectPlayer::Update( float lfTimestep )
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 
+	/*
 	if (IsPressed(eIA_PlayerForward)) {
 		MoveForwards(0.3f);
 	} else if (IsPressed(eIA_PlayerBack)) {
@@ -30,6 +31,7 @@ void cObjectPlayer::Update( float lfTimestep )
 	} else if (IsPressed(eIA_PlayerRight)) {
 		MoveRight(0.1f); 
 	}
+	*/
 
 }
 
@@ -59,7 +61,7 @@ void cObjectPlayer::MoveLeft(float lfImpulse) {
 	lvImpulse.x *= lfImpulse;
 	lvImpulse.y *= lfImpulse;
 	lvImpulse.z *= lfImpulse;
-	cVec3 lvRelPos = (0.6*GetWorldMatrix().GetFront().Normalize());
+	cVec3 lvRelPos = (0.6f * GetWorldMatrix().GetFront().Normalize());
 
 	((cPhysicsPlayer*)mpPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }
@@ -69,7 +71,7 @@ void cObjectPlayer::MoveRight(float lfImpulse) {
 	lvImpulse.x *= lfImpulse;
 	lvImpulse.y *= lfImpulse;
 	lvImpulse.z *= lfImpulse;
-	cVec3 lvRelPos = (0.6*GetWorldMatrix().GetFront().Normalize());
+	cVec3 lvRelPos = (0.6f * GetWorldMatrix().GetFront().Normalize());
 
 	((cPhysicsPlayer*)mpPhysicsObject)->ApplyImpulse(lvImpulse,lvRelPos);
 }

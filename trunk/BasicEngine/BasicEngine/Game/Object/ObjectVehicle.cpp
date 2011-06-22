@@ -38,14 +38,14 @@ void cObjectVehicle::Update( float lfTimestep )
 	mWorldMatrix.SetPosition(mPosition);
 
 	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else par aque coja 2 teclas presionadas)
-	if (BecomePressed(eIA_KeyI) || IsPressed(eIA_KeyI)) 
-		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyI);
-	if (BecomePressed(eIA_KeyK) || IsPressed(eIA_KeyK)) 
-		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyK);
-	if (BecomePressed(eIA_KeyJ) || IsPressed(eIA_KeyJ)) 
-		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyJ);
-	if (BecomePressed(eIA_KeyL) || IsPressed(eIA_KeyL)) 
-		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_KeyL);
+	if (BecomePressed(eIA_Up) || IsPressed(eIA_Up)) 
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Up);
+	if (BecomePressed(eIA_Down) || IsPressed(eIA_Down)) 
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Down);
+	if (BecomePressed(eIA_Left) || IsPressed(eIA_Left)) 
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Left);
+	if (BecomePressed(eIA_Right) || IsPressed(eIA_Right)) 
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
 	
 	//cInputAction::GetPressedTime();
 

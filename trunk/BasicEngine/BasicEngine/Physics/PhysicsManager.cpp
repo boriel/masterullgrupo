@@ -106,6 +106,7 @@ void cPhysicsManager::Update(float lfTimestep)
 	mpbtDynamicsWorld->stepSimulation(lfTimestep, 10); //Actualizamos el mundo
 
 
+
 	/*
 	for (unsigned luiIndex = 0; luiIndex < mPhysicsPista.size(); ++luiIndex ) 
 		mPhysicsPista[luiIndex]->Update();

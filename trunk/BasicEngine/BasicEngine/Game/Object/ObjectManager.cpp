@@ -124,7 +124,13 @@ void cObjectManager::Update(float lfTimestep)
 
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
+	{
 		mObjectVehicle[luiIndex]->Update(lfTimestep);
+#if _DEBUG
+		((cPhysicsVehicle*)mObjectVehicle[luiIndex]->GetPtrPhysicsObject())->MostrarInfo();
+#endif
+
+	}
 
 	//Actualizando los objetos
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
