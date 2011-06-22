@@ -39,16 +39,14 @@ class cMesh : public cResource
 		//inline unsigned getIndex() { return mVboIndex; }
 
 		virtual void PrepareRender(cResourceHandle lMaterial) { ; }
-		cVec3* GetVertexPositionBuffer() { return mpVertexPositionBuffer; }
-		unsigned int GetNumVertex() { return muiNumVertex; }
-	
+
+		cVec3 *mpVertexPositionBuffer;
+		unsigned muiNumVertex;
+
 	protected:
 		std::string macNameID;
 		unsigned muiIndexCount;  // número de índices que contiene la malla
 		bool mbLoaded;
-
-		cVec3 *mpVertexPositionBuffer;
-		unsigned muiNumVertex;
 
 		unsigned mVboVertices;
 		unsigned mVboNormals;

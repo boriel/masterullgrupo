@@ -48,18 +48,18 @@ bool cModel::Init( const std::string &lacNameID, const std::string &lacFile )
 //Destruyendo la memoria
 void cModel::Deinit() 
 { 
-	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex ) 
+	for (unsigned luiIndex=0; luiIndex < mSubModelList.size(); ++luiIndex ) 
 	{
-		mObjectList[luiIndex]->Deinit();
-		delete mObjectList[luiIndex];
+		mSubModelList[luiIndex]->Deinit();
+		delete mSubModelList[luiIndex];
 	}
 }
 
 //Update
 void cModel::Update( float lfTimestep ) 
 { 
-	for (unsigned luiIndex=0; luiIndex < mObjectList.size(); ++luiIndex )
-		mObjectList[luiIndex]->Update(lfTimestep);
+	for (unsigned luiIndex=0; luiIndex < mSubModelList.size(); ++luiIndex )
+		mSubModelList[luiIndex]->Update(lfTimestep);
 }
 
 //Render
@@ -96,8 +96,8 @@ void cModel::Render(cMatrix &lWorld)
 		mObjectList[luiIndex]->Render();
 	*/
 
-	for (unsigned luiIndex = 0; luiIndex < mObjectList.size(); ++luiIndex )
-		mObjectList[luiIndex]->Render(lWorld);
+	for (unsigned luiIndex = 0; luiIndex < mSubModelList.size(); ++luiIndex )
+		mSubModelList[luiIndex]->Render(lWorld);
 }
 
 
@@ -207,7 +207,7 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 			mMaterialList[luiMaterialIndex] );
 		}
 
-	mObjectList.push_back(lpSubModel);
+	mSubModelList.push_back(lpSubModel);
 	}
 
 	// continue for all child nodes
@@ -219,14 +219,46 @@ void cModel::ProcessBounding() {
 #ifdef _DEBUG
 	cout << " " << endl;
 	cout << "[BOUNDING] File: " << macFile << endl;
-	cout << " NumMeshes = " <<  mMeshList.size() << "}"<<endl;
+	cout << "* NumMeshes = " <<  mMeshList.size() <<endl;
 #endif
 
 	for(unsigned int luiMeshIndex=0; luiMeshIndex<mMeshList.size(); luiMeshIndex++) {
-	}
+		cMesh* lpMesh = (cMesh*) mMeshList[luiMeshIndex].GetResource();
+#ifdef _DEBUG
+		cout << "  + Mesh["<<luiMeshIndex<<"].NumVertext = "<<lpMesh->muiNumVertex<<endl;
+#endif
+		tBounding lBounding;
+		lBounding.mvCenter=cVec3(0,0,0);
+		lBounding.mvMax=cVec3(0,0,0);
+		lBounding.mvMin=cVec3(0,0,0);
+/*		float lfX, lfY, lfZ;
+
+		for(unsigned int luiVertexIndex=0; luiVertexIndex<(lpMesh->muiNumVertex); luiVertexIndex++) {//Process bounding mesh
+			cVec3* lpVertex = lpMesh->mpVertexPositionBuffer; 
+			lfX = lpVertex[luiVertexIndex].x;
+			lfY = (lpVertex[luiVertexIndex]).y;
+			lfZ = (lpVertex[luiVertexIndex]).z;
+
+			if (lfX>lBounding.mvMax.x) lBounding.mvMax.x = lfX;
+			if (lfY>lBounding.mvMax.y) lBounding.mvMax.y = lfY;
+			if (lfZ>lBounding.mvMax.z) lBounding.mvMax.z = lfZ;
+			if (lfX<lBounding.mvMin.x) lBounding.mvMin.x = lfX;
+ 			if (lfY<lBounding.mvMin.y) lBounding.mvMin.y = lfY;
+			if (lfZ<lBounding.mvMin.z) lBounding.mvMax.z = lfZ;
+		}*/
+		lBounding.mvCenter.x=(lBounding.mvMax.x-abs(lBounding.mvMin.x))/2;
+		lBounding.mvCenter.y=(lBounding.mvMax.y-abs(lBounding.mvMin.y))/2;
+		lBounding.mvCenter.z=(lBounding.mvMax.z-abs(lBounding.mvMin.z))/2;
+		lBounding.mfRadius=lBounding.mvCenter.DistanceTo(lBounding.mvMin);	//Calculate radius
 
 #ifdef _DEBUG
+		cout << "    > Bounding X:{"<<lBounding.mvMin.x<<", "<<lBounding.mvMax.x;
+		cout << "} Y:{"<<lBounding.mvMin.y<<", "<<lBounding.mvMax.y;
+		cout << "} Z:{"<<lBounding.mvMin.z<<", "<<lBounding.mvMax.z<<"}";
+		cout <<", Centro("<<lBounding.mvCenter.x<<", "<<lBounding.mvCenter.y<<", "<<lBounding.mvCenter.z<<")";
+		cout << ", Radio="<<lBounding.mfRadius<<endl;
 #endif
+	}
 }
 
 /*
