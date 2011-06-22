@@ -36,7 +36,7 @@ class cModel : public cResource
 		void Render(cMatrix &lWorld);
 		void ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform );
 		typedef std::vector<cSubModel *> cObjectList;  //Temporal esta linea
-		cObjectList GetObjectList() { return mObjectList; }
+		cObjectList GetObjectList() { return mSubModelList; }
 		std::vector<tBounding> GetBounding() { return mBounding; }
 
 	private:
@@ -58,7 +58,7 @@ class cModel : public cResource
 //		void ProcessBoundingScene(const aiScene* lpScene, string lacFile);
 //		void ProcessBoundingMesh(aiMesh* lpMesh);
 
-		cObjectList mObjectList; //FIXME: ¿esto para qué está?
+		cObjectList mSubModelList; //FIXME: ¿esto para qué está?
 };
 
 #endif
