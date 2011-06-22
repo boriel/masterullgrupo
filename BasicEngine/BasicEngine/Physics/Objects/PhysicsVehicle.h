@@ -22,34 +22,32 @@ class cPhysicsVehicle : public cPhysicsObject
 
 	public:
 
-		btRigidBody* m_carChassis;
+		btRigidBody* mpbtCarChassis;
 
 		//btAlignedObjectArray<btCollisionShape*> m_collisionShapes;
 		//btAlignedObjectArray<btCollisionShape*> mabtCollisionShapes;
 
-		class btBroadphaseInterface*	m_overlappingPairCache;
 
-		class btCollisionDispatcher*	m_dispatcher;
+		//No estoy del todo convencido de que etas clases y el vector de vertices haga algo
+		class btBroadphaseInterface*	mpbtOverlappingPairCache;
+		class btCollisionDispatcher*	mpbtDispatcher;
+		class btConstraintSolver*	mpbtConstraintSolver;
+		class btDefaultCollisionConfiguration* mpbtCollisionConfiguration;
+		class btTriangleIndexVertexArray*	mpbtIndexVertexArrays;
 
-		class btConstraintSolver*	m_constraintSolver;
-
-		class btDefaultCollisionConfiguration* m_collisionConfiguration;
-
-		class btTriangleIndexVertexArray*	m_indexVertexArrays;
-
-		btVector3*	m_vertices;
+		btVector3*	mpbtVertices;
 
 	
-		btRaycastVehicle::btVehicleTuning	m_tuning;
-		btVehicleRaycaster*	m_vehicleRayCaster;
-		btRaycastVehicle*	m_vehicle;
-		btCollisionShape*	m_wheelShape;
+		btRaycastVehicle::btVehicleTuning	mbtTuning;
+		btVehicleRaycaster*	mpbtVehicleRayCaster;
+		btRaycastVehicle*	mpbtVehicle;
+		btCollisionShape*	mpbtWheelShape;
 		int miForwardAxis;
 
-		float	m_cameraHeight;
-
-		float	m_minCameraDistance;
-		float	m_maxCameraDistance;
+		//No hace falta la camara
+		//float	m_cameraHeight;
+		//float	m_minCameraDistance;
+		//float	m_maxCameraDistance;
 
 
 		cPhysicsVehicle();
@@ -83,17 +81,17 @@ class cPhysicsVehicle : public cPhysicsObject
 		void ClientMoveAndDisplay();
 
 #ifdef USE_BT_CLOCK
-	btClock m_clock;
+	btClock mbtClock;
 #endif //USE_BT_CLOCK
 
 
 
-	btScalar	getDeltaTimeMicroseconds()
+	btScalar	GetDeltaTimeMicroseconds()
 	{
 #ifdef USE_BT_CLOCK
-		btScalar dt = (btScalar)m_clock.getTimeMicroseconds();
-		m_clock.reset();
-		return dt;
+		btScalar lbtDeltaTime = (btScalar)mbtClock.getTimeMicroseconds();
+		mbtClock.reset();
+		return lbtDeltaTime;
 #else
 		return btScalar(16666.);
 #endif
