@@ -53,8 +53,8 @@ class cObject
 		inline void SetRotacionInicial (cQuaternion lQuatRot) { mRotacionInicial = lQuatRot; }  
 		inline cQuaternion GetRotacionInicial () { return mRotacionInicial; }  
 
-		inline cPhysicsObject* GetPtrPhysicsObject () {return mPhysicsObject; }
-		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mPhysicsObject = lPhysicsObject; }
+		inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
+		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 
 	protected:
 		cMatrix mWorldMatrix;
@@ -64,7 +64,7 @@ class cObject
 		string msModelName;
 		string msModelFile;
 		
-		cPhysicsObject* mPhysicsObject;
+		cPhysicsObject* mpPhysicsObject;
 		cVec3 mCollision; //temporal para meter los puntos desde un xml
 		float mfScale;  //no se si usarlo, no se usa por ahora ni se pide
 		cQuaternion mRotacionInicial;  //NO ES QUATERNION PROPIEAMENTE DICHO, SON LSO DATOS A PELO DEL XML

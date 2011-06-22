@@ -31,7 +31,7 @@ void cObject::Init()
 void cObject::Deinit()
 {
 	//Hacer mejor los deletes y la liberación de memoria, y las llamadas
-	delete mPhysicsObject;
+	delete mpPhysicsObject;
 }
 
 //void cObject::Render(cMatrix &lWorld)
@@ -48,8 +48,8 @@ void cObject::Render()
 
 void cObject::Update( float lfTimestep )
 {
-	mPosition = mPhysicsObject->GetPosition();
-	cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
+	mPosition = mpPhysicsObject->GetPosition();
+	cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 }
@@ -60,14 +60,17 @@ void cObject::InitPhysics()
 	//Ahora vamos a inicializar la física del Object, a partir de su tipo y de su Model.GetBounding()
 
 	if (msType=="Pista") {
-		mPhysicsObject->SetMass(0.0f);
-		//Model* lpModel = cModelManager::Get().FindResourceA(msModelName);
-		//cVec3 lVertice= cVec3(lpModel-> ,	lpScene->mMeshes[0]->mVertices[luiIndex].y,		lpScene->mMeshes[0]->mVertices[luiIndex].z);
-		//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpScene->mMeshes[0]->mVertices[luiIndex].x, lpScene->mMeshes[0]->mVertices[luiIndex].y, lpScene->mMeshes[0]->mVertices[luiIndex].z));			
-		//btCollisionShape* lbtShape = new btSphereShape(lfRadius); 
-	
-		//btRigidBody* lpbtRirigBody = mpPhysicsObject->LocalCreateRigidBody(mpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
-		//mpPhysicsObject->SetRigidBody(lpbtRirigBody);
+		mpPhysicsObject->SetMass(0.0f);
+		cResourceHandle lpHandle = cModelManager::Get().FindResourceA(msModelName);
+		cModel* lpModel = (cModel*) lpHandle.GetResource();
+		float lfX =(lpModel->GetBounding()).mvMin.x;
+		float lfY =(lpModel->GetBounding()).mvMin.y;
+		float lfZ =(lpModel->GetBounding()).mvMin.z;
+
+		btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lfX, lfY, lfZ));			
+		btCollisionShape* lbtShape = new btSphereShape((lpModel->GetBounding()).mfRadius); 
+		btRigidBody* lpbtRirigBody = mpPhysicsObject->LocalCreateRigidBody(mpPhysicsObject->GetMass(), lbtLocalTrans, lbtShape);
+		mpPhysicsObject->SetRigidBody(lpbtRirigBody);
 	}
 
 		/*

@@ -16,8 +16,8 @@ cObjectPista::cObjectPista (cObject lObject)
 
 void cObjectPista::Update( float lfTimestep )
 {
-	mPosition = ((cPhysicsPista*)mPhysicsObject)->GetPosition();
-	cQuaternion lQuatRot=((cPhysicsPista*)mPhysicsObject)->GetQuatRotation();
+	mPosition = ((cPhysicsPista*)mpPhysicsObject)->GetPosition();
+	cQuaternion lQuatRot=((cPhysicsPista*)mpPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 }
