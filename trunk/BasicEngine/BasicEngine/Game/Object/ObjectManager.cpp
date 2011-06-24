@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "..\Scene\ModelManager.h"
+#include "..\Scene\Model.h"
 #include "ObjectPlayer.h"
 #include "ObjectPista.h"
 #include "ObjectVehicle.h"
@@ -14,6 +15,7 @@
 #include "..\..\Physics\Objects\PhysicsPista.h"
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
 
+#include "..\..\Graphics\Meshes\MeshManager.h"
 
 bool cObjectManager::Init() 
 {
@@ -74,11 +76,85 @@ bool cObjectManager::Init()
 	//Objetos Generales con un box por ahora
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 	{
-		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
-		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+		if (mObject[luiIndex]->GetModelName() == "Rampa")  //Pruebas con la rampa para ver como queda sacando vértices, hay cosas repetidas
+		{
 
-		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+			cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+
+			//cResourceHandle rr = cMeshManager::Get().FindResourceA("Rampa");
+
+			cResourceHandle lRH = cModelManager::Get().FindResourceA("Rampa");
+			cResource* lR =  lRH.GetResource();
+			cModel* lpModel = new cModel;
+
+			
+
+			lpModel = (cModel*)lR;
+			
+			(*lpPhysicsObject).SetMass(0.0f);
+			//Obtetemos todas las mesh del modelo
+			for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
+			{
+				cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+				//string ss = lpMesh->GetNameID();
+				cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;
+
+				//if MESH_
+				
+				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
+				btConvexHullShape* lbtShape = new btConvexHullShape();
+				float lfScala = 1.0f;
+				
+
+				for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
+				{
+					//cout << lVec3[liCont].x << " , " << lVec3[liCont].y << " , " << lVec3[liCont].z << endl;
+					lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+				}
+
+
+				btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+				lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
+
+				btVector3 aabbExtents = aabbMax - aabbMin;
+
+				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+
+				
+			}
+
+			//lM->
+
+
+			//cModel::cObjectList lOL = lM->GetObjectList();
+
+
+			
+			//lOL[0]->GetMeshId(idObject)
+			//unsigned int luiID = lOL[0]->  ->mMeshHandles[0].GetID();
+
+
+
+			//lM->GetBounding();
+			/*
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
+			btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+			btRigidBody* lpbtRirigBody = (*lpPhysicsPista).LocalCreateRigidBody((*lpPhysicsPista).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsPista).SetRigidBody(lpbtRirigBody);
+			*/
+
+
+			mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+		}
+		else
+		{
+			cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+			LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+			lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+
+			mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+		}
 	}
 
 	return true;

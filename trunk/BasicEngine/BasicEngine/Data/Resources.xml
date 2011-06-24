@@ -50,8 +50,9 @@
 
 <!--       VEHICLES       -->
 
+	
 	<Object Type="Vehicle" Position="0,5,-5" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
-
+	
 <!--
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
 -->
@@ -60,8 +61,9 @@
 	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 -->
 
+		<!--		PONER		
 	<Object Type="Player" Position="-5,5,9" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
-
+		-->
 
 <!--
 	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
@@ -70,9 +72,9 @@
 	
 	
     <!--   PISTAS  -->
-
-<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE"  /> 	
-	
+		
+		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE"  /> 	
+		
 	
 <!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE"  /> 
@@ -94,9 +96,9 @@
 
 
 <!--   OBJETOS SUELTOS   -->
-
+		<!--		PONER
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
-	
+	-->
 	
 	<Object Type="Rampa" Position="0,0,20" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" /> 
 	

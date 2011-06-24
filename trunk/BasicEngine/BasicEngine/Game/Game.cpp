@@ -212,8 +212,8 @@ void cGame::Render()
 	cRaceControlManager::Get().Render();
 #endif
 	SetTheWorldMatrix();
-	//m3DCamera.Update();
-	m3DCamera.FollowPlayer();  
+	m3DCamera.Update();
+	//m3DCamera.FollowPlayer();  
 
 	// 4) Render 3D with transparency
 

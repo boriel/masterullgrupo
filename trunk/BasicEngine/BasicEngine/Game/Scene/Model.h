@@ -11,6 +11,7 @@ Class cModel: Es un conjunto de submodelos
 #include "..\..\Utility\Resource.h"
 #include "..\..\Utility\ResourceHandle.h"
 #include "SubModel.h"
+#include "..\..\Graphics\Meshes\Mesh.h"
 
 struct aiScene;
 struct aiNode;
@@ -38,6 +39,15 @@ class cModel : public cResource
 		typedef std::vector<cSubModel *> cObjectList;  //Temporal esta linea
 		cObjectList GetObjectList() { return mSubModelList; }
 		std::vector<tBounding> GetBounding() { return mBounding; }
+
+
+		//pruebas
+		//int GetMeshListID (const unsigned int luiID) { return mMeshList[luiID]; } 
+		int GetTamMeshList () { return mMeshList.size(); }
+		//cResourceHandle GetResourceHandle (const int liIndex) { return mMeshList[liIndex]; }
+		//cResource* GetResource (const int liIndex) { return mMeshList[liIndex].GetResource(); }
+		cMesh* GetMesh (const int liIndex) { return (cMesh*)mMeshList[liIndex].GetResource(); }
+
 
 	private:
 		std::string macFile;
