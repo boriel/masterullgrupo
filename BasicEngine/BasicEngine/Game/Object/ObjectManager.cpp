@@ -64,6 +64,24 @@ bool cObjectManager::Init()
 
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
 
+
+		
+
+		//Pruebas no vale por ahora
+		//No se si hay alguna forma mejro de pasar por esto, pero asi va 
+			cResourceHandle lResourceHandle = cModelManager::Get().FindResourceA(mObjectPista[luiIndex]->GetModelName());
+			cResource* lResource =  lResourceHandle.GetResource();
+			cModel* lpModel = new cModel;
+			lpModel = (cModel*)lResource;
+			cModel::cObjectList lObjectList = lpModel->GetObjectList();
+			for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
+			{
+				//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
+				cSubModel* lSubModel = lObjectList[liIndex];
+				string lsMeshName = lSubModel->GetName();
+
+				cout << "MeshName : " << lsMeshName << endl;
+			}
 		
 	}
 	
