@@ -37,11 +37,11 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 
 	private:
 		string msFileName;
-		unsigned int muiMaxVehicles;
 		unsigned int muiMaxLaps;
-		unsigned int muiMaxLegs;
-		tVehicleControl* mpVehicleControl;
-		tLegControl* mpLegControl;
+		typedef std::vector<tVehicleControl *> cVehicleList;
+		cVehicleList mVehicles;
+		typedef std::vector<tLegControl *> cLegList;
+		cLegList mLegs;
 
 		bool LoadXml(void);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);
