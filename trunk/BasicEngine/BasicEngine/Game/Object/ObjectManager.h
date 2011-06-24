@@ -11,7 +11,6 @@ class ObjectManager: Lista de objetos
 
 #include "Object.h"
 #include "..\..\Utility\Singleton.h"
-//#include "ObjectType.h"
 
 class cObjectManager : public cSingleton<cObjectManager>
 {
@@ -31,7 +30,6 @@ class cObjectManager : public cSingleton<cObjectManager>
 		bool LoadObjectsXml(std::string lsResource);
 		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters); //sacado de internet, un split de cadena!
-		//void CreandoTipoDeObjeto(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 
 	private:
 		typedef std::vector<cObject *> cObjectList;
@@ -41,7 +39,6 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cObjectList mObjectVehicle;  
 
 		string msFilename;  // Resources or Properties file
-		//vector<cObjectType> mObjectType;
 		bool ExisteTipoAndModelName(string lsModelName, string lsType);
 		float mfPI;
 };
