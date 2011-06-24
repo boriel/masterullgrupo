@@ -190,8 +190,8 @@
       <Vehicle ModelName="L200" />
     </Vehicles>
     <Legs>
-      <Leg point1="0,0,0" point2="2,0,-3" />
-      <Leg point1="0,0,-30" point2="2,0,-33" />
+      <Leg Point1="0,0,0" Point2="2,0,-3" />
+      <Leg Point1="0,0,-30" Point2="2,0,-33" />
     </Legs>
   </Race>
 </Resources>
