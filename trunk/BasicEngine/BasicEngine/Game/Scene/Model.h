@@ -47,7 +47,7 @@ class cModel : public cResource
 		//cResourceHandle GetResourceHandle (const int liIndex) { return mMeshList[liIndex]; }
 		//cResource* GetResource (const int liIndex) { return mMeshList[liIndex].GetResource(); }
 		cMesh* GetMesh (const int liIndex) { return (cMesh*)mMeshList[liIndex].GetResource(); }
-
+		//tBounding ProcessBounding();
 
 	private:
 		std::string macFile;
@@ -61,6 +61,7 @@ class cModel : public cResource
 		
 		std::vector<unsigned> mMeshMaterialIndexList; //un vector adicional en la clase escena que nos indicará que material se debe usar para cada malla
 		std::vector<tBounding> mBounding; //Vector que guarda información de Bounding para cada Mesh del Modelo
+		
 
 		void ProcessScene( const aiScene* lpScene );
 		void ProcessBounding();

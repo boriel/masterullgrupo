@@ -11,6 +11,7 @@
 #include "ObjectPista.h"
 #include "ObjectVehicle.h"
 
+
 #include "..\..\Physics\Objects\PhysicsPlayer.h"
 #include "..\..\Physics\Objects\PhysicsPista.h"
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
@@ -62,6 +63,8 @@ bool cObjectManager::Init()
 		lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition());
 
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
+
+		
 	}
 	
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
@@ -76,53 +79,78 @@ bool cObjectManager::Init()
 	//Objetos Generales con un box por ahora
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 	{
-		if (mObject[luiIndex]->GetModelName() == "Rampa")  //Pruebas con la rampa para ver como queda sacando vértices, hay cosas repetidas
-		{
+		//if (mObject[luiIndex]->GetModelName() == "Rampa")  //Pruebas con la rampa para ver como queda sacando vértices, hay cosas repetidas
+		//{
+
 
 			cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
 
-			//cResourceHandle rr = cMeshManager::Get().FindResourceA("Rampa");
-
-			cResourceHandle lRH = cModelManager::Get().FindResourceA("Rampa");
-			cResource* lR =  lRH.GetResource();
+			//No se si hay alguna forma mejro de pasar por esto, pero asi va 
+			cResourceHandle lResourceHandle = cModelManager::Get().FindResourceA(mObject[luiIndex]->GetModelName());
+			cResource* lResource =  lResourceHandle.GetResource();
 			cModel* lpModel = new cModel;
+			lpModel = (cModel*)lResource;
+			cModel::cObjectList lObjectList = lpModel->GetObjectList();
+
+
+			(*lpPhysicsObject).SetMass(0.0f); //ASIGNAR LA MASA DESDE XML, Y TAMBIEN PREGUNTAR SI TIENE FISICA O NO EL OBJETO?
+
 
 			
 
-			lpModel = (cModel*)lR;
-			
-			(*lpPhysicsObject).SetMass(0.0f);
 			//Obtetemos todas las mesh del modelo
 			for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
 			{
-				cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
-				//string ss = lpMesh->GetNameID();
-				cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;
+				//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
+				cSubModel* lSubModel = lObjectList[liIndex];
+				string lsMeshName = lSubModel->GetName();
 
-				//if MESH_
-				
-				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
-				btConvexHullShape* lbtShape = new btConvexHullShape();
-				float lfScala = 1.0f;
-				
+				cout << "MeshName : " << lsMeshName << endl;
 
-				for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
+				vector<string> lTokens;
+				Tokenize(lsMeshName, lTokens, "_");
+				string lsTipoShape = lTokens[0].c_str();
+
+				//Con este metodo obtenemos todos los puntos del vector
+				if (lsTipoShape == "Mesh")
 				{
-					//cout << lVec3[liCont].x << " , " << lVec3[liCont].y << " , " << lVec3[liCont].z << endl;
-					lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+					cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+					cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;
+					btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
+					btConvexHullShape* lbtShape = new btConvexHullShape();
+					float lfScala = 1.0f;
+
+					for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
+						lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+
+					btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+					lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
+					btVector3 aabbExtents = aabbMax - aabbMin;
+
+					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+				}
+				else if (lsTipoShape == "Box")
+				{
+					btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
+					btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
+					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+				}
+				else  //del xml provisional
+				{
+					cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+					LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+					lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+
+					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
 				}
 
 
-				btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
-				lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
-
-				btVector3 aabbExtents = aabbMax - aabbMin;
-
-				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-
-				
 			}
+			
 
 			//lM->
 
@@ -145,16 +173,44 @@ bool cObjectManager::Init()
 			*/
 
 
-			mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-		}
-		else
-		{
-			cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-			LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
-			lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+			
 
-			mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-		}
+	  //}
+		//else if (mObject[luiIndex]->GetModelName() == "Rectangulo")  // pruebas con esto
+		//{
+		//	cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+
+		//		(*lpPhysicsObject).SetMass(1.0f);
+		//		//cVec3 lPosition = GetPosition(lsType, lsModelName);
+
+		//		cResourceHandle lRH = cModelManager::Get().FindResourceA("Rectangulo");
+		//		cResource* lR =  lRH.GetResource();
+		//		cModel* lpModel = new cModel;
+		//		lpModel = (cModel*)lR;
+
+		//		//tBounding lBounding = lpModel->ProcessBounding();
+		//		
+
+
+		//		
+		//		//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
+		//		//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  		
+		//	
+		//		//btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+		//		//(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+
+
+		//		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+	
+		//}
+	//	else
+	//	{
+	//		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+	//		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+	//		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+
+	//		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+	//	}
 	}
 
 	return true;
@@ -340,24 +396,24 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 }
 
 //para hacer un split de un string
-void cObjectManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
+void cObjectManager::Tokenize(const string& lsStr, vector<string>& lvTokens,  const string& lsDelimiters)
 {
     // Skip delimiters at beginning.
-    string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+    string::size_type lLastPos = lsStr.find_first_not_of(lsDelimiters, 0);
 
     // Find first "non-delimiter".
-    string::size_type pos     = str.find_first_of(delimiters, lastPos);
+    string::size_type lPos  = lsStr.find_first_of(lsDelimiters, lLastPos);
 
-    while (string::npos != pos || string::npos != lastPos)
+    while (string::npos != lPos || string::npos != lLastPos)
     {
         // Found a token, add it to the vector.
-        tokens.push_back(str.substr(lastPos, pos - lastPos));
+        lvTokens.push_back(lsStr.substr(lLastPos, lPos - lLastPos));
 
         // Skip delimiters.  Note the "not_of"
-        lastPos = str.find_first_not_of(delimiters, pos);
+        lLastPos = lsStr.find_first_not_of(lsDelimiters, lPos);
 
         // Find next "non-delimiter"
-        pos = str.find_first_of(delimiters, lastPos);
+        lPos = lsStr.find_first_of(lsDelimiters, lLastPos);
     }
 }
 

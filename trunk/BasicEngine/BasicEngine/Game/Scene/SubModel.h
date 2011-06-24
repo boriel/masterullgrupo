@@ -40,6 +40,8 @@ class cSubModel
 		
 		void AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHandle );
 
+		//cMesh* GetMesh (const int liIndex) { return (cMesh*)mMeshList[liIndex].GetResource(); }
+
 	protected:
 		string macName;
 		cMatrix mLocalMatrix;
