@@ -420,6 +420,9 @@
     <ClInclude Include="Game\Object\ObjectVehicle.h">
       <Filter>Game\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Object\RaceControlManager.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -700,6 +703,9 @@
       <Filter>Physics\Objects</Filter>
     </ClCompile>
     <ClCompile Include="Game\Object\ObjectVehicle.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\RaceControlManager.cpp">
       <Filter>Game\Object</Filter>
     </ClCompile>
   </ItemGroup>
