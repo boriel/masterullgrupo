@@ -231,13 +231,13 @@ void cModel::ProcessBounding() {
 		lBounding.mvCenter=cVec3(0,0,0);
 		lBounding.mvMax=cVec3(0,0,0);
 		lBounding.mvMin=cVec3(0,0,0);
-/*		float lfX, lfY, lfZ;
+		float lfX, lfY, lfZ;
 
 		for(unsigned int luiVertexIndex=0; luiVertexIndex<(lpMesh->muiNumVertex); luiVertexIndex++) {//Process bounding mesh
 			cVec3* lpVertex = lpMesh->mpVertexPositionBuffer; 
 			lfX = lpVertex[luiVertexIndex].x;
-			lfY = (lpVertex[luiVertexIndex]).y;
-			lfZ = (lpVertex[luiVertexIndex]).z;
+			lfY = lpVertex[luiVertexIndex].y;
+			lfZ = lpVertex[luiVertexIndex].z;
 
 			if (lfX>lBounding.mvMax.x) lBounding.mvMax.x = lfX;
 			if (lfY>lBounding.mvMax.y) lBounding.mvMax.y = lfY;
@@ -245,7 +245,7 @@ void cModel::ProcessBounding() {
 			if (lfX<lBounding.mvMin.x) lBounding.mvMin.x = lfX;
  			if (lfY<lBounding.mvMin.y) lBounding.mvMin.y = lfY;
 			if (lfZ<lBounding.mvMin.z) lBounding.mvMax.z = lfZ;
-		}*/
+		}
 		lBounding.mvCenter.x=(lBounding.mvMax.x-abs(lBounding.mvMin.x))/2;
 		lBounding.mvCenter.y=(lBounding.mvMax.y-abs(lBounding.mvMin.y))/2;
 		lBounding.mvCenter.z=(lBounding.mvMax.z-abs(lBounding.mvMin.z))/2;

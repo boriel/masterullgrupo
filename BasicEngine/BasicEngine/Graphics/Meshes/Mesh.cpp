@@ -43,7 +43,7 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 
 	//Almacenamos todos los vértices del Mesh
 	muiNumVertex = lpAiMesh->mNumVertices; 
-	cVec3 *mpVertexPositionBuffer = new cVec3[muiNumVertex];
+	mpVertexPositionBuffer = new cVec3[muiNumVertex];
 	memcpy(mpVertexPositionBuffer, lpAiMesh->mVertices, sizeof(float) * 3 * muiNumVertex);
 
 	//El primer parámetro de la llamada le indica a OpenGL que es un array buffer normal y
