@@ -48,8 +48,9 @@ bool cRaceControlManager::LoadXml(void)
 	}
 
 	//RACE element
-	TiXmlElement *lpElementRace;
-	lpElementRace = lDoc.FirstChildElement ("Race");
+	TiXmlElement* lpElementRoot, *lpElementRace;
+	lpElementRoot = lDoc.FirstChildElement ("Resources");
+	lpElementRace = lpElementRoot->FirstChildElement("Race");
 
 	if (lpElementRace->Attribute("MaxLaps") != NULL) {
 		muiMaxLaps = (unsigned int) atoi(lpElementRace->Attribute("MaxLaps"));
@@ -103,9 +104,6 @@ bool cRaceControlManager::LoadXml(void)
 		}
 		mLegs.push_back(lpLeg);
 	}
-
-	delete lpElementRace;
-	delete lpElement;
 
 	return true;
 }

@@ -2,25 +2,26 @@
 #include "Game.h"
 
 #include "..\Window\Window.h"
-#include "..\Graphics\GraphicManager.h"
-#include "..\Input\InputManager.h"
+#include "Scene\ModelManager.h"
+#include "Scene\Model.h"
+#include "Object\ObjectManager.h"
+#include "Object\RaceControlManager.h"
 #include "InputConfiguration.h"
+#include "..\Input\InputManager.h"
+#include "..\Graphics\GraphicManager.h"
 #include "..\Graphics\Textures\TextureManager.h"
-#include "..\Lua\LuaManager.h"
-#include "..\Lua\LuaFunctions.h"
-#include "..\Character\CharacterManager.h"
-#include "..\Character\Behaviour\BehaviourManager.h"
-#include "..\Character\Behaviour\ChaserBase.h"
-#include "..\Game\Scene\ModelManager.h"
-#include "..\Game\Scene\Model.h"
 #include "..\Graphics\Meshes\MeshManager.h"
 #include "..\Graphics\Fonts\FontManager.h"
 #include "..\Graphics\Materials\MaterialManager.h"
 #include "..\Graphics\Effects\EffectManager.h"
 #include "..\Graphics\Skeletal\SkeletalManager.h"
 #include "..\Graphics\Skeletal\SkeletalMesh.h"
+#include "..\Lua\LuaManager.h"
+#include "..\Lua\LuaFunctions.h"
+#include "..\Character\CharacterManager.h"
+#include "..\Character\Behaviour\BehaviourManager.h"
+#include "..\Character\Behaviour\ChaserBase.h"
 #include "..\Physics\PhysicsManager.h"
-#include "Object\ObjectManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -101,7 +102,8 @@ bool cGame::Init()
 	//Pruebas Yorman
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico (no los objetos)
 	cObjectManager::Get().Init();
-	
+	cRaceControlManager::Get().Init("Data/Resources.xml");
+
 	return lbResult;
 }
 
@@ -111,7 +113,9 @@ bool cGame::Deinit()
 	bool lbResult = cGraphicManager::Get().Deinit();
 	lbResult = lbResult && cWindow::Get().Deinit();
 	
+	cRaceControlManager::Get().Deinit();
 	cPhysicsManager::Get().Deinit();
+	cObjectManager::Get().Deinit();
 
 	cInputManager::Get().Deinit();
 	mFont.Deinit();
