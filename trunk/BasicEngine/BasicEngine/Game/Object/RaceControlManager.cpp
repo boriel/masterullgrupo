@@ -46,61 +46,67 @@ bool cRaceControlManager::LoadXml(void)
 	{
 		OutputDebugString ("[cRaceControlManager] XML Load: FAILED\n");
 	}
-	
-	TiXmlElement *lpElementResources;
-	lpElementResources = lDoc.FirstChildElement ("RaceControl");
-	
+
+	//RACE element
+	TiXmlElement *lpElementRace;
+	lpElementRace = lDoc.FirstChildElement ("Race");
+
+	if (lpElementRace->Attribute("MaxLaps") != NULL) {
+		muiMaxLaps = (unsigned int) atoi(lpElementRace->Attribute("MaxLaps"));
+	} else { muiMaxLaps=0; }
+
+	//VEHICLES elements
 	TiXmlElement *lpElement;
-	lpElement =  lpElementResources->FirstChildElement ("VehiclesControl"); 
+	lpElement =  lpElementRace->FirstChildElement ("Vehicles"); 
 
-	for (lpElement = lpElement->FirstChildElement("Object"); lpElement; lpElement = lpElement->NextSiblingElement()) 
+	for (lpElement=lpElement->FirstChildElement("Vehicle"); lpElement; lpElement=lpElement->NextSiblingElement()) 
 	{
-		std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsRotation = "", lsAngle = "";
-		float lfScale = 1.0f;
-		cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
-		cQuaternion lQuatRot = cQuaternion(1,0,0,0);
+		tVehicleControl* lpVehicle = new tVehicleControl;
+		lpVehicle->msModelName="Sin Definir";
+		lpVehicle->muiNumLaps=0;
+		lpVehicle->muiNumLegs=0;
+		lpVehicle->isOut=false;
 			
-		if (lpElement->Attribute("ModelName") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-			lsModelName = ((char*)lpElement->Attribute("ModelName"));
+		if (lpElement->Attribute("ModelName") != NULL)
+			lpVehicle->msModelName = ((char*)lpElement->Attribute("ModelName"));
 
-		if (lpElement->Attribute("Position") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-			lsPosition = ((char*)lpElement->Attribute("Position"));
+		mVehicles.push_back(lpVehicle);
+	}
 
-		if (lpElement->Attribute("Rotation") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
-			lsRotation = ((char*)lpElement->Attribute("Rotation"));
+	//LEGS elements
+	lpElement =  lpElementRace->FirstChildElement ("Legs");
+	unsigned int luiNextLeg=0;
 
-		cObject* lObject = new cObject;
-
-		//TODO: para encapsular esto entre llaves
-		{ 
+	for (lpElement=lpElement->FirstChildElement("Leg"); lpElement; lpElement=lpElement->NextSiblingElement()) 
+	{
+		tLegControl* lpLeg = new tLegControl;
+		lpLeg->muiID = ++luiNextLeg;
+		lpLeg->mvPoint1 = cVec3(0,0,0);
+		lpLeg->mvPoint2 = cVec3(0,0,0);
+			
+		if (lpElement->Attribute("Point1") != NULL) { 
 			vector<string> lTokens;
-			Tokenize(lsPosition, lTokens, ",");
+			Tokenize((char*)lpElement->Attribute("Point1"), lTokens, ",");
 
-			double ldX = strtod(lTokens[0].c_str(), NULL);
-			double ldY = strtod(lTokens[1].c_str(), NULL);
-			double ldZ = strtod(lTokens[2].c_str(), NULL);
-
-			cVec3 lPosition((float)ldX, (float)ldY, (float)ldZ);
-			(*lObject).SetPosition(lPosition);
-
+			lpLeg->mvPoint1.x = (float) strtod(lTokens[0].c_str(), NULL);
+			lpLeg->mvPoint1.y = (float) strtod(lTokens[1].c_str(), NULL);
+			lpLeg->mvPoint1.z = (float) strtod(lTokens[2].c_str(), NULL);
 		}
-			
-			
-		if ((lsRotation != "") && (lsAngle != ""))
-		{
-			vector<string> lTokens;
-			Tokenize(lsRotation, lTokens, ",");
-			double ldX = strtod(lTokens[0].c_str(), NULL);
-			double ldY = strtod(lTokens[1].c_str(), NULL);
-			double ldZ = strtod(lTokens[2].c_str(), NULL);
-		}	
 
-		(*lObject).SetType (lsType);
-		(*lObject).SetModelName(lsModelName);
-		(*lObject).SetModelFile(lsModelFile);
-			
-		delete lObject;  //ya no nos hace falta, porque copiamos los parámetros y en el último caso lo duplicamos
-	}	
+		if (lpElement->Attribute("Point2") != NULL) { 
+			vector<string> lTokens;
+			Tokenize((char*)lpElement->Attribute("Point2"), lTokens, ",");
+
+			lpLeg->mvPoint2.x = (float) strtod(lTokens[0].c_str(), NULL);
+			lpLeg->mvPoint2.y = (float) strtod(lTokens[1].c_str(), NULL);
+			lpLeg->mvPoint2.z = (float) strtod(lTokens[2].c_str(), NULL);
+		}
+		mLegs.push_back(lpLeg);
+	}
+
+	delete lpElementRace;
+	delete lpElement;
+
 	return true;
 }
 

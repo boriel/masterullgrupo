@@ -384,7 +384,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 		lsModelName = lpElement->Attribute("ModelName");
 
 		//string lsType = cObjectManager::Get().ObtenerTipoObjeto(lsModelName);
-		
 		//if (lsType != "")
 		if (lsModelName == lsModelNameBuscar)
 		{
@@ -408,7 +407,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				lVec3.y = lfY;
 				lVec3.z = lfZ;
 			}
-		
 
 			//TODO: Yorman: HACER EL array de shapes
 			if (lsType == "Player")
@@ -426,8 +424,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				btRigidBody* lpbtRirigBody = (*lpPhysicsPlayer).LocalCreateRigidBody((*lpPhysicsPlayer).GetMass(), lbtLocalTrans, lbtShape);
 				(*lpPhysicsPlayer).SetRigidBody(lpbtRirigBody);
 
-
-
 				/*
 				cPhysicsObject* lPhysicsObjectPtr = new cPhysicsPlayer;
 				lPhysicsObjectPtr->CreateBoxShape(lVec3);
@@ -435,8 +431,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				(*lPhysicsObjectPtr).SetModelName(lsModelName);
 				//mPhysicsPlayer.push_back(lPhysicsObjectPtr);
 				*/
-
-
 			}
 			else if (lsType == "Pista")
 			{
@@ -481,7 +475,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 				*/
 
-
 				(*lpPhysicsObject).SetMass(0.0f);
 				cVec3 lPosition = GetPosition(lsType, lsModelName);
 
@@ -492,8 +485,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 
 				float lfScala = 2.0f;
 				
-				
-
 				lbtShape->addPoint( lfScala * btVector3(0,0,0) );
 				lbtShape->addPoint( lfScala * btVector3(0,0,1) );
 				lbtShape->addPoint( lfScala * btVector3(0,1,1) );
@@ -511,7 +502,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 				lbtShape->addPoint( lfScala * btVector3(1,0,1) );
 				lbtShape->addPoint( lfScala * btVector3(0,1,1) );
 				lbtShape->addPoint( lfScala * btVector3(0,1,0) );
-
 
 				btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
 				lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
@@ -520,14 +510,6 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 
 				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-
-
-
-
-
-
-
-
 
 				/*
 				(*lpPhysicsObject).SetMass(1.0f);
@@ -578,21 +560,16 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 						}
 					}
 
-
 				//btTriangleIndexVertexArray* m_indexVertexArrays = new btTriangleIndexVertexArray(totalTriangles,	gIndices,	indexStride, totalVerts,(btScalar*) &gVertices[0].x(),vertStride);
 				btTriangleIndexVertexArray* m_indexVertexArrays = new btTriangleIndexVertexArray(totalTriangles,	gIndices,	indexStride, 900,(btScalar*) &gVertices[0].x(),vertStride);
 
-
 				btCollisionShape* lbtTrimeshShape  = new btBvhTriangleMeshShape(m_indexVertexArrays, useQuantizedAabbCompression, aabbMin, aabbMax);
 			
-				
-	
 				btConvexHullShape
 
 				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtTrimeshShape);
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 				*/
-
 			}
 			else if (lsType != "") //general
 			{
@@ -604,16 +581,11 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 
 				btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lPosition.x, lPosition.y, lPosition.z));
 				//lbtLocalTrans.setIdentity();
-				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
-				
+				btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  		
 			
 				btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 				(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-
 			}
-	  }
+		}
 	}
 }
-
-
-
