@@ -208,6 +208,9 @@ void cGame::Render()
 	RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	
+#ifdef _DEBUG
+	cRaceControlManager::Get().Render();
+#endif
 	SetTheWorldMatrix();
 	//m3DCamera.Update();
 	m3DCamera.FollowPlayer();  
