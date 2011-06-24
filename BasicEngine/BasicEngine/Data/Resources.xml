@@ -108,9 +108,9 @@
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
 -->
 
-<!--
+
 	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" /> 
--->
+
 
 	
 	<!--<Object Type="Pista" Position="0,-1,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />-->
