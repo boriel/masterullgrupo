@@ -25,11 +25,6 @@ bool cObjectManager::Init()
 	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
 	//LoadObjectsXml("ObjectsCollision");  //Poniendo las collisiones
 
-
-
-
-
-
 	//Inicializando los recursos aqui
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetModelFile());
@@ -48,11 +43,6 @@ bool cObjectManager::Init()
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
 
-
-
-
-
-	
 	//Creando la Física de los objetos  ( A LO MEJRO ALGO DE ESTO SE REPITA CON LA REUBICACION, MIRARLO! como que cargue dos veces la pista o algo asi Yorman OJO)
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
 	{
@@ -121,7 +111,6 @@ void cObjectManager::Update(float lfTimestep)
 	//Actualizando la pista
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
 		mObjectPista[luiIndex]->Update(lfTimestep);
-
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 	{

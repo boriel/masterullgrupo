@@ -16,24 +16,24 @@ bool cRaceControlManager::Init(string lsFileName)
 
 void cRaceControlManager::Deinit()
 {
-	delete mpVehicleControl;
-	delete mpLegControl;
+	mVehicles.clear();
+	mLegs.clear();
 }
 
 void cRaceControlManager::Update(float lfTimestep)
 {	//Update ControlRace info, for every vehicle
-	for (unsigned luiIndex = 0; luiIndex < muiMaxVehicles; ++luiIndex )
+/*	for (unsigned luiIndex = 0; luiIndex < muiMaxVehicles; ++luiIndex )
 	{
 		cObjectVehicle* lpVehicle = (cObjectVehicle*) cObjectManager::Get().GetObjectA("Vehicle",mpVehicleControl[luiIndex].msModelName);
 		//
-	}
+	}*/
 }
 
 void cRaceControlManager::Render()
 {
-	for (unsigned luiIndex = 0; luiIndex < muiMaxLegs; ++luiIndex ) 
+	for (unsigned luiIndex = 0; luiIndex < mLegs.size(); ++luiIndex ) 
 	{
-		cGraphicManager::Get().DrawLine(mpLegControl[luiIndex].mvPoint1,mpLegControl[luiIndex].mvPoint2,cVec3(0,0,255));
+		cGraphicManager::Get().DrawLine(mLegs[luiIndex]->mvPoint1, mLegs[luiIndex]->mvPoint2,cVec3(0,0,255));
 	}
 }
 
@@ -51,7 +51,7 @@ bool cRaceControlManager::LoadXml(void)
 	lpElementResources = lDoc.FirstChildElement ("RaceControl");
 	
 	TiXmlElement *lpElement;
-	lpElement =  lpElementResources->FirstChildElement ("VehicleControl"); 
+	lpElement =  lpElementResources->FirstChildElement ("VehiclesControl"); 
 
 	for (lpElement = lpElement->FirstChildElement("Object"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 	{
