@@ -179,8 +179,12 @@
 	
   </ObjectsCollision>
 
-
-  <RaceControl>
+<!--  Definición de la carrera:
+  * número de vueltas máximo
+  * vehículos que participan en la competición
+  * tramos que definen cada vuelta
+--> 
+  <Race MaxLaps="10">
     <Vehicles>
       <Vehicle ModelName="CarJazzVehicle" />
       <Vehicle ModelName="L200" />
@@ -189,5 +193,5 @@
       <Leg point1="0,0,0" point2="2,0,-3" />
       <Leg point1="0,0,-30" point2="2,0,-33" />
     </Legs>
-  </RaceControl>
+  </Race>
 </Resources>
