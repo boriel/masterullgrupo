@@ -22,10 +22,34 @@ void cRaceControlManager::Deinit()
 
 void cRaceControlManager::Update(float lfTimestep)
 {	//Update ControlRace info, for every vehicle
-/*	for (unsigned luiIndex = 0; luiIndex < muiMaxVehicles; ++luiIndex )
-	{
-		cObjectVehicle* lpVehicle = (cObjectVehicle*) cObjectManager::Get().GetObjectA("Vehicle",mpVehicleControl[luiIndex].msModelName);
-		//
+	unsigned int luiMaxLap=0;
+	unsigned int luiMaxLeg=0;
+
+	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) {
+		tVehicleControl* lpVehicle = mVehicles[luiIndex];
+		cObjectVehicle* lpObject = (cObjectVehicle*) cObjectManager::Get().GetObjectA("Vehicle",lpVehicle->msModelName);
+		tLegControl* lpNextLeg = mLegs[ lpVehicle->muiNextLeg ];
+
+		if ( lpObject->GetPosition().DistanceTo(lpNextLeg->mvPoint1) < 10) { //Hemos llegado al leg
+			lpVehicle->muiNextLeg++; //Incrementamos el número de Legs
+			if (lpVehicle->muiNextLeg == mLegs.size()) { //Hemos terminado un Lap
+				lpVehicle->muiNumLaps++; //Incrementamos las vueltas o laps
+				lpVehicle->muiNextLeg=0;
+				if (lpVehicle->muiNumLaps == muiMaxLaps) { //Fin de la carrera
+					//TODO
+				}
+			}
+		}
+
+		if (lpVehicle->muiNumLaps>luiMaxLap) luiMaxLap = lpVehicle->muiNumLaps;
+		if (lpVehicle->muiNextLeg) luiMaxLeg = lpVehicle->muiNextLeg;
+	}
+	//Ordenar los vehiculos de carrera, y actualizar miuOrder
+/*	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) {
+		for (unsigned luiIndex2 = 0; luiIndex2 < mVehicles.size(); ++luiIndex2 ) {
+			if (luiIndex == luiIndex2) continue;
+			
+		}
 	}*/
 }
 
@@ -65,8 +89,9 @@ bool cRaceControlManager::LoadXml(void)
 		tVehicleControl* lpVehicle = new tVehicleControl;
 		lpVehicle->msModelName="Sin Definir";
 		lpVehicle->muiNumLaps=0;
-		lpVehicle->muiNumLegs=0;
+		lpVehicle->muiNextLeg=0;
 		lpVehicle->isOut=false;
+		lpVehicle->muiOrder=0;
 			
 		if (lpElement->Attribute("ModelName") != NULL)
 			lpVehicle->msModelName = ((char*)lpElement->Attribute("ModelName"));
@@ -81,7 +106,7 @@ bool cRaceControlManager::LoadXml(void)
 	for (lpElement=lpElement->FirstChildElement("Leg"); lpElement; lpElement=lpElement->NextSiblingElement()) 
 	{
 		tLegControl* lpLeg = new tLegControl;
-		lpLeg->muiID = ++luiNextLeg;
+		lpLeg->muiID = luiNextLeg++;
 		lpLeg->mvPoint1 = cVec3(0,0,0);
 		lpLeg->mvPoint2 = cVec3(0,0,0);
 			

@@ -15,7 +15,7 @@ struct tVehicleControl
 {
 	std::string msModelName; //Identificador del Vehículo
 	unsigned int muiNumLaps; //Número de vueltas
-	unsigned int muiNumLegs; //Número de estapas dentro d euna vuelta
+	unsigned int muiNextLeg; //Número de estapas dentro de una vuelta
 	bool isOut; //True cuando el vehículo está fuera de carrera
 	unsigned int muiOrder;
 };
