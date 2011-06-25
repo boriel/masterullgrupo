@@ -306,7 +306,7 @@ void cMesh::ProcessBoundingMesh()
 		mBoundingMesh = lBounding;
 
 #ifdef _DEBUG
-		std::cout << std::endl << "---------------------->" << std::endl;
+		std::cout << std::endl <<  "---------------------->" << macNameID  << std::endl;
 		std::cout << "    > Bounding X:{" << lvMin.x << ", " << lvMax.x;
 		std::cout << "} Y:{" << lvMin.y << ", " << lvMax.y;
 		std::cout << "} Z:{" << lvMin.z << ", " << lvMax.z << "}";
