@@ -22,7 +22,8 @@ struct tBounding
 	cVec3 mvMin;
 	cVec3 mvMax;
 	cVec3 mvCenter;
-	float mfRadius;
+	float mfRadiusInt;
+	float mfRadiusExt;
 };
 
 class cModel : public cResource

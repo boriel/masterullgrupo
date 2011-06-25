@@ -249,17 +249,24 @@ void cModel::ProcessBounding()
  			if (lfY<lBounding.mvMin.y) lBounding.mvMin.y = lfY;
 			if (lfZ<lBounding.mvMin.z) lBounding.mvMax.z = lfZ;
 		}
-		lBounding.mvCenter.x=(lBounding.mvMax.x-abs(lBounding.mvMin.x))/2;
-		lBounding.mvCenter.y=(lBounding.mvMax.y-abs(lBounding.mvMin.y))/2;
-		lBounding.mvCenter.z=(lBounding.mvMax.z-abs(lBounding.mvMin.z))/2;
-		lBounding.mfRadius=lBounding.mvCenter.DistanceTo(lBounding.mvMin);	//Calculate radius
+		lBounding.mvCenter.x=(abs(lBounding.mvMax.x)-abs(lBounding.mvMin.x))/2;
+		lBounding.mvCenter.y=(abs(lBounding.mvMax.y)-abs(lBounding.mvMin.y))/2;
+		lBounding.mvCenter.z=(abs(lBounding.mvMax.z)-abs(lBounding.mvMin.z))/2;
+		lBounding.mfRadiusExt=lBounding.mvCenter.DistanceTo(lBounding.mvMin);	//Calculate radius
+
+		lfX=lBounding.mvMax.x-lBounding.mvCenter.x;
+		lfY=lBounding.mvMax.y-lBounding.mvCenter.y;
+		lfZ=lBounding.mvMax.z-lBounding.mvCenter.z;
+		lBounding.mfRadiusInt=lfX;
+		if (lfY>lBounding.mfRadiusInt) lBounding.mfRadiusInt=lfY;
+		if (lfZ>lBounding.mfRadiusInt) lBounding.mfRadiusInt=lfZ;
 
 #ifdef _DEBUG
 		cout << "    > Bounding X:{"<<lBounding.mvMin.x<<", "<<lBounding.mvMax.x;
 		cout << "} Y:{"<<lBounding.mvMin.y<<", "<<lBounding.mvMax.y;
 		cout << "} Z:{"<<lBounding.mvMin.z<<", "<<lBounding.mvMax.z<<"}";
 		cout <<", Centro("<<lBounding.mvCenter.x<<", "<<lBounding.mvCenter.y<<", "<<lBounding.mvCenter.z<<")";
-		cout << ", Radio="<<lBounding.mfRadius<<endl;
+		cout << ", RadioExt="<<lBounding.mfRadiusExt<<", RadioInt="<<lBounding.mfRadiusInt<<endl;
 #endif
 	}
 
