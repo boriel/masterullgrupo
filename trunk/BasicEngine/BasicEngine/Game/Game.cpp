@@ -209,7 +209,7 @@ void cGame::Render()
 	RenderObjects(); //Dibujando con la nueva representacion de objetos
 	
 #ifdef _DEBUG
-	cRaceControlManager::Get().Render();
+//	cRaceControlManager::Get().Render();
 #endif
 	SetTheWorldMatrix();
 	m3DCamera.Update();
