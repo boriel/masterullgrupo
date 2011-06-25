@@ -104,163 +104,172 @@ bool cObjectManager::Init()
 
 		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
 	}
+
 	//Objetos Generales con un box por ahora
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 	{
-		//if (mObject[luiIndex]->GetModelName() == "Rampa")  //Pruebas con la rampa para ver como queda sacando vértices, hay cosas repetidas
-		//{
+		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+		
+		CreandoFisica(mObject[luiIndex], lpPhysicsObject);
 
 
-			cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-
-			//No se si hay alguna forma mejro de pasar por esto, pero asi va 
-			cResourceHandle lResourceHandle = cModelManager::Get().FindResourceA(mObject[luiIndex]->GetModelName());
-			cResource* lResource =  lResourceHandle.GetResource();
-			cModel* lpModel = new cModel;
-			lpModel = (cModel*)lResource;
-			cModel::cObjectList lObjectList = lpModel->GetObjectList();
+		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
 
 
-			(*lpPhysicsObject).SetMass(0.0f); //ASIGNAR LA MASA DESDE XML, Y TAMBIEN PREGUNTAR SI TIENE FISICA O NO EL OBJETO?
-
-#ifdef _DEBUG
-		cout << "------> Objeto : " << mObject[luiIndex]->GetModelName() << endl;
-#endif		
+//		//if (mObject[luiIndex]->GetModelName() == "Rampa")  //Pruebas con la rampa para ver como queda sacando vértices, hay cosas repetidas
+//		//{
 
 
-			
-
-			//Obtetemos todas las mesh del modelo
-			for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
-			{
-				//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
-				cSubModel* lSubModel = lObjectList[liIndex];
-				string lsMeshName = lSubModel->GetName();
-
-				cout << "MeshName : " << lsMeshName << endl;
-
-				vector<string> lTokens;
-				Tokenize(lsMeshName, lTokens, "_");
-				string lsTipoShape = lTokens[0].c_str();
-
-				//Con este metodo obtenemos todos los puntos del vector
-				if (lsTipoShape == "Mesh")
-				{
-					cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
-					cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;
-					btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
-					//lbtLocalTrans.setIdentity();
-/*
-					btMatrix3x3 mat;
-					mat.setIdentity();
-					//btTransform bb = btTransform(mat);
-
-					
-					//mat.setEulerZYX(3.1416 / 2, 0, 0);
-					
-					//mat.setEulerYPR(3.1416 / 2, 0, 0);
-
-					lbtLocalTrans.setBasis(mat);
-*/					
-					
-
-					btConvexHullShape* lbtShape = new btConvexHullShape();
-					float lfScala = 1.0f;
-
-					for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
-						lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
-
-					btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
-					//btTransform tmp = btTransform::getIdentity();
-					//tmp.inverse();
-					lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
-					//lbtShape->getAabb( tmp, aabbMin, aabbMax );
-					btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
-					
-					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-				}
-				else if (lsTipoShape == "Box")
-				{
-					btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
-					btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
-					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-				}
-				else  //del xml provisional
-				{
-					cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-					LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
-					lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
-
-					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-				}
-
-
-			}
-			
-
-			//lM->
-
-
-			//cModel::cObjectList lOL = lM->GetObjectList();
-
-
-			
-			//lOL[0]->GetMeshId(idObject)
-			//unsigned int luiID = lOL[0]->  ->mMeshHandles[0].GetID();
-
-
-
-			//lM->GetBounding();
-			/*
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
-			btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
-			btRigidBody* lpbtRirigBody = (*lpPhysicsPista).LocalCreateRigidBody((*lpPhysicsPista).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsPista).SetRigidBody(lpbtRirigBody);
-			*/
-
-
-			
-
-	  //}
-		//else if (mObject[luiIndex]->GetModelName() == "Rectangulo")  // pruebas con esto
-		//{
-		//	cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-
-		//		(*lpPhysicsObject).SetMass(1.0f);
-		//		//cVec3 lPosition = GetPosition(lsType, lsModelName);
-
-		//		cResourceHandle lRH = cModelManager::Get().FindResourceA("Rectangulo");
-		//		cResource* lR =  lRH.GetResource();
-		//		cModel* lpModel = new cModel;
-		//		lpModel = (cModel*)lR;
-
-		//		//tBounding lBounding = lpModel->ProcessBounding();
-		//		
-
-
-		//		
-		//		//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
-		//		//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  		
-		//	
-		//		//btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-		//		//(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-
-
-		//		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-	
-		//}
-	//	else
-	//	{
-	//		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-	//		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
-	//		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
-
-	//		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
-	//	}
+//			cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+//
+//			//No se si hay alguna forma mejro de pasar por esto, pero asi va 
+//			cResourceHandle lResourceHandle = cModelManager::Get().FindResourceA(mObject[luiIndex]->GetModelName());
+//			cResource* lResource =  lResourceHandle.GetResource();
+//			cModel* lpModel = new cModel;
+//			lpModel = (cModel*)lResource;
+//			cModel::cObjectList lObjectList = lpModel->GetObjectList();
+//
+//
+//			(*lpPhysicsObject).SetMass(0.0f); //ASIGNAR LA MASA DESDE XML, Y TAMBIEN PREGUNTAR SI TIENE FISICA O NO EL OBJETO?
+//
+//#ifdef _DEBUG
+//		cout << "------> Objeto : " << mObject[luiIndex]->GetModelName() << endl;
+//#endif		
+//
+//
+//			
+//
+//			//Obtetemos todas las mesh del modelo
+//			for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
+//			{
+//				//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
+//				cSubModel* lSubModel = lObjectList[liIndex];
+//				string lsMeshName = lSubModel->GetName();
+//
+//				cout << "MeshName : " << lsMeshName << endl;
+//
+//				vector<string> lTokens;
+//				Tokenize(lsMeshName, lTokens, "_");
+//				string lsTipoShape = lTokens[0].c_str();
+//
+//				//Con este metodo obtenemos todos los puntos del vector
+//				if (lsTipoShape == "Mesh")
+//				{
+//					cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+//					cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;
+//					btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
+//					//lbtLocalTrans.setIdentity();
+///*
+//					btMatrix3x3 mat;
+//					mat.setIdentity();
+//					//btTransform bb = btTransform(mat);
+//
+//					
+//					//mat.setEulerZYX(3.1416 / 2, 0, 0);
+//					
+//					//mat.setEulerYPR(3.1416 / 2, 0, 0);
+//
+//					lbtLocalTrans.setBasis(mat);
+//*/					
+//					
+//
+//					btConvexHullShape* lbtShape = new btConvexHullShape();
+//					float lfScala = 1.0f;
+//
+//					for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
+//						lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+//
+//					btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+//					//btTransform tmp = btTransform::getIdentity();
+//					//tmp.inverse();
+//					lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
+//					//lbtShape->getAabb( tmp, aabbMin, aabbMax );
+//					btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
+//					
+//					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+//					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+//					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+//				}
+//				else if (lsTipoShape == "Box")
+//				{
+//					btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
+//					btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
+//					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+//					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+//					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+//				}
+//				else  //del xml provisional
+//				{
+//					cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+//					LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+//					lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+//
+//					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+//				}
+//
+//
+//			}
+//			
+//
+//			//lM->
+//
+//
+//			//cModel::cObjectList lOL = lM->GetObjectList();
+//
+//
+//			
+//			//lOL[0]->GetMeshId(idObject)
+//			//unsigned int luiID = lOL[0]->  ->mMeshHandles[0].GetID();
+//
+//
+//
+//			//lM->GetBounding();
+//			/*
+//			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
+//			btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  
+//			btRigidBody* lpbtRirigBody = (*lpPhysicsPista).LocalCreateRigidBody((*lpPhysicsPista).GetMass(), lbtLocalTrans, lbtShape);
+//			(*lpPhysicsPista).SetRigidBody(lpbtRirigBody);
+//			*/
+//
+//
+//			
+//
+//	  //}
+//		//else if (mObject[luiIndex]->GetModelName() == "Rectangulo")  // pruebas con esto
+//		//{
+//		//	cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+//
+//		//		(*lpPhysicsObject).SetMass(1.0f);
+//		//		//cVec3 lPosition = GetPosition(lsType, lsModelName);
+//
+//		//		cResourceHandle lRH = cModelManager::Get().FindResourceA("Rectangulo");
+//		//		cResource* lR =  lRH.GetResource();
+//		//		cModel* lpModel = new cModel;
+//		//		lpModel = (cModel*)lR;
+//
+//		//		//tBounding lBounding = lpModel->ProcessBounding();
+//		//		
+//
+//
+//		//		
+//		//		//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
+//		//		//btCollisionShape* lbtShape = new btBoxShape(btVector3(lVec3.x, lVec3.y, lVec3.z));  		
+//		//	
+//		//		//btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+//		//		//(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+//
+//
+//		//		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+//	
+//		//}
+//	//	else
+//	//	{
+//	//		cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+//	//		LoadObjectsXmlCollision(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetType(), lpPhysicsObject);
+//	//		lpPhysicsObject->Init(mObject[luiIndex]->GetPosition(), mObject[luiIndex]->GetRotacionInicial());
+//
+//	//		mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
+//	//	}
 	}
 
 	return true;
@@ -338,19 +347,23 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		
 		else if (lsTipoShape == "Box")
 		{
-			if (lsMeshName == "Box_Help_SueloMesa")
-			{
+			//if (lsMeshName == "Box_Help_SueloMesa")
+			//{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
 			
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z);
+			btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
+			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtCenterMesh );
 			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  //creo que esto sobra tb
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
 			 
 			btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 			//lpDynamicsWorld->getCollisionObjectArray();
@@ -362,17 +375,33 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 			*/
-			}
+			//}
 		}
-		/*
-		else if (lsTipoShape == "Sphere")
+		
+		else if (lsTipoShape == "Sphere_SALEMALEJECENTRADO")
 		{
+			cResource* lResourceMesh = lSubModel->GetResource(0);
+			cMesh* lpMesh = new cMesh;
+			lpMesh = (cMesh*)lResourceMesh;
+			
+			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+			btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+			
+
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtCenterMesh);
+			btCollisionShape* lbtShape = new btSphereShape(ltBoundingMesh.mfRadius);  
+			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+
+			/*
 			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
 			btCollisionShape* lbtShape = new btSphereShape(1);  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+			*/
 		}
+		/*
 		else  //del xml provisional
 		{
 			//cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
@@ -430,7 +459,8 @@ void cObjectManager::Update(float lfTimestep)
 
 	//Actualizando los objetos
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
-		mObject[luiIndex]->Update(lfTimestep);
+		if (mObject[luiIndex]->GetMass() != 0)
+			mObject[luiIndex]->Update(lfTimestep);
 }
 
 void cObjectManager::Render()
