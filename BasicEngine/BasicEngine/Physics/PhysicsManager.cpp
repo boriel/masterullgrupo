@@ -42,6 +42,7 @@ bool cPhysicsManager::Init ()
 	//mpbtDynamicsWorld = new btDynamicsWorld(mpDispatcher, mpBroadphase, mpSolver, mpCollisionConfiguration);
 	mpbtDynamicsWorld->setGravity(btVector3(0,-10,0));
 
+
 	//GLDebugDrawer*	gDebugDrawer = new GLDebugDrawer;
 	mpbtDebugDrawer = new GLDebugDrawer;
 

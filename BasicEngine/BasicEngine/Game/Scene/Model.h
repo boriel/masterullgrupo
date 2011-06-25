@@ -44,8 +44,8 @@ class cModel : public cResource
 		//pruebas
 		//int GetMeshListID (const unsigned int luiID) { return mMeshList[luiID]; } 
 		int GetTamMeshList () { return mMeshList.size(); }
-		//cResourceHandle GetResourceHandle (const int liIndex) { return mMeshList[liIndex]; }
-		//cResource* GetResource (const int liIndex) { return mMeshList[liIndex].GetResource(); }
+		cResourceHandle GetResourceHandle (const int liIndex) { return mMeshList[liIndex]; }
+		cResource* GetResource (const int liIndex) { return mMeshList[liIndex].GetResource(); }
 		cMesh* GetMesh (const int liIndex) { return (cMesh*)mMeshList[liIndex].GetResource(); }
 		//tBounding ProcessBounding();
 
