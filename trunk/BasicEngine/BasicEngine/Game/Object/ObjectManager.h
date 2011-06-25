@@ -30,6 +30,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		bool LoadObjectsXml(std::string lsResource);
 		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
 		void Tokenize(const string& lsStr, vector<string>& lvTokens,  const string& lsDelimiters); //sacado de internet, un split de cadena!
+		void CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsObject);
 
 	private:
 		typedef std::vector<cObject *> cObjectList;

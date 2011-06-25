@@ -22,6 +22,22 @@ static int kuiSkeletalMesh = 1;
 struct aiMesh;
 struct cVec3;
 
+struct tBoundingMesh
+{
+	//Comentandolo porque me dice sin definir
+	//cVec3 mvMin; 
+	//cVec3 mvMax;
+	//cVec3 mvCenter;
+	float mfAnchoX;
+	float mfAnchoY;
+	float mfAnchoZ;
+	float mfCentroX;
+	float mfCentroY;
+	float mfCentroZ;
+	float mfRadius;
+};
+
+
 class cMesh : public cResource
 {
 	public:
@@ -39,9 +55,13 @@ class cMesh : public cResource
 		//inline unsigned getIndex() { return mVboIndex; }
 
 		virtual void PrepareRender(cResourceHandle lMaterial) { ; }
+		
+		void ProcessBoundingMesh();
+		inline tBoundingMesh GetBoundingMesh () { return mBoundingMesh; }
 
 		cVec3 *mpVertexPositionBuffer;
 		unsigned muiNumVertex;
+		tBoundingMesh mBoundingMesh;
 
 	protected:
 		std::string macNameID;

@@ -58,14 +58,22 @@ bool cObjectManager::Init()
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 	{
 		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
+
+		CreandoFisica(mObjectPista[luiIndex], lpPhysicsPista);
+
+
+		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
+
+/*
 		LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetType(), lpPhysicsPista);
 		//lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
 		lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition());
 
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
 
-
-		
+#ifdef _DEBUG
+		cout << "------> Objeto : " << mObjectPista[luiIndex]->GetModelName() << endl;
+#endif		
 
 		//Pruebas no vale por ahora
 		//No se si hay alguna forma mejro de pasar por esto, pero asi va 
@@ -80,9 +88,11 @@ bool cObjectManager::Init()
 				cSubModel* lSubModel = lObjectList[liIndex];
 				string lsMeshName = lSubModel->GetName();
 
+#ifdef _DEBUG
 				cout << "MeshName : " << lsMeshName << endl;
+#endif
 			}
-		
+*/		
 	}
 	
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
@@ -113,6 +123,10 @@ bool cObjectManager::Init()
 
 			(*lpPhysicsObject).SetMass(0.0f); //ASIGNAR LA MASA DESDE XML, Y TAMBIEN PREGUNTAR SI TIENE FISICA O NO EL OBJETO?
 
+#ifdef _DEBUG
+		cout << "------> Objeto : " << mObject[luiIndex]->GetModelName() << endl;
+#endif		
+
 
 			
 
@@ -134,7 +148,22 @@ bool cObjectManager::Init()
 				{
 					cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
 					cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;
-					btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y+2, mObject[luiIndex]->GetPosition().z));
+					btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(mObject[luiIndex]->GetPosition().x,  mObject[luiIndex]->GetPosition().y, mObject[luiIndex]->GetPosition().z));
+					//lbtLocalTrans.setIdentity();
+/*
+					btMatrix3x3 mat;
+					mat.setIdentity();
+					//btTransform bb = btTransform(mat);
+
+					
+					//mat.setEulerZYX(3.1416 / 2, 0, 0);
+					
+					//mat.setEulerYPR(3.1416 / 2, 0, 0);
+
+					lbtLocalTrans.setBasis(mat);
+*/					
+					
+
 					btConvexHullShape* lbtShape = new btConvexHullShape();
 					float lfScala = 1.0f;
 
@@ -142,9 +171,12 @@ bool cObjectManager::Init()
 						lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
 
 					btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+					//btTransform tmp = btTransform::getIdentity();
+					//tmp.inverse();
 					lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
-					btVector3 aabbExtents = aabbMax - aabbMin;
-
+					//lbtShape->getAabb( tmp, aabbMin, aabbMax );
+					btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
+					
 					btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 					(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 					mObject[luiIndex]->SetPtrPhysicsObject(lpPhysicsObject);
@@ -234,6 +266,129 @@ bool cObjectManager::Init()
 	return true;
 }
 
+void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsObject)
+{
+
+			//No se si hay alguna forma mejro de pasar por esto, pero asi va 
+	cResourceHandle lResourceHandle = cModelManager::Get().FindResourceA(lpObject->GetModelName());
+	cResource* lResource =  lResourceHandle.GetResource();
+	cModel* lpModel = new cModel;
+	lpModel = (cModel*)lResource;
+	cModel::cObjectList lObjectList = lpModel->GetObjectList();
+
+
+	(*lpPhysicsObject).SetMass(lpObject->GetMass()); //ASIGNAR LA MASA DESDE XML, Y TAMBIEN PREGUNTAR SI TIENE FISICA O NO EL OBJETO?
+
+#ifdef _DEBUG
+		cout << "cObjectManager::CreandoFisica ------> Objeto : " << lpObject->GetModelName() << endl;
+#endif		
+
+
+	//Obtetemos todas las mesh del modelo
+	for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
+	{
+		//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
+		cSubModel* lSubModel = lObjectList[liIndex];
+		string lsMeshName = lSubModel->GetName();
+
+#ifdef _DEBUG
+		cout << "MeshName : " << lsMeshName << endl;
+#endif		
+
+		vector<string> lTokens;
+		Tokenize(lsMeshName, lTokens, "_");
+		string lsTipoShape = lTokens[0].c_str();
+
+		//Con este metodo obtenemos todos los puntos del vector
+		if (lsTipoShape == "Mesh")
+		{
+			cResource* lResourceMesh = lSubModel->GetResource(0);
+			cMesh* lpMesh = new cMesh;
+			lpMesh = (cMesh*)lResourceMesh;
+
+			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+
+
+			//cResourceHandle cRH = lpModel[liIndex].GetResourceHandle(liIndex);
+
+			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
+			btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			//lbtLocalTrans.setIdentity();
+
+			btConvexHullShape* lbtShape = new btConvexHullShape();
+			float lfScala = 0.07f;
+
+			for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
+				lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+
+			btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+			lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
+			btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
+			
+			//----Pruebas de rotacion
+			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90)));  
+			///----- end pruebas
+
+
+			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+		}
+		
+		else if (lsTipoShape == "Box")
+		{
+			if (lsMeshName == "Box_Help_SueloMesa")
+			{
+			cResource* lResourceMesh = lSubModel->GetResource(0);
+			cMesh* lpMesh = new cMesh;
+			lpMesh = (cMesh*)lResourceMesh;
+			
+			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
+			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
+			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  //creo que esto sobra tb
+			 
+			btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+			//lpDynamicsWorld->getCollisionObjectArray();
+
+			/*
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
+			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+			*/
+			}
+		}
+		/*
+		else if (lsTipoShape == "Sphere")
+		{
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			btCollisionShape* lbtShape = new btSphereShape(1);  
+			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+		}
+		else  //del xml provisional
+		{
+			//cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
+			LoadObjectsXmlCollision(lpObject->GetModelName(), lpObject->GetType(), lpPhysicsObject);
+			lpPhysicsObject->Init(lpObject->GetPosition(), lpObject->GetRotacionInicial());
+
+			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+		}
+		*/
+
+	}
+
+
+}
+
+
 void cObjectManager::Deinit()
 {
 		//Inicializando los recursos aqui
@@ -260,7 +415,9 @@ void cObjectManager::Update(float lfTimestep)
 	
 	//Actualizando la pista
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex )
-		mObjectPista[luiIndex]->Update(lfTimestep);
+		if (mObjectPista[luiIndex]->GetMass() != 0)
+			mObjectPista[luiIndex]->Update(lfTimestep);
+	
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 	{
@@ -313,8 +470,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 		for (lpElement = lpElement->FirstChildElement("Object"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 		{
-			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsRotation = "", lsAngle = "";
-			float lfScale = 1.0f;
+			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsRotation = "", lsAngle = "", lsMass = "";
+			float lfScale = 1.0f, lfMass = 0.0f;
 			cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
 			cQuaternion lQuatRot = cQuaternion(1,0,0,0);
 			
@@ -339,6 +496,10 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			if (lpElement->Attribute("Angle") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsAngle = ((char*)lpElement->Attribute("Angle"));
 
+			if (lpElement->Attribute("Mass") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsMass = ((char*)lpElement->Attribute("Mass"));
+
+
 			cObject* lObject = new cObject;
 
 			//TODO: para encapsular esto entre llaves
@@ -357,9 +518,10 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			
 			//pansando algunos formatos a lo que necesitamos
 			if (lsScale != "") 
-			{
 				lfScale = (float)atof(lsScale.c_str());
-			}
+			if (lsMass != "") 
+				lfMass = (float)atof(lsMass.c_str());
+			
 			
 
 			if ((lsRotation != "") && (lsAngle != ""))
@@ -380,6 +542,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
 			(*lObject).SetModelFile(lsModelFile);	
+			(*lObject).SetMass(lfMass);
+			
 
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
@@ -403,6 +567,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			{
 				cObject* lObjectPtr = new cObject(*lObject);
 				mObject.push_back(lObjectPtr);
+				
 				
 			}
 			

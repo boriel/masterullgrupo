@@ -52,6 +52,9 @@ class cObject
 		inline cVec3 GetCollision () { return mCollision; } //TODO: a mano por ahora
 		inline void SetRotacionInicial (cQuaternion lQuatRot) { mRotacionInicial = lQuatRot; }  
 		inline cQuaternion GetRotacionInicial () { return mRotacionInicial; }  
+		inline void SetMass (float lfMass) { mfMass = lfMass; }
+		inline float GetMass () { return mfMass; }
+
 
 		inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
 		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
@@ -63,6 +66,7 @@ class cObject
 		string msType;
 		string msModelName;
 		string msModelFile;
+		float mfMass;
 		
 		cPhysicsObject* mpPhysicsObject;
 		cVec3 mCollision; //temporal para meter los puntos desde un xml

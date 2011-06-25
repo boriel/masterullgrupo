@@ -51,7 +51,7 @@
 <!--       VEHICLES       -->
 
 	
-	<Object Type="Vehicle" Position="0,5,-5" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
+	<Object Type="Vehicle" Position="0,5,-5" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Mass="1" />
 	
 <!--
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
@@ -73,7 +73,7 @@
 	
     <!--   PISTAS  -->
 		
-		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE"  /> 	
+		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE" Mass="0"  /> 	
 		
 	
 <!--
@@ -100,7 +100,7 @@
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 	-->
 	
-	<Object Type="Rampa" Position="0,0,20" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" /> 
+	<Object Type="Rampa" Position="0,0,20" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" /> 
 	
 	
 
@@ -109,7 +109,7 @@
 -->
 
 
-	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" /> 
+	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" Mass="1"/> 
 
 
 	

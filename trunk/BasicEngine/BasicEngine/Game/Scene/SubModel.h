@@ -18,6 +18,7 @@ Class Object: La clase Object contendrá las mallas, los materiales y la matriz d
 #include "..\..\MathLib\MathLib.h"
 
 
+
 using namespace std;
 
 
@@ -40,7 +41,8 @@ class cSubModel
 		
 		void AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialHandle );
 
-		//cMesh* GetMesh (const int liIndex) { return (cMesh*)mMeshList[liIndex].GetResource(); }
+		//cMesh* GetMesh (const int liIndex) { return (cMesh *)mMeshHandles[liIndex].GetResource(); }
+		cResource* GetResource (const int liIndex) { return mMeshHandles[liIndex].GetResource() ; }
 
 	protected:
 		string macName;

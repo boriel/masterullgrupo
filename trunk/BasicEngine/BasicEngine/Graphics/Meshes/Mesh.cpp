@@ -6,7 +6,9 @@
 #include <aiScene.h> // Output data structure
 #include <aiPostProcess.h> // Post processing flags
 #include <cassert>
+#include <iostream>
 #include "..\..\MathLib\Vec\Vec3.h"
+#include "..\..\MathLib\MathLib.h"
 
 bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID)
 {
@@ -45,6 +47,8 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	muiNumVertex = lpAiMesh->mNumVertices; 
 	mpVertexPositionBuffer = new cVec3[muiNumVertex];
 	memcpy(mpVertexPositionBuffer, lpAiMesh->mVertices, sizeof(float) * 3 * muiNumVertex);
+
+	ProcessBoundingMesh();  //No se si este es el mejor lugar
 
 	//El primer parámetro de la llamada le indica a OpenGL que es un array buffer normal y
 	//no uno de índices. A continuación se le indica cuanta memoria tiene que copiar en el
@@ -244,4 +248,75 @@ void cMesh::RenderMesh()
 	//poco costosas y dependiendo de cómo organicemos el render de nuestro juego,
 	//podríamos sacarlas fuera y hacerlas sólo una vez por frame.
 
+}
+
+
+void cMesh::ProcessBoundingMesh() 
+{
+/*
+#ifdef _DEBUG
+	cout << " " << endl;
+	cout << "[BOUNDING] File: " << macFile << endl;
+	cout << "* NumMeshes = " <<  mMeshList.size() <<endl;
+#endif
+*/
+
+/*
+	for(unsigned int luiMeshIndex=0; luiMeshIndex<mMeshList.size(); luiMeshIndex++) 
+	{
+		cMesh* lpMesh = (cMesh*) mMeshList[luiMeshIndex].GetResource();
+#ifdef _DEBUG
+		std::cout << "  + Mesh[" << luiMeshIndex<<"].NumVertext = " << lpMesh->muiNumVertex << std::endl;
+#endif
+*/
+		tBoundingMesh lBounding;
+		cVec3 lvCenter = cVec3(0,0,0);
+		cVec3 lvMax = cVec3(0,0,0);
+		cVec3 lvMin = cVec3(0,0,0);
+		float lfX, lfY, lfZ;
+
+		//Process bounding mesh
+		for(unsigned int luiVertexIndex=0; luiVertexIndex<muiNumVertex; luiVertexIndex++)
+		{ 
+			cVec3* lpVertex = mpVertexPositionBuffer; 
+			lfX = lpVertex[luiVertexIndex].x;
+			lfY = lpVertex[luiVertexIndex].y;
+			lfZ = lpVertex[luiVertexIndex].z;
+
+			if (lfX>lvMax.x) lvMax.x = lfX;
+			if (lfY>lvMax.y) lvMax.y = lfY;
+			if (lfZ>lvMax.z) lvMax.z = lfZ;
+			if (lfX<lvMin.x) lvMin.x = lfX;
+ 			if (lfY<lvMin.y) lvMin.y = lfY;
+			if (lfZ<lvMin.z) lvMax.z = lfZ;
+		}
+		lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
+		lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
+		lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
+		lBounding.mfRadius=lvCenter.DistanceTo(lvMin);	//Calculate radius
+		
+		lBounding.mfAnchoX = abs(lvMax.x - lvMin.x) / 2.0f;
+		lBounding.mfAnchoY = abs(lvMax.y - lvMin.y) / 2.0f;
+		lBounding.mfAnchoZ = abs(lvMax.z - lvMin.z) / 2.0f;
+		
+		lBounding.mfCentroX = lvCenter.x;
+		lBounding.mfCentroY = lvCenter.y;
+		lBounding.mfCentroZ = lvCenter.z;
+
+		mBoundingMesh = lBounding;
+
+#ifdef _DEBUG
+		std::cout << std::endl << "---------------------->" << std::endl;
+		std::cout << "    > Bounding X:{" << lvMin.x << ", " << lvMax.x;
+		std::cout << "} Y:{" << lvMin.y << ", " << lvMax.y;
+		std::cout << "} Z:{" << lvMin.z << ", " << lvMax.z << "}";
+		std::cout << ", Centro(" << lvCenter.x << ", " << lvCenter.y << ", " << lvCenter.z << ")";
+		std::cout <<  ", Radio=" << lBounding.mfRadius << std::endl;
+		std::cout << "Ancho ( " << lBounding.mfAnchoX << ", " << lBounding.mfAnchoY << ", " << lBounding.mfAnchoZ << ")" << std::endl;
+		std::cout << "<----------------------" << std::endl;
+#endif
+	
+	//}
+
+	
 }
