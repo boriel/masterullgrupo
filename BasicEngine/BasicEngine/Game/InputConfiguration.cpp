@@ -17,6 +17,8 @@ tActionMapping kaActionMapping[] = {
 	{ eIA_CameraBack, eKeyboard, OIS::KC_S },
 	{ eIA_CameraLeft, eKeyboard, OIS::KC_A },
 	{ eIA_CameraRight, eKeyboard, OIS::KC_D },
+	{ eIA_CameraUp, eKeyboard, OIS::KC_R },
+	{ eIA_CameraDown, eKeyboard, OIS::KC_F },
 	{ eIA_ChangeMode, eKeyboard, OIS::KC_F1 },
 	{ eIA_PlayJog, eKeyboard, OIS::KC_Q },
 	{ eIA_StopJog, eKeyboard, OIS::KC_W },

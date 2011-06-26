@@ -328,7 +328,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btConvexHullShape* lbtShape = new btConvexHullShape();
 			float lfScala = 0.07f;
 
-			for (int liCont = 0; liCont < lpMesh->muiNumVertex; liCont++)
+			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
 				lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
 
 			btVector3 aabbMin(0,0,0), aabbMax(0,0,0);

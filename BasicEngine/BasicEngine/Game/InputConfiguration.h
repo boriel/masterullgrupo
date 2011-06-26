@@ -17,6 +17,8 @@ enum eInputActions {
 	eIA_CameraBack,
 	eIA_CameraLeft,
 	eIA_CameraRight,
+	eIA_CameraUp,
+	eIA_CameraDown,
 	eIA_ChangeMode,
 	eIA_PlayJog,
 	eIA_StopJog,
