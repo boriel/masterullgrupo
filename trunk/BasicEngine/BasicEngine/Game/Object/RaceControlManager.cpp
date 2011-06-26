@@ -22,9 +22,6 @@ void cRaceControlManager::Deinit()
 
 void cRaceControlManager::Update(float lfTimestep)
 {	//Update ControlRace info, for every vehicle
-	unsigned int luiMaxLap=0;
-	unsigned int luiMaxLeg=0;
-
 	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) {
 		tVehicleControl* lpVehicle = mVehicles[luiIndex];
 		cObjectVehicle* lpObject = (cObjectVehicle*) cObjectManager::Get().GetObjectA("Vehicle",lpVehicle->msModelName);
@@ -40,17 +37,25 @@ void cRaceControlManager::Update(float lfTimestep)
 				}
 			}
 		}
-
-		if (lpVehicle->muiNumLaps>luiMaxLap) luiMaxLap = lpVehicle->muiNumLaps;
-		if (lpVehicle->muiNextLeg) luiMaxLeg = lpVehicle->muiNextLeg;
+		lpVehicle->muiKm=lpVehicle->muiNumLaps*mLegs.size()+lpVehicle->muiNextLeg;
 	}
+
+	unsigned int luiMaxKm = muiMaxLaps * mLegs.size();
+	unsigned int luiSelectedCar = 0;
+
 	//Ordenar los vehiculos de carrera, y actualizar miuOrder
-/*	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) {
-		for (unsigned luiIndex2 = 0; luiIndex2 < mVehicles.size(); ++luiIndex2 ) {
-			if (luiIndex == luiIndex2) continue;
-			
+	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex )
+		mVehicles[luiIndex]->muiOrder=0;
+
+	for (unsigned luiPosition = 1; luiPosition <= mVehicles.size(); ++luiPosition ) {
+		for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) {
+			if ( (mVehicles[luiIndex]->muiKm<luiMaxKm) && 
+				(mVehicles[luiIndex]->muiKm>mVehicles[luiSelectedCar]->muiKm) ) 
+				{ luiSelectedCar=luiIndex; }
+			mVehicles[luiSelectedCar]->muiOrder=luiPosition;
 		}
-	}*/
+		luiMaxKm = mVehicles[luiSelectedCar]->muiKm;
+	}
 }
 
 void cRaceControlManager::Render()
@@ -92,6 +97,7 @@ bool cRaceControlManager::LoadXml(void)
 		lpVehicle->muiNextLeg=0;
 		lpVehicle->isOut=false;
 		lpVehicle->muiOrder=0;
+		lpVehicle->muiKm=0;
 			
 		if (lpElement->Attribute("ModelName") != NULL)
 			lpVehicle->msModelName = ((char*)lpElement->Attribute("ModelName"));

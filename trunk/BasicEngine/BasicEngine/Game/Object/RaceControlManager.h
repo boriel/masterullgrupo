@@ -18,6 +18,7 @@ struct tVehicleControl
 	unsigned int muiNextLeg; //Número de estapas dentro de una vuelta
 	bool isOut; //True cuando el vehículo está fuera de carrera
 	unsigned int muiOrder;
+	unsigned int muiKm;
 };
 
 struct tLegControl
