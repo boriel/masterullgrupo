@@ -97,15 +97,15 @@
 
 	<Object Type="Rampa" Position="0,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
 
-<!--
+
     <Object Type="Object2" Position="0,5,-5" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Mass="0" />
--->
+
 
     <Object Type="Zapato" Position="5,5,-5" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae"  Mass="0" />
 
-    <!--
+    
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
-    -->
+    
 
 <!--
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 

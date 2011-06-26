@@ -326,7 +326,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lbtLocalTrans.setIdentity();
 
 			btConvexHullShape* lbtShape = new btConvexHullShape();
-			float lfScala = 0.07f;
+			float lfScala = 1.0f;//0.07f;
 
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
 				lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
@@ -400,6 +400,14 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 			*/
+		}
+		else  // general con un box de 1x1x1 para el que no tenga nombre delante, auqne desaperecera
+		{
+			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
+			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		/*
 		else  //del xml provisional
