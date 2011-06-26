@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGLSupport", "bullet-2.7
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cal3d", "BasicEngine\Graphics\Skeletal\cal3d\cal3d.vcxproj", "{271C4AD6-670C-280A-356B-5B5066959EC2}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InstaladorJuego", "InstaladorJuego\InstaladorJuego.vdproj", "{9F53548D-B124-425D-886C-5535D763567D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -139,6 +141,14 @@ Global
 		{271C4AD6-670C-280A-356B-5B5066959EC2}.RelWithDebInfo|Win32.ActiveCfg = Release|Win32
 		{271C4AD6-670C-280A-356B-5B5066959EC2}.RelWithDebInfo|Win32.Build.0 = Release|Win32
 		{271C4AD6-670C-280A-356B-5B5066959EC2}.RelWithDebInfo|x64.ActiveCfg = Release|Win32
+		{9F53548D-B124-425D-886C-5535D763567D}.Debug|Win32.ActiveCfg = Debug
+		{9F53548D-B124-425D-886C-5535D763567D}.Debug|x64.ActiveCfg = Debug
+		{9F53548D-B124-425D-886C-5535D763567D}.MinSizeRel|Win32.ActiveCfg = Release
+		{9F53548D-B124-425D-886C-5535D763567D}.MinSizeRel|x64.ActiveCfg = Release
+		{9F53548D-B124-425D-886C-5535D763567D}.Release|Win32.ActiveCfg = Release
+		{9F53548D-B124-425D-886C-5535D763567D}.Release|x64.ActiveCfg = Release
+		{9F53548D-B124-425D-886C-5535D763567D}.RelWithDebInfo|Win32.ActiveCfg = Release
+		{9F53548D-B124-425D-886C-5535D763567D}.RelWithDebInfo|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
