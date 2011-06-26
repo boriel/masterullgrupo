@@ -2,163 +2,205 @@
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author>yormanh</author>
-      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
-      <source_data>file:///F:/Ficheros/Cursos/M%C3%A1ster%20en%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20(Final)/BasicEngine/BasicEngine/Data/Objetos/Rampa/Rampa.max</source_data>
+      <author></author>
+      <authoring_tool>FBX COLLADA exporter</authoring_tool>
+      <comments></comments>
     </contributor>
-    <created>2011-06-26T01:09:08</created>
-    <modified>2011-06-26T01:09:08</modified>
-    <unit name="centimeter" meter="0.01"/>
-    <up_axis>Z_UP</up_axis>
+    <created>2011-06-26T22:30:22Z</created>
+    <keywords></keywords>
+    <modified>2011-06-26T22:30:22Z</modified>
+    <revision></revision>
+    <subject></subject>
+    <title></title>
+    <unit meter="0.010000" name="centimeter"></unit>
+    <up_axis>Y_UP</up_axis>
   </asset>
-  <library_effects>
-    <effect id="MatRampa">
-      <profile_COMMON>
-        <newparam sid="asfalto_jpg-surface">
-          <surface type="2D">
-            <init_from>asfalto_jpg</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="asfalto_jpg-sampler">
-          <sampler2D>
-            <source>asfalto_jpg-surface</source>
-          </sampler2D>
-        </newparam>
-        <technique sid="common">
-          <blinn>
-            <emission>
-              <color>0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color>0.5882353 0.5882353 0.5882353 1</color>
-            </ambient>
-            <diffuse>
-              <texture texture="asfalto_jpg-sampler" texcoord="CHANNEL1"/>
-            </diffuse>
-            <specular>
-              <color>0.9 0.9 0.9 1</color>
-            </specular>
-            <shininess>
-              <float>9.999999</float>
-            </shininess>
-            <reflective>
-              <color>0 0 0 1</color>
-            </reflective>
-            <transparent opaque="A_ONE">
-              <color>1 1 1 1</color>
-            </transparent>
-            <transparency>
-              <float>1</float>
-            </transparency>
-          </blinn>
-        </technique>
-      </profile_COMMON>
-      <extra>
-        <technique profile="OpenCOLLADA3dsMax">
-          <extended_shader>
-            <apply_reflection_dimming>0</apply_reflection_dimming>
-            <dim_level>0</dim_level>
-            <falloff_type>0</falloff_type>
-            <index_of_refraction>1.5</index_of_refraction>
-            <opacity_type>0</opacity_type>
-            <reflection_level>3</reflection_level>
-            <wire_size>1</wire_size>
-            <wire_units>0</wire_units>
-          </extended_shader>
-          <shader>
-            <ambient_diffuse_lock>1</ambient_diffuse_lock>
-            <ambient_diffuse_texture_lock>1</ambient_diffuse_texture_lock>
-            <diffuse_specular_lock>0</diffuse_specular_lock>
-            <soften>0.1</soften>
-            <use_self_illum_color>0</use_self_illum_color>
-          </shader>
-        </technique>
-      </extra>
-    </effect>
-  </library_effects>
+  <library_images>
+    <image id="MapRampa-image" name="MapRampa">
+      <init_from>asfalto.jpg</init_from>
+    </image>
+  </library_images>
   <library_materials>
-    <material id="MatRampa-material" name="MatRampa">
-      <instance_effect url="#MatRampa"/>
+    <material id="MatRampa" name="MatRampa">
+      <instance_effect url="#MatRampa-fx"/>
     </material>
   </library_materials>
+  <library_effects>
+    <effect id="MatRampa-fx" name="MatRampa">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
+            </ambient>
+            <diffuse>
+              <texture texture="MapRampa-image" texcoord="CHANNEL0">
+                <extra>
+                  <technique profile="MAYA">
+                    <wrapU sid="wrapU0">TRUE</wrapU>
+                    <wrapV sid="wrapV0">TRUE</wrapV>
+                    <blend_mode>NONE</blend_mode>
+                  </technique>
+                </extra>
+              </texture>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">2.000000</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">0.000000  0.000000 0.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">1.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
   <library_geometries>
-    <geometry id="geom-Mesh_Rampa01" name="Mesh_Rampa01">
+    <geometry id="Mesh_Rampa01-lib" name="Mesh_Rampa01Mesh">
       <mesh>
-        <source id="geom-Mesh_Rampa01-positions">
-          <float_array id="geom-Mesh_Rampa01-positions-array" count="18">-1 -1 0 1 -1 0 -1 1 0 1 1 0 -1 -1 2 -1 1 2</float_array>
+        <source id="Mesh_Rampa01-POSITION">
+          <float_array id="Mesh_Rampa01-POSITION-array" count="18">
+-1.000000 -1.000000 0.000000
+1.000000 -1.000000 0.000000
+-1.000000 1.000000 0.000000
+1.000000 1.000000 0.000000
+-1.000000 -1.000000 2.000000
+-1.000000 1.000000 2.000000
+</float_array>
           <technique_common>
-            <accessor source="#geom-Mesh_Rampa01-positions-array" count="6" stride="3">
+            <accessor source="#Mesh_Rampa01-POSITION-array" count="6" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="geom-Mesh_Rampa01-normals">
-          <float_array id="geom-Mesh_Rampa01-normals-array" count="54">0 0 -1 0 0 -1 0 0 -1 0 0 -1 0.7071068 0 0.7071068 0.7071068 0 0.7071068 0.7071068 0 0.7071068 0.7071068 0 0.7071068 0 -1 0 0 -1 0 0 -1 0 0 1 0 0 1 0 0 1 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0</float_array>
+        <source id="Mesh_Rampa01-Normal0">
+          <float_array id="Mesh_Rampa01-Normal0-array" count="72">
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.707107 0.000000 0.707107
+0.707107 0.000000 0.707107
+0.707107 0.000000 0.707107
+0.707107 0.000000 0.707107
+0.707107 0.000000 0.707107
+0.707107 0.000000 0.707107
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+</float_array>
           <technique_common>
-            <accessor source="#geom-Mesh_Rampa01-normals-array" count="18" stride="3">
+            <accessor source="#Mesh_Rampa01-Normal0-array" count="24" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="geom-Mesh_Rampa01-map1">
-          <float_array id="geom-Mesh_Rampa01-map1-array" count="54">1 0 0 0 0 0 1 1 0 0 1 0 0 0 0 1 0 0 0 1 0 1 1 0 0 0 0 1 0 0 0 1 0 0 0 0 1 0 0 1 1 0 0 0 0 1 0 0 0 1 0 1 1 0</float_array>
+        <source id="Mesh_Rampa01-UV0">
+          <float_array id="Mesh_Rampa01-UV0-array" count="48">
+1.000000 0.000000
+0.000000 0.000000
+1.000000 1.000000
+0.000000 1.000000
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+0.000000 0.000000
+1.000000 0.000000
+0.000000 1.000000
+1.000000 1.000000
+</float_array>
           <technique_common>
-            <accessor source="#geom-Mesh_Rampa01-map1-array" count="18" stride="3">
+            <accessor source="#Mesh_Rampa01-UV0-array" count="24" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
-              <param name="P" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="geom-Mesh_Rampa01-vertices">
-          <input semantic="POSITION" source="#geom-Mesh_Rampa01-positions"/>
+        <vertices id="Mesh_Rampa01-VERTEX">
+          <input semantic="POSITION" source="#Mesh_Rampa01-POSITION"/>
         </vertices>
-        <triangles material="MatRampa" count="8">
-          <input semantic="VERTEX" source="#geom-Mesh_Rampa01-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#geom-Mesh_Rampa01-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#geom-Mesh_Rampa01-map1" offset="2" set="0"/>
-          <p>0 0 0 2 1 2 3 2 3 3 2 3 1 3 1 0 0 0 4 4 4 1 5 5 3 6 7 3 6 7 5 7 6 4 4 4 0 8 8 1 9 9 4 10 10 3 11 11 2 12 12 5 13 13 2 14 14 0 15 15 4 16 17 4 16 17 5 17 16 2 14 14</p>
+        <triangles count="8" material="MatRampa">
+          <input semantic="VERTEX" offset="0" source="#Mesh_Rampa01-VERTEX"/>
+          <input semantic="NORMAL" offset="1" source="#Mesh_Rampa01-Normal0"/>
+          <input semantic="TEXCOORD" offset="2" set="0" source="#Mesh_Rampa01-UV0"/>
+          <p> 1 0 1 0 1 0 3 2 3 0 3 0 2 4 2 3 5 3 3 6 7 5 7 6 4 8 4 3 9 7 4 10 4 1 11 5 0 12 8 1 13 9 4 14 10 3 15 16 2 16 17 5 17 19 4 18 23 5 19 22 2 20 20 4 21 23 2 22 20 0 23 21</p>
         </triangles>
       </mesh>
     </geometry>
   </library_geometries>
-  <library_lights>
-    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
-      <technique_common>
-        <ambient>
-          <color>0 0 0</color>
-        </ambient>
-      </technique_common>
-    </light>
-  </library_lights>
-  <library_images>
-    <image id="asfalto_jpg">
-      <init_from>./images/asfalto.jpg</init_from>
-    </image>
-  </library_images>
   <library_visual_scenes>
-    <visual_scene id="MaxScene">
-      <node name="EnvironmentAmbientLight">
-        <instance_light url="#EnvironmentAmbientLight"/>
-      </node>
-      <node id="node-Mesh_Rampa01" name="Mesh_Rampa01">
-        <instance_geometry url="#geom-Mesh_Rampa01">
+    <visual_scene id="" name="">
+      <node name="Mesh_Rampa01" id="Mesh_Rampa01" sid="Mesh_Rampa01">
+        <matrix sid="matrix">1.000000 0.000000 0.000000 0.000000 0.000000 -0.000000 1.000000 -0.000043 0.000000 -1.000000 -0.000000 0.000000 0.000000 0.000000 0.000000 1.000000</matrix>
+        <instance_geometry url="#Mesh_Rampa01-lib">
           <bind_material>
             <technique_common>
-              <instance_material symbol="MatRampa" target="#MatRampa-material">
-                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
+              <instance_material symbol="MatRampa" target="#MatRampa"/>
             </technique_common>
           </bind_material>
         </instance_geometry>
+        <extra>
+          <technique profile="FCOLLADA">
+            <visibility>1.000000</visibility>
+          </technique>
+        </extra>
       </node>
+      <extra>
+        <technique profile="MAX3D">
+          <frame_rate>24.000000</frame_rate>
+        </technique>
+        <technique profile="FCOLLADA">
+          <start_time>0.041667</start_time>
+          <end_time>2.000000</end_time>
+        </technique>
+      </extra>
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#MaxScene"/>
+    <instance_visual_scene url="#"></instance_visual_scene>
   </scene>
 </COLLADA>
+

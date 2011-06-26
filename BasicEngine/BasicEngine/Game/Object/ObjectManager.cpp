@@ -26,9 +26,12 @@ bool cObjectManager::Init()
 	mfScale = 1.0f; //Por defecto no se aplica escalado en las cargas a menos que se indique explícitamente
 
 	//Leemos los Objects desde un XML
-	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
+	 //------>leyendo los objetos sin fisica
+	LoadObjectsXml("Objects"); 
 
-	//Inicializando los recursos aqui
+
+
+	//--->Inicializando los recursos aqui
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
 	{
 		SetScale(mObjectPlayer[luiIndex]->GetScale());
@@ -55,7 +58,11 @@ bool cObjectManager::Init()
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
 	}
 
-	//Creando la Física de los objetos  ( A LO MEJRO ALGO DE ESTO SE REPITA CON LA REUBICACION, MIRARLO! como que cargue dos veces la pista o algo asi Yorman OJO)
+
+
+
+
+	//---->Creando la Física de los objetos  
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
 	{
 		cPhysicsPlayer* lpPhysicsPlayer = new cPhysicsPlayer;
