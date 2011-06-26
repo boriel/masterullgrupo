@@ -54,7 +54,7 @@ class cObject
 		inline cQuaternion GetRotacionInicial () { return mRotacionInicial; }  
 		inline void SetMass (float lfMass) { mfMass = lfMass; }
 		inline float GetMass () { return mfMass; }
-
+		inline float GetScale() { return mfScale;}
 
 		inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
 		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }

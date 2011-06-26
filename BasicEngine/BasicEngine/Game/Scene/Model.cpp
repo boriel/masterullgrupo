@@ -20,12 +20,7 @@
 #include <cassert>
 #include <iostream>
 
-bool cModel::Init( const std::string &lacNameID, const std::string &lacFile ) 
-{
-	return Init(lacNameID, lacFile, 1.0f);
-}
-
-bool cModel::Init( const std::string &lacNameID, const std::string &lacFile, float lfScale ) 
+bool cModel::Init( const std::string &lacNameID, const std::string &lacFile) 
 {
 	macFile = lacFile;
 	mbLoaded = false;
@@ -43,7 +38,7 @@ bool cModel::Init( const std::string &lacNameID, const std::string &lacFile, flo
 		return false;
 	}
 
-	ProcessScene(lpScene,lfScale);
+	ProcessScene(lpScene);
 	lImporter.FreeScene();
 	mbLoaded = true;
 
@@ -111,7 +106,7 @@ void cModel::Render(cMatrix &lWorld)
 //contiene las meshes en sí mismas. Por lo tanto lo que haremos será acceder a todas esas
 //mallas y cargarlas dentro de una clase cMesh que estará gestionada por una clase
 //cMeshManager que sigue el patrón de recursos que ya hemos usado con anterioridad
-void cModel::ProcessScene( const aiScene* lpScene, float lfScale )
+void cModel::ProcessScene( const aiScene* lpScene)
 {
 	// Meshes
 	for (unsigned luiIndex = 0; luiIndex < lpScene->mNumMeshes; ++luiIndex)
@@ -119,7 +114,6 @@ void cModel::ProcessScene( const aiScene* lpScene, float lfScale )
 		char lacMeshName[512];
 		sprintf( lacMeshName, "%s_%d", macFile.c_str(), luiIndex);
 		cResourceHandle lHandle;
-		cMeshManager::Get().SetScale(lfScale);
 		lHandle = cMeshManager::Get().LoadResource(lacMeshName,	lpScene->mMeshes[luiIndex], kuiStaticMesh); //De esta forma podemos identificar en el MeshManager que tipo de malla queremos cargar y que tipo de dato recibimos como segundo argumento
 		mMeshList.push_back(lHandle);
 		

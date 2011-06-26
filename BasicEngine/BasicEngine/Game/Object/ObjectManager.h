@@ -1,7 +1,5 @@
 /*
 class ObjectManager: Lista de objetos
-
-
 */
 
 #ifndef OBJECT_MANAGER_H
@@ -25,6 +23,8 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cVec3 GetPosition(const string lsType, const string lsModelName);
 		cQuaternion GetRotacionInicial (const string lsType, const string lsModelName);
 		cObject *GetObject(const string lsType, const string lsModelName);
+		float GetScale() { return mfScale; }
+		void SetScale(float lfScale) { mfScale=lfScale; }
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
@@ -42,6 +42,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		string msFilename;  // Resources or Properties file
 		bool ExisteTipoAndModelName(string lsModelName, string lsType);
 		float mfPI;
+		float mfScale;
 };
 
 

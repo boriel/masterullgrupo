@@ -4,13 +4,11 @@
 
 cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID)
 {
-	float lfScale=1.0f;
-
 	if (luiTypeID == kuiStaticMesh)
 	{
 		cMesh * lpMesh = new cMesh();
 	
-		if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID, mfScale ))
+		if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID))
 		{
 			delete lpMesh;
 			return NULL;
