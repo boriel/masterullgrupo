@@ -57,7 +57,7 @@ void cRaceControlManager::Render()
 {
 	for (unsigned luiIndex = 0; luiIndex < mLegs.size(); ++luiIndex ) 
 	{
-		cGraphicManager::Get().DrawLine(mLegs[luiIndex]->mvPoint1, mLegs[luiIndex]->mvPoint2,cVec3(0,0,255));
+		cGraphicManager::Get().DrawLine(mLegs[luiIndex]->mvPoint1, mLegs[luiIndex]->mvPoint2,cVec3(255,255,0));
 	}
 }
 
