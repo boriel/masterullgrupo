@@ -27,6 +27,7 @@ private:
 
 	void MoveForwards(GLfloat lfDistance);
 	void RotateY(GLfloat lfAngle);
+	void MoveUp(GLfloat lfDistance);
 
 public:
 	void Init(void);

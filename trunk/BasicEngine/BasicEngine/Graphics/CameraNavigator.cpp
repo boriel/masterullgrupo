@@ -23,10 +23,12 @@ void cCameraNavigator::Deinit(void) {
 }
 
 void cCameraNavigator::Update(void) {
-	if (IsPressed (eIA_CameraForward)) MoveForwards(0.1f);
-	if (IsPressed (eIA_CameraBack)) MoveForwards(-0.1f);
+	if (IsPressed (eIA_CameraForward)) MoveForwards(0.4f);
+	if (IsPressed (eIA_CameraBack)) MoveForwards(-0.4f);
 	if (IsPressed (eIA_CameraLeft)) RotateY(+0.05f);
 	if (IsPressed (eIA_CameraRight)) RotateY(-0.05f);
+	if (IsPressed (eIA_CameraUp)) MoveUp(0.4f);
+	if (IsPressed (eIA_CameraDown)) MoveUp(-0.4f);
 }
 
 void cCameraNavigator::MoveForwards(GLfloat lfDistance) {
@@ -53,6 +55,13 @@ void cCameraNavigator::RotateY(GLfloat lfAngle) {
 	mpTarget->y=mpPosition->y+y;
 	mpTarget->z=mpPosition->z+(cos(a+lfAngle))*m;
 
+	SetLookAt( (*mpPosition), (*mpTarget));
+}
+
+void cCameraNavigator::MoveUp(GLfloat lfDistance) {
+	cVec3 lDirection = cVec3(0,lfDistance,0);
+	(*mpPosition)+=(lDirection);
+	(*mpTarget)+=(lDirection);
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
 
