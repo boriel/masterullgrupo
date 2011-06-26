@@ -336,7 +336,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
 			
 			//----Pruebas de rotacion
-			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90)));  
+			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90)));  
 			///----- end pruebas
 
 
@@ -378,7 +378,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//}
 		}
 		
-		else if (lsTipoShape == "Sphere")
+		else if (lsTipoShape == "Sphere_NOCARGAR")
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 			cMesh* lpMesh = new cMesh;
