@@ -2,15 +2,15 @@
 #include "Mesh.h"
 #include "..\Skeletal\SkeletalManager.h"
 
-
-cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID )
+cResource * cMeshManager::LoadResourceInternal( std::string lacNameID, void * lpMemoryData, int luiTypeID)
 {
+	float lfScale=1.0f;
 
 	if (luiTypeID == kuiStaticMesh)
 	{
 		cMesh * lpMesh = new cMesh();
 	
-		if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID ))
+		if (!lpMesh->Init( lacNameID, lpMemoryData, luiTypeID, mfScale ))
 		{
 			delete lpMesh;
 			return NULL;

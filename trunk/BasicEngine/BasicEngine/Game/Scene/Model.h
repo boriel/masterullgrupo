@@ -32,6 +32,7 @@ class cModel : public cResource
 		cModel() { mbLoaded = false; }
 	
 		virtual bool Init( const std::string &lacNameID, const std::string &lacFile );
+		virtual bool Init( const std::string &lacNameID, const std::string &lacFile, float lfScale );
 		virtual void Deinit();
 		virtual bool IsLoaded() { return mbLoaded; }
 		void Update( float lfTimestep );
@@ -64,7 +65,7 @@ class cModel : public cResource
 		std::vector<tBounding> mBounding; //Vector que guarda información de Bounding para cada Mesh del Modelo
 		
 
-		void ProcessScene( const aiScene* lpScene );
+		void ProcessScene( const aiScene* lpScene, float lfScale );
 		void ProcessBounding();
 //		void ProcessBoundingFile(string lacFile);
 //		void ProcessBoundingScene(const aiScene* lpScene, string lacFile);

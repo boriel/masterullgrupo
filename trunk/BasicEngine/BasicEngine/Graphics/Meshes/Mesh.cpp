@@ -12,6 +12,11 @@
 
 bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID)
 {
+	return Init (lacNameID, lpMemoryData, luiTypeID, 1.0f);
+}
+
+bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID, float lfScale)
+{
 	macNameID = lacNameID;
 
 	//En primer lugar crearemos el buffer de índices
@@ -38,6 +43,13 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	//Position
 	glBindBuffer(GL_ARRAY_BUFFER, mVboVertices);
 	assert(glGetError() == GL_NO_ERROR);
+
+	//TODO: Pruebas de escalado
+	for (unsigned int luiIndex=0; luiIndex<lpAiMesh->mNumVertices; ++luiIndex) {
+		lpAiMesh->mVertices[luiIndex].x=lpAiMesh->mVertices[luiIndex].x*lfScale;
+		lpAiMesh->mVertices[luiIndex].y=lpAiMesh->mVertices[luiIndex].y*lfScale;
+		lpAiMesh->mVertices[luiIndex].z=lpAiMesh->mVertices[luiIndex].z*lfScale;
+	}
 
 	//Y por último inicializamos el buffer con la siguiente llamada:
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * lpAiMesh->mNumVertices,	lpAiMesh->mVertices, GL_STATIC_DRAW);
