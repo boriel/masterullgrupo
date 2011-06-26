@@ -459,7 +459,7 @@ void cObjectManager::Update(float lfTimestep)
 
 	//Actualizando los objetos
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
-		if (mObject[luiIndex]->GetMass() != 0)
+		//if (mObject[luiIndex]->GetMass() != 0)
 			mObject[luiIndex]->Update(lfTimestep);
 }
 
