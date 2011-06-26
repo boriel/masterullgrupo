@@ -388,7 +388,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//}
 		}
 		
-		else if (lsTipoShape == "Sphere_NOCARGAR")
+		else if (lsTipoShape == "Sphere")
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 			cMesh* lpMesh = new cMesh;
