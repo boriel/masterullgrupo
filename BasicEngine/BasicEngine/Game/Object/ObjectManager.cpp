@@ -335,6 +335,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lbtLocalTrans.setIdentity();
 
 			btConvexHullShape* lbtShape = new btConvexHullShape();
+
 			float lfScala = 1.0f;//0.07f;
 
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)

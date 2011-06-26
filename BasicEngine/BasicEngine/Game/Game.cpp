@@ -289,7 +289,7 @@ void cGame::RenderTexts()
 	mFont.SetColour( 1.0f, 1.0f, 1.0f );
 	mFont.Write(0, 200, 0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D: God Camera", 0,	FONT_ALIGN_CENTER);
+	mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera", 0,	FONT_ALIGN_CENTER);
 	mFont.Write(0, -220, 0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
 }
 

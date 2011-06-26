@@ -91,6 +91,7 @@
 		<!--		PONER
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 	-->
+    
 
 	  <Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
     <Object Type="Object2" Position="0,5,0" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
@@ -98,9 +99,11 @@
 
 <!--    
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
--->    
+-->
 
-<!--
+    <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
+
+    <!--
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
 -->
 
