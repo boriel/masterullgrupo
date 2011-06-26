@@ -23,6 +23,7 @@ bool cObjectManager::Init()
 	msFilename = (".\\Data\\" + std::string("Resources.xml"));
 
 	mfPI = 3.14159f;
+	mfScale = 1.0f; //Por defecto no se aplica escalado en las cargas a menos que se indique explícitamente
 
 	//Lemeos desde un xml
 	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
@@ -37,14 +38,18 @@ bool cObjectManager::Init()
 		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
 		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
-
 	}
 		
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
+	{
+		//SetScale(mObject[luiIndex]->GetScale());
+		SetScale(1.0f);
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
+		SetScale(1.0f);
+	}
 
 	//Creando la Física de los objetos  ( A LO MEJRO ALGO DE ESTO SE REPITA CON LA REUBICACION, MIRARLO! como que cargue dos veces la pista o algo asi Yorman OJO)
 	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
@@ -537,7 +542,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			if (lpElement->Attribute("Mass") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsMass = ((char*)lpElement->Attribute("Mass"));
 
-
 			cObject* lObject = new cObject;
 
 			//TODO: para encapsular esto entre llaves
@@ -555,12 +559,13 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			}
 			
 			//pansando algunos formatos a lo que necesitamos
+			lfScale=1.0f;
 			if (lsScale != "") 
 				lfScale = (float)atof(lsScale.c_str());
+			if (lfScale<=0) lfScale=1.0f;
+
 			if (lsMass != "") 
 				lfMass = (float)atof(lsMass.c_str());
-			
-			
 
 			if ((lsRotation != "") && (lsAngle != ""))
 			{

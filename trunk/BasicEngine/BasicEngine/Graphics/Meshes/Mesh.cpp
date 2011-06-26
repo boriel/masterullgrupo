@@ -1,5 +1,6 @@
 
 #include "Mesh.h"
+#include "..\..\Game\Object\ObjectManager.h"
 
 #include "../GLHeaders.h"
 #include <assimp.hpp> // C++ importer interface
@@ -11,11 +12,6 @@
 #include "..\..\MathLib\MathLib.h"
 
 bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID)
-{
-	return Init (lacNameID, lpMemoryData, luiTypeID, 1.0f);
-}
-
-bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeID, float lfScale)
 {
 	macNameID = lacNameID;
 
@@ -45,6 +41,8 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	assert(glGetError() == GL_NO_ERROR);
 
 	//TODO: Pruebas de escalado
+	float lfScale = cObjectManager::Get().GetScale();
+
 	for (unsigned int luiIndex=0; luiIndex<lpAiMesh->mNumVertices; ++luiIndex) {
 		lpAiMesh->mVertices[luiIndex].x=lpAiMesh->mVertices[luiIndex].x*lfScale;
 		lpAiMesh->mVertices[luiIndex].y=lpAiMesh->mVertices[luiIndex].y*lfScale;

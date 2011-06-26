@@ -44,7 +44,6 @@ class cMesh : public cResource
 		cMesh() { mbLoaded = false; }
 		//virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int luiTypeID );  //cambio el nombre ultimo valor, imaigno que no será importante
 		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType );
-		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType, float lfScale );
 		void Reload( void * lpMemoryData );
 		virtual void Deinit();
 		virtual bool IsLoaded() { return mbLoaded; }
