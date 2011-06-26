@@ -29,7 +29,6 @@ void cSubModel::AddMesh( cResourceHandle lMeshHandle, cResourceHandle lMaterialH
 	mMaterialHandles.push_back( lMaterialHandle );
 }
 
-
 //Update
 void cSubModel::Update( float lfTimestep )
 {
@@ -42,14 +41,11 @@ void cSubModel::Update( float lfTimestep )
 
 }
 
-
-
 //La función Render, que lo que hará será iterar por las mallas y materiales y establecerlos, 
 //junto con la matriz de mundo correspondiente
 //void cSubModel::Render()
 void cSubModel::Render(cMatrix &lWorld)
 {
-
 	// Set World Matrix
 	//cGraphicManager::Get().SetWorldMatrix(mLocalMatrix);
 	//cMatrix lPruebas = mLocalMatrix * lWorld;
