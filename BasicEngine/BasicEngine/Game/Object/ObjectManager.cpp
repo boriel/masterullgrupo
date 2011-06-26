@@ -370,7 +370,9 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
 			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtCenterMesh );
+
 			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
+			
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
