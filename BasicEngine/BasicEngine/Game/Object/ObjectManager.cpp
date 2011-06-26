@@ -25,30 +25,34 @@ bool cObjectManager::Init()
 	mfPI = 3.14159f;
 	mfScale = 1.0f; //Por defecto no se aplica escalado en las cargas a menos que se indique explícitamente
 
-	//Lemeos desde un xml
+	//Leemos los Objects desde un XML
 	LoadObjectsXml("Objects");  //leyendo los objetos sin fisica
-	//LoadObjectsXml("ObjectsCollision");  //Poniendo las collisiones
 
 	//Inicializando los recursos aqui
-	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex ) 
+	for (unsigned luiIndex = 0; luiIndex < mObjectPlayer.size(); ++luiIndex )
+	{
+		SetScale(mObjectPlayer[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectPlayer[luiIndex]->GetModelName(), mObjectPlayer[luiIndex]->GetModelFile());
+	}
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 	{
 		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
+		SetScale(mObjectPista[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
 	}
 		
-	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
+	{
+		SetScale(mObjectVehicle[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
+	}
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
 	{
-		//SetScale(mObject[luiIndex]->GetScale());
-		SetScale(1.0f);
+		SetScale(mObject[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObject[luiIndex]->GetModelName(), mObject[luiIndex]->GetModelFile());
-		SetScale(1.0f);
 	}
 
 	//Creando la Física de los objetos  ( A LO MEJRO ALGO DE ESTO SE REPITA CON LA REUBICACION, MIRARLO! como que cargue dos veces la pista o algo asi Yorman OJO)
@@ -559,10 +563,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			}
 			
 			//pansando algunos formatos a lo que necesitamos
-			lfScale=1.0f;
 			if (lsScale != "") 
 				lfScale = (float)atof(lsScale.c_str());
-			if (lfScale<=0) lfScale=1.0f;
 
 			if (lsMass != "") 
 				lfMass = (float)atof(lsMass.c_str());
@@ -585,9 +587,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
 			(*lObject).SetModelFile(lsModelFile);	
+			(*lObject).SetScale(lfScale);
 			(*lObject).SetMass(lfMass);
-			
-
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
 			//Creamos tambien el objeto Físico
@@ -610,14 +611,11 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			{
 				cObject* lObjectPtr = new cObject(*lObject);
 				mObject.push_back(lObjectPtr);
-				
-				
 			}
 			
 			delete lObject;  //ya no nos hace falta, porque copiamos los parámetros y en el último caso lo duplicamos
 		}
 	}
-	
 	return true;
 }
 
