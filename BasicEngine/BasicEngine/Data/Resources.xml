@@ -43,7 +43,7 @@
 <!--       VEHICLES       -->
 
 
-	<Object Type="Vehicle" Position="0,5,-5" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="2" Mass="1" />
+	<Object Type="Vehicle" Position="0,5,-9" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="2" Mass="1" />
 
     
   
@@ -92,9 +92,9 @@
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 	-->
 
-	  <Object Type="Rampa" Position="0,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
-    <Object Type="Object2" Position="0,5,-5" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.2" Mass="0" />
-    <Object Type="Zapato" Position="5,5,-5" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="0"/>
+	  <Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
+    <Object Type="Object2" Position="0,5,0" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
+    <Object Type="Zapato" Position="5,2,-9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="1"/>
 
 <!--    
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
