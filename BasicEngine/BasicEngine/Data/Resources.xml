@@ -103,9 +103,9 @@
 
     <Object Type="Zapato" Position="5,5,-5" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae"  Mass="0" />
 
-    
+<!--    
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
-    
+-->    
 
 <!--
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
