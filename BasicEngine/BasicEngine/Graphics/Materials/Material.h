@@ -31,6 +31,7 @@ renderizar la geometría.
 #include "../../Utility/Resource.h"
 #include "../../Utility/ResourceHandle.h"
 
+
 struct cTextureData 
 {
 	std::string macShaderTextureID;
@@ -42,6 +43,9 @@ class cMaterial : public cResource
 	public:
 		cMaterial() { mbLoaded = false; }
 		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType);
+		bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liDataType, 
+			const std::string &lacMaterialsFile);
+
 		bool cMaterial::Init( const std::string &lacNameID, const std::string &lacFile );
 		virtual void Deinit();
 		virtual bool IsLoaded() { return mbLoaded; }

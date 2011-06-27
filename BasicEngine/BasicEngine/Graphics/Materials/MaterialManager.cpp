@@ -22,3 +22,30 @@ cResource * cMaterialManager::LoadResourceInternal( std::string lacNameID, const
 
 	return lpMaterial;
 }
+
+
+
+cResourceHandle cMaterialManager::LoadResource( std::string lacNameID, void * lpMemoryData, int liDataType, 
+		const std::string &lacMaterialsFile )
+{
+	cResourceHandle lHandle = FindResource( lacNameID );
+	if ( !lHandle.IsValidHandle() )
+	{
+		// Load the Resource
+		cMaterial * lpMaterial = new cMaterial();
+		lpMaterial->Init( lacNameID, lpMemoryData, liDataType, lacMaterialsFile);
+
+		if (lpMaterial)
+		{
+			// Set the ID
+			lpMaterial->SetNameID( lacNameID );
+
+			// Save it into the pool
+			lHandle = AddResourceToPool( lpMaterial );
+		}
+		else
+			lHandle.Invalidate();
+	}
+
+	return lHandle;
+}

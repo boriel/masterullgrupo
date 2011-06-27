@@ -7,11 +7,6 @@
   </Fonts>
 
 
-  <Effects>
-    <Effect name="simple" path="./Data/Shader/simple.fx" />
-  </Effects>
-
-
   <Objects>
 <!--
 	<Object Type="Player" Position="10,30,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />

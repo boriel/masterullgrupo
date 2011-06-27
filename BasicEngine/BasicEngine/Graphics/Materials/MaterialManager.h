@@ -13,7 +13,9 @@ Class MaterialManager.h
 class cMaterialManager : public cResourceManager, public cSingleton<cMaterialManager> {
 public:
 	friend class cSingleton<cMaterialManager>;
-
+	cResourceHandle LoadResource( std::string lacNameID, void * lpMemoryData, int liDataType, 
+		const std::string &lacMaterialsFile );
+	
 protected:
 	cMaterialManager() { ; } // Protected constructor
 
