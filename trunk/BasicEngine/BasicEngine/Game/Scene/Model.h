@@ -13,6 +13,8 @@ Class cModel: Es un conjunto de submodelos
 #include "SubModel.h"
 #include "..\..\Graphics\Meshes\Mesh.h"
 
+#define MATERIALS_FILE "./Data/Material/materials.xml"
+
 struct aiScene;
 struct aiNode;
 struct aiMesh;

@@ -191,7 +191,8 @@ technique NormalDepth
     }
 }
 
-technique Toon
+//technique Toon
+technique Technique0
 {
     pass P0
     {

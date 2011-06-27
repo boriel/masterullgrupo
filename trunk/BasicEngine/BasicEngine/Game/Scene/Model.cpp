@@ -136,7 +136,8 @@ void cModel::ProcessScene( const aiScene* lpScene)
 
 		// Load the resource
 		cResourceHandle lHandle;
-		lHandle = cMaterialManager::Get().LoadResource(lName.data, &lMaterialData, 0);
+		//lHandle = cMaterialManager::Get().LoadResource(lName.data, &lMaterialData, 0);
+		lHandle = cMaterialManager::Get().LoadResource(lName.data, &lMaterialData, 0, MATERIALS_FILE);
 
 		// Save the material on a vector in the Scene
 		mMaterialList.push_back(lHandle);

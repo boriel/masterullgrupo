@@ -13,8 +13,7 @@
 #include "../GraphicManager.h"
 #include "../Camera.h"
 #include "../../Game/Game.h"
-
-
+#include "../../Utility/Debug.h"
 
 
 struct cAssimpTextureMaping
@@ -59,11 +58,11 @@ bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liD
 		*lacLimit = '\0';
 	
 	std::stringstream lShaderPath;
-	strcpy(lacEffectName, "simple"); //Puesto a mano
+	//strcpy(lacEffectName, "simple"); //Puesto a mano
 	lShaderPath << "./Data/Shader/" << lacEffectName << ".fx";
 	//lShaderPath << "./Data/Shader/simple.fx";  //puesto a mano ver que hay que hacer para pillar el que es
 	//mEffect = cEffectManager::Get().LoadResource( lacEffectName, lShaderPath.str() );
-	mEffect = cEffectManager::Get().LoadResource("simple", "./Data/Shader/simple.fx"); //a mano
+	mEffect = cEffectManager::Get().LoadResource(lacEffectName, "./Data/Shader/simple.fx"); //a mano
 
 	assert(mEffect.IsValidHandle());
 	mbLoaded = mEffect.IsValidHandle();
@@ -86,6 +85,68 @@ bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liD
 	return true;
 	*/
 }
+
+
+
+bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liDataType,
+	const std::string &lacMaterialsFile)
+{
+	TiXmlDocument doc( lacMaterialsFile.c_str() );
+	bool lbLoadOk = doc.LoadFile();
+	
+	if (lbLoadOk) {
+		DEBUG_MSG("Materials XML file '%s' Load: OK", lacMaterialsFile.c_str());
+	} else {
+		DEBUG_MSG("Materials XML file '%s' Load: FAILED", lacMaterialsFile.c_str());
+		return false;
+	}
+
+	cMaterialData * lpMaterialData = (cMaterialData*)lpMemoryData;
+	aiMaterial * lpAiMaterial = lpMaterialData->mpMaterial;
+	aiString name;
+	lpAiMaterial->Get(AI_MATKEY_NAME,name);
+	ReadAllTextures(lpAiMaterial, lpMaterialData);
+	
+	TiXmlHandle lhDoc(&doc);
+	TiXmlElement* lpElem;
+	TiXmlHandle lhRoot(0);
+	lpElem = lhDoc.FirstChildElement().Element();
+	assert(lpElem);
+
+	std::string lacEffectName = "";
+	std::string lacEffectPath = "";
+	std::string lacEffectTech = "";
+
+	lhRoot = TiXmlHandle(lpElem);
+
+	// Read all the Materials and stop when the given name is found or fallback to <default>
+	for(lpElem = lhRoot.FirstChild( "Material" ).Element(); lpElem; lpElem = lpElem->NextSiblingElement("Material"))
+	{
+		std::string lacTmp("<default>");
+		
+		if ((lpElem->Attribute("name") == lacTmp) && (lacEffectName == "")) {
+			lacEffectName = lpElem->Attribute("effectName");
+			lacEffectPath = lpElem->Attribute("effectPath");
+			lacEffectTech = lpElem->Attribute("technique");
+			continue;
+		}
+
+		if (lpElem->Attribute("name") == lacNameID ) {
+			lacEffectName = lpElem->Attribute("effectName");
+			lacEffectPath = lpElem->Attribute("effectPath");
+			lacEffectTech = lpElem->Attribute("technique");
+			break;
+		}
+	}
+
+	DEBUG_MSG("Cargando material '%s' con efecto '%s' (%s)", lacNameID.c_str(), lacEffectName.c_str(), lacEffectPath.c_str());
+	mEffect = cEffectManager::Get().LoadResource(lacEffectName, lacEffectPath); 
+	assert(mEffect.IsValidHandle());
+	mbLoaded = mEffect.IsValidHandle();
+	return mEffect.IsValidHandle();
+}
+
+
 
 //Se hizo nuevo para la parte de los materiales del skeleton
 bool cMaterial::Init( const std::string &lacNameID, const std::string &lacFile )
@@ -168,7 +229,7 @@ void cMaterial::PrepareRender()
 	assert( mEffect.IsValidHandle() );
 	cEffect * lpEffect = (cEffect *)mEffect.GetResource();
 	assert( lpEffect );
-	lpEffect->SetTechnique("Technique0");
+	lpEffect->SetTechnique("Technique0"); // *** Por ahora siempre se usa esta, luego ya se verá
 
 	// Set Properties
 	cMatrix lWVPMatrix = cGraphicManager::Get().GetWVPMatrix();

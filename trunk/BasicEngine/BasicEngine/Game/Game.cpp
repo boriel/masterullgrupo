@@ -78,6 +78,7 @@ bool cGame::Init()
 	cMaterialManager::Get().Init(64); //Init Material Manager
 	cEffectManager::Get().Init(64);
 	
+	/*
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
 	cSkeletalManager::Get().Init(10);
 	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
@@ -93,6 +94,7 @@ bool cGame::Init()
 	cMatrix lMatrix;
 	lMatrix.LoadScale(0.01f);
 	mSubModel.SetLocalMatrix(lMatrix);
+	*/
 
 	mfAcTime = 0.0f;
 

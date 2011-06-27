@@ -82,6 +82,9 @@
     <Filter Include="Data">
       <UniqueIdentifier>{a9cae515-730d-41f1-9e54-be09f79e6b74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Data\Material">
+      <UniqueIdentifier>{701e4320-d9f3-4d44-b4b2-9ef25bb9876a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -721,6 +724,9 @@
     </None>
     <None Include="Data\Config.xml">
       <Filter>Data</Filter>
+    </None>
+    <None Include="Data\Material\materials.xml">
+      <Filter>Data\Material</Filter>
     </None>
   </ItemGroup>
 </Project>
