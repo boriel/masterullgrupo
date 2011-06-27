@@ -429,6 +429,9 @@
     <ClInclude Include="Game\HudManager.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Game\FPSCounter.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -715,6 +718,9 @@
       <Filter>Game\Object</Filter>
     </ClCompile>
     <ClCompile Include="Game\HudManager.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\FPSCounter.cpp">
       <Filter>Game</Filter>
     </ClCompile>
   </ItemGroup>

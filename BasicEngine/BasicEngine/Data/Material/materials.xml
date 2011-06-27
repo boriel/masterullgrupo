@@ -1,6 +1,15 @@
-<!-- El material "<default>" se aplicará por defecto si no se encuentra el solicitado -->
+<!-- El material "<default>" se aplicarÃ¡ por defecto si no se encuentra el solicitado -->
 <Materials>
+
   <Material name = "<default>" effectName = "simple" effectPath = "./Data/Shader/simple.fx" technique = "Technique0" />
+
   <Material name = "MapJazz-material" effectName = "toon" effectPath = "./Data/Shader/toon.fx" technique = "Technique0" />
+
+    
+  <Material name = "BlackWhite" effectName = "BlackWhite" effectPath = "./Data/Shader/BlackWhite.fx" technique = "Technique0" />
+
+
+
+
 </Materials>
 
