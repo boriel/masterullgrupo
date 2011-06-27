@@ -91,6 +91,7 @@ bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liD
 bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liDataType,
 	const std::string &lacMaterialsFile)
 {
+
 	TiXmlDocument doc( lacMaterialsFile.c_str() );
 	bool lbLoadOk = doc.LoadFile();
 	
@@ -107,10 +108,9 @@ bool cMaterial::Init( const std::string &lacNameID, void * lpMemoryData, int liD
 	lpAiMaterial->Get(AI_MATKEY_NAME,name);
 	ReadAllTextures(lpAiMaterial, lpMaterialData);
 	
-	TiXmlHandle lhDoc(&doc);
 	TiXmlElement* lpElem;
 	TiXmlHandle lhRoot(0);
-	lpElem = lhDoc.FirstChildElement().Element();
+	lpElem = doc.FirstChildElement("Materials");
 	assert(lpElem);
 
 	std::string lacEffectName = "";
