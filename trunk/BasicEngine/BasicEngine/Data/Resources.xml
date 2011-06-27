@@ -70,7 +70,7 @@
 <!--
 		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE" Mass="0"  /> 	
 -->
-    <Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="2" />
+    <Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="2" Effect="BlackWhite" />
 
     <!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 

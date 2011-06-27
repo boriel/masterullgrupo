@@ -23,6 +23,8 @@
 #include "..\Character\Behaviour\ChaserBase.h"
 #include "..\Physics\PhysicsManager.h"
 #include "HudManager.h"
+#include "FPSCounter.h"
+
 
 extern tActionMapping kaActionMapping[];
 
@@ -103,6 +105,9 @@ bool cGame::Init()
 	cObjectManager::Get().Init();
 	cRaceControlManager::Get().Init("Data/Resources.xml");
 	cHudManager::Get().Init("Data/Resources.xml");
+	cFPSCounter::Get().Init();
+
+
 	return lbResult;
 }
 
@@ -129,14 +134,17 @@ bool cGame::Deinit()
 	cEffectManager::Get().Deinit();
 	m3DCamera.Deinit();
 	cHudManager::Get().Deinit();
+	cFPSCounter::Get().Deinit();
+
 	return lbResult;
 }
 
 //update del juego
 void cGame::Update(float lfTimestep) 
 {
+	cFPSCounter::Get().Update(lfTimestep);
 	cInputManager::Get().Update(lfTimestep);
-	//Actualizando la mmala del esqueleto
+	//Actualizando la malla del esqueleto
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 
 	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo

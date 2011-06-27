@@ -31,6 +31,7 @@ class cGame : public cSingleton<cGame> {
 		// PASADO AL HUDMANAGER: cResourceHandle mFontHandle;
 		cResourceHandle mSkeletalMesh;
 		cSubModel mSubModel;  //nuevo para el skeleton
+		//cFPSCounter mFPS;
 
 	protected:
 		cGame () { ; } //Protected Constructor
