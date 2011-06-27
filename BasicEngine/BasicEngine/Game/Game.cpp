@@ -264,10 +264,10 @@ void cGame::RenderObjects ()
 //Dibujamos Todos los objetos
 void cGame::RenderPhysicsObjects () 
 {
-/*#if _DEBUG
+#if _DEBUG
 	if (cPhysicsManager::Get().GetDebugMode())
-	*/	cPhysicsManager::Get().Render();
-//#endif
+		cPhysicsManager::Get().Render();
+#endif
 }
 
 void cGame::RenderModels() 
