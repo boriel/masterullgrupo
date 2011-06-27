@@ -1,0 +1,119 @@
+========================
+MINIMANUAL TOY CORRIENDO
+========================
+Versión: 2011-06-27
+
+
+========================
+INSTALADOR
+========================
+En el URL "http://www.feull.org/yormanh/masterull/Debug.rar", se puede descargar
+el instalador de lo que lleva hasta ahora nuestro proyecto, se instala y listo.
+Ya lo he probado en dos ordenadores y funciona, si no funciona me lo dicen.
+
+Está en modo Debug, por eso os va a salir una ventana negra en modo ms-dos con 
+información nuestra aparte del "juego".
+
+========================
+CONFIGURACIÓN
+========================
+Tenéis un archivo resources.xml en el directorio Data en donde se encuentre instalado 
+el juego, en el mismo se puede observar la estructura de un fichero xml que explicaremos 
+lo importante.
+
+Por ejemplo si cogemos la línea 98 (puede variar dependiendo de la versión del proyecto) 
+tenéis:
+
+<Object Type="Zapato" Position="5,2,-9" ModelName="Zapato" 
+ ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="1"/>
+
+Esto quiere decir:
+* Type: tenemos por ahora tipos "Vehicle" y "Pista" se que cargan de forma especial, 
+  los demás son todos generales.
+* Position: es la posición donde se situará este objeto en el mundo
+* ModelName: Es el nombre de ese modelo en el juego y tiene que ser único.
+* ModelFile: De dónde cargaremos el fichero.DAE en cuestión. 
+* Scale: Escala a efectuar al modelo Dae. El valor por defecto es 1, sin escalado.
+* Mass: Masa que tendrá el objeto en el juego. Si es 0 es estático, es el valor que 
+  le ponemos por defecto.
+
+Para hacer un comentario de una línea o varias líneas en formato xml se hace con 
+<!-- escribe lo que sea, y se cierra con  -->
+de estos comentarios tenemos "millones" en el fichero, que al principio puede ser 
+caótico pero tiene sentido.
+
+Hay otra fichero config.xml, que sus valores indican resolución del juego y se es 
+a pantalla completa o no.
+
+========================
+DISEÑOS
+========================
+Con esto ya pueden copiar ficheros en Data, en el directorio que crean  conveniente 
+o crear subdirectorios, y probar modelos de ustedes.
+
+Cuestiones a tener en cuenta.
+En el .DAE de los ficheros, hay que tener en cuenta dónde están las rutas de las 
+imágenes y cambiarlas. por ejemplo en un fichero .DAE (que también es un xml al fin 
+de cuentas)
+
+<init_from>./textura_zapatillas.jpg</init_from>
+
+esa ruta se modificó a mano, y le puse que leyera el fichero en el directorio 
+actual ./ (eliminado todo lo de c:\files\.......)
+
+También hay que tener en cuenta que las mayúsculas y minúsculas en el fichero son 
+importantes en el juego, escribirlos bien en el xml.
+
+========================
+EL JUEGO EN EJECUCIÓN
+========================
+Funcionalidades por ahora:
+* Con los cursores puedes mover el vehículo, todavía tenemos que depurar esto mucho más.
+  con W-A-S-D-Pagina arriba y abajo podemos mover la cámara libre
+
+* Con F9 pasamos a modo Debug del juego. Aquí es donde vemos los envoltorio de los 
+  objetos en su entorno de Colisiones. Esta parte debería cargarse semi-automática 
+  (desde el dae y xml), esperamos tenerlo cuando lo tengamos bien definido y resuelto 
+  un par de dudas que nos surgió. Hay un fallo con las letras que no nos preocupa por 
+  ahora al pasar de modo Debug y Normal. Notar que el modo Debug y la ventana de MS-Dos 
+  no saldrá en la versión final del juego.
+
+Pero básicamente para cargar las colisiones es, desde un .DAE dependiendo del nombre 
+de la malla podemos hacer (de forma automática):
+* Box_Coche: hará un envoltorio en forma de caja para la malla coche
+* Sphere_Bombilla: hará un envoltorio de forma automática en modo de esfera para la 
+  bombilla
+* Mesh_Zapato: Hará un envoltorio con todos los puntos de la malla del zapato, esta 
+  parte es muy costosa y no se garantiza que funcione al 100%, aunque el zapato que 
+  nos pasastes lo bordó, aunque esto es mejor solucionarlo con un box
+* Si no tiene nada en el nombre, por ahora no le haremos envoltorio y suponemos que 
+  es un elemento del sistema que no tendrá colisiones con el mundo. Por ejemplo un 
+  cuadro, una bombilla, ...
+
+========================
+MALLAS
+========================
+Por ejemplo, el coche que nos pasastes, me metí en el fichero .DAE y le cambie la 
+malla de "cocheprotagonista_Mesh" a "Mesh_cocheprotagonista_Mesh" para que se dibujara 
+la malla en el entorno Debug.
+
+========================
+PRÓXIMAMENTE
+========================
+Todo esto todavía estamos depurándolo, la carga de objetos y colisiones. (entre 
+miles de cosas)
+
+Esta versión irá cambiando, por ejemplo mientras escribo esto ya hay un par de cambios 
+en el código. Ya cuando se cambié algo más gordo, le diremos para que se lo vuelvan 
+a descargar.
+
+Con esto por lo menos pueden ir viendo cosas, y jugueteando con los modelos, aunque 
+no es perfecto ni mucho menos, y está incompleto pero cosas se pueden ver.
+
+Tengo que ver lo que hablamos del Maya y el Y_UP, a ver si después lo miro e intento 
+ver si exporta bien los ejes. ¿No instaló ningún plugin o exportador a collada no? 
+¿Es muy complicado el maya?
+
+El xml tiene que variar, ya que nos falta el giro del objeto, efectos, ..... Pero 
+si tienen alguna sugerencia y tenemos tiempo de implementarla, bienvenida será
+
