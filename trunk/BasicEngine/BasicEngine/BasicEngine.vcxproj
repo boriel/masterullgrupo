@@ -108,6 +108,7 @@
     <ClInclude Include="Character\Character.h" />
     <ClInclude Include="Character\CharacterManager.h" />
     <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\HudManager.h" />
     <ClInclude Include="Game\InputConfiguration.h" />
     <ClInclude Include="Game\Object\RaceControlManager.h" />
     <ClInclude Include="Game\Object\Object.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="Character\Character.cpp" />
     <ClCompile Include="Character\CharacterManager.cpp" />
     <ClCompile Include="Game\Game.cpp" />
+    <ClCompile Include="Game\HudManager.cpp" />
     <ClCompile Include="Game\InputConfiguration.cpp" />
     <ClCompile Include="Game\Object\RaceControlManager.cpp" />
     <ClCompile Include="Game\Object\Object.cpp" />

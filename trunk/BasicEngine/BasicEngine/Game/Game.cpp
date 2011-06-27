@@ -22,6 +22,7 @@
 #include "..\Character\Behaviour\BehaviourManager.h"
 #include "..\Character\Behaviour\ChaserBase.h"
 #include "..\Physics\PhysicsManager.h"
+#include "HudManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -68,10 +69,6 @@ bool cGame::Init()
 	
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
-		
-	mFont.Init("./Data/Fonts/Test2.fnt"); // Init the Font
-	cFontManager::Get().Init(5);
-	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
 	
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
@@ -103,7 +100,7 @@ bool cGame::Init()
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico (no los objetos)
 	cObjectManager::Get().Init();
 	cRaceControlManager::Get().Init("Data/Resources.xml");
-
+	cHudManager::Get().Init("Data/Resources.xml");
 	return lbResult;
 }
 
@@ -118,7 +115,7 @@ bool cGame::Deinit()
 	cObjectManager::Get().Deinit();
 
 	cInputManager::Get().Deinit();
-	mFont.Deinit();
+	// PASADO AL HUDMANAGER: mFont.Deinit();
 	cModelManager::Get().Deinit();
 	cMeshManager::Get().Deinit();
 	cInputManager::Get().Deinit();
@@ -129,7 +126,7 @@ bool cGame::Deinit()
 
 	cEffectManager::Get().Deinit();
 	m3DCamera.Deinit();
-
+	cHudManager::Get().Deinit();
 	return lbResult;
 }
 
@@ -172,6 +169,9 @@ void cGame::Update(float lfTimestep)
 	{
 		cPhysicsManager::Get().CambiarDebugMode();
 	}
+
+	// Actualizamos el Hud
+	cHudManager::Get().Update(lfTimestep);
 
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
@@ -223,9 +223,10 @@ void cGame::Render()
 	//cGraphicManager::Get().RefreshWorldView(); ya esto lo hace el Activate Camera
 
 	// 6) Render 2D Elements
+	// Aquí renderizaremos nuestro HudManager con el que pintaremos tanto ingame como los menús.
 	SetTheWorldMatrix();
-	RenderTexts();	
-
+	//RenderTexts();	
+	cHudManager::Get().Render();
 	// 7) Postprocessing
 
 	// 8) Swap Buffers
@@ -261,10 +262,10 @@ void cGame::RenderObjects ()
 //Dibujamos Todos los objetos
 void cGame::RenderPhysicsObjects () 
 {
-#if _DEBUG
+/*#if _DEBUG
 	if (cPhysicsManager::Get().GetDebugMode())
-		cPhysicsManager::Get().Render();
-#endif
+	*/	cPhysicsManager::Get().Render();
+//#endif
 }
 
 void cGame::RenderModels() 
@@ -282,7 +283,7 @@ void cGame::RenderSkeletal ()
 }
 
 //Renderizamos una fuente en pantalla siguiendo el orden
-void cGame::RenderTexts() 
+/*void cGame::RenderTexts() 
 { 
 	//Draw some strings
 	glEnable(GL_TEXTURE_2D);
@@ -291,7 +292,7 @@ void cGame::RenderTexts()
 	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
 	mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera", 0,	FONT_ALIGN_CENTER);
 	mFont.Write(0, -220, 0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
-}
+}*/
 
 //Para los ejercicios de LUA
 void cGame::RenderLua () 

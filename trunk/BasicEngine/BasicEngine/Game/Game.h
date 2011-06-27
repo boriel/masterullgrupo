@@ -25,10 +25,10 @@ class cGame : public cSingleton<cGame> {
 		cApplicationProperties mProperties;
 		cCameraNavigator m3DCamera;
 		cCamera m2DCamera;
-		cFont mFont;
+		// PASADO AL HUDMANAGER: cFont mFont;
 		cResourceHandle mCubo;
 		cResourceHandle mScene;
-		cResourceHandle mFontHandle;
+		// PASADO AL HUDMANAGER: cResourceHandle mFontHandle;
 		cResourceHandle mSkeletalMesh;
 		cSubModel mSubModel;  //nuevo para el skeleton
 
@@ -48,7 +48,7 @@ class cGame : public cSingleton<cGame> {
 	private:  //métodos
 		void LoadResources(); //Read resources for the game (window properties)
 		void SetTheWorldMatrix();
-		void RenderTexts();
+		// PASADO AL HUDMANAGER: void RenderTexts();
 		void RenderRejilla();
 		void RenderLua();
 		void RenderModels();
