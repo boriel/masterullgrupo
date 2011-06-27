@@ -1,0 +1,5 @@
+<!-- El material "<default>" se aplicará por defecto si no se encuentra el solicitado -->
+<Materials>
+  <Material name = "<default>" effectName = "simple" effectPath = "./Data/Shader/simple.fx" technique = "Technique0" />
+</Materials>
+
