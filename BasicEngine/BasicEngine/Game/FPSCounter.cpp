@@ -27,7 +27,6 @@ void cFPSCounter::Update(float lfTimestep)
 		mfFPS = mfFrameCount / mfTimeSinceLastUpdate;
 		mfFrameCount = 0;
 		mfTimeSinceLastUpdate -= mfUpdateInterval;
-
 	}
 
 }

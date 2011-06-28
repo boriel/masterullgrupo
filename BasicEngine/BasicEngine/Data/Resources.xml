@@ -96,9 +96,9 @@
 <!--    
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
 -->
-<!--
+
     <Object Type="ObjetoPrueba" Position="0,-100,5" ModelName="RampaCubo" ModelFile="./Data/Objetos/Pruebas/RampaCubo.DAE" Mass="0" />
--->
+
     <!--
     <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
 -->

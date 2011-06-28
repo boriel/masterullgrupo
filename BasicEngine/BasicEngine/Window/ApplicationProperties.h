@@ -39,7 +39,8 @@ class cApplicationProperties
 
 		void SetFilename (char* lsFilename);	
 		bool LoadPropertiesXML(const char* lacLevelFile);
-			
+		
+		//void SetApplicationName (string lacAppkicationName) { macApplicationName = lacAppkicationName; }
 
 	private:
 		bool LoadTagConfigXML();
