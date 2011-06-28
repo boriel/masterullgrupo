@@ -43,7 +43,7 @@
 <!--       VEHICLES       -->
 
 
-	<Object Type="Vehicle" Position="0,5,-9" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Effect="simple" />
+	<Object Type="Vehicle" Position="0,5,-9" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 
     
   
