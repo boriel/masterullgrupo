@@ -39,12 +39,12 @@ void cHudManager::Render()
 	mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera", 0,	FONT_ALIGN_CENTER);
 	mFont.Write(0, -220, 0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
 	
-	
+#if _DEBUG	
 	float lfFPS = cFPSCounter::Get().GetFPS();
 	char* lpcFPS = new char[10];
-	sprintf(lpcFPS, "%.4g", lfFPS );
-
+	sprintf(lpcFPS, "%.2g FPS", lfFPS );
 	mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
+#endif
 
 }
 

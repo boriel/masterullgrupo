@@ -17,6 +17,8 @@
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
 
 #include "..\..\Graphics\Meshes\MeshManager.h"
+#include "..\..\Graphics\GraphicManager.h"
+
 
 bool cObjectManager::Init() 
 {
@@ -316,6 +318,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		cSubModel* lSubModel = lObjectList[liIndex];
 		string lsMeshName = lSubModel->GetName();
 
+
 #ifdef _DEBUG
 		cout << "MeshName : " << lsMeshName << endl;
 #endif		
@@ -370,14 +373,46 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
 			
+			
+			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
+			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+			
+			
+
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 
-			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z);
+			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+
+			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 0);
+
+			//cMatrix lLocalMatrixSubModel2 = lvCenterMesh4 * lLocalMatrixSubModel;
+
+			//btMatrix3x3 lbtMatrix =  lLocalMatrixSubModel;
+
+			//lLocalMatrixSubModel.
+
+
+			
+
+			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
 			btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
 			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtCenterMesh );
+			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+			//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
+			
+			//btTransform lbtLocalTrans = btTransform (btQuaternion(lLocalMatrixSubModel[3].x, lLocalMatrixSubModel[3].y, lLocalMatrixSubModel[3].z, lLocalMatrixSubModel[3].w), lvbtCenterMesh);
 
+			//cQuaternion q = cQuaternion ();
+			//q.AsMatrix(lLocalMatrixSubModel);
+			//btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
+			
+			////btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
+			//btTransform lbtLocalTrans;
+			//lbtLocalTrans.setRotation(btq);
+
+
+			
 			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
 			
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
