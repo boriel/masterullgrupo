@@ -25,12 +25,14 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cObject *GetObject(const string lsType, const string lsModelName);
 		float GetScale() { return mfScale; }
 		void SetScale(float lfScale) { mfScale=lfScale; }
+		
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);
 		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
 		void Tokenize(const string& lsStr, vector<string>& lvTokens,  const string& lsDelimiters); //sacado de internet, un split de cadena!
 		void CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsObject);
+		cQuaternion CalculateRotation ( cMatrix lMatrix);
 
 	private:
 		typedef std::vector<cObject *> cObjectList;

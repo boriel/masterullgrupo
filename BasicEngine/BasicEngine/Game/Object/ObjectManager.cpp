@@ -357,7 +357,26 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			
 			//----Pruebas de rotacion
 			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90)));  
+
+			
+			//cQuaternion q = cQuaternion ();
+			//q.LoadIdentity();
+			////q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
+			//cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
+			//cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+			//q = CalculateRotation(lLocalMatrixSubModel);
+			//btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
+			////btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
+			//tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+			//btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
+			//lbtLocalTrans.setRotation(btq);
+
 			///----- end pruebas
+
+
+
+
 
 
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
@@ -397,23 +416,24 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
 			btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
 			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
+			btTransform lbtLocalTrans;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
-			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
 			//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
 			
 			//btTransform lbtLocalTrans = btTransform (btQuaternion(lLocalMatrixSubModel[3].x, lLocalMatrixSubModel[3].y, lLocalMatrixSubModel[3].z, lLocalMatrixSubModel[3].w), lvbtCenterMesh);
 
-			//cQuaternion q = cQuaternion ();
-			//q.AsMatrix(lLocalMatrixSubModel);
-			//btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
-			
-			////btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
-			//btTransform lbtLocalTrans;
-			//lbtLocalTrans.setRotation(btq);
+			cQuaternion q = cQuaternion ();
+			q.LoadIdentity();
+			//q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
+			q = CalculateRotation(lLocalMatrixSubModel);
+			btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
+			//btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
+			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1));
+			lbtLocalTrans.setRotation(btq);
 
-
-			
-			lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
+						
+			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
 			
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
@@ -477,6 +497,45 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 	}
 
 
+}
+
+//http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+cQuaternion cObjectManager::CalculateRotation ( cMatrix lMatrix ) 
+{
+	cQuaternion q;
+
+	cMatrix a = lMatrix;
+
+  float trace = a[0][0] + a[1][1] + a[2][2]; // I removed + 1.0f; see discussion with Ethan
+  if( trace > 0 ) {// I changed M_EPSILON to 0
+    float s = 0.5f / sqrtf(trace+ 1.0f);
+    q.w = 0.25f / s;
+    q.x = ( a[2][1] - a[1][2] ) * s;
+    q.y = ( a[0][2] - a[2][0] ) * s;
+    q.z = ( a[1][0] - a[0][1] ) * s;
+  } else {
+    if ( a[0][0] > a[1][1] && a[0][0] > a[2][2] ) {
+      float s = 2.0f * sqrtf( 1.0f + a[0][0] - a[1][1] - a[2][2]);
+      q.w = (a[2][1] - a[1][2] ) / s;
+      q.x = 0.25f * s;
+      q.y = (a[0][1] + a[1][0] ) / s;
+      q.z = (a[0][2] + a[2][0] ) / s;
+    } else if (a[1][1] > a[2][2]) {
+      float s = 2.0f * sqrtf( 1.0f + a[1][1] - a[0][0] - a[2][2]);
+      q.w = (a[0][2] - a[2][0] ) / s;
+      q.x = (a[0][1] + a[1][0] ) / s;
+      q.y = 0.25f * s;
+      q.z = (a[1][2] + a[2][1] ) / s;
+    } else {
+      float s = 2.0f * sqrtf( 1.0f + a[2][2] - a[0][0] - a[1][1] );
+      q.w = (a[1][0] - a[0][1] ) / s;
+      q.x = (a[0][2] + a[2][0] ) / s;
+      q.y = (a[1][2] + a[2][1] ) / s;
+      q.z = 0.25f * s;
+    }
+  }
+
+	return q;
 }
 
 

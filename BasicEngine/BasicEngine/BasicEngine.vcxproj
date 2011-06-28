@@ -316,7 +316,9 @@
     <None Include="Data\Config.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\Material\materials.xml" />
+    <None Include="Data\Material\materials.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Data\Resources.xml">
       <SubType>Designer</SubType>
     </None>
