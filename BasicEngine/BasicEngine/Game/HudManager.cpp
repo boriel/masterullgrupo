@@ -16,7 +16,7 @@ bool cHudManager::Init(string lsFileName)
 	mFont.Init("./Data/Fonts/Test2.fnt"); // Init the Font
 	cFontManager::Get().Init(5);
 	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
-
+	mIsHudActive=true;
 	return true;
 }
 
@@ -27,23 +27,42 @@ void cHudManager::Deinit()
 
 void cHudManager::Update(float lfTimestep)
 {	
+	// Obtendremos de RaceControlManager los datos que mostrar en el Hud
+
+	// Habrá que crear estas funciones:
+	// mHud.muiPosition = cRaceControlManager::Get().GetRacePosition(idPlayer);
+	// mHud.muiNumActualLap = cRaceControlManager::Get().GetRaceActualLap(idPlayer);
+	// mHud.muiNumTotalLaps = cRaceControlManager::Get().GetRaceTotalLaps();
 }
 
 void cHudManager::Render()
 {
-	//Draw some strings
 	glEnable(GL_TEXTURE_2D);
-	mFont.SetColour( 1.0f, 1.0f, 1.0f );
-	mFont.Write(0, 200, 0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
-	//mFont.SetColour( 0.0f, 1.0f, 1.0f );
-	mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera", 0,	FONT_ALIGN_CENTER);
-	mFont.Write(0, -220, 0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
+	if(mIsHudActive){
+		mFont.SetHeight(100.0);
+		// Posición: abajo derecha
+		char *lPosition=new char(); 
+		sprintf(lPosition,"%i",mHud.muiPosition);
+		mFont.Write(220, -220, 0,lPosition, 0,	FONT_ALIGN_CENTER);
+		// Vuelta actual / Vueltas totales: arriba derecha
+		char *lLaps=new char(); 
+		sprintf(lLaps,"%i/%i",mHud.muiNumActualLap,mHud.muiNumTotalLaps);
+		mFont.Write(220, 170, 0,lLaps, 0,	FONT_ALIGN_CENTER);
+	}else{
+#if _DEBUG		
+		//Draw some strings
+		mFont.SetColour( 1.0f, 1.0f, 1.0f );
+		mFont.Write(0, 200, 0, "ESC o botón izquierdo para Salir", 0,	FONT_ALIGN_CENTER);
+		//mFont.SetColour( 0.0f, 1.0f, 1.0f );
+		mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera", 0,	FONT_ALIGN_CENTER);
+		mFont.Write(0, -220, 0, "F9 = Debug", 0,	FONT_ALIGN_CENTER);
 	
-#if _DEBUG	
-	float lfFPS = cFPSCounter::Get().GetFPS();
-	char* lpcFPS = new char[10];
-	sprintf(lpcFPS, "%.2g FPS", lfFPS );
-	mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
+
+		float lfFPS = cFPSCounter::Get().GetFPS();
+		char* lpcFPS = new char[10];
+		sprintf(lpcFPS, "%.2g FPS", lfFPS );
+		mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
+	}
 #endif
 
 }

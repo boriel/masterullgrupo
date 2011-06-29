@@ -160,7 +160,7 @@ void cPhysicsManager::MyInit(void)
 	/*	light_position is NOT default value	*/
 	GLfloat light_position0[] = { btScalar(1.0), btScalar(10.0), btScalar(1.0), btScalar(0.0 )};
 	GLfloat light_position1[] = { btScalar(-1.0), btScalar(-10.0), btScalar(-1.0), btScalar(0.0) };
-
+	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
@@ -170,7 +170,7 @@ void cPhysicsManager::MyInit(void)
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
 	glLightfv(GL_LIGHT1, GL_POSITION, light_position1);
-
+	
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
@@ -181,11 +181,19 @@ void cPhysicsManager::MyInit(void)
 	glDepthFunc(GL_LESS);
 
 	glClearColor(btScalar(0.7),btScalar(0.7),btScalar(0.7),btScalar(0));
-
+	
 	//  glEnable(GL_CULL_FACE);
 	//  glCullFace(GL_BACK);
 }
 
+void cPhysicsManager::Disable(void){
+	glDisable(GL_LIGHTING);
+	glDisable(GL_LIGHT0);
+	glDisable(GL_LIGHT1);
+
+
+	glDisable(GL_DEPTH_TEST);
+}
 
 void cPhysicsManager::RenderScene(int liPass)
 {
@@ -244,14 +252,15 @@ void cPhysicsManager::RenderScene(int liPass)
 //		m_dynamicsWorld->getDebugDrawer()->drawAabb(aabbMin,aabbMax,btVector3(1,1,1));
 
 		
-		mpShapeDrawer->drawOpenGL(m,colObj->getCollisionShape(), wireColor, GetDebugMode(), aabbMin, aabbMax); 
+		//mpShapeDrawer->drawOpenGL(m,colObj->getCollisionShape(), wireColor, GetDebugMode(), aabbMin, aabbMax); 
 
-		if (!(GetDebugMode() & btIDebugDraw::DBG_DrawWireframe))
+		if ((GetDebugMode() & btIDebugDraw::DBG_DrawWireframe))
 		{
 			switch(liPass)
 			{
 
 			case	0:	
+				// EL ERROR DE  QUE AL DARLE A F9 LAS LETRAS NO SE VEAN ES POR ESTA LINEA
 				mpShapeDrawer->drawOpenGL(m,colObj->getCollisionShape(), wireColor, GetDebugMode(), aabbMin, aabbMax); 
 				break;
 			//case	1:	mpShapeDrawer->drawShadow(m,m_sundirection*rot,colObj->getCollisionShape(),aabbMin,aabbMax);break;
@@ -395,6 +404,7 @@ void cPhysicsManager::CambiarDebugMode()
 	else
 	{
 		miDebugMode = 0;
+		Disable();
 		(*mpbtDebugDrawer).setDebugMode(miDebugMode);
 	}
 }
