@@ -41,6 +41,7 @@ class cPhysicsManager : public cResourceManager, public cSingleton<cPhysicsManag
 		//void AddCollisionShape (btCollisionShape* lbtCollShape) { mabtCollisionShapes.push_back(lbtCollShape); }
 		//void InitAllPhysics();
 		//cPhysicsObject*	GetPhysicsObjectPtr (const string lsType, const string lsModelName);
+		void Disable(void);
 
 		inline int GetDebugMode() { return miDebugMode; }
 		inline void SetDebugMode (int liDebugMode) { miDebugMode = liDebugMode; }

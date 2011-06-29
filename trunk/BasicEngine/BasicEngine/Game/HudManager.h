@@ -50,6 +50,10 @@ public:
 		void Render();
 		void Update(float lfTimestep); 
 
+		// Con esto mostraremos la pantalla de Hud de juego
+		inline void ActivateHud(){mIsHudActive=true;}
+		inline void DeactivateHud(){mIsHudActive=false;}
+
 	private:
 		string msFileName;
 		// Lista de menús - PENDIENTE
