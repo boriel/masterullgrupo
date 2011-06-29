@@ -43,6 +43,7 @@ class cSubModel
 
 		//cMesh* GetMesh (const int liIndex) { return (cMesh *)mMeshHandles[liIndex].GetResource(); }
 		cResource* GetResource (const int liIndex) { return mMeshHandles[liIndex].GetResource() ; }
+		void TransformVertexsToModelSpace();
 
 	protected:
 		string macName;

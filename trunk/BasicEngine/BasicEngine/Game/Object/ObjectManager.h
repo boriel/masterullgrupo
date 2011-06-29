@@ -33,6 +33,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		void Tokenize(const string& lsStr, vector<string>& lvTokens,  const string& lsDelimiters); //sacado de internet, un split de cadena!
 		void CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsObject);
 		cQuaternion CalculateRotation ( cMatrix lMatrix);
+		cVec4 Multiplicar (const cVec4 lvCenterMesh4, const cMatrix lLocalMatrixSubModel);
 
 	private:
 		typedef std::vector<cObject *> cObjectList;

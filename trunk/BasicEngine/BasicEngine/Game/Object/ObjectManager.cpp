@@ -318,6 +318,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		cSubModel* lSubModel = lObjectList[liIndex];
 		string lsMeshName = lSubModel->GetName();
 
+		
 
 #ifdef _DEBUG
 		cout << "MeshName : " << lsMeshName << endl;
@@ -331,8 +332,16 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		if (lsTipoShape == "Mesh")
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
+
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
+
+
+			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
+			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
+				lSubModel->TransformVertexsToModelSpace();
+			lpMesh->ProcessBoundingMesh();
+
 
 			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
 
@@ -372,6 +381,19 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
 			//lbtLocalTrans.setRotation(btq);
 
+			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			
+			
+			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
+			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
+			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+			//lLocalMatrixSubModel.LoadTranslation(cVec3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z));
+			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
+			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
+			btVector3 lvbtCenterMesh = btVector3 (btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
+			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
 			///----- end pruebas
 
 
@@ -389,9 +411,16 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//if (lsMeshName == "Box_Help_SueloMesa")
 			//{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
+
+			
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
 			
+
+			//Pruebas
+			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
+				lSubModel->TransformVertexsToModelSpace();  //Llamando aqui para transformar las mallas en el espacio del modelo
+			lpMesh->ProcessBoundingMesh();
 			
 			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
 			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
@@ -401,28 +430,28 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 
 			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
+			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
+			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
 
-			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 0);
-
-			//cMatrix lLocalMatrixSubModel2 = lvCenterMesh4 * lLocalMatrixSubModel;
-
-			//btMatrix3x3 lbtMatrix =  lLocalMatrixSubModel;
-
-			//lLocalMatrixSubModel.
-
-
-			
 
 			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
-			btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+			btVector3 lvbtCenterMesh = btVector3 (btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
 			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
 			btTransform lbtLocalTrans;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
-			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+			
+			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			
 			//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
 			
 			//btTransform lbtLocalTrans = btTransform (btQuaternion(lLocalMatrixSubModel[3].x, lLocalMatrixSubModel[3].y, lLocalMatrixSubModel[3].z, lLocalMatrixSubModel[3].w), lvbtCenterMesh);
 
+
+			//End pruebas
+
+			/*
 			cQuaternion q = cQuaternion ();
 			q.LoadIdentity();
 			//q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
@@ -431,7 +460,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
 			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1));
 			lbtLocalTrans.setRotation(btq);
-
+			*/
 						
 			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
 			
@@ -499,7 +528,28 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 }
 
+
+cVec4 cObjectManager::Multiplicar (const cVec4 lvCenterMesh4, const cMatrix lLocalMatrixSubModel)
+{
+	cVec4 lvResul;
+
+	for (unsigned int luiIndexA = 0; luiIndexA < 4; luiIndexA++)
+	{
+		float lfTemp = 0;
+		for (unsigned int luiIndexB = 0; luiIndexB < 4; luiIndexB++)
+		{
+			lfTemp += lvCenterMesh4[luiIndexB] * lLocalMatrixSubModel[luiIndexB][luiIndexA];
+		}
+		lvResul[luiIndexA] = lfTemp;
+	}	
+	
+
+	return lvResul;
+}
+
+
 //http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
+//No lo uso
 cQuaternion cObjectManager::CalculateRotation ( cMatrix lMatrix ) 
 {
 	cQuaternion q;
