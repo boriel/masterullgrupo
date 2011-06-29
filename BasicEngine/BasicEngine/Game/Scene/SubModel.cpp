@@ -95,3 +95,18 @@ void cSubModel::Render(cMatrix &lWorld)
 	}
 	*/
 }
+
+//
+void cSubModel::TransformVertexsToModelSpace()
+{
+	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
+	{
+		cMesh *lpMesh = (cMesh *)mMeshHandles[luiIndex].GetResource();
+
+		for (unsigned luiIndex = 0; luiIndex < lpMesh->muiNumVertex; ++luiIndex)
+		{
+			cVec3& lVtx = lpMesh->mpVertexPositionBuffer[luiIndex];
+			TransformPoint(lVtx, lVtx, mLocalMatrix); 
+		}
+	}
+}
