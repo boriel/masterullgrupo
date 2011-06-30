@@ -38,8 +38,9 @@ void cHudManager::Update(float lfTimestep)
 void cHudManager::Render()
 {
 	glEnable(GL_TEXTURE_2D);
-	if(mIsHudActive){
-		mFont.SetHeight(100.0);
+	if(mIsHudActive)
+	{
+		mFont.SetHeight(30.0);
 		// Posición: abajo derecha
 		char *lPosition=new char(); 
 		sprintf(lPosition,"%i",mHud.muiPosition);
@@ -48,7 +49,8 @@ void cHudManager::Render()
 		char *lLaps=new char(); 
 		sprintf(lLaps,"%i/%i",mHud.muiNumActualLap,mHud.muiNumTotalLaps);
 		mFont.Write(220, 170, 0,lLaps, 0,	FONT_ALIGN_CENTER);
-	}else{
+	}
+
 #if _DEBUG		
 		//Draw some strings
 		mFont.SetColour( 1.0f, 1.0f, 1.0f );
@@ -62,7 +64,7 @@ void cHudManager::Render()
 		char* lpcFPS = new char[10];
 		sprintf(lpcFPS, "%.2g FPS", lfFPS );
 		mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
-	}
+	
 #endif
 
 }
