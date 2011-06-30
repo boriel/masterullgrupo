@@ -107,6 +107,7 @@ void cSubModel::TransformVertexsToModelSpace()
 		{
 			cVec3& lVtx = lpMesh->mpVertexPositionBuffer[luiIndex];
 			TransformPoint(lVtx, lVtx, mLocalMatrix); 
+			//TransformNormal(lVtx, lVtx, mLocalMatrix); 
 		}
 	}
 }

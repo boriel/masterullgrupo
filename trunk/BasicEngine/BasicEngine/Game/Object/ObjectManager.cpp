@@ -318,7 +318,11 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		cSubModel* lSubModel = lObjectList[liIndex];
 		string lsMeshName = lSubModel->GetName();
 
-		
+/*
+		if (liIndex == 0)
+			for (int liIndex2 = 0; liIndex2 < lpModel->GetTamMeshList(); liIndex2++)
+				lSubModel->TransformVertexsToModelSpace();
+*/
 
 #ifdef _DEBUG
 		cout << "MeshName : " << lsMeshName << endl;
@@ -329,7 +333,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		string lsTipoShape = lTokens[0].c_str();
 
 		//Con este metodo obtenemos todos los puntos del vector
-		if (lsTipoShape == "Mesh")
+		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box")) //Pequeña prueba
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
@@ -338,7 +342,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 
 			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
-			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
+			//if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
 				lSubModel->TransformVertexsToModelSpace();
 			lpMesh->ProcessBoundingMesh();
 
@@ -392,9 +396,10 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lLocalMatrixSubModel.LoadTranslation(cVec3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z));
 			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
 			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
-			btVector3 lvbtCenterMesh = btVector3 (btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
+			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
+			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
 			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
-			///----- end pruebas
+			///----- end pruebas rotacion
 
 
 
@@ -406,7 +411,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		
-		else if (lsTipoShape == "Box")
+		else if (lsTipoShape == "Box2")
 		{
 			//if (lsMeshName == "Box_Help_SueloMesa")
 			//{
