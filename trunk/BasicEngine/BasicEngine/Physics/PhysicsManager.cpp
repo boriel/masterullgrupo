@@ -261,7 +261,7 @@ void cPhysicsManager::RenderScene(int liPass)
 
 			case	0:	
 				// EL ERROR DE  QUE AL DARLE A F9 LAS LETRAS NO SE VEAN ES POR ESTA LINEA
-				mpShapeDrawer->drawOpenGL(m,colObj->getCollisionShape(), wireColor, GetDebugMode(), aabbMin, aabbMax); 
+				mpShapeDrawer->drawOpenGL(m, colObj->getCollisionShape(), wireColor, GetDebugMode(), aabbMin, aabbMax); 
 				break;
 			//case	1:	mpShapeDrawer->drawShadow(m,m_sundirection*rot,colObj->getCollisionShape(),aabbMin,aabbMax);break;
 			//case	2:	mpShapeDrawer->drawOpenGL(m,colObj->getCollisionShape(),wireColor*btScalar(0.3),0,aabbMin,aabbMax);break;
