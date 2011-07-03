@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_003A6EA092E848AA88543E2B58D0C053"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_00C03D4269074746809F7AB530435CEA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -153,12 +147,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2DBDE333DDF643C788C072693909F54D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_30F4C050A7844268A39073CF8899823B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -209,6 +197,12 @@
         {
         "MsmKey" = "8:_4B025949D4F6930B80FD827FE885A4A3"
         "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4D9865E1B7A446EFB88DED3B9E752493"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -615,6 +609,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C478787D630C448B851A8D64B91A2AFD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C5459C2A704C422D8201D314D087B0F2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -671,12 +671,6 @@
         {
         "MsmKey" = "8:_D818772183CAF284EA3A0970FA745AE7"
         "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_DD49B679D16847EA82B610A1B835D914"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -796,6 +790,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -818,26 +825,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_003A6EA092E848AA88543E2B58D0C053"
-            {
-            "SourcePath" = "8:..\\BasicEngine\\Data\\Shader\\Toon\\skinning.fx"
-            "TargetName" = "8:skinning.fx"
-            "Tag" = "8:"
-            "Folder" = "8:_EFEE5DE9474C4D0AB43B29DFDAAF300F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00C03D4269074746809F7AB530435CEA"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_hair1.xrf"
@@ -1264,26 +1251,6 @@
             "TargetName" = "8:dragonsmall.DAE"
             "Tag" = "8:"
             "Folder" = "8:_F9975DB1F0BA40A2BC194EEE20B53860"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2DBDE333DDF643C788C072693909F54D"
-            {
-            "SourcePath" = "8:..\\BasicEngine\\Data\\Shader\\Toon\\PostProcessing.fx"
-            "TargetName" = "8:PostProcessing.fx"
-            "Tag" = "8:"
-            "Folder" = "8:_EFEE5DE9474C4D0AB43B29DFDAAF300F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2778,6 +2745,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C478787D630C448B851A8D64B91A2AFD"
+            {
+            "SourcePath" = "8:C:\\Windows\\System32\\msvcrt.dll"
+            "TargetName" = "8:msvcrt.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5459C2A704C422D8201D314D087B0F2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Billar\\01\\images\\7Ball.jpg"
@@ -2976,26 +2963,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD49B679D16847EA82B610A1B835D914"
-            {
-            "SourcePath" = "8:..\\BasicEngine\\Data\\Shader\\Toon\\Render.fx"
-            "TargetName" = "8:Render.fx"
-            "Tag" = "8:"
-            "Folder" = "8:_EFEE5DE9474C4D0AB43B29DFDAAF300F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEFD0BF7D36E45FEAEC1FAB5ACA50A5F"
@@ -3265,17 +3232,6 @@
                             "Property" = "8:_5404C7AE3A824141B82AF1DF49C9AEC1"
                                 "Folders"
                                 {
-                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_EFEE5DE9474C4D0AB43B29DFDAAF300F"
-                                    {
-                                    "Name" = "8:Toon"
-                                    "AlwaysCreate" = "11:FALSE"
-                                    "Condition" = "8:"
-                                    "Transitive" = "11:FALSE"
-                                    "Property" = "8:_808C1C397FB94845902EB2A122AE9B6B"
-                                        "Folders"
-                                        {
-                                        }
-                                    }
                                 }
                             }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_5B1C98F628564FCBAA6B57764A463DE1"
@@ -4126,6 +4082,20 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_4D9865E1B7A446EFB88DED3B9E752493"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:Microsoft_VC100_DebugCRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
         }
         "ProjectOutput"
         {
