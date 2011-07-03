@@ -356,7 +356,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
 			//lbtLocalTrans.setIdentity();
 
-
+/*
 			if (liIndex == 0)
 				for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
 				{
@@ -365,7 +365,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 					lVec3[liCont].y = lV4.y;
 					lVec3[liCont].z = lV4.z;
 				}
-
+*/
 
 			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
 			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
