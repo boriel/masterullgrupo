@@ -208,7 +208,7 @@ void cModel::ConvertNodesToObjects( aiNode *lpNode, cMatrix lTransform )
 			mMaterialList[luiMaterialIndex] );
 		}
 
-	mSubModelList.push_back(lpSubModel);
+	  mSubModelList.push_back(lpSubModel);
 	}
 
 	// continue for all child nodes
