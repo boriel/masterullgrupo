@@ -341,6 +341,9 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			lpMesh = (cMesh*)lResourceMesh;
 
 
+			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
+			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+
 			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
 			//if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
 				lSubModel->TransformVertexsToModelSpace();
@@ -360,6 +363,14 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btConvexHullShape* lbtShape = new btConvexHullShape();
 
 			float lfScala = 1.0f;//0.07f;
+
+			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
+			{
+				cVec4 lV4 = Multiplicar( cVec4(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z, 1), lMatrixWorld);
+				lVec3[liCont].x = lV4.x;
+				lVec3[liCont].y = lV4.y;
+				lVec3[liCont].z = lV4.z;
+			}
 
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
 				lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
@@ -391,8 +402,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
 			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
-			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
-			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+
 			//lLocalMatrixSubModel.LoadTranslation(cVec3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z));
 			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
 			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
