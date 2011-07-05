@@ -21,7 +21,9 @@ class cGame : public cSingleton<cGame> {
 	friend class cSingleton<cGame>;
 
 	private: //variables
-		bool mbFinish;
+		bool mbFinish; // Controlará el fin de la partida
+		bool mbStart; // Controlará si la partida ha empezado o no
+		bool mbPause; // Controlará si la partida se ha pausado.
 		cApplicationProperties mProperties;
 		cCameraNavigator m3DCamera;
 		cCamera m2DCamera;
