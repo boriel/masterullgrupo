@@ -85,6 +85,12 @@
     <Filter Include="Data\Material">
       <UniqueIdentifier>{701e4320-d9f3-4d44-b4b2-9ef25bb9876a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{43d0aa09-c26e-418c-88f3-3e5a4178c463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound\Framework">
+      <UniqueIdentifier>{8b373fb4-87ee-42b6-8d97-d9f75db3fe5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utility\Singleton.h">
@@ -432,6 +438,21 @@
     <ClInclude Include="Game\FPSCounter.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Sound\SoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Framework\LoadOAL.h">
+      <Filter>Sound\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Framework\aldlist.h">
+      <Filter>Sound\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Framework\CWaves.h">
+      <Filter>Sound\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound\Framework\Framework.h">
+      <Filter>Sound\Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -722,6 +743,21 @@
     </ClCompile>
     <ClCompile Include="Game\FPSCounter.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\SoundManager.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\Framework\aldlist.cpp">
+      <Filter>Sound\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\Framework\CWaves.cpp">
+      <Filter>Sound\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\Framework\Framework.cpp">
+      <Filter>Sound\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound\Framework\LoadOAL.cpp">
+      <Filter>Sound\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

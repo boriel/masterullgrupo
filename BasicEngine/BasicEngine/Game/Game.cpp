@@ -24,7 +24,7 @@
 #include "..\Physics\PhysicsManager.h"
 #include "HudManager.h"
 #include "FPSCounter.h"
-
+#include "..\Sound\SoundManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -107,7 +107,9 @@ bool cGame::Init()
 	cHudManager::Get().Init("Data/Resources.xml");
 	cFPSCounter::Get().Init();
 
-
+	cSoundManager::Get().Init();
+	cSoundManager::Get().AddSound();
+	cSoundManager::Get().Play();
 	return lbResult;
 }
 
@@ -131,6 +133,7 @@ bool cGame::Deinit()
 	cBehaviourManager::Get().Deinit();
 	cCharacterManager::Get().Deinit();
 
+	cSoundManager::Get().Deinit();
 	cEffectManager::Get().Deinit();
 	m3DCamera.Deinit();
 	cHudManager::Get().Deinit();
