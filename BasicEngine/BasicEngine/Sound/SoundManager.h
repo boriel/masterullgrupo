@@ -1,7 +1,10 @@
 /*
 class cSoundManager: Controla y maneja todos los sonidos que se utilizarán en el juego
-					Después de inicializar la librería con AddSound registraremos el sonido y obtendremos el ID del buffer, para ejecutar el sonido utilizaremos Play(ID)
-
+					Init: Inicializar la librería 
+					AddSound: Registraremos el sonido y obtendremos el ID del buffer que utilizaremos desde el objeto
+					Play: Reproducir el sonido pasando por parámetro el ID
+					Stop: Detener el sonido pasado por parámetro
+					ActivateSound/DeactivateSound: Activa y desactiva el sonido
 					-- ACTUALMENTE EN REFORMAS INTERNAS --
 */
 
@@ -13,11 +16,15 @@ class cSoundManager: Controla y maneja todos los sonidos que se utilizarán en el
 // OpenAL includes
 #include"Framework\Framework.h"
 using namespace std;
+	
+struct Sound{
+	string Name;
+	ALuint Buffer;
+	ALuint Source;
+};
 
-#define	PASOS		"Footsteps.wav"
-#define SIRENA		"Sirena.wav"
-#define ENTORNO		"Entorno.wav"
-#define PLAYTIME	20
+typedef std::vector<Sound *> mList;
+
 class cSoundManager :
 	public cSingleton<cSoundManager>
 {
@@ -27,27 +34,16 @@ public:
 		bool Deinit();
 		void Render();
 		void Update(float lfTimestep); 
-		void Play();
-		void AddSound();
-		// Con esto mostraremos la pantalla de Hud de juego
-		/*inline void ActivateHud(){mIsHudActive=true;}
-		inline void DeactivateHud(){mIsHudActive=false;}
-		*/
+		Sound *AddSound(char *lFileName);
+		void Play(Sound *lSound, bool lLoop);
+		void Stop(Sound *lSound);
+		// Con esto activaremos y desactivaremos el sonido
+		inline void ActivateSound(){mIsSoundOn=true;}
+		inline void DeactivateSound(){mIsSoundOn=false;}
 	private:
-		ALuint      uiBufferPasos;
-		ALuint      uiSourcePasos;
-		ALuint      uiBufferSirena;
-		ALuint      uiSourceSirena;
-		ALuint      uiBufferEntorno;
-		ALuint      uiSourceEntorno;
-		/*string msFileName;
-		// Lista de menús - PENDIENTE
-		tHud mHud;
-		bool mIsHudActive;
-		cFont mFont; // La fuente con la que escribiremos los textos
-		cResourceHandle mFontHandle;
-		// Utilizaremos XML para la carga de menús - PENDIENTE
-		bool LoadXml(void);
-		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);*/
+		bool mIsSoundOn;
+
+		// Utilizaremos estas listas para tener un control directo con los sonidos que utilizaremos.
+		mList mSoundsList;
 };
 

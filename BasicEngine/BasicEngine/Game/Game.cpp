@@ -32,7 +32,10 @@ extern tActionMapping kaActionMapping[];
 bool cGame::Init() 
 { 
 	mbFinish = false;
-	
+	mbStart = false;
+	mbPause = false;
+	// Recien insertados
+
 	LoadResources();  //Load Resources (nada por ahora, incluse se puede meter el mProperties dentro)
 	mProperties.Init();
 	
@@ -108,8 +111,8 @@ bool cGame::Init()
 	cFPSCounter::Get().Init();
 
 	cSoundManager::Get().Init();
-	cSoundManager::Get().AddSound();
-	cSoundManager::Get().Play();
+	// Ejemplo de ejecutar sonido
+	cSoundManager::Get().Play(cSoundManager::Get().AddSound("Entorno.wav"), true);
 	return lbResult;
 }
 
