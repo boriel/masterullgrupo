@@ -56,7 +56,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>TIXML_USE_STL;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\bullet-2.78\Demos\OpenGL;..\bullet-2.78\src;.\Libraries\TinyXML\include;.\Input\ois\includes;.\Graphics\Meshes\assimp\include;$(CG_INC_PATH)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Sound\OpenAL\include;..\bullet-2.78\Demos\OpenGL;..\bullet-2.78\src;.\Libraries\TinyXML\include;.\Input\ois\includes;.\Graphics\Meshes\assimp\include;$(CG_INC_PATH)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
@@ -64,8 +64,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>OpenGLSupport.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;assimp.lib;cal3d_d.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib;cg.lib;cgGL.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\bullet-2.78\msvc\2008\lib\Debug;.\Libraries\TinyXML\lib;.\Input\ois\lib\debug;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\;C:\Program Files (x86)\NVIDIA Corporation\Cg\lib;$(CG_LIB_PATH);.\Graphics\bin\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenGLSupport.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxmld_STL.lib;assimp.lib;cal3d_d.lib;winmm.lib;OpenAL32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib;cg.lib;cgGL.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\Sound\OpenAL\libs\Win32;..\bullet-2.78\msvc\2008\lib\Debug;.\Libraries\TinyXML\lib;.\Input\ois\lib\debug;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\;C:\Program Files (x86)\NVIDIA Corporation\Cg\lib;$(CG_LIB_PATH);.\Graphics\bin\Debug</AdditionalLibraryDirectories>
       <ImportLibrary>
       </ImportLibrary>
     </Link>
@@ -204,6 +204,11 @@
     <ClInclude Include="Physics\PhysicObjectType.h" />
     <ClInclude Include="Physics\PhysicsObject.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
+    <ClInclude Include="Sound\Framework\aldlist.h" />
+    <ClInclude Include="Sound\Framework\CWaves.h" />
+    <ClInclude Include="Sound\Framework\Framework.h" />
+    <ClInclude Include="Sound\Framework\LoadOAL.h" />
+    <ClInclude Include="Sound\SoundManager.h" />
     <ClInclude Include="Utility\Debug.h" />
     <ClInclude Include="Utility\FileUtils.h" />
     <ClInclude Include="Utility\Resource.h" />
@@ -305,6 +310,11 @@
     <ClCompile Include="Physics\Objects\PhysicsVehicle.cpp" />
     <ClCompile Include="Physics\PhysicsObject.cpp" />
     <ClCompile Include="Physics\PhysicsManager.cpp" />
+    <ClCompile Include="Sound\Framework\aldlist.cpp" />
+    <ClCompile Include="Sound\Framework\CWaves.cpp" />
+    <ClCompile Include="Sound\Framework\Framework.cpp" />
+    <ClCompile Include="Sound\Framework\LoadOAL.cpp" />
+    <ClCompile Include="Sound\SoundManager.cpp" />
     <ClCompile Include="Utility\Debug.cpp" />
     <ClCompile Include="Utility\FileUtils.cpp" />
     <ClCompile Include="Utility\ResourceHandle.cpp" />
