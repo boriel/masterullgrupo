@@ -50,7 +50,7 @@ void cHudManager::Render()
 		sprintf(lLaps,"%i/%i",mHud.muiNumActualLap,mHud.muiNumTotalLaps);
 		mFont.Write(220, 170, 0,lLaps, 0,	FONT_ALIGN_CENTER);
 	}
-
+	
 #if _DEBUG		
 		//Draw some strings
 		mFont.SetColour( 1.0f, 1.0f, 1.0f );
@@ -66,7 +66,6 @@ void cHudManager::Render()
 		mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
 	
 #endif
-
 }
 
 bool cHudManager::LoadXml(void)

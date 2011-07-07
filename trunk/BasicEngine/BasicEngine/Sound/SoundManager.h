@@ -34,16 +34,26 @@ public:
 		bool Deinit();
 		void Render();
 		void Update(float lfTimestep); 
-		Sound *AddSound(char *lFileName);
-		void Play(Sound *lSound, bool lLoop);
+		Sound *AddSound(char *lFileName, bool isMusic=false);
+		void Play(Sound *lSound, bool lLoop=false);
 		void Stop(Sound *lSound);
+
 		// Con esto activaremos y desactivaremos el sonido
+		inline bool IsSoundOn(){return mIsSoundOn;}
 		inline void ActivateSound(){mIsSoundOn=true;}
 		inline void DeactivateSound(){mIsSoundOn=false;}
-	private:
-		bool mIsSoundOn;
 
+		inline bool IsMusicOn(){return mIsMusicOn;}
+		inline void ActivateMusic(){mIsMusicOn=true;}
+		inline void DeactivateMusic(){mIsMusicOn=false;}
+		void PlayMusic();
+		void ChangeMusic(char *lFileName);
+		void StopMusic();
+private:
+		bool mIsSoundOn;
+		bool mIsMusicOn;
 		// Utilizaremos estas listas para tener un control directo con los sonidos que utilizaremos.
 		mList mSoundsList;
+		Sound *mMusic; // Música será distinto a los efectos de sonido. Solo habrá 1 activa.
 };
 

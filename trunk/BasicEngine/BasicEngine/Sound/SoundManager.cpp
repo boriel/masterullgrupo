@@ -22,12 +22,13 @@ bool cSoundManager::Init(){
 	alDopplerFactor(true);
 	alDistanceModel(AL_LINEAR_DISTANCE_CLAMPED);
 
-	// Activamos el sonido
+	// Activamos el sonido y la musica
 	mIsSoundOn=true;
+	mIsMusicOn=true;
 }
 
 // Esta función devolverá el ID del sonido para poder reproducirlo por parámetro desde otro objeto
-Sound *cSoundManager::AddSound(char *lFileName){
+Sound *cSoundManager::AddSound(char *lFileName, bool isMusic){
 	ALuint uiBuffer;
 	ALuint uiSource;
 	// Generamos el AL Buffer
@@ -41,14 +42,18 @@ Sound *cSoundManager::AddSound(char *lFileName){
 
 	// Linkamos los buffers a las fuentes
 	alSourcei( uiSource, AL_BUFFER, uiBuffer );
-	
-	// Añadimos el nuevo sonido a la lista
+			
 	Sound *lNewSound=new Sound();
 	lNewSound->Name=lFileName;
 	lNewSound->Buffer=uiBuffer;
 	lNewSound->Source=uiSource;
-	mSoundsList.push_back(lNewSound);
 
+	if(isMusic){
+		mMusic=new Sound;
+		mMusic=lNewSound;
+	}
+		// Añadimos el nuevo sonido a la lista
+	else mSoundsList.push_back(lNewSound);
 	return lNewSound;
 }
 
@@ -65,10 +70,35 @@ void cSoundManager::Play(Sound *lSound, bool lLoop){
 	}
 }
 
+void cSoundManager::PlayMusic(){
+	if(mIsMusicOn){
+		// Reproducimos la fuente
+		alSourcePlay( mMusic->Source );
+		//Hacemos sonar repetidamente la música
+		alSourcei( mMusic->Source ,AL_LOOPING,AL_TRUE);
+	}
+}
+
+void cSoundManager::ChangeMusic(char *lFileName){
+	// Eliminamos la musica
+	alDeleteBuffers(1,&mMusic->Buffer);
+	alDeleteSources(1,&mMusic->Source);
+	delete mMusic;
+
+	AddSound(lFileName,true);
+	PlayMusic();
+
+}
+
 // Se parará el sonido pasado por parámetro 
 void cSoundManager::Stop(Sound *lSound){
 	// Detenemos la fuente
 	alSourceStop( lSound->Source );
+}
+
+void cSoundManager::StopMusic(){
+	// Detenemos la fuente
+	alSourceStop( mMusic->Source );
 }
 
 void cSoundManager::Update(float lfTimestep){
@@ -79,9 +109,13 @@ bool cSoundManager::Deinit(){
 	for (unsigned luiIndex = 0; luiIndex < mSoundsList.size(); ++luiIndex ) {
 		alDeleteBuffers(1,&mSoundsList[luiIndex]->Buffer);
 		alDeleteSources(1,&mSoundsList[luiIndex]->Source);
+		delete mSoundsList[luiIndex];
 	}
 	mSoundsList.clear();
 
+	// Eliminamos la musica
+	alDeleteBuffers(1,&mMusic->Buffer);
+	alDeleteSources(1,&mMusic->Source);
 	ALFWShutdownOpenAL();
 
 	ALFWShutdown();

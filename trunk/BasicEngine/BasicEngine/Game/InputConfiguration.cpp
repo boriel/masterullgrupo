@@ -29,6 +29,7 @@ tActionMapping kaActionMapping[] = {
 	{ eIA_KeyK, eKeyboard, OIS::KC_K },
 	{ eIA_KeyJ, eKeyboard, OIS::KC_J },
 	{ eIA_KeyL, eKeyboard, OIS::KC_L },
+	{ eIA_Accept, eKeyboard, OIS::KC_RETURN},
 
 
 	{ -1, -1, -1 } // End of the table (Marca el final de la tabla)

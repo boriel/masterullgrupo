@@ -197,6 +197,7 @@
     <ClInclude Include="MathLib\Vec\Vec4.h" />
     <ClInclude Include="MathLib\Vec\VecFunc.h" />
     <ClInclude Include="MathLib\Vec\VecLib.h" />
+    <ClInclude Include="Game\MenuManager.h" />
     <ClInclude Include="Physics\Objects\PhysicsCube.h" />
     <ClInclude Include="Physics\Objects\PhysicsPista.h" />
     <ClInclude Include="Physics\Objects\PhysicsPlayer.h" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Physics\PhysicObjectType.h" />
     <ClInclude Include="Physics\PhysicsObject.h" />
     <ClInclude Include="Physics\PhysicsManager.h" />
+    <ClInclude Include="Game\SceneManager.h" />
     <ClInclude Include="Sound\Framework\aldlist.h" />
     <ClInclude Include="Sound\Framework\CWaves.h" />
     <ClInclude Include="Sound\Framework\Framework.h" />
@@ -304,12 +306,14 @@
     <ClCompile Include="MathLib\Matrix\Matrix.cpp" />
     <ClCompile Include="MathLib\Quaternion\QuaternionFunc.cpp" />
     <ClCompile Include="MathLib\Vec\Vec.cpp" />
+    <ClCompile Include="Game\MenuManager.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsCube.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsPista.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsPlayer.cpp" />
     <ClCompile Include="Physics\Objects\PhysicsVehicle.cpp" />
     <ClCompile Include="Physics\PhysicsObject.cpp" />
     <ClCompile Include="Physics\PhysicsManager.cpp" />
+    <ClCompile Include="Game\SceneManager.cpp" />
     <ClCompile Include="Sound\Framework\aldlist.cpp" />
     <ClCompile Include="Sound\Framework\CWaves.cpp" />
     <ClCompile Include="Sound\Framework\Framework.cpp" />
