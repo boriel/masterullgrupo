@@ -25,6 +25,8 @@
 #include "HudManager.h"
 #include "FPSCounter.h"
 #include "..\Sound\SoundManager.h"
+#include "SceneManager.h"
+#include "MenuManager.h"
 
 extern tActionMapping kaActionMapping[];
 
@@ -78,42 +80,36 @@ bool cGame::Init()
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 	
 	cMeshManager::Get().Init(64); // Init MeshManager	
-	cModelManager::Get().Init(64); // Init SceneManager
+	cModelManager::Get().Init(64); // Init ModelManager
 
 	cMaterialManager::Get().Init(64); //Init Material Manager
 	cEffectManager::Get().Init(64);
-	
-	/*
-	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
-	cSkeletalManager::Get().Init(10);
-	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
-	mSkeletalMesh = cMeshManager::Get().LoadResource("Skeleton1", "Skeleton", kuiSkeletalMesh);
-	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
-	lpSkeletonMesh->PlayAnim("Idle", 1.0f, 1.0f);
-
-	cResourceHandle lMaterial = cMaterialManager::Get().LoadResource("Skeleton", "./Data/Material/SkeletonMaterial.xml");
-	assert(lMaterial.IsValidHandle());
-	
-	//mSubModel.Init();
-	mSubModel.AddMesh(mSkeletalMesh, lMaterial);
-	cMatrix lMatrix;
-	lMatrix.LoadScale(0.01f);
-	mSubModel.SetLocalMatrix(lMatrix);
-	*/
 
 	mfAcTime = 0.0f;
 
 	//Pruebas Yorman
+	// Los Init se han pasado a LoadRace() ya que en primer lugar ejecutaremos el Menú y desde ahí accederemos a la carrera
+	cSoundManager::Get().Init();
+	cSoundManager::Get().ChangeMusic("Entorno.wav");
+	cSceneManager::Get().Init();
+	cSceneManager::Get().LoadScene(MenuPrincipal);
+	cHudManager::Get().Init("Data/Resources.xml");
+	cMenuManager::Get().Init("Data/Resources.xml");
+
+	return lbResult;
+}
+
+bool cGame::LoadRace(){
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico (no los objetos)
 	cObjectManager::Get().Init();
 	cRaceControlManager::Get().Init("Data/Resources.xml");
-	cHudManager::Get().Init("Data/Resources.xml");
+	
 	cFPSCounter::Get().Init();
-
-	cSoundManager::Get().Init();
-	// Ejemplo de ejecutar sonido
-	cSoundManager::Get().Play(cSoundManager::Get().AddSound("Entorno.wav"), true);
-	return lbResult;
+	// Cuando ha terminado todo de cargarse cambiamos la escena a Gameplay
+	cSceneManager::Get().LoadScene(Gameplay);
+	// Ejemplo de ejecutar sonido. Cada objeto tendrá sus sonidos que se inicializarán en su propio Init
+	//cSoundManager::Get().Play(cSoundManager::Get().AddSound("Entorno.wav"), true);
+	return true;
 }
 
 //Destructor del juego
@@ -141,7 +137,8 @@ bool cGame::Deinit()
 	m3DCamera.Deinit();
 	cHudManager::Get().Deinit();
 	cFPSCounter::Get().Deinit();
-
+	cSceneManager::Get().Deinit();
+	cMenuManager::Get().Deinit();
 	return lbResult;
 }
 
@@ -150,37 +147,20 @@ void cGame::Update(float lfTimestep)
 {
 	cFPSCounter::Get().Update(lfTimestep);
 	cInputManager::Get().Update(lfTimestep);
-	//Actualizando la malla del esqueleto
-	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 
-	cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
-	
 	cWindow::Get().Update();
 	mfAcTime += lfTimestep;
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 	mSubModel.Update(lfTimestep);	
-	cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
 
-	static bool mbJogging = false;
-	if (BecomePressed( eIA_PlayJog ) && !mbJogging) 
-	{
-		mbJogging = true;
-		lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
-		lpSkeletonMesh->StopAnim("Idle", 0.1f);
-	} else if (BecomePressed( eIA_StopJog ) && mbJogging) 
-	{
-		mbJogging = false;
-		lpSkeletonMesh->PlayAnim("Idle", 1.0f, 0.1f);
-		lpSkeletonMesh->StopAnim("Jog", 0.1f);
-	}
-	if (BecomePressed( eIA_PlayWave )) 
-	{
-		lpSkeletonMesh->PlayAnim("Wave", 1.0f, 0.1f, 0.1f);
-	} else if (BecomePressed( eIA_StopWave )) 
-	{
-		lpSkeletonMesh->StopAnim("Wave", 0.1f);
+	if(cSceneManager::Get().GetScene()==Gameplay){
+		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
+		cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
 	}
 
+	// Actualizamos los menús si son necesarios
+	cMenuManager::Get().Update(lfTimestep);
+	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9
 	{
 		cPhysicsManager::Get().CambiarDebugMode();
@@ -218,33 +198,35 @@ void cGame::Render()
 	// 3) Render Solid 3D
 
 	//RenderTest();
-	RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
+	//RenderRejilla(); //muestra la rejilla, solo en modo depuración o DEBUG
 	//RenderMalla(); //Por ahora dibuja el dragon, pero con los resources
 	//RenderSkeletal();
-	RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
-	RenderObjects(); //Dibujando con la nueva representacion de objetos
-	
-#ifdef _DEBUG
-	SetTheWorldMatrix();
-	cRaceControlManager::Get().Render();
-#endif
-	SetTheWorldMatrix();
-	m3DCamera.Update();
-	//m3DCamera.FollowPlayer();  
 
+	/* ----------------- GAMEPLAY --------------------- */
+	if(cSceneManager::Get().GetScene()==Gameplay){
+		RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
+		RenderObjects(); //Dibujando con la nueva representacion de objetos
+
+	#ifdef _DEBUG
+		SetTheWorldMatrix();
+		cRaceControlManager::Get().Render();
+	#endif
+		SetTheWorldMatrix();
+		m3DCamera.Update();
+		//m3DCamera.FollowPlayer();  
+	}
+	/* ------------------------------------------------- */
 	// 4) Render 3D with transparency
-
 	// 5) Activate 2D Camera
 	cGraphicManager::Get().ActivateCamera( &m2DCamera );
-	//cGraphicManager::Get().RefreshWorldView(); ya esto lo hace el Activate Camera
-
 	// 6) Render 2D Elements
-	// Aquí renderizaremos nuestro HudManager con el que pintaremos tanto ingame como los menús.
+	// Aquí renderizaremos nuestro HudManager y MenúManager.
 	SetTheWorldMatrix();
-	//RenderTexts();	
-	cHudManager::Get().Render();
+	// Solo ponemos el hud si estamos ingame
+	if(cSceneManager::Get().GetScene()==Gameplay)cHudManager::Get().Render();
+	cMenuManager::Get().Render();
 	// 7) Postprocessing
-
+	
 	// 8) Swap Buffers
 	cGraphicManager::Get().SwapBuffer();  // Al final del ciclo de renderizado, volcamos el buffer
 }

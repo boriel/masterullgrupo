@@ -1,6 +1,5 @@
 /*
-class cHudManager: Controla el HUD y la gestión de los menús
-					Esta Clase se encargará de todas las muestras de texto en la pantalla
+class cHudManager: Controla el HUD.	Esta Clase se encargará de todas las muestras de texto en la pantalla
 */
 
 #pragma once
@@ -10,25 +9,6 @@ class cHudManager: Controla el HUD y la gestión de los menús
 #include <vector>
 
 using namespace std;
-
-// ----------------- MENUS PENDIENTES -------------------
-struct tMenuItem
-{
-	// Aquí tendremos los diferentes items del menú
-	std::string msMenuItem; // Identificador del item
-	// Necesitaremos tipos de comportamiento para saber
-	// qué tipo de acción realizará el item:
-	// Abrir otro menu, Cerrar Juego, Empezar juego...
-};
-
-struct tMenu
-{
-	// Aquí tendremos los diferentes menús
-	std::string msMenuName; //Identificador del Menú
-	unsigned int muiNumItems; //Número de elementos
-	typedef std::vector<tMenuItem *> mItemsList;
-};
-// -------------------------------------------------------
 
 struct tHud
 {
