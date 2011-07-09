@@ -13,7 +13,7 @@ void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string ls
 	msModelName = lsModelName;
 	msModelFile = lsModelFile;
 	mRotacionInicial = lRotacionInicial;
-
+	
 	Init();  
 
 }
@@ -26,6 +26,7 @@ void cObject::Init()
 
 	mfScale = 1.0f;
 	mfMass = 0.0f;
+
 }
 
 

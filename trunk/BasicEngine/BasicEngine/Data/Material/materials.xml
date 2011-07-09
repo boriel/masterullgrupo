@@ -2,10 +2,10 @@
 <Materials>
 
   <Material name = "<default>" effectName = "simple" effectPath = "./Data/Shader/simple.fx" technique = "Technique0" />
-
+<!--  
   <Material name = "MapJazz-material" effectName = "toon" effectPath = "./Data/Shader/toon.fx" technique = "Technique0" />
 
-<!--   
+ 
   <Material name = "_1_-_Default-material" effectName = "BlackWhite" effectPath = "./Data/Shader/BlackWhite.fx" technique = "RenderScene" />
 -->
 

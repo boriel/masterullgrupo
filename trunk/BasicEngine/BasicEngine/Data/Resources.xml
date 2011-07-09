@@ -40,15 +40,16 @@
 -->	
 
 
-<!--       VEHICLES       -->
+<!--       VEHICLES      
 
 
-	<Object Type="Vehicle" Position="0,5,-9" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
-
-    
-  
-	
+	   <Object Type="Vehicle" Position="10,100,10" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
+-->
+ 
+<Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 <!--
+
+   
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
 -->
 	
@@ -69,38 +70,37 @@
     <!--   PISTAS  -->
 <!--
 		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE" Mass="0"  /> 	
+ <Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
 -->
-    
-    <Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
-
-    <!--
+   <!--    
+   
+ 
 	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 
 -->	
 <!--
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
 -->
 <!--
-	<Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/Basico.DAE" Rotation="1,0,0"  Angle="-90" />
+	
 -->
-
+    <Object Type="Pista" Position="0,-1,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/BasicoBueno.DAE" Rotation="0,0,0"  Angle="-90" />
 
 <!--   OBJETOS SUELTOS   -->
 		<!--		PONER
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 	-->
-    
-
+        <Object Type="Zapato" Position="5,40,-9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="1" Mass="4"/>
+<!--
 	  <Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
-    <Object Type="Object2" Position="0,5,0" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
-    <Object Type="Zapato" Position="5,2,-9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
 
-<!--    
+
+    
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
 -->
-
+<!--
     <Object Type="ObjetoPrueba" Position="0,15,7" ModelName="RampaCubo" ModelFile="./Data/Objetos/Pruebas/RampaCubo.DAE" Mass="0" />
 
-    <!--
+    
     <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
 -->
     <!--
@@ -194,4 +194,44 @@
       <Leg Point1="0,1,-10" Point2="2,1,-13" />
     </Legs>
   </Race>
+
+  <!-- Definición de menús: 
+        *MenuPrincipal
+        *MenuPausa
+  -->
+
+  <MenuPrincipal>
+    <Jugar Action="Abrir">
+      <Historia Action="Comenzar">
+        <!-- Comenzar historia: 1º Pequeña Intro de historia 2º Contrarreloj, 3º Carrera 4Players, 4º Cara a Cara, Fin Demo -->
+      </Historia>
+      <Libre Action"Abrir">
+        <Carrera Action="Comenzar">
+        <Contrrareloj Action="Comenzar">
+        <Atras Action="Atras">
+      </Libre>
+      <Atras>
+    </Jugar>
+    <Opciones>
+      <Sonido><!--Activar/Desactivar--></Sonido>
+      <Controles><!-- Ver Controles -->
+      <Atras>
+    </Opciones>
+    <Creditos>
+    <Salir>
+  </MenuPrincipal>
+
+  <!-- Saldrá cuando presionemos ESC en medio de la partida -->
+  <MenuPausa>
+    <Opciones>
+      <Sonido>
+        <!--Activar/Desactivar-->
+      </Sonido>
+      <Controles>
+        <!-- Ver Controles -->
+      <Atras>
+    </Opciones>
+    <Salir>
+  </MenuPausa>
+      
 </Resources>
