@@ -55,7 +55,7 @@ bool cGame::Init()
 	//==============
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
-	m3DCamera.SetPerspective (45.0f, lfAspect, 0.1f, 200.0f);
+	m3DCamera.SetPerspective (45.0f, lfAspect, 0.1f, 10000.0f);
 	
 	//===================
 	//Iniciando Camara 2D
@@ -92,6 +92,7 @@ bool cGame::Init()
 	cSoundManager::Get().Init();
 	cSoundManager::Get().ChangeMusic("Entorno.wav");
 	cSceneManager::Get().Init();
+	// Accedemos directamente al juego
 	cSceneManager::Get().LoadScene(MenuPrincipal);
 	cHudManager::Get().Init("Data/Resources.xml");
 	cMenuManager::Get().Init("Data/Resources.xml");

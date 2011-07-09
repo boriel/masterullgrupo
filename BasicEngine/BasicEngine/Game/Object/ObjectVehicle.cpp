@@ -7,7 +7,7 @@
 
 cObjectVehicle::cObjectVehicle (cObject lObject)
 {
-	Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
+		Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
 	//mPhysicsObject = new cPhysicsVehicle;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
@@ -15,12 +15,12 @@ cObjectVehicle::cObjectVehicle (cObject lObject)
 	//((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition());
 	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 */
-	
 }
 
 void cObjectVehicle::InitPhysics ()
 {
-	((cPhysicsVehicle*)mpPhysicsObject)->Init();
+
+	((cPhysicsVehicle*)mpPhysicsObject)->Init(mPosition);
 }
 
 void cObjectVehicle::Update( float lfTimestep )
@@ -49,6 +49,7 @@ void cObjectVehicle::Update( float lfTimestep )
 	
 	//cInputAction::GetPressedTime();
 
+	cout << "Position Coche: (" << mPosition(1) << ","<< mPosition(2) << ","<< mPosition(3) << ")" << endl;
 	//cInputManager::Get().GetAction(eIA_KeyI).GetPressedTime();
 	
 	//cout << "cObjectVehicle::Update = (time) " << cInputManager::Get().GetAction(eIA_KeyJ).GetPressedTime() << endl;

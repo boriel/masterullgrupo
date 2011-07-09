@@ -22,9 +22,10 @@ bool cSoundManager::Init(){
 	alDopplerFactor(true);
 	alDistanceModel(AL_LINEAR_DISTANCE_CLAMPED);
 
-	// Activamos el sonido y la musica
-	mIsSoundOn=true;
-	mIsMusicOn=true;
+	// ! Activamos el sonido y la musica por defecto
+	mIsSoundOn=!true;
+	mIsMusicOn=!true;
+
 }
 
 // Esta función devolverá el ID del sonido para poder reproducirlo por parámetro desde otro objeto

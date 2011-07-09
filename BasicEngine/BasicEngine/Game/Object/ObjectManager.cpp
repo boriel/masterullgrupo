@@ -72,7 +72,6 @@ bool cObjectManager::Init()
 		lpPhysicsPlayer->Init(mObjectPlayer[luiIndex]->GetPosition(), mObjectPlayer[luiIndex]->GetRotacionInicial());
 		mObjectPlayer[luiIndex]->SetPtrPhysicsObject(lpPhysicsPlayer);
 	}
-	
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 	{
 		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
@@ -81,44 +80,14 @@ bool cObjectManager::Init()
 
 
 		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
-
-/*
-		LoadObjectsXmlCollision(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetType(), lpPhysicsPista);
-		//lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
-		lpPhysicsPista->Init(mObjectPista[luiIndex]->GetPosition());
-
-		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
-
-#ifdef _DEBUG
-		cout << "------> Objeto : " << mObjectPista[luiIndex]->GetModelName() << endl;
-#endif		
-
-		//Pruebas no vale por ahora
-		//No se si hay alguna forma mejro de pasar por esto, pero asi va 
-			cResourceHandle lResourceHandle = cModelManager::Get().FindResourceA(mObjectPista[luiIndex]->GetModelName());
-			cResource* lResource =  lResourceHandle.GetResource();
-			cModel* lpModel = new cModel;
-			lpModel = (cModel*)lResource;
-			cModel::cObjectList lObjectList = lpModel->GetObjectList();
-			for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
-			{
-				//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
-				cSubModel* lSubModel = lObjectList[liIndex];
-				string lsMeshName = lSubModel->GetName();
-
-#ifdef _DEBUG
-				cout << "MeshName : " << lsMeshName << endl;
-#endif
-			}
-*/		
 	}
-	
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 	{
 		cPhysicsVehicle* lpPhysicsVehicle = new cPhysicsVehicle;
 		LoadObjectsXmlCollision(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetType(), lpPhysicsVehicle);  //No hace nada por ahora
 		//lpPhysicsVehicle->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
-		lpPhysicsVehicle->Init();
+					
+		lpPhysicsVehicle->Init(mObjectVehicle[luiIndex]->GetPosition());
 
 		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
 	}
@@ -333,29 +302,21 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		string lsTipoShape = lTokens[0].c_str();
 
 		//Con este metodo obtenemos todos los puntos del vector
-		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box")) //Pequeña prueba
+		if ( (lsTipoShape == "Mesh") || (lsTipoShape == "Box")) //Pequeña prueba
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
-
-
 			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
 			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
-
-
-
 			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
-
-
 			//cResourceHandle cRH = lpModel[liIndex].GetResourceHandle(liIndex);
 
 			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
 			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
-			btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			btTransform lbtLocalTrans(btQuaternion (0.7071,0,0,-0.7071), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
 			//lbtLocalTrans.setIdentity();
-
 /*
 			if (liIndex == 0)
 				for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
@@ -418,6 +379,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
 			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
 			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
+			
 			///----- end pruebas rotacion
 
 
@@ -430,7 +392,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		
-		else if (lsTipoShape == "Box2")
+		else if ((lsTipoShape == "Line001") ||(lsTipoShape == "Box2" ))
 		{
 			//if (lsMeshName == "Box_Help_SueloMesa")
 			//{
@@ -487,7 +449,11 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			*/
 						
 			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
+			// Giramos las meshes de la habitacion
+			if (lsTipoShape == "Line001") {
+				lbtLocalTrans = btTransform (btQuaternion (0.7071,0,0,-0.7071), btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
 			
+			}
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
