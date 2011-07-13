@@ -17,7 +17,6 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 
 	//En primer lugar crearemos el buffer de índices
 	aiMesh* lpAiMesh = (aiMesh*)lpMemoryData;
-
 	// Get the number of texture coordinates
 	unsigned luiTextureCoordinateCount = lpAiMesh->GetNumUVChannels();
 	assert(luiTextureCoordinateCount <= 4);
@@ -25,7 +24,7 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 
 	glGenBuffers(1, &mVboVertices);
 	assert(glGetError() == GL_NO_ERROR);
-
+	
 	// Creating all the texture coordinate buffers
 	for(unsigned luiIndex = 0; luiIndex < luiTextureCoordinateCount; ++luiIndex)
 	{

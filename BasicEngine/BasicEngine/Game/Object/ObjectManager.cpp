@@ -281,7 +281,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 
 	//Obtetemos todas las mesh del modelo
-	for (int liIndex = 0; liIndex < lpModel->GetTamMeshList(); liIndex++)
+		for (int liIndex = 0; liIndex < lObjectList.capacity(); liIndex++)
 	{
 		//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
 		cSubModel* lSubModel = lObjectList[liIndex];
@@ -300,9 +300,12 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		vector<string> lTokens;
 		Tokenize(lsMeshName, lTokens, "_");
 		string lsTipoShape = lTokens[0].c_str();
+		 size_t found;
 
-		//Con este metodo obtenemos todos los puntos del vector
-		if ( (lsTipoShape == "Mesh") || (lsTipoShape == "Box")) //Pequeña prueba
+  // different member versions of find in the same order as above:
+	 found=lsTipoShape.find("Box");
+  	//Con este metodo obtenemos todos los puntos del vector
+		if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
@@ -331,7 +334,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
 			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
 				lSubModel->TransformVertexsToModelSpace();
-			lpMesh->ProcessBoundingMesh();
+			//lpMesh->ProcessBoundingMesh();
 
 
 
@@ -392,7 +395,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		
-		else if ((lsTipoShape == "Line001") ||(lsTipoShape == "Box2" ))
+		else if ((lsTipoShape == "Line001") || found!=string::npos)
 		{
 			//if (lsMeshName == "Box_Help_SueloMesa")
 			//{
@@ -426,8 +429,10 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
 			btTransform lbtLocalTrans;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
+
+			cQuaternion initRotation= lpObject->GetRotacionInicial();
 			
-			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+			lbtLocalTrans = btTransform( btQuaternion(initRotation.x,initRotation.y,initRotation.z, initRotation.w), lvbtCenterMesh );
 			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
 			
 			//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
