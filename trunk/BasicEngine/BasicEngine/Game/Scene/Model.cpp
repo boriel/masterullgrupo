@@ -42,6 +42,12 @@ bool cModel::Init( const std::string &lacNameID, const std::string &lacFile)
 	lImporter.FreeScene();
 	mbLoaded = true;
 
+	for (unsigned luiIndex=0; luiIndex < mSubModelList.size(); ++luiIndex ) 
+	{
+		mSubModelList[luiIndex]->TransformVertexsToModelSpace();
+		mSubModelList[luiIndex]->CalculateBoundingVolumes();
+	}
+
 	return true;
 }
 

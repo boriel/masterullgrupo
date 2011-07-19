@@ -111,3 +111,12 @@ void cSubModel::TransformVertexsToModelSpace()
 		}
 	}
 }
+
+void cSubModel::CalculateBoundingVolumes()
+{
+	for (unsigned luiIndex = 0; luiIndex < mMeshHandles.size(); ++luiIndex)
+	{
+		cMesh *lpMesh = (cMesh *)mMeshHandles[luiIndex].GetResource();
+		lpMesh->ProcessBoundingMesh();
+	}
+}

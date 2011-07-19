@@ -45,6 +45,8 @@ class cSubModel
 		cResource* GetResource (const int liIndex) { return mMeshHandles[liIndex].GetResource() ; }
 		void TransformVertexsToModelSpace();
 
+		void CalculateBoundingVolumes();
+
 	protected:
 		string macName;
 		cMatrix mLocalMatrix;
