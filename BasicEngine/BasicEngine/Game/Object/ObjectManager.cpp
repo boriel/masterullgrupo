@@ -300,17 +300,20 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		vector<string> lTokens;
 		Tokenize(lsMeshName, lTokens, "_");
 		string lsTipoShape = lTokens[0].c_str();
-		 size_t found;
+		///size_t found;
 
   // different member versions of find in the same order as above:
-	 found=lsTipoShape.find("Box");
+	 ///found=lsTipoShape.find("Box");
   	//Con este metodo obtenemos todos los puntos del vector
-		if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
+		///if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
+		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box")) //Pequeña prueba
+		//if (lsTipoShape == "Mesh") 
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
+
 			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
 			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
 			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
@@ -318,7 +321,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
 			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
-			btTransform lbtLocalTrans(btQuaternion (0.7071,0,0,-0.7071), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+			///btTransform lbtLocalTrans(btQuaternion (0.7071, 0, 0, -0.7071), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));  //aday
+			btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
 			//lbtLocalTrans.setIdentity();
 /*
 			if (liIndex == 0)
@@ -330,12 +334,12 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 					lVec3[liCont].z = lV4.z;
 				}
 */
-
+			/*
 			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
 			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
 				lSubModel->TransformVertexsToModelSpace();
 			//lpMesh->ProcessBoundingMesh();
-
+			*/
 
 
 			btConvexHullShape* lbtShape = new btConvexHullShape();
@@ -380,8 +384,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
 			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
-			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
-			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
+			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z);
+			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1),  lvbtCenterMesh );
 			
 			///----- end pruebas rotacion
 
@@ -395,7 +399,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		
-		else if ((lsTipoShape == "Line001") || found!=string::npos)
+		///else if ((lsTipoShape == "Line001") || found!=string::npos)
+		else if (lsTipoShape == "Box2")
 		{
 			//if (lsMeshName == "Box_Help_SueloMesa")
 			//{
@@ -405,12 +410,14 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
 			
-
+			/*
 			//Pruebas
 			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
 				lSubModel->TransformVertexsToModelSpace();  //Llamando aqui para transformar las mallas en el espacio del modelo
-			lpMesh->ProcessBoundingMesh();
 			
+			//lpMesh->ProcessBoundingMesh();
+			*/
+
 			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
 			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
 			
@@ -430,9 +437,12 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btTransform lbtLocalTrans;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
 
-			cQuaternion initRotation= lpObject->GetRotacionInicial();
+			///cQuaternion initRotation= lpObject->GetRotacionInicial();
 			
-			lbtLocalTrans = btTransform( btQuaternion(initRotation.x,initRotation.y,initRotation.z, initRotation.w), lvbtCenterMesh );
+			///lbtLocalTrans = btTransform( btQuaternion(initRotation.x,initRotation.y,initRotation.z, initRotation.w), lvbtCenterMesh );
+
+			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+
 			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
 			
 			//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
@@ -455,10 +465,10 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 						
 			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
 			// Giramos las meshes de la habitacion
-			if (lsTipoShape == "Line001") {
-				lbtLocalTrans = btTransform (btQuaternion (0.7071,0,0,-0.7071), btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
+			///if (lsTipoShape == "Line001") 
+			///	lbtLocalTrans = btTransform (btQuaternion (0.7071,0,0,-0.7071), btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
 			
-			}
+
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
