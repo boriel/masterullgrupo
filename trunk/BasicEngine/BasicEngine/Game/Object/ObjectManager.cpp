@@ -306,7 +306,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 	 ///found=lsTipoShape.find("Box");
   	//Con este metodo obtenemos todos los puntos del vector
 		///if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
-		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box")) //Pequeña prueba
+		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box2")) //Pequeña prueba
 		//if (lsTipoShape == "Mesh") 
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
@@ -371,7 +371,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
 			//lbtLocalTrans.setRotation(btq);
 
-			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			//btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);  //no usado
 			
 			
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
@@ -390,23 +390,18 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			///----- end pruebas rotacion
 
 
-
-
-
-
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		
 		///else if ((lsTipoShape == "Line001") || found!=string::npos)
-		else if (lsTipoShape == "Box2")
+		else if (lsTipoShape == "Box")
 		{
 			//if (lsMeshName == "Box_Help_SueloMesa")
 			//{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
-			
 			cMesh* lpMesh = new cMesh;
 			lpMesh = (cMesh*)lResourceMesh;
 			
@@ -421,8 +416,6 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
 			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
 			
-			
-
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 
 			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
@@ -430,10 +423,11 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
 			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
 
+			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
 
-			btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
-			btVector3 lvbtCenterMesh = btVector3 (btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
-			btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
+			//btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
+			//btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
 			btTransform lbtLocalTrans;
 			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
 
@@ -473,7 +467,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
 			 
-			btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+			//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 			//lpDynamicsWorld->getCollisionObjectArray();
 
 			/*
