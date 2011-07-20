@@ -42,13 +42,12 @@
 
 <!--       VEHICLES      
 
-
 	   <Object Type="Vehicle" Position="10,100,10" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
 -->
 
 <Object Type="Vehicle" Position="0,5,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
- <!--
-
+		
+<!--
    
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
 -->

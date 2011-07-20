@@ -311,11 +311,15 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
-			cMesh* lpMesh = new cMesh;
+			cMesh* lpMesh /*= new cMesh*/;
 			lpMesh = (cMesh*)lResourceMesh;
+			
 
-			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
-			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+
+
+			/*cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();*/
+			cMatrix lLocalMatrixSubModel;// = lSubModel->GetLocalMatrix(lMatrixWorld);
+			lLocalMatrixSubModel.LoadIdentity();
 			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
 			//cResourceHandle cRH = lpModel[liIndex].GetResourceHandle(liIndex);
 
@@ -402,7 +406,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//{
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
-			cMesh* lpMesh = new cMesh;
+			cMesh* lpMesh/* = new cMesh*/;
 			lpMesh = (cMesh*)lResourceMesh;
 			
 			/*
@@ -413,12 +417,13 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//lpMesh->ProcessBoundingMesh();
 			*/
 
-			cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
-			cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+			/*cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();*/
+			cMatrix lLocalMatrixSubModel;// = lSubModel->GetLocalMatrix(lMatrixWorld);
+			lLocalMatrixSubModel.LoadIdentity();
 			
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 
-			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX, ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
 			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
 			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
 			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
