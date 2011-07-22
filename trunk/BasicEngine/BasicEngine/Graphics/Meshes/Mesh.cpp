@@ -246,7 +246,7 @@ void cMesh::RenderMesh()
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDrawRangeElements(GL_TRIANGLES,	0,	muiIndexCount,	muiIndexCount,	GL_UNSIGNED_INT,	NULL);
-#ifdef _DEBUG
+#ifdef _DAVID
 	//David: Tratando de entender un problema OpenGL con esta malla
 	int i = glGetError();
 	
