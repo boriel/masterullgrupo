@@ -58,7 +58,7 @@ bool cMesh::Init (const std::string &lacNameID, void* lpMemoryData, int luiTypeI
 	mpVertexPositionBuffer = new cVec3[muiNumVertex];
 	memcpy(mpVertexPositionBuffer, lpAiMesh->mVertices, sizeof(float) * 3 * muiNumVertex);
 
-	ProcessBoundingMesh();  //No se si este es el mejor lugar
+	//ProcessBoundingMesh();  //No se si este es el mejor lugar
 
 	//El primer parámetro de la llamada le indica a OpenGL que es un array buffer normal y
 	//no uno de índices. A continuación se le indica cuanta memoria tiene que copiar en el
@@ -281,8 +281,12 @@ void cMesh::ProcessBoundingMesh()
 */
 		tBoundingMesh lBounding;
 		cVec3 lvCenter = cVec3(0,0,0);
-		cVec3 lvMax = cVec3(0,0,0);
-		cVec3 lvMin = cVec3(0,0,0);
+		//cVec3 lvMax = cVec3(0,0,0);
+		//cVec3 lvMin = cVec3(0,0,0);
+		//Yorman: Cambiado por Jesús que al parecer estaba mal
+		cVec3 lvMax = cVec3(-99999999.0f,-99999999.0f,-99999999.0f);
+		cVec3 lvMin = cVec3(99999999.0f,99999999.0f,99999999.0f);
+
 		float lfX, lfY, lfZ;
 
 		//Process bounding mesh
@@ -293,16 +297,29 @@ void cMesh::ProcessBoundingMesh()
 			lfY = lpVertex[luiVertexIndex].y;
 			lfZ = lpVertex[luiVertexIndex].z;
 
-			if (lfX>lvMax.x) lvMax.x = lfX;
-			if (lfY>lvMax.y) lvMax.y = lfY;
-			if (lfZ>lvMax.z) lvMax.z = lfZ;
-			if (lfX<lvMin.x) lvMin.x = lfX;
- 			if (lfY<lvMin.y) lvMin.y = lfY;
-			if (lfZ<lvMin.z) lvMax.z = lfZ;
+			//if (lfX>lvMax.x) lvMax.x = lfX;
+			//if (lfY>lvMax.y) lvMax.y = lfY;
+			//if (lfZ>lvMax.z) lvMax.z = lfZ;
+			//if (lfX<lvMin.x) lvMin.x = lfX;
+ 		//	if (lfY<lvMin.y) lvMin.y = lfY;
+			//if (lfZ<lvMin.z) lvMax.z = lfZ;
+			//Yorman: Cambiado por Jesús que al parecer estaba mal
+			if (lfX > lvMax.x) lvMax.x = lfX;
+			if (lfY > lvMax.y) lvMax.y = lfY;
+			if (lfZ > lvMax.z) lvMax.z = lfZ;
+			if (lfX < lvMin.x) lvMin.x = lfX;
+ 			if (lfY < lvMin.y) lvMin.y = lfY;
+			if (lfZ < lvMin.z) lvMin.z = lfZ;
 		}
-		lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
-		lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
-		lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
+		
+		//lvCenter.x=(lvMax.x-abs(lvMin.x))/2;
+		//lvCenter.y=(lvMax.y-abs(lvMin.y))/2;
+		//lvCenter.z=(lvMax.z-abs(lvMin.z))/2;
+		//Yorman: Cambiado por Jesús que al parecer estaba mal
+		lvCenter.x= (lvMax.x + lvMin.x) / 2;
+		lvCenter.y= (lvMax.y + lvMin.y) / 2;
+		lvCenter.z= (lvMax.z + lvMin.z) / 2;
+
 		lBounding.mfRadius=lvCenter.DistanceTo(lvMin);	//Calculate radius
 		
 		lBounding.mfAnchoX = abs(lvMax.x - lvMin.x) / 2.0f;
