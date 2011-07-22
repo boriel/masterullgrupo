@@ -306,184 +306,231 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 	 ///found=lsTipoShape.find("Box");
   	//Con este metodo obtenemos todos los puntos del vector
 		///if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
-		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box2")) //Pequeña prueba
-		//if (lsTipoShape == "Mesh") 
+		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box2")) 
 		{
+			//int liResourceCount = lSubModel->GetResourceCount();  //Hay que implementar esto
+			int liResourceCount = 0;
+			assert(liResourceCount <= 1);
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
-			cMesh* lpMesh /*= new cMesh*/;
-			lpMesh = (cMesh*)lResourceMesh;
-			
+			cMesh* lpMesh = (cMesh*)lResourceMesh;
 
-
-
-			/*cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();*/
-			cMatrix lLocalMatrixSubModel;// = lSubModel->GetLocalMatrix(lMatrixWorld);
-			lLocalMatrixSubModel.LoadIdentity();
-			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
-			//cResourceHandle cRH = lpModel[liIndex].GetResourceHandle(liIndex);
-
-			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
 			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
-			///btTransform lbtLocalTrans(btQuaternion (0.7071, 0, 0, -0.7071), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));  //aday
-			btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
-			//lbtLocalTrans.setIdentity();
-/*
-			if (liIndex == 0)
-				for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
-				{
-					cVec4 lV4 = Multiplicar( cVec4(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z, 1), lLocalMatrixSubModel);
-					lVec3[liCont].x = lV4.x;
-					lVec3[liCont].y = lV4.y;
-					lVec3[liCont].z = lV4.z;
-				}
-*/
-			/*
-			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
-			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
-				lSubModel->TransformVertexsToModelSpace();
-			//lpMesh->ProcessBoundingMesh();
-			*/
-
-
+		
 			btConvexHullShape* lbtShape = new btConvexHullShape();
 
-			float lfScala = 1.0f;//0.07f;
-			
-
+			//float lfScala = 1.0f;		// NO ESCALES LAS MALLAS DE COLISION!!!
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
-				lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+				lbtShape->addPoint( /*lfScala */ btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
 
-			btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
-			lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
-			btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
-			
-			//----Pruebas de rotacion
-			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90)));  
-
-			
-			//cQuaternion q = cQuaternion ();
-			//q.LoadIdentity();
-			////q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
-			//cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
-			//cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
-			//q = CalculateRotation(lLocalMatrixSubModel);
-			//btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
-			////btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
-			//tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
-			//btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
-			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
-			//lbtLocalTrans.setRotation(btq);
-
-			//btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);  //no usado
-			
-			
-			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
-			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
-			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
-
-			//lLocalMatrixSubModel.LoadTranslation(cVec3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z));
-			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
-			
-
-			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
-			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
-			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z);
-			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1),  lvbtCenterMesh );
-			
-			///----- end pruebas rotacion
-
+			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1),  lvbtCenterMesh );
 
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
-		}
 		
-		///else if ((lsTipoShape == "Line001") || found!=string::npos)
-		else if (lsTipoShape == "Box")
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+		}
+		else if (lsTipoShape == "Box")  
 		{
-			//if (lsMeshName == "Box_Help_SueloMesa")
-			//{
+			//int liResourceCount = lSubModel->GetResourceCount(); //Hay que implementar esto
+			int liResourceCount = 0;
+			assert(liResourceCount <= 1);
+		
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
-			cMesh* lpMesh/* = new cMesh*/;
-			lpMesh = (cMesh*)lResourceMesh;
-			
-			/*
-			//Pruebas
-			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
-				lSubModel->TransformVertexsToModelSpace();  //Llamando aqui para transformar las mallas en el espacio del modelo
-			
-			//lpMesh->ProcessBoundingMesh();
-			*/
-
-			/*cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();*/
-			cMatrix lLocalMatrixSubModel;// = lSubModel->GetLocalMatrix(lMatrixWorld);
-			lLocalMatrixSubModel.LoadIdentity();
+			cMesh* lpMesh = (cMesh*)lResourceMesh;
 			
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
 
-			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX, ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
-			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
-			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
-			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
+			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
 
-			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
-
-			//btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
-			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
-			//btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
-			btTransform lbtLocalTrans;
-			//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
-
-			///cQuaternion initRotation= lpObject->GetRotacionInicial();
-			
-			///lbtLocalTrans = btTransform( btQuaternion(initRotation.x,initRotation.y,initRotation.z, initRotation.w), lvbtCenterMesh );
-
-			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
-
-			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
-			
-			//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
-			
-			//btTransform lbtLocalTrans = btTransform (btQuaternion(lLocalMatrixSubModel[3].x, lLocalMatrixSubModel[3].y, lLocalMatrixSubModel[3].z, lLocalMatrixSubModel[3].w), lvbtCenterMesh);
-
-
-			//End pruebas
-
-			/*
-			cQuaternion q = cQuaternion ();
-			q.LoadIdentity();
-			//q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
-			q = CalculateRotation(lLocalMatrixSubModel);
-			btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
-			//btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
-			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1));
-			lbtLocalTrans.setRotation(btq);
-			*/
-						
-			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
-			// Giramos las meshes de la habitacion
-			///if (lsTipoShape == "Line001") 
-			///	lbtLocalTrans = btTransform (btQuaternion (0.7071,0,0,-0.7071), btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
-			
+			btVector3 lvbtObjectPosition = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) + lvbtObjectPosition;
+			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
 
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
-			 
-			//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
-			//lpDynamicsWorld->getCollisionObjectArray();
-
-			/*
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
-			btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
-			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
-			*/
-			//}
 		}
+
+
+//		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box2")) //Pequeña prueba
+//		//if (lsTipoShape == "Mesh") 
+//		{
+//			cResource* lResourceMesh = lSubModel->GetResource(0);
+//
+//			cMesh* lpMesh /*= new cMesh*/;
+//			lpMesh = (cMesh*)lResourceMesh;
+//			
+//
+//
+//
+//			/*cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();*/
+//			cMatrix lLocalMatrixSubModel;// = lSubModel->GetLocalMatrix(lMatrixWorld);
+//			lLocalMatrixSubModel.LoadIdentity();
+//			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+//			//cResourceHandle cRH = lpModel[liIndex].GetResourceHandle(liIndex);
+//
+//			//cMesh* lpMesh = lpModel[liIndex].GetMesh(liIndex);
+//			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
+//			///btTransform lbtLocalTrans(btQuaternion (0.7071, 0, 0, -0.7071), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));  //aday
+//			btTransform lbtLocalTrans(btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+//			//lbtLocalTrans.setIdentity();
+///*
+//			if (liIndex == 0)
+//				for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
+//				{
+//					cVec4 lV4 = Multiplicar( cVec4(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z, 1), lLocalMatrixSubModel);
+//					lVec3[liCont].x = lV4.x;
+//					lVec3[liCont].y = lV4.y;
+//					lVec3[liCont].z = lV4.z;
+//				}
+//*/
+//			/*
+//			//Llamando aqui para hacer las transformaciones a los vertices de la rotacion
+//			if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
+//				lSubModel->TransformVertexsToModelSpace();
+//			//lpMesh->ProcessBoundingMesh();
+//			*/
+//
+//
+//			btConvexHullShape* lbtShape = new btConvexHullShape();
+//
+//			float lfScala = 1.0f;//0.07f;
+//			
+//
+//			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
+//				lbtShape->addPoint( lfScala * btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+//
+//			btVector3 aabbMin(0,0,0), aabbMax(0,0,0);
+//			lbtShape->getAabb( btTransform::getIdentity(), aabbMin, aabbMax );
+//			btVector3 aabbExtents = aabbMax - aabbMin;  //No se usa para nada?
+//			
+//			//----Pruebas de rotacion
+//			//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90)));  
+//
+//			
+//			//cQuaternion q = cQuaternion ();
+//			//q.LoadIdentity();
+//			////q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
+//			//cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();
+//			//cMatrix lLocalMatrixSubModel = lSubModel->GetLocalMatrix(lMatrixWorld);
+//			//q = CalculateRotation(lLocalMatrixSubModel);
+//			//btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
+//			////btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
+//			//tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+//			//btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+//			//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh);
+//			//lbtLocalTrans.setRotation(btq);
+//
+//			//btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);  //no usado
+//			
+//			
+//			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+//			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+//			cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
+//
+//			//lLocalMatrixSubModel.LoadTranslation(cVec3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z));
+//			cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
+//			
+//
+//			lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
+//			lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
+//			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z);
+//			lbtLocalTrans = btTransform (btQuaternion (0,0,0,1),  lvbtCenterMesh );
+//			
+//			///----- end pruebas rotacion
+//
+//
+//			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+//			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+//			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+//		}
+		
+		//else if (lsTipoShape == "Box")
+		//{
+		//	//if (lsMeshName == "Box_Help_SueloMesa")
+		//	//{
+		//	cResource* lResourceMesh = lSubModel->GetResource(0);
+
+		//	cMesh* lpMesh/* = new cMesh*/;
+		//	lpMesh = (cMesh*)lResourceMesh;
+		//	
+		//	/*
+		//	//Pruebas
+		//	if (liIndex == 0)  // para aseguranos que se aplique solo la primera vez
+		//		lSubModel->TransformVertexsToModelSpace();  //Llamando aqui para transformar las mallas en el espacio del modelo
+		//	
+		//	//lpMesh->ProcessBoundingMesh();
+		//	*/
+
+		//	/*cMatrix lMatrixWorld = cGraphicManager::Get().GetWorldMatrix();*/
+		//	cMatrix lLocalMatrixSubModel;// = lSubModel->GetLocalMatrix(lMatrixWorld);
+		//	lLocalMatrixSubModel.LoadIdentity();
+		//	
+		//	tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
+
+		//	cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX, ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+		//	cVec4 lvCenterMesh4 = cVec4 (lvCenterMesh.x, lvCenterMesh.y, lvCenterMesh.z, 1);
+		//	cVec4 lvCenterMeshTrans4 = Multiplicar (lvCenterMesh4, lLocalMatrixSubModel);
+		//	lvCenterMesh = cVec3 (lvCenterMeshTrans4.x, lvCenterMeshTrans4.y, lvCenterMeshTrans4.z);
+
+		//	lLocalMatrixSubModel.LoadTranslation(lvCenterMesh);
+
+		//	//btVector3 lvbtObjectPosition = btVector3 (lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+		//	btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
+		//	//btVector3 lvbtposFinal = lvbtObjectPosition * lvbtCenterMesh;
+		//	btTransform lbtLocalTrans;
+		//	//btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtposFinal );
+
+		//	///cQuaternion initRotation= lpObject->GetRotacionInicial();
+		//	
+		//	///lbtLocalTrans = btTransform( btQuaternion(initRotation.x,initRotation.y,initRotation.z, initRotation.w), lvbtCenterMesh );
+
+		//	lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+
+		//	//lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+		//	
+		//	//btTransform lbtLocalTrans ((btQuaternion (0,0,0,1), lvbtCenterMesh );
+		//	
+		//	//btTransform lbtLocalTrans = btTransform (btQuaternion(lLocalMatrixSubModel[3].x, lLocalMatrixSubModel[3].y, lLocalMatrixSubModel[3].z, lLocalMatrixSubModel[3].w), lvbtCenterMesh);
+
+
+		//	//End pruebas
+
+		//	/*
+		//	cQuaternion q = cQuaternion ();
+		//	q.LoadIdentity();
+		//	//q.AsMatrix(lLocalMatrixSubModel); //Esto machaca la matriz, no nos vale
+		//	q = CalculateRotation(lLocalMatrixSubModel);
+		//	btQuaternion btq = btQuaternion(q.x, q.y, q.z, q.w);
+		//	//btTransform lbtLocalTrans = btTransform (btQuaternion(q.x, q.y, q.z, q.w), lvbtCenterMesh);
+		//	lbtLocalTrans = btTransform (btQuaternion (0,0,0,1));
+		//	lbtLocalTrans.setRotation(btq);
+		//	*/
+		//				
+		//	//lbtLocalTrans.setRotation(btQuaternion(btVector3(1,0,0), btRadians(-90))); //Rotando
+		//	// Giramos las meshes de la habitacion
+		//	///if (lsTipoShape == "Line001") 
+		//	///	lbtLocalTrans = btTransform (btQuaternion (0.7071,0,0,-0.7071), btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z));
+		//	
+
+		//	btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
+		//	btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+		//	(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
+		//	 
+		//	//btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
+		//	//lpDynamicsWorld->getCollisionObjectArray();
+
+		//	/*
+		//	btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
+		//	btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
+		//	btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+		//	(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+		//	//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
+		//	*/
+		//	//}
+		//}
 		
 		else if (lsTipoShape == "Sphere")
 		{
