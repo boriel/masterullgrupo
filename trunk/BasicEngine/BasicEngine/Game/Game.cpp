@@ -68,7 +68,10 @@ bool cGame::Init()
 	m2DCamera.Init();
 	m2DCamera.SetOrtho(lfLeft, lfRight, lfBottom, lfTop, 0.1f, 100.0f);
 	m2DCamera.SetLookAt( cVec3(0.0f, 0.0f, 1.f), cVec3(0.0f, 0.f, 0.f) );
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//david quitar: glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	/*if (glIsEnabled(GL_CULL_FACE)) {	cout << "GL_CULL_FACE: on" << endl;}
+	else  {	cout << "GL_CULL_FACE: OFF" << endl;}*/
+
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
 	cLuaManager::Get().Init(); //Init the Lua Manager
@@ -192,7 +195,6 @@ void cGame::Render()
 
 	// 1) Clean Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	// 2) Activate the 3D Camera
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
@@ -205,6 +207,8 @@ void cGame::Render()
 
 	/* ----------------- GAMEPLAY --------------------- */
 	if(cSceneManager::Get().GetScene()==Gameplay){
+		glEnable(GL_CULL_FACE);
+
 		RenderPhysicsObjects();  //renedrizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
 		RenderObjects(); //Dibujando con la nueva representacion de objetos
 
@@ -215,6 +219,7 @@ void cGame::Render()
 		SetTheWorldMatrix();
 		m3DCamera.Update();
 		//m3DCamera.FollowPlayer();  
+		glDisable(GL_CULL_FACE);
 	}
 	/* ------------------------------------------------- */
 	// 4) Render 3D with transparency

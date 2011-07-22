@@ -534,7 +534,7 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 void cPhysicsVehicle::ClientMoveAndDisplay()
 {
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+	//david quitar: glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	

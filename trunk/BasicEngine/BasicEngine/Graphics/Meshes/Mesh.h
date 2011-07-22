@@ -37,12 +37,10 @@ struct tBoundingMesh
 	float mfRadius;
 };
 
-
 class cMesh : public cResource
 {
 	public:
 		cMesh() { mbLoaded = false; }
-		//virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int luiTypeID );  //cambio el nombre ultimo valor, imaigno que no será importante
 		virtual bool Init( const std::string &lacNameID, void * lpMemoryData, int liDataType );
 		void Reload( void * lpMemoryData );
 		virtual void Deinit();

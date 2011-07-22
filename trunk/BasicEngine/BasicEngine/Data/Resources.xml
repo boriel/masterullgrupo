@@ -1,135 +1,78 @@
 <?xml version="1.0" ?>
 <Resources>
-
   <Fonts>
     <Font Name="Font1" File="./Data/Fonts/Test1.fnt" />
     <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />
   </Fonts>
 
-
   <Objects>
-<!--
-	<Object Type="Player" Position="10,30,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
-	<Object Type="Enemy" Position="40,40,15" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
--->	
-<!--	
-	<Object Type="Player" Position="0,5,0" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" />
--->	
-
-	<!-- <Object Type="Player" Position="5,40,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" /> -->
-
 
 <!--   PLAYERS -->
-
-<!--
+<!-- David: Esto debe desaparecr porque ya No usamos el ObjectPlayer sino ObjectVehicle...
 	<Object Type="Player" Position="0,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
--->
-
-
-<!--
 	<Object Type="Player" Position="-5,5,6" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"/>
--->
-
-<!--
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  />
--->
-	
-<!--
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 	<Object Type="Player" Position="0,10,0" ModelName="CuboMax" ModelFile="./Data/Scene/cuboMax.DAE" />
+	<Object Type="Player" Position="-5,5,9" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
+	<Object Type="Player" Position="-5,11.5,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
+	<Object Type="Player" Position="-5,12,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
+	<Object Type="Player" Position="-5,23,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
 -->	
 
 
 <!--       VEHICLES      
-
-	   <Object Type="Vehicle" Position="10,100,10" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
+   <Object Type="Vehicle" Position="10,100,10" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
+	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
+	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+<Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 -->
 
 <Object Type="Vehicle" Position="0,5,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 		
-<!--
-   
-	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
--->
-	
-<!--
-	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
--->
 
-		<!--		PONER		
-	<Object Type="Player" Position="-5,5,9" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE" />
-		-->
-
+<!--   PISTAS  -->
 <!--
-	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
--->
-
-	
-	
-    <!--   PISTAS  -->
-<!--
+    <Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="0,0,0"  Angle="-90" Mass="0"/>
+  <Object Type="Pista" Position="0,0,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" />
+  <Object Type="Pista" Position="0,0,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
 		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE" Mass="0"  /> 	
+  <Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/BasicoMuros2.DAE" Rotation="0,0,0"  Angle="-90" Scale="0.5"/>
+	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 
+	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
 -->
 
  <Object Type="Pista2" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
 
-<!--    
-	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 
--->	
-<!--
-	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
--->
-<!--
-	
--->
 
-		<!--		
-    <Object Type="Pista" Position="0,-1,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/BasicoMuros2.DAE" Rotation="0,0,0"  Angle="-90" />
--->
-		
 <!--   OBJETOS SUELTOS   -->
-		<!--		PONER
+<!--		PONER
+  <Object Type="Player" Position="5,40,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" /> 
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
-	-->
-        <Object Type="Zapato" Position="5, 2, -9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
-<!--
+	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
+	<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
 	  <Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
-
-
     
     <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
+    <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
+	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
+	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" Mass="1"/> 
+	<Object Type="Dragon" Position="0,0,0" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
+  <Object Type="Zapato" Position="3,40,3" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="1" Mass="4"/>
 -->
 
 		<Object Type="ObjetoPrueba" Position="0,15,7" ModelName="RampaCubo" ModelFile="./Data/Objetos/Pruebas/RampaCubo.DAE" Mass="0" />
+        <Object Type="Zapato" Position="5, 2, -9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
 
-<!--    
-    <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
--->
-    <!--
-	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
--->
-
-<!--
-	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" Mass="1"/> 
--->
-	
-	<!--<Object Type="Pista" Position="0,-1,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />-->
-	<!--<Object Type="Pista" Position="0,0,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" />-->
-	
-<!--	
-	<Object Type="Player" Position="-5,11.5,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
-	<Object Type="Player" Position="-5,12,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
-	<Object Type="Player" Position="-5,23,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
--->
-	
-	<!-- 
-	<Object Type="Dragon" Position="0,0,0" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
-	<Object Type="Pista" Position="0,0,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" /> 
-	-->
-  </Objects>
+</Objects>
    
-  <ObjectsCollision>  
-	<!--<ObjectCollision ModelName="CarJazz" >
+<ObjectsCollision>
+  <!--
+  <ObjectCollision ModelName="Suelo" >
+    <COLBOX X="25" Y="1" Z="25" />
+  </ObjectCollision>
+  
+  <ObjectCollision ModelName="CarJazz" >
 		<COLBOX X="1" Y="1" Z="2.2" />
 	</ObjectCollision>
 
@@ -141,10 +84,6 @@
       <COLBOX X="0.15" Y=".75" Z=".1" />
     </ObjectCollision>
     
-	<ObjectCollision ModelName="Suelo" >
-		<COLBOX X="25" Y="1" Z="25" />
-	</ObjectCollision>
-
 	<ObjectCollision ModelName="PistaCircular" >
 		<COLBOX X="25" Y="1" Z="25" />
 	</ObjectCollision>
@@ -176,8 +115,6 @@
 	<ObjectCollision ModelName="Rampa" >
 		<COLBOX X="1" Y="0.5" Z="1.5" />
 	</ObjectCollision>
-	
-	
 	-->
   </ObjectsCollision>
 
@@ -208,19 +145,19 @@
         <!-- Comenzar historia: 1º Pequeña Intro de historia 2º Contrarreloj, 3º Carrera 4Players, 4º Cara a Cara, Fin Demo -->
       </Historia>
       <Libre Action"Abrir">
-        <Carrera Action="Comenzar">
-        <Contrrareloj Action="Comenzar">
-        <Atras Action="Atras">
+        <Carrera Action="Comenzar"/>
+        <Contrrareloj Action="Comenzar"/>
+        <Atras Action="Atras"/>
       </Libre>
-      <Atras>
+      <Atras/>
     </Jugar>
     <Opciones>
       <Sonido><!--Activar/Desactivar--></Sonido>
-      <Controles><!-- Ver Controles -->
-      <Atras>
+      <Controles/><!-- Ver Controles -->
+      <Atras/>
     </Opciones>
-    <Creditos>
-    <Salir>
+    <Creditos/>
+    <Salir/>
   </MenuPrincipal>
 
   <!-- Saldrá cuando presionemos ESC en medio de la partida -->
@@ -229,11 +166,11 @@
       <Sonido>
         <!--Activar/Desactivar-->
       </Sonido>
-      <Controles>
+      <Controles/>
         <!-- Ver Controles -->
-      <Atras>
+      <Atras/>
     </Opciones>
-    <Salir>
+    <Salir/>
   </MenuPausa>
       
 </Resources>
