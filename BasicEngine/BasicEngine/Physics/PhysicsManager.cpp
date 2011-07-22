@@ -177,7 +177,7 @@ void cPhysicsManager::MyInit(void)
 
 
 	glShadeModel(GL_SMOOTH);
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
 	glClearColor(btScalar(0.7),btScalar(0.7),btScalar(0.7),btScalar(0));
@@ -192,7 +192,7 @@ void cPhysicsManager::Disable(void){
 	glDisable(GL_LIGHT1);
 
 
-	glDisable(GL_DEPTH_TEST);
+	//glDisable(GL_DEPTH_TEST);
 }
 
 void cPhysicsManager::RenderScene(int liPass)
@@ -385,7 +385,7 @@ void  cPhysicsManager::RenderMe()
 	
 
 
-	glDisable(GL_CULL_FACE);
+	//glDisable(GL_CULL_FACE);
 	RenderScene(0);
 
 }
