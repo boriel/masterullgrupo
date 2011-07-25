@@ -28,24 +28,26 @@
 <Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 -->
 
-<Object Type="Vehicle" Position="0,5,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
+<Object Type="Vehicle" Position="17,0,-17" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 		
 
 <!--   PISTAS  -->
-<!--
-    <Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="0,0,0"  Angle="-90" Mass="0"/>
+
+	<!-- 
+	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="0,0,0"  Angle="-90" Mass="0"/>
   <Object Type="Pista" Position="0,0,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" />
   <Object Type="Pista" Position="0,0,0" ModelName="SueloMax" ModelFile="./Data/Scene/sueloMax.DAE" />
-		<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE" Mass="0"  /> 	
+	<Object Type="Pista" Position="0,-1,0" ModelName="Billar" ModelFile="./Data/Circuitos/Billar/01/Billar01.DAE" Mass="0"  /> 	
   <Object Type="Pista" Position="0,0,0" ModelName="CircuitoBasico" ModelFile="./Data/Circuitos/Basico/BasicoMuros2.DAE" Rotation="0,0,0"  Angle="-90" Scale="0.5"/>
 	<Object Type="Pista" Position="0,-1,0" ModelName="PistaCircular" ModelFile="./Data/Circuitos/Circular/Circular.DAE"  /> 
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
--->
+	<Object Type="Pista2" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
+	-->
 
- <Object Type="Pista2" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
+	<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico02/CircuitoBasico02.DAE" Mass="0"  />
 
 
-<!--   OBJETOS SUELTOS   -->
+		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
   <Object Type="Player" Position="5,40,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax2.DAE" /> 
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 

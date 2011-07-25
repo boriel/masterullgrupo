@@ -209,7 +209,8 @@ void cPhysicsVehicle::Init(cVec3 lPosition)
 
 	lbtCompoundShape->addChildShape(lbtLocalTransform, lbtChassisShape);
 
-	lbtTransform.setOrigin(btVector3(lPosition.x,lPosition.y,lPosition.z));
+	lbtTransform.setOrigin(btVector3(lPosition.x, lPosition.y, lPosition.z));
+	
 
 	mpbtCarChassis = LocalCreateRigidBody(800, lbtTransform, lbtCompoundShape); //chassisShape);
 	//m_carChassis->setDamping(0.2,0.2);

@@ -4,10 +4,10 @@
     <contributor>
       <author>yormanh</author>
       <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
-      <source_data>file:///F:/Ficheros/Cursos/M%C3%A1ster%20en%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20(Final)/BasicEngine/BasicEngine/Data/Circuitos/Billar/01/Pool%20Table%20[Completed]%20Escenario.max</source_data>
+      <source_data>file:///C:/Visual%20Studio%202010/Projects/Master%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20Code%20(masterullgrupo%20parte%20final)/BasicEngine/BasicEngine/Data/Circuitos/Billar/01/Pool%20Table%20[Completed]%20Escenario.max</source_data>
     </contributor>
-    <created>2011-06-25T22:27:41</created>
-    <modified>2011-06-25T22:27:41</modified>
+    <created>2011-07-25T14:55:11</created>
+    <modified>2011-07-25T14:55:11</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>

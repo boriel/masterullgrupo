@@ -90,11 +90,12 @@ bool cGame::Init()
 
 	mfAcTime = 0.0f;
 
-	//Pruebas Yorman
+	
 	// Los Init se han pasado a LoadRace() ya que en primer lugar ejecutaremos el Menú y desde ahí accederemos a la carrera
 	cSoundManager::Get().Init();
 	cSoundManager::Get().ChangeMusic("Entorno.wav");
 	cSceneManager::Get().Init();
+
 	// Accedemos directamente al juego
 	cSceneManager::Get().LoadScene(MenuPrincipal);
 	cHudManager::Get().Init("Data/Resources.xml");
