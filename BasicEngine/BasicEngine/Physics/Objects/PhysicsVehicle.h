@@ -98,6 +98,11 @@ class cPhysicsVehicle : public cPhysicsObject
 #endif
 	}
 
+	void CentrandoRuedas();
+
+	private:
+		bool mbQuitarGiroRueda;  //para saber si el coche ha girado las ruedas
+
 
 };
 
