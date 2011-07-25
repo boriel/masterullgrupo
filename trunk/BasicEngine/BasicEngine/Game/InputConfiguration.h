@@ -25,6 +25,7 @@ enum eInputActions {
 	eIA_PlayWave,
 	eIA_StopWave,
 	eIA_ChangeModeDebug,
+	eIA_ChangeCamera,
 	eIA_KeyI,
 	eIA_KeyK,
 	eIA_KeyJ,

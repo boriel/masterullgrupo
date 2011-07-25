@@ -167,9 +167,11 @@ void cGame::Update(float lfTimestep)
 	cMenuManager::Get().Update(lfTimestep);
 	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9
-	{
 		cPhysicsManager::Get().CambiarDebugMode();
-	}
+	
+	if (BecomePressed(eIA_ChangeCamera)) //F8
+		cObjectManager::Get().ChangeCameraFP();
+
 
 	// Actualizamos el Hud
 	cHudManager::Get().Update(lfTimestep);
@@ -218,8 +220,11 @@ void cGame::Render()
 		cRaceControlManager::Get().Render();
 	#endif
 		SetTheWorldMatrix();
-		//m3DCamera.Update();
-		m3DCamera.FollowPlayer();  
+		if (cObjectManager::Get().GetCameraFP()) 
+			m3DCamera.FollowPlayer();
+		else
+		  m3DCamera.Update();
+		  
 		glDisable(GL_CULL_FACE);
 	}
 	/* ------------------------------------------------- */
