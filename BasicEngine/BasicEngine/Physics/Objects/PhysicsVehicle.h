@@ -70,7 +70,7 @@ class cPhysicsVehicle : public cPhysicsObject
 		//void renderme();
 
 		//void initPhysics();
-		void Init(cVec3 lPosition);
+		void Init(cVec3 lPosition, cQuaternion lRotationInicial);
 		//void Update(void);
 		void MostrarInfo ();
 

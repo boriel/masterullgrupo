@@ -143,7 +143,7 @@ cPhysicsVehicle::~cPhysicsVehicle()
 }
 
 //Inicializamos la física del vehiculo
-void cPhysicsVehicle::Init(cVec3 lPosition)
+void cPhysicsVehicle::Init(cVec3 lPosition, cQuaternion lRotacionInicial)
 {
 
 	
@@ -203,6 +203,13 @@ void cPhysicsVehicle::Init(cVec3 lPosition)
 	mabtCollisionShapes.push_back( lbtCompoundShape );
 	btTransform lbtLocalTransform;
 	lbtLocalTransform.setIdentity();
+	
+	
+	btQuaternion lbtQuaternion = btQuaternion(0, 0, 0, 1);
+	if (lRotacionInicial.w != 0)  //no pusieron ángulo o no rotacion en el xml
+		lbtQuaternion =  CambiarEje(lRotacionInicial);  //Lo mismo que hacer la rotacion
+	lbtTransform = btTransform (lbtQuaternion );
+	
 	//localTrans effectively shifts the center of mass with respect to the chassis
 	lbtLocalTransform.setOrigin(btVector3(0,1,0));
 #endif
@@ -211,7 +218,6 @@ void cPhysicsVehicle::Init(cVec3 lPosition)
 
 	lbtTransform.setOrigin(btVector3(lPosition.x, lPosition.y, lPosition.z));
 	
-
 	mpbtCarChassis = LocalCreateRigidBody(800, lbtTransform, lbtCompoundShape); //chassisShape);
 	//m_carChassis->setDamping(0.2,0.2);
 	

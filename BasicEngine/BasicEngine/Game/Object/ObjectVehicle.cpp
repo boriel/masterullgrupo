@@ -16,13 +16,13 @@ cObjectVehicle::cObjectVehicle (cObject lObject)
 	((cPhysicsPlayer*)mPhysicsObject)->Init(this->GetPosition(), this->GetRotacionInicial());
 */
 }
-
+/*
 void cObjectVehicle::InitPhysics ()
 {
 
 	((cPhysicsVehicle*)mpPhysicsObject)->Init(mPosition);
 }
-
+*/
 void cObjectVehicle::Update( float lfTimestep )
 {
 	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
@@ -49,14 +49,16 @@ void cObjectVehicle::Update( float lfTimestep )
 	
 	//cInputAction::GetPressedTime();
 
+#ifdef _DEBUG
 	cout << "Position Coche: (" << mPosition(1) << ","<< mPosition(2) << ","<< mPosition(3) << ")" << endl;
 	//cInputManager::Get().GetAction(eIA_KeyI).GetPressedTime();
-	
+
+
 	//cout << "cObjectVehicle::Update = (time) " << cInputManager::Get().GetAction(eIA_KeyJ).GetPressedTime() << endl;
 	//cout << "cObjectVehicle::Update = (pressed) " << cInputManager::Get().GetAction(eIA_KeyJ).GetBecomePressed () << endl;
 	//cout << "cObjectVehicle::Update = (released) " << cInputManager::Get().GetAction(eIA_KeyJ).GetBecomeReleased () << endl;
 	//cout << "cObjectVehicle::Update = (released) " << cInputManager::Get().GetAction(eIA_KeyJ).GetIsPressed() << endl;
-	
+#endif	
 	
 }
 

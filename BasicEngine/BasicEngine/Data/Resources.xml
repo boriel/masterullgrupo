@@ -28,7 +28,7 @@
 <Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 -->
 
-<Object Type="Vehicle" Position="17,0,-17" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
+<Object Type="Vehicle" Position="21,0,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
 		
 
 <!--   PISTAS  -->
@@ -53,18 +53,20 @@
 	<Object Type="Dragon" Position="5,5,5" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
 	<Object Type="Misil" Position="0,5,7" ModelName="Misil" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE"  Rotation="1,0,0"  Angle="-90" Scale="1/300"/>
 	<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
-	  <Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
+	<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" />
     
-    <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
-    <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
+  <Object Type="PC" Position="5,5,5" ModelName="PC" ModelFile="./Data/Objetos/PC/torre_PC.dae"  Mass="0" />
+  <Object Type="Tapiceria" Position="0,-100,5" ModelName="Tapiceria" ModelFile="./Data/Circuitos/Billar/01/Tapiceria.DAE" Mass="0" />
 	<Object Type="Disparos" Position="-3,3,-3" ModelName="Misil01" ModelFile="./Data/Objetos/Misiles/01/Missile.DAE" /> 
 	<Object Type="Rectangulo" Position="-3,3,-3" ModelName="Rectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE" Mass="1"/> 
 	<Object Type="Dragon" Position="0,0,0" ModelName="Dragon" ModelFile="./Data/Scene/dragonsmall.DAE" /> 
   <Object Type="Zapato" Position="3,40,3" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="1" Mass="4"/>
+		<Object Type="ObjetoPrueba" Position="0,15,7" ModelName="RampaCubo" ModelFile="./Data/Objetos/Pruebas/RampaCubo.DAE" Mass="0" /> 
 -->
 
-		<Object Type="ObjetoPrueba" Position="0,15,7" ModelName="RampaCubo" ModelFile="./Data/Objetos/Pruebas/RampaCubo.DAE" Mass="0" />
-        <Object Type="Zapato" Position="5, 2, -9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
+		<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" Rotation="0,1,0"  Angle="-90" />
+		
+		<Object Type="Zapato" Position="5, 2, -9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
 
 </Objects>
    
@@ -146,7 +148,7 @@
       <Historia Action="Comenzar">
         <!-- Comenzar historia: 1º Pequeña Intro de historia 2º Contrarreloj, 3º Carrera 4Players, 4º Cara a Cara, Fin Demo -->
       </Historia>
-      <Libre Action"Abrir">
+      <Libre Action="Abrir">
         <Carrera Action="Comenzar"/>
         <Contrrareloj Action="Comenzar"/>
         <Atras Action="Atras"/>

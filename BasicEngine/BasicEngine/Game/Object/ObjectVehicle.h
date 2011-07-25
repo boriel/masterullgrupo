@@ -24,7 +24,7 @@ class cObjectVehicle : public cObject
 		//virtual void Render (cMatrix &lWorld);
 		virtual void Render ();
 
-		virtual void InitPhysics();
+		//virtual void InitPhysics();
 
 
 };
