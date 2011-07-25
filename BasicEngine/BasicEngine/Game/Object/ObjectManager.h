@@ -25,6 +25,8 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cObject *GetObject(const string lsType, const string lsModelName);
 		float GetScale() { return mfScale; }
 		void SetScale(float lfScale) { mfScale=lfScale; }
+		void ChangeCameraFP () { mbCameraFP = !mbCameraFP; }
+		bool GetCameraFP () { return mbCameraFP; }
 		
 
 	private:
@@ -47,6 +49,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		bool ExisteTipoAndModelName(string lsModelName, string lsType);
 		float mfPI;
 		float mfScale;
+		bool mbCameraFP;
 };
 
 
