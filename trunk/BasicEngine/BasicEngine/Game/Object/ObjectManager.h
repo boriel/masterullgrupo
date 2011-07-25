@@ -34,6 +34,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		void CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsObject);
 		cQuaternion CalculateRotation ( cMatrix lMatrix);
 		cVec4 Multiplicar (const cVec4 lvCenterMesh4, const cMatrix lLocalMatrixSubModel);
+		btQuaternion HacerRotacion(const cQuaternion &lRotQuat);
 
 	private:
 		typedef std::vector<cObject *> cObjectList;

@@ -87,7 +87,7 @@ bool cObjectManager::Init()
 		LoadObjectsXmlCollision(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetType(), lpPhysicsVehicle);  //No hace nada por ahora
 		//lpPhysicsVehicle->Init(mObjectPista[luiIndex]->GetPosition(), mObjectPista[luiIndex]->GetRotacionInicial());
 					
-		lpPhysicsVehicle->Init(mObjectVehicle[luiIndex]->GetPosition());
+		lpPhysicsVehicle->Init(mObjectVehicle[luiIndex]->GetPosition(), mObjectVehicle[luiIndex]->GetRotacionInicial());
 
 		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
 	}
@@ -323,10 +323,19 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
 				lbtShape->addPoint( /*lfScala */ btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
 
+			cQuaternion lRotacionInicial = lpObject->GetRotacionInicial();
+
+			btQuaternion lbtQuaternion = btQuaternion(0, 0, 0, 1);
+			if (lRotacionInicial.w != 0)  //no pusieron ángulo o no rotacion en el xml
+				lbtQuaternion =  HacerRotacion(lRotacionInicial);
+
+
 			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
-			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1),  lvbtCenterMesh );
+			btTransform lbtLocalTrans = btTransform (lbtQuaternion,  lvbtCenterMesh );
 
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
+
+
 		
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 		}
@@ -1156,4 +1165,23 @@ void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar
 			}
 		}
 	}
+}
+
+
+
+//Hacemos una ratacion de la figura
+btQuaternion cObjectManager::HacerRotacion(const cQuaternion &lRotQuat)
+{
+
+	btQuaternion lbtRotQuat = btQuaternion(lRotQuat.x, lRotQuat.y, lRotQuat.z, lRotQuat.w);
+
+
+	btMatrix3x3 lbtMatrix = btMatrix3x3(1,0,0, 0,1,0, 0,0,1);  //Identidad, no se is pasarán otra, es al principio solo
+	btTransform lbtTransform = btTransform(lbtMatrix);
+	//lbtTransform.setRotation(btQuaternion(btVector3(1,0,0), -3.14159f / 2.0f));  //ASÍ FUNCIONA 
+	//lbtTransform.setRotation(lbtRotQuat);  //NO VA, SEGURO PORQUE NO ENTIENDO LOS ANGULOS, NO SE PUEDE PASAR ASI DE FACIL
+	lbtTransform.setRotation(btQuaternion(btVector3(lRotQuat.x,lRotQuat.y,lRotQuat.z), lRotQuat.w));  //ASÍ FUNCIONA 
+	btQuaternion lbtQuaternion = lbtTransform.getRotation();
+
+	return lbtQuaternion;
 }
