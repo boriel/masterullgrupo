@@ -8,7 +8,7 @@
 #include <math.h>
 
 void cCameraNavigator::Init(void) { 
-	mpPosition = new cVec3(25.0f, 5.0f, 0.0f);
+	mpPosition = new cVec3(25.0f, 5.0f, 0.0f);  //no se muy bien si esto inicializa
 	mpTarget = new cVec3(0.0f, 0.0f, 0.0f);
 	mpMove= new cVec3(0.0f, 0.0f, 0.0f);
 	meState = eCN_Stop;
@@ -76,12 +76,12 @@ void cCameraNavigator::FollowPlayer(void)
 #define CAMERA_PLAYER
 	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","CarJazzVehicle");
 	cVec3 lvPosition=lpObject->GetPosition();
-	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront()*3;
-	lvPosition =lvPosition - lpObject->GetWorldMatrix().GetFront()*5;
+	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront() * 3;
+	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 0; //5
 #ifdef CAMERA_PLAYER
-	lvPosition.y+=5;
+	lvPosition.y += 20; //5
 #else
 	lvPosition.y += 40;
 #endif
-	SetLookAt(lvPosition,lvTarget);
+	SetLookAt(lvPosition, lvTarget);
 }

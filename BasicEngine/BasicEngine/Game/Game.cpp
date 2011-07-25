@@ -218,20 +218,23 @@ void cGame::Render()
 		cRaceControlManager::Get().Render();
 	#endif
 		SetTheWorldMatrix();
-		m3DCamera.Update();
-		//m3DCamera.FollowPlayer();  
+		//m3DCamera.Update();
+		m3DCamera.FollowPlayer();  
 		glDisable(GL_CULL_FACE);
 	}
 	/* ------------------------------------------------- */
 	// 4) Render 3D with transparency
+	
 	// 5) Activate 2D Camera
 	cGraphicManager::Get().ActivateCamera( &m2DCamera );
+	
 	// 6) Render 2D Elements
 	// Aquí renderizaremos nuestro HudManager y MenúManager.
 	SetTheWorldMatrix();
 	// Solo ponemos el hud si estamos ingame
 	if(cSceneManager::Get().GetScene()==Gameplay)cHudManager::Get().Render();
-	cMenuManager::Get().Render();
+	  cMenuManager::Get().Render();
+
 	// 7) Postprocessing
 	
 	// 8) Swap Buffers
