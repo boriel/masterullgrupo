@@ -306,7 +306,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 	 ///found=lsTipoShape.find("Box");
   	//Con este metodo obtenemos todos los puntos del vector
 		///if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
-		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box2")) 
+		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box") || (lsTipoShape == "Sphere")) 
 		{
 			//int liResourceCount = lSubModel->GetResourceCount();  //Hay que implementar esto
 			int liResourceCount = 0;
@@ -319,7 +319,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		
 			btConvexHullShape* lbtShape = new btConvexHullShape();
 
-			//float lfScala = 1.0f;		// NO ESCALES LAS MALLAS DE COLISION!!!
+			//float lfScala = 1.0f;		// NO ESCALES LAS MALLAS DE COLISION!!!  De acuerdo, la escala ya está aplicada en el mesh al cargar por primera vez el objeto
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
 				lbtShape->addPoint( /*lfScala */ btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
 
@@ -345,7 +345,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
 
 			btVector3 lvbtObjectPosition = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
-			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) + lvbtObjectPosition;
+			btVector3 lvbtCenterMesh = /*btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) + */ lvbtObjectPosition;
+			//btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) + lvbtObjectPosition;
 			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
 
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
@@ -534,26 +535,32 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		
 		else if (lsTipoShape == "Sphere")
 		{
+
+			//int liResourceCount = lSubModel->GetResourceCount(); //Hay que implementar esto
+			int liResourceCount = 0;
+			assert(liResourceCount <= 1);
+		
 			cResource* lResourceMesh = lSubModel->GetResource(0);
-			cMesh* lpMesh = new cMesh;
-			lpMesh = (cMesh*)lResourceMesh;
+
+			cMesh* lpMesh = (cMesh*)lResourceMesh;
 			
 			tBoundingMesh ltBoundingMesh = lpMesh->GetBoundingMesh();
-			btVector3 lvbtCenterMesh = btVector3 (btVector3(ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ));
+
+			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
+
+			btVector3 lvbtObjectPosition = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z);
+			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+
 			
-
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), lvbtCenterMesh);
-			btCollisionShape* lbtShape = new btSphereShape(ltBoundingMesh.mfRadius);  
+			btCollisionShape* lbtShape = new btSphereShape(ltBoundingMesh.mfRadius / 2);  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
+			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
 
-			/*
-			btTransform lbtLocalTrans (btQuaternion (0,0,0,1), btVector3(lpObject->GetPosition().x,  lpObject->GetPosition().y, lpObject->GetPosition().z));
-			btCollisionShape* lbtShape = new btSphereShape(1);  
-			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
-			*/
+
+			
+			
+			
 		}
 		else  // general con un box de 1x1x1 para el que no tenga nombre delante, auqne desaperecera
 		{

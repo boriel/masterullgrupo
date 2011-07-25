@@ -2,12 +2,12 @@
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset>
     <contributor>
-      <author>Yolanda</author>
+      <author>yormanh</author>
       <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
-      <source_data>file:///C:/Yorman/master%20videojuegos%20ull/practica%20svn%20final%20grupo/BasicEngine/BasicEngine/Data/Cars/jazz_3Dmax3.1/jazzZUP.max</source_data>
+      <source_data>file:///C:/Visual%20Studio%202010/Projects/Master%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20Code%20(masterullgrupo%20parte%20final)/BasicEngine/BasicEngine/Data/Cars/jazz_3Dmax3.1/jazzZUP.max</source_data>
     </contributor>
-    <created>2011-07-03T16:29:17</created>
-    <modified>2011-07-03T16:29:17</modified>
+    <created>2011-07-25T15:46:08</created>
+    <modified>2011-07-25T15:46:08</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -159,17 +159,20 @@
         <instance_light url="#EnvironmentAmbientLight"/>
       </node>
       <node id="node-Box_JazzCar" name="Box_JazzCar">
-        <translate>0.1200305 -0.1954 -0.07536894</translate>
-        <instance_geometry url="#geom-Box_JazzCar">
-          <bind_material>
-            <technique_common>
-              <instance_material symbol="MapJazz" target="#MapJazz-material">
-                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
-              </instance_material>
-            </technique_common>
-          </bind_material>
-        </instance_geometry>
+        <translate>0 0 1.281692</translate>
+        <node>
+          <matrix>1 0 0 0.1200305 0 1 0 -0.1954 0 0 1 -0.07536894 0 0 0 1</matrix>
+          <instance_geometry url="#geom-Box_JazzCar">
+            <bind_material>
+              <technique_common>
+                <instance_material symbol="MapJazz" target="#MapJazz-material">
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                  <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+                </instance_material>
+              </technique_common>
+            </bind_material>
+          </instance_geometry>
+        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
