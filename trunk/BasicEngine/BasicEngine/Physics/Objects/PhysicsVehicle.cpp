@@ -84,6 +84,7 @@ cPhysicsVehicle::cPhysicsVehicle()
 	mpbtWheelShape = 0;
 	//m_cameraPosition = btVector3(30,30,30);
 	mpbtCarChassis = 0;
+	mbQuitarGiroRueda = false;
 	//m_cameraHeight = 4.f;
 	//m_minCameraDistance(3.f) 
 	//m_maxCameraDistance(10.f)
@@ -448,12 +449,35 @@ void cPhysicsVehicle::RenderObjectVehicleDebug()
 */
 
 
+//Si las ruedas están giradas y no se está tocando ninguna de las teclas de giro
+
+void cPhysicsVehicle::CentrandoRuedas()
+{
+	
+	if (mbQuitarGiroRueda == true) 
+	{
+		if (gfVehicleSteering > 0.00)
+			gfVehicleSteering -= gfSteeringIncrement;
+		
+		if (gfVehicleSteering < 0.00)
+			gfVehicleSteering += gfSteeringIncrement;
+
+		if (gfVehicleSteering == 0.00)
+			mbQuitarGiroRueda = false;
+	}
+
+	printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
+	ClientMoveAndDisplay();
+
+}
+
 
 
 //void VehicleDemo::specialKeyboard(int key, int x, int y)
 void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 {
-	
+	bool lbGirar = false;
+
 	switch (luiKey)
 	{
 		case eIA_Up:  //arriba
@@ -478,6 +502,8 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			if (gfVehicleSteering > gfSteeringClamp)
 				gfVehicleSteering = gfSteeringClamp;
 			
+			lbGirar = true;
+			mbQuitarGiroRueda = true;
 			break;
 
 		case eIA_Right: //derecha
@@ -485,11 +511,17 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			if (gfVehicleSteering < -gfSteeringClamp)
 				gfVehicleSteering = -gfSteeringClamp;
 			
+			lbGirar = true;
+			mbQuitarGiroRueda = true;
 			break;
 
 	}
 
+
 	ClientMoveAndDisplay();
+	printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
+	
+		
 
 	//printf ("Key = %i\n", luiKey);
 //	printf("key = %i x=%i y=%i\n",key,x,y);

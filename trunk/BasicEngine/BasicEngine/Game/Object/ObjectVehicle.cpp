@@ -37,7 +37,7 @@ void cObjectVehicle::Update( float lfTimestep )
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 
-	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else par aque coja 2 teclas presionadas)
+	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else para que pueda usarse 2 teclas presionadas)
 	if (BecomePressed(eIA_Up) || IsPressed(eIA_Up)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Up);
 	if (BecomePressed(eIA_Down) || IsPressed(eIA_Down)) 
@@ -47,10 +47,16 @@ void cObjectVehicle::Update( float lfTimestep )
 	if (BecomePressed(eIA_Right) || IsPressed(eIA_Right)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
 	
+	//Si no hay giro centramos las ruedas
+	if (!(BecomePressed(eIA_Left) || IsPressed(eIA_Left) || BecomePressed(eIA_Right) || IsPressed(eIA_Right)))
+		((cPhysicsVehicle*)mpPhysicsObject)->CentrandoRuedas();
+
+
+
 	//cInputAction::GetPressedTime();
 
 #ifdef _DEBUG
-	cout << "Position Coche: (" << mPosition(1) << ","<< mPosition(2) << ","<< mPosition(3) << ")" << endl;
+	//cout << "Position Coche: (" << mPosition(1) << ","<< mPosition(2) << ","<< mPosition(3) << ")" << endl;
 	//cInputManager::Get().GetAction(eIA_KeyI).GetPressedTime();
 
 

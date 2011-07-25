@@ -6,8 +6,8 @@
       <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.0;  Revision: 788M;  Platform: x64;  Configuration: Release_Max2011_static</authoring_tool>
       <source_data>file:///C:/Visual%20Studio%202010/Projects/Master%20Videojuegos%20ULL/Pr%C3%A1ctica%20SVN%20Google%20Code%20(masterullgrupo%20parte%20final)/BasicEngine/BasicEngine/Data/Circuitos/Basico02/CircuitoBasico02.max</source_data>
     </contributor>
-    <created>2011-07-25T17:30:56</created>
-    <modified>2011-07-25T17:30:56</modified>
+    <created>2011-07-25T19:13:59</created>
+    <modified>2011-07-25T19:13:59</modified>
     <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -604,7 +604,7 @@
         </instance_geometry>
       </node>
       <node id="node-Box_Lateral_005" name="Box_Lateral_005">
-        <translate>0.02284563 -0.8090248 0.1550217</translate>
+        <translate>0.02284563 -0.8090248 0.5373383</translate>
         <rotate>0 0 -1 -90.00001</rotate>
         <scale>10.78038 0.5974146 1</scale>
         <instance_geometry url="#geom-Box_Lateral_005">
