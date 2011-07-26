@@ -47,10 +47,13 @@ void cObjectVehicle::Update( float lfTimestep )
 	if (BecomePressed(eIA_Right) || IsPressed(eIA_Right)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
 	
-	//Si no hay giro centramos las ruedas
+	//Si no hay giro centramos las ruedas, para ponerlas en su sitio
 	if (!(BecomePressed(eIA_Left) || IsPressed(eIA_Left) || BecomePressed(eIA_Right) || IsPressed(eIA_Right)))
 		((cPhysicsVehicle*)mpPhysicsObject)->CentrandoRuedas();
 
+	//ver si está acelerando
+	if (!(BecomePressed(eIA_Up) || IsPressed(eIA_Up)))
+		((cPhysicsVehicle*)mpPhysicsObject)->DesAcelerar();
 
 
 	//cInputAction::GetPressedTime();

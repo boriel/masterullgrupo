@@ -40,12 +40,12 @@
 float	gfEngineForce = 0.f;
 float	gfBreakingForce = 0.f;
 
-float	gfMaxEngineForce = 2000.f; //this should be engine/velocity dependent
+float	gfMaxEngineForce = 1000.f; //this should be engine/velocity dependent  //2000.f
 float	gfMaxBreakingForce = 100.f;
 
 const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
 const float gkfDesAcelerar = 5.f;  //cuando suelta el acelerador
-const float gkfFrenar = 40.f;
+const float gkfFrenar = 20.f;
 
 float	gfVehicleSteering = 0.f;
 float	gfSteeringIncrement = 0.04f;
@@ -85,6 +85,7 @@ cPhysicsVehicle::cPhysicsVehicle()
 	//m_cameraPosition = btVector3(30,30,30);
 	mpbtCarChassis = 0;
 	mbQuitarGiroRueda = false;
+	mbAcelerando = false;
 	//m_cameraHeight = 4.f;
 	//m_minCameraDistance(3.f) 
 	//m_maxCameraDistance(10.f)
@@ -450,7 +451,6 @@ void cPhysicsVehicle::RenderObjectVehicleDebug()
 
 
 //Si las ruedas están giradas y no se está tocando ninguna de las teclas de giro
-
 void cPhysicsVehicle::CentrandoRuedas()
 {
 	
@@ -466,10 +466,42 @@ void cPhysicsVehicle::CentrandoRuedas()
 			mbQuitarGiroRueda = false;
 	}
 
-	printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
+#ifdef _DEBUG
+	//printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
+#endif
+
 	ClientMoveAndDisplay();
 
 }
+
+//Si las ruedas están giradas y no se está tocando ninguna de las teclas de giro
+void cPhysicsVehicle::DesAcelerar()
+{
+	
+
+	
+	//if (mbAcelerando == false) 
+	//{
+
+		if ((gfEngineForce >= 0.00) && (gfEngineForce <= gfMaxEngineForce))
+			gfEngineForce -= gkfDesAcelerar;
+			//gfBreakingForce += gkfDesAcelerar;
+
+	//}
+	
+		btVector3 lbtVel = mpbtVehicle->getRigidBody()->getAngularVelocity();
+		float lfVel = lbtVel.getX();
+		
+
+#ifdef _DEBUG
+		printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
+#endif	
+
+	ClientMoveAndDisplay();
+
+}
+
+
 
 
 
@@ -487,16 +519,24 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			gfBreakingForce = 0.f;
 			
 			break;
-
+			
 		case eIA_Down: //abajo
-			gfBreakingForce = gfMaxBreakingForce; 
-			gfEngineForce = 0.f;
+			//gfBreakingForce = gfMaxBreakingForce; 
+			//gfEngineForce = 0.f;
+
+			if (gfBreakingForce < gfMaxBreakingForce)
+				gfBreakingForce += gkfFrenar; 
+			gfEngineForce -= gkfAcelerar;
+
+			
+
+
 			//gfEngineForce -= gkfAcelerar;
 			//gEngineForce = -maxEngineForce;
 			//gBreakingForce = 0.f;
 			
 			break;
-
+			
 		case eIA_Left:  //izquierda
 			gfVehicleSteering += gfSteeringIncrement;
 			if (gfVehicleSteering > gfSteeringClamp)
@@ -519,8 +559,11 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 
 	ClientMoveAndDisplay();
-	printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
-	
+
+#ifdef _DEBUG
+	//printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
+	printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
+#endif	
 		
 
 	//printf ("Key = %i\n", luiKey);

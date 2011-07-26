@@ -158,7 +158,8 @@ void cGame::Update(float lfTimestep)
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 	mSubModel.Update(lfTimestep);	
 
-	if(cSceneManager::Get().GetScene()==Gameplay){
+	if(cSceneManager::Get().GetScene() == Gameplay)
+	{
 		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 		cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
 	}
