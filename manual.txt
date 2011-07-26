@@ -21,11 +21,10 @@ Tenéis un archivo resources.xml en el directorio Data en donde se encuentre inst
 el juego, en el mismo se puede observar la estructura de un fichero xml que explicaremos 
 lo importante.
 
-Por ejemplo si cogemos la línea 98 (puede variar dependiendo de la versión del proyecto) 
+Por ejemplo si cogemos una línea cualquiera (puede variar dependiendo de la versión del proyecto) 
 tenéis:
 
-<Object Type="Zapato" Position="5,2,-9" ModelName="Zapato" 
- ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="1"/>
+<Object Type="Vehicle" Position="21,0,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
 
 Esto quiere decir:
 * Type: tenemos por ahora tipos "Vehicle" y "Pista" se que cargan de forma especial, 
@@ -36,6 +35,8 @@ Esto quiere decir:
 * Scale: Escala a efectuar al modelo Dae. El valor por defecto es 1, sin escalado.
 * Mass: Masa que tendrá el objeto en el juego. Si es 0 es estático, es el valor que 
   le ponemos por defecto.
+* Rotation: Indica el eje por el que queremos girar
+* Angle: Expresa cuanto lo vamos a girar respecto al eje definido antes
 
 Para hacer un comentario de una línea o varias líneas en formato xml se hace con 
 <!-- escribe lo que sea, y se cierra con  -->
@@ -89,6 +90,8 @@ de la malla podemos hacer (de forma automática):
 * Si no tiene nada en el nombre, por ahora no le haremos envoltorio y suponemos que 
   es un elemento del sistema que no tendrá colisiones con el mundo. Por ejemplo un 
   cuadro, una bombilla, ...
+* Sphere: No implementado todavía.
+
 
 ========================
 MALLAS
