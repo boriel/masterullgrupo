@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0E06B6D9221B48FC8AE2057B953DABEF"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0FD27F79E0904F0EA5ABEF636E76BFF2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -65,12 +71,6 @@
         {
         "MsmKey" = "8:_1153B9FBA7CD4097BF6376B693C777F0"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_11A0C39971284D759D5EC6C1FBC10CA4"
-        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_15C1DB48B3924CE0956B290607CF8258"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_17F1E65084414C7CAD9C3A6310DDEBC9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -544,6 +550,12 @@
         "Entry"
         {
         "MsmKey" = "8:_A6C860D1CE6F40BCA3E8D74C6D3BFB79"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A72D39D5C5934B458BF1984392C7668C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1057,6 +1069,26 @@
             "TargetName" = "8:TENIS.dae"
             "Tag" = "8:"
             "Folder" = "8:_02A3722ADFB944B08C762A010784B631"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17F1E65084414C7CAD9C3A6310DDEBC9"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Rampa\\asfalto.jpg"
+            "TargetName" = "8:asfalto.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_A8F955CCB9814F70A709F47594BCCC5C"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2571,6 +2603,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A72D39D5C5934B458BF1984392C7668C"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Material\\materials.xml"
+            "TargetName" = "8:materials.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_E5EC584013614D4B9C10E83F8D23B83C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A825BD12043843B2837F178CEB8810E0"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Scene\\images\\n-203.dds"
@@ -3589,7 +3641,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{2042B375-D8D0-47F8-AEC9-159700A41510}"
+        "PackageCode" = "8:{A1AB081A-5F48-40CC-8DB9-434FDAAB1BC4}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4119,7 +4171,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_11A0C39971284D759D5EC6C1FBC10CA4"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_0E06B6D9221B48FC8AE2057B953DABEF"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
