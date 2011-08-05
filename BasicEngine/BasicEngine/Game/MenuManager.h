@@ -83,7 +83,5 @@ public:
 		cResourceHandle mFontHandle;
 		// Carga XML
 		bool LoadXml(void);
-		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);
-
 };
 

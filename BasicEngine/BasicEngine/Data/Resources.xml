@@ -4,11 +4,9 @@
     <Font Name="Font1" File="./Data/Fonts/Test1.fnt" />
     <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />
   </Fonts>
-
+ 
   <Objects>
-
-<!--   PLAYERS -->
-<!-- David: Esto debe desaparecr porque ya No usamos el ObjectPlayer sino ObjectVehicle...
+<!--   PLAYERS David: Esto debe desaparecer porque ya No usamos el ObjectPlayer sino ObjectVehicle...
 	<Object Type="Player" Position="0,5,-5" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  />
 	<Object Type="Player" Position="-5,5,6" ModelName="CarJazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"/>
 	<Object Type="Player" Position="5,5,5" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  />
@@ -20,7 +18,6 @@
 	<Object Type="Player" Position="-5,23,0" ModelName="CuboMax2" ModelFile="./Data/Scene/cuboMax.DAE" />
 -->	
 
-
 <!--       VEHICLES      
    <Object Type="Vehicle" Position="10,100,10" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
@@ -30,7 +27,6 @@
 
 <Object Type="Vehicle" Position="21,0,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
 		
-
 <!--   PISTAS  -->
 
 	<!-- 
@@ -45,7 +41,6 @@
 	-->
 
 	<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico02/CircuitoBasico02.DAE" Mass="0"  />
-
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
@@ -126,6 +121,7 @@
   * número de vueltas máximo
   * vehículos que participan en la competición
   * tramos que definen cada vuelta
+  La clase cRaceControlManager lee estos datos
 --> 
   <Race MaxLaps="10">
     <Vehicles>
@@ -138,15 +134,17 @@
     </Legs>
   </Race>
 
-  <!-- Definición de menús: 
-        *MenuPrincipal
-        *MenuPausa
-  -->
+<!-- Definición de menús: 
+     *MenuPrincipal
+     *MenuPausa
+  NOTA: Actualmente ni HudManager ni MenuManager, leen los datos del XML, por lo que estos tag no se están usando.        
+-->
 
   <MenuPrincipal>
     <Jugar Action="Abrir">
       <Historia Action="Comenzar">
         <!-- Comenzar historia: 1º Pequeña Intro de historia 2º Contrarreloj, 3º Carrera 4Players, 4º Cara a Cara, Fin Demo -->
+        
       </Historia>
       <Libre Action="Abrir">
         <Carrera Action="Comenzar"/>

@@ -177,13 +177,10 @@ void cPhysicsManager::MyInit(void)
 
 
 	glShadeModel(GL_SMOOTH);
-	//glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 
 	glClearColor(btScalar(0.7),btScalar(0.7),btScalar(0.7),btScalar(0));
 	
-	//  glEnable(GL_CULL_FACE);
-	//  glCullFace(GL_BACK);
 }
 
 void cPhysicsManager::Disable(void){
@@ -276,121 +273,8 @@ void cPhysicsManager::RenderScene(int liPass)
 void  cPhysicsManager::RenderMe()
 {
 	MyInit();
-
-	//updateCamera();
-
-	if (mpbtDynamicsWorld)
-	{	
-		/*
-		if(m_enableshadows)
-		{
-			glClear(GL_STENCIL_BUFFER_BIT);
-			glEnable(GL_CULL_FACE);
-			renderscene(0);
-
-			glDisable(GL_LIGHTING);
-			glDepthMask(GL_FALSE);
-			glDepthFunc(GL_LEQUAL);
-			glEnable(GL_STENCIL_TEST);
-			glColorMask(GL_FALSE,GL_FALSE,GL_FALSE,GL_FALSE);
-			glStencilFunc(GL_ALWAYS,1,0xFFFFFFFFL);
-			glFrontFace(GL_CCW);
-			glStencilOp(GL_KEEP,GL_KEEP,GL_INCR);
-			renderscene(1);
-			glFrontFace(GL_CW);
-			glStencilOp(GL_KEEP,GL_KEEP,GL_DECR);
-			renderscene(1);
-			glFrontFace(GL_CCW);
-
-			glPolygonMode(GL_FRONT,GL_FILL);
-			glPolygonMode(GL_BACK,GL_FILL);
-			glShadeModel(GL_SMOOTH);
-			glEnable(GL_DEPTH_TEST);
-			glDepthFunc(GL_LESS);
-			glEnable(GL_LIGHTING);
-			glDepthMask(GL_TRUE);
-			glCullFace(GL_BACK);
-			glFrontFace(GL_CCW);
-			glEnable(GL_CULL_FACE);
-			glColorMask(GL_TRUE,GL_TRUE,GL_TRUE,GL_TRUE);
-
-			glDepthFunc(GL_LEQUAL);
-			glStencilFunc( GL_NOTEQUAL, 0, 0xFFFFFFFFL );
-			glStencilOp( GL_KEEP, GL_KEEP, GL_KEEP );
-			glDisable(GL_LIGHTING);
-			renderscene(2);
-			glEnable(GL_LIGHTING);
-			glDepthFunc(GL_LESS);
-			glDisable(GL_STENCIL_TEST);
-			glDisable(GL_CULL_FACE);
-		}
-		else
-		{
-			glDisable(GL_CULL_FACE);
-			renderscene(0);
-		}
-*/
-
-/*
-		glDisable(GL_CULL_FACE);
-		renderscene(0);
-
-		int	xOffset = 10;
-		int yStart = 20;
-		int yIncr = 20;
-
-
-		glDisable(GL_LIGHTING);
-		glColor3f(0, 0, 0);
-
-		if ((m_debugMode & btIDebugDraw::DBG_NoHelpText)==0)
-		{
-			setOrthographicProjection();
-
-			showProfileInfo(xOffset,yStart,yIncr);
-
-#ifdef USE_QUICKPROF
-
-		
-			if ( getDebugMode() & btIDebugDraw::DBG_ProfileTimings)
-			{
-				static int counter = 0;
-				counter++;
-				std::map<std::string, hidden::ProfileBlock*>::iterator iter;
-				for (iter = btProfiler::mProfileBlocks.begin(); iter != btProfiler::mProfileBlocks.end(); ++iter)
-				{
-					char blockTime[128];
-					sprintf(blockTime, "%s: %lf",&((*iter).first[0]),btProfiler::getBlockTime((*iter).first, btProfiler::BLOCK_CYCLE_SECONDS));//BLOCK_TOTAL_PERCENT));
-					glRasterPos3f(xOffset,yStart,0);
-					GLDebugDrawString(BMF_GetFont(BMF_kHelvetica10),blockTime);
-					yStart += yIncr;
-
-				}
-
-			}
-#endif //USE_QUICKPROF
-
-
-			
-
-			resetPerspectiveProjection();
-		}
-
-		glDisable(GL_LIGHTING);
-
-		*/
-	}
-
-	//updateCamera();
-	
-
-
-	//glDisable(GL_CULL_FACE);
 	RenderScene(0);
-
 }
-
-
 
 
 void cPhysicsManager::CambiarDebugMode()

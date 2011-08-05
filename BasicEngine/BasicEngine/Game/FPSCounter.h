@@ -5,26 +5,23 @@ Con esto tenemos información de a que velocidada o Frame per Second se ve nuestr
 
 */
 
-
 #ifndef FPSCOUNTER_H_
 #define FPSCOUNTER_H_
 
 #include "..\Utility\Singleton.h"
 
-
 class cFPSCounter : public cSingleton<cFPSCounter>
 {
 	friend class cSingleton<cFPSCounter>;
 	
-	public:
-		void Init();
-		void Deinit();
-		void Update(float lfTimestep);
+public:
+	void Init();
+	void Deinit();
+	void Update(float lfTimestep);
 
-		float GetFPS () { return mfFPS; }
+	float GetFPS () { return mfFPS; }
 
-
-	private:
+private:
     float mfUpdateInterval;
     float mfTimeSinceLastUpdate;
     float mfFrameCount;

@@ -64,7 +64,6 @@ void cHudManager::Render()
 		char* lpcFPS = new char[10];
 		sprintf(lpcFPS, "%.2g FPS", lfFPS );
 		mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
-	
 #endif
 }
 
@@ -120,49 +119,24 @@ bool cHudManager::LoadXml(void)
 			
 		if (lpElement->Attribute("Point1") != NULL) { 
 			vector<string> lTokens;
-			Tokenize((char*)lpElement->Attribute("Point1"), lTokens, ",");
+			cStringUtils::Tokenize((char*)lpElement->Attribute("Point1"), lTokens, ",");
 
-			lpLeg->mvPoint1.x = (float) strtod(lTokens[0].c_str(), NULL);
-			lpLeg->mvPoint1.y = (float) strtod(lTokens[1].c_str(), NULL);
-			lpLeg->mvPoint1.z = (float) strtod(lTokens[2].c_str(), NULL);
+			lpLeg->mvPoint1.x = (float) atof(lTokens[0].c_str());
+			lpLeg->mvPoint1.y = (float) atof(lTokens[1].c_str());
+			lpLeg->mvPoint1.z = (float) atof(lTokens[2].c_str());
 		}
 
 		if (lpElement->Attribute("Point2") != NULL) { 
 			vector<string> lTokens;
-			Tokenize((char*)lpElement->Attribute("Point2"), lTokens, ",");
+			cStringUtils::Tokenize((char*)lpElement->Attribute("Point2"), lTokens, ",");
 
-			lpLeg->mvPoint2.x = (float) strtod(lTokens[0].c_str(), NULL);
-			lpLeg->mvPoint2.y = (float) strtod(lTokens[1].c_str(), NULL);
-			lpLeg->mvPoint2.z = (float) strtod(lTokens[2].c_str(), NULL);
+			lpLeg->mvPoint2.x = (float) atof(lTokens[0].c_str());
+			lpLeg->mvPoint2.y = (float) atof(lTokens[1].c_str());
+			lpLeg->mvPoint2.z = (float) atof(lTokens[2].c_str());
 		}
 		mLegs.push_back(lpLeg);
 	}
 */
 	return true;
 }
-
-//para hacer un split de un string
-void cHudManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
-{
-  /*
-	// Skip delimiters at beginning.
-    string::size_type lastPos = str.find_first_not_of(delimiters, 0);
-
-    // Find first "non-delimiter".
-    string::size_type pos     = str.find_first_of(delimiters, lastPos);
-
-    while (string::npos != pos || string::npos != lastPos)
-    {
-        // Found a token, add it to the vector.
-        tokens.push_back(str.substr(lastPos, pos - lastPos));
-
-        // Skip delimiters.  Note the "not_of"
-        lastPos = str.find_first_not_of(delimiters, pos);
-
-        // Find next "non-delimiter"
-        pos = str.find_first_of(delimiters, lastPos);
-    }
-	*/
-}
-
 

@@ -4,6 +4,7 @@
 #include <tinyxml.h>
 #include <Windows.h>
 #include <vector>
+#include "..\..\Utility\StringUtils.h"
 
 #include "..\Scene\ModelManager.h"
 #include "..\Scene\Model.h"
@@ -283,7 +284,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 
 	//Obtetemos todas las mesh del modelo
-		for (int liIndex = 0; liIndex < lObjectList.capacity(); liIndex++)
+		for (unsigned int liIndex = 0; liIndex < lObjectList.capacity(); liIndex++)
 	{
 		//La verdad se podría hacer solo con el lObjectList que creo que para eso está. De este es el unico que puedo sacar el nombre del mesh
 		cSubModel* lSubModel = lObjectList[liIndex];
@@ -774,13 +775,13 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			//TODO: para encapsular esto entre llaves
 			{ 
 			vector<string> lTokens;
-			Tokenize(lsPosition, lTokens, ",");
+			cStringUtils::Tokenize(lsPosition, lTokens, ",");
 
-			double ldX = strtod(lTokens[0].c_str(), NULL);
-			double ldY = strtod(lTokens[1].c_str(), NULL);
-			double ldZ = strtod(lTokens[2].c_str(), NULL);
+			float lfX = (float) atof(lTokens[0].c_str());
+			float lfY = (float) atof(lTokens[1].c_str());
+			float lfZ = (float) atof(lTokens[2].c_str());
 
-			cVec3 lPosition((float)ldX, (float)ldY, (float)ldZ);
+			cVec3 lPosition(lfX, lfY, lfZ);
 			(*lObject).SetPosition(lPosition);
 
 			}
@@ -795,15 +796,15 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			if ((lsRotation != "") && (lsAngle != ""))
 			{
 				vector<string> lTokens;
-				Tokenize(lsRotation, lTokens, ",");
+				cStringUtils::Tokenize(lsPosition, lTokens, ",");
 
-				double ldX = strtod(lTokens[0].c_str(), NULL);
-				double ldY = strtod(lTokens[1].c_str(), NULL);
-				double ldZ = strtod(lTokens[2].c_str(), NULL);
+				float lfX = (float) atof(lTokens[0].c_str());
+				float lfY = (float) atof(lTokens[1].c_str());
+				float lfZ = (float) atof(lTokens[2].c_str());
 	
 				float lfAngle = (float)atof(lsAngle.c_str());
 				//lQuatRot = cQuaternion((float)ldX, (float)ldY, (float)ldZ, lfAngle * 2 *  (float) PI / (float) 360.0);
-				cQuaternion lQuatRot((float)ldX, (float)ldY, (float)ldZ, lfAngle * (float) mfPI / (float) 180.0);
+				cQuaternion lQuatRot(lfX, lfY, lfZ, lfAngle * (float) mfPI / (float) 180.0);
 				(*lObject).SetRotacionInicial(lQuatRot);
 			}	
 

@@ -57,9 +57,11 @@ void cObjectVehicle::Update( float lfTimestep )
 
 
 	//cInputAction::GetPressedTime();
-
+#ifdef _DAVID
+	//Desactivo esto temporalmente
 #ifdef _DEBUG
 	//cout << "Position Coche: (" << mPosition(1) << ","<< mPosition(2) << ","<< mPosition(3) << ")" << endl;
+#endif
 	//cInputManager::Get().GetAction(eIA_KeyI).GetPressedTime();
 
 

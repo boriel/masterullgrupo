@@ -459,6 +459,12 @@
     <ClInclude Include="Game\MenuManager.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="Utility\StringUtils.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\TimeDebug.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -770,6 +776,12 @@
     </ClCompile>
     <ClCompile Include="Game\SceneManager.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\StringUtils.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Utility\TimeDebug.cpp">
+      <Filter>Utility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

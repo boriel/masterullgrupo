@@ -43,6 +43,5 @@ public:
 		cResourceHandle mFontHandle;
 		// Utilizaremos XML para la carga de menús - PENDIENTE
 		bool LoadXml(void);
-		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);
 };
 
