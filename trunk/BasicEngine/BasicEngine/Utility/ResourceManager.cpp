@@ -104,7 +104,7 @@ cResourceHandle cResourceManager::FindResourceIndice( int liIndice )
 	cResourceHandle lHandle;
 	
 	//for ( unsigned luiIndex = 0; luiIndex < muiMaxSize; ++luiIndex )
-	if (liIndice < muiMaxSize)
+	if (liIndice < (int) muiMaxSize)
 	{
 			// Is a valid resource?
 		if ( maResources[liIndice].muiKey != kuiInvalidKey )

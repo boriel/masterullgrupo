@@ -217,6 +217,8 @@
     <ClInclude Include="Utility\ResourceHandle.h" />
     <ClInclude Include="Utility\ResourceManager.h" />
     <ClInclude Include="Utility\Singleton.h" />
+    <ClInclude Include="Utility\StringUtils.h" />
+    <ClInclude Include="Utility\TimeDebug.h" />
     <ClInclude Include="Window\ApplicationProperties.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
@@ -323,6 +325,8 @@
     <ClCompile Include="Utility\FileUtils.cpp" />
     <ClCompile Include="Utility\ResourceHandle.cpp" />
     <ClCompile Include="Utility\ResourceManager.cpp" />
+    <ClCompile Include="Utility\StringUtils.cpp" />
+    <ClCompile Include="Utility\TimeDebug.cpp" />
     <ClCompile Include="Window\ApplicationProperties.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>

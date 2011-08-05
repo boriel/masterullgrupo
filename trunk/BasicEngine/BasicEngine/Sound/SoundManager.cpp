@@ -10,7 +10,7 @@ bool cSoundManager::Init(){
 	{
 		ALFWprintf("OpenAL no se ha cargado correctamente.\n");
 		ALFWShutdown();
-		return 0;
+		return false;
 	}
 
 	// Situamos al listener en el punto central.
@@ -25,7 +25,7 @@ bool cSoundManager::Init(){
 	// ! Activamos el sonido y la musica por defecto
 	mIsSoundOn=!true;
 	mIsMusicOn=!true;
-
+	return true;
 }
 
 // Esta función devolverá el ID del sonido para poder reproducirlo por parámetro desde otro objeto

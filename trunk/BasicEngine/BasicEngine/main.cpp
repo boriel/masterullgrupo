@@ -6,7 +6,6 @@ main.cpp
 
 #include <stdio.h>
 
-
 //La clase Windows.h necesaria para el timeGetTime()
 #include <windows.h>
 #include <stdlib.h>
@@ -14,7 +13,6 @@ main.cpp
 #include "Utility\Debug.h"
 #include "Lua\LuaManager.h"
 #include "Character\CharacterManager.h"
-
 
 int WINAPI WinMain (HINSTANCE hInstance,          // Instance
 										HINSTANCE hprevInstance,      // Previous Instance

@@ -15,13 +15,13 @@ void cSceneManager::Render(){
 void cSceneManager::Update(float lfTimestep){
 }
 
-bool cSceneManager::LoadScene(Scenes lScene){
+bool cSceneManager::LoadScene(eScenes lScene){
 	mActualScene=lScene;
-	if(lScene==Loading){
+	if(lScene==eLoading){
 		cGame::Get().Render();
 		cGame::Get().LoadRace();
 	}
-	if(lScene==Gameplay)NULL;
-	if(lScene==MenuPrincipal)NULL;
+	//if(lScene==eGameplay) {};
+	//if(lScene==eMenuPrincipal) {};
 	return true;
 }

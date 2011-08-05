@@ -138,7 +138,7 @@ void cMenuManager::Render(){
 	glEnable(GL_TEXTURE_2D);
 	switch(cSceneManager::Get().GetScene())
 	{
-		case MenuPrincipal:	
+		case eMenuPrincipal:	
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
 			mFont.Write(-280, 200, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
@@ -146,17 +146,18 @@ void cMenuManager::Render(){
 			for (unsigned luiIndex = 0; luiIndex < mMenuActual->mItemsList.size(); ++luiIndex ) 
 			{
 				if(muiSelectedItem==luiIndex+1)
-					mFont.Write(-250, 190-(1+luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
 				else
-					mFont.Write(-250, 190-(1+luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
-		case Loading:
+		case eLoading:
 			mFont.SetHeight(100.0);
 			mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			break;
 	}
 }
+
 void cMenuManager::Update(float lfTimestep){
 	// Movimiento por el menú
 	if (BecomePressed(eIA_Up)){
@@ -175,11 +176,12 @@ void cMenuManager::Update(float lfTimestep){
 		AbrirMenu();
 	}
 }
+
 void cMenuManager::AbrirMenu(){
 	// Obtenemos qué elemento se abrirá
 	switch(mMenuActual->mItemsList.at(muiSelectedItem-1)->mAction){
 		case Comenzar: // 
-			cSceneManager::Get().LoadScene(Loading);
+			cSceneManager::Get().LoadScene(eLoading);
 			break;
 		case Abrir: // Asignamos como menuactual al destino
 			mMenuActual=mMenuActual->mItemsList.at(muiSelectedItem-1)->mTarget;
@@ -270,48 +272,24 @@ bool cMenuManager::LoadXml(void)
 			
 		if (lpElement->Attribute("Point1") != NULL) { 
 			vector<string> lTokens;
-			Tokenize((char*)lpElement->Attribute("Point1"), lTokens, ",");
+			cStringUtils::Tokenize((char*)lpElement->Attribute("Point1"), lTokens, ",");
 
-			lpLeg->mvPoint1.x = (float) strtod(lTokens[0].c_str(), NULL);
-			lpLeg->mvPoint1.y = (float) strtod(lTokens[1].c_str(), NULL);
-			lpLeg->mvPoint1.z = (float) strtod(lTokens[2].c_str(), NULL);
+			lpLeg->mvPoint1.x = atof(lTokens[0].c_str());
+			lpLeg->mvPoint1.y = atof(lTokens[1].c_str());
+			lpLeg->mvPoint1.z = atof(lTokens[2].c_str());
 		}
 
 		if (lpElement->Attribute("Point2") != NULL) { 
 			vector<string> lTokens;
-			Tokenize((char*)lpElement->Attribute("Point2"), lTokens, ",");
+			cStringUtils::Tokenize((char*)lpElement->Attribute("Point2"), lTokens, ",");
 
-			lpLeg->mvPoint2.x = (float) strtod(lTokens[0].c_str(), NULL);
-			lpLeg->mvPoint2.y = (float) strtod(lTokens[1].c_str(), NULL);
-			lpLeg->mvPoint2.z = (float) strtod(lTokens[2].c_str(), NULL);
+			lpLeg->mvPoint2.x = atof(lTokens[0].c_str());
+			lpLeg->mvPoint2.y = atof(lTokens[1].c_str());
+			lpLeg->mvPoint2.z = atof(lTokens[2].c_str());
 		}
 		mLegs.push_back(lpLeg);
 	}
 	*/
 	return true;
-}
-
-//para hacer un split de un string
-void cMenuManager::Tokenize(const string& str, vector<string>& tokens,  const string& delimiters)
-{
-  /*
-	// Skip delimiters at beginning.
-    string::size_type lastPos = str.find_first_not_of(delimiters, 0);
-
-    // Find first "non-delimiter".
-    string::size_type pos     = str.find_first_of(delimiters, lastPos);
-
-    while (string::npos != pos || string::npos != lastPos)
-    {
-        // Found a token, add it to the vector.
-        tokens.push_back(str.substr(lastPos, pos - lastPos));
-
-        // Skip delimiters.  Note the "not_of"
-        lastPos = str.find_first_not_of(delimiters, pos);
-
-        // Find next "non-delimiter"
-        pos = str.find_first_of(delimiters, lastPos);
-    }
-	*/
 }
 

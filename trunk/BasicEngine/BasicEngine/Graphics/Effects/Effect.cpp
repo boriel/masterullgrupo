@@ -161,7 +161,7 @@ void cEffect::SetParam(const std::string &lacName, const float * lfParam, unsign
 		{
 			liNTotal *= liASize;
 			
-			if ( liCount < liNTotal )
+			if ( liCount < (unsigned) liNTotal )
 			{
 				assert(kuiAuxiliarBuffer > liNTotal);
 				assert(kuiAuxiliarBuffer > liCount);

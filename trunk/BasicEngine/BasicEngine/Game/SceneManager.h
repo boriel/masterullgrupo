@@ -15,26 +15,24 @@ class cSceneManager: Se encarga de localizar cada escena (Intro, Gameplay, MenúP
 #include <vector>
 using namespace std;
 
-enum Scenes{
-	MenuPrincipal,
-	Intro,
-	Loading,
-	Gameplay
+enum eScenes{
+	eMenuPrincipal,
+	eIntro,
+	eLoading,
+	eGameplay
 };
 
-class cSceneManager :
-	public cSingleton<cSceneManager>
+class cSceneManager : public cSingleton<cSceneManager>
 {
 public:
-	public:	
-		bool Init();
-		bool Deinit();
-		void Render();
-		void Update(float lfTimestep); 
-		bool LoadScene(Scenes lScene);
-		inline Scenes GetScene(){return mActualScene;}
+	bool Init();
+	bool Deinit();
+	void Render();
+	void Update(float lfTimestep); 
+	bool LoadScene(eScenes lScene);
+	inline eScenes GetScene(){return mActualScene;}
 
-	private:
-		Scenes mActualScene;
+private:
+	eScenes mActualScene;
 };
 

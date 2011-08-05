@@ -50,15 +50,15 @@ class cGame : public cSingleton<cGame> {
 		bool LoadRace(); // Cargará la carrera cuando sea necesario
 
 	private:  //métodos
-		void LoadResources(); //Read resources for the game (window properties)
 		void SetTheWorldMatrix();
-		// PASADO AL HUDMANAGER: void RenderTexts();
-		void RenderRejilla();
-		void RenderLua();
 		void RenderModels();
 		void RenderObjects();
-		void RenderSkeletal();
 		void RenderPhysicsObjects();
+#ifdef _DAVID
+		void RenderSkeletal();
+		void RenderLua();
+		void RenderRejilla();
+#endif
 };
 
 #endif
