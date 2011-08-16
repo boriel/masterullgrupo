@@ -92,7 +92,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>OpenGLSupport.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxml_STL.lib;assimp.lib;cal3d.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib;cg.lib;cgGL.lib</AdditionalDependencies>
+      <AdditionalDependencies>OpenAL32.lib;OpenGLSupport.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;dxguid.lib;dinput8.lib;OIS_VS2010.lib;OpenGL32.lib;Glu32.lib;tinyxml_STL.lib;assimp.lib;cal3d.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);GLee.lib;cg.lib;cgGL.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>.\Sound\OpenAL\libs\Win32;..\bullet-2.78\msvc\2008\lib\Release;.\Libraries\TinyXML\lib;.\Input\ois\lib\release;$(DXSDK_DIR)Lib\x86;.\Graphics\Meshes\assimp\lib;.\Graphics\GLee\;$(CG_LIB_PATH)\;.\Graphics\bin\Release</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
