@@ -782,6 +782,8 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			cVec3 lPosition((float)ldX, (float)ldY, (float)ldZ);
 			(*lObject).SetPosition(lPosition);
 
+			(*lObject).SetPosicionInicial(lPosition);  //Temporal para hacer recargas de vehiculo al comienzo, hay que calcular mejor con trayectorias
+
 			}
 			
 			//pansando algunos formatos a lo que necesitamos
@@ -1185,4 +1187,25 @@ btQuaternion cObjectManager::HacerRotacion(const cQuaternion &lRotQuat)
 	btQuaternion lbtQuaternion = lbtTransform.getRotation();
 
 	return lbtQuaternion;
+}
+
+
+void cObjectManager::ReloadVehicle()
+{
+
+		cObject* lObjectVehicle = GetObject("Vehicle", "CarJazzVehicle");
+		cVec3 lvPosicionInicial = lObjectVehicle->GetPosicionInicial();
+		cQuaternion lQuat = lObjectVehicle->GetRotacionInicial();
+
+		//cVec3 lvPosicionInicial (21,0,-19);
+
+
+		//mObjectVehicle[0]->SetPosition (lvPosicionInicial);
+
+		cPhysicsObject* lpPhysicsObject = mObjectVehicle[0]->GetPtrPhysicsObject();
+
+		cPhysicsVehicle* lpPhysicsVehicle = (cPhysicsVehicle*)lpPhysicsObject;
+
+		lpPhysicsVehicle->SetPosition(lvPosicionInicial, lQuat);
+
 }

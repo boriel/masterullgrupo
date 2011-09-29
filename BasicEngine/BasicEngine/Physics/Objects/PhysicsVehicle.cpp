@@ -160,7 +160,7 @@ void cPhysicsVehicle::Init(cVec3 lPosition, cQuaternion lRotacionInicial)
 	miForwardAxis = 1;
 #endif
 
-	btCollisionShape* groundShape = new btBoxShape(btVector3(50,3,50)); //Figura del suelo
+	btCollisionShape* groundShape = new btBoxShape(btVector3(50, 3, 50)); //Figura del suelo
 	//m_collisionShapes.push_back(groundShape);
 	//cPhysicsManager::mabtCollisionShapes.push_back(groundShape);
 	//cPhysicsManager::Get().AddCollisionShape(groundShape);
@@ -374,6 +374,46 @@ cVec3 cPhysicsVehicle::GetPosition ()
 
 	return lPosition;
 }
+
+
+//Obtenemos la posicion central del objeto
+void cPhysicsVehicle::SetPosition (cVec3 lvPosition, cQuaternion lRotacion)
+{
+
+	btTransform lbtTransform;
+	bool lbIsReload = true;  //esto es mejor por parametro, para despues
+
+	//mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
+	
+	
+	//lbtTransform.getOrigin().setX(lvPosition.x);
+	//lbtTransform.getOrigin().setY(lvPosition.y);
+	//lbtTransform.getOrigin().setZ(lvPosition.z);
+
+	lbtTransform.setOrigin(btVector3 (lvPosition.x, lvPosition.y, lvPosition.z));
+	
+
+	//Claro ya etá cambiada la figura lo unico que no está orientado
+	//btQuaternion lbtQuaternion = btQuaternion(0, 0, 0, 1);
+	//if (lRotacion.w != 0)  //no pusieron ángulo o no rotacion en el xml
+	//	lbtQuaternion =  CambiarEje(lRotacion);  //Lo mismo que hacer la rotacion
+	//lbtTransform = btTransform (lbtQuaternion);
+
+
+	//Poniendo la velocidad a 0
+	if (lbIsReload)
+	{
+		gfEngineForce = 0.f;
+		gfBreakingForce = 0.f;
+		mpbtVehicle->getRigidBody()->setAngularVelocity(btVector3 (0, 0, 0));
+		mpbtVehicle->getRigidBody()->setLinearVelocity(btVector3 (0, 0, 0));
+	}
+
+
+	mpbtVehicle->getRigidBody()->setWorldTransform(lbtTransform);
+}
+
 
 
 

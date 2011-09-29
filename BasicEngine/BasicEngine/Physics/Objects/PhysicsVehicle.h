@@ -75,6 +75,7 @@ class cPhysicsVehicle : public cPhysicsObject
 		void MostrarInfo ();
 
 		cVec3 GetPosition ();
+		void SetPosition (cVec3 lvPosition, cQuaternion lRotation);
 		cQuaternion GetQuatRotation();
 		//void RenderObjectVehicleDebug();
 

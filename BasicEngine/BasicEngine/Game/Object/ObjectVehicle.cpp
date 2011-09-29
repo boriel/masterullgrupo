@@ -85,3 +85,10 @@ void cObjectVehicle::Render ()
 #endif
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
 }
+
+
+//Recargando el vehiculo 
+void cObjectVehicle::Reload ()
+{
+	mPosition = GetPosicionInicial();
+}

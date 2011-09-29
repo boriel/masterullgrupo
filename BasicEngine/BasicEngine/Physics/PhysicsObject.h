@@ -52,6 +52,7 @@ class cPhysicsObject
 
 
 		cVec3 GetPosition ();
+
 		cQuaternion GetQuatRotation();
 		btQuaternion CambiarEje (const cQuaternion &lRotQuat);
 		bool CreateBoxShape(cVec3 lVec3);

@@ -57,6 +57,12 @@ class cObject
 		inline void SetScale(float lfScale) { mfScale=lfScale;}
 		inline float GetScale() { return mfScale;}
 
+		//para pruebas de recarga
+		inline cVec3 GetPosicionInicial () { return mPosicionInicial; }
+		inline void SetPosicionInicial (cVec3 lPosicionInicial) { mPosicionInicial = lPosicionInicial; }
+		
+
+
 		inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
 		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 
@@ -73,6 +79,9 @@ class cObject
 		cVec3 mCollision; //temporal para meter los puntos desde un xml
 		float mfScale;  //no se si usarlo, no se usa por ahora ni se pide
 		cQuaternion mRotacionInicial;  //NO ES QUATERNION PROPIEAMENTE DICHO, SON LSO DATOS A PELO DEL XML
+
+		//Pruebas almacenando la posicion inicial para la recarga si se da la vuelta. Si eso habría que hacer por donde mas cerca le quede de la pista
+		cVec3 mPosicionInicial;
 };
 
 #endif
