@@ -20,11 +20,16 @@ class cObjectVehicle : public cObject
 		cObjectVehicle () {}
 		cObjectVehicle (cObject lObject);
 		
+		
+
 		virtual void Update (float lfTimestep);
 		//virtual void Render (cMatrix &lWorld);
 		virtual void Render ();
 
 		//virtual void InitPhysics();
+
+		void Reload ();
+
 
 
 };

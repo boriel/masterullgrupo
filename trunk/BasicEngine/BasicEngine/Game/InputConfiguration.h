@@ -35,6 +35,7 @@ enum eInputActions {
 	eIA_PlayerLeft,
 	eIA_PlayerRight,
 	eIA_Accept,
+	eIA_Reload,
 
 	eIA_Count
 };

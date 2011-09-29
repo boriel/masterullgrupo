@@ -215,6 +215,10 @@ cVec3 cPhysicsObject::GetPosition ()
 	return lPosition;
 }
 
+
+
+
+
 cQuaternion cPhysicsObject::GetQuatRotation()
 {
 	//cVec3 lVecRotation;

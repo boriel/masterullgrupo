@@ -13,6 +13,7 @@ void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string ls
 	msModelName = lsModelName;
 	msModelFile = lsModelFile;
 	mRotacionInicial = lRotacionInicial;
+	mPosicionInicial = lPosition;
 	
 	Init();  
 

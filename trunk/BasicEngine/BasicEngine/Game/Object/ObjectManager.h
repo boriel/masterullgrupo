@@ -27,7 +27,8 @@ class cObjectManager : public cSingleton<cObjectManager>
 		void SetScale(float lfScale) { mfScale=lfScale; }
 		void ChangeCameraFP () { mbCameraFP = !mbCameraFP; }
 		bool GetCameraFP () { return mbCameraFP; }
-		
+		void ReloadVehicle (); 
+
 
 	private:
 		bool LoadObjectsXml(std::string lsResource);

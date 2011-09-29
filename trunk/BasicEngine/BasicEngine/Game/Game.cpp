@@ -172,7 +172,8 @@ void cGame::Update(float lfTimestep)
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 	mSubModel.Update(lfTimestep);	
 
-	if(cSceneManager::Get().GetScene()==eGameplay){
+	if(cSceneManager::Get().GetScene() == eGameplay)
+	{
 		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 		cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
 	}
@@ -185,6 +186,10 @@ void cGame::Update(float lfTimestep)
 	
 	if (BecomePressed(eIA_ChangeCamera)) //F8
 		cObjectManager::Get().ChangeCameraFP();
+
+	if (BecomePressed(eIA_Reload)) //R
+		cObjectManager::Get().ReloadVehicle();
+	
 
 
 	// Actualizamos el Hud
