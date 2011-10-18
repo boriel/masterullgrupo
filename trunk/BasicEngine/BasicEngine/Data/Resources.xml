@@ -62,6 +62,11 @@
 		<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" Rotation="0,1,0"  Angle="-90" />
 		
 		<Object Type="Zapato" Position="5, 2, -9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
+		
+		<Object Type="Lampara" Position="5, 3, 15" ModelName="Lampara" ModelFile="./Data/Objetos/Lampara/lampara.DAE" Scale="1" Mass="0"/>
+
+		<Object Type="Despertador" Position="5, 1, 17" ModelName="Despertador" ModelFile="./Data/Objetos/Despertador/Despertador.dae" Scale="1" Mass="0"/>
+		
 
 </Objects>
    
