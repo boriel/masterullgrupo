@@ -63,7 +63,9 @@
 		
 		<Object Type="Zapato" Position="5, 2, -9" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
 		
-		<Object Type="Lampara" Position="5, 3, 15" ModelName="Lampara" ModelFile="./Data/Objetos/Lampara/lampara.DAE" Scale="1" Mass="0"/>
+		<Object Type="Lampara" Position="5, 3, 15" ModelName="Lampara" ModelFile="./Data/Objetos/Lampara/Lampara.DAE" Scale="1" Mass="0"/>
+
+		<Object Type="Regleta" Position="7, 3, 18" ModelName="Regleta" ModelFile="./Data/Objetos/Regleta/Regleta.DAE" Scale="1" Mass="0"/>
 
 		<Object Type="Despertador" Position="5, 1, 17" ModelName="Despertador" ModelFile="./Data/Objetos/Despertador/Despertador.dae" Scale="1" Mass="0"/>
 		
