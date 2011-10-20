@@ -57,8 +57,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0E06B6D9221B48FC8AE2057B953DABEF"
-        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
+        "MsmKey" = "8:_0C2B2649CAD74455B7597CD53E441793"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -70,6 +70,12 @@
         "Entry"
         {
         "MsmKey" = "8:_1153B9FBA7CD4097BF6376B693C777F0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_11A7FC8C719A41E79568B0BFA4696A14"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -159,6 +165,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2E23D53004A24E7D9B136A1F35A5DE1B"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_30F4C050A7844268A39073CF8899823B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -178,6 +190,12 @@
         "Entry"
         {
         "MsmKey" = "8:_38206223AC594A74A46599D2290D77C0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_389BD6B8A92644DA837E9C7374CBD9A8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -221,6 +239,12 @@
         {
         "MsmKey" = "8:_4B025949D4F6930B80FD827FE885A4A3"
         "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4C48CC8B555E4E9782F83D954D722F42"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -285,6 +309,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_62811E4F8D3146A4AA365B2B89D4C6DE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_62E03B41A14B4245A93D0B3A5B7F06EE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -304,6 +334,12 @@
         "Entry"
         {
         "MsmKey" = "8:_68204D3EFF01436B9E6FF6DB8440E90D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_690EF25743174F2EB390BAC9B09FBF1E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -741,12 +777,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F9DC90E7D812E7420354E434F498B16B"
-        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_FD8ABD97FE6E4DF093BA54FB73D1D73F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -983,6 +1013,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C2B2649CAD74455B7597CD53E441793"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Regleta\\images\\textura_regleta_toycorriendo.jpg"
+            "TargetName" = "8:textura_regleta_toycorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_AACFF28FD3814CD0873F0D17A792EE57"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FD27F79E0904F0EA5ABEF636E76BFF2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\Test1.bmfc"
@@ -1009,6 +1059,26 @@
             "TargetName" = "8:skeleton_wave.caf"
             "Tag" = "8:"
             "Folder" = "8:_3568BE687B3148C6B638FA674BB7F4DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_11A7FC8C719A41E79568B0BFA4696A14"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Despertador\\images\\textura_despertador_toycorriendo.jpg"
+            "TargetName" = "8:textura_despertador_toycorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_05034BA414214DAE98E822A525F5FAD8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1383,6 +1453,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_389BD6B8A92644DA837E9C7374CBD9A8"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lampara\\Lampara.DAE"
+            "TargetName" = "8:Lampara.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_71C805F83C504C16A164929EF6D988B2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_394C34D33E4E4913A2916C0CF964F312"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_hand_right.cmf"
@@ -1521,6 +1611,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C48CC8B555E4E9782F83D954D722F42"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lampara\\images\\Textura_lampara_toycorriendo.jpg"
+            "TargetName" = "8:Textura_lampara_toycorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_D9E5E3B8F88040B78DF58863ABB5A2E5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_50B28C8C19D24C878770EC59096C0A5F"
@@ -1703,6 +1813,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_62811E4F8D3146A4AA365B2B89D4C6DE"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Regleta\\Regleta.DAE"
+            "TargetName" = "8:Regleta.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_E002CE9BFCC14DBC897D72E09A14A17E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_62E03B41A14B4245A93D0B3A5B7F06EE"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Scene\\n-202.dds"
@@ -1769,6 +1899,26 @@
             "TargetName" = "8:water.dds"
             "Tag" = "8:"
             "Folder" = "8:_BB8357544E574F958258352D579C415E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_690EF25743174F2EB390BAC9B09FBF1E"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Despertador\\Despertador.dae"
+            "TargetName" = "8:Despertador.dae"
+            "Tag" = "8:"
+            "Folder" = "8:_9134DE75066647119133CBFFC3A55940"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3203,26 +3353,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9DC90E7D812E7420354E434F498B16B"
-            {
-            "SourcePath" = "8:Assimp32.dll"
-            "TargetName" = "8:Assimp32.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FD8ABD97FE6E4DF093BA54FB73D1D73F"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_head.cmf"
@@ -3519,6 +3649,50 @@
                                             }
                                         }
                                     }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_71C805F83C504C16A164929EF6D988B2"
+                                    {
+                                    "Name" = "8:Lampara"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_0A9B20488128499791EACB9ABCC3ACD6"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_D9E5E3B8F88040B78DF58863ABB5A2E5"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_A9BF3096B3994C779D34BC059A6E2620"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9134DE75066647119133CBFFC3A55940"
+                                    {
+                                    "Name" = "8:Despertador"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_8B47CA3B03B443EDA6DDB0DFAB7642C1"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_05034BA414214DAE98E822A525F5FAD8"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_AFBD145EC67E4759A08C159DAAD9AA87"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_A8F955CCB9814F70A709F47594BCCC5C"
                                     {
                                     "Name" = "8:Rampa"
@@ -3535,6 +3709,28 @@
                                             "Condition" = "8:"
                                             "Transitive" = "11:FALSE"
                                             "Property" = "8:_86663C5E467A4E8090E0ABC250413E57"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_E002CE9BFCC14DBC897D72E09A14A17E"
+                                    {
+                                    "Name" = "8:Regleta"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_1C991995F9864CACA2410667B13BD51D"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AACFF28FD3814CD0873F0D17A792EE57"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_4422FECD23D3458CB3CC072243A2E2B8"
                                                 "Folders"
                                                 {
                                                 }
@@ -4171,7 +4367,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_0E06B6D9221B48FC8AE2057B953DABEF"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_2E23D53004A24E7D9B136A1F35A5DE1B"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
