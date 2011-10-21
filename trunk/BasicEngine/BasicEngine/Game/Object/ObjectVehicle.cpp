@@ -47,6 +47,11 @@ void cObjectVehicle::Update( float lfTimestep )
 	if (BecomePressed(eIA_Right) || IsPressed(eIA_Right)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
 	
+	if (BecomeReleased(eIA_Up))
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Up);
+	if (BecomeReleased(eIA_Down))
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Down);
+	
 	//Si no hay giro centramos las ruedas, para ponerlas en su sitio
 	if (!(BecomePressed(eIA_Left) || IsPressed(eIA_Left) || BecomePressed(eIA_Right) || IsPressed(eIA_Right)))
 		((cPhysicsVehicle*)mpPhysicsObject)->CentrandoRuedas();

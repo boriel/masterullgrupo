@@ -40,13 +40,16 @@
 float	gfEngineForce = 0.f;
 float	gfBreakingForce = 0.f;
 
-float	gfMaxEngineForce = 1000.f; //this should be engine/velocity dependent  //2000.f
+float	gfMaxEngineForce = 2000.f; //this should be engine/velocity dependent  //2000.f
 float	gfMaxBreakingForce = 100.f;
+float	gfMaxBackForce = 1000.f;
 
 const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
 const float gkfDesAcelerar = 5.f;  //cuando suelta el acelerador
 const float gkfFrenar = 20.f;
 
+bool	gbMarchaAtras = false; // Controlaremos cuando estamos en la marcha atrás o hacia adelante
+bool	gbCocheParado = true; // Controlaremos si el coche está en movimiento o no
 float	gfVehicleSteering = 0.f;
 float	gfSteeringIncrement = 0.04f;
 float	gfSteeringClamp = 0.3f;
@@ -523,8 +526,8 @@ void cPhysicsVehicle::DesAcelerar()
 	//if (mbAcelerando == false) 
 	//{
 
-		if ((gfEngineForce >= 0.00) && (gfEngineForce <= gfMaxEngineForce))
-			gfEngineForce -= gkfDesAcelerar;
+		/*if ((gfEngineForce >= 0.00) && (gfEngineForce <= gfMaxEngineForce))
+			gfEngineForce -= gkfDesAcelerar;*/
 			//gfBreakingForce += gkfDesAcelerar;
 
 	//}
@@ -534,7 +537,7 @@ void cPhysicsVehicle::DesAcelerar()
 		
 
 #ifdef _DEBUG
-		printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
+		//printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
 #endif	
 
 	ClientMoveAndDisplay();
@@ -542,7 +545,39 @@ void cPhysicsVehicle::DesAcelerar()
 }
 
 
+void cPhysicsVehicle::SpecialKeyboardRelease(const unsigned int luiKey)
+{
+	bool lbGirar = false;
+	switch (luiKey)
+	{
+		case eIA_Up:  //arriba
+			gfEngineForce = 0.f;		
+			break;
+			
+		case eIA_Down: //abajo
+			gfBreakingForce =0.f;
+			break;
+			
+		case eIA_Left:  //izquierda
+			gfVehicleSteering += gfSteeringIncrement;
+			if (gfVehicleSteering > gfSteeringClamp)
+				gfVehicleSteering = gfSteeringClamp;
+			
+			lbGirar = true;
+			mbQuitarGiroRueda = true;
+			break;
 
+		case eIA_Right: //derecha
+			gfVehicleSteering -= gfSteeringIncrement;
+			if (gfVehicleSteering < -gfSteeringClamp)
+				gfVehicleSteering = -gfSteeringClamp;
+			
+			lbGirar = true;
+			mbQuitarGiroRueda = true;
+			break;
+
+	}
+}
 
 
 //void VehicleDemo::specialKeyboard(int key, int x, int y)
@@ -553,28 +588,32 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 	switch (luiKey)
 	{
 		case eIA_Up:  //arriba
-			//gfEngineForce = gfMaxEngineForce;
-			if (gfEngineForce < gfMaxEngineForce)
-				gfEngineForce += gkfAcelerar;
-			gfBreakingForce = 0.f;
-			
+			if( gbMarchaAtras ){ // Si estamos con la marcha atrás activada
+				gfBreakingForce = gfMaxBreakingForce; 
+				gfEngineForce = 0.f;	
+				if(mpbtVehicle->getCurrentSpeedKmHour()<0.1){
+					gbMarchaAtras=false; // Si el coche está parado activamos la direccion opuesta
+					printf("Marcha Atras Desactivada!\n");
+				}
+			}else{
+				gfEngineForce = gfMaxEngineForce;
+				gfBreakingForce = 0.f;
+			}
 			break;
 			
 		case eIA_Down: //abajo
-			//gfBreakingForce = gfMaxBreakingForce; 
-			//gfEngineForce = 0.f;
-
-			if (gfBreakingForce < gfMaxBreakingForce)
-				gfBreakingForce += gkfFrenar; 
-			gfEngineForce -= gkfAcelerar;
-
-			
-
-
-			//gfEngineForce -= gkfAcelerar;
-			//gEngineForce = -maxEngineForce;
-			//gBreakingForce = 0.f;
-			
+			if( gbMarchaAtras ){
+				gfEngineForce = -gfMaxBackForce;
+				gfBreakingForce = 0.f;
+			}else{
+				gfBreakingForce = gfMaxBreakingForce; 
+				gfEngineForce = 0.f;
+				printf("Velocidad Coche: %f",mpbtVehicle->getCurrentSpeedKmHour());
+				if(mpbtVehicle->getCurrentSpeedKmHour()<0.1){
+					gbMarchaAtras=true; // Si el coche está parado activamos la direccion opuesta
+					printf("Marcha Atras Activada!\n");
+				}
+			}
 			break;
 			
 		case eIA_Left:  //izquierda
@@ -602,7 +641,7 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 #ifdef _DEBUG
 	//printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
-	printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
+	//printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
 #endif	
 		
 

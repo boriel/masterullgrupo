@@ -79,6 +79,7 @@ class cPhysicsVehicle : public cPhysicsObject
 		cQuaternion GetQuatRotation();
 		//void RenderObjectVehicleDebug();
 
+		void SpecialKeyboardRelease(const unsigned int luiKey);
 		void SpecialKeyboard(const unsigned int luiKey);
 		void ClientMoveAndDisplay();
 
