@@ -18,6 +18,7 @@ Clase InputManager. Esta clase se encarga de actualizar y leer los dispositivos,
 
 #define IsPressed(ACTION) cInputManager::Get().GetAction( ACTION ).GetIsPressed()
 #define BecomePressed(ACTION) cInputManager::Get().GetAction( ACTION ).GetBecomePressed()
+#define BecomeReleased(ACTION) cInputManager::Get().GetAction( ACTION ).GetBecomeReleased()
 
 class OIS::InputManager;
 
