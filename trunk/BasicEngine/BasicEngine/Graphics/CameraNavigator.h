@@ -18,12 +18,14 @@ enum eCameraNavigatorStates {
 	eCN_Count
 };
 
-class cCameraNavigator : public cCamera {
+class cCameraNavigator : public cCamera 
+{
 private:
 	cVec3 *mpPosition;
 	cVec3 *mpTarget;
 	cVec3 *mpMove;
 	eCameraNavigatorStates meState;
+	float mfAlturaCamara;  //Inicializando la altura
 
 	void MoveForwards(GLfloat lfDistance);
 	void RotateY(GLfloat lfAngle);
