@@ -7,22 +7,26 @@
 #include "..\Game\Object\Object.h"
 #include <math.h>
 
-void cCameraNavigator::Init(void) { 
+void cCameraNavigator::Init(void) 
+{ 
 	mpPosition = new cVec3(25.0f, 5.0f, 0.0f);  //no se muy bien si esto inicializa
 	mpTarget = new cVec3(0.0f, 0.0f, 0.0f);
 	mpMove= new cVec3(0.0f, 0.0f, 0.0f);
 	meState = eCN_Stop;
 
+	mfAlturaCamara = 40;  //Altura de la camara que sigue al jugador
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
 
-void cCameraNavigator::Deinit(void) {
+void cCameraNavigator::Deinit(void) 
+{
 	delete mpPosition;
 	delete mpTarget;
 	delete mpMove;
 }
 
-void cCameraNavigator::Update(void) {
+void cCameraNavigator::Update(void) 
+{
 	if (IsPressed (eIA_CameraForward)) MoveForwards(0.4f);
 	if (IsPressed (eIA_CameraBack)) MoveForwards(-0.4f);
 	if (IsPressed (eIA_CameraLeft)) RotateY(+0.05f);
@@ -31,7 +35,8 @@ void cCameraNavigator::Update(void) {
 	if (IsPressed (eIA_CameraDown)) MoveUp(-0.4f);
 }
 
-void cCameraNavigator::MoveForwards(GLfloat lfDistance) {
+void cCameraNavigator::MoveForwards(GLfloat lfDistance) 
+{
 	cVec3 lDirection = ((*mpTarget)-(*mpPosition));
 	lDirection.y=0;
 	lDirection=lDirection.Normalize();
@@ -58,7 +63,8 @@ void cCameraNavigator::RotateY(GLfloat lfAngle) {
 	SetLookAt( (*mpPosition), (*mpTarget));
 }
 
-void cCameraNavigator::MoveUp(GLfloat lfDistance) {
+void cCameraNavigator::MoveUp(GLfloat lfDistance) 
+{
 	cVec3 lDirection = cVec3(0,lfDistance,0);
 	(*mpPosition)+=(lDirection);
 	(*mpTarget)+=(lDirection);
@@ -79,7 +85,7 @@ void cCameraNavigator::FollowPlayer(void)
 	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront() * 3;
 	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 0; //5
 #ifdef CAMERA_PLAYER
-	lvPosition.y += 20; //5
+	lvPosition.y += mfAlturaCamara; //5
 #else
 	lvPosition.y += 40;
 #endif

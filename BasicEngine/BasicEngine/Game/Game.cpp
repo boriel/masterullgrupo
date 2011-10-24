@@ -107,7 +107,8 @@ bool cGame::Init()
 	return lbResult;
 }
 
-bool cGame::LoadRace(){
+bool cGame::LoadRace()
+{
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico (no los objetos)
 	cObjectManager::Get().Init();
 	cRaceControlManager::Get().Init("Data/Resources.xml");
