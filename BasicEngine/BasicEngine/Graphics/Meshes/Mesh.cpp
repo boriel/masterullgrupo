@@ -206,6 +206,19 @@ void cMesh::RenderMesh()
 	glColor3f (1.0f, 1.0f, 1.0f);
 	// Position
 	glBindBuffer(GL_ARRAY_BUFFER, mVboVertices);
+
+	//Yorman, viendo un uso de un error
+	//http://glprogramming.com/red/chapter14.html
+	GLenum errCode;
+	const GLubyte *errString;
+	if ((errCode = glGetError()) != GL_NO_ERROR) 
+	{
+		errString = gluErrorString(errCode);
+    //fprintf (stderr, "OpenGL Error: %s\n", errString);
+		cout << "Mesh.cpp [" << macNameID << "] ERROR OpenGL: " << errString << " - " << errCode << endl;
+	}
+	//End Yorman
+
 	assert(glGetError() == GL_NO_ERROR);
 	glVertexPointer(3, GL_FLOAT, sizeof(float) * 3, 0);
 	assert(glGetError() == GL_NO_ERROR);
