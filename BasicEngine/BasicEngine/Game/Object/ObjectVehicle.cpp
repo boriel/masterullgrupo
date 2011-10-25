@@ -46,7 +46,15 @@ void cObjectVehicle::Update( float lfTimestep )
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Left);
 	if (BecomePressed(eIA_Right) || IsPressed(eIA_Right)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
-	
+
+	// Activar/Desactivar Derrape
+	if (BecomePressed(eIA_Drift) || IsPressed(eIA_Drift)) 
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Drift);
+	if (BecomeReleased(eIA_Drift) || !IsPressed(eIA_Drift))
+		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Drift);
+	// ---------------------------------
+
+
 	if (BecomeReleased(eIA_Up))
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Up);
 	if (BecomeReleased(eIA_Down))
