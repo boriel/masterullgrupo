@@ -39,9 +39,10 @@
 ///implementing explicit hinged-wheel constraints with cylinder collision, rather then raycasts
 float	gfEngineForce = 0.f;
 float	gfBreakingForce = 0.f;
+float	gfIntensidadDerrape = 0.f;
 
 float	gfMaxEngineForce = 2000.f; //this should be engine/velocity dependent  //2000.f
-float	gfMaxBreakingForce = 100.f;
+float	gfMaxBreakingForce = 200.f;
 float	gfMaxBackForce = 1000.f;
 
 const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
@@ -575,8 +576,11 @@ void cPhysicsVehicle::SpecialKeyboardRelease(const unsigned int luiKey)
 			lbGirar = true;
 			mbQuitarGiroRueda = true;
 			break;
-
+		case eIA_Drift:
+			ParaDerrapar();
+			break;
 	}
+	ClientMoveAndDisplay();
 }
 
 
@@ -617,16 +621,20 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			break;
 			
 		case eIA_Left:  //izquierda
-			gfVehicleSteering += gfSteeringIncrement;
-			if (gfVehicleSteering > gfSteeringClamp)
+			gfVehicleSteering += 2*gfSteeringIncrement;
+			if (gfVehicleSteering > gfSteeringClamp){
 				gfVehicleSteering = gfSteeringClamp;
+				// Cuando lleguemos al límite aumentamos el derrape
+				//gfIntensidadDerrape+=100;
+				//Derrapar();
+			}
 			
 			lbGirar = true;
 			mbQuitarGiroRueda = true;
 			break;
 
 		case eIA_Right: //derecha
-			gfVehicleSteering -= gfSteeringIncrement;
+			gfVehicleSteering -= 2*gfSteeringIncrement;
 			if (gfVehicleSteering < -gfSteeringClamp)
 				gfVehicleSteering = -gfSteeringClamp;
 			
@@ -634,6 +642,9 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			mbQuitarGiroRueda = true;
 			break;
 
+		case eIA_Drift:
+			Derrapar();
+			break;
 	}
 
 
@@ -641,6 +652,7 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 #ifdef _DEBUG
 	//printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
+	printf("Intensidad del derrape: %f, Friccion: %f Sliding:%f\n",gfIntensidadDerrape,mpbtVehicle->getWheelInfo(1).m_frictionSlip, mpbtVehicle->getWheelInfo(1).m_skidInfo);
 	//printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
 #endif	
 		
@@ -691,6 +703,26 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 }
 
+void cPhysicsVehicle::Derrapar(){
+	for (int liIndex=0; liIndex < mpbtVehicle->getNumWheels(); liIndex++)
+	{
+		btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
+		if(!lbtWheelInfo.m_bIsFrontWheel)
+			lbtWheelInfo.m_frictionSlip -= 0.01;//gfWheelFriction - gfIntensidadDerrape;
+	}
+	//mpbtVehicle->updateFriction();
+}
+
+// Dejamos el coche sin derrape
+void cPhysicsVehicle::ParaDerrapar(){
+	for (int liIndex=0; liIndex < mpbtVehicle->getNumWheels(); liIndex++)
+	{
+		btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
+		lbtWheelInfo.m_frictionSlip=1.0;
+		//m_frictionSlip = gfWheelFriction;
+	}
+	//mpbtVehicle->updateFriction();
+}
 
 void cPhysicsVehicle::ClientMoveAndDisplay()
 {
@@ -703,7 +735,6 @@ void cPhysicsVehicle::ClientMoveAndDisplay()
 		liWheelIndex = 3;
 		mpbtVehicle->applyEngineForce( gfEngineForce, liWheelIndex );
 		mpbtVehicle->setBrake( gfBreakingForce, liWheelIndex );
-
 
 		liWheelIndex = 0;
 		mpbtVehicle->setSteeringValue( gfVehicleSteering, liWheelIndex );
