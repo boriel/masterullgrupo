@@ -267,6 +267,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5418CE2536424B12880529A68D5C97CB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_56598C990FBE44DB9F1DE8E3F6887910"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -417,8 +423,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7AA3B4B98ABE4D87A7EA2ABE73261A82"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_7A111ABF4CE2439E8700FF53A888860A"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -663,12 +669,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C478787D630C448B851A8D64B91A2AFD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C5459C2A704C422D8201D314D087B0F2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -677,12 +677,6 @@
         {
         "MsmKey" = "8:_C796BB341F644439992C3138F3C3F334"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C959D22DDC924215A3ECC21285C27BA5"
-        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -736,6 +730,12 @@
         "Entry"
         {
         "MsmKey" = "8:_DEFD0BF7D36E45FEAEC1FAB5ACA50A5F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DF727CACC04A4688B132E4D9395FC856"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1447,7 +1447,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1647,7 +1647,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1697,6 +1697,26 @@
             "TargetName" = "8:skeleton_idle.caf"
             "Tag" = "8:"
             "Folder" = "8:_3568BE687B3148C6B638FA674BB7F4DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5418CE2536424B12880529A68D5C97CB"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\Entorno.wav"
+            "TargetName" = "8:Entorno.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4DB72DEF4DF746EEA209081F6D24440F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2211,26 +2231,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AA3B4B98ABE4D87A7EA2ABE73261A82"
-            {
-            "SourcePath" = "8:..\\BasicEngine\\bin\\Debug\\BasicEngine.exe"
-            "TargetName" = "8:BasicEngine.exe"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B891B75849E46CEB787D27A947588FA"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Pruebas\\RampaCubo.DAE"
@@ -2707,7 +2707,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -3011,26 +3011,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C478787D630C448B851A8D64B91A2AFD"
-            {
-            "SourcePath" = "8:C:\\Windows\\System32\\msvcrt.dll"
-            "TargetName" = "8:msvcrt.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5459C2A704C422D8201D314D087B0F2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Billar\\01\\images\\7Ball.jpg"
@@ -3237,6 +3217,26 @@
             "TargetName" = "8:lightmap.dds"
             "Tag" = "8:"
             "Folder" = "8:_BB8357544E574F958258352D579C415E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DF727CACC04A4688B132E4D9395FC856"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\MenuMove.wav"
+            "TargetName" = "8:MenuMove.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_4DB72DEF4DF746EEA209081F6D24440F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3505,6 +3505,17 @@
                             "Condition" = "8:"
                             "Transitive" = "11:FALSE"
                             "Property" = "8:_2EA5FF8CF4C14BB5BCDA64ECC861E2A1"
+                                "Folders"
+                                {
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_4DB72DEF4DF746EEA209081F6D24440F"
+                            {
+                            "Name" = "8:Sounds"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_FD1490AFE8AD4733B08CDD4B92FAFC8C"
                                 "Folders"
                                 {
                                 }
@@ -3937,7 +3948,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{3C9172C5-5E72-44F3-8BE7-3172C81B6B7A}"
+        "PackageCode" = "8:{D4EE99D9-237C-48CE-9E9E-595EE1DCB725}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4057,15 +4068,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A1E7C6D9E1FF4375BF4A0D860DDCE122"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9CA97710785D4DA1B4BA2D832147DE41"
             {
-            "Name" = "8:Probar Toy Corriendo"
+            "Name" = "8:Toy Corriendo"
             "Arguments" = "8:"
-            "Description" = "8:Juego de Coches"
+            "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_7AA3B4B98ABE4D87A7EA2ABE73261A82"
+            "Target" = "8:_4EC62613DB554F02BB9509A265A4AC98"
             "Folder" = "8:_523B3B6BE9BF448FA57BEFC09B9300D4"
             "WorkingFolder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
             "Icon" = "8:"
@@ -4467,11 +4478,11 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_C959D22DDC924215A3ECC21285C27BA5"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_7A111ABF4CE2439E8700FF53A888860A"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_CRT_x86.msm"
+            "SourcePath" = "8:Microsoft_VC100_DebugCRT_x86.msm"
                 "Properties"
                 {
                 }
