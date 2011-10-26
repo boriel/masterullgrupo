@@ -25,10 +25,10 @@
 <Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 -->
 
-	<Object Type="Vehicle" Position="21,0,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
+	<Object Type="Vehicle" Position="21,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
 
 
-	<Object Type="VechilePrueba" Position="19, 0, -13" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.2" Mass="1"/>
+	<!--<Object Type="VechilePrueba" Position="19, 0, -13" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.2" Mass="1"/> -->
 
 		<!--   PISTAS  -->
 
@@ -43,7 +43,9 @@
 	<Object Type="Pista2" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
 	-->
 
-	<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico02/CircuitoBasico02.DAE" Mass="0"  />
+	<!--<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico02/CircuitoBasico02.DAE" Mass="0"  />-->
+
+	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuitobasico03" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03.DAE" Mass="0"  />
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
@@ -64,14 +66,15 @@
 
 		<!--<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" Rotation="0,1,0"  Angle="-90" />-->
 		
-		<Object Type="Zapato" Position="15, 1, -10" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
+		<Object Type="Zapato" Position="15, 5, -10" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
 		
+		<!--
 		<Object Type="Lampara" Position="5, 0.5, 20" ModelName="Lampara" ModelFile="./Data/Objetos/Lampara/Lampara.DAE" Scale="1" Mass="0"/>
 
 		<Object Type="Regleta" Position="7, 3, 18" ModelName="Regleta" ModelFile="./Data/Objetos/Regleta/Regleta.DAE" Scale="1" Mass="0"/>
 
 		<Object Type="Despertador" Position="5, 0.5, -20" ModelName="Despertador" ModelFile="./Data/Objetos/Despertador/Despertador.dae" Scale="1" Mass="10"/>
-
+		-->
 
 		
 		

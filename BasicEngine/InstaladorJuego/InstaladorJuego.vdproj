@@ -63,6 +63,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0EF995EFC2A444138671A4B2AE9AE57D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0FD27F79E0904F0EA5ABEF636E76BFF2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -423,12 +429,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7A111ABF4CE2439E8700FF53A888860A"
-        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_7B891B75849E46CEB787D27A947588FA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -615,6 +615,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AE36B6B1195142668B9421500D5B6A40"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AEA3B506228642CAAA3F73559E0D6500"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -623,6 +629,12 @@
         {
         "MsmKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B461C51253164D01B7F567EB6AEFE075"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1051,6 +1063,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0EF995EFC2A444138671A4B2AE9AE57D"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Estanteria\\Estanteria.DAE"
+            "TargetName" = "8:Estanteria.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_C289B40A4DD4460FBA9DD78035A8EFFA"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FD27F79E0904F0EA5ABEF636E76BFF2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\Test1.bmfc"
@@ -1447,7 +1479,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1647,7 +1679,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -2707,7 +2739,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:TRUE"
+            "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -2837,6 +2869,26 @@
             "TargetName" = "8:skeleton.cfg"
             "Tag" = "8:"
             "Folder" = "8:_3568BE687B3148C6B638FA674BB7F4DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE36B6B1195142668B9421500D5B6A40"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Estanteria\\images\\textura_estanteria_tcorriendo.jpg"
+            "TargetName" = "8:textura_estanteria_tcorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_F759652834A24BEEA05D32E87CC33008"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3619,6 +3671,28 @@
                                     }
                                 }
                             }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_C289B40A4DD4460FBA9DD78035A8EFFA"
+                            {
+                            "Name" = "8:Estanteria"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_B8BCEB9CA4664F2E8DF01F41D895E807"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_F759652834A24BEEA05D32E87CC33008"
+                                    {
+                                    "Name" = "8:images"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_0F2879323EF049BEB318C0CD5B5FC4AD"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_E5EC584013614D4B9C10E83F8D23B83C"
                             {
                             "Name" = "8:Material"
@@ -3948,7 +4022,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{D4EE99D9-237C-48CE-9E9E-595EE1DCB725}"
+        "PackageCode" = "8:{0652F399-602C-443E-9891-3BB54B1B3CA3}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4478,7 +4552,7 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_7A111ABF4CE2439E8700FF53A888860A"
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B461C51253164D01B7F567EB6AEFE075"
             {
             "UseDynamicProperties" = "11:TRUE"
             "IsDependency" = "11:TRUE"
