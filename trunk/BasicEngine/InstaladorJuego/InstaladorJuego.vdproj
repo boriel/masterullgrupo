@@ -69,6 +69,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0F48BD930F724921AE63D144116D7122"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0FD27F79E0904F0EA5ABEF636E76BFF2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,6 +141,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_206BCC4D28214099B0F7771291A467F2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_227C7A06601D4F9B9C1CE01FF9997878"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -172,6 +184,12 @@
         "Entry"
         {
         "MsmKey" = "8:_30F4C050A7844268A39073CF8899823B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_311CDD1A39CC4202915133ECC9C1E93F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -303,6 +321,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5BEBA9C5C726447CAAC00C59E6A74496"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5F2196AAE1924D768914F17F53896DC7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -411,6 +435,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_75DF6022427A4B88BCC352F1F7D52936"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_761DED2127C449F3A2A81A2666F65DCF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -429,6 +459,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_78A7F76B149D49FD9B078554F4019263"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7B891B75849E46CEB787D27A947588FA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -436,6 +472,12 @@
         "Entry"
         {
         "MsmKey" = "8:_7E81B7EC15A043E192C4AD88FB683829"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7EFE27028EA64BBE8C71CB43873B7426"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -490,6 +532,12 @@
         "Entry"
         {
         "MsmKey" = "8:_8C0C815A72314357B6A8B6A08B736AE3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8C4E776A177A423EA1F997D89F92CDD4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -629,12 +677,6 @@
         {
         "MsmKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B461C51253164D01B7F567EB6AEFE075"
-        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1083,6 +1125,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0F48BD930F724921AE63D144116D7122"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\SueloTextura.jpg"
+            "TargetName" = "8:SueloTextura.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FD27F79E0904F0EA5ABEF636E76BFF2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\Test1.bmfc"
@@ -1303,6 +1365,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_206BCC4D28214099B0F7771291A467F2"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\CircuitoBasico03.max"
+            "TargetName" = "8:CircuitoBasico03.max"
+            "Tag" = "8:"
+            "Folder" = "8:_0A8A798D4ECE4E299A42ECD4C0F514C9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_227C7A06601D4F9B9C1CE01FF9997878"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Billar\\01\\images\\10Ball.jpg"
@@ -1429,6 +1511,26 @@
             "TargetName" = "8:13Ball.jpg"
             "Tag" = "8:"
             "Folder" = "8:_75B20320CB0A47AEA3B548B3387A44D2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_311CDD1A39CC4202915133ECC9C1E93F"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\textura_estanteria_tcorriendo.jpg"
+            "TargetName" = "8:textura_estanteria_tcorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1843,6 +1945,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5BEBA9C5C726447CAAC00C59E6A74496"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\textura_despertador_toycorriendo.jpg"
+            "TargetName" = "8:textura_despertador_toycorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F2196AAE1924D768914F17F53896DC7"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_spine_lower.cmf"
@@ -2203,6 +2325,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75DF6022427A4B88BCC352F1F7D52936"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\CircuitoBasico03.DAE"
+            "TargetName" = "8:CircuitoBasico03.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_0A8A798D4ECE4E299A42ECD4C0F514C9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_761DED2127C449F3A2A81A2666F65DCF"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico02\\images\\SueloTextura.jpg"
@@ -2263,6 +2405,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_78A7F76B149D49FD9B078554F4019263"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\Textura_lampara_toycorriendo.jpg"
+            "TargetName" = "8:Textura_lampara_toycorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B891B75849E46CEB787D27A947588FA"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Pruebas\\RampaCubo.DAE"
@@ -2289,6 +2451,26 @@
             "TargetName" = "8:cuboMax2.DAE"
             "Tag" = "8:"
             "Folder" = "8:_F9975DB1F0BA40A2BC194EEE20B53860"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7EFE27028EA64BBE8C71CB43873B7426"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\asfalto.jpg"
+            "TargetName" = "8:asfalto.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2469,6 +2651,26 @@
             "TargetName" = "8:rocket4.jpg"
             "Tag" = "8:"
             "Folder" = "8:_0A2DB948C3B64F9C802F0C8F66531150"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C4E776A177A423EA1F997D89F92CDD4"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\textura_regleta_toycorriendo.jpg"
+            "TargetName" = "8:textura_regleta_toycorriendo.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3713,6 +3915,28 @@
                             "Property" = "8:_280A08041D7440DC96F1E89264ED2E82"
                                 "Folders"
                                 {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_0A8A798D4ECE4E299A42ECD4C0F514C9"
+                                    {
+                                    "Name" = "8:Basico03"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_B823BC5D3D7E4A5FBECA5B892781834D"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_CC4439018CD9400B9ADC22B3E18192DF"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_CEA864EE4ED94E10B405275A56E93312"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_CFA0F6B43A4E4053841AD8230FCC72F5"
                                     {
                                     "Name" = "8:Basico02"
@@ -4552,20 +4776,6 @@
         }
         "MergeModule"
         {
-            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B461C51253164D01B7F567EB6AEFE075"
-            {
-            "UseDynamicProperties" = "11:TRUE"
-            "IsDependency" = "11:TRUE"
-            "SourcePath" = "8:Microsoft_VC100_DebugCRT_x86.msm"
-                "Properties"
-                {
-                }
-            "LanguageId" = "3:0"
-            "Exclude" = "11:FALSE"
-            "Folder" = "8:"
-            "Feature" = "8:"
-            "IsolateTo" = "8:"
-            }
         }
         "ProjectOutput"
         {
