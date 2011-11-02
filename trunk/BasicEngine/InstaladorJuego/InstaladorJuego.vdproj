@@ -249,6 +249,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3BC3BB7743BF4770897663BE05E38C27"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4134D7F070564469B636FAE5B1BA930E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -711,6 +717,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BF2A49EDDAD647C2B3144084878E0878"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BF2A49EDDAD647C2B3144084878E0878"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BFA63DFB8DB743749DBA9A04E795386A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -783,6 +801,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D9AD31A9E3274C5A98BE8FAA4919BFF3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DEFD0BF7D36E45FEAEC1FAB5ACA50A5F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -808,6 +832,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E6D69D4101D64446B0AA0BBFCCFA604E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E84C11C436BB4E0F9EBF1567B166DE94"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1711,6 +1741,26 @@
             "TargetName" = "8:asfalto.jpg"
             "Tag" = "8:"
             "Folder" = "8:_756EA0B917AC492FAA4DF6C0E2DB9144"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BC3BB7743BF4770897663BE05E38C27"
+            {
+            "SourcePath" = "8:dlls\\msvcp100.dll"
+            "TargetName" = "8:msvcp100.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3465,6 +3515,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D9AD31A9E3274C5A98BE8FAA4919BFF3"
+            {
+            "SourcePath" = "8:dlls\\MSVCR80.dll"
+            "TargetName" = "8:MSVCR80.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEFD0BF7D36E45FEAEC1FAB5ACA50A5F"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Scene\\images\\lightmap.dds"
@@ -3551,6 +3621,26 @@
             "TargetName" = "8:poolfelt.jpg"
             "Tag" = "8:"
             "Folder" = "8:_75B20320CB0A47AEA3B548B3387A44D2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E84C11C436BB4E0F9EBF1567B166DE94"
+            {
+            "SourcePath" = "8:dlls\\msvcr100.dll"
+            "TargetName" = "8:msvcr100.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4246,7 +4336,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{0652F399-602C-443E-9891-3BB54B1B3CA3}"
+        "PackageCode" = "8:{99BF054D-C0E9-4EA8-9BE1-0087CA3A81C1}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4776,12 +4866,26 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_BF2A49EDDAD647C2B3144084878E0878"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:c:\\program files (x86)\\common files\\merge modules\\microsoft_vc100_crt_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
         }
         "ProjectOutput"
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4EC62613DB554F02BB9509A265A4AC98"
             {
-            "SourcePath" = "8:..\\BasicEngine\\bin\\Debug\\BasicEngine.exe"
+            "SourcePath" = "8:..\\BasicEngine\\bin\\Release\\BasicEngine.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
@@ -4809,7 +4913,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B3C69E9DFD224B4C98A76734C1F32F7C"
             {
-            "SourcePath" = "8:..\\BasicEngine\\bin\\Debug\\cal3d_d.dll"
+            "SourcePath" = "8:..\\BasicEngine\\bin\\Release\\cal3d.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
