@@ -58,7 +58,7 @@ bool cGame::Init()
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect, 0.1f, 10000.0f);
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
-	
+
 	//===================
 	//Iniciando Camara 2D
 	//===================

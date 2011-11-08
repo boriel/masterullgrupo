@@ -299,6 +299,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 #endif		
 
 		vector<string> lTokens;
+
 		Tokenize(lsMeshName, lTokens, "_");
 		string lsTipoShape = lTokens[0].c_str();
 		///size_t found;
