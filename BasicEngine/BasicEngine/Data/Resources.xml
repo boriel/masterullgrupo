@@ -19,16 +19,16 @@
 -->	
 
 <!--       VEHICLES      
-   <Object Type="Vehicle" Position="10,100,10" ModelName="Lambert3SG1" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="0" />
+   
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
 	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
 <Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
--->
 
-	<Object Type="Vehicle" Position="21,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
+<Object Type="Vehicle" Position="45,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="1" Mass="1"/>
+-->	<Object Type="Vehicle" Position="45,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
 
-
-	<!--<Object Type="VechilePrueba" Position="19, 0, -13" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.2" Mass="1"/> -->
+<!--
+	<Object Type="VechilePrueba" Position="19, 0, -13" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.2" Mass="1"/> -->
 
 		<!--   PISTAS  -->
 
@@ -42,10 +42,10 @@
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="1,0,0"  Angle="-90" /> 
 	<Object Type="Pista2" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
 	-->
+<!--<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico/BasicoBueno.DAE" Mass="0"  />
+	-->
 
-	<!--<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico02/CircuitoBasico02.DAE" Mass="0"  />-->
-
-	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuitobasico03" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03.DAE" Mass="0"  />
+	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuitobasico03" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03Experimen.DAE" Mass="0"  />
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER

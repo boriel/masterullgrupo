@@ -82,10 +82,10 @@ void cCameraNavigator::FollowPlayer(void)
 #define CAMERA_PLAYER
 	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","CarJazzVehicle");
 	cVec3 lvPosition=lpObject->GetPosition();
-	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront() * 3;
-	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 0; //5
+	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront() * 5;
+	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 5; //5
 #ifdef CAMERA_PLAYER
-	lvPosition.y += mfAlturaCamara; //5
+	lvPosition.y += 5;//mfAlturaCamara; //5
 #else
 	lvPosition.y += 40;
 #endif
