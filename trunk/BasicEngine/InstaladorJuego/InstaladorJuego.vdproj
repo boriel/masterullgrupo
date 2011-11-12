@@ -51,12 +51,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_058039690703D91AD956166342F04FFE"
-        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0C2B2649CAD74455B7597CD53E441793"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -249,12 +243,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3BC3BB7743BF4770897663BE05E38C27"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4134D7F070564469B636FAE5B1BA930E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -359,6 +347,12 @@
         {
         "MsmKey" = "8:_62E03B41A14B4245A93D0B3A5B7F06EE"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6723800858B9878DB8F17E6F08C6CC8B"
+        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -501,6 +495,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_82E1D18FD74F86DDC7D2CAC65841E2B4"
+        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8465C33F38AD4AA88B951CA146773D69"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -509,6 +509,12 @@
         {
         "MsmKey" = "8:_8515CBB2F90843848714EED8D1106105"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8618A2717898B491150F05FA5B6397B3"
+        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -795,18 +801,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D818772183CAF284EA3A0970FA745AE7"
-        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D9AD31A9E3274C5A98BE8FAA4919BFF3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DEFD0BF7D36E45FEAEC1FAB5ACA50A5F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -832,12 +826,6 @@
         "Entry"
         {
         "MsmKey" = "8:_E6D69D4101D64446B0AA0BBFCCFA604E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E84C11C436BB4E0F9EBF1567B166DE94"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1087,26 +1075,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_058039690703D91AD956166342F04FFE"
-            {
-            "SourcePath" = "8:cg.dll"
-            "TargetName" = "8:cg.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0C2B2649CAD74455B7597CD53E441793"
@@ -1749,26 +1717,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3BC3BB7743BF4770897663BE05E38C27"
-            {
-            "SourcePath" = "8:dlls\\msvcp100.dll"
-            "TargetName" = "8:msvcp100.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4134D7F070564469B636FAE5B1BA930E"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Material\\SkeletonMaterial.xml"
@@ -2107,6 +2055,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6723800858B9878DB8F17E6F08C6CC8B"
+            {
+            "SourcePath" = "8:Assimp32.dll"
+            "TargetName" = "8:Assimp32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_676A73CA676B4D68A4A94FFA9A57B44A"
@@ -2569,6 +2537,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82E1D18FD74F86DDC7D2CAC65841E2B4"
+            {
+            "SourcePath" = "8:cg.dll"
+            "TargetName" = "8:cg.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8465C33F38AD4AA88B951CA146773D69"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Scene\\images\\SueloTextura.jpg"
@@ -2607,6 +2595,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8618A2717898B491150F05FA5B6397B3"
+            {
+            "SourcePath" = "8:cgGL.dll"
+            "TargetName" = "8:cgGL.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8824E0546BB84373A63E76FE0FD94F78"
@@ -3489,46 +3497,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D818772183CAF284EA3A0970FA745AE7"
-            {
-            "SourcePath" = "8:cgGL.dll"
-            "TargetName" = "8:cgGL.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D9AD31A9E3274C5A98BE8FAA4919BFF3"
-            {
-            "SourcePath" = "8:dlls\\MSVCR80.dll"
-            "TargetName" = "8:MSVCR80.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DEFD0BF7D36E45FEAEC1FAB5ACA50A5F"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Scene\\images\\lightmap.dds"
@@ -3615,26 +3583,6 @@
             "TargetName" = "8:poolfelt.jpg"
             "Tag" = "8:"
             "Folder" = "8:_75B20320CB0A47AEA3B548B3387A44D2"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E84C11C436BB4E0F9EBF1567B166DE94"
-            {
-            "SourcePath" = "8:dlls\\msvcr100.dll"
-            "TargetName" = "8:msvcr100.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4310,7 +4258,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{99BF054D-C0E9-4EA8-9BE1-0087CA3A81C1}"
+        "PackageCode" = "8:{9BC331EF-9DA9-4EC1-BB49-1344CF1E52AF}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
