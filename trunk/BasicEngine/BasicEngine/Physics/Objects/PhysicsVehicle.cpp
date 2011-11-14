@@ -1,6 +1,5 @@
 #include "PhysicsVehicle.h"
 
-
 #include "..\PhysicsManager.h"
 #include "..\..\Graphics\GraphicManager.h"
 
@@ -41,9 +40,9 @@ float	gfEngineForce = 0.f;
 float	gfBreakingForce = 0.f;
 float	gfIntensidadDerrape = 0.f;
 
-float	gfMaxEngineForce = 1000.f; //this should be engine/velocity dependent  //2000.f
+float	gfMaxEngineForce = 2000.f; //this should be engine/velocity dependent  //2000.f
 float	gfMaxBreakingForce = 200.f;
-float	gfMaxBackForce = 500.f;
+float	gfMaxBackForce = 1000.f;
 
 const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
 const float gkfDesAcelerar = 5.f;  //cuando suelta el acelerador
@@ -52,8 +51,8 @@ const float gkfFrenar = 20.f;
 bool	gbMarchaAtras = false; // Controlaremos cuando estamos en la marcha atrás o hacia adelante
 bool	gbCocheParado = true; // Controlaremos si el coche está en movimiento o no
 float	gfVehicleSteering = 0.f;
-float	gfSteeringIncrement = 0.02f;
-float	gfSteeringClamp = 0.4f;
+float	gfSteeringIncrement = 0.04f;
+float	gfSteeringClamp = 0.3f;
 float	gfWheelRadius = 0.5f;
 float	gfWheelWidth = 0.4f;
 float	gfWheelFriction = 1000; //BT_LARGE_FLOAT;
@@ -506,10 +505,8 @@ void cPhysicsVehicle::CentrandoRuedas()
 		if (gfVehicleSteering < 0.00)
 			gfVehicleSteering += gfSteeringIncrement;
 
-		if (gfVehicleSteering > -0.1 || gfVehicleSteering < 0.1){
-			gfVehicleSteering = 0.00;
+		if (gfVehicleSteering == 0.00)
 			mbQuitarGiroRueda = false;
-		}
 	}
 
 #ifdef _DEBUG
@@ -562,20 +559,20 @@ void cPhysicsVehicle::SpecialKeyboardRelease(const unsigned int luiKey)
 			break;
 			
 		case eIA_Left:  //izquierda
-			/*if (gfVehicleSteering < 0)
-				gfVehicleSteering += gfSteeringIncrement;
-			if (gfVehicleSteering < 0.1 || gfVehicleSteering > -0.1)
-				gfVehicleSteering = 0;
-				*/
+			gfVehicleSteering += gfSteeringIncrement;
+			if (gfVehicleSteering > gfSteeringClamp)
+				gfVehicleSteering = gfSteeringClamp;
+			
+			lbGirar = true;
 			mbQuitarGiroRueda = true;
 			break;
 
 		case eIA_Right: //derecha
-			/*if (gfVehicleSteering > 0)
-				gfVehicleSteering -= gfSteeringIncrement;
-			if (gfVehicleSteering < 0.1 || gfVehicleSteering > -0.1)
-				gfVehicleSteering = 0;
-			*/
+			gfVehicleSteering -= gfSteeringIncrement;
+			if (gfVehicleSteering < -gfSteeringClamp)
+				gfVehicleSteering = -gfSteeringClamp;
+			
+			lbGirar = true;
 			mbQuitarGiroRueda = true;
 			break;
 		case eIA_Drift:
@@ -614,7 +611,7 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			}else{
 				gfBreakingForce = gfMaxBreakingForce; 
 				gfEngineForce = 0.f;
-				//printf("Velocidad Coche: %f",mpbtVehicle->getCurrentSpeedKmHour());
+				printf("Velocidad Coche: %f",mpbtVehicle->getCurrentSpeedKmHour());
 				if(mpbtVehicle->getCurrentSpeedKmHour()<0.1){
 					gbMarchaAtras=true; // Si el coche está parado activamos la direccion opuesta
 					printf("Marcha Atras Activada!\n");
@@ -623,18 +620,25 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			break;
 			
 		case eIA_Left:  //izquierda
-			gfVehicleSteering += gfSteeringIncrement;
+			gfVehicleSteering += 2*gfSteeringIncrement;
 			if (gfVehicleSteering > gfSteeringClamp){
 				gfVehicleSteering = gfSteeringClamp;
+				// Cuando lleguemos al límite aumentamos el derrape
+				//gfIntensidadDerrape+=100;
+				//Derrapar();
 			}
-
+			
+			lbGirar = true;
+			mbQuitarGiroRueda = true;
 			break;
 
 		case eIA_Right: //derecha
-			gfVehicleSteering -= gfSteeringIncrement;
+			gfVehicleSteering -= 2*gfSteeringIncrement;
 			if (gfVehicleSteering < -gfSteeringClamp)
 				gfVehicleSteering = -gfSteeringClamp;
-
+			
+			lbGirar = true;
+			mbQuitarGiroRueda = true;
 			break;
 
 		case eIA_Drift:
@@ -703,9 +707,9 @@ void cPhysicsVehicle::Derrapar(){
 	{
 		btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
 		if(!lbtWheelInfo.m_bIsFrontWheel)
-			lbtWheelInfo.m_frictionSlip -= 0.01;
+			lbtWheelInfo.m_frictionSlip -= 0.01;//gfWheelFriction - gfIntensidadDerrape;
 	}
-	
+	//mpbtVehicle->updateFriction();
 }
 
 // Dejamos el coche sin derrape
@@ -713,8 +717,10 @@ void cPhysicsVehicle::ParaDerrapar(){
 	for (int liIndex=0; liIndex < mpbtVehicle->getNumWheels(); liIndex++)
 	{
 		btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
-		lbtWheelInfo.m_frictionSlip=gfWheelFriction;
+		lbtWheelInfo.m_frictionSlip=1.0;
+		//m_frictionSlip = gfWheelFriction;
 	}
+	//mpbtVehicle->updateFriction();
 }
 
 void cPhysicsVehicle::ClientMoveAndDisplay()
