@@ -18,6 +18,7 @@
 #include "..\..\Graphics\Meshes\MeshManager.h"
 #include "..\..\Graphics\GraphicManager.h"
 
+#include "RaceControlManager.h"
 
 bool cObjectManager::Init() 
 {
@@ -51,7 +52,7 @@ bool cObjectManager::Init()
 		
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 	{
-		SetScale(mObjectVehicle[luiIndex]->GetScale());
+		mObjectVehicle[luiIndex]->SetScale(mObjectVehicle[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
 	}
 
@@ -91,6 +92,7 @@ bool cObjectManager::Init()
 		lpPhysicsVehicle->Init(mObjectVehicle[luiIndex]->GetPosition(), mObjectVehicle[luiIndex]->GetRotacionInicial());
 
 		mObjectVehicle[luiIndex]->SetPtrPhysicsObject(lpPhysicsVehicle);
+		((cObjectVehicle *)mObjectVehicle[luiIndex])->SetPtrPhysicsVehicle(lpPhysicsVehicle);
 	}
 
 	//Objetos Generales con un box por ahora
@@ -263,6 +265,14 @@ bool cObjectManager::Init()
 	return true;
 }
 
+void cObjectManager::VaciarObjetos(){
+	mObject.clear();  //Objetos en general que no se donde clasificarlos por ahora .... (y por el final)
+	mObjectPlayer.clear();
+	mObjectPista.clear();
+	mObjectVehicle.clear();  
+	mObjectRace.clear();
+}
+
 void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsObject)
 {
 
@@ -303,11 +313,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		Tokenize(lsMeshName, lTokens, "_");
 		string lsTipoShape = lTokens[0].c_str();
 		///size_t found;
-
-  // different member versions of find in the same order as above:
-	 ///found=lsTipoShape.find("Box");
+		
   	//Con este metodo obtenemos todos los puntos del vector
-		///if ( (lsTipoShape == "Mesh") ) //Pequeña prueba
 		if ((lsTipoShape == "Mesh") || (lsTipoShape == "Box") || (lsTipoShape == "Sphere")) 
 		{
 			//int liResourceCount = lSubModel->GetResourceCount();  //Hay que implementar esto
@@ -323,7 +330,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 			//float lfScala = 1.0f;		// NO ESCALES LAS MALLAS DE COLISION!!!  De acuerdo, la escala ya está aplicada en el mesh al cargar por primera vez el objeto
 			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
-				lbtShape->addPoint( /*lfScala */ btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+				lbtShape->addPoint(btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
 
 			cQuaternion lRotacionInicial = lpObject->GetRotacionInicial();
 
@@ -334,17 +341,40 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 
 			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
 			btTransform lbtLocalTrans = btTransform (lbtQuaternion,  lvbtCenterMesh );
-
+			
+		
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 
-
-		
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
 		}
-		else if (lsTipoShape == "Box")  
+		else if (lsTipoShape == "Race")  
 		{
-			//int liResourceCount = lSubModel->GetResourceCount(); //Hay que implementar esto
+						//int liResourceCount = lSubModel->GetResourceCount();  //Hay que implementar esto
 			int liResourceCount = 0;
+			assert(liResourceCount <= 1);
+			cResource* lResourceMesh = lSubModel->GetResource(0);
+
+			cMesh* lpMesh = (cMesh*)lResourceMesh;
+
+			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
+		
+			btConvexHullShape* lbtShape = new btConvexHullShape();
+
+			//float lfScala = 1.0f;		// NO ESCALES LAS MALLAS DE COLISION!!!  De acuerdo, la escala ya está aplicada en el mesh al cargar por primera vez el objeto
+			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
+				lbtShape->addPoint(btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+
+			cQuaternion lRotacionInicial = lpObject->GetRotacionInicial();
+
+			btQuaternion lbtQuaternion = btQuaternion(0, 0, 0, 1);
+			if (lRotacionInicial.w != 0)  //no pusieron ángulo o no rotacion en el xml
+				lbtQuaternion =  HacerRotacion(lRotacionInicial);
+
+
+			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			btTransform lbtLocalTrans = btTransform (lbtQuaternion,  lvbtCenterMesh );
+			//int liResourceCount = lSubModel->GetResourceCount(); //Hay que implementar esto
+/*			int liResourceCount = 0;
 			assert(liResourceCount <= 1);
 		
 			cResource* lResourceMesh = lSubModel->GetResource(0);
@@ -356,13 +386,28 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cVec3 lvCenterMesh = cVec3 (ltBoundingMesh.mfCentroX,  ltBoundingMesh.mfCentroY, ltBoundingMesh.mfCentroZ);
 
 			btVector3 lvbtObjectPosition = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
-			btVector3 lvbtCenterMesh = /*btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) + */ lvbtObjectPosition;
+			btVector3 lvbtCenterMesh = /*btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) +  lvbtObjectPosition;*/
 			//btVector3 lvbtCenterMesh = btVector3( lvCenterMesh.x,   lvCenterMesh.y,  lvCenterMesh.z) + lvbtObjectPosition;
-			btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
+	/*		btTransform lbtLocalTrans = btTransform (btQuaternion (0,0,0,1), lvbtCenterMesh );
 
+			(*lpPhysicsObject).SetMass(0);
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(ltBoundingMesh.mfAnchoX, ltBoundingMesh.mfAnchoY, ltBoundingMesh.mfAnchoZ));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
-			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
+*/			
+			// Creamos un objeto Fantasma para detectar la colisión
+			btPairCachingGhostObject *lbptGhost = new btPairCachingGhostObject();
+			lbptGhost->setCollisionShape(lbtShape);
+			lbptGhost->setWorldTransform(lbtLocalTrans);
+			lbptGhost->setCollisionFlags(btCollisionObject::CF_NO_CONTACT_RESPONSE);
+			cPhysicsManager::Get().GetDynamicsWorld()->addCollisionObject(lbptGhost);
+
+			btGhostPairCallback *ghostPairCallback = new btGhostPairCallback();
+			cPhysicsManager::Get().GetDynamicsWorld()->getPairCache()->setInternalGhostPairCallback(ghostPairCallback);
+
+			//cRaceControlManager::Get().AddControl(lpbtRirigBody);
+			cRaceControlManager::Get().AddGhost(lbptGhost);
+
+		//	(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
 		}
 
 
@@ -543,7 +588,7 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 		//	*/
 		//	//}
 		//}
-		
+		/*
 		else if (lsTipoShape == "Sphere")
 		{
 
@@ -579,15 +624,6 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			btCollisionShape* lbtShape = new btBoxShape(btVector3(1, 1, 1));  
 			btRigidBody* lpbtRirigBody = (*lpPhysicsObject).LocalCreateRigidBody((*lpPhysicsObject).GetMass(), lbtLocalTrans, lbtShape);
 			(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);
-			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
-		}
-		/*
-		else  //del xml provisional
-		{
-			//cPhysicsObject* lpPhysicsObject = new cPhysicsObject;
-			LoadObjectsXmlCollision(lpObject->GetModelName(), lpObject->GetType(), lpPhysicsObject);
-			lpPhysicsObject->Init(lpObject->GetPosition(), lpObject->GetRotacionInicial());
-
 			//lpObject->SetPtrPhysicsObject(lpPhysicsObject);
 		}
 		*/
@@ -831,6 +867,11 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			{
 				cObject* lObjectPtr = new cObjectVehicle(*lObject);
 				mObjectVehicle.push_back(lObjectPtr);
+			}
+			else if (lsType == "Race")
+			{	
+				cObject* lObjectPtr = new cObject(*lObject);
+				mObjectRace.push_back(lObjectPtr);
 			}
 			else if (lsType != "") //General
 			{

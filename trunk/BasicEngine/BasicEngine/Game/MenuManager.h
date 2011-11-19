@@ -57,7 +57,7 @@ public:
 		void Render();
 		void Update(float lfTimestep); 
 		void AbrirMenu(); // Haremos la acción apropiada con cada elemento del menú
-
+		inline void IniciarMenu(){mMenuActual = mMenuPrincipal;muiSelectedItem=1;}
 	private:
 		string msFileName;
 		// Menús Iniciales

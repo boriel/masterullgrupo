@@ -8,6 +8,8 @@ class cControlRaceManager: Controla la carrera. Orden de los vehículos en la com
 #include "..\..\Utility\Singleton.h"
 #include "..\..\MathLib\Vec\Vec3.h"
 #include <vector>
+#include "..\..\..\bullet-2.78\src\BulletCollision\CollisionDispatch\btGhostObject.h"
+#include "btBulletDynamicsCommon.h" 
 
 using namespace std;
 
@@ -19,6 +21,9 @@ struct tVehicleControl
 	bool isOut; //True cuando el vehículo está fuera de carrera
 	unsigned int muiOrder;
 	unsigned int muiKm;
+	btRigidBody *mRigidbody;
+	bool isPlayer; // True si es el coche que mueve el usuario
+	bool AumentaVuelta; // Esto se usará para que solo se aumente una vuelta cuando atravesamos la meta.
 };
 
 struct tLegControl
@@ -35,15 +40,33 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		void Deinit();
 		void Render();
 		void Update(float lfTimestep);
-
+//		inline void AddControl(btRigidBody *lControl){mRaceControls.push_back(lControl);}
+		inline void AddGhost(btPairCachingGhostObject *lControl){mRaceControls.push_back(lControl);}
+		void PasoMeta();
+		int GetRaceActualLap();
+		inline int GetRaceTotalLaps(){return muiMaxLaps;}
+		inline int GetRaceTime(){return muiTemporizador;}
+		inline bool isRaceRunning(){return mRaceRunning;}
+		inline int GetCuentaAtras(){return mCuentaAtras;}
+		inline bool isFinalRace(){return mIsFinalRace;}
+		void EndRace();
+		void StartRace(); // Coloca a los coches en sus posiciones y pone cuenta atrás.
+		char *millisecondsToString(int time);
 	private:
 		string msFileName;
 		unsigned int muiMaxLaps;
 		typedef std::vector<tVehicleControl *> cVehicleList;
 		cVehicleList mVehicles;
+		tVehicleControl *mPlayerVehicle; // Esto lo usaremos para tener un acceso directo al coche del jugador 
 		typedef std::vector<tLegControl *> cLegList;
 		cLegList mLegs;
-
+		unsigned int muiTemporizador; // Con esto tendremos un contador de tiempo para los tiempos de las vueltas.
+		unsigned int mTickUltimaVuelta; // Esto irá dentro de cada coche.
+		typedef std::vector<btPairCachingGhostObject*> cControles; 
+		cControles mRaceControls;
+		int mCuentaAtras;
+		bool mIsFinalRace;
+		bool mRaceRunning;
 		bool LoadXml(void);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);
 };

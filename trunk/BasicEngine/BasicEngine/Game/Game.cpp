@@ -116,6 +116,10 @@ bool cGame::LoadRace()
 	cFPSCounter::Get().Init();
 	// Cuando ha terminado todo de cargarse cambiamos la escena a Gameplay
 	cSceneManager::Get().LoadScene(eGameplay);
+
+	// Iniciamos la cuenta atrás en el RaceControlManager
+	cRaceControlManager::Get().StartRace();
+
 	// Ejemplo de ejecutar sonido. Cada objeto tendrá sus sonidos que se inicializarán en su propio Init
 	//cSoundManager::Get().Play(cSoundManager::Get().AddSound("Entorno.wav"), true);
 	return true;
@@ -173,14 +177,26 @@ void cGame::Update(float lfTimestep)
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 	mSubModel.Update(lfTimestep);	
 
-	if(cSceneManager::Get().GetScene() == eGameplay)
+	// Si la carrera ha finalizado y presionamos Enter, volvemos al menú inicial
+	if(cRaceControlManager::Get().isFinalRace() && BecomePressed(eIA_Accept)){
+		// A lo mejor hay que Deinicializar las librerías antes de volver al menú
+		cObjectManager::Get().VaciarObjetos();
+
+		cSceneManager::Get().LoadScene(eMenuPrincipal);
+	}
+
+	if(cSceneManager::Get().GetScene() == eGameplay && !cRaceControlManager::Get().isFinalRace())
 	{
 		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
 		cObjectManager::Get().Update(lfTimestep);  //por ahora aqui tb está el movimiento del vehiculo
+		cRaceControlManager::Get().Update(lfTimestep);
+		// Actualizamos el Hud
+		cHudManager::Get().Update(lfTimestep);
 	}
 
 	// Actualizamos los menús si son necesarios
-	cMenuManager::Get().Update(lfTimestep);
+	if(cSceneManager::Get().GetScene() == eMenuPrincipal)
+		cMenuManager::Get().Update(lfTimestep);
 	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9
 		cPhysicsManager::Get().CambiarDebugMode();
@@ -191,11 +207,6 @@ void cGame::Update(float lfTimestep)
 	if (BecomePressed(eIA_Reload)) //R
 		cObjectManager::Get().ReloadVehicle();
 	
-
-
-	// Actualizamos el Hud
-	cHudManager::Get().Update(lfTimestep);
-
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();

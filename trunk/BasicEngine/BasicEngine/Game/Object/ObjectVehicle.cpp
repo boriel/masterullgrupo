@@ -7,7 +7,7 @@
 
 cObjectVehicle::cObjectVehicle (cObject lObject)
 {
-		Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial());
+		Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial(), lObject.GetScale());
 	//mPhysicsObject = new cPhysicsVehicle;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
@@ -48,11 +48,11 @@ void cObjectVehicle::Update( float lfTimestep )
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
 
 	// Activar/Desactivar Derrape
-	if (BecomePressed(eIA_Drift) || IsPressed(eIA_Drift)) 
+	/*if (BecomePressed(eIA_Drift) || IsPressed(eIA_Drift)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Drift);
-	if (BecomeReleased(eIA_Drift) || !IsPressed(eIA_Drift))
+	if (BecomeReleased(eIA_Drift))
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Drift);
-	// ---------------------------------
+	*/// ---------------------------------
 
 
 	if (BecomeReleased(eIA_Up))

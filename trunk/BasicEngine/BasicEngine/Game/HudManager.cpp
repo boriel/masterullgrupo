@@ -2,6 +2,7 @@
 #include "..\Graphics\GraphicManager.h"
 #include "..\Graphics\Fonts\FontManager.h"
 #include "FPSCounter.h"
+#include "Object\RaceControlManager.h"
 
 #include <tinystr.h>
 #include <tinyxml.h>
@@ -17,6 +18,7 @@ bool cHudManager::Init(string lsFileName)
 	cFontManager::Get().Init(5);
 	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
 	mIsHudActive=true;
+	
 	return true;
 }
 
@@ -30,17 +32,28 @@ void cHudManager::Update(float lfTimestep)
 	// Obtendremos de RaceControlManager los datos que mostrar en el Hud
 
 	// Habrá que crear estas funciones:
-	// mHud.muiPosition = cRaceControlManager::Get().GetRacePosition(idPlayer);
-	// mHud.muiNumActualLap = cRaceControlManager::Get().GetRaceActualLap(idPlayer);
-	// mHud.muiNumTotalLaps = cRaceControlManager::Get().GetRaceTotalLaps();
+	//mHud.muiPosition = cRaceControlManager::Get().GetRacePosition(idPlayer);
+	mHud.muiNumActualLap = cRaceControlManager::Get().GetRaceActualLap();
+	mHud.muiNumTotalLaps = cRaceControlManager::Get().GetRaceTotalLaps();
+	mHud.muiTiempoCarrera = cRaceControlManager::Get().GetRaceTime();
 }
 
 void cHudManager::Render()
 {
 	glEnable(GL_TEXTURE_2D);
-	if(mIsHudActive)
-	{
+	if(cRaceControlManager::Get().isFinalRace()){
+		mFont.SetHeight(40);
+		mFont.SetColour(255,0,0);
+
+		mFont.Write(0, 40, 0,"Has conseguido un tiempo de:", 0,FONT_ALIGN_CENTER);
+		
+		mFont.Write(0, 0, 0,cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera), 0,FONT_ALIGN_CENTER);
+
+		mFont.Write(0, -40, 0,"Presiona 'Enter' para volver al menu", 0,FONT_ALIGN_CENTER);
+
+	}else if(mIsHudActive && cRaceControlManager::Get().isRaceRunning()){
 		mFont.SetHeight(30.0);
+		mFont.SetColour(115,115,115);
 		// Posición: abajo derecha
 		char *lPosition=new char(); 
 		sprintf(lPosition,"%i",mHud.muiPosition);
@@ -49,8 +62,32 @@ void cHudManager::Render()
 		char *lLaps=new char(); 
 		sprintf(lLaps,"%i/%i",mHud.muiNumActualLap,mHud.muiNumTotalLaps);
 		mFont.Write(220, 170, 0,lLaps, 0,	FONT_ALIGN_CENTER);
+
+
+		// Tiempo de carrera: Algun lugar
+		char *lTime=new char(); 
+		int milisegundos;
+		int segundos;
+		int minutos;
+		milisegundos = mHud.muiTiempoCarrera ;
+
+		//sprintf(lLaps,"%i:%i:%i",minutos, segundos, milisegundos);// Hay que mejorar cómo se muestra el tiempo recorrido
+		//sprintf(lLaps,"%S",cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera));
+
+		//std::string aux=cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera);
+		//sprintf(lTime,"%s",aux);
+		mFont.Write(120, 170, 0,cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera), 0,	FONT_ALIGN_CENTER);
 	}
-	
+
+	// Cuenta atrás para empezar: Centro de la pantalla
+	if(cRaceControlManager::Get().GetCuentaAtras()>0){
+		char *lCuentaAtras=new char(); 
+		sprintf(lCuentaAtras,"%i",cRaceControlManager::Get().GetCuentaAtras());
+		mFont.SetHeight(70);
+		mFont.SetColour(255,0,0);
+		mFont.Write(0, 0, 0,lCuentaAtras, 0,	FONT_ALIGN_CENTER);
+	}
+
 #if _DEBUG		
 		//Draw some strings
 		mFont.SetColour( 1.0f, 1.0f, 1.0f );

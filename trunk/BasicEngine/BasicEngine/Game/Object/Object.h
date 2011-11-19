@@ -24,7 +24,7 @@ class cObject
 		//cObject(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 
 		void Init();
-		void Init (cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial);
+		void Init (cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial, float lScale=1.0);
 		void Deinit();
 		
 		virtual void Update( float lfTimestep );

@@ -19,16 +19,16 @@
 -->	
 
 <!--       VEHICLES      
-   
+  
 	<Object Type="Vehicle" Position="0,0,0" ModelName="VehicleRectangulo" ModelFile="./Data/Objetos/Rectangulo/Rectangulo.DAE"  Rotation="1,0,0"  Angle="-90" />
-	<Object Type="Vehicle" Position="-8,5,8" ModelName="L200" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
-<Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
+<Object Type="Vehicle" Position="45,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/L200/L200.DAE"  Rotation="1,0,0"  Angle="-90" />
+ -->	<!--<Object Type="Vehicle" Position="0,100,0" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" />
 
-<Object Type="Vehicle" Position="45,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="1" Mass="1"/>
--->	<Object Type="Vehicle" Position="45,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" />
+<Object Type="Vehicle" Position="45,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/lambert3SG1/Coche_1.dae"  Scale="0.1" Mass="1" Rotation="1,0,0"  Angle="-90"/>
+-->	<Object Type="Vehicle" Position="50,1,-19" ModelName="CarJazzVehicle" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" Player="1"/> <!-- Solo puede haber un Player -->
 
 <!--
-	<Object Type="VechilePrueba" Position="19, 0, -13" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.2" Mass="1"/> -->
+	<Object Type="VechilePrueba" Position="48,1,-19" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.2" Mass="1"/> -->
 
 		<!--   PISTAS  -->
 
@@ -45,7 +45,7 @@
 <!--<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico/BasicoBueno.DAE" Mass="0"  />
 	-->
 
-	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuitobasico03" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03Experimen.DAE" Mass="0"  />
+	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03Experimen.DAE" Mass="0"  />
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
@@ -139,10 +139,10 @@
   * tramos que definen cada vuelta
   La clase cRaceControlManager lee estos datos
 --> 
-  <Race MaxLaps="10">
+  <Race MaxLaps="3">
     <Vehicles>
       <Vehicle ModelName="CarJazzVehicle" />
-      <Vehicle ModelName="L200" />
+      <!--<Vehicle ModelName="L200" />-->
     </Vehicles>
     <Legs>
       <Leg Point1="0,1,0" Point2="2,1,-3" />

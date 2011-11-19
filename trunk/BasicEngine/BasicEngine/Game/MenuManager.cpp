@@ -171,7 +171,7 @@ void cMenuManager::Update(float lfTimestep){
 	// Con esto haremos el menú bucle, es decir que desde arriba pasa abajo
 	if(muiSelectedItem<1)muiSelectedItem=mMenuActual->muiNumItems;
 	if(muiSelectedItem>mMenuActual->muiNumItems)muiSelectedItem=1;
-	if (BecomePressed(eIA_Accept)){
+	if (BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eMenuPrincipal) ){
 		cSoundManager::Get().Play(mMoveSound);
 		AbrirMenu();
 	}
@@ -182,6 +182,7 @@ void cMenuManager::AbrirMenu(){
 	switch(mMenuActual->mItemsList.at(muiSelectedItem-1)->mAction){
 		case Comenzar: // 
 			cSceneManager::Get().LoadScene(eLoading);
+			this->IniciarMenu();
 			break;
 		case Abrir: // Asignamos como menuactual al destino
 			mMenuActual=mMenuActual->mItemsList.at(muiSelectedItem-1)->mTarget;
