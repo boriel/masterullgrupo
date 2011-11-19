@@ -32,7 +32,7 @@ class cPhysicsObject
 		void SetMass (btScalar lbtMass) { mbtMass = lbtMass; }
 
 		void SetRigidBody (btRigidBody* lpbtRigidBody) {  mpbtRigidBody = lpbtRigidBody; }
-
+		inline btRigidBody* GetRigidBody (){return mpbtRigidBody;}
 		//cVec3 GetPosition ();
 		//Sacados de btlDebugDraw
 		//void RenderTransformDebug(const btTransform& lbtTransform, btScalar lbtOrthoLen);

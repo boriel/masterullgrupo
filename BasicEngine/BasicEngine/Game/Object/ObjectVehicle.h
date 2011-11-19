@@ -11,7 +11,7 @@ Class ObjectVehicle:
 
 #include "Object.h"
 #include "..\..\MathLib\MathLib.h"
-
+#include "..\..\Physics\Objects\PhysicsVehicle.h"
 
 class cObjectVehicle : public cObject
 {
@@ -29,9 +29,9 @@ class cObjectVehicle : public cObject
 		//virtual void InitPhysics();
 
 		void Reload ();
-
-
-
+		cPhysicsVehicle* mpPhysicsObject;
+		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
+		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
 };
 
 

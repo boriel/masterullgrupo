@@ -6,7 +6,7 @@
 #include "..\..\Graphics\GraphicManager.h"
 #include "..\Scene\Model.h"
 
-void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial)
+void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial, float lScale)
 {
 	mPosition = lPosition;
 	msType = lsType;
@@ -14,7 +14,7 @@ void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string ls
 	msModelFile = lsModelFile;
 	mRotacionInicial = lRotacionInicial;
 	mPosicionInicial = lPosition;
-	
+	mfScale = lScale;
 	Init();  
 
 }
@@ -24,8 +24,8 @@ void cObject::Init()
 	//Inicializanzado la matrix de mundo a la identidad
 	mWorldMatrix.LoadIdentity();
 	mWorldMatrix.SetPosition(mPosition);
-
-	mfScale = 1.0f;
+	mWorldMatrix.LoadScale(mfScale);
+	mWorldMatrix.LoadRotation(cVec3(mRotacionInicial.x,mRotacionInicial.y,mRotacionInicial.z),0);
 	mfMass = 0.0f;
 
 }

@@ -28,8 +28,10 @@ class cObjectManager : public cSingleton<cObjectManager>
 		void ChangeCameraFP () { mbCameraFP = !mbCameraFP; }
 		bool GetCameraFP () { return mbCameraFP; }
 		void ReloadVehicle (); 
-
-
+		void VaciarObjetos();
+		
+		typedef std::vector<cObject *> cObjectList;
+		inline cObjectList *GetCars(){return &mObjectVehicle;}
 	private:
 		bool LoadObjectsXml(std::string lsResource);
 		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
@@ -38,13 +40,14 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cQuaternion CalculateRotation ( cMatrix lMatrix);
 		cVec4 Multiplicar (const cVec4 lvCenterMesh4, const cMatrix lLocalMatrixSubModel);
 		btQuaternion HacerRotacion(const cQuaternion &lRotQuat);
-
+		
 	private:
-		typedef std::vector<cObject *> cObjectList;
+		
 		cObjectList mObject;  //Objetos en general que no se donde clasificarlos por ahora .... (y por el final)
 		cObjectList mObjectPlayer;
 		cObjectList mObjectPista;
 		cObjectList mObjectVehicle;  
+		cObjectList mObjectRace; // Control de la carrera: Meta, posición inicial, checkpoints...
 
 		string msFilename;  // Resources or Properties file
 		bool ExisteTipoAndModelName(string lsModelName, string lsType);

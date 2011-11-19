@@ -19,7 +19,8 @@ enum eScenes{
 	eMenuPrincipal,
 	eIntro,
 	eLoading,
-	eGameplay
+	eGameplay,
+	eFinPartida
 };
 
 class cSceneManager : public cSingleton<cSceneManager>

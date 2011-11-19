@@ -18,6 +18,7 @@ struct tHud
 	unsigned int muiNumActualLap; //Vuelta actual
 	unsigned int muiNumTotalLaps; //Número de vueltas totales
 	unsigned int muiPosition; //Posición actual en la carrera
+	unsigned int muiTiempoCarrera; // Tiempo actual desde inicio de carrera
 };
 
 class cHudManager :
@@ -33,6 +34,7 @@ public:
 		// Con esto mostraremos la pantalla de Hud de juego
 		inline void ActivateHud(){mIsHudActive=true;}
 		inline void DeactivateHud(){mIsHudActive=false;}
+		
 
 	private:
 		string msFileName;
