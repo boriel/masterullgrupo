@@ -185,6 +185,12 @@ void cGame::Update(float lfTimestep)
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
 	}
 
+	/*
+	// Si el modo no está disponible volvemos atrás
+	if(cSceneManager::Get().GetScene() == eNoDisponible && BecomePressed(eIA_Accept)){
+		cSceneManager::Get().LoadScene(eMenuPrincipal);
+	}*/
+
 	if(cSceneManager::Get().GetScene() == eGameplay && !cRaceControlManager::Get().isFinalRace())
 	{
 		cPhysicsManager::Get().Update(lfTimestep); //Actualizar la física al completo
@@ -195,7 +201,7 @@ void cGame::Update(float lfTimestep)
 	}
 
 	// Actualizamos los menús si son necesarios
-	if(cSceneManager::Get().GetScene() == eMenuPrincipal)
+	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene()==eNoDisponible)
 		cMenuManager::Get().Update(lfTimestep);
 	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9

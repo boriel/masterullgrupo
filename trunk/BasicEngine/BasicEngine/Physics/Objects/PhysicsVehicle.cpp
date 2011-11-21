@@ -505,8 +505,10 @@ void cPhysicsVehicle::CentrandoRuedas()
 		if (gfVehicleSteering < 0.00)
 			gfVehicleSteering += gfSteeringIncrement;
 
-		if (gfVehicleSteering == 0.00)
+		if (gfVehicleSteering < 0.1 && gfVehicleSteering > -0.1){
+			gfVehicleSteering =0;
 			mbQuitarGiroRueda = false;
+		}
 	}
 
 #ifdef _DEBUG

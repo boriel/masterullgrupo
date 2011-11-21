@@ -19,6 +19,7 @@ using namespace std;
 enum Action{
 	Abrir,
 	Comenzar,
+	NoDisponible,
 	Preguntar,
 	Atras,
 	Sonido,
