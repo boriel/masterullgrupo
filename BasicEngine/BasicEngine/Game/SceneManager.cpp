@@ -21,6 +21,9 @@ bool cSceneManager::LoadScene(eScenes lScene){
 		cGame::Get().Render();
 		cGame::Get().LoadRace();
 	}
+	if(lScene==eNoDisponible){
+		cGame::Get().Render();
+	};
 	//if(lScene==eGameplay) {};
 	//if(lScene==eMenuPrincipal) {};
 	return true;

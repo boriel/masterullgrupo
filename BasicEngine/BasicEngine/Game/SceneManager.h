@@ -20,6 +20,7 @@ enum eScenes{
 	eIntro,
 	eLoading,
 	eGameplay,
+	eNoDisponible,
 	eFinPartida
 };
 

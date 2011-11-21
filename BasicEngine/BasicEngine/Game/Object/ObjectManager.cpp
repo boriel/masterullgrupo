@@ -44,8 +44,8 @@ bool cObjectManager::Init()
 
 	for (unsigned luiIndex = 0; luiIndex < mObjectPista.size(); ++luiIndex ) 
 	{
-		cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
-		mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
+		//cPhysicsPista* lpPhysicsPista = new cPhysicsPista;
+		//mObjectPista[luiIndex]->SetPtrPhysicsObject(lpPhysicsPista);
 		SetScale(mObjectPista[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectPista[luiIndex]->GetModelName(), mObjectPista[luiIndex]->GetModelFile());
 	}
@@ -370,8 +370,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			if (lRotacionInicial.w != 0)  //no pusieron ángulo o no rotacion en el xml
 				lbtQuaternion =  HacerRotacion(lRotacionInicial);
 
-
-			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y, lpObject->GetPosition().z);
+			// Le sumamos +10 a la posición y de manera que el modelo esté oculto bajo el circuito, mientras que la caja detectora de colisiones está en la pista.
+			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y+10, lpObject->GetPosition().z);
 			btTransform lbtLocalTrans = btTransform (lbtQuaternion,  lvbtCenterMesh );
 			//int liResourceCount = lSubModel->GetResourceCount(); //Hay que implementar esto
 /*			int liResourceCount = 0;

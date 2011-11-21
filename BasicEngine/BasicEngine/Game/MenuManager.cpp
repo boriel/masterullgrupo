@@ -38,9 +38,9 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuJugar->msMenuName="Jugar";
 	mMenuJugar->muiNumItems=3;
 	aux=new tMenuItem();
-	aux->mAction=Comenzar;
+	aux->mAction=NoDisponible; // No esta disponible este modo
 	aux->msMenuItem="Campaña";
-	aux->mTarget=NULL;
+	aux->mTarget=mMenuPrincipal;
 	mMenuJugar->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Abrir;
@@ -72,11 +72,16 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuOpciones->mItemsList.push_back(aux);
 
 	mMenuPartidaLibre->msMenuName="Partida Libre";
-	mMenuPartidaLibre->muiNumItems=3;
+	mMenuPartidaLibre->muiNumItems=4;
 	aux=new tMenuItem();
-	aux->mAction=Comenzar;
-	aux->msMenuItem="Carrera";
-	aux->mTarget=NULL;
+	aux->mAction=NoDisponible; // No esta disponible este modo
+	aux->msMenuItem="Carrera cara a cara";
+	aux->mTarget=mMenuPrincipal;
+	mMenuPartidaLibre->mItemsList.push_back(aux);
+	aux=new tMenuItem();
+	aux->mAction=NoDisponible; // No esta disponible este modo
+	aux->msMenuItem="Carrera de cuatro";
+	aux->mTarget=mMenuPrincipal;
 	mMenuPartidaLibre->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Comenzar;
@@ -155,6 +160,11 @@ void cMenuManager::Render(){
 			mFont.SetHeight(100.0);
 			mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			break;
+		case eNoDisponible:
+			mFont.SetHeight(50.0);
+			mFont.Write(0, 0, 0,"Modo aun no disponible.", 0,	FONT_ALIGN_CENTER);
+			mFont.Write(0, -50, 0,"Presione 'Enter' para volver", 0,	FONT_ALIGN_CENTER);
+			break;
 	}
 }
 
@@ -171,10 +181,19 @@ void cMenuManager::Update(float lfTimestep){
 	// Con esto haremos el menú bucle, es decir que desde arriba pasa abajo
 	if(muiSelectedItem<1)muiSelectedItem=mMenuActual->muiNumItems;
 	if(muiSelectedItem>mMenuActual->muiNumItems)muiSelectedItem=1;
+	
+	if (BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eNoDisponible) ){
+		cSoundManager::Get().Play(mMoveSound);
+		cSceneManager::Get().LoadScene(eMenuPrincipal);
+	}
+
+	
 	if (BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eMenuPrincipal) ){
 		cSoundManager::Get().Play(mMoveSound);
 		AbrirMenu();
 	}
+
+
 }
 
 void cMenuManager::AbrirMenu(){
@@ -184,6 +203,8 @@ void cMenuManager::AbrirMenu(){
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
+		case NoDisponible:
+			cSceneManager::Get().LoadScene(eNoDisponible);
 		case Abrir: // Asignamos como menuactual al destino
 			mMenuActual=mMenuActual->mItemsList.at(muiSelectedItem-1)->mTarget;
 			break;
