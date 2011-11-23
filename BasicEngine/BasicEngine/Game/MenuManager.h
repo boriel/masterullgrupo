@@ -11,6 +11,7 @@ class cMenuManager: Controla los menús. Tanto el inicial como el de pausa en med
 #include "..\Graphics\Fonts\FontManager.h"
 #include "..\Sound\SoundManager.h"
 #include "SceneManager.h"
+#include "Object\RaceControlManager.h"
 #include <vector>
 
 using namespace std;
@@ -18,12 +19,16 @@ using namespace std;
 // Se usarán para saber qué hace el elemento del menú
 enum Action{
 	Abrir,
-	Comenzar,
+	ComenzarContrarreloj,
+	Comenzar2Jug,
+	Comenzar4Jug,
+	ComenzarCampana,
 	NoDisponible,
 	Preguntar,
 	Atras,
 	Sonido,
 	Musica,
+	Creditos,
 	Salir,
 };
 

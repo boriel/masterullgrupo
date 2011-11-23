@@ -589,7 +589,7 @@ void cPhysicsVehicle::Derrapar(){
 	{
 		btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
  		if(!lbtWheelInfo.m_bIsFrontWheel)
-			lbtWheelInfo.m_frictionSlip -= 0.1;//gfWheelFriction - gfIntensidadDerrape;
+			lbtWheelInfo.m_frictionSlip -= 0.5;//gfWheelFriction - gfIntensidadDerrape;
 	}
 	//mpbtVehicle->updateFriction();
 }

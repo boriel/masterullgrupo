@@ -56,6 +56,8 @@ class cObject
 		inline float GetMass () { return mfMass; }
 		inline void SetScale(float lfScale) { mfScale=lfScale;}
 		inline float GetScale() { return mfScale;}
+		inline void SetPlayer(string lsPlayer) { msPlayer=lsPlayer;}
+		inline string GetPlayer() { return msPlayer;}
 
 		//para pruebas de recarga
 		inline cVec3 GetPosicionInicial () { return mPosicionInicial; }
@@ -73,6 +75,7 @@ class cObject
 		string msType;
 		string msModelName;
 		string msModelFile;
+		string msPlayer; // Con esto sabemos quién controla el coche, solo se utilizará en los vehicles
 		float mfMass;
 		
 		cPhysicsObject* mpPhysicsObject;

@@ -8,7 +8,8 @@
 cObjectVehicle::cObjectVehicle (cObject lObject)
 {
 		Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial(), lObject.GetScale());
-	//mPhysicsObject = new cPhysicsVehicle;
+		this->SetPlayer(lObject.GetPlayer());
+		//mPhysicsObject = new cPhysicsVehicle;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
 	//mPhysicsObject->Init("Player");
@@ -23,20 +24,8 @@ void cObjectVehicle::InitPhysics ()
 	((cPhysicsVehicle*)mpPhysicsObject)->Init(mPosition);
 }
 */
-void cObjectVehicle::Update( float lfTimestep )
-{
-	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
-	//cObject::Update(lfTimestep); //Llmando al padre que tiene las fisicas generales
 
-	//mPosition = ((cPhysicsPlayer*)mPhysicsObject)->GetPosition();
-	//mPosition = mPhysicsObject->GetPosition();
-	mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
-	//cQuaternion lQuatRot=((cPhysicsPlayer*)mPhysicsObject)->GetQuatRotation();
-	//cQuaternion lQuatRot= mPhysicsObject->GetQuatRotation();
-	cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
-	lQuatRot.AsMatrix(mWorldMatrix);
-	mWorldMatrix.SetPosition(mPosition);
-
+void cObjectVehicle::Player1Control(){
 	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else para que pueda usarse 2 teclas presionadas)
 	if (BecomePressed(eIA_Up) || IsPressed(eIA_Up)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Up);
@@ -67,7 +56,24 @@ void cObjectVehicle::Update( float lfTimestep )
 	//ver si está acelerando
 	if (!(BecomePressed(eIA_Up) || IsPressed(eIA_Up)))
 		((cPhysicsVehicle*)mpPhysicsObject)->DesAcelerar();
+}
 
+void cObjectVehicle::Update( float lfTimestep )
+{
+	mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
+	
+	//mWorldMatrix.LoadIdentity();
+	cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
+	lQuatRot.AsMatrix(mWorldMatrix);
+	mWorldMatrix.SetPosition(mPosition);
+	
+	//mWorldMatrix.LoadScale(mfScale);
+	
+	
+	// Si somos el player, llamaremos a la función de controlar el coche
+	if(this->GetPlayer()=="1")Player1Control();
+	//if(this->GetPlayer()=="0") // Aqui pondremos la llamada a los controles por IA
+		//((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Up);//if(this->GetPlayer()=="0")IAControl();
 
 	//cInputAction::GetPressedTime();
 #ifdef _DAVID

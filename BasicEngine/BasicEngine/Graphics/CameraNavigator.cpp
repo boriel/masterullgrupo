@@ -80,7 +80,8 @@ void cCameraNavigator::Render()
 void cCameraNavigator::FollowPlayer(void) 
 {
 #define CAMERA_PLAYER
-	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","CarJazzVehicle");
+	// Obtenemos el coche que maneja el jugador //	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","Jeep");
+	cObject* lpObject=cObjectManager::Get().GetObjectPlayer();
 	cVec3 lvPosition=lpObject->GetPosition();
 	cVec3 lvTarget=lvPosition + lpObject->GetWorldMatrix().GetFront() * 5;
 	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 5; //5

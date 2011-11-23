@@ -29,7 +29,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		bool GetCameraFP () { return mbCameraFP; }
 		void ReloadVehicle (); 
 		void VaciarObjetos();
-		
+		cObject *GetObjectPlayer(); // Devolvemos el coche que maneja el usuario
 		typedef std::vector<cObject *> cObjectList;
 		inline cObjectList *GetCars(){return &mObjectVehicle;}
 	private:
@@ -40,6 +40,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cQuaternion CalculateRotation ( cMatrix lMatrix);
 		cVec4 Multiplicar (const cVec4 lvCenterMesh4, const cMatrix lLocalMatrixSubModel);
 		btQuaternion HacerRotacion(const cQuaternion &lRotQuat);
+		
 		
 	private:
 		
