@@ -32,6 +32,8 @@
 #include "..\Character\Behaviour\ChaserBase.h"
 #endif
 
+#define MaxSize 128
+
 extern tActionMapping kaActionMapping[];
 
 //Inicializa el juego
@@ -81,11 +83,11 @@ bool cGame::Init()
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
-	cMeshManager::Get().Init(64); // Init MeshManager	
-	cModelManager::Get().Init(64); // Init ModelManager
+	cMeshManager::Get().Init(MaxSize); // Init MeshManager	
+	cModelManager::Get().Init(MaxSize); // Init ModelManager
 
-	cMaterialManager::Get().Init(64); //Init Material Manager
-	cEffectManager::Get().Init(64);
+	cMaterialManager::Get().Init(MaxSize); //Init Material Manager
+	cEffectManager::Get().Init(MaxSize);
 
 	mfAcTime = 0.0f;
 
@@ -181,7 +183,7 @@ void cGame::Update(float lfTimestep)
 	if(cRaceControlManager::Get().isFinalRace() && BecomePressed(eIA_Accept)){
 		// A lo mejor hay que Deinicializar las librerías antes de volver al menú
 		cObjectManager::Get().VaciarObjetos();
-
+		cRaceControlManager::Get().VaciarObjetos();
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
 	}
 

@@ -24,7 +24,7 @@ bool cMenuManager::Init(string lsFilename){
 	aux->mTarget=mMenuOpciones;
 	mMenuPrincipal->mItemsList.push_back(aux);
 	aux=new tMenuItem();
-	aux->mAction=Comenzar;
+	aux->mAction=Creditos;
 	aux->msMenuItem="Créditos";
 	aux->mTarget=NULL;
 	mMenuPrincipal->mItemsList.push_back(aux);
@@ -74,17 +74,17 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPartidaLibre->msMenuName="Partida Libre";
 	mMenuPartidaLibre->muiNumItems=4;
 	aux=new tMenuItem();
-	aux->mAction=NoDisponible; // No esta disponible este modo
+	aux->mAction=Comenzar2Jug; // No esta disponible este modo
 	aux->msMenuItem="Carrera cara a cara";
 	aux->mTarget=mMenuPrincipal;
 	mMenuPartidaLibre->mItemsList.push_back(aux);
 	aux=new tMenuItem();
-	aux->mAction=NoDisponible; // No esta disponible este modo
+	aux->mAction=Comenzar4Jug; // No esta disponible este modo
 	aux->msMenuItem="Carrera de cuatro";
 	aux->mTarget=mMenuPrincipal;
 	mMenuPartidaLibre->mItemsList.push_back(aux);
 	aux=new tMenuItem();
-	aux->mAction=Comenzar;
+	aux->mAction=ComenzarContrarreloj;
 	aux->msMenuItem="Contrarreloj";
 	aux->mTarget=NULL;
 	mMenuPartidaLibre->mItemsList.push_back(aux);
@@ -199,7 +199,23 @@ void cMenuManager::Update(float lfTimestep){
 void cMenuManager::AbrirMenu(){
 	// Obtenemos qué elemento se abrirá
 	switch(mMenuActual->mItemsList.at(muiSelectedItem-1)->mAction){
-		case Comenzar: // 
+		case ComenzarContrarreloj:
+			cRaceControlManager::Get().SetTipoPartida(eContrarreloj); 
+			cSceneManager::Get().LoadScene(eLoading);
+			this->IniciarMenu();
+			break;
+		case Comenzar2Jug: 
+			cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
+			cSceneManager::Get().LoadScene(eLoading);
+			this->IniciarMenu();
+			break;
+		case Comenzar4Jug: 
+			cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
+			cSceneManager::Get().LoadScene(eLoading);
+			this->IniciarMenu();
+			break;
+		case ComenzarCampana: 
+			cRaceControlManager::Get().SetTipoPartida(eCampana);
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;

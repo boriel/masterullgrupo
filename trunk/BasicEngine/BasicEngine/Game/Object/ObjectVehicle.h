@@ -29,6 +29,8 @@ class cObjectVehicle : public cObject
 		//virtual void InitPhysics();
 
 		void Reload ();
+		void Player1Control();
+		void IAControl();
 		cPhysicsVehicle* mpPhysicsObject;
 		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }

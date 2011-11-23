@@ -12,13 +12,17 @@ bool cRaceControlManager::Init(string lsFileName)
 	msFileName = lsFileName;
 	LoadXml();
 	muiTemporizador = 0;
-	mTickUltimaVuelta=0;
 	mIsFinalRace=false;
 	return true;
 }
 
 void cRaceControlManager::Deinit()
 {
+	mVehicles.clear();
+	mLegs.clear();
+}
+
+void cRaceControlManager::VaciarObjetos(){
 	mVehicles.clear();
 	mLegs.clear();
 }
@@ -31,7 +35,6 @@ void cRaceControlManager::StartRace(){
 	// Preparamos la carrera
 	mRaceRunning=false;
 	muiTemporizador = 0;
-	mTickUltimaVuelta=0;
 	mIsFinalRace=false;
 }
 
@@ -89,7 +92,8 @@ void cRaceControlManager::Update(float lfTimestep)
 		for (unsigned luiIndex = 0; luiIndex < cObjectManager::Get().GetCars()->size(); ++luiIndex ) 
 		{
 			// Cada 100 ticks permitimos que se vuelva a poder cruzar la meta
-			if(muiTemporizador - mTickUltimaVuelta > 500)mVehicles[luiIndex]->AumentaVuelta=true;
+			if(muiTemporizador - mVehicles[luiIndex]->mTickUltimaVuelta > 500)
+				mVehicles[luiIndex]->AumentaVuelta=true;
 
 			typedef std::vector<cObject *> cObjectList;
 			cObjectList *lCoches=cObjectManager::Get().GetCars();
@@ -127,16 +131,20 @@ void cRaceControlManager::Update(float lfTimestep)
 							const btVector3& normalOnB = pt.m_normalWorldOnB;
 							/// work here
 							printf ("Un coche paso la meta!\n");
-							// Le añadimos UNA vuelta al coche adecuado
-							if(mVehicles[luiIndex]->AumentaVuelta){
-								mVehicles[luiIndex]->muiNumLaps++;
-								// Si algun coche llega al maximo se acaba la carrera
-								if(mVehicles[luiIndex]->muiNumLaps==this->muiMaxLaps){
-									EndRace();
+							for (unsigned luiIndex2 = 0; luiIndex2 < mVehicles.size(); ++luiIndex2 ) {
+								if (cObjectManager::Get().GetCars()->at(luiIndex)->GetModelName()==mVehicles.at(luiIndex2)->msModelName){
+									// Le añadimos UNA vuelta al coche adecuado
+									if(mVehicles[luiIndex]->AumentaVuelta){
+										mVehicles[luiIndex]->muiNumLaps++;
+										// Si algun coche llega al maximo se acaba la carrera
+										if(mVehicles[luiIndex]->muiNumLaps==this->muiMaxLaps){
+											EndRace();
+										}
+										mVehicles[luiIndex]->AumentaVuelta=false;
+										// Con esto recordaremos hace cuánto pasamos la meta
+										mVehicles[luiIndex]->mTickUltimaVuelta=muiTemporizador;
+									}
 								}
-								mVehicles[luiIndex]->AumentaVuelta=false;
-								// Con esto recordaremos hace cuánto pasamos la meta
-								mTickUltimaVuelta=muiTemporizador;
 							}
 						}
 					}
@@ -233,15 +241,22 @@ bool cRaceControlManager::LoadXml(void)
 		lpVehicle->muiKm=0;
 		lpVehicle->isPlayer=false;
 		lpVehicle->AumentaVuelta=true;
+		lpVehicle->mTickUltimaVuelta=0;
 
 		if (lpElement->Attribute("ModelName") != NULL)
 			lpVehicle->msModelName = ((char*)lpElement->Attribute("ModelName"));
-		//if (lpElement->Attribute("Player") != NULL) {
+		
+		// Situamos al coche que maneja el jugador.
+		if(cObjectManager::Get().GetObjectPlayer()->GetModelName()==lpVehicle->msModelName){
 			lpVehicle->isPlayer = true;
 			this->mPlayerVehicle=lpVehicle;
-		//}
-
-		mVehicles.push_back(lpVehicle);
+			mVehicles.push_back(lpVehicle);
+		}else{
+			if(mTipoPartida!=eContrarreloj){
+				lpVehicle->isPlayer = false;
+				mVehicles.push_back(lpVehicle);
+			}
+		}		
 	}
 
 	//LEGS elements

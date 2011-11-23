@@ -52,7 +52,7 @@ bool cObjectManager::Init()
 		
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
 	{
-		mObjectVehicle[luiIndex]->SetScale(mObjectVehicle[luiIndex]->GetScale());
+		//mObjectVehicle[luiIndex]->SetScale(mObjectVehicle[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
 	}
 
@@ -751,8 +751,9 @@ void cObjectManager::Render()
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex )
 		mObject[luiIndex]->Render();
 
-	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex )
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ){
 		mObjectVehicle[luiIndex]->Render();
+	}
 }
 
 //Leemos todos los recursos desde un xml
@@ -776,7 +777,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 		for (lpElement = lpElement->FirstChildElement("Object"); lpElement; lpElement = lpElement->NextSiblingElement()) 
 		{
-			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsRotation = "", lsAngle = "", lsMass = "";
+			std::string lsType, lsModelFile, lsModelName, lsPosition, lsScale = "", lsRotation = "", lsAngle = "", lsMass = "", lsPlayer = "";
 			float lfScale = 1.0f, lfMass = 0.0f;
 			cVec3 lCollision = cVec3(0.5, 0.5, 0.5);
 			cQuaternion lQuatRot = cQuaternion(1,0,0,0);
@@ -804,6 +805,9 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 			if (lpElement->Attribute("Mass") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsMass = ((char*)lpElement->Attribute("Mass"));
+
+			if (lpElement->Attribute("Player") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
+				lsPlayer = ((char*)lpElement->Attribute("Player"));
 
 			cObject* lObject = new cObject;
 
@@ -847,9 +851,10 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 
 			(*lObject).SetType (lsType);
 			(*lObject).SetModelName(lsModelName);
-			(*lObject).SetModelFile(lsModelFile);	
+			(*lObject).SetModelFile(lsModelFile);
 			(*lObject).SetScale(lfScale);
 			(*lObject).SetMass(lfMass);
+			(*lObject).SetPlayer(lsPlayer);
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
 			//Creamos tambien el objeto Físico
@@ -865,8 +870,20 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			}
 			else if (lsType == "Vehicle")
 			{
-				cObject* lObjectPtr = new cObjectVehicle(*lObject);
-				mObjectVehicle.push_back(lObjectPtr);
+				// Solo insertamos los coches que correspondan al modo de juego
+				// Contrarreloj
+				if(cRaceControlManager::Get().GetTipoPartida()==eContrarreloj && (*lObject).GetPlayer()=="1"){
+					cObject* lObjectPtr = new cObjectVehicle(*lObject);
+					mObjectVehicle.push_back(lObjectPtr);
+				}else // Cara a Cara
+					if(cRaceControlManager::Get().GetTipoPartida()==e2Jugadores && ((*lObject).GetPlayer()=="1" || (*lObject).GetPlayer()=="2")){
+						cObject* lObjectPtr = new cObjectVehicle(*lObject);
+						mObjectVehicle.push_back(lObjectPtr);
+					}else if(cRaceControlManager::Get().GetTipoPartida()==e4Jugadores && ((*lObject).GetPlayer()=="1" || (*lObject).GetPlayer()=="2" || (*lObject).GetPlayer()=="3" || (*lObject).GetPlayer()=="4")){
+						cObject* lObjectPtr = new cObjectVehicle(*lObject);
+						mObjectVehicle.push_back(lObjectPtr);
+					}
+
 			}
 			else if (lsType == "Race")
 			{	
@@ -977,6 +994,11 @@ cObject *cObjectManager::GetObject(const string lsType, const string lsModelName
 	return NULL;
 }
 
+cObject *cObjectManager::GetObjectPlayer(){
+	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
+		if (mObjectVehicle[luiIndex]->GetPlayer() == "1")
+			return mObjectVehicle[luiIndex];
+}
 
 void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar, const std::string lsType,  cPhysicsObject* lpPhysicsObject)
 {
@@ -1235,7 +1257,7 @@ btQuaternion cObjectManager::HacerRotacion(const cQuaternion &lRotQuat)
 void cObjectManager::ReloadVehicle()
 {
 
-		cObject* lObjectVehicle = GetObject("Vehicle", "CarJazzVehicle");
+		cObject* lObjectVehicle = cObjectManager::Get().GetObjectPlayer();
 		cVec3 lvPosicionInicial = lObjectVehicle->GetPosicionInicial();
 		cQuaternion lQuat = lObjectVehicle->GetRotacionInicial();
 

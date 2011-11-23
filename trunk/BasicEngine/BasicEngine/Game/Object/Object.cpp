@@ -24,8 +24,9 @@ void cObject::Init()
 	//Inicializanzado la matrix de mundo a la identidad
 	mWorldMatrix.LoadIdentity();
 	mWorldMatrix.SetPosition(mPosition);
-	mWorldMatrix.LoadScale(mfScale);
-	mWorldMatrix.LoadRotation(cVec3(mRotacionInicial.x,mRotacionInicial.y,mRotacionInicial.z),0);
+	cMatrix Aux;
+	mWorldMatrix=mWorldMatrix + Aux.LoadScale(mfScale);
+	mWorldMatrix=mWorldMatrix + Aux.LoadRotation(cVec3(mRotacionInicial.x,mRotacionInicial.y,mRotacionInicial.z),0);
 	mfMass = 0.0f;
 
 }
@@ -54,7 +55,10 @@ void cObject::Update( float lfTimestep )
 	mPosition = mpPhysicsObject->GetPosition();
 	cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
+	//mWorldMatrix.LoadScale(mfScale);
 	mWorldMatrix.SetPosition(mPosition);
+
+
 }
 
 void cObject::InitPhysics()
