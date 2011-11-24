@@ -51,7 +51,7 @@ bool cGame::Init()
 		if (!lbResult) cWindow::Get().Deinit();	// Kill Window
 	}
 
-	cTextureManager::Get().Init(20); //Iniciando las texturas. Espacio reservado máximo para la carga=10
+	cTextureManager::Get().Init(100); //Iniciando las texturas. Espacio reservado máximo para la carga=10
 
 	//==============
 	//Init CAMERA-3D
