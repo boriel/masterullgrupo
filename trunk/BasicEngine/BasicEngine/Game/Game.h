@@ -54,8 +54,9 @@ class cGame : public cSingleton<cGame> {
 		void RenderModels();
 		void RenderObjects();
 		void RenderPhysicsObjects();
-#ifdef _DAVID
 		void RenderSkeletal();
+#ifdef _DAVID
+		
 		void RenderLua();
 		void RenderRejilla();
 #endif
