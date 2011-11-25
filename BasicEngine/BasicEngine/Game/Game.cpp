@@ -24,6 +24,8 @@
 #include "MenuManager.h"
 #include "..\Utility\TimeDebug.h"
 
+#include "..\Graphics\Materials/MaterialData.h"
+
 #ifdef _DAVID
 #include "..\Lua\LuaManager.h"
 #include "..\Lua\LuaFunctions.h"
@@ -101,6 +103,27 @@ bool cGame::Init()
 	cSceneManager::Get().LoadScene(eMenuPrincipal);
 	cHudManager::Get().Init("Data/Resources.xml");
 	cMenuManager::Get().Init("Data/Resources.xml");
+
+
+	/*
+	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
+	cSkeletalManager::Get().Init(10);
+	cSkeletalManager::Get().LoadResource("Skeleton", "./Data/Skeletal/SkeletonModel.xml");
+	mSkeletalMesh = cMeshManager::Get().LoadResource("Skeleton1", "Skeleton", kuiSkeletalMesh);
+	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
+	//lpSkeletonMesh->PlayAnim("Idle", 1.0f, 1.0f);
+	lpSkeletonMesh->PlayAnim("Jog", 1.0f, 0.1f);
+	
+	
+	cResourceHandle lMaterial = cMaterialManager::Get().LoadResource("Skeleton",  "./Data/Material/SkeletonMaterial.xml");
+	assert(lMaterial.IsValidHandle());
+	//mSubModel.Init();
+	mSubModel.AddMesh(mSkeletalMesh, lMaterial);
+	cMatrix lMatrix;
+	lMatrix.LoadScale(0.01f);
+	mSubModel.SetLocalMatrix(lMatrix);
+	*/
+
 
 #ifdef _DAVID
 	cTimeDebug::Get().Init(10);
@@ -255,6 +278,8 @@ void cGame::Render()
 		RenderPhysicsObjects();  //renderizado la fisica de objetos, siempre que este en debug y haya sido seleccionada
 		RenderObjects(); //Dibujando con la nueva representacion de objetos
 
+		//RenderSkeletal();
+
 	#ifdef _DAVID
 		SetTheWorldMatrix();
 		cRaceControlManager::Get().Render();
@@ -280,6 +305,7 @@ void cGame::Render()
 	// Solo ponemos el hud si estamos ingame
 	if(cSceneManager::Get().GetScene()==eGameplay) cHudManager::Get().Render();
 	  cMenuManager::Get().Render();
+
 
 	// 7) Postprocessing
 	
@@ -330,13 +356,15 @@ void cGame::RenderModels()
 		((cModel *)cModelManager::Get().FindResourceIndice(i).GetResource())->Render(cGraphicManager::Get().GetWorldMatrix());
 }
 
-#ifdef _DAVID
 void cGame::RenderSkeletal () 
 {
 	mSubModel.Render(cGraphicManager::Get().GetWorldMatrix());
 	cSkeletalMesh* lpSkeletonMesh = (cSkeletalMesh*)mSkeletalMesh.GetResource();
 	lpSkeletonMesh->RenderSkeleton();
 }
+
+
+#ifdef _DAVID
 
 //Para los ejercicios de LUA
 void cGame::RenderLua () 
