@@ -32,6 +32,7 @@ struct tVehicleControl
 	bool isPlayer; // True si es el coche que mueve el usuario
 	bool AumentaVuelta; // Esto se usará para que solo se aumente una vuelta cuando atravesamos la meta.		
 	unsigned int mTickUltimaVuelta; // Esto irá dentro de cada coche.
+	unsigned int muiPuntoControlActual; // Con esto sabremos cuál fue el último punto de control por el que pasó
 };
 
 struct tLegControl
@@ -39,6 +40,14 @@ struct tLegControl
 	unsigned int muiID;
 	cVec3 mvPoint1;
 	cVec3 mvPoint2;
+};
+
+struct tPuntoControl{
+	string Nombre;
+	string Tipo;
+	int PosX;
+	int PosZ;
+	btPairCachingGhostObject* Ghost;
 };
 
 class cRaceControlManager : public cSingleton<cRaceControlManager>
@@ -49,7 +58,7 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		void Render();
 		void Update(float lfTimestep);
 //		inline void AddControl(btRigidBody *lControl){mRaceControls.push_back(lControl);}
-		inline void AddGhost(btPairCachingGhostObject *lControl){mRaceControls.push_back(lControl);}
+		void AddPuntoControl(string lNombre, string lTipo, int lPosX, int lPosZ, btPairCachingGhostObject* lGhost);
 		void PasoMeta();
 		int GetRaceActualLap();
 		inline int GetRaceTotalLaps(){return muiMaxLaps;}
@@ -59,6 +68,9 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		inline bool isRaceRunning(){return mRaceRunning;}
 		inline int GetCuentaAtras(){return mCuentaAtras;}
 		inline bool isFinalRace(){return mIsFinalRace;}
+		int GetPuntoControlFromCar(string lNombreCoche);
+		cVec3 GetPositionPuntoControl(int lPtoControl);
+		void ComprobarColision(unsigned lCocheIndice);
 		void VaciarObjetos();
 		void EndRace();
 		void StartRace(); // Coloca a los coches en sus posiciones y pone cuenta atrás.
@@ -73,7 +85,7 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		cLegList mLegs;
 		unsigned int muiTemporizador; // Con esto tendremos un contador de tiempo para los tiempos de las vueltas.
 
-		typedef std::vector<btPairCachingGhostObject*> cControles; 
+		typedef std::vector<tPuntoControl> cControles; 
 		cControles mRaceControls;
 		int mCuentaAtras;
 		eTipoPartida mTipoPartida;

@@ -1,7 +1,7 @@
 #include "ObjectVehicle.h"
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
 #include "..\..\Game\Object\ObjectManager.h"
-
+#include "..\..\Game\Object\RaceControlManager.h"
 #include "..\..\Input\InputManager.h"
 #include "..\InputConfiguration.h"
 
@@ -109,5 +109,11 @@ void cObjectVehicle::Render ()
 //Recargando el vehiculo 
 void cObjectVehicle::Reload ()
 {
-	mPosition = GetPosicionInicial();
+	int lPtoControl=cRaceControlManager::Get().GetPuntoControlFromCar(this->GetModelName());
+	// Haremos que se coloque en la posición del ultimo punto de control por el que pasó
+	// Guardamos la posición y del coche, ya que el punto de control solo nos da X y Z.
+	int lAux=mPosition.y;
+	mPosition = cRaceControlManager::Get().GetPositionPuntoControl(lPtoControl);
+	mPosition.y = lAux+10;
+	//mPosition = GetPosicionInicial();
 }

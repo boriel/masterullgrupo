@@ -49,7 +49,7 @@
 <!--<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico/BasicoBueno.DAE" Mass="0"  />
 	-->
 
-	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03Experimen.DAE" Mass="0"  />
+	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03PtosControl.DAE" Mass="0"  />
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
@@ -70,9 +70,9 @@
 
 		<!--<Object Type="Rampa" Position="5,0,5" ModelName="Rampa" ModelFile="./Data/Objetos/Rampa/Rampa.DAE" Mass="0" Rotation="0,1,0"  Angle="-90" />-->
 		
-		<Object Type="Zapato" Position="15, 0, -27" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
+		<!--<Object Type="Zapato" Position="15, 0, -27" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
 
-		<!--<Object Type="Robot" Position="15, 0, -20" ModelName="Robot" ModelFile="./Data/Objetos/Robot/Robot.DAE" Scale="0.2" Mass="4"/>-->
+		<Object Type="Robot" Position="15, 0, -20" ModelName="Robot" ModelFile="./Data/Objetos/Robot/Robot.DAE" Scale="0.2" Mass="4"/>-->
 
 		<!--
 		<Object Type="Lampara" Position="5, 0.5, 20" ModelName="Lampara" ModelFile="./Data/Objetos/Lampara/Lampara.DAE" Scale="1" Mass="0"/>
