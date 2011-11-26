@@ -81,6 +81,96 @@ char *cRaceControlManager::millisecondsToString(int time){
   return timeStr;
  }
 
+int cRaceControlManager::GetPuntoControlFromCar(string lNombreCoche){
+	// Obtenemos el coche que buscamos y devolvemos el punto
+	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
+		if(mVehicles.at(luiIndex)->msModelName == lNombreCoche) return mVehicles.at(luiIndex)->muiPuntoControlActual;
+}
+cVec3 cRaceControlManager::GetPositionPuntoControl(int lPtoControl){
+	for (unsigned luiIndex = 0; luiIndex < mRaceControls.size(); ++luiIndex ) {
+		if((int)atoi(mRaceControls.at(luiIndex).Nombre.c_str()) == lPtoControl){
+			return cVec3(mRaceControls.at(luiIndex).PosX,10,mRaceControls.at(luiIndex).PosZ);
+		}
+	}
+}
+
+void cRaceControlManager::AddPuntoControl(string lNombre, string lTipo, int lPosX, int lPosZ, btPairCachingGhostObject* lGhost){
+	tPuntoControl lAux;
+	lAux.Nombre=lNombre;
+	lAux.Tipo=lTipo;
+	lAux.PosX=lPosX;
+	lAux.PosZ=lPosZ;
+	lAux.Ghost=lGhost;
+	mRaceControls.push_back(lAux);
+}
+
+void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
+	for (unsigned luiIndex = 0; luiIndex < mRaceControls.size(); ++luiIndex ){
+		// Buscamos los puntos de contacto
+		btManifoldArray   manifoldArray;
+		btBroadphasePairArray& pairArray = mRaceControls[luiIndex].Ghost->getOverlappingPairCache()->getOverlappingPairArray();
+		int numPairs = pairArray.size();
+
+		for (int i=0;i<numPairs;i++){
+				manifoldArray.clear();
+
+				const btBroadphasePair& pair = pairArray[i];
+         
+				//unless we manually perform collision detection on this pair, the contacts are in the dynamics world paircache:
+				btBroadphasePair* collisionPair = cPhysicsManager::Get().GetDynamicsWorld()->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
+				if (!collisionPair)
+				continue;
+
+				if (collisionPair->m_algorithm)
+				collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
+
+				for (int j=0;j<manifoldArray.size();j++){
+				btPersistentManifold* manifold = manifoldArray[j];
+				btScalar directionSign = manifold->getBody0() == mRaceControls[luiIndex].Ghost ? btScalar(-1.0) : btScalar(1.0);
+				for (int p=0;p<manifold->getNumContacts();p++)
+				{
+             		const btManifoldPoint&pt = manifold->getContactPoint(p);
+					if (pt.getDistance()<0.f){
+						const btVector3& ptA = pt.getPositionWorldOnA();
+						const btVector3& ptB = pt.getPositionWorldOnB();
+						const btVector3& normalOnB = pt.m_normalWorldOnB;
+						/// work here
+						for (unsigned luiIndex2 = 0; luiIndex2 < mVehicles.size(); ++luiIndex2 ) {
+							if (cObjectManager::Get().GetCars()->at(lCocheIndice)->GetModelName()==mVehicles.at(luiIndex2)->msModelName){
+								if(mRaceControls[luiIndex].Tipo== "Meta")
+								{
+									
+									// Le añadimos UNA vuelta al coche adecuado
+									if(mVehicles[lCocheIndice]->AumentaVuelta){
+										mVehicles[lCocheIndice]->muiNumLaps++;
+										// Reiniciamos los puntos de control
+										mVehicles[lCocheIndice]->muiPuntoControlActual=0;
+										// Si algun coche llega al maximo se acaba la carrera
+										if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps){
+											EndRace();
+										}
+										mVehicles[lCocheIndice]->AumentaVuelta=false;
+										printf ("Un coche paso la meta!\n");
+										// Con esto recordaremos hace cuánto pasamos la meta
+										//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
+									}
+								}else {
+									int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
+									printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+									// Comprobamos que solo se sume una vez el punto de control actual
+									if(mVehicles[lCocheIndice]->muiPuntoControlActual != lAux)
+										mVehicles[lCocheIndice]->muiPuntoControlActual++;
+									// Habria que comprobar que solo va hacia deanteel coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
 void cRaceControlManager::Update(float lfTimestep)
 {	
 	// Actualizamos el temporizador
@@ -92,64 +182,24 @@ void cRaceControlManager::Update(float lfTimestep)
 		for (unsigned luiIndex = 0; luiIndex < cObjectManager::Get().GetCars()->size(); ++luiIndex ) 
 		{
 			// Cada 100 ticks permitimos que se vuelva a poder cruzar la meta
-			if(muiTemporizador - mVehicles[luiIndex]->mTickUltimaVuelta > 500)
+			/*
+				if(muiTemporizador - mVehicles[luiIndex]->mTickUltimaVuelta > 500)
+					mVehicles[luiIndex]->AumentaVuelta=true;
+			*/
+
+			// Cuando el coche haya pasado por todos los puntos de control, permitimos aumentar la vuelta
+			if(mVehicles[luiIndex]->muiPuntoControlActual==(mRaceControls.size()-1))
 				mVehicles[luiIndex]->AumentaVuelta=true;
 
 			typedef std::vector<cObject *> cObjectList;
+
 			cObjectList *lCoches=cObjectManager::Get().GetCars();
 			// Comprobamos si algún coche ha pasado la meta
 			cPhysicsVehicle *Cajota=((cObjectVehicle *)lCoches->at(luiIndex))->GetPtrPhysicsVehicle();
 			btRigidBody *lCoche=Cajota->mpbtCarChassis;
 
-			// Buscamos los puntos de contacto
-			btManifoldArray   manifoldArray;
-			btBroadphasePairArray& pairArray = mRaceControls[0]->getOverlappingPairCache()->getOverlappingPairArray();
-			int numPairs = pairArray.size();
-
-			for (int i=0;i<numPairs;i++){
-				 manifoldArray.clear();
-
-				 const btBroadphasePair& pair = pairArray[i];
-         
-				 //unless we manually perform collision detection on this pair, the contacts are in the dynamics world paircache:
-				 btBroadphasePair* collisionPair = cPhysicsManager::Get().GetDynamicsWorld()->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
-				 if (!collisionPair)
-					continue;
-
-				 if (collisionPair->m_algorithm)
-					collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
-
-				 for (int j=0;j<manifoldArray.size();j++){
-					btPersistentManifold* manifold = manifoldArray[j];
-					btScalar directionSign = manifold->getBody0() == mRaceControls[0] ? btScalar(-1.0) : btScalar(1.0);
-					for (int p=0;p<manifold->getNumContacts();p++)
-					{
-             			const btManifoldPoint&pt = manifold->getContactPoint(p);
-						if (pt.getDistance()<0.f){
-							const btVector3& ptA = pt.getPositionWorldOnA();
-							const btVector3& ptB = pt.getPositionWorldOnB();
-							const btVector3& normalOnB = pt.m_normalWorldOnB;
-							/// work here
-							printf ("Un coche paso la meta!\n");
-							for (unsigned luiIndex2 = 0; luiIndex2 < mVehicles.size(); ++luiIndex2 ) {
-								if (cObjectManager::Get().GetCars()->at(luiIndex)->GetModelName()==mVehicles.at(luiIndex2)->msModelName){
-									// Le añadimos UNA vuelta al coche adecuado
-									if(mVehicles[luiIndex]->AumentaVuelta){
-										mVehicles[luiIndex]->muiNumLaps++;
-										// Si algun coche llega al maximo se acaba la carrera
-										if(mVehicles[luiIndex]->muiNumLaps==this->muiMaxLaps){
-											EndRace();
-										}
-										mVehicles[luiIndex]->AumentaVuelta=false;
-										// Con esto recordaremos hace cuánto pasamos la meta
-										mVehicles[luiIndex]->mTickUltimaVuelta=muiTemporizador;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+			ComprobarColision(luiIndex);
+			
 		}
 	}
 
@@ -240,7 +290,8 @@ bool cRaceControlManager::LoadXml(void)
 		lpVehicle->muiOrder=0;
 		lpVehicle->muiKm=0;
 		lpVehicle->isPlayer=false;
-		lpVehicle->AumentaVuelta=true;
+		lpVehicle->AumentaVuelta=false;
+		lpVehicle->muiPuntoControlActual=0;
 		lpVehicle->mTickUltimaVuelta=0;
 
 		if (lpElement->Attribute("ModelName") != NULL)

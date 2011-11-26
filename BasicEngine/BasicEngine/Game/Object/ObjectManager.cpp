@@ -373,6 +373,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			// Le sumamos +10 a la posición y de manera que el modelo esté oculto bajo el circuito, mientras que la caja detectora de colisiones está en la pista.
 			btVector3 lvbtCenterMesh = btVector3( lpObject->GetPosition().x, lpObject->GetPosition().y+10, lpObject->GetPosition().z);
 			btTransform lbtLocalTrans = btTransform (lbtQuaternion,  lvbtCenterMesh );
+
+
 			//int liResourceCount = lSubModel->GetResourceCount(); //Hay que implementar esto
 /*			int liResourceCount = 0;
 			assert(liResourceCount <= 1);
@@ -405,7 +407,9 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cPhysicsManager::Get().GetDynamicsWorld()->getPairCache()->setInternalGhostPairCallback(ghostPairCallback);
 
 			//cRaceControlManager::Get().AddControl(lpbtRirigBody);
-			cRaceControlManager::Get().AddGhost(lbptGhost);
+			//cRaceControlManager::Get().AddGhost(lTokens[1].c_str(),lbptGhost);
+
+			cRaceControlManager::Get().AddPuntoControl(lTokens[2].c_str(),lTokens[1].c_str(),lpObject->GetPosition().x, lpObject->GetPosition().z,lbptGhost);
 
 		//	(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
 		}
@@ -1270,6 +1274,20 @@ void cObjectManager::ReloadVehicle()
 
 		cPhysicsVehicle* lpPhysicsVehicle = (cPhysicsVehicle*)lpPhysicsObject;
 
+		
+
+		int lPtoControl=cRaceControlManager::Get().GetPuntoControlFromCar(lObjectVehicle->GetModelName());
+		// Haremos que se coloque en la posición del ultimo punto de control por el que pasó
+		// Guardamos la posición y del coche, ya que el punto de control solo nos da X y Z.
+		int lAux=lObjectVehicle->GetPosition().y;
+		cVec3 Position = cRaceControlManager::Get().GetPositionPuntoControl(lPtoControl);
+		Position.y = lAux+10;
+		
+		// POR ALGUN MOTIVO NO FUNCIONA, NO DEVUELVE CORRECTAMENTE LA POSICION DEL PUNTO DE CONTROL. ARREGLAR.
+		//lpPhysicsVehicle->SetPosition(Position, lQuat);
+		
 		lpPhysicsVehicle->SetPosition(lvPosicionInicial, lQuat);
+
+		//mPosition = GetPosicionInicial();
 
 }
