@@ -48,7 +48,7 @@ bool cGame::Init()
 	mProperties.Init();
 
 	// Pantalla completa
-	mProperties.mbFullscreen=true;
+	//mProperties.mbFullscreen=true;  //esto ya lo hace el config.xml
 
 	bool lbResult = cWindow::Get().Init(mProperties);
 	if ( lbResult ) { // Init OpenGL
