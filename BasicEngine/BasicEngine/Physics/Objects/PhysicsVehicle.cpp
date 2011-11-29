@@ -48,7 +48,7 @@ const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
 const float gkfDesAcelerar = 5.f;  //cuando suelta el acelerador
 const float gkfFrenar = 20.f;
 
-bool	gbMarchaAtras = false; // Controlaremos cuando estamos en la marcha atrás o hacia adelante
+
 bool	gbCocheParado = true; // Controlaremos si el coche está en movimiento o no
 float	gfVehicleSteering = 0.f;
 float	gfSteeringIncrement = 0.02f;
@@ -89,6 +89,7 @@ cPhysicsVehicle::cPhysicsVehicle()
 	mpbtCarChassis = 0;
 	mbQuitarGiroRueda = false;
 	mbAcelerando = false;
+	gbMarchaAtras = false;
 	//m_cameraHeight = 4.f;
 	//m_minCameraDistance(3.f) 
 	//m_maxCameraDistance(10.f)
@@ -239,7 +240,6 @@ void cPhysicsVehicle::Init(cVec3 lPosition, cQuaternion lRotacionInicial)
 		
 		///never deactivate the vehicle
 		mpbtCarChassis->setActivationState(DISABLE_DEACTIVATION);
-
 		
 		//btRigidBody* lbtrb =  m_vehicle->getRigidBody();
 
@@ -417,9 +417,6 @@ void cPhysicsVehicle::SetPosition (cVec3 lvPosition, cQuaternion lRotacion)
 	mpbtVehicle->getRigidBody()->setWorldTransform(lbtTransform);
 }
 
-
-
-
 cQuaternion cPhysicsVehicle::GetQuatRotation()
 {
 	//cVec3 lVecRotation;
@@ -546,7 +543,6 @@ void cPhysicsVehicle::DesAcelerar()
 
 }
 
-
 void cPhysicsVehicle::SpecialKeyboardRelease(const unsigned int luiKey)
 {
 	bool lbGirar = false;
@@ -557,7 +553,8 @@ void cPhysicsVehicle::SpecialKeyboardRelease(const unsigned int luiKey)
 			break;
 			
 		case eIA_Down: //abajo
-			gfBreakingForce =0.f;
+			gfBreakingForce =gfMaxBreakingForce;
+			gfEngineForce = 0.f;
 			break;
 			
 		case eIA_Left:  //izquierda
@@ -721,11 +718,32 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 }
 
+// declaration of callback: Solo ejecutamos el sonido si no es ninguno de ls opuntos de control.
+struct btDrawingResult : public btCollisionWorld::ContactResultCallback
+{
+   virtual   btScalar   addSingleResult(btManifoldPoint& cp,   const btCollisionObject* colObj0,int partId0,int index0,const btCollisionObject* colObj1,int partId1,int index1)
+   {
+      std::cout << "contact!" << std::endl;
+	  bool Choque=true;
+	  for(unsigned int luiIndex=0;luiIndex<cRaceControlManager::Get().GetPuntosControl()->size();luiIndex++)
+		  if(colObj1->getCollisionShape()==cRaceControlManager::Get().GetPuntosControl()->at(luiIndex).Ghost->getCollisionShape())
+				  Choque=false;
+
+	  if(Choque) cRaceControlManager::Get().SonidosGolpes();
+	 
+	  btVector3 ptA = cp.getPositionWorldOnA();
+      btVector3 ptB = cp.getPositionWorldOnB();
+      btVector3 norm = cp.m_normalWorldOnB;
+      return 0;
+   }
+};
 
 void cPhysicsVehicle::ClientMoveAndDisplay()
 {
 	btDiscreteDynamicsWorld* lpDynamicsWorld = cPhysicsManager::Get().GetDynamicsWorld();
 	
+	btDrawingResult Choque;
+	lpDynamicsWorld->contactTest(this->mpbtCarChassis,Choque);
 	{			
 		if(!cRaceControlManager::Get().isRaceRunning()){
 			gfEngineForce=0;

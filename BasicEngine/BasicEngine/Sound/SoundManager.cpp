@@ -1,4 +1,5 @@
 #include "SoundManager.h"
+#include <time.h>
 
 bool cSoundManager::Init(){
 	// Initialize Framework
@@ -27,6 +28,11 @@ bool cSoundManager::Init(){
 	mIsMusicOn=!true;
 	return true;
 }
+void cSoundManager::SetListenerPosition(cVec3 lPosition){
+	ALfloat ListenerPos[]={lPosition.x,lPosition.y,lPosition.z};
+	alListenerfv( AL_POSITION, ListenerPos); 
+	alListener3f(AL_VELOCITY, 0.0,0.0,0.0);
+}
 
 // Esta función devolverá el ID del sonido para poder reproducirlo por parámetro desde otro objeto
 Sound *cSoundManager::AddSound(char *lFileName, bool isMusic){
@@ -52,10 +58,29 @@ Sound *cSoundManager::AddSound(char *lFileName, bool isMusic){
 	if(isMusic){
 		mMusic=new Sound;
 		mMusic=lNewSound;
+		// Bajamos un poco el volumen de la musica
+		float newVolume = 0.2f;
+		alSourcef(uiSource, AL_GAIN, newVolume);
 	}
 		// Añadimos el nuevo sonido a la lista
 	else mSoundsList.push_back(lNewSound);
 	return lNewSound;
+}
+
+void cSoundManager::PlaySoundBank(mSoundBank *lSoundBank, bool lRandom){
+	if(mIsSoundOn){
+		unsigned int luiIndex;
+		if(lRandom){
+			 /* initialize random seed: */
+			srand ( time(NULL) );
+
+			 /* generate secret number: */
+			luiIndex= rand() % lSoundBank->size();
+		}else luiIndex=1;
+
+		// Reproducimos la fuente
+		alSourcePlay( lSoundBank->at(luiIndex)->Source );
+	}
 }
 
 // Se reproducirá el sonido pasado por parámetro 

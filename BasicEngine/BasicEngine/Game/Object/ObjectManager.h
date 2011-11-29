@@ -19,7 +19,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		void Deinit();
 		void Render();
 		void Update(float lfTimestep);
-
+		void StopSounds();
 		cVec3 GetPosition(const string lsType, const string lsModelName);
 		cQuaternion GetRotacionInicial (const string lsType, const string lsModelName);
 		cObject *GetObject(const string lsType, const string lsModelName);
@@ -40,7 +40,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cQuaternion CalculateRotation ( cMatrix lMatrix);
 		cVec4 Multiplicar (const cVec4 lvCenterMesh4, const cMatrix lLocalMatrixSubModel);
 		btQuaternion HacerRotacion(const cQuaternion &lRotQuat);
-		
+	
 		
 	private:
 		

@@ -4,13 +4,16 @@
 #include "InputConfiguration.h"
 #include "..\Input\InputManager.h"
 
+
 bool cMenuManager::Init(string lsFilename){
 	mMenuPrincipal=new tMenu();
 	mMenuJugar=new tMenu();
 	mConfirmacion=new tMenu();
 	mMenuOpciones=new tMenu();
 	mMenuPartidaLibre=new tMenu();
+	mMenuPausa=new tMenu();
 
+	// MENU INICIAL //
 	mMenuPrincipal->msMenuName="Menu Principal";
 	mMenuPrincipal->muiNumItems=4;
 	tMenuItem *aux=new tMenuItem();
@@ -113,11 +116,75 @@ bool cMenuManager::Init(string lsFilename){
 	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
 	muiDistanceBWItems=30;
 
-	// Añadimos el sonido del movimiento
-	mMoveSound=new Sound();
-	mMoveSound=cSoundManager::Get().AddSound("MenuMove.wav");
-	
-	cSoundManager::Get().Play(mMoveSound);
+	// MENU PAUSA //
+
+	mMenuPausa->msMenuName="Pausa";
+	mMenuPausa->muiNumItems=4;
+	aux=new tMenuItem();
+	aux->mAction=Continuar;
+	aux->msMenuItem="Continuar";
+	aux->mTarget=NULL;
+	mMenuPausa->mItemsList.push_back(aux);
+	aux=new tMenuItem();
+	aux->mAction=Sonido;
+	aux->msMenuItem="Activar/Desactivar sonido";
+	aux->mTarget=NULL;
+	mMenuPausa->mItemsList.push_back(aux);
+	aux=new tMenuItem();
+	aux->mAction=Musica;
+	aux->msMenuItem="Activar/Desactivar música";
+	aux->mTarget=NULL;
+	mMenuPausa->mItemsList.push_back(aux);
+	aux=new tMenuItem();
+	aux->mAction=Preguntar;
+	aux->msMenuItem="Salir";
+	aux->mTarget=NULL;
+	mMenuPausa->mItemsList.push_back(aux);
+
+	// Añadimos los sonidos de movimiento
+	//moveSound=new Sound();
+	//mMoveSound=cSoundManager::Get().AddSound("MenuMove.wav");
+	Sound *lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento1.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento2.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento3.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento4.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento5.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento6.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento7.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento8.wav");
+	mMoves_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento9.wav");
+	mMoves_SoundBank.push_back(lAux);
+
+	mAceptarSound=new Sound();
+	mAceptarSound=cSoundManager::Get().AddSound("/Menu/Aceptar.wav");
+
+	mAtrasSound=new Sound();
+	mAtrasSound=cSoundManager::Get().AddSound("/Menu/Atras.wav");
+
+	mMusicaCreditos=new Sound();
+	mMusicaCreditos=cSoundManager::Get().AddSound("/Menu/MusicaCreditos.wav");
+
+	//mMoveSound=cSoundManager::Get().AddSound("MenuMove.wav");
+
+
+	//cSoundManager::Get().Play(mMoveSound);
 
 	// Inicializamos menu inicial
 	mMenuActual = new tMenu();
@@ -165,6 +232,19 @@ void cMenuManager::Render(){
 			mFont.Write(0, 0, 0,"Modo aun no disponible.", 0,	FONT_ALIGN_CENTER);
 			mFont.Write(0, -50, 0,"Presione 'Enter' para volver", 0,	FONT_ALIGN_CENTER);
 			break;
+		case ePausa:
+			mFont.SetHeight(40.0);
+			// Posición: arriba izquierda
+			mFont.Write(-280, 200, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+
+			for (unsigned luiIndex = 0; luiIndex < mMenuActual->mItemsList.size(); ++luiIndex ) 
+			{
+				if(muiSelectedItem==luiIndex+1)
+					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
+				else
+					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
+			}
+			break;
 	}
 }
 
@@ -172,24 +252,24 @@ void cMenuManager::Update(float lfTimestep){
 	// Movimiento por el menú
 	if (BecomePressed(eIA_Up)){
 		muiSelectedItem--;
-		cSoundManager::Get().Play(mMoveSound);
+		cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
 	}
 	if (BecomePressed(eIA_Down)){
 		muiSelectedItem++;
-		cSoundManager::Get().Play(mMoveSound);
+		cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
 	}
 	// Con esto haremos el menú bucle, es decir que desde arriba pasa abajo
 	if(muiSelectedItem<1)muiSelectedItem=mMenuActual->muiNumItems;
 	if(muiSelectedItem>mMenuActual->muiNumItems)muiSelectedItem=1;
 	
 	if (BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eNoDisponible) ){
-		cSoundManager::Get().Play(mMoveSound);
+		cSoundManager::Get().Play(mAceptarSound);
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
 	}
 
 	
-	if (BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eMenuPrincipal) ){
-		cSoundManager::Get().Play(mMoveSound);
+	if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eMenuPrincipal) || (cSceneManager::Get().GetScene()==ePausa))){
+		cSoundManager::Get().Play(mAceptarSound);
 		AbrirMenu();
 	}
 
@@ -199,22 +279,29 @@ void cMenuManager::Update(float lfTimestep){
 void cMenuManager::AbrirMenu(){
 	// Obtenemos qué elemento se abrirá
 	switch(mMenuActual->mItemsList.at(muiSelectedItem-1)->mAction){
+		case Continuar:
+			cSceneManager::Get().LoadScene(eGameplay);
+			break;
 		case ComenzarContrarreloj:
+			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(eContrarreloj); 
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
 		case Comenzar2Jug: 
+			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
 		case Comenzar4Jug: 
+			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
 		case ComenzarCampana: 
+			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(eCampana);
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
@@ -237,11 +324,11 @@ void cMenuManager::AbrirMenu(){
 		case Sonido: // Activar/Desactivar sonido
 			if(cSoundManager::Get().IsSoundOn()){
 				cSoundManager::Get().DeactivateSound();
-				cSoundManager::Get().Stop(mMoveSound);
+				cSoundManager::Get().Stop(mAceptarSound);
 			}
 			else{
 				cSoundManager::Get().ActivateSound();
-				cSoundManager::Get().Play(mMoveSound);
+				cSoundManager::Get().Play(mAceptarSound);
 			}
 			break;
 		case Musica: // Activar/Desactivar musica

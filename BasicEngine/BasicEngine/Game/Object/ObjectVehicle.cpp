@@ -9,6 +9,58 @@ cObjectVehicle::cObjectVehicle (cObject lObject)
 {
 		Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial(), lObject.GetScale());
 		this->SetPlayer(lObject.GetPlayer());
+
+		// Añadimos los sonidos de cada coche
+		if(lObject.GetModelName() == "Lambert"){
+			Sound *mSoundAcelerar=new Sound();
+			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarProta.wav");
+
+			Sound *mSoundFrenar=new Sound();
+			this->mSoundFrenar=cSoundManager::Get().AddSound("/Frenar/FrenarProta.wav");
+			
+			Sound *mSoundCorriendo=new Sound();
+			this->mSoundCorriendo=cSoundManager::Get().AddSound("/Corriendo/CorriendoProta.wav");
+
+			Sound *mSoundMarchaAtras=new Sound();
+			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasProta.wav");
+		}else if(lObject.GetModelName() == "L200"){
+			Sound *mSoundAcelerar=new Sound();
+			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarL200.wav");
+
+			Sound *mSoundFrenar=new Sound();
+			this->mSoundFrenar=cSoundManager::Get().AddSound("/Frenar/FrenarL200.wav");
+			
+			Sound *mSoundCorriendo=new Sound();
+			this->mSoundCorriendo=cSoundManager::Get().AddSound("/Corriendo/CorriendoL200.wav");
+
+			Sound *mSoundMarchaAtras=new Sound();
+			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasL200.wav");
+		}else if(lObject.GetModelName() == "Jeep"){
+			Sound *mSoundAcelerar=new Sound();
+			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarJeep.wav");
+
+			Sound *mSoundFrenar=new Sound();
+			this->mSoundFrenar=cSoundManager::Get().AddSound("/Frenar/FrenarJeep.wav");
+			
+			Sound *mSoundCorriendo=new Sound();
+			this->mSoundCorriendo=cSoundManager::Get().AddSound("/Corriendo/CorriendoJeep.wav");
+
+			Sound *mSoundMarchaAtras=new Sound();
+			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasJeep.wav");
+		}else if(lObject.GetModelName() == "Jazz"){
+			Sound *mSoundAcelerar=new Sound();
+			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarEnemigo.wav");
+
+			Sound *mSoundFrenar=new Sound();
+			this->mSoundFrenar=cSoundManager::Get().AddSound("/Frenar/FrenarEnemigo.wav");
+			
+			Sound *mSoundCorriendo=new Sound();
+			this->mSoundCorriendo=cSoundManager::Get().AddSound("/Corriendo/CorriendoEnemigo.wav");
+
+			Sound *mSoundMarchaAtras=new Sound();
+			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasEnemigo.wav");
+		}
+		mbSuena=true;
 		//mPhysicsObject = new cPhysicsVehicle;
 /*
 	mPhysicsObject = new cPhysicsPlayer;
@@ -24,8 +76,39 @@ void cObjectVehicle::InitPhysics ()
 	((cPhysicsVehicle*)mpPhysicsObject)->Init(mPosition);
 }
 */
+void cObjectVehicle::StopSounds(){
+	cSoundManager::Get().Stop(mSoundAcelerar);
+	cSoundManager::Get().Stop(mSoundFrenar);
+	cSoundManager::Get().Stop(mSoundCorriendo);
+	cSoundManager::Get().Stop(mSoundMarchaAtras);
+}
 
 void cObjectVehicle::Player1Control(){
+	
+	// Sonidos
+	if (BecomePressed(eIA_Up)){
+		cSoundManager::Get().Play(this->mSoundAcelerar);
+		cSoundManager::Get().Play(this->mSoundCorriendo,true);
+	}
+	if (BecomePressed(eIA_Down))
+		cSoundManager::Get().Play(this->mSoundFrenar);
+	if (!IsPressed(eIA_Up))
+		cSoundManager::Get().Stop(this->mSoundCorriendo);
+	if (this->GetPtrPhysicsVehicle()->MarchaAtras()){
+		if(mbSuena){
+			cSoundManager::Get().Play(this->mSoundMarchaAtras);
+			mbSuena=false;
+		}
+	}else{
+		cSoundManager::Get().Stop(this->mSoundMarchaAtras);
+		mbSuena=true;
+	}
+
+	if(BecomeReleased(eIA_Up))cSoundManager::Get().Stop(this->mSoundAcelerar);
+	if(BecomeReleased(eIA_Down)){
+		cSoundManager::Get().Stop(this->mSoundFrenar);
+		cSoundManager::Get().Stop(this->mSoundMarchaAtras);
+	}
 	//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else para que pueda usarse 2 teclas presionadas)
 	if (BecomePressed(eIA_Up) || IsPressed(eIA_Up)) 
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Up);
@@ -69,9 +152,12 @@ void cObjectVehicle::Update( float lfTimestep )
 	
 	//mWorldMatrix.LoadScale(mfScale);
 	
-	
 	// Si somos el player, llamaremos a la función de controlar el coche
-	if(this->GetPlayer()=="1")Player1Control();
+	if(this->GetPlayer()=="1"){
+		Player1Control();
+		// y actualizamos la posicion del sonido
+		cSoundManager::Get().SetListenerPosition(mPosition);
+	}
 	//if(this->GetPlayer()=="0") // Aqui pondremos la llamada a los controles por IA
 		//((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Up);//if(this->GetPlayer()=="0")IAControl();
 
@@ -92,7 +178,6 @@ void cObjectVehicle::Update( float lfTimestep )
 	
 }
 
-
 //void cObjectPlayer::Render (cMatrix &lWorld) 
 void cObjectVehicle::Render () 
 {
@@ -105,7 +190,6 @@ void cObjectVehicle::Render ()
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
 }
 
-
 //Recargando el vehiculo 
 void cObjectVehicle::Reload ()
 {
@@ -113,6 +197,7 @@ void cObjectVehicle::Reload ()
 	// Haremos que se coloque en la posición del ultimo punto de control por el que pasó
 	// Guardamos la posición y del coche, ya que el punto de control solo nos da X y Z.
 	int lAux=mPosition.y;
+	//printf("%i,%i,%i",
 	mPosition = cRaceControlManager::Get().GetPositionPuntoControl(lPtoControl);
 	mPosition.y = lAux+10;
 	//mPosition = GetPosicionInicial();
