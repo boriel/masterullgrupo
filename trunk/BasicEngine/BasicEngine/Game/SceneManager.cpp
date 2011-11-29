@@ -23,7 +23,7 @@ bool cSceneManager::LoadScene(eScenes lScene){
 	}
 	if(lScene==eNoDisponible){
 		cGame::Get().Render();
-	};
+	}
 	//if(lScene==eGameplay) {};
 	//if(lScene==eMenuPrincipal) {};
 	return true;

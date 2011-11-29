@@ -10,6 +10,8 @@ class cControlRaceManager: Controla la carrera. Orden de los vehículos en la com
 #include <vector>
 #include "..\..\..\bullet-2.78\src\BulletCollision\CollisionDispatch\btGhostObject.h"
 #include "btBulletDynamicsCommon.h" 
+#include "..\..\Sound\SoundManager.h"
+#include "..\..\MathLib\MathLib.h"
 
 using namespace std;
 
@@ -33,6 +35,8 @@ struct tVehicleControl
 	bool AumentaVuelta; // Esto se usará para que solo se aumente una vuelta cuando atravesamos la meta.		
 	unsigned int mTickUltimaVuelta; // Esto irá dentro de cada coche.
 	unsigned int muiPuntoControlActual; // Con esto sabremos cuál fue el último punto de control por el que pasó
+	cVec3 PosicionPtoControl; // Guardaremos la posición que tuvo el coche la ultima vez que paso por un punto de control
+	cQuaternion RotacionPtoControl; // También guardaremos la dirección
 };
 
 struct tLegControl
@@ -52,11 +56,14 @@ struct tPuntoControl{
 
 class cRaceControlManager : public cSingleton<cRaceControlManager>
 {
+		typedef std::vector<tPuntoControl> cControles; 
+		
 	public:	
 		bool Init(string lsFileName);
 		void Deinit();
 		void Render();
 		void Update(float lfTimestep);
+		void SonidosGolpes();
 //		inline void AddControl(btRigidBody *lControl){mRaceControls.push_back(lControl);}
 		void AddPuntoControl(string lNombre, string lTipo, int lPosX, int lPosZ, btPairCachingGhostObject* lGhost);
 		void PasoMeta();
@@ -70,11 +77,14 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		inline bool isFinalRace(){return mIsFinalRace;}
 		int GetPuntoControlFromCar(string lNombreCoche);
 		cVec3 GetPositionPuntoControl(int lPtoControl);
+		inline cControles *GetPuntosControl(){return &mRaceControls;}
 		void ComprobarColision(unsigned lCocheIndice);
 		void VaciarObjetos();
 		void EndRace();
 		void StartRace(); // Coloca a los coches en sus posiciones y pone cuenta atrás.
 		char *millisecondsToString(int time);
+		cQuaternion GetPtoControlRotationFromCar(string lNombreCoche);
+		cVec3 GetPtoControlPositionFromCar(string lNombreCoche);
 	private:
 		string msFileName;
 		unsigned int muiMaxLaps;
@@ -85,7 +95,6 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		cLegList mLegs;
 		unsigned int muiTemporizador; // Con esto tendremos un contador de tiempo para los tiempos de las vueltas.
 
-		typedef std::vector<tPuntoControl> cControles; 
 		cControles mRaceControls;
 		int mCuentaAtras;
 		eTipoPartida mTipoPartida;
@@ -93,6 +102,10 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		bool mRaceRunning;
 		bool LoadXml(void);
 		void Tokenize(const string& str, vector<string>& tokens,  const string& delimiters);
+
+		Sound *mPasoMeta;
+		Sound *mSoundVictoria;
+		mSoundBank mGolpes_SoundBank;
 };
 
 #endif

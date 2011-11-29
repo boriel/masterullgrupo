@@ -12,6 +12,7 @@ Class ObjectVehicle:
 #include "Object.h"
 #include "..\..\MathLib\MathLib.h"
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
+#include "..\..\Sound\SoundManager.h"
 
 class cObjectVehicle : public cObject
 {
@@ -28,12 +29,23 @@ class cObjectVehicle : public cObject
 
 		//virtual void InitPhysics();
 
+		void StopSounds();
 		void Reload ();
 		void Player1Control();
 		void IAControl();
 		cPhysicsVehicle* mpPhysicsObject;
 		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
+
+	private:
+		// Sonidos
+		Sound *mSoundAcelerar;
+		Sound *mSoundFrenar;
+		Sound *mSoundCorriendo;
+		Sound *mSoundMarchaAtras;
+
+		bool mbSuena; // Se usará para que solo suene una vez la marcha artas
+
 };
 
 

@@ -15,6 +15,7 @@ class cSoundManager: Controla y maneja todos los sonidos que se utilizarán en el
 #include <vector>
 // OpenAL includes
 #include"Framework\Framework.h"
+#include "..\MathLib\MathLib.h"
 using namespace std;
 	
 struct Sound{
@@ -24,7 +25,7 @@ struct Sound{
 };
 
 typedef std::vector<Sound *> mList;
-
+typedef std::vector<Sound *> mSoundBank;
 class cSoundManager :
 	public cSingleton<cSoundManager>
 {
@@ -35,6 +36,8 @@ public:
 		void Render();
 		void Update(float lfTimestep); 
 		Sound *AddSound(char *lFileName, bool isMusic=false);
+
+		void PlaySoundBank(mSoundBank *lSoundBank, bool lRandom=true);
 		void Play(Sound *lSound, bool lLoop=false);
 		void Stop(Sound *lSound);
 
@@ -49,6 +52,7 @@ public:
 		void PlayMusic();
 		void ChangeMusic(char *lFileName);
 		void StopMusic();
+		void SetListenerPosition(cVec3 lPosition);
 private:
 		bool mIsSoundOn;
 		bool mIsMusicOn;

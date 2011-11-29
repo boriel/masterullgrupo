@@ -697,6 +697,12 @@ cQuaternion cObjectManager::CalculateRotation ( cMatrix lMatrix )
 	return q;
 }
 
+void cObjectManager::StopSounds(){
+	for (int liIndex = 0; liIndex < mObjectVehicle.size(); liIndex++)
+	{
+		((cObjectVehicle *)mObjectVehicle[liIndex])->StopSounds();
+	}
+}
 
 void cObjectManager::Deinit()
 {
@@ -1279,14 +1285,14 @@ void cObjectManager::ReloadVehicle()
 		int lPtoControl=cRaceControlManager::Get().GetPuntoControlFromCar(lObjectVehicle->GetModelName());
 		// Haremos que se coloque en la posición del ultimo punto de control por el que pasó
 		// Guardamos la posición y del coche, ya que el punto de control solo nos da X y Z.
-		int lAux=lObjectVehicle->GetPosition().y;
+		/*int lAux=lObjectVehicle->GetPosition().y;
 		cVec3 Position = cRaceControlManager::Get().GetPositionPuntoControl(lPtoControl);
 		Position.y = lAux+10;
-		
+		*/
 		// POR ALGUN MOTIVO NO FUNCIONA, NO DEVUELVE CORRECTAMENTE LA POSICION DEL PUNTO DE CONTROL. ARREGLAR.
-		//lpPhysicsVehicle->SetPosition(Position, lQuat);
+		lpPhysicsVehicle->SetPosition(cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName()), cRaceControlManager::Get().GetPtoControlRotationFromCar(lObjectVehicle->GetModelName()));
 		
-		lpPhysicsVehicle->SetPosition(lvPosicionInicial, lQuat);
+		//lpPhysicsVehicle->SetPosition(lvPosicionInicial, lQuat);
 
 		//mPosition = GetPosicionInicial();
 

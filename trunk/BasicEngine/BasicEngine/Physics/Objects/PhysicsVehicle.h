@@ -104,10 +104,11 @@ class cPhysicsVehicle : public cPhysicsObject
 	void DesAcelerar();
 	void Derrapar();
 	void ParaDerrapar();
+	inline bool MarchaAtras(){return gbMarchaAtras;}
 	private:
 		bool mbQuitarGiroRueda;  //para saber si el coche ha girado las ruedas
 		bool mbAcelerando;
-
+		bool gbMarchaAtras; // Controlaremos cuando estamos en la marcha atrás o hacia adelante
 
 };
 

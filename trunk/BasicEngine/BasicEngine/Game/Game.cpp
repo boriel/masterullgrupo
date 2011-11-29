@@ -46,7 +46,10 @@ bool cGame::Init()
 	mbPause = false;
 
 	mProperties.Init();
-	
+
+	// Pantalla completa
+	mProperties.mbFullscreen=true;
+
 	bool lbResult = cWindow::Get().Init(mProperties);
 	if ( lbResult ) { // Init OpenGL
 		lbResult = cGraphicManager::Get().Init( &cWindow::Get() );
@@ -91,8 +94,7 @@ bool cGame::Init()
 	cMaterialManager::Get().Init(MaxSize); //Init Material Manager
 	cEffectManager::Get().Init(MaxSize);
 
-	mfAcTime = 0.0f;
-
+	mfAcTime = 0.0f; 
 	
 	// Los Init se han pasado a LoadRace() ya que en primer lugar ejecutaremos el Menú y desde ahí accederemos a la carrera
 	cSoundManager::Get().Init();
@@ -144,7 +146,7 @@ bool cGame::LoadRace()
 
 	// Iniciamos la cuenta atrás en el RaceControlManager
 	cRaceControlManager::Get().StartRace();
-
+	cSoundManager::Get().ChangeMusic("TemaPrincipal.wav");
 	// Ejemplo de ejecutar sonido. Cada objeto tendrá sus sonidos que se inicializarán en su propio Init
 	//cSoundManager::Get().Play(cSoundManager::Get().AddSound("Entorno.wav"), true);
 	return true;
@@ -226,7 +228,7 @@ void cGame::Update(float lfTimestep)
 	}
 
 	// Actualizamos los menús si son necesarios
-	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene()==eNoDisponible)
+	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene()==eNoDisponible || cSceneManager::Get().GetScene() == ePausa)
 		cMenuManager::Get().Update(lfTimestep);
 	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9
@@ -238,10 +240,14 @@ void cGame::Update(float lfTimestep)
 	if (BecomePressed(eIA_Reload)) //R
 		cObjectManager::Get().ReloadVehicle();
 	
+	if(cSceneManager::Get().GetScene()==eGameplay && BecomePressed( eIA_CloseApplication )){
+		cSceneManager::Get().LoadScene(ePausa);
+		cMenuManager::Get().MenuPausa();
+	}
 	// Check if we need to close the application
 	//Estamos actualizando el input manager y además estamos leyendo la entrada para saber si debemos cerrar la ventana porque se ha pulsado la tecla ESC
 	//mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| cInputManager::Get().GetAction( eIA_CloseApplication ).GetIsPressed();
-	mbFinish = mbFinish || cWindow::Get().GetCloseApplication()	|| IsPressed( eIA_CloseApplication );
+	mbFinish = mbFinish || cWindow::Get().GetCloseApplication();
 	if (mbFinish) return;
 #ifdef _DAVID
 	cTimeDebug::Get().StopAndEchoTimer(0);

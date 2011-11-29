@@ -13,7 +13,45 @@ bool cRaceControlManager::Init(string lsFileName)
 	LoadXml();
 	muiTemporizador = 0;
 	mIsFinalRace=false;
+
+	mPasoMeta=new Sound();
+	mPasoMeta=cSoundManager::Get().AddSound("/Meta/PasoMeta.wav");
+	float newVolume = 1.3f;
+	alSourcef(mPasoMeta->Source, AL_GAIN, newVolume);
+	
+	mSoundVictoria=new Sound();
+	mSoundVictoria=cSoundManager::Get().AddSound("/victoria/Victoria.wav",true);
+
+	Sound *lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque1.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque2.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque3.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque4.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque5.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque6.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque7.wav");
+	mGolpes_SoundBank.push_back(lAux);
+	lAux=new Sound();
+	lAux=cSoundManager::Get().AddSound("/Golpes/Choque8.wav");
+	mGolpes_SoundBank.push_back(lAux);
+
 	return true;
+}
+
+void cRaceControlManager::SonidosGolpes(){
+	cSoundManager::Get().PlaySoundBank(&mGolpes_SoundBank);
 }
 
 void cRaceControlManager::Deinit()
@@ -23,6 +61,7 @@ void cRaceControlManager::Deinit()
 }
 
 void cRaceControlManager::VaciarObjetos(){
+	cSoundManager::Get().Stop(mSoundVictoria);
 	mVehicles.clear();
 	mLegs.clear();
 }
@@ -39,6 +78,8 @@ void cRaceControlManager::StartRace(){
 }
 
 void cRaceControlManager::EndRace(){
+	cObjectManager::Get().StopSounds();
+	cSoundManager::Get().StopMusic();
 	mRaceRunning=false;
 
 	// Mostramos la pantalla de puntuación desde el HudManager
@@ -130,6 +171,7 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 				for (int p=0;p<manifold->getNumContacts();p++)
 				{
              		const btManifoldPoint&pt = manifold->getContactPoint(p);
+
 					if (pt.getDistance()<0.f){
 						const btVector3& ptA = pt.getPositionWorldOnA();
 						const btVector3& ptB = pt.getPositionWorldOnB();
@@ -147,20 +189,42 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 										mVehicles[lCocheIndice]->muiPuntoControlActual=0;
 										// Si algun coche llega al maximo se acaba la carrera
 										if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps){
+											cSoundManager::Get().Play(mSoundVictoria,true);
 											EndRace();
 										}
 										mVehicles[lCocheIndice]->AumentaVuelta=false;
 										printf ("Un coche paso la meta!\n");
+										cSoundManager::Get().Play(mPasoMeta);
+										if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName())
+											if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps-1)
+												cSoundManager::Get().ChangeMusic("TemaPrincipalSubido.wav");
+
 										// Con esto recordaremos hace cuánto pasamos la meta
 										//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
 									}
 								}else {
 									int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
 									printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+									// Comprobamos que solo va hacia deante el coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
+									// Genera errores, es poco probable que vaya hacia atras
+									/*if(lAux < mVehicles[lCocheIndice]->muiPuntoControlActual){
+										cObjectManager::Get().ReloadVehicle();
+										break;
+									}*/
+									
 									// Comprobamos que solo se sume una vez el punto de control actual
-									if(mVehicles[lCocheIndice]->muiPuntoControlActual != lAux)
+									if(mVehicles[lCocheIndice]->muiPuntoControlActual < lAux){
+										// Cuando pase un punto de control, guardamos la posición y la dirección para recargar el coche
 										mVehicles[lCocheIndice]->muiPuntoControlActual++;
-									// Habria que comprobar que solo va hacia deanteel coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
+										// Obtenemos la informacion del ObjectMAnager
+										for(int luiIndex=0;luiIndex<cObjectManager::Get().GetCars()->size();luiIndex++){
+											if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetCars()->at(luiIndex)->GetModelName()){
+												mVehicles[lCocheIndice]->PosicionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetPosition();
+												mVehicles[lCocheIndice]->RotacionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetRotacionInicial();
+											}
+										}
+
+									}
 								}
 							}
 						}
@@ -171,6 +235,16 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 	}
 }
 
+cQuaternion cRaceControlManager::GetPtoControlRotationFromCar(string lNombreCoche){
+	// Obtenemos el coche que buscamos y devolvemos el punto
+	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
+		if(mVehicles.at(luiIndex)->msModelName == lNombreCoche) return mVehicles.at(luiIndex)->RotacionPtoControl;
+}
+cVec3 cRaceControlManager::GetPtoControlPositionFromCar(string lNombreCoche){
+	// Obtenemos el coche que buscamos y devolvemos el punto
+	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
+		if(mVehicles.at(luiIndex)->msModelName == lNombreCoche) return mVehicles.at(luiIndex)->PosicionPtoControl;
+}
 void cRaceControlManager::Update(float lfTimestep)
 {	
 	// Actualizamos el temporizador

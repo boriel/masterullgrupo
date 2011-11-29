@@ -23,6 +23,7 @@ enum Action{
 	Comenzar2Jug,
 	Comenzar4Jug,
 	ComenzarCampana,
+	Continuar,
 	NoDisponible,
 	Preguntar,
 	Atras,
@@ -64,6 +65,7 @@ public:
 		void Update(float lfTimestep); 
 		void AbrirMenu(); // Haremos la acción apropiada con cada elemento del menú
 		inline void IniciarMenu(){mMenuActual = mMenuPrincipal;muiSelectedItem=1;}
+		void MenuPausa(){mMenuActual=mMenuPausa;}
 	private:
 		string msFileName;
 		// Menús Iniciales
@@ -82,8 +84,11 @@ public:
 		unsigned int muiDistanceBWItems; // Selecciona la distancia entre dos menuitems
 
 		// Sonidos
-		Sound *mMoveSound;
-
+		Sound *mAceptarSound;
+		Sound *mAtrasSound;
+		Sound *mMusicaMenu;
+		Sound *mMusicaCreditos;
+		mSoundBank mMoves_SoundBank; // Añadiremos todos los sonidos para los movimientos, de manera que podamos ejecutarlos aleatoriamente
 		// La fuente que utilizaremos
 		cFont mFont; // La fuente con la que escribiremos los textos
 		cResourceHandle mFontHandle;
