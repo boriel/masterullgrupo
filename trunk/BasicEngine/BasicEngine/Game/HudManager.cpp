@@ -43,7 +43,7 @@ void cHudManager::Render()
 	glEnable(GL_TEXTURE_2D);
 	if(cRaceControlManager::Get().isFinalRace()){
 		mFont.SetHeight(40);
-		mFont.SetColour(255,0,0);
+		mFont.SetColour(1.0,0,0);
 
 		mFont.Write(0, 40, 0,"Has conseguido un tiempo de:", 0,FONT_ALIGN_CENTER);
 		
@@ -52,8 +52,8 @@ void cHudManager::Render()
 		mFont.Write(0, -40, 0,"Presiona 'Enter' para volver al menu", 0,FONT_ALIGN_CENTER);
 
 	}else if(mIsHudActive && cRaceControlManager::Get().isRaceRunning()){
-		mFont.SetHeight(30.0);
-		mFont.SetColour(115,115,115);
+		mFont.SetHeight(50.0);
+		mFont.SetColour(1.0,0,0);
 		// Posición: abajo derecha
 		char *lPosition=new char(); 
 		sprintf(lPosition,"%i",mHud.muiPosition);
@@ -95,14 +95,13 @@ void cHudManager::Render()
 		//mFont.SetColour( 0.0f, 1.0f, 1.0f );
 		mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera -- R: Reload", 0,	FONT_ALIGN_CENTER);
 		mFont.Write(0, -220, 0, "F8 = Change Camera  F9 = Debug", 0,	FONT_ALIGN_CENTER);
-#endif	
+	
 
-//#if _DEBUG		
 		float lfFPS = cFPSCounter::Get().GetFPS();
 		char* lpcFPS = new char[10];
 		sprintf(lpcFPS, "%.2g FPS", lfFPS );
 		mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
-//#endif	
+#endif
 }
 
 bool cHudManager::LoadXml(void)

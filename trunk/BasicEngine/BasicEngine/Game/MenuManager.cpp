@@ -3,7 +3,7 @@
 #include <tinyxml.h>
 #include "InputConfiguration.h"
 #include "..\Input\InputManager.h"
-
+#include "..\Graphics\Textures\TextureManager.h"
 
 bool cMenuManager::Init(string lsFilename){
 	mMenuPrincipal=new tMenu();
@@ -28,7 +28,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPrincipal->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Creditos;
-	aux->msMenuItem="Créditos";
+	aux->msMenuItem="Creditos";
 	aux->mTarget=NULL;
 	mMenuPrincipal->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -42,7 +42,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuJugar->muiNumItems=3;
 	aux=new tMenuItem();
 	aux->mAction=NoDisponible; // No esta disponible este modo
-	aux->msMenuItem="Campaña";
+	aux->msMenuItem="Historia";
 	aux->mTarget=mMenuPrincipal;
 	mMenuJugar->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -65,7 +65,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuOpciones->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Musica;
-	aux->msMenuItem="Activar/Desactivar música";
+	aux->msMenuItem="Activar/Desactivar musica";
 	aux->mTarget=NULL;
 	mMenuOpciones->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -97,11 +97,11 @@ bool cMenuManager::Init(string lsFilename){
 	aux->mTarget=mMenuJugar;
 	mMenuPartidaLibre->mItemsList.push_back(aux);
 
-	mConfirmacion->msMenuName="¿Está seguro?";
+	mConfirmacion->msMenuName="¿Esta seguro?";
 	mConfirmacion->muiNumItems=2;
 	aux=new tMenuItem();
 	aux->mAction=Salir;
-	aux->msMenuItem="Sí";
+	aux->msMenuItem="Si";
 	aux->mTarget=NULL;
 	mConfirmacion->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -109,12 +109,6 @@ bool cMenuManager::Init(string lsFilename){
 	aux->msMenuItem="No";
 	aux->mTarget=NULL;
 	mConfirmacion->mItemsList.push_back(aux);
-
-	// Inicializamos las fuentes que usaremos
-	mFont.Init("./Data/Fonts/Test2.fnt"); // Init the Font
-	cFontManager::Get().Init(5);
-	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
-	muiDistanceBWItems=30;
 
 	// MENU PAUSA //
 
@@ -132,7 +126,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Musica;
-	aux->msMenuItem="Activar/Desactivar música";
+	aux->msMenuItem="Activar/Desactivar musica";
 	aux->mTarget=NULL;
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -142,8 +136,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPausa->mItemsList.push_back(aux);
 
 	// Añadimos los sonidos de movimiento
-	//moveSound=new Sound();
-	//mMoveSound=cSoundManager::Get().AddSound("MenuMove.wav");
+
 	Sound *lAux=new Sound();
 	lAux=cSoundManager::Get().AddSound("/Menu/Movimiento1.wav");
 	mMoves_SoundBank.push_back(lAux);
@@ -181,10 +174,17 @@ bool cMenuManager::Init(string lsFilename){
 	mMusicaCreditos=new Sound();
 	mMusicaCreditos=cSoundManager::Get().AddSound("/Menu/MusicaCreditos.wav");
 
-	//mMoveSound=cSoundManager::Get().AddSound("MenuMove.wav");
+	//Añadimos las texturas
+	mTexturaFondoMenu=cTextureManager::Get().LoadResource("Fondo","./Data/Menu/FondoMenu.jpg");
+	mPortada=cTextureManager::Get().LoadResource("Portada","./Data/Menu/Portada.jpg");
 
-
-	//cSoundManager::Get().Play(mMoveSound);
+	// Inicializamos las fuentes que usaremos
+	mFont.Init("./Data/Fonts/Fuente.fnt"); // Init the Font
+	cFontManager::Get().Init(5);
+	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
+	muiDistanceBWItems=30;
+	mParpadeo=true;
+	mTiempoParpadeo=0;
 
 	// Inicializamos menu inicial
 	mMenuActual = new tMenu();
@@ -193,6 +193,7 @@ bool cMenuManager::Init(string lsFilename){
 }
 
 void cMenuManager::Deinit(){
+	mFont.Deinit();
 	// Eliminar todos los menús
 	mMenuPrincipal->mItemsList.clear();
 	delete mMenuPrincipal;
@@ -207,24 +208,78 @@ void cMenuManager::Deinit(){
 }
 
 void cMenuManager::Render(){
+	GLint lAuxX;
+	GLint lAuxY;
 	glEnable(GL_TEXTURE_2D);
 	switch(cSceneManager::Get().GetScene())
 	{
 		case eMenuPrincipal:	
+
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
-			mFont.Write(-280, 200, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
+			mFont.Write(-260, 150, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
 
 			for (unsigned luiIndex = 0; luiIndex < mMenuActual->mItemsList.size(); ++luiIndex ) 
 			{
 				if(muiSelectedItem==luiIndex+1)
-					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
 				else
-					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
 		case eLoading:
-			mFont.SetHeight(100.0);
+			mFont.SetHeight(40.0);
+			// Posición: arriba izquierda
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
 			mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			break;
 		case eNoDisponible:
@@ -235,17 +290,105 @@ void cMenuManager::Render(){
 		case ePausa:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
-			mFont.Write(-280, 200, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
+			mFont.Write(-260, 150, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
 
 			for (unsigned luiIndex = 0; luiIndex < mMenuActual->mItemsList.size(); ++luiIndex ) 
 			{
 				if(muiSelectedItem==luiIndex+1)
-					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
 				else
-					mFont.Write(-250, 190-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
+		case ePortada:	;
+			mFont.SetHeight(40.0);
+			// Posición: arriba izquierda
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mPortada.GetKey() );
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
+			if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
+			break;
+		case eCreditos:
+			mFont.SetHeight(40.0);
+			// Posición: arriba izquierda
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() ); // Poner imágen de créditos
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
+			if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para volver", 0,	FONT_ALIGN_CENTER);
+			break;
 	}
+	
 }
 
 void cMenuManager::Update(float lfTimestep){
@@ -262,17 +405,25 @@ void cMenuManager::Update(float lfTimestep){
 	if(muiSelectedItem<1)muiSelectedItem=mMenuActual->muiNumItems;
 	if(muiSelectedItem>mMenuActual->muiNumItems)muiSelectedItem=1;
 	
-	if (BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eNoDisponible) ){
+	if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eNoDisponible)|| cSceneManager::Get().GetScene() == eCreditos)){
 		cSoundManager::Get().Play(mAceptarSound);
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
-	}
-
-	
-	if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eMenuPrincipal) || (cSceneManager::Get().GetScene()==ePausa))){
+	}else if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eMenuPrincipal) || (cSceneManager::Get().GetScene()==ePausa))){
 		cSoundManager::Get().Play(mAceptarSound);
 		AbrirMenu();
 	}
 
+	if(cSceneManager::Get().GetScene() == ePortada && BecomePressed(eIA_Accept)){
+		cSoundManager::Get().Play(mAceptarSound);
+		cSceneManager::Get().LoadScene(eMenuPrincipal);
+	}
+
+
+
+	if(mTiempoParpadeo>10){
+		mParpadeo=!mParpadeo;
+		mTiempoParpadeo=0;
+	}else mTiempoParpadeo++;
 
 }
 
@@ -339,6 +490,9 @@ void cMenuManager::AbrirMenu(){
 				cSoundManager::Get().ActivateMusic();
 				cSoundManager::Get().PlayMusic();
 			}
+			break;
+		case Creditos:
+			cSceneManager::Get().LoadScene(eCreditos);
 			break;
 	}
 	// Ponemos siempre el indicador al principio

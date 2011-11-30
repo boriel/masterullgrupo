@@ -24,8 +24,8 @@ bool cSoundManager::Init(){
 	alDistanceModel(AL_LINEAR_DISTANCE_CLAMPED);
 
 	// ! Activamos el sonido y la musica por defecto
-	mIsSoundOn=!true;
-	mIsMusicOn=!true;
+	mIsSoundOn=true;
+	mIsMusicOn=true;
 	return true;
 }
 void cSoundManager::SetListenerPosition(cVec3 lPosition){
