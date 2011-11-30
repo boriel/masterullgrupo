@@ -22,6 +22,8 @@ enum eScenes{
 	eGameplay,
 	eNoDisponible,
 	ePausa,
+	ePortada,
+	eCreditos,
 	eFinPartida
 };
 

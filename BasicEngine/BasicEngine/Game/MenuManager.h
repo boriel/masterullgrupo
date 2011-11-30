@@ -82,6 +82,8 @@ public:
 		// Variables de estética
 		unsigned int muiSelectedItem;
 		unsigned int muiDistanceBWItems; // Selecciona la distancia entre dos menuitems
+		bool mParpadeo; // Dará efecto de parpadear a ciertos elementos
+		unsigned int mTiempoParpadeo;
 
 		// Sonidos
 		Sound *mAceptarSound;
@@ -92,6 +94,8 @@ public:
 		// La fuente que utilizaremos
 		cFont mFont; // La fuente con la que escribiremos los textos
 		cResourceHandle mFontHandle;
+		cResourceHandle mTexturaFondoMenu;
+		cResourceHandle mPortada;
 		// Carga XML
 		bool LoadXml(void);
 };

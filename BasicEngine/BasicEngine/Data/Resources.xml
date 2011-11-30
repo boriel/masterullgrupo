@@ -3,6 +3,7 @@
   <Fonts>
     <Font Name="Font1" File="./Data/Fonts/Test1.fnt" />
     <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />
+	<Font Name="Fuente" File="./Data/Fonts/Fuente.fnt" />
   </Fonts>
  
   <Objects>

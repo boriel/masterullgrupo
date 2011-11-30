@@ -48,7 +48,7 @@ bool cGame::Init()
 	mProperties.Init();
 
 	// Pantalla completa
-	//mProperties.mbFullscreen=true;  //esto ya lo hace el config.xml
+	//mProperties.mbFullscreen=true;
 
 	bool lbResult = cWindow::Get().Init(mProperties);
 	if ( lbResult ) { // Init OpenGL
@@ -57,7 +57,7 @@ bool cGame::Init()
 	}
 
 	cTextureManager::Get().Init(100); //Iniciando las texturas. Espacio reservado máximo para la carga=10
-
+	
 	//==============
 	//Init CAMERA-3D
 	//==============
@@ -102,7 +102,7 @@ bool cGame::Init()
 	cSceneManager::Get().Init();
 
 	// Accedemos directamente al juego
-	cSceneManager::Get().LoadScene(eMenuPrincipal);
+	cSceneManager::Get().LoadScene(ePortada);
 	cHudManager::Get().Init("Data/Resources.xml");
 	cMenuManager::Get().Init("Data/Resources.xml");
 
@@ -228,7 +228,7 @@ void cGame::Update(float lfTimestep)
 	}
 
 	// Actualizamos los menús si son necesarios
-	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene()==eNoDisponible || cSceneManager::Get().GetScene() == ePausa)
+	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene() == eCreditos || cSceneManager::Get().GetScene()==eNoDisponible || cSceneManager::Get().GetScene() == ePausa || cSceneManager::Get().GetScene() == ePortada)
 		cMenuManager::Get().Update(lfTimestep);
 	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9
@@ -239,7 +239,7 @@ void cGame::Update(float lfTimestep)
 
 	if (BecomePressed(eIA_Reload)) //R
 		cObjectManager::Get().ReloadVehicle();
-	
+
 	if(cSceneManager::Get().GetScene()==eGameplay && BecomePressed( eIA_CloseApplication )){
 		cSceneManager::Get().LoadScene(ePausa);
 		cMenuManager::Get().MenuPausa();
@@ -272,6 +272,7 @@ void cGame::Render()
 
 	// 1) Clean Buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	// 2) Activate the 3D Camera
 	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 
@@ -314,7 +315,7 @@ void cGame::Render()
 
 
 	// 7) Postprocessing
-	
+
 	// 8) Swap Buffers
 	cGraphicManager::Get().SwapBuffer();  // Al final del ciclo de renderizado, volcamos el buffer
 
