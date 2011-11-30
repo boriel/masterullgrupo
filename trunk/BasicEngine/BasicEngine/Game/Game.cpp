@@ -48,7 +48,7 @@ bool cGame::Init()
 	mProperties.Init();
 
 	// Pantalla completa
-	//mProperties.mbFullscreen=true;
+	mProperties.mbFullscreen=true;
 
 	bool lbResult = cWindow::Get().Init(mProperties);
 	if ( lbResult ) { // Init OpenGL
@@ -206,10 +206,19 @@ void cGame::Update(float lfTimestep)
 
 	// Si la carrera ha finalizado y presionamos Enter, volvemos al menú inicial
 	if(cRaceControlManager::Get().isFinalRace() && BecomePressed(eIA_Accept)){
-		// A lo mejor hay que Deinicializar las librerías antes de volver al menú
-		cObjectManager::Get().VaciarObjetos();
-		cRaceControlManager::Get().VaciarObjetos();
-		cSceneManager::Get().LoadScene(eMenuPrincipal);
+		// Deinicializar las librerías antes de volver al menú
+			cObjectManager::Get().VaciarObjetos();
+			cRaceControlManager::Get().VaciarObjetos();
+		if(cSceneManager::Get().GetHistoria()==0){
+			cSceneManager::Get().LoadScene(eMenuPrincipal);
+		}else{
+			// Si estamos en la historia, pasamos al siguiente nivel
+			int Map=cSceneManager::Get().NextHistoria();
+			if(Map==1)cRaceControlManager::Get().SetTipoPartida(eContrarreloj);
+			if(Map==2)cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
+			if(Map==3)cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
+			cSceneManager::Get().LoadScene(eLoading);
+		}
 	}
 
 	/*

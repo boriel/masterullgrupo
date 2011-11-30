@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 
 bool cSceneManager::Init(){
+	mHistoria=0;
 	return true;
 }
 

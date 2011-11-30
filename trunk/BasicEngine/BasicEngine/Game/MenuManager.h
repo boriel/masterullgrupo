@@ -22,7 +22,7 @@ enum Action{
 	ComenzarContrarreloj,
 	Comenzar2Jug,
 	Comenzar4Jug,
-	ComenzarCampana,
+	ComenzarHistoria,
 	Continuar,
 	NoDisponible,
 	Preguntar,

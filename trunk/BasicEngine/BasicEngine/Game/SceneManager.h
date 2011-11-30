@@ -24,6 +24,7 @@ enum eScenes{
 	ePausa,
 	ePortada,
 	eCreditos,
+	eHistoria,
 	eFinPartida
 };
 
@@ -36,8 +37,10 @@ public:
 	void Update(float lfTimestep); 
 	bool LoadScene(eScenes lScene);
 	inline eScenes GetScene(){return mActualScene;}
-
+	inline int GetHistoria(){return mHistoria;}
+	inline int NextHistoria(){return mHistoria++;}
 private:
 	eScenes mActualScene;
+	int mHistoria; // Utilizaremos este valor para saber en qué punto de la historia estamos, si es 0, es una partida libre
 };
 
