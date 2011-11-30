@@ -3,6 +3,7 @@
 #include "..\Graphics\Fonts\FontManager.h"
 #include "FPSCounter.h"
 #include "Object\RaceControlManager.h"
+#include "SceneManager.h"
 
 #include <tinystr.h>
 #include <tinyxml.h>
@@ -49,8 +50,8 @@ void cHudManager::Render()
 		
 		mFont.Write(0, 0, 0,cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera), 0,FONT_ALIGN_CENTER);
 
-		mFont.Write(0, -40, 0,"Presiona 'Enter' para volver al menu", 0,FONT_ALIGN_CENTER);
-
+		if(cSceneManager::Get().GetHistoria()==0)mFont.Write(0, -40, 0,"Presiona 'Enter' para volver al menu", 0,FONT_ALIGN_CENTER);
+		else mFont.Write(0, -40, 0,"Presiona 'Enter' para ir al siguiente nivel", 0,FONT_ALIGN_CENTER);
 	}else if(mIsHudActive && cRaceControlManager::Get().isRaceRunning()){
 		mFont.SetHeight(50.0);
 		mFont.SetColour(1.0,0,0);

@@ -41,7 +41,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuJugar->msMenuName="Jugar";
 	mMenuJugar->muiNumItems=3;
 	aux=new tMenuItem();
-	aux->mAction=NoDisponible; // No esta disponible este modo
+	aux->mAction=ComenzarHistoria; // No esta disponible este modo
 	aux->msMenuItem="Historia";
 	aux->mTarget=mMenuPrincipal;
 	mMenuJugar->mItemsList.push_back(aux);
@@ -259,7 +259,15 @@ void cMenuManager::Render(){
 			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
 			
 			mFont.SetColour(0.0f,0.0f,0.0f);
-			glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			if(cSceneManager::Get().GetHistoria()==0)
+				glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			if(cSceneManager::Get().GetHistoria()==1)
+				glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			if(cSceneManager::Get().GetHistoria()==2)
+				glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+			if(cSceneManager::Get().GetHistoria()==3)
+				glBindTexture( GL_TEXTURE_2D, mTexturaFondoMenu.GetKey() );
+
 			// Draw texture using a quad 
 			glBegin(GL_POLYGON); 
 			lAuxX=cWindow::Get().GetWidth()/2;
@@ -280,7 +288,8 @@ void cMenuManager::Render(){
 			// Finish quad drawing 
 			glEnd();
 
-			mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
+			if(cSceneManager::Get().GetHistoria()==0)mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
+			else mFont.Write(0, -195, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			break;
 		case eNoDisponible:
 			mFont.SetHeight(50.0);
@@ -325,7 +334,7 @@ void cMenuManager::Render(){
 					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
-		case ePortada:	;
+		case ePortada:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
 			mFont.SetColour(1.0f,1.0f,1.0f);
@@ -405,7 +414,7 @@ void cMenuManager::Update(float lfTimestep){
 	if(muiSelectedItem<1)muiSelectedItem=mMenuActual->muiNumItems;
 	if(muiSelectedItem>mMenuActual->muiNumItems)muiSelectedItem=1;
 	
-	if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eNoDisponible)|| cSceneManager::Get().GetScene() == eCreditos)){
+	if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eNoDisponible)|| cSceneManager::Get().GetScene() == eCreditos || cSceneManager::Get().GetScene() == ePortada) ){
 		cSoundManager::Get().Play(mAceptarSound);
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
 	}else if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eMenuPrincipal) || (cSceneManager::Get().GetScene()==ePausa))){
@@ -413,10 +422,10 @@ void cMenuManager::Update(float lfTimestep){
 		AbrirMenu();
 	}
 
-	if(cSceneManager::Get().GetScene() == ePortada && BecomePressed(eIA_Accept)){
+	/*if(cSceneManager::Get().GetScene() == ePortada && BecomePressed(eIA_Accept)){
 		cSoundManager::Get().Play(mAceptarSound);
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
-	}
+	}*/
 
 
 
@@ -451,9 +460,10 @@ void cMenuManager::AbrirMenu(){
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
-		case ComenzarCampana: 
+		case ComenzarHistoria: 
 			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(eCampana);
+			cSceneManager::Get().NextHistoria();
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
