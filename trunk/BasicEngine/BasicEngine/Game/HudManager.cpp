@@ -97,12 +97,12 @@ void cHudManager::Render()
 		mFont.Write(0, -200, 0, "Cursor = Vehicle Move -- W,A,S,D,PAG_UP,PAG_DOWN: God Camera -- R: Reload", 0,	FONT_ALIGN_CENTER);
 		mFont.Write(0, -220, 0, "F8 = Change Camera  F9 = Debug", 0,	FONT_ALIGN_CENTER);
 	
-
+#endif
 		float lfFPS = cFPSCounter::Get().GetFPS();
 		char* lpcFPS = new char[10];
 		sprintf(lpcFPS, "%.2g FPS", lfFPS );
 		mFont.Write(-260, 210, 0, lpcFPS, 0, FONT_ALIGN_CENTER);
-#endif
+
 }
 
 bool cHudManager::LoadXml(void)

@@ -179,7 +179,7 @@ bool cMenuManager::Init(string lsFilename){
 	mPortada=cTextureManager::Get().LoadResource("Portada","./Data/Menu/Portada.jpg");
 
 	// Inicializamos las fuentes que usaremos
-	mFont.Init("./Data/Fonts/Fuente.fnt"); // Init the Font
+	mFont.Init("./Data/Fonts/Test1.fnt"); // Init the Font
 	cFontManager::Get().Init(5);
 	mFontHandle = cFontManager::Get().LoadResourcesXml("Fonts");  //cargando desde XML
 	muiDistanceBWItems=30;
