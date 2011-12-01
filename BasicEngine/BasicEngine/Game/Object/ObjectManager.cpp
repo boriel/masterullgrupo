@@ -54,6 +54,7 @@ bool cObjectManager::Init()
 	{
 		//mObjectVehicle[luiIndex]->SetScale(mObjectVehicle[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
+        mObjectVehicle[luiIndex]->Init();
 	}
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
@@ -819,7 +820,7 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			if (lpElement->Attribute("Player") != NULL) //hay name y symbol que estan vacios, y si no pongo esta comprobación da un batacazo el windows!!!
 				lsPlayer = ((char*)lpElement->Attribute("Player"));
 
-			cObject* lObject = new cObject;
+			cObjectAgent* lObject = new cObjectAgent;
 
 			//TODO: para encapsular esto entre llaves
 			{ 
@@ -893,7 +894,6 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 						cObject* lObjectPtr = new cObjectVehicle(*lObject);
 						mObjectVehicle.push_back(lObjectPtr);
 					}
-
 			}
 			else if (lsType == "Race")
 			{	

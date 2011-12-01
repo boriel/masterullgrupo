@@ -4,10 +4,11 @@
 #include "..\..\Game\Object\RaceControlManager.h"
 #include "..\..\Input\InputManager.h"
 #include "..\InputConfiguration.h"
+#include "Behaviour\PlayerBehaviour.h"
 
-cObjectVehicle::cObjectVehicle (cObject lObject)
+cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 {
-		Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial(), lObject.GetScale());
+		cObject::Init (lObject.GetPosition(), lObject.GetType(), lObject.GetModelName(), lObject.GetModelFile(), lObject.GetRotacionInicial(), lObject.GetScale());
 		this->SetPlayer(lObject.GetPlayer());
 
 		// Añadimos los sonidos de cada coche
@@ -83,6 +84,7 @@ void cObjectVehicle::StopSounds(){
 	cSoundManager::Get().Stop(mSoundMarchaAtras);
 }
 
+/*
 void cObjectVehicle::Player1Control(){
 	
 	// Sonidos
@@ -120,12 +122,11 @@ void cObjectVehicle::Player1Control(){
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Right);
 
 	// Activar/Desactivar Derrape
-	/*if (BecomePressed(eIA_Drift) || IsPressed(eIA_Drift)) 
-		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Drift);
-	if (BecomeReleased(eIA_Drift))
-		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Drift);
-	*/// ---------------------------------
-
+	// if (BecomePressed(eIA_Drift) || IsPressed(eIA_Drift)) 
+	//	 ((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboard(eIA_Drift);
+	// if (BecomeReleased(eIA_Drift))
+	//	 ((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Drift);
+	///// ---------------------------------
 
 	if (BecomeReleased(eIA_Up))
 		((cPhysicsVehicle*)mpPhysicsObject)->SpecialKeyboardRelease(eIA_Up);
@@ -140,21 +141,33 @@ void cObjectVehicle::Player1Control(){
 	if (!(BecomePressed(eIA_Up) || IsPressed(eIA_Up)))
 		((cPhysicsVehicle*)mpPhysicsObject)->DesAcelerar();
 }
+*/
+
+void cObjectVehicle::Init()
+{
+    cObjectAgent::Init();
+    mpActiveBehaviour = new cPlayerBehaviour();
+    mpActiveBehaviour->Init(this);
+}
 
 void cObjectVehicle::Update( float lfTimestep )
 {
-	mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
+    cObjectAgent::Update(lfTimestep);
+
+    // Esto ya lo hace el ancestro
+    mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
 	
 	//mWorldMatrix.LoadIdentity();
 	cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
 	lQuatRot.AsMatrix(mWorldMatrix);
 	mWorldMatrix.SetPosition(mPosition);
 	
-	//mWorldMatrix.LoadScale(mfScale);
+
+	if(this->GetPlayer()=="1") {
+	    //mWorldMatrix.LoadScale(mfScale);
 	
-	// Si somos el player, llamaremos a la función de controlar el coche
-	if(this->GetPlayer()=="1"){
-		Player1Control();
+        // Si somos el player, llamaremos a la función de controlar el coche
+		//Player1Control();
 		// y actualizamos la posicion del sonido
 		cSoundManager::Get().SetListenerPosition(mPosition);
 	}

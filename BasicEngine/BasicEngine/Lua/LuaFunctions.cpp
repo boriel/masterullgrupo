@@ -1,9 +1,9 @@
 #include <cassert>
 #include "../Utility/Debug.h"
-#include "../Character/CharacterManager.h"
-#include "../Character/Behaviour/BehaviourManager.h"
-#include "../Character/Behaviour/ChaserBase.h"
-#include "../Character/Behaviour/patrol.h"
+//#include "../Character/CharacterManager.h"
+//#include "../Character/Behaviour/BehaviourManager.h"
+//#include "../Character/Behaviour/ChaserBase.h"
+//#include "../Character/Behaviour/patrol.h"
 #include "../Graphics/GraphicManager.h"
 
 #include "LuaManager.h"
@@ -20,6 +20,7 @@
 namespace LUA {
 
 
+/*
 // Esta función crea un personaje en (0, 0, 0) y 
 // le pone como meta las coordenadas X, Y, Z
 // y la velocidad tangencial y angular pasadas por LUA
@@ -188,15 +189,16 @@ int CreatePlayer(lua_State *lpLuaContext)
 	//Devolvemos el número de valores de retorno
 	return 1;
 };
+*/
 
 } // Fin del Espacio de Nombres LUA::
 
 void RegisterLuaFunctions()
 {
-	REG_LUA_FUNC("CreatePatrol", LUA::CreatePatrol);
-	REG_LUA_FUNC("SetPatrolTarget", LUA::SetPatrolTarget);
-	REG_LUA_FUNC("DrawLine", LUA::DrawLine);
-	REG_LUA_FUNC("DrawCircle", LUA::DrawCircle);
-	REG_LUA_FUNC("CreatePlayer", LUA::CreatePlayer);
+	//REG_LUA_FUNC("CreatePatrol", LUA::CreatePatrol);
+	//REG_LUA_FUNC("SetPatrolTarget", LUA::SetPatrolTarget);
+	//REG_LUA_FUNC("DrawLine", LUA::DrawLine);
+	//REG_LUA_FUNC("DrawCircle", LUA::DrawCircle);
+	//REG_LUA_FUNC("CreatePlayer", LUA::CreatePlayer);
 }
 
