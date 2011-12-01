@@ -40,17 +40,11 @@
     <Filter Include="Graphics\Fonts">
       <UniqueIdentifier>{21157547-92ae-40de-bdfa-3044630af334}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Character">
-      <UniqueIdentifier>{0712d576-a506-4b80-846f-01b84b5ab658}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Lua">
       <UniqueIdentifier>{2f786d31-a284-4b85-9746-81bb7b86b899}</UniqueIdentifier>
     </Filter>
     <Filter Include="Lua\src">
       <UniqueIdentifier>{a89fd686-3895-465e-a3ae-3f3040be9c41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Character\Behaviour">
-      <UniqueIdentifier>{8a62c32f-dc5d-47ce-856b-096f854fe913}</UniqueIdentifier>
     </Filter>
     <Filter Include="Graphics\GLee">
       <UniqueIdentifier>{a8ad4bfc-9c19-4dbe-9ffa-d17c0773172a}</UniqueIdentifier>
@@ -90,6 +84,9 @@
     </Filter>
     <Filter Include="Sound\Framework">
       <UniqueIdentifier>{8b373fb4-87ee-42b6-8d97-d9f75db3fe5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Object\Behaviour">
+      <UniqueIdentifier>{f3a24394-f896-47de-8cf6-fff1a3f3563a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,12 +225,6 @@
     <ClInclude Include="Graphics\Fonts\acutil_unicode.h">
       <Filter>Graphics\Fonts</Filter>
     </ClInclude>
-    <ClInclude Include="Character\Character.h">
-      <Filter>Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\CharacterManager.h">
-      <Filter>Character</Filter>
-    </ClInclude>
     <ClInclude Include="Lua\src\lapi.h">
       <Filter>Lua\src</Filter>
     </ClInclude>
@@ -306,35 +297,11 @@
     <ClInclude Include="Lua\LuaManager.h">
       <Filter>Lua</Filter>
     </ClInclude>
-    <ClInclude Include="Character\Behaviour\behaviourbase.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\ChaserNoOrientation.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\ChaserBase.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\ChaserSnapOrientation.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\ChaserWithOrientation.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\BehaviourManager.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
     <ClInclude Include="Lua\LuaFunctions.h">
       <Filter>Lua</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\GLee\GLee.h">
       <Filter>Graphics\GLee</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\patrol.h">
-      <Filter>Character\Behaviour</Filter>
-    </ClInclude>
-    <ClInclude Include="Character\Behaviour\PlayerController.h">
-      <Filter>Character\Behaviour</Filter>
     </ClInclude>
     <ClInclude Include="Graphics\Materials\MaterialData.h">
       <Filter>Graphics\Materials</Filter>
@@ -465,6 +432,15 @@
     <ClInclude Include="Utility\TimeDebug.h">
       <Filter>Utility</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Object\Behaviour\Behaviour.h">
+      <Filter>Game\Object\Behaviour</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\ObjectAgent.h">
+      <Filter>Game\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Object\Behaviour\PlayerBehaviour.h">
+      <Filter>Game\Object\Behaviour</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game.cpp">
@@ -536,12 +512,6 @@
     </ClCompile>
     <ClCompile Include="Graphics\Fonts\acutil_unicode.cpp">
       <Filter>Graphics\Fonts</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Character.cpp">
-      <Filter>Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\CharacterManager.cpp">
-      <Filter>Character</Filter>
     </ClCompile>
     <ClCompile Include="Lua\src\lapi.c">
       <Filter>Lua\src</Filter>
@@ -636,32 +606,11 @@
     <ClCompile Include="Lua\LuaManager.cpp">
       <Filter>Lua</Filter>
     </ClCompile>
-    <ClCompile Include="Character\Behaviour\chaserbase.cpp">
-      <Filter>Character\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Behaviour\ChaserNoOrientation.cpp">
-      <Filter>Character\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Behaviour\ChaserSnapOrientation.cpp">
-      <Filter>Character\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Behaviour\ChaserWithOrientation.cpp">
-      <Filter>Character\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Behaviour\BehaviourManager.cpp">
-      <Filter>Character\Behaviour</Filter>
-    </ClCompile>
     <ClCompile Include="Lua\LuaFunctions.cpp">
       <Filter>Lua</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\GLee\GLee.c">
       <Filter>Graphics\GLee</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Behaviour\patrol.cpp">
-      <Filter>Character\Behaviour</Filter>
-    </ClCompile>
-    <ClCompile Include="Character\Behaviour\playercontroller.cpp">
-      <Filter>Character\Behaviour</Filter>
     </ClCompile>
     <ClCompile Include="Graphics\Materials\MaterialManager.cpp">
       <Filter>Graphics\Materials</Filter>
@@ -782,6 +731,12 @@
     </ClCompile>
     <ClCompile Include="Utility\TimeDebug.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\ObjectAgent.cpp">
+      <Filter>Game\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Behaviour\PlayerBehaviour.cpp">
+      <Filter>Game\Object\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ class cObject
 		
 		//cObject(cVec3 lPosition, string lsType, string lsModelName, string lsModelFile);
 
-		void Init();
+		virtual void Init();
 		void Init (cVec3 lPosition, string lsType, string lsModelName, string lsModelFile, cQuaternion lRotacionInicial, float lScale=1.0);
 		void Deinit();
 		

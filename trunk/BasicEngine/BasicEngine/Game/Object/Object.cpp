@@ -50,6 +50,7 @@ void cObject::Render()
 #endif	
 }
 
+
 void cObject::Update( float lfTimestep )
 {
 	mPosition = mpPhysicsObject->GetPosition();

@@ -9,19 +9,17 @@ Class ObjectVehicle:
 
 #include <string>
 
-#include "Object.h"
+#include "ObjectAgent.h"
 #include "..\..\MathLib\MathLib.h"
 #include "..\..\Physics\Objects\PhysicsVehicle.h"
 #include "..\..\Sound\SoundManager.h"
 
-class cObjectVehicle : public cObject
+class cObjectVehicle : public cObjectAgent
 {
 
 	public: 
 		cObjectVehicle () {}
-		cObjectVehicle (cObject lObject);
-		
-		
+		cObjectVehicle (cObjectAgent lObject);
 
 		virtual void Update (float lfTimestep);
 		//virtual void Render (cMatrix &lWorld);
@@ -37,15 +35,16 @@ class cObjectVehicle : public cObject
 		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
 
-	private:
+        virtual void Init();
+
+	//private:
 		// Sonidos
-		Sound *mSoundAcelerar;
+	    Sound *mSoundAcelerar;
 		Sound *mSoundFrenar;
 		Sound *mSoundCorriendo;
 		Sound *mSoundMarchaAtras;
 
-		bool mbSuena; // Se usará para que solo suene una vez la marcha artas
-
+		bool mbSuena; // Se usará para que solo suene una vez la marcha artas      
 };
 
 
