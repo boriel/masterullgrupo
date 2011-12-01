@@ -616,7 +616,9 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 				gfEngineForce = 0.f;	
 				if(mpbtVehicle->getCurrentSpeedKmHour()<0.1){
 					gbMarchaAtras=false; // Si el coche está parado activamos la direccion opuesta
-					printf("Marcha Atras Desactivada!\n");
+#ifdef _DEBUG
+					//printf("Marcha Atras Desactivada!\n");
+#endif
 				}
 			}else{
 				gfEngineForce = gfMaxEngineForce;
@@ -631,10 +633,15 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 			}else{
 				gfBreakingForce = gfMaxBreakingForce; 
 				gfEngineForce = 0.f;
-				printf("Velocidad Coche: %f",mpbtVehicle->getCurrentSpeedKmHour());
-				if(mpbtVehicle->getCurrentSpeedKmHour()<0.1){
+#ifdef _DEBUG
+				//printf("Velocidad Coche: %f",mpbtVehicle->getCurrentSpeedKmHour());
+#endif
+				if(mpbtVehicle->getCurrentSpeedKmHour()<0.1)
+				{
 					gbMarchaAtras=true; // Si el coche está parado activamos la direccion opuesta
-					printf("Marcha Atras Activada!\n");
+#ifdef _DEBUG
+					//printf("Marcha Atras Activada!\n");
+#endif
 				}
 			}
 			break;
@@ -667,7 +674,7 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 #ifdef _DEBUG
 	//printf("gfVehicleSteering  = %i\n", gfVehicleSteering);
 	//printf("gfEngineForce = %f   ----   gfBreakingForce = %f \n", gfEngineForce, gfBreakingForce);
-	printf("Friccion Delantera: %f Friccion Trasera: %f Sliding:%f\n",mpbtVehicle->getWheelInfo(1).m_frictionSlip,mpbtVehicle->getWheelInfo(3).m_frictionSlip, mpbtVehicle->getWheelInfo(1).m_skidInfo);
+	//printf("Friccion Delantera: %f Friccion Trasera: %f Sliding:%f\n",mpbtVehicle->getWheelInfo(1).m_frictionSlip,mpbtVehicle->getWheelInfo(3).m_frictionSlip, mpbtVehicle->getWheelInfo(1).m_skidInfo);
 
 #endif	
 		
@@ -723,7 +730,10 @@ struct btDrawingResult : public btCollisionWorld::ContactResultCallback
 {
    virtual   btScalar   addSingleResult(btManifoldPoint& cp,   const btCollisionObject* colObj0,int partId0,int index0,const btCollisionObject* colObj1,int partId1,int index1)
    {
-      std::cout << "contact!" << std::endl;
+#ifdef _DEBUG
+      //std::cout << "contact!" << std::endl;
+#endif
+
 	  bool Choque=true;
 	  for(unsigned int luiIndex=0;luiIndex<cRaceControlManager::Get().GetPuntosControl()->size();luiIndex++)
 		  if(colObj1->getCollisionShape()==cRaceControlManager::Get().GetPuntosControl()->at(luiIndex).Ghost->getCollisionShape())
