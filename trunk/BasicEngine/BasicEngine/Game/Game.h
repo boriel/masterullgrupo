@@ -48,7 +48,7 @@ class cGame : public cSingleton<cGame> {
 		inline float GetAcumulatedTime() { return mfAcTime; } //calcular el tiempo en segundos desde que comenzó la aplicación a ejecutar
 		float mfAcTime; //Tiempo desde que empezó la aplicación. La necesitan los shaders.
 		bool LoadRace(); // Cargará la carrera cuando sea necesario
-
+		bool StartRace();
 	private:  //métodos
 		void SetTheWorldMatrix();
 		void RenderModels();

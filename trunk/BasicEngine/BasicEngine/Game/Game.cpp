@@ -98,14 +98,14 @@ bool cGame::Init()
 	
 	// Los Init se han pasado a LoadRace() ya que en primer lugar ejecutaremos el Menú y desde ahí accederemos a la carrera
 	cSoundManager::Get().Init();
-	cSoundManager::Get().ChangeMusic("Entorno.wav");
+	//cSoundManager::Get().ChangeMusic("Entorno.wav");
 	cSceneManager::Get().Init();
 
 	// Accedemos directamente al juego
 	cSceneManager::Get().LoadScene(ePortada);
 	cHudManager::Get().Init("Data/Resources.xml");
 	cMenuManager::Get().Init("Data/Resources.xml");
-
+	
 
 	/*
 	//Skeletal crea una malla esqueletal (usando un recurso añadido como atributo de la clase) y le establece la animación de “Idle”.
@@ -136,17 +136,26 @@ bool cGame::Init()
 
 bool cGame::LoadRace()
 {
+	
 	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico (no los objetos)
 	cObjectManager::Get().Init();
 	cRaceControlManager::Get().Init("Data/Resources.xml");
 	
 	cFPSCounter::Get().Init();
+	
+	cMenuManager::Get().SetAviso(true);
+	
+	return true;
+}
+
+bool cGame::StartRace(){
 	// Cuando ha terminado todo de cargarse cambiamos la escena a Gameplay
 	cSceneManager::Get().LoadScene(eGameplay);
 
 	// Iniciamos la cuenta atrás en el RaceControlManager
 	cRaceControlManager::Get().StartRace();
 	cSoundManager::Get().ChangeMusic("TemaPrincipal.wav");
+
 	// Ejemplo de ejecutar sonido. Cada objeto tendrá sus sonidos que se inicializarán en su propio Init
 	//cSoundManager::Get().Play(cSoundManager::Get().AddSound("Entorno.wav"), true);
 	return true;
@@ -211,13 +220,17 @@ void cGame::Update(float lfTimestep)
 			cRaceControlManager::Get().VaciarObjetos();
 		if(cSceneManager::Get().GetHistoria()==0){
 			cSceneManager::Get().LoadScene(eMenuPrincipal);
-		}else{
-			// Si estamos en la historia, pasamos al siguiente nivel
-			int Map=cSceneManager::Get().NextHistoria();
-			if(Map==1)cRaceControlManager::Get().SetTipoPartida(eContrarreloj);
-			if(Map==2)cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
-			if(Map==3)cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
-			cSceneManager::Get().LoadScene(eLoading);
+		}else {
+			// Si estamos en la historia, pasamos al siguiente nivel si ha ganado, si no volvemos al menú
+			if(cRaceControlManager::Get().GetVictoria()){
+				int Map=cSceneManager::Get().NextHistoria();
+				if(Map==1)cRaceControlManager::Get().SetTipoPartida(eContrarreloj);
+				if(Map==2)cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
+				if(Map==3)cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
+			
+				if(Map>3)cSceneManager::Get().LoadScene(eMenuPrincipal);
+				else cSceneManager::Get().LoadScene(eLoading);
+			}else cSceneManager::Get().LoadScene(eMenuPrincipal);
 		}
 	}
 
@@ -234,6 +247,10 @@ void cGame::Update(float lfTimestep)
 		cRaceControlManager::Get().Update(lfTimestep);
 		// Actualizamos el Hud
 		cHudManager::Get().Update(lfTimestep);
+	}
+
+	if((cSceneManager::Get().GetScene()==eLoading) && BecomePressed(eIA_Accept)){
+		this->StartRace();
 	}
 
 	// Actualizamos los menús si son necesarios

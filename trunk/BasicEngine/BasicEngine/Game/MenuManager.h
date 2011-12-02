@@ -66,6 +66,7 @@ public:
 		void AbrirMenu(); // Haremos la acción apropiada con cada elemento del menú
 		inline void IniciarMenu(){mMenuActual = mMenuPrincipal;muiSelectedItem=1;}
 		void MenuPausa(){mMenuActual=mMenuPausa;}
+		inline void SetAviso(bool lParpadeo){mAviso=lParpadeo;}
 	private:
 		string msFileName;
 		// Menús Iniciales
@@ -84,6 +85,7 @@ public:
 		unsigned int muiDistanceBWItems; // Selecciona la distancia entre dos menuitems
 		bool mParpadeo; // Dará efecto de parpadear a ciertos elementos
 		unsigned int mTiempoParpadeo;
+		bool mAviso;
 
 		// Sonidos
 		Sound *mAceptarSound;
@@ -95,7 +97,15 @@ public:
 		cFont mFont; // La fuente con la que escribiremos los textos
 		cResourceHandle mFontHandle;
 		cResourceHandle mTexturaFondoMenu;
+		cResourceHandle mTexturaFondoCargando;
+		cResourceHandle mTexturaFondoHistoria1;
+		cResourceHandle mTexturaFondoHistoria2;
+		cResourceHandle mTexturaFondoHistoria3;
+		cResourceHandle mTexturaFondoHistoria4;
 		cResourceHandle mPortada;
+		cResourceHandle mTexturaFondoPausa;
+		cResourceHandle mTexturaFondoCreditos;
+
 		// Carga XML
 		bool LoadXml(void);
 };
