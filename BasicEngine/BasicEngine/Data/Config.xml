@@ -2,6 +2,7 @@
 
 	<Config Name="Toy Corriendo" Fullscreen="false" Bits="32" Width="640" Height="480">
 	
+    
 	<!-- <Config Name="Demo de Coches" Fullscreen="true" Bits="32" Width="1024" Height="768"> -->
   
 </Config>
