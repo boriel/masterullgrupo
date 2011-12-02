@@ -54,7 +54,10 @@ void cObject::Render()
 void cObject::Update( float lfTimestep )
 {
 	mPosition = mpPhysicsObject->GetPosition();
-	cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
+    cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
+    ///mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
+    ///cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
+
 	lQuatRot.AsMatrix(mWorldMatrix);
 	//mWorldMatrix.LoadScale(mfScale);
 	mWorldMatrix.SetPosition(mPosition);

@@ -2,7 +2,7 @@
 
 void cObjectAgent::Update( float lfTimestep )
 {
- //   cObject::Update(lfTimestep);
+    cObject::Update(lfTimestep);
 
 	if (mpActiveBehaviour != NULL)
 		mpActiveBehaviour->Update(lfTimestep);

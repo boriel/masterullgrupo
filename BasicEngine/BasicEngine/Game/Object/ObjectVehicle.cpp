@@ -152,16 +152,17 @@ void cObjectVehicle::Init()
 
 void cObjectVehicle::Update( float lfTimestep )
 {
-    cObjectAgent::Update(lfTimestep);
+    cObjectAgent::Update(lfTimestep); // Llamamos al ancestro (el cual contiene el comportamiento)
 
     // Esto ya lo hace el ancestro
-    mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
-	
-	//mWorldMatrix.LoadIdentity();
-	cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
-	lQuatRot.AsMatrix(mWorldMatrix);
-	mWorldMatrix.SetPosition(mPosition);
-	
+    
+    // mPosition = ((cPhysicsVehicle*)mpPhysicsObject)->GetPosition();
+	// //mWorldMatrix.LoadIdentity();
+
+    // Esto ya lo hace el ancestro
+	// cQuaternion lQuatRot=((cPhysicsVehicle*)mpPhysicsObject)->GetQuatRotation();
+	// lQuatRot.AsMatrix(mWorldMatrix);
+	// mWorldMatrix.SetPosition(mPosition);
 
 	if(this->GetPlayer()=="1") {
 	    //mWorldMatrix.LoadScale(mfScale);
