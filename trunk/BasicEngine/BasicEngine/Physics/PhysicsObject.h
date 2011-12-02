@@ -51,9 +51,9 @@ class cPhysicsObject
 		//inline std::string GetModelName () {return msModelName; }
 
 
-		cVec3 GetPosition ();
+		virtual cVec3 GetPosition ();
+		virtual cQuaternion GetQuatRotation();
 
-		cQuaternion GetQuatRotation();
 		btQuaternion CambiarEje (const cQuaternion &lRotQuat);
 		bool CreateBoxShape(cVec3 lVec3);
 

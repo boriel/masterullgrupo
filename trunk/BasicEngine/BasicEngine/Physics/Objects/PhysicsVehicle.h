@@ -74,9 +74,11 @@ class cPhysicsVehicle : public cPhysicsObject
 		//void Update(void);
 		void MostrarInfo ();
 
-		cVec3 GetPosition ();
+		virtual cVec3 GetPosition ();
+		virtual cQuaternion GetQuatRotation();
+
 		void SetPosition (cVec3 lvPosition, cQuaternion lRotation);
-		cQuaternion GetQuatRotation();
+
 		//void RenderObjectVehicleDebug();
 
 		void SpecialKeyboardRelease(const unsigned int luiKey);
