@@ -80,11 +80,12 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		inline cControles *GetPuntosControl(){return &mRaceControls;}
 		void ComprobarColision(unsigned lCocheIndice);
 		void VaciarObjetos();
-		void EndRace();
+		void EndRace(bool lVictoria);
 		void StartRace(); // Coloca a los coches en sus posiciones y pone cuenta atrás.
 		char *millisecondsToString(int time);
 		cQuaternion GetPtoControlRotationFromCar(string lNombreCoche);
 		cVec3 GetPtoControlPositionFromCar(string lNombreCoche);
+		bool GetVictoria(){return mVictoria;}
 	private:
 		string msFileName;
 		unsigned int muiMaxLaps;
@@ -94,7 +95,7 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		typedef std::vector<tLegControl *> cLegList;
 		cLegList mLegs;
 		unsigned int muiTemporizador; // Con esto tendremos un contador de tiempo para los tiempos de las vueltas.
-
+		bool mVictoria; // Con esto sabremos si se ha ganado o a perdido la partida.
 		cControles mRaceControls;
 		int mCuentaAtras;
 		eTipoPartida mTipoPartida;
@@ -105,6 +106,7 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 
 		Sound *mPasoMeta;
 		Sound *mSoundVictoria;
+		Sound *mSoundDerrota;
 		mSoundBank mGolpes_SoundBank;
 };
 

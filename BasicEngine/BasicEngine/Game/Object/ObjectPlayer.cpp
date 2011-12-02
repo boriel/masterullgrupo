@@ -15,11 +15,12 @@ cObjectPlayer::cObjectPlayer (cObject lObject)
 
 void cObjectPlayer::Update( float lfTimestep )
 {
-	mPosition = mpPhysicsObject->GetPosition();
-	cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
-	lQuatRot.AsMatrix(mWorldMatrix);
-	mWorldMatrix.SetPosition(mPosition);
-
+	if(mpPhysicsObject != NULL){
+		mPosition = mpPhysicsObject->GetPosition();
+		cQuaternion lQuatRot= mpPhysicsObject->GetQuatRotation();
+		lQuatRot.AsMatrix(mWorldMatrix);
+		mWorldMatrix.SetPosition(mPosition);
+	}
 	/*
 	if (IsPressed(eIA_PlayerForward)) {
 		MoveForwards(0.3f);

@@ -84,11 +84,12 @@ void cSoundManager::PlaySoundBank(mSoundBank *lSoundBank, bool lRandom){
 }
 
 // Se reproducirá el sonido pasado por parámetro 
-void cSoundManager::Play(Sound *lSound, bool lLoop){
+void cSoundManager::Play(Sound *lSound, cVec3 lPosition, bool lLoop){
 	if(mIsSoundOn){
 		// Reproducimos la fuente
 		alSourcePlay( lSound->Source );
-	
+		ALfloat SourcePos[]={lPosition.x,lPosition.y,lPosition.z};
+		alSourcefv( lSound->Source , AL_POSITION ,SourcePos);
 		if(lLoop){
 			//Hacemos sonar repetidamente el sonido
 			alSourcei( lSound->Source ,AL_LOOPING,AL_TRUE);
@@ -106,10 +107,12 @@ void cSoundManager::PlayMusic(){
 }
 
 void cSoundManager::ChangeMusic(char *lFileName){
-	// Eliminamos la musica
-	alDeleteBuffers(1,&mMusic->Buffer);
-	alDeleteSources(1,&mMusic->Source);
-	delete mMusic;
+	if(mMusic != NULL){
+		// Eliminamos la musica
+		alDeleteBuffers(1,&mMusic->Buffer);
+		alDeleteSources(1,&mMusic->Source);
+		delete mMusic;
+	}
 
 	AddSound(lFileName,true);
 	PlayMusic();

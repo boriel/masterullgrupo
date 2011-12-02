@@ -89,16 +89,16 @@ void cObjectVehicle::Player1Control(){
 	
 	// Sonidos
 	if (BecomePressed(eIA_Up)){
-		cSoundManager::Get().Play(this->mSoundAcelerar);
-		cSoundManager::Get().Play(this->mSoundCorriendo,true);
+		cSoundManager::Get().Play(this->mSoundAcelerar,mPosition);
+		cSoundManager::Get().Play(this->mSoundCorriendo,mPosition,true);
 	}
 	if (BecomePressed(eIA_Down))
-		cSoundManager::Get().Play(this->mSoundFrenar);
+		cSoundManager::Get().Play(this->mSoundFrenar,mPosition);
 	if (!IsPressed(eIA_Up))
 		cSoundManager::Get().Stop(this->mSoundCorriendo);
 	if (this->GetPtrPhysicsVehicle()->MarchaAtras()){
 		if(mbSuena){
-			cSoundManager::Get().Play(this->mSoundMarchaAtras);
+			cSoundManager::Get().Play(this->mSoundMarchaAtras,mPosition);
 			mbSuena=false;
 		}
 	}else{

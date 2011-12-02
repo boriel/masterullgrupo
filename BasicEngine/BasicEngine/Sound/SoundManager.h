@@ -38,7 +38,7 @@ public:
 		Sound *AddSound(char *lFileName, bool isMusic=false);
 
 		void PlaySoundBank(mSoundBank *lSoundBank, bool lRandom=true);
-		void Play(Sound *lSound, bool lLoop=false);
+		void Play(Sound *lSound, cVec3 lPosition, bool lLoop=false);
 		void Stop(Sound *lSound);
 
 		// Con esto activaremos y desactivaremos el sonido

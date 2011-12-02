@@ -20,19 +20,19 @@ void cPlayerBehaviour::Update(float lfTimeStep){
 	
 	// Sonidos
 	if (BecomePressed(eIA_Up)){
-		cSoundManager::Get().Play(mpAgent->mSoundAcelerar);
-		cSoundManager::Get().Play(mpAgent->mSoundCorriendo, true);
+		cSoundManager::Get().Play(mpAgent->mSoundAcelerar,mpAgent->GetPosition());
+		cSoundManager::Get().Play(mpAgent->mSoundCorriendo,mpAgent->GetPosition(), true);
 	}
 
 	if (BecomePressed(eIA_Down))
-		cSoundManager::Get().Play(mpAgent->mSoundFrenar);
+		cSoundManager::Get().Play(mpAgent->mSoundFrenar,mpAgent->GetPosition());
 
 	if (!IsPressed(eIA_Up))
 		cSoundManager::Get().Stop(mpAgent->mSoundCorriendo);
 
 	if (mpAgent->GetPtrPhysicsVehicle()->MarchaAtras()){
 		if(mpAgent->mbSuena){
-			cSoundManager::Get().Play(mpAgent->mSoundMarchaAtras);
+			cSoundManager::Get().Play(mpAgent->mSoundMarchaAtras,mpAgent->GetPosition());
             mpAgent->mbSuena = false;
 		}
 	} else {

@@ -20,7 +20,10 @@ bool cRaceControlManager::Init(string lsFileName)
 	alSourcef(mPasoMeta->Source, AL_GAIN, newVolume);
 	
 	mSoundVictoria=new Sound();
-	mSoundVictoria=cSoundManager::Get().AddSound("/victoria/Victoria.wav",true);
+	mSoundVictoria=cSoundManager::Get().AddSound("/victoria/Victoria.wav");
+
+	mSoundDerrota=new Sound();
+	mSoundDerrota=cSoundManager::Get().AddSound("/derrota/Derrota.wav");
 
 	Sound *lAux=new Sound();
 	lAux=cSoundManager::Get().AddSound("/Golpes/Choque1.wav");
@@ -77,11 +80,11 @@ void cRaceControlManager::StartRace(){
 	mIsFinalRace=false;
 }
 
-void cRaceControlManager::EndRace(){
+void cRaceControlManager::EndRace(bool lVictoria){
 	cObjectManager::Get().StopSounds();
 	cSoundManager::Get().StopMusic();
 	mRaceRunning=false;
-
+	mVictoria=lVictoria;
 	// Mostramos la pantalla de puntuación desde el HudManager
 	mIsFinalRace=true;
 }
@@ -189,12 +192,17 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 										mVehicles[lCocheIndice]->muiPuntoControlActual=0;
 										// Si algun coche llega al maximo se acaba la carrera
 										if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps){
-											cSoundManager::Get().Play(mSoundVictoria,true);
-											EndRace();
+											if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName()){
+												cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
+												EndRace(true);
+											}else{
+												cSoundManager::Get().Play(mSoundDerrota, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
+												EndRace(false);
+											}
 										}
 										mVehicles[lCocheIndice]->AumentaVuelta=false;
 										printf ("Un coche paso la meta!\n");
-										cSoundManager::Get().Play(mPasoMeta);
+										cSoundManager::Get().Play(mPasoMeta,cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition());
 										if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName())
 											if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps-1)
 												cSoundManager::Get().ChangeMusic("TemaPrincipalSubido.wav");
