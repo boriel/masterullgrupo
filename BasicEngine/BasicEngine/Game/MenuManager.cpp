@@ -14,7 +14,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPausa=new tMenu();
 
 	// MENU INICIAL //
-	mMenuPrincipal->msMenuName="Menu Principal";
+	mMenuPrincipal->msMenuName="Menú Principal";
 	mMenuPrincipal->muiNumItems=4;
 	tMenuItem *aux=new tMenuItem();
 	aux->mAction=Abrir;
@@ -28,7 +28,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPrincipal->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Creditos;
-	aux->msMenuItem="Creditos";
+	aux->msMenuItem="Créditos";
 	aux->mTarget=NULL;
 	mMenuPrincipal->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -65,7 +65,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuOpciones->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Musica;
-	aux->msMenuItem="Activar/Desactivar musica";
+	aux->msMenuItem="Activar/Desactivar música";
 	aux->mTarget=NULL;
 	mMenuOpciones->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -97,11 +97,11 @@ bool cMenuManager::Init(string lsFilename){
 	aux->mTarget=mMenuJugar;
 	mMenuPartidaLibre->mItemsList.push_back(aux);
 
-	mConfirmacion->msMenuName="¿Esta seguro?";
+	mConfirmacion->msMenuName="¿Estás seguro?";
 	mConfirmacion->muiNumItems=2;
 	aux=new tMenuItem();
 	aux->mAction=Salir;
-	aux->msMenuItem="Si";
+	aux->msMenuItem="Sí";
 	aux->mTarget=NULL;
 	mConfirmacion->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -126,7 +126,7 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Musica;
-	aux->msMenuItem="Activar/Desactivar musica";
+	aux->msMenuItem="Activar/Desactivar música";
 	aux->mTarget=NULL;
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
