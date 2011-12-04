@@ -380,7 +380,7 @@ cVec3 cPhysicsVehicle::GetPosition ()
 
 
 //Obtenemos la posicion central del objeto
-void cPhysicsVehicle::SetPosition (cVec3 lvPosition, cQuaternion lRotacion)
+void cPhysicsVehicle::SetPosition (const cVec3 &lvPosition)//, cQuaternion lRotacion)
 {
 
 	btTransform lbtTransform;
@@ -389,20 +389,17 @@ void cPhysicsVehicle::SetPosition (cVec3 lvPosition, cQuaternion lRotacion)
 	//mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
 	
-	
 	//lbtTransform.getOrigin().setX(lvPosition.x);
 	//lbtTransform.getOrigin().setY(lvPosition.y);
 	//lbtTransform.getOrigin().setZ(lvPosition.z);
 
 	lbtTransform.setOrigin(btVector3 (lvPosition.x, lvPosition.y, lvPosition.z));
-	
 
 	//Claro ya etá cambiada la figura lo unico que no está orientado
 	//btQuaternion lbtQuaternion = btQuaternion(0, 0, 0, 1);
 	//if (lRotacion.w != 0)  //no pusieron ángulo o no rotacion en el xml
 	//	lbtQuaternion =  CambiarEje(lRotacion);  //Lo mismo que hacer la rotacion
 	//lbtTransform = btTransform (lbtQuaternion);
-
 
 	//Poniendo la velocidad a 0
 	if (lbIsReload)
@@ -412,7 +409,6 @@ void cPhysicsVehicle::SetPosition (cVec3 lvPosition, cQuaternion lRotacion)
 		mpbtVehicle->getRigidBody()->setAngularVelocity(btVector3 (0, 0, 0));
 		mpbtVehicle->getRigidBody()->setLinearVelocity(btVector3 (0, 0, 0));
 	}
-
 
 	mpbtVehicle->getRigidBody()->setWorldTransform(lbtTransform);
 }
@@ -436,6 +432,32 @@ cQuaternion cPhysicsVehicle::GetQuatRotation()
 
 	return lQuatRotation;
 }
+
+
+void cPhysicsVehicle::SetQuatRotation(const cQuaternion &lRotQuat)
+{
+    btTransform lbtTransform;
+
+    btQuaternion lbtRotQuat = btQuaternion(lRotQuat.x, lRotQuat.y, lRotQuat.z, lRotQuat.w);
+	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
+    lbtTransform.setRotation(lbtRotQuat);
+    mpbtVehicle->getRigidBody()->setWorldTransform(lbtTransform);
+}
+
+
+cVec3 cPhysicsVehicle::GetAngSpeed()
+{
+    btVector3 btVec3 = mpbtVehicle->getRigidBody()->getAngularVelocity();  
+    return cVec3(btVec3.getX() , btVec3.getY(), btVec3.getZ());
+}
+
+
+cVec3 cPhysicsVehicle::GetSpeed()
+{
+    btVector3 btVec3 = mpbtVehicle->getRigidBody()->getLinearVelocity();
+    return cVec3(btVec3.getX() , btVec3.getY(), btVec3.getZ());
+}
+
 
 
 /*

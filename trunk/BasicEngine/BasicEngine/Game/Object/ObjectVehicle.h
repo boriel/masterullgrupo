@@ -29,9 +29,8 @@ class cObjectVehicle : public cObjectAgent
 
 		void StopSounds();
 		void Reload ();
-		void Player1Control();
-		void IAControl();
-		cPhysicsVehicle* mpPhysicsObject;
+
+        cPhysicsVehicle* mpPhysicsObject;
 		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
 

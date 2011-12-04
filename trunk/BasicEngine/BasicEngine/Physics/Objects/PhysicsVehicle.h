@@ -72,12 +72,20 @@ class cPhysicsVehicle : public cPhysicsObject
 		//void initPhysics();
 		void Init(cVec3 lPosition, cQuaternion lRotationInicial);
 		//void Update(void);
-		void MostrarInfo ();
+		void MostrarInfo();
 
-		virtual cVec3 GetPosition ();
+		virtual cVec3 GetPosition();
 		virtual cQuaternion GetQuatRotation();
 
-		void SetPosition (cVec3 lvPosition, cQuaternion lRotation);
+		//virtual void SetPosition(cVec3 lvPosition, cQuaternion lRotation);
+        virtual void SetPosition(const cVec3 &lvPosition);
+        virtual void SetQuatRotation(const cQuaternion &lQuat);
+
+        // Retorna las velocidades angulares en los 3 ejes (en radianes)
+        virtual cVec3 GetAngSpeed();
+        // Retorna la velocidad lineal en los 3 ejes
+        virtual cVec3 GetSpeed();
+
 
 		//void RenderObjectVehicleDebug();
 
