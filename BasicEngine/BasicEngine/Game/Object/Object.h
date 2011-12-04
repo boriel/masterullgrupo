@@ -7,6 +7,8 @@ class Object.h: Contiene los objetos del mundo
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#define __PLAYER_ID  "1" // Identificador global de jugador
+
 #include <string>
 
 #include "..\..\MathLib\MathLib.h"

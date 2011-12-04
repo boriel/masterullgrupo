@@ -53,10 +53,17 @@ class cPhysicsObject
 
 		virtual cVec3 GetPosition ();
 		virtual cQuaternion GetQuatRotation();
+        virtual void SetQuatRotation(const cQuaternion &lQuat);
+        virtual void SetPosition(const cVec3 &lPos);
+        //virtual void SetPosition(cVec3 lvPosition, cQuaternion lRotation);
 
 		btQuaternion CambiarEje (const cQuaternion &lRotQuat);
 		bool CreateBoxShape(cVec3 lVec3);
 
+        // Retorna las velocidades angulares en los 3 ejes (en radianes)
+        virtual cVec3 GetAngSpeed();
+        // Retorna la velocidad lineal en los 3 ejes
+        virtual cVec3 GetSpeed();
 
 	protected:
 		std::string macNameID;

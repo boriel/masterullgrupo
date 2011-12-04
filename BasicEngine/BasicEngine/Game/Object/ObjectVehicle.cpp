@@ -5,6 +5,7 @@
 #include "..\..\Input\InputManager.h"
 #include "..\InputConfiguration.h"
 #include "Behaviour\PlayerBehaviour.h"
+#include "Behaviour\ChaserWithOrientationBehaviour.h"
 
 cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 {
@@ -146,7 +147,12 @@ void cObjectVehicle::Player1Control(){
 void cObjectVehicle::Init()
 {
     cObjectAgent::Init();
-    mpActiveBehaviour = new cPlayerBehaviour();
+
+    if (GetPlayer() == __PLAYER_ID)
+        mpActiveBehaviour = new cPlayerBehaviour();
+    else
+        mpActiveBehaviour = new cChaserWithOrientationBehaviour();
+
     mpActiveBehaviour->Init(this);
 }
 
@@ -164,7 +170,7 @@ void cObjectVehicle::Update( float lfTimestep )
 	// lQuatRot.AsMatrix(mWorldMatrix);
 	// mWorldMatrix.SetPosition(mPosition);
 
-	if(this->GetPlayer()=="1") {
+	if(this->GetPlayer()==__PLAYER_ID) {
 	    //mWorldMatrix.LoadScale(mfScale);
 	
         // Si somos el player, llamaremos a la función de controlar el coche

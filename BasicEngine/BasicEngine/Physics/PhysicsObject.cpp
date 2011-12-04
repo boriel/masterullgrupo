@@ -207,7 +207,6 @@ cVec3 cPhysicsObject::GetPosition ()
 	btTransform lbtTransform;
 	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
 
-
 	lPosition.x = lbtTransform.getOrigin().getX();
 	lPosition.y = lbtTransform.getOrigin().getY();
 	lPosition.z = lbtTransform.getOrigin().getZ();
@@ -216,27 +215,54 @@ cVec3 cPhysicsObject::GetPosition ()
 }
 
 
+//Establecememos la posicion central del objeto
+void cPhysicsObject::SetPosition(const cVec3 &lvPosition)
+{
+	btTransform lbtTransform;
+
+    mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+	lbtTransform.setOrigin(btVector3 (lvPosition.x, lvPosition.y, lvPosition.z));
+    mpbtRigidBody->setWorldTransform(lbtTransform);
+}
+
 
 
 
 cQuaternion cPhysicsObject::GetQuatRotation()
 {
-	//cVec3 lVecRotation;
-	cQuaternion lQuatRotation;
-
 	btTransform lbtTransform;
 	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+	btQuaternion lbtQ = lbtTransform.getRotation();
 
-	btQuaternion lbtQuaternion =  lbtTransform.getRotation();
-	
-	lQuatRotation.x = lbtQuaternion.getX();
-	lQuatRotation.y = lbtQuaternion.getY();
-	lQuatRotation.z = lbtQuaternion.getZ();
-	lQuatRotation.w = lbtQuaternion.getW();
-
-
-	return lQuatRotation;
+	return cQuaternion(lbtQ.getX(), lbtQ.getY(), lbtQ.getZ(), lbtQ.getW());
 }
+
+
+
+void cPhysicsObject::SetQuatRotation(const cQuaternion &lRotQuat)
+{
+    btTransform lbtTransform;  
+    btQuaternion lbtRotQuat = btQuaternion(lRotQuat.x, lRotQuat.y, lRotQuat.z, lRotQuat.w);
+
+	mpbtRigidBody->getMotionState()->getWorldTransform(lbtTransform);
+    lbtTransform.setRotation(lbtRotQuat);
+    mpbtRigidBody->setWorldTransform(lbtTransform);
+}
+
+
+cVec3 cPhysicsObject::GetAngSpeed()
+{
+    btVector3 btVec3 = mpbtRigidBody->getAngularVelocity();  
+    return cVec3(btVec3.getX() , btVec3.getY(), btVec3.getZ());
+}
+
+
+cVec3 cPhysicsObject::GetSpeed()
+{
+    btVector3 btVec3 = mpbtRigidBody->getLinearVelocity();
+    return cVec3(btVec3.getX() , btVec3.getY(), btVec3.getZ());
+}
+
 
 //con esto le damos la vuelta al eje que viene en max que es ZUP
 btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)

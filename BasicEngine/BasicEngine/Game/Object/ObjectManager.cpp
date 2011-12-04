@@ -1008,6 +1008,8 @@ cObject *cObjectManager::GetObjectPlayer(){
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 		if (mObjectVehicle[luiIndex]->GetPlayer() == "1")
 			return mObjectVehicle[luiIndex];
+
+    return NULL; // Esto nunca debería suceder
 }
 
 void cObjectManager::LoadObjectsXmlCollision(const std::string lsModelNameBuscar, const std::string lsType,  cPhysicsObject* lpPhysicsObject)
@@ -1290,7 +1292,8 @@ void cObjectManager::ReloadVehicle()
 		Position.y = lAux+10;
 		*/
 		// POR ALGUN MOTIVO NO FUNCIONA, NO DEVUELVE CORRECTAMENTE LA POSICION DEL PUNTO DE CONTROL. ARREGLAR.
-		lpPhysicsVehicle->SetPosition(cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName()), cRaceControlManager::Get().GetPtoControlRotationFromCar(lObjectVehicle->GetModelName()));
+		//lpPhysicsVehicle->SetPosition(cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName()), cRaceControlManager::Get().GetPtoControlRotationFromCar(lObjectVehicle->GetModelName()));
+        lpPhysicsVehicle->SetPosition(cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName()));
 		
 		//lpPhysicsVehicle->SetPosition(lvPosicionInicial, lQuat);
 
