@@ -25,6 +25,7 @@ void cCameraNavigator::Deinit(void)
 	delete mpMove;
 }
 
+
 void cCameraNavigator::Update(void) 
 {
 	if (IsPressed (eIA_CameraForward)) MoveForwards(0.4f);
@@ -91,4 +92,12 @@ void cCameraNavigator::FollowPlayer(void)
 	lvPosition.y += 40;
 #endif
 	SetLookAt(lvPosition, lvTarget);
+}
+
+
+
+//Con esto haremos que la camara siga un recorrido sola, probablemente al acabar la carrera y se muestre el escenario
+void cCameraNavigator::RecorridoLibre()
+{
+	//Sacar la posicion del player y a patir de aqui hacer el recorrido, quizas hacer que se levante un poco avance, de media vuelta y se aleje hacia arriba, despues seguir un recorrido por las puntas de la habitacion, y quizas circular otra vez al coche y vuelta a empezar?
 }
