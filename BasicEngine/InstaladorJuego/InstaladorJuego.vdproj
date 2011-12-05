@@ -321,6 +321,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_351A704AAF1E412C9AA81F5FE6C1D071"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_35C0A03503674BEABA3C0C25CB4EA43B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -471,6 +477,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4C93B97C141746ED82FCDFA64C4B3DE3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -478,6 +490,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4EC88AB4C6A4452CA1C91C655033A70D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5067262C90904625815E8C0E2B08416D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -759,6 +777,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_80EF7106154A44ED8AEF1EE9CA1B1BAA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_81CF6EF23AAC45BD9C2D52043B22DA5A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1023,6 +1047,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AFAC8467896D42AE93FA441C54ACD96F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B2E159DA8B4641909D3B5A2CBDBEB102"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1030,6 +1060,12 @@
         "Entry"
         {
         "MsmKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B725802030024E85890815F0B9CCE7AC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1101,6 +1137,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BF4458A485F843D39B06758D4C36724B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BFA63DFB8DB743749DBA9A04E795386A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1150,6 +1192,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C796BB341F644439992C3138F3C3F334"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C8C60A39C8CF4E3AB71A00A76EA84C27"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1210,6 +1258,12 @@
         "Entry"
         {
         "MsmKey" = "8:_CFCC87A95A2F42EA9803D3090B83C394"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D040A5AC2DC246BE9ED21E7588925DBF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2529,6 +2583,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_351A704AAF1E412C9AA81F5FE6C1D071"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Borrador\\images\\texture_map_eraser.jpg"
+            "TargetName" = "8:texture_map_eraser.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_AF1040852E594928ABD1E5D9666FF75C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35C0A03503674BEABA3C0C25CB4EA43B"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\baul.jpg"
@@ -3029,12 +3103,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C93B97C141746ED82FCDFA64C4B3DE3"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lapices\\LapizNaranja.DAE"
+            "TargetName" = "8:LapizNaranja.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_68CC4C93A4534A539DF2D46F520CBA36"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EC88AB4C6A4452CA1C91C655033A70D"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\Menu\\Aceptar.wav"
             "TargetName" = "8:Aceptar.wav"
             "Tag" = "8:"
             "Folder" = "8:_8CDDC37EC7D04C699619B361A8420CA2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5067262C90904625815E8C0E2B08416D"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\pencil_holder_unwrapped.tga"
+            "TargetName" = "8:pencil_holder_unwrapped.tga"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3969,6 +4083,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_80EF7106154A44ED8AEF1EE9CA1B1BAA"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Borrador\\Borrador.DAE"
+            "TargetName" = "8:Borrador.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_0EBE134AA17E4B7691BF65355981D851"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_81CF6EF23AAC45BD9C2D52043B22DA5A"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_hiphop.caf"
@@ -4849,12 +4983,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AFAC8467896D42AE93FA441C54ACD96F"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lapices\\LapizVerde.DAE"
+            "TargetName" = "8:LapizVerde.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_68CC4C93A4534A539DF2D46F520CBA36"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2E159DA8B4641909D3B5A2CBDBEB102"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\poolfelt.jpg"
             "TargetName" = "8:poolfelt.jpg"
             "Tag" = "8:"
             "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B725802030024E85890815F0B9CCE7AC"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lapices\\LapizAzulOscuro.DAE"
+            "TargetName" = "8:LapizAzulOscuro.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_68CC4C93A4534A539DF2D46F520CBA36"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5049,6 +5223,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF4458A485F843D39B06758D4C36724B"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\texture_map_eraser.jpg"
+            "TargetName" = "8:texture_map_eraser.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BFA63DFB8DB743749DBA9A04E795386A"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Cars\\jeep\\images\\textura_jep_toycorriendo.jpg"
@@ -5215,6 +5409,26 @@
             "TargetName" = "8:8Ball.jpg"
             "Tag" = "8:"
             "Folder" = "8:_75B20320CB0A47AEA3B548B3387A44D2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8C60A39C8CF4E3AB71A00A76EA84C27"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lapices\\LapizAzul.DAE"
+            "TargetName" = "8:LapizAzul.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_68CC4C93A4534A539DF2D46F520CBA36"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5415,6 +5629,26 @@
             "TargetName" = "8:Billar01.DAE"
             "Tag" = "8:"
             "Folder" = "8:_99F450FBD3BC426EAF419C017355CE5F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D040A5AC2DC246BE9ED21E7588925DBF"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Objetos\\Lapices\\images\\pencil_holder_unwrapped.tga"
+            "TargetName" = "8:pencil_holder_unwrapped.tga"
+            "Tag" = "8:"
+            "Folder" = "8:_EF93ED7B47334D908ABCF7CB6B63B7ED"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6539,6 +6773,28 @@
                                             }
                                         }
                                     }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_0EBE134AA17E4B7691BF65355981D851"
+                                    {
+                                    "Name" = "8:Borrador"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_8B1665D2991349F69FB1E544D595F88D"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_AF1040852E594928ABD1E5D9666FF75C"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_3689CA8317324B7791407563DFCDD6DF"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_3FB6F0C429264E5FBD2298EE3EDD470E"
                                     {
                                     "Name" = "8:Pruebas"
@@ -6555,6 +6811,28 @@
                                             "Condition" = "8:"
                                             "Transitive" = "11:FALSE"
                                             "Property" = "8:_97FFB2BF02E047D3860F96C43738D003"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_68CC4C93A4534A539DF2D46F520CBA36"
+                                    {
+                                    "Name" = "8:Lapices"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_9D930EEE70C2481DA7C0AB045D3FB17C"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_EF93ED7B47334D908ABCF7CB6B63B7ED"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_1B95EFC86CEE4ADDAD25CF20B38582C0"
                                                 "Folders"
                                                 {
                                                 }

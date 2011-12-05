@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>yormanh</author>
+      <authoring_tool>OpenCOLLADA for 3ds Max;  Version: 1.3.1;  Revision: 847M;  Platform: x64;  Configuration: Release_Max2012_static</authoring_tool>
+      <source_data>file:///C:/temp_3ds/objetos/Pencil_Holder/Pencil%20Holder.max</source_data>
+    </contributor>
+    <created>2011-12-05T17:12:55</created>
+    <modified>2011-12-05T17:12:55</modified>
+    <unit name="millimeter" meter="0.001"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="Material__2">
+      <profile_COMMON>
+        <newparam sid="pencil_holder_unwrapped_tga-surface">
+          <surface type="2D">
+            <init_from>pencil_holder_unwrapped_tga</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="pencil_holder_unwrapped_tga-sampler">
+          <sampler2D>
+            <source>pencil_holder_unwrapped_tga-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <blinn>
+            <emission>
+              <color>0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color>0.588 0.588 0.588 1</color>
+            </ambient>
+            <diffuse>
+              <texture texture="pencil_holder_unwrapped_tga-sampler" texcoord="CHANNEL1"/>
+            </diffuse>
+            <specular>
+              <color>0.9 0.9 0.9 1</color>
+            </specular>
+            <shininess>
+              <float>10</float>
+            </shininess>
+            <reflective>
+              <color>0 0 0 1</color>
+            </reflective>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 1</color>
+            </transparent>
+            <transparency>
+              <float>1</float>
+            </transparency>
+          </blinn>
+        </technique>
+      </profile_COMMON>
+      <extra>
+        <technique profile="OpenCOLLADA3dsMax">
+          <extended_shader>
+            <apply_reflection_dimming>0</apply_reflection_dimming>
+            <dim_level>0</dim_level>
+            <falloff_type>0</falloff_type>
+            <index_of_refraction>1.5</index_of_refraction>
+            <opacity_type>0</opacity_type>
+            <reflection_level>3</reflection_level>
+            <wire_size>1</wire_size>
+            <wire_units>0</wire_units>
+          </extended_shader>
+          <shader>
+            <ambient_diffuse_lock>1</ambient_diffuse_lock>
+            <ambient_diffuse_texture_lock>1</ambient_diffuse_texture_lock>
+            <diffuse_specular_lock>0</diffuse_specular_lock>
+            <soften>0.1</soften>
+            <use_self_illum_color>0</use_self_illum_color>
+          </shader>
+        </technique>
+      </extra>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="Material__2-material" name="Material__2">
+      <instance_effect url="#Material__2"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="geom-Box_Lapiz03" name="Box_Lapiz03">
+      <mesh>
+        <source id="geom-Box_Lapiz03-positions">
+          <float_array id="geom-Box_Lapiz03-positions-array" count="96">1.52588e-5 3.600887 178.685 2.078987 7.201774 178.685 6.236931 7.201774 178.685 8.31591 3.600887 178.685 6.236931 0 178.685 2.078987 0 178.685 7.62939e-6 3.600887 103.685 2.078979 7.201774 103.685 6.236923 7.201774 103.685 8.315895 3.600887 103.685 6.236923 0 103.685 2.078979 0 103.685 0 3.600887 28.68501 2.078972 7.201774 28.68501 6.236916 7.201774 28.68501 8.315887 3.600887 28.68501 6.236916 0 28.68501 2.078972 0 28.68501 2.245514 3.600887 178.685 3.201736 5.257114 178.685 5.114182 5.257114 178.685 6.070412 3.600887 178.685 5.114182 1.944659 178.685 3.201736 1.944659 178.685 4.157959 3.600887 178.685 2.86055 3.600887 8.692032 3.509247 4.724458 8.692032 4.806633 4.724458 8.692032 5.45533 3.600887 8.692032 4.806633 2.477316 8.692032 3.509247 2.477316 8.692032 4.157936 3.600887 0</float_array>
+          <technique_common>
+            <accessor source="#geom-Box_Lapiz03-positions-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Box_Lapiz03-normals">
+          <float_array id="geom-Box_Lapiz03-normals-array" count="201">-0.8660256 0.4999998 8.80967e-8 -0.8660255 0.4999998 8.80967e-8 -0.8660255 0.4999998 8.80967e-8 -0.8660255 0.4999998 8.80967e-8 1.14681e-7 1 -1.1666e-14 1.14681e-7 1 -1.1666e-14 1.14681e-7 1 -1.1666e-14 1.14681e-7 1 -1.1666e-14 0.8660248 0.5000011 -1.73087e-7 0.8660248 0.5000012 -1.76193e-7 0.8660255 0.4999998 -8.96497e-8 0.8660255 0.4999998 -8.80967e-8 0.8660247 -0.5000012 -9.12027e-8 0.8660248 -0.5000012 -8.80966e-8 0.8660255 -0.4999999 -1.30592e-7 0.8660255 -0.4999998 -1.32145e-7 0 -1 0 0 -1 0 0 -1 0 0 -1 0 -0.8660255 -0.4999997 8.80967e-8 -0.8660256 -0.4999998 8.80967e-8 -0.8660255 -0.4999998 8.80967e-8 -0.8660255 -0.4999998 8.80967e-8 -0.864456 0.4990936 -0.06017937 -0.8644559 0.4990936 -0.06017937 1.14473e-7 0.9981875 -0.06017951 1.12108e-7 0.9981875 -0.06017954 0.8644559 0.4990936 -0.06017954 0.8644559 0.4990936 -0.06017957 0.8644559 -0.4990936 -0.06017963 0.8644559 -0.4990937 -0.06017963 0 -0.9981875 -0.06017952 0 -0.9981875 -0.06017953 -0.8644559 -0.4990935 -0.06017931 -0.8644559 -0.4990936 -0.06017932 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 -0.8591814 0.4960507 -0.1254628 -0.8591813 0.4960509 -0.1254628 7.45018e-9 0.9920983 -0.1254632 0 0.9920982 -0.1254632 0.8591813 0.4960507 -0.1254636 0.8591813 0.4960508 -0.1254636 0.8591813 -0.4960509 -0.1254634 0.8591813 -0.496051 -0.1254633 0 -0.9920983 -0.1254632 0 -0.9920983 -0.1254632 -0.8591815 -0.4960508 -0.125463 -0.8591813 -0.4960509 -0.1254631 -0.8588785 0.495876 -0.1281976 0 0.9917486 -0.1281979 0.8588785 0.495876 -0.1281983 0.8588784 -0.4958761 -0.1281983 0 -0.9917486 -0.1281978 -0.8588785 -0.4958761 -0.1281975</float_array>
+          <technique_common>
+            <accessor source="#geom-Box_Lapiz03-normals-array" count="67" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="geom-Box_Lapiz03-map1">
+          <float_array id="geom-Box_Lapiz03-map1-array" count="153">0.7545724 0.8195249 0.4999978 0.7318611 0.8195249 0.5590162 0.7318611 0.4829965 0.5590166 0.7545724 0.4829965 0.4999989 0.7128394 0.8195249 0.5590172 0.7128395 0.4829965 0.5590168 0.8190165 0.8195249 0.5000001 0.8190165 0.4829965 0.4999989 0.7963052 0.8195249 0.5590172 0.7963052 0.4829965 0.5590168 0.7772835 0.8195249 0.5590162 0.7772835 0.4829965 0.5590166 0.7318612 0.1464682 0.5590172 0.7545724 0.1464682 0.5 0.7128395 0.1464682 0.5590162 0.8190165 0.1464682 0.4999979 0.7963052 0.1464682 0.5590162 0.7772834 0.1464682 0.5590172 0.7798648 0.9446297 -0.25 0.749388 0.9270338 -0.25 0.749388 0.8918422 -0.25 0.7798648 0.8742464 -0.25 0.8103417 0.8918422 -0.25 0.8103417 0.9270338 -0.25 0.7798648 0.909438 -0.25 0.7318614 0.05675876 0.1744284 0.7545724 0.05675876 0.1560141 0.7128396 0.05675876 0.1744272 0.8190165 0.05675876 0.1560114 0.7963051 0.05675876 0.1744272 0.7772834 0.05675876 0.1744284 0.7550607 0.01775725 1.49144e-6 0.7189111 0.9446297 -0.25 0.7798648 0.9798213 -0.25 0.7189111 0.8742464 -0.25 0.7189111 0.9446297 -0.25 0.7798648 0.8390548 -0.25 0.7189111 0.8742464 -0.25 0.8408185 0.8742464 -0.25 0.7798648 0.8390548 -0.25 0.8408185 0.9446297 -0.25 0.8408185 0.8742464 -0.25 0.7798648 0.9798213 -0.25 0.8408185 0.9446297 -0.25 0.8417275 0.8195249 0.5590172 0.8417275 0.4829965 0.5590168 0.8417275 0.4829965 0.5590168 0.8417275 0.1464682 0.5590162 0.8417275 0.1464682 0.5590162 0.8417276 0.05675876 0.1744272 0.8417276 0.05675876 0.1744272</float_array>
+          <technique_common>
+            <accessor source="#geom-Box_Lapiz03-map1-array" count="51" stride="3">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+              <param name="P" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="geom-Box_Lapiz03-vertices">
+          <input semantic="POSITION" source="#geom-Box_Lapiz03-positions"/>
+        </vertices>
+        <triangles material="Material__2_1" count="60">
+          <input semantic="VERTEX" source="#geom-Box_Lapiz03-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#geom-Box_Lapiz03-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#geom-Box_Lapiz03-map1" offset="2" set="0"/>
+          <p>0 0 0 1 1 1 7 2 2 7 2 2 6 3 3 0 0 0 1 4 1 2 5 4 8 6 5 8 6 5 7 7 2 1 4 1 2 8 44 3 9 6 9 10 7 9 10 7 8 11 45 2 8 44 3 12 6 4 13 8 10 14 9 10 14 9 9 15 7 3 12 6 4 16 8 5 17 10 11 18 11 11 18 11 10 19 9 4 16 8 5 20 10 0 21 0 6 22 3 6 22 3 11 23 11 5 20 10 6 3 3 7 2 2 13 24 12 13 24 12 12 25 13 6 3 3 7 7 2 8 6 5 14 26 14 14 26 14 13 27 12 7 7 2 8 11 46 9 10 7 15 28 15 15 28 15 14 29 47 8 11 46 9 15 7 10 14 9 16 30 16 16 30 16 15 31 15 9 15 7 10 19 9 11 18 11 17 32 17 17 32 17 16 33 16 10 19 9 11 23 11 6 22 3 12 34 13 12 34 13 17 35 17 11 23 11 1 36 32 0 37 33 18 38 18 18 38 18 19 39 19 1 36 32 2 40 34 1 36 35 19 39 19 19 39 19 20 41 20 2 40 34 3 42 36 2 40 37 20 41 20 20 41 20 21 43 21 3 42 36 4 44 38 3 42 39 21 43 21 21 43 21 22 45 22 4 44 38 5 46 40 4 44 41 22 45 22 22 45 22 23 47 23 5 46 40 0 37 42 5 46 43 23 47 23 23 47 23 18 38 18 0 37 42 19 39 19 18 38 18 24 48 24 20 41 20 19 39 19 24 48 24 21 43 21 20 41 20 24 48 24 22 45 22 21 43 21 24 48 24 23 47 23 22 45 22 24 48 24 18 38 18 23 47 23 24 48 24 12 25 13 13 24 12 26 49 25 26 49 25 25 50 26 12 25 13 13 27 12 14 26 14 27 51 27 27 51 27 26 52 25 13 27 12 14 29 48 15 28 15 28 53 28 28 53 28 27 54 49 14 29 48 15 31 15 16 30 16 29 55 29 29 55 29 28 56 28 15 31 15 16 33 16 17 32 17 30 57 30 30 57 30 29 58 29 16 33 16 17 35 17 12 34 13 25 59 26 25 59 26 30 60 30 17 35 17 25 50 26 26 49 25 31 61 31 26 52 25 27 51 27 31 62 31 27 54 50 28 53 28 31 63 31 28 56 28 29 55 29 31 64 31 29 58 29 30 57 30 31 65 31 30 60 30 25 59 26 31 66 31</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_lights>
+    <light id="EnvironmentAmbientLight" name="EnvironmentAmbientLight">
+      <technique_common>
+        <ambient>
+          <color>0.796079 0.796079 0.796079</color>
+        </ambient>
+      </technique_common>
+    </light>
+  </library_lights>
+  <library_images>
+    <image id="pencil_holder_unwrapped_tga">
+      <init_from>./images/pencil_holder_unwrapped.tga</init_from>
+    </image>
+  </library_images>
+  <library_visual_scenes>
+    <visual_scene id="MaxScene">
+      <node name="EnvironmentAmbientLight">
+        <instance_light url="#EnvironmentAmbientLight"/>
+      </node>
+      <node id="node-Box_Lapiz03" name="Box_Lapiz03">
+        <translate>5.899544 -25.9674 7.079681</translate>
+        <rotate>0.5924871 -0.2765156 -0.7566361 -43.30795</rotate>
+        <instance_geometry url="#geom-Box_Lapiz03">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="Material__2_1" target="#Material__2-material">
+                <bind_vertex_input semantic="CHANNEL1" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#MaxScene"/>
+  </scene>
+</COLLADA>

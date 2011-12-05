@@ -249,7 +249,8 @@ void cGame::Update(float lfTimestep)
 		cHudManager::Get().Update(lfTimestep);
 	}
 
-	if((cSceneManager::Get().GetScene()==eLoading) && BecomePressed(eIA_Accept)){
+	if((cSceneManager::Get().GetScene()==eLoading) && BecomePressed(eIA_Accept))
+	{
 		this->StartRace();
 	}
 
@@ -266,7 +267,8 @@ void cGame::Update(float lfTimestep)
 	if (BecomePressed(eIA_Reload)) //R
 		cObjectManager::Get().ReloadVehicle();
 
-	if(cSceneManager::Get().GetScene()==eGameplay && BecomePressed( eIA_CloseApplication )){
+	if(cSceneManager::Get().GetScene()==eGameplay && BecomePressed( eIA_CloseApplication ))
+	{
 		cSceneManager::Get().LoadScene(ePausa);
 		cMenuManager::Get().MenuPausa();
 	}
