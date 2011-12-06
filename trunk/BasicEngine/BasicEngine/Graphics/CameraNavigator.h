@@ -26,6 +26,7 @@ private:
 	cVec3 *mpMove;
 	eCameraNavigatorStates meState;
 	float mfAlturaCamara;  //Inicializando la altura
+	int miPuntoActual;
 
 	void MoveForwards(GLfloat lfDistance);
 	void RotateY(GLfloat lfAngle);
@@ -37,7 +38,7 @@ public:
 	void Update(void);
 	void Render(void);
 	void FollowPlayer(void);
-	void RecorridoLibre();
+	void RecorridoLibre(void);
 	cVec3 GetTarget(void) { return cVec3(mpTarget->x,mpTarget->y,mpTarget->z); }
 
 };

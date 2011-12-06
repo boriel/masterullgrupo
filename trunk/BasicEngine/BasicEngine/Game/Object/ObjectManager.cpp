@@ -26,6 +26,7 @@ bool cObjectManager::Init()
 
 	mfPI = 3.14159f;
 	mfScale = 1.0f; //Por defecto no se aplica escalado en las cargas a menos que se indique explícitamente
+	mbFinal = false;
 
 	mbCameraFP = true;
 

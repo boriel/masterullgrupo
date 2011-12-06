@@ -264,6 +264,14 @@ void cGame::Update(float lfTimestep)
 	if (BecomePressed(eIA_ChangeCamera)) //F8
 		cObjectManager::Get().ChangeCameraFP();
 
+	//if (BecomePressed(eIA_CameraRecorridoLibre)) //F7
+	//{
+	//	cObjectManager::Get().ChangeFinal();
+	//	cObjectManager::Get().ChangeCameraFP();
+	//}
+
+
+
 	if (BecomePressed(eIA_Reload)) //R
 		cObjectManager::Get().ReloadVehicle();
 
@@ -320,10 +328,16 @@ void cGame::Render()
 		cRaceControlManager::Get().Render();
 	#endif
 		SetTheWorldMatrix();
+
 		if (cObjectManager::Get().GetCameraFP()) 
 			m3DCamera.FollowPlayer();
 		else
-		  m3DCamera.Update();
+		{
+			//if (cObjectManager::Get().GetFinal())
+			//	m3DCamera.RecorridoLibre(); //Esto cuando llega la final hace un recorido libre, por ahora emulando con teclado
+			//else
+				m3DCamera.Update();
+		}
 		  
 		glDisable(GL_CULL_FACE);
 	}

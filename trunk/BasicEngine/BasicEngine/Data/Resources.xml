@@ -51,6 +51,8 @@
 	-->
 
 	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03PtosControl.DAE" Mass="0"  />
+  
+    
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
