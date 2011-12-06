@@ -32,6 +32,10 @@ class cObjectManager : public cSingleton<cObjectManager>
 		cObject *GetObjectPlayer(); // Devolvemos el coche que maneja el usuario
 		typedef std::vector<cObject *> cObjectList;
 		inline cObjectList *GetCars(){return &mObjectVehicle;}
+
+		void ChangeFinal () { mbFinal = !mbFinal; }
+		bool GetFinal() { return mbFinal; }
+
 	private:
 		bool LoadObjectsXml(std::string lsResource);
 		void LoadObjectsXmlCollision(const std::string lsResourceBuscar, const std::string lsType, cPhysicsObject* lpPhysicsObject);
@@ -42,6 +46,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		btQuaternion HacerRotacion(const cQuaternion &lRotQuat);
 	
 		
+
 	private:
 		
 		cObjectList mObject;  //Objetos en general que no se donde clasificarlos por ahora .... (y por el final)
@@ -55,6 +60,7 @@ class cObjectManager : public cSingleton<cObjectManager>
 		float mfPI;
 		float mfScale;
 		bool mbCameraFP;
+		bool mbFinal;
 };
 
 
