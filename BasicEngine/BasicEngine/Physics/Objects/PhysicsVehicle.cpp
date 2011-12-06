@@ -618,7 +618,7 @@ void cPhysicsVehicle::ParaDerrapar(){
 	for (int liIndex=0; liIndex < mpbtVehicle->getNumWheels(); liIndex++)
 	{
 		btWheelInfo& lbtWheelInfo = mpbtVehicle->getWheelInfo(liIndex);
-		lbtWheelInfo.m_frictionSlip=10.5;
+		lbtWheelInfo.m_frictionSlip=1;
 		//m_frictionSlip = gfWheelFriction;
 	}
 	//mpbtVehicle->updateFriction();

@@ -136,8 +136,10 @@ bool cGame::Init()
 
 bool cGame::LoadRace()
 {
-	
-	cPhysicsManager::Get().Init();  //Configuracion del mundo fisico (no los objetos)
+	// Reiniciamos la física
+	cPhysicsManager::Get().Deinit();
+	cPhysicsManager::Get().Init();
+	// ----------------------
 	cObjectManager::Get().Init();
 	cRaceControlManager::Get().Init("Data/Resources.xml");
 	
@@ -213,24 +215,52 @@ void cGame::Update(float lfTimestep)
 	//lpSkeletonMesh->Update(lfTimestep);  //cmentamos esto en los apuntes para poner el mObject
 	mSubModel.Update(lfTimestep);	
 
+	if((cSceneManager::Get().GetScene()==eFinalHistoria) && BecomePressed(eIA_Accept)){
+		// Resetear contadores de juego
+		//cRaceControlManager::Get().
+		cSceneManager::Get().LoadScene(ePortada);
+		cMenuManager::Get().ActivarMusica();
+		return;
+	}
+
+	if((cSceneManager::Get().GetScene()==eLoading) && BecomePressed(eIA_Accept)){
+		this->StartRace();
+	}
+
 	// Si la carrera ha finalizado y presionamos Enter, volvemos al menú inicial
 	if(cRaceControlManager::Get().isFinalRace() && BecomePressed(eIA_Accept)){
 		// Deinicializar las librerías antes de volver al menú
-			cObjectManager::Get().VaciarObjetos();
-			cRaceControlManager::Get().VaciarObjetos();
+		cObjectManager::Get().VaciarObjetos();
+		cRaceControlManager::Get().VaciarObjetos();
+
 		if(cSceneManager::Get().GetHistoria()==0){
 			cSceneManager::Get().LoadScene(eMenuPrincipal);
+			cMenuManager::Get().ActivarMusica();
 		}else {
 			// Si estamos en la historia, pasamos al siguiente nivel si ha ganado, si no volvemos al menú
 			if(cRaceControlManager::Get().GetVictoria()){
 				int Map=cSceneManager::Get().NextHistoria();
-				if(Map==1)cRaceControlManager::Get().SetTipoPartida(eContrarreloj);
-				if(Map==2)cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
-				if(Map==3)cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
-			
-				if(Map>3)cSceneManager::Get().LoadScene(eMenuPrincipal);
-				else cSceneManager::Get().LoadScene(eLoading);
-			}else cSceneManager::Get().LoadScene(eMenuPrincipal);
+
+				if(Map>2){
+					// Hay que colocar la pantalla de final de campaña y agradecimiento por jugar y luego volver al menú
+					cSceneManager::Get().LoadScene(eFinalHistoria);
+					cSceneManager::Get().ResetHistoria();
+					//cSceneManager::Get().LoadScene(eMenuPrincipal);
+				}else{
+					
+					//if(Map==2)cRaceControlManager::Get().SetTipoPartida(eContrarreloj);
+					if(Map==1)
+						cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
+					if(Map==2)
+						cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
+					
+					cSceneManager::Get().LoadScene(eLoading);
+				}
+				
+			}else{
+				cSceneManager::Get().LoadScene(eMenuPrincipal);
+				cMenuManager::Get().ActivarMusica();
+			}
 		}
 	}
 
@@ -249,11 +279,6 @@ void cGame::Update(float lfTimestep)
 		cHudManager::Get().Update(lfTimestep);
 	}
 
-	if((cSceneManager::Get().GetScene()==eLoading) && BecomePressed(eIA_Accept))
-	{
-		this->StartRace();
-	}
-
 	// Actualizamos los menús si son necesarios
 	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene() == eCreditos || cSceneManager::Get().GetScene()==eNoDisponible || cSceneManager::Get().GetScene() == ePausa || cSceneManager::Get().GetScene() == ePortada)
 		cMenuManager::Get().Update(lfTimestep);
@@ -264,19 +289,10 @@ void cGame::Update(float lfTimestep)
 	if (BecomePressed(eIA_ChangeCamera)) //F8
 		cObjectManager::Get().ChangeCameraFP();
 
-	//if (BecomePressed(eIA_CameraRecorridoLibre)) //F7
-	//{
-	//	cObjectManager::Get().ChangeFinal();
-	//	cObjectManager::Get().ChangeCameraFP();
-	//}
-
-
-
 	if (BecomePressed(eIA_Reload)) //R
 		cObjectManager::Get().ReloadVehicle();
 
-	if(cSceneManager::Get().GetScene()==eGameplay && BecomePressed( eIA_CloseApplication ))
-	{
+	if(cSceneManager::Get().GetScene()==eGameplay && BecomePressed( eIA_CloseApplication )){
 		cSceneManager::Get().LoadScene(ePausa);
 		cMenuManager::Get().MenuPausa();
 	}
@@ -328,16 +344,10 @@ void cGame::Render()
 		cRaceControlManager::Get().Render();
 	#endif
 		SetTheWorldMatrix();
-
 		if (cObjectManager::Get().GetCameraFP()) 
 			m3DCamera.FollowPlayer();
 		else
-		{
-			//if (cObjectManager::Get().GetFinal())
-			//	m3DCamera.RecorridoLibre(); //Esto cuando llega la final hace un recorido libre, por ahora emulando con teclado
-			//else
-				m3DCamera.Update();
-		}
+		  m3DCamera.Update();
 		  
 		glDisable(GL_CULL_FACE);
 	}

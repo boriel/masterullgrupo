@@ -67,6 +67,7 @@ public:
 		inline void IniciarMenu(){mMenuActual = mMenuPrincipal;muiSelectedItem=1;}
 		void MenuPausa(){mMenuActual=mMenuPausa;}
 		inline void SetAviso(bool lParpadeo){mAviso=lParpadeo;}
+		void ActivarMusica();
 	private:
 		string msFileName;
 		// Menús Iniciales

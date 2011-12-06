@@ -25,6 +25,7 @@ enum eScenes{
 	ePortada,
 	eCreditos,
 	eHistoria,
+	eFinalHistoria,
 	eFinPartida
 };
 
@@ -39,6 +40,7 @@ public:
 	inline eScenes GetScene(){return mActualScene;}
 	inline int GetHistoria(){return mHistoria;}
 	inline int NextHistoria(){return mHistoria++;}
+	inline void ResetHistoria(){mHistoria=0;}
 private:
 	eScenes mActualScene;
 	int mHistoria; // Utilizaremos este valor para saber en qué punto de la historia estamos, si es 0, es una partida libre
