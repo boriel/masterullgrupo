@@ -65,6 +65,8 @@ void cRaceControlManager::Deinit()
 
 void cRaceControlManager::VaciarObjetos(){
 	cSoundManager::Get().Stop(mSoundVictoria);
+	cSoundManager::Get().Stop(mSoundDerrota);
+	mRaceControls.clear();
 	mVehicles.clear();
 	mLegs.clear();
 }
@@ -83,6 +85,7 @@ void cRaceControlManager::StartRace(){
 void cRaceControlManager::EndRace(bool lVictoria){
 	cObjectManager::Get().StopSounds();
 	cSoundManager::Get().StopMusic();
+	
 	mRaceRunning=false;
 	mVictoria=lVictoria;
 	// Mostramos la pantalla de puntuación desde el HudManager
@@ -180,69 +183,81 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 						const btVector3& ptB = pt.getPositionWorldOnB();
 						const btVector3& normalOnB = pt.m_normalWorldOnB;
 						/// work here
-						for (unsigned luiIndex2 = 0; luiIndex2 < mVehicles.size(); ++luiIndex2 ) {
-							if (cObjectManager::Get().GetCars()->at(lCocheIndice)->GetModelName()==mVehicles.at(luiIndex2)->msModelName){
-								if(mRaceControls[luiIndex].Tipo== "Meta")
-								{
+						// Necesitamos saber que coche es el que está atravesando la meta y descartarlo aqui
+						// Comprobamos si algún coche ha pasado la meta
+						btCollisionObject* obB = static_cast<btCollisionObject*>(manifold->getBody0());	// == Vehiculo que actualmente pasa la meta
+						if (((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPtrPhysicsVehicle()->mpbtCarChassis==obB)
+						{
+							// Puede ser que mVehicle y GetCars() no coincidan así que hacemos comprobacion
+							for(int lIndex =0;lIndex<mVehicles.size();lIndex++){
+								if(mVehicles[lIndex]->msModelName==((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetModelName()){
+									OutputDebugString("Coche Detectado!\n");
+									if(mRaceControls[luiIndex].Tipo== "Meta")
+											{
+												OutputDebugString("Pasando meta!\n");	
+												// Le añadimos UNA vuelta al coche adecuado
+												if(mVehicles[lIndex]->AumentaVuelta){
+													mVehicles[lIndex]->muiNumLaps++;
+													// Reiniciamos los puntos de control
+													mVehicles[lIndex]->muiPuntoControlActual=0;
+													// Si algun coche llega al maximo se acaba la carrera
+													if(mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps){
+														//OutputDebugString("Un coche llego a la meta");
+														if(mVehicles[lIndex]->isPlayer){
+															cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
+															EndRace(true);
+															OutputDebugString("Victoria\n");
+														}else{
+															cSoundManager::Get().Play(mSoundDerrota, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
+															EndRace(false);
+															OutputDebugString("Derrota\n");
+														}
+													}
+													mVehicles[lIndex]->AumentaVuelta=false;
+													OutputDebugString ("Un coche paso la meta!\n");
+													cSoundManager::Get().Play(mPasoMeta,cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition());
+													if(mVehicles[lIndex]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName())
+														if(mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps-1)
+															cSoundManager::Get().ChangeMusic("TemaPrincipalSubido.wav");
+
+													// Con esto recordaremos hace cuánto pasamos la meta
+													//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
+												}
+											}else {
+												int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
+												printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+												// Comprobamos que solo va hacia deante el coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
+												// Genera errores, es poco probable que vaya hacia atras
+												/*if(lAux < mVehicles[lCocheIndice]->muiPuntoControlActual){
+													cObjectManager::Get().ReloadVehicle();
+													break;
+												}*/
 									
-									// Le añadimos UNA vuelta al coche adecuado
-									if(mVehicles[lCocheIndice]->AumentaVuelta){
-										mVehicles[lCocheIndice]->muiNumLaps++;
-										// Reiniciamos los puntos de control
-										mVehicles[lCocheIndice]->muiPuntoControlActual=0;
-										// Si algun coche llega al maximo se acaba la carrera
-										if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps){
-											if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName()){
-												cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
-												EndRace(true);
-											}else{
-												cSoundManager::Get().Play(mSoundDerrota, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
-												EndRace(false);
+												// Comprobamos que solo se sume una vez el punto de control actual
+												if(mVehicles[lIndex]->muiPuntoControlActual < lAux)
+												{
+													// Cuando pase un punto de control, guardamos la posición y la dirección para recargar el coche
+													mVehicles[lIndex]->muiPuntoControlActual++;
+													// Obtenemos la informacion del ObjectMAnager
+													for(int luiIndex=0;luiIndex<cObjectManager::Get().GetCars()->size();luiIndex++){
+														if(mVehicles[lIndex]->msModelName==cObjectManager::Get().GetCars()->at(luiIndex)->GetModelName()){
+															mVehicles[lIndex]->PosicionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetPosition();
+															mVehicles[lIndex]->PosicionPtoControl.y=mVehicles[lCocheIndice]->PosicionPtoControl.y+10;
+															mVehicles[lIndex]->RotacionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetRotacionInicial();
+														}
+													}
+												}
 											}
 										}
-										mVehicles[lCocheIndice]->AumentaVuelta=false;
-										printf ("Un coche paso la meta!\n");
-										cSoundManager::Get().Play(mPasoMeta,cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition());
-										if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName())
-											if(mVehicles[lCocheIndice]->muiNumLaps==this->muiMaxLaps-1)
-												cSoundManager::Get().ChangeMusic("TemaPrincipalSubido.wav");
-
-										// Con esto recordaremos hace cuánto pasamos la meta
-										//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
-									}
-								}else {
-									int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
-									//printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
-									// Comprobamos que solo va hacia deante el coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
-									// Genera errores, es poco probable que vaya hacia atras
-									/*if(lAux < mVehicles[lCocheIndice]->muiPuntoControlActual){
-										cObjectManager::Get().ReloadVehicle();
-										break;
-									}*/
-									
-									// Comprobamos que solo se sume una vez el punto de control actual
-									if(mVehicles[lCocheIndice]->muiPuntoControlActual < lAux){
-										// Cuando pase un punto de control, guardamos la posición y la dirección para recargar el coche
-										mVehicles[lCocheIndice]->muiPuntoControlActual++;
-										// Obtenemos la informacion del ObjectMAnager
-										for(int luiIndex=0;luiIndex<cObjectManager::Get().GetCars()->size();luiIndex++){
-											if(mVehicles[lCocheIndice]->msModelName==cObjectManager::Get().GetCars()->at(luiIndex)->GetModelName()){
-												mVehicles[lCocheIndice]->PosicionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetPosition();
-												mVehicles[lCocheIndice]->RotacionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetRotacionInicial();
-											}
-										}
-
 									}
 								}
+						//--------
 							}
 						}
 					}
 				}
 			}
-		}
-	}
 }
-
 cQuaternion cRaceControlManager::GetPtoControlRotationFromCar(string lNombreCoche){
 	// Obtenemos el coche que buscamos y devolvemos el punto
 	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
@@ -272,13 +287,6 @@ void cRaceControlManager::Update(float lfTimestep)
 			// Cuando el coche haya pasado por todos los puntos de control, permitimos aumentar la vuelta
 			if(mVehicles[luiIndex]->muiPuntoControlActual==(mRaceControls.size()-1))
 				mVehicles[luiIndex]->AumentaVuelta=true;
-
-			typedef std::vector<cObject *> cObjectList;
-
-			cObjectList *lCoches=cObjectManager::Get().GetCars();
-			// Comprobamos si algún coche ha pasado la meta
-			cPhysicsVehicle *Cajota=((cObjectVehicle *)lCoches->at(luiIndex))->GetPtrPhysicsVehicle();
-			btRigidBody *lCoche=Cajota->mpbtCarChassis;
 
 			ComprobarColision(luiIndex);
 			

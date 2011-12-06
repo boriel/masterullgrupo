@@ -264,6 +264,39 @@ void cMenuManager::Render(){
 					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
+		case eFinalHistoria:
+			mFont.SetHeight(40.0);
+			// Posición: arriba izquierda
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria4.GetKey() );
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
+			/*if(cSceneManager::Get().GetHistoria()==0)mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
+			else 
+			*/
+			if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
+			break;
 		case eLoading:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
@@ -282,7 +315,7 @@ void cMenuManager::Render(){
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria2.GetKey() );
 			if(cSceneManager::Get().GetHistoria()==3)
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria3.GetKey() );
-			if(cSceneManager::Get().GetHistoria()==3)
+			if(cSceneManager::Get().GetHistoria()==4)
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria4.GetKey() );
 
 			// Draw texture using a quad 
@@ -425,6 +458,9 @@ void cMenuManager::Render(){
 
 	
 }
+void cMenuManager::ActivarMusica(){
+	cSoundManager::Get().ChangeMusic((char *)mMusicaMenu->Name.c_str());
+}
 
 void cMenuManager::Update(float lfTimestep){
 	// Movimiento por el menú
@@ -443,7 +479,7 @@ void cMenuManager::Update(float lfTimestep){
 	if (BecomePressed(eIA_Accept) && cSceneManager::Get().GetScene() == eCreditos ){
 		cSoundManager::Get().Play(mAceptarSound,cVec3(0,0,0));
 		cSoundManager::Get().ChangeMusic((char *)mMusicaMenu->Name.c_str());
-		cSceneManager::Get().LoadScene(eMenuPrincipal);
+		cSceneManager::Get().LoadScene(ePortada);
 	}else if(BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eNoDisponible)|| cSceneManager::Get().GetScene() == ePortada) ){
 		cSoundManager::Get().Play(mAceptarSound,cVec3(0,0,0));
 		cSceneManager::Get().LoadScene(eMenuPrincipal);

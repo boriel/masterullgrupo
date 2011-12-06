@@ -268,6 +268,7 @@ bool cObjectManager::Init()
 }
 
 void cObjectManager::VaciarObjetos(){
+	Deinit();
 	mObject.clear();  //Objetos en general que no se donde clasificarlos por ahora .... (y por el final)
 	mObjectPlayer.clear();
 	mObjectPista.clear();
