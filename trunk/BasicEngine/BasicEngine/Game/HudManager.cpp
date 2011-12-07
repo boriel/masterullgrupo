@@ -42,19 +42,23 @@ void cHudManager::Update(float lfTimestep)
 void cHudManager::Render()
 {
 	glEnable(GL_TEXTURE_2D);
+	int lPosX;
+	int lPosY;
 	if(cRaceControlManager::Get().isFinalRace()){
 		mFont.SetHeight(40);
 		mFont.SetColour(1.0,0,0);
 
+		lPosY=40*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+
 		if(cRaceControlManager::Get().GetTipoPartida()==eContrarreloj){
-			mFont.Write(0, 40, 0,"Has conseguido un tiempo de:", 0,FONT_ALIGN_CENTER);
+			mFont.Write(0, lPosY, 0,"Has conseguido un tiempo de:", 0,FONT_ALIGN_CENTER);
 			mFont.Write(0, 0, 0,cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera), 0,FONT_ALIGN_CENTER);
 		}else if(cRaceControlManager::Get().GetVictoria()){
-				mFont.Write(0, 40, 0,"Felicidades! Has Ganado! :)", 0,FONT_ALIGN_CENTER);
-			}else mFont.Write(0, 40, 0,"Lo siento... Has Perdido... :(", 0,FONT_ALIGN_CENTER);
+				mFont.Write(0, lPosY, 0,"Felicidades! Has Ganado! :)", 0,FONT_ALIGN_CENTER);
+			}else mFont.Write(0, lPosY, 0,"Lo siento... Has Perdido... :(", 0,FONT_ALIGN_CENTER);
 			
-		if(cSceneManager::Get().GetHistoria()==0 || !cRaceControlManager::Get().GetVictoria())mFont.Write(0, -40, 0,"Presiona 'Enter' para volver al menu", 0,FONT_ALIGN_CENTER);
-		else mFont.Write(0, -40, 0,"Presiona 'Enter' para ir al siguiente nivel", 0,FONT_ALIGN_CENTER);
+		if(cSceneManager::Get().GetHistoria()==0 || !cRaceControlManager::Get().GetVictoria())mFont.Write(0, -lPosY, 0,"Presiona 'Enter' para volver al menu", 0,FONT_ALIGN_CENTER);
+		else mFont.Write(0, -lPosY, 0,"Presiona 'Enter' para ir al siguiente nivel", 0,FONT_ALIGN_CENTER);
 	}else if(mIsHudActive && cRaceControlManager::Get().isRaceRunning()){
 		mFont.SetHeight(50.0);
 		mFont.SetColour(1.0,0,0);
@@ -65,7 +69,9 @@ void cHudManager::Render()
 		// Vuelta actual / Vueltas totales: arriba derecha
 		char *lLaps=new char(); 
 		sprintf(lLaps,"%i/%i",mHud.muiNumActualLap,mHud.muiNumTotalLaps);
-		mFont.Write(220, -220, 0,lLaps, 0,	FONT_ALIGN_CENTER);
+		lPosY=-220*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+		lPosX=220*(int)cWindow::Get().GetWidth()/DEFAULT_WIDTH;
+		mFont.Write(lPosX, lPosY, 0,lLaps, 0,	FONT_ALIGN_CENTER);
 
 
 		// Tiempo de carrera: Algun lugar
@@ -80,7 +86,8 @@ void cHudManager::Render()
 
 		//std::string aux=cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera);
 		//sprintf(lTime,"%s",aux);
-		if(cRaceControlManager::Get().GetTipoPartida()==eContrarreloj)mFont.Write(0, 170*cWindow::Get().GetHeight()/480, 0,cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera), 0,	FONT_ALIGN_CENTER);
+		lPosY=170*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+		if(cRaceControlManager::Get().GetTipoPartida()==eContrarreloj)mFont.Write(0, lPosY, 0,cRaceControlManager::Get().millisecondsToString(mHud.muiTiempoCarrera), 0,	FONT_ALIGN_CENTER);
 	}
 
 	// Cuenta atrás para empezar: Centro de la pantalla

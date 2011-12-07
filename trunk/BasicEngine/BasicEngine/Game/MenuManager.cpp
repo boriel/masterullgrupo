@@ -60,12 +60,12 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuOpciones->muiNumItems=3;
 	aux=new tMenuItem();
 	aux->mAction=Sonido;
-	aux->msMenuItem="Activar/Desactivar sonido";
+	aux->msMenuItem="Sonido On/Off";
 	aux->mTarget=NULL;
 	mMenuOpciones->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Musica;
-	aux->msMenuItem="Activar/Desactivar música";
+	aux->msMenuItem="Música On/Off";
 	aux->mTarget=NULL;
 	mMenuOpciones->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -121,12 +121,12 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Sonido;
-	aux->msMenuItem="Activar/Desactivar sonido";
+	aux->msMenuItem="Sonido On/Off";
 	aux->mTarget=NULL;
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
 	aux->mAction=Musica;
-	aux->msMenuItem="Activar/Desactivar música";
+	aux->msMenuItem="Música On/Off";
 	aux->mTarget=NULL;
 	mMenuPausa->mItemsList.push_back(aux);
 	aux=new tMenuItem();
@@ -222,6 +222,8 @@ void cMenuManager::Deinit(){
 void cMenuManager::Render(){
 	GLint lAuxX;
 	GLint lAuxY;
+	int lPosY;
+	int lPosX;
 	glEnable(GL_TEXTURE_2D);
 	switch(cSceneManager::Get().GetScene())
 	{
@@ -254,14 +256,18 @@ void cMenuManager::Render(){
 			// Finish quad drawing 
 			glEnd();
 
-			mFont.Write(-260, 150, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			lPosY=150*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			lPosX=-260*(int)cWindow::Get().GetWidth()/DEFAULT_WIDTH;
+			mFont.Write(lPosX,lPosY , 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
 
 			for (unsigned luiIndex = 0; luiIndex < mMenuActual->mItemsList.size(); ++luiIndex ) 
 			{
+				lPosY=140*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+				lPosX=-220*(int)cWindow::Get().GetWidth()/DEFAULT_WIDTH;
 				if(muiSelectedItem==luiIndex+1)
-					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(lPosX, lPosY-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
 				else
-					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(lPosX, lPosY-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
 		case eFinalHistoria:
@@ -295,7 +301,8 @@ void cMenuManager::Render(){
 			/*if(cSceneManager::Get().GetHistoria()==0)mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			else 
 			*/
-			if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
+			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			if(mParpadeo)mFont.Write(0, lPosY , 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
 			break;
 		case eLoading:
 			mFont.SetHeight(40.0);
@@ -341,8 +348,9 @@ void cMenuManager::Render(){
 			/*if(cSceneManager::Get().GetHistoria()==0)mFont.Write(0, 0, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			else 
 			*/
-			if(!mAviso)mFont.Write(0, -195, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
-			else if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
+			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			if(!mAviso)mFont.Write(0, lPosY, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
+			else if(mParpadeo)mFont.Write(0, lPosY, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
 			break;
 		case eNoDisponible:
 			mFont.SetHeight(50.0);
@@ -376,15 +384,19 @@ void cMenuManager::Render(){
 			glVertex2i(lAuxX,lAuxY); 
 			// Finish quad drawing 
 			glEnd();
-
-			mFont.Write(-260, 150, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			lPosY=150*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			lPosX=-260*(int)cWindow::Get().GetWidth()/DEFAULT_WIDTH;
+			mFont.Write(lPosX, lPosY, 0,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
 
 			for (unsigned luiIndex = 0; luiIndex < mMenuActual->mItemsList.size(); ++luiIndex ) 
-			{
+			{				
+				lPosY=140*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+				lPosX=-220*(int)cWindow::Get().GetWidth()/DEFAULT_WIDTH;
 				if(muiSelectedItem==luiIndex+1)
-					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(lPosX, lPosY-(1+(float)luiIndex)*muiDistanceBWItems, 0,("-> "+mMenuActual->mItemsList[luiIndex]->msMenuItem).c_str(), 0,	FONT_ALIGN_LEFT);
 				else
-					mFont.Write(-220, 140-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
+					mFont.Write(lPosX, lPosY-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
 		case ePortada:
@@ -415,8 +427,8 @@ void cMenuManager::Render(){
 			glVertex2i(lAuxX,lAuxY); 
 			// Finish quad drawing 
 			glEnd();
-
-			if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
+			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			if(mParpadeo)mFont.Write(0, lPosY, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
 			break;
 		case eCreditos:
 			mFont.SetHeight(40.0);
@@ -446,8 +458,8 @@ void cMenuManager::Render(){
 			glVertex2i(lAuxX,lAuxY); 
 			// Finish quad drawing 
 			glEnd();
-
-			if(mParpadeo)mFont.Write(0, -195, 0,"Presione 'Enter' para volver", 0,	FONT_ALIGN_CENTER);
+			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			if(mParpadeo)mFont.Write(0,lPosY, 0,"Presione 'Enter' para volver", 0,	FONT_ALIGN_CENTER);
 			break;
 	}
 

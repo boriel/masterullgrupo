@@ -17,6 +17,10 @@ Clase Game. Representa nuestro juego e implementa una estructura o ciclo de vida
 // Fichero de LUA a cargar
 #define LUA_FILE "data/scripts/practica7.lua"
 
+// Se utilizaran para recolocar bien las string cuando se cambie de resolucion
+#define DEFAULT_HEIGHT 480
+#define DEFAULT_WIDTH 640
+
 class cGame : public cSingleton<cGame> {
 	friend class cSingleton<cGame>;
 
