@@ -352,6 +352,10 @@ void cGame::Render()
 		  
 		glDisable(GL_CULL_FACE);
 	}
+
+	if(cRaceControlManager::Get().isFinalRace() && (cSceneManager::Get().GetScene()==eGameplay)){
+		m3DCamera.EndRaceAnimation();
+	}
 	/* ------------------------------------------------- */
 
 	// 4) Render 3D with transparency
