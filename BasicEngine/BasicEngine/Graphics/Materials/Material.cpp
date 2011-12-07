@@ -232,8 +232,18 @@ void cMaterial::PrepareRender()
 	lpEffect->SetTechnique("Technique0"); // *** Por ahora siempre se usa esta, luego ya se verá
 
 	// Set Properties
+	/* Viejo
 	cMatrix lWVPMatrix = cGraphicManager::Get().GetWVPMatrix();
 	lpEffect->SetParam("worldViewProj", lWVPMatrix );
+	cCamera * lpCamera = cGraphicManager::Get().GetActiveCamera();
+	cVec3 lCameraPos = lpCamera->GetView().GetPosition();
+	lpEffect->SetParam("cameraPos", lCameraPos );
+	lpEffect->SetParam("time", cGame::Get().GetAcumulatedTime() );
+	*/
+	cMatrix lWVPMatrix = cGraphicManager::Get().GetWVPMatrix();
+	lpEffect->SetParam("worldViewProj", lWVPMatrix );
+	cMatrix lWMatrix = cGraphicManager::Get().GetWorldMatrix();
+	lpEffect->SetParam("matWorldInv", lWMatrix.Invert() );
 	cCamera * lpCamera = cGraphicManager::Get().GetActiveCamera();
 	cVec3 lCameraPos = lpCamera->GetView().GetPosition();
 	lpEffect->SetParam("cameraPos", lCameraPos );

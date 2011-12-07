@@ -94,6 +94,7 @@ bool cGame::Init()
 	cMaterialManager::Get().Init(MaxSize); //Init Material Manager
 	cEffectManager::Get().Init(MaxSize);
 
+
 	mfAcTime = 0.0f; 
 	
 	// Los Init se han pasado a LoadRace() ya que en primer lugar ejecutaremos el Menú y desde ahí accederemos a la carrera

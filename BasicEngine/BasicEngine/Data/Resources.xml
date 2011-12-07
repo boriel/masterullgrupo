@@ -1,9 +1,9 @@
 <?xml version="1.0" ?>
 <Resources>
-  <Fonts>
+  <Fonts><!-- 
     <Font Name="Font1" File="./Data/Fonts/Test1.fnt" />
-    <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />
-	<!--<Font Name="Fuente" File="./Data/Fonts/Fuente.fnt" />-->
+    <Font Name="Font3" File="./Data/Fonts/Test3.fnt" />-->
+	<Font Name="Fuente" File="./Data/Fonts/Fuente.fnt" />
   </Fonts>
  
   <Objects>
@@ -155,7 +155,7 @@
   * tramos que definen cada vuelta
   La clase cRaceControlManager lee estos datos
 --> 
-  <Race MaxLaps="1">
+  <Race MaxLaps="3">
     <Vehicles>
 		<!-- -->
 		<Vehicle ModelName="Lambert" />
