@@ -88,14 +88,40 @@ void cCameraNavigator::FollowPlayer(void)
 	// Obtenemos el coche que maneja el jugador //	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","Jeep");
 	cObject* lpObject = cObjectManager::Get().GetObjectPlayer();
 	cVec3 lvPosition = lpObject->GetPosition();
-	cVec3 lvTarget = lvPosition + lpObject->GetWorldMatrix().GetFront() * 5;
-	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 5; //5
+	cVec3 lvTarget = lvPosition + lpObject->GetWorldMatrix().GetFront() * 10;
+	lvPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 10; //5
 #ifdef CAMERA_PLAYER
-	lvPosition.y += 5;//mfAlturaCamara; //5
+	lvPosition.y += 10;//mfAlturaCamara; //5
 #else
 	lvPosition.y += 40;
 #endif
 	SetLookAt(lvPosition, lvTarget);
+}
+
+void cCameraNavigator::EndRaceAnimation(void) 
+{
+#define CAMERA_PLAYER
+	// Obtenemos el coche que maneja el jugador //	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","Jeep");
+	cObject* lpObject = cObjectManager::Get().GetObjectPlayer();
+	cVec3 *lvPosition=mpPosition;
+	// Hacemos que cada iteracion aumente la altura
+	// Ponemos el tope de altura a 100
+	if(lvPosition->y<100){
+		*mpTarget =  lpObject->GetPosition();
+		lvPosition->y+=1;
+	}
+	if(lvPosition->z<80)lvPosition->z+=1;
+	if(lvPosition->x<80)lvPosition->x+=1;
+	else{
+		if(mpTarget->x>-80)mpTarget->x-=1;
+		if(mpTarget->z>-80)mpTarget->z-=1;
+	}
+#ifdef CAMERA_PLAYER
+	//lvPosition.y += 5;//mfAlturaCamara; //5
+#else
+	lvPosition.y += 40;
+#endif
+	SetLookAt(*lvPosition, *mpTarget);
 }
 
 
