@@ -88,7 +88,7 @@ void cObjectAgent::SetRoll(float lfNewRoll)
 }
 
 
-//Devuelve el vector Front del personaje
+//Devuelve el vector Front del personaje (o sea, el vector que indica hacia donde mira)
 cVec3 cObjectAgent::GetFront() 
 {
     float lfYaw = GetYaw();

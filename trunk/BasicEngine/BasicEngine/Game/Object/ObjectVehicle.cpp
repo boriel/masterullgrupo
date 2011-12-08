@@ -149,13 +149,11 @@ void cObjectVehicle::Init()
     cObjectAgent::Init();
 
     if (GetPlayer() == __PLAYER_ID)
-	{
 		mpActiveBehaviour = new cPlayerBehaviour();
-    /*else
+    else
         mpActiveBehaviour = new cChaserWithOrientationBehaviour();
-		*/
-	mpActiveBehaviour->Init(this);
-	}
+
+    mpActiveBehaviour->Init(this);
 }
 
 void cObjectVehicle::Update( float lfTimestep )

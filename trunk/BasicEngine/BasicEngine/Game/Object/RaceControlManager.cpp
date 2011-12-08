@@ -139,6 +139,8 @@ cVec3 cRaceControlManager::GetPositionPuntoControl(int lPtoControl){
 			return cVec3(mRaceControls.at(luiIndex).PosX,10,mRaceControls.at(luiIndex).PosZ);
 		}
 	}
+
+    return cVec3(0, 0, 0); // sucede si el punto pedido no existe
 }
 
 void cRaceControlManager::AddPuntoControl(string lNombre, string lTipo, int lPosX, int lPosZ, btPairCachingGhostObject* lGhost){
@@ -263,11 +265,26 @@ cQuaternion cRaceControlManager::GetPtoControlRotationFromCar(string lNombreCoch
 	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
 		if(mVehicles.at(luiIndex)->msModelName == lNombreCoche) return mVehicles.at(luiIndex)->RotacionPtoControl;
 }
+
+
 cVec3 cRaceControlManager::GetPtoControlPositionFromCar(string lNombreCoche){
 	// Obtenemos el coche que buscamos y devolvemos el punto
 	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
 		if(mVehicles.at(luiIndex)->msModelName == lNombreCoche) return mVehicles.at(luiIndex)->PosicionPtoControl;
 }
+
+
+cVec3 cRaceControlManager::GetRaceControlPoint(unsigned luiIndex)
+{
+    if (mRaceControls.size() < luiIndex) {
+        tPuntoControl lTmp = mRaceControls[luiIndex];
+        return cVec3(lTmp.PosX, 0, lTmp.PosZ);
+    }
+
+    return cVec3(0, 0, 0); // Si no existe
+}
+
+
 void cRaceControlManager::Update(float lfTimestep)
 {	
 	// Actualizamos el temporizador

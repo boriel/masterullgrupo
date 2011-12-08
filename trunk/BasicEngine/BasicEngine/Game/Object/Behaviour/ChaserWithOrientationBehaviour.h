@@ -7,6 +7,13 @@ class cChaserWithOrientationBehaviour: public cChaserBaseBehaviour {
 
 public:
 	virtual void Update(float lfTimestep);
+    unsigned muiCurrentPoint;
+
+    cChaserWithOrientationBehaviour(): 
+        cChaserBaseBehaviour(),  // Llamamos al constructor del ancestro
+        muiCurrentPoint(0) {}
+
+    virtual bool Init(cObjectAgent *lpCharacter);
 };
 
 
