@@ -13,6 +13,8 @@ class cControlRaceManager: Controla la carrera. Orden de los vehículos en la com
 #include "..\..\Sound\SoundManager.h"
 #include "..\..\MathLib\MathLib.h"
 
+#define RACECONTROLMANAGER  (cRaceControlManager::Get())
+
 using namespace std;
 
 enum eTipoPartida{
@@ -85,6 +87,7 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		char *millisecondsToString(int time);
 		cQuaternion GetPtoControlRotationFromCar(string lNombreCoche);
 		cVec3 GetPtoControlPositionFromCar(string lNombreCoche);
+        cVec3 GetRaceControlPoint(unsigned luiIndex);
 		bool GetVictoria(){return mVictoria;}
 	private:
 		string msFileName;

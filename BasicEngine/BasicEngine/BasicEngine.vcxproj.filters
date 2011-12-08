@@ -744,10 +744,13 @@
     <ClCompile Include="Game\Object\Behaviour\PlayerBehaviour.cpp">
       <Filter>Game\Object\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Object\Behaviour\ChaserBaseBehaviour.cpp">
+    <ClCompile Include="Game\Object\Behaviour\ChaserWithOrientationBehaviour.cpp">
       <Filter>Game\Object\Behaviour</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Object\Behaviour\ChaserWithOrientationBehaviour.cpp">
+    <ClCompile Include="Game\Object\Behaviour\Behaviour.cpp">
+      <Filter>Game\Object\Behaviour</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Object\Behaviour\ChaserBaseBehaviour.cpp">
       <Filter>Game\Object\Behaviour</Filter>
     </ClCompile>
   </ItemGroup>

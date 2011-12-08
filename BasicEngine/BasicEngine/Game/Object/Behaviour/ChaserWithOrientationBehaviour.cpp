@@ -1,10 +1,13 @@
 #include "ChaserWithOrientationBehaviour.h"
+#include "..\RaceControlManager.h"
 
 void cChaserWithOrientationBehaviour::Update(float lfTimestep)
 {
 	float lfCosAngle;
 	float lfAngle;
 	float lfAngleDisplacement;
+
+    return; // Por ahora nada
 
 	//Calcular el vector distancia (diferencia entre la posición del
 	//perseguidor y la posición del objetivo a perseguir)
@@ -84,3 +87,11 @@ void cChaserWithOrientationBehaviour::Update(float lfTimestep)
 	mpCharacter->SetPosition(mpCharacter->GetPosition() + (lfDisplacement * mpCharacter->GetFront()));
 }
 
+
+bool cChaserWithOrientationBehaviour::Init(cObjectAgent *lpCharacter)
+{
+    cChaserBaseBehaviour::Init(lpCharacter);
+    mTarget = RACECONTROLMANAGER.GetRaceControlPoint(muiCurrentPoint);
+
+    return true;
+}
