@@ -77,6 +77,7 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		inline bool isRaceRunning(){return mRaceRunning;}
 		inline int GetCuentaAtras(){return mCuentaAtras;}
 		inline bool isFinalRace(){return mIsFinalRace;}
+		inline void RestartRace(){mIsFinalRace=false;}
 		int GetPuntoControlFromCar(string lNombreCoche);
 		cVec3 GetPositionPuntoControl(int lPtoControl);
 		inline cControles *GetPuntosControl(){return &mRaceControls;}

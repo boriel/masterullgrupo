@@ -33,7 +33,7 @@ class cObjectVehicle : public cObjectAgent
         cPhysicsVehicle* mpPhysicsObject;
 		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
-
+		void SetBehaviour();
         virtual void Init();
 
 	//private:

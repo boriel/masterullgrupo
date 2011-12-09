@@ -5,6 +5,7 @@
 #include "Scene\ModelManager.h"
 #include "Scene\Model.h"
 #include "Object\ObjectManager.h"
+#include "Object\ObjectVehicle.h"
 #include "Object\RaceControlManager.h"
 #include "InputConfiguration.h"
 #include "..\Input\InputManager.h"
@@ -146,6 +147,15 @@ bool cGame::LoadRace()
 	
 	cFPSCounter::Get().Init();
 	
+	// Solo seleccionamos jugador si es distinto a la campaña
+//	if(cSceneManager::Get().GetHistoria()==0){
+		cMenuManager::Get().SeleccionarJugador();
+		// Añadimos los comportamientos pertinentes
+		for(int liIndex=0;liIndex<cObjectManager::Get().GetCars()->size();liIndex++){
+			((cObjectVehicle *)cObjectManager::Get().GetCars()->at(liIndex))->SetBehaviour();
+		}
+	//}
+	
 	cMenuManager::Get().SetAviso(true);
 	
 	return true;
@@ -230,12 +240,14 @@ void cGame::Update(float lfTimestep)
 
 	// Si la carrera ha finalizado y presionamos Enter, volvemos al menú inicial
 	if(cRaceControlManager::Get().isFinalRace() && BecomePressed(eIA_Accept)){
+		m3DCamera.ResetAnimacionFinal();
 		// Deinicializar las librerías antes de volver al menú
 		cObjectManager::Get().VaciarObjetos();
 		cRaceControlManager::Get().VaciarObjetos();
-
+		cRaceControlManager::Get().RestartRace();
 		if(cSceneManager::Get().GetHistoria()==0){
-			cSceneManager::Get().LoadScene(eMenuPrincipal);
+			cSceneManager::Get().LoadScene(ePortada);
+			cMenuManager::Get().IniciarMenu();
 			cMenuManager::Get().ActivarMusica();
 		}else {
 			// Si estamos en la historia, pasamos al siguiente nivel si ha ganado, si no volvemos al menú
@@ -281,7 +293,7 @@ void cGame::Update(float lfTimestep)
 	}
 
 	// Actualizamos los menús si son necesarios
-	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene() == eCreditos || cSceneManager::Get().GetScene()==eNoDisponible || cSceneManager::Get().GetScene() == ePausa || cSceneManager::Get().GetScene() == ePortada)
+	if(cSceneManager::Get().GetScene() == eMenuPrincipal || cSceneManager::Get().GetScene() == eCreditos || cSceneManager::Get().GetScene()==eNoDisponible || cSceneManager::Get().GetScene() == ePausa || cSceneManager::Get().GetScene() == ePortada || cSceneManager::Get().GetScene() == eSeleccionJugador)
 		cMenuManager::Get().Update(lfTimestep);
 	
 	if (BecomePressed(eIA_ChangeModeDebug)) //F9

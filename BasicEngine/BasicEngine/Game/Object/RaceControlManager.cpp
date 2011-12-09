@@ -193,10 +193,10 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 							// Puede ser que mVehicle y GetCars() no coincidan así que hacemos comprobacion
 							for(int lIndex =0;lIndex<mVehicles.size();lIndex++){
 								if(mVehicles[lIndex]->msModelName==((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetModelName()){
-									OutputDebugString("Coche Detectado!\n");
+									//OutputDebugString("Coche Detectado!\n");
 									if(mRaceControls[luiIndex].Tipo== "Meta")
 											{
-												OutputDebugString("Pasando meta!\n");	
+												//OutputDebugString("Pasando meta!\n");	
 												// Le añadimos UNA vuelta al coche adecuado
 												if(mVehicles[lIndex]->AumentaVuelta){
 													mVehicles[lIndex]->muiNumLaps++;
@@ -205,7 +205,7 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 													// Si algun coche llega al maximo se acaba la carrera
 													if(mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps){
 														//OutputDebugString("Un coche llego a la meta");
-														if(mVehicles[lIndex]->isPlayer){
+														if(((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPlayer()=="1"){
 															cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
 															EndRace(true);
 															OutputDebugString("Victoria\n");
