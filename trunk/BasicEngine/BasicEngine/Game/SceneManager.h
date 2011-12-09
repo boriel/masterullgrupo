@@ -26,6 +26,7 @@ enum eScenes{
 	eCreditos,
 	eHistoria,
 	eFinalHistoria,
+	eSeleccionJugador,
 	eFinPartida
 };
 

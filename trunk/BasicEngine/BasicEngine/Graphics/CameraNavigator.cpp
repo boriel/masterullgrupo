@@ -98,6 +98,14 @@ void cCameraNavigator::FollowPlayer(void)
 	SetLookAt(lvPosition, lvTarget);
 }
 
+void cCameraNavigator::ResetAnimacionFinal(){
+	// Obtenemos el coche que maneja el jugador //	cObject* lpObject=cObjectManager::Get().GetObjectA("Vehicle","Jeep");
+	cObject* lpObject = cObjectManager::Get().GetObjectPlayer();
+	cVec3 lvPosition = lpObject->GetPosition();
+	*mpTarget = lvPosition + lpObject->GetWorldMatrix().GetFront() * 10;
+	*mpPosition = lvPosition - lpObject->GetWorldMatrix().GetFront() * 10; //5
+}
+
 void cCameraNavigator::EndRaceAnimation(void) 
 {
 #define CAMERA_PLAYER

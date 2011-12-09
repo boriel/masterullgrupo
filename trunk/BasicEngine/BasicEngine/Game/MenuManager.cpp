@@ -180,7 +180,9 @@ bool cMenuManager::Init(string lsFilename){
 	//Añadimos las texturas
 	mTexturaFondoMenu=cTextureManager::Get().LoadResource("Fondo","./Data/Menu/FondoMenu.jpg");
 	mPortada=cTextureManager::Get().LoadResource("Portada","./Data/Menu/Portada.jpg");
+	mTexturaFondoSeleccionPersonaje=cTextureManager::Get().LoadResource("Cargando","./Data/Menu/FondoSeleccionPersonaje.jpg");
 	mTexturaFondoCargando=cTextureManager::Get().LoadResource("Cargando","./Data/Menu/FondoCargando.jpg");
+	mTexturaFondoCargando2=cTextureManager::Get().LoadResource("Cargando2","./Data/Menu/FondoCargando.jpg");
 	mTexturaFondoHistoria1=cTextureManager::Get().LoadResource("Historia1","./Data/Menu/FondoHistoria1.jpg");
 	mTexturaFondoHistoria2=cTextureManager::Get().LoadResource("Historia2","./Data/Menu/FondoHistoria2.jpg");
 	mTexturaFondoHistoria3=cTextureManager::Get().LoadResource("Historia3","./Data/Menu/FondoHistoria3.jpg");
@@ -201,6 +203,8 @@ bool cMenuManager::Init(string lsFilename){
 	mMenuActual = new tMenu();
 	mMenuActual = mMenuPrincipal;
 	cSoundManager::Get().ChangeMusic((char *)mMusicaMenu->Name.c_str());
+
+	mJugadorSeleccionado=1;
 	return true;
 }
 
@@ -224,9 +228,47 @@ void cMenuManager::Render(){
 	GLint lAuxY;
 	int lPosY;
 	int lPosX;
+	int lDistanciaCoches;
 	glEnable(GL_TEXTURE_2D);
 	switch(cSceneManager::Get().GetScene())
 	{
+		case eSeleccionJugador:	
+
+			mFont.SetHeight(40.0);
+			// Posición: arriba izquierda
+			mFont.SetColour(1.0f,1.0f,1.0f);
+			mFont.Write(-1000, 100, 10,mMenuActual->msMenuName.c_str(), 0,	FONT_ALIGN_LEFT);
+			
+			mFont.SetColour(0.0f,0.0f,0.0f);
+			glBindTexture( GL_TEXTURE_2D, mTexturaFondoSeleccionPersonaje.GetKey() );
+			// Draw texture using a quad 
+			glBegin(GL_POLYGON); 
+			lAuxX=cWindow::Get().GetWidth()/2;
+			lAuxY=cWindow::Get().GetHeight()/2;
+
+			// Top left 
+			glTexCoord2f(1.0, 1.0); 
+			glVertex2i(lAuxX,-lAuxY); 
+			// Top right 
+			glTexCoord2f(0.0, 1.0); 
+			glVertex2i(-lAuxX, -lAuxY); 
+			// Bottom right 
+			glTexCoord2f(0.0, 0.0); 
+			glVertex2i(-lAuxX, lAuxY); 
+			// Bottom left 
+			glTexCoord2f(1.0, 0.0); 
+			glVertex2i(lAuxX,lAuxY); 
+			// Finish quad drawing 
+			glEnd();
+
+			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			mFont.SetHeight(40.0);
+			if(mParpadeo)mFont.Write(0, lPosY, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
+			lPosY=20*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
+			lPosX=-420*(int)cWindow::Get().GetWidth()/DEFAULT_WIDTH;
+			lDistanciaCoches=lPosX+muiSelectedItem*230;
+			mFont.Write(lDistanciaCoches, lPosY, 0,"->", 0,	FONT_ALIGN_LEFT);
+			break;
 		case eMenuPrincipal:	
 
 			mFont.SetHeight(40.0);
@@ -314,15 +356,17 @@ void cMenuManager::Render(){
 
 			// Aquí colocaremos la historia mientras carga el mapa
 
-			if(cSceneManager::Get().GetHistoria()==0)
+			if(cSceneManager::Get().GetHistoria()==0){
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoCargando.GetKey() );
-			if(cSceneManager::Get().GetHistoria()==1)
+				glBindTexture( GL_TEXTURE_2D, mTexturaFondoCargando2.GetKey() ); // Pequeña chapuza necesaria para que funcione bien la seleccion de personajes
+			}
+			else if(cSceneManager::Get().GetHistoria()==1)
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria1.GetKey() );
-			if(cSceneManager::Get().GetHistoria()==2)
+			else if(cSceneManager::Get().GetHistoria()==2)
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria2.GetKey() );
-			if(cSceneManager::Get().GetHistoria()==3)
+			else if(cSceneManager::Get().GetHistoria()==3)
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria3.GetKey() );
-			if(cSceneManager::Get().GetHistoria()==4)
+			else if(cSceneManager::Get().GetHistoria()==4)
 				glBindTexture( GL_TEXTURE_2D, mTexturaFondoHistoria4.GetKey() );
 
 			// Draw texture using a quad 
@@ -474,15 +518,42 @@ void cMenuManager::ActivarMusica(){
 	cSoundManager::Get().ChangeMusic((char *)mMusicaMenu->Name.c_str());
 }
 
+void cMenuManager::SeleccionarJugador(){
+	// Buscamos el coche que se usa por defecto y lo cambiamos por el que hemos seleccionado
+	for(unsigned int luiIndex=0;luiIndex<cObjectManager::Get().GetCars()->size();luiIndex++){
+		// Seleccionamos al jugador que queremos
+		if(atoi(cObjectManager::Get().GetCars()->at(luiIndex)->GetPlayer().c_str())==mJugadorSeleccionado){
+			// Lo ponemos como player 1
+			cObjectManager::Get().GetCars()->at(luiIndex)->SetPlayer("1");
+		}
+	}
+	// Y al coche que anteriormente era player 1, le ponemos el valor nuevo
+	char aux[1]; 
+	itoa(mJugadorSeleccionado,aux,10);
+	//printf("%i",aux);
+	cObjectManager::Get().GetCars()->at(0)->SetPlayer(aux);
+}
+
 void cMenuManager::Update(float lfTimestep){
 	// Movimiento por el menú
-	if (BecomePressed(eIA_Up)){
-		muiSelectedItem--;
-		cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
-	}
-	if (BecomePressed(eIA_Down)){
-		muiSelectedItem++;
-		cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
+	if(cSceneManager::Get().GetScene()==eSeleccionJugador){
+		if (BecomePressed(eIA_Left)){
+			muiSelectedItem--;
+			cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
+		}
+		if (BecomePressed(eIA_Right)){
+			muiSelectedItem++;
+			cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
+		}
+	}else{
+		if (BecomePressed(eIA_Up)){
+			muiSelectedItem--;
+			cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
+		}
+		if (BecomePressed(eIA_Down)){
+			muiSelectedItem++;
+			cSoundManager::Get().PlaySoundBank(&mMoves_SoundBank);
+		}
 	}
 	// Con esto haremos el menú bucle, es decir que desde arriba pasa abajo
 	if(muiSelectedItem<1)muiSelectedItem=mMenuActual->muiNumItems;
@@ -492,12 +563,21 @@ void cMenuManager::Update(float lfTimestep){
 		cSoundManager::Get().Play(mAceptarSound,cVec3(0,0,0));
 		cSoundManager::Get().ChangeMusic((char *)mMusicaMenu->Name.c_str());
 		cSceneManager::Get().LoadScene(ePortada);
+		return;
 	}else if(BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eNoDisponible)|| cSceneManager::Get().GetScene() == ePortada) ){
 		cSoundManager::Get().Play(mAceptarSound,cVec3(0,0,0));
 		cSceneManager::Get().LoadScene(eMenuPrincipal);
+		return;
+	}else if(BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eSeleccionJugador)){
+		cSoundManager::Get().StopMusic();
+		mJugadorSeleccionado=muiSelectedItem; // Aquí se selecciona al coche con el que correremos
+		cSceneManager::Get().ResetHistoria();
+		cSceneManager::Get().LoadScene(eLoading);
+		return;
 	}else if (BecomePressed(eIA_Accept) && ((cSceneManager::Get().GetScene()==eMenuPrincipal) || (cSceneManager::Get().GetScene()==ePausa))){
 		cSoundManager::Get().Play(mAceptarSound,cVec3(0,0,0));
 		AbrirMenu();
+		return;
 	}
 
 
@@ -515,22 +595,16 @@ void cMenuManager::AbrirMenu(){
 			cSceneManager::Get().LoadScene(eGameplay);
 			break;
 		case ComenzarContrarreloj:
-			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(eContrarreloj); 
-			cSceneManager::Get().LoadScene(eLoading);
-			this->IniciarMenu();
+			cSceneManager::Get().LoadScene(eSeleccionJugador);
 			break;
 		case Comenzar2Jug: 
-			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(e2Jugadores);
-			cSceneManager::Get().LoadScene(eLoading);
-			this->IniciarMenu();
+			cSceneManager::Get().LoadScene(eSeleccionJugador);
 			break;
 		case Comenzar4Jug: 
-			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(e4Jugadores);
-			cSceneManager::Get().LoadScene(eLoading);
-			this->IniciarMenu();
+			cSceneManager::Get().LoadScene(eSeleccionJugador);
 			break;
 		case ComenzarHistoria: 
 			cSoundManager::Get().StopMusic();

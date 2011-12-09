@@ -12,6 +12,7 @@ class cMenuManager: Controla los menús. Tanto el inicial como el de pausa en med
 #include "..\Sound\SoundManager.h"
 #include "SceneManager.h"
 #include "Object\RaceControlManager.h"
+#include "Object\ObjectManager.h"
 #include <vector>
 
 using namespace std;
@@ -68,7 +69,9 @@ public:
 		void MenuPausa(){mMenuActual=mMenuPausa;}
 		inline void SetAviso(bool lParpadeo){mAviso=lParpadeo;}
 		void ActivarMusica();
+		void SeleccionarJugador();
 	private:
+		int mJugadorSeleccionado;
 		string msFileName;
 		// Menús Iniciales
 		tMenu *mMenuActual;
@@ -97,8 +100,10 @@ public:
 		// La fuente que utilizaremos
 		cFont mFont; // La fuente con la que escribiremos los textos
 		cResourceHandle mFontHandle;
+		cResourceHandle mTexturaFondoSeleccionPersonaje;
 		cResourceHandle mTexturaFondoMenu;
 		cResourceHandle mTexturaFondoCargando;
+		cResourceHandle mTexturaFondoCargando2;
 		cResourceHandle mTexturaFondoHistoria1;
 		cResourceHandle mTexturaFondoHistoria2;
 		cResourceHandle mTexturaFondoHistoria3;

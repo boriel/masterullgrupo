@@ -46,7 +46,7 @@ void cHudManager::Render()
 	int lPosY;
 	if(cRaceControlManager::Get().isFinalRace()){
 		mFont.SetHeight(40);
-		mFont.SetColour(1.0,0,0);
+		mFont.SetColour(0,1.0,0);
 
 		lPosY=40*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
 
