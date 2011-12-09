@@ -48,11 +48,12 @@
 	<Object Type="Pista2" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Scale="1" Effect="BlackWhite" />
 	-->
 <!--<Object Type="Pista2" Position="0,-1,0" ModelName="Circuitobasico02" ModelFile="./Data/Circuitos/Basico/BasicoBueno.DAE" Mass="0"  />
-	-->
+	
 
 	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03PtosControl.DAE" Mass="0"  />
-  
-    
+  -->
+ 	<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/Circuito.DAE" Mass="0"  />
+     
 
 		<!--   OBJETOS SUELTOS   -->
 <!--		PONER
@@ -155,7 +156,7 @@
   * tramos que definen cada vuelta
   La clase cRaceControlManager lee estos datos
 --> 
-  <Race MaxLaps="1">
+  <Race MaxLaps="3">
     <Vehicles>
 		<!-- -->
 		<Vehicle ModelName="Lambert" />

@@ -286,7 +286,6 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 	lpModel = (cModel*)lResource;
 	cModel::cObjectList lObjectList = lpModel->GetObjectList();
 
-
 	(*lpPhysicsObject).SetMass(lpObject->GetMass()); //ASIGNAR LA MASA DESDE XML, Y TAMBIEN PREGUNTAR SI TIENE FISICA O NO EL OBJETO?
 
 #ifdef _DEBUG
