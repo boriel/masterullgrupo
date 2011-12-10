@@ -61,13 +61,16 @@ class cObject
 		inline void SetPlayer(string lsPlayer) { msPlayer=lsPlayer;}
 		inline string GetPlayer() { return msPlayer;}
 
+        //Propiedades del objeto relativas a la física
+        //Estas funciones sólo envuelven las que ya se definen en el objeto de la física, para mayor comodidad
+        virtual cVec3 GetLinearSpeed(); // Velocidad en los 3 ejes
+        virtual float GetSpeed(); // El módulo de la velocidad (módulo del vector anterior)
+        virtual cVec3 GetAngularSpeed(); // Velocidad Angular (velocidad de giro) en cada eje
+
 		//para pruebas de recarga
 		inline cVec3 GetPosicionInicial () { return mPosicionInicial; }
 		inline void SetPosicionInicial (cVec3 lPosicionInicial) { mPosicionInicial = lPosicionInicial; }
-		
-
-
-		inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
+        inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
 		inline void SetPtrPhysicsObject (cPhysicsObject* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
 
 	protected:

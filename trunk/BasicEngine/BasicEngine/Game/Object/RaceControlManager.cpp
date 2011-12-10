@@ -132,7 +132,10 @@ int cRaceControlManager::GetPuntoControlFromCar(string lNombreCoche){
 	// Obtenemos el coche que buscamos y devolvemos el punto
 	for (unsigned luiIndex = 0; luiIndex < mVehicles.size(); ++luiIndex ) 
 		if(mVehicles.at(luiIndex)->msModelName == lNombreCoche) return mVehicles.at(luiIndex)->muiPuntoControlActual;
+
+    return -1; // No encontrado
 }
+
 cVec3 cRaceControlManager::GetPositionPuntoControl(int lPtoControl){
 	for (unsigned luiIndex = 0; luiIndex < mRaceControls.size(); ++luiIndex ) {
 		if((int)atoi(mRaceControls.at(luiIndex).Nombre.c_str()) == lPtoControl){
