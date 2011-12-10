@@ -103,7 +103,6 @@
     <ClInclude Include="Game\InputConfiguration.h" />
     <ClInclude Include="Game\Object\Behaviour\Behaviour.h" />
     <ClInclude Include="Game\Object\Behaviour\ChaserBaseBehaviour.h" />
-    <ClInclude Include="Game\Object\Behaviour\ChaserWithOrientationBehaviour.h" />
     <ClInclude Include="Game\Object\Behaviour\IABehaviour.h" />
     <ClInclude Include="Game\Object\Behaviour\PlayerBehaviour.h" />
     <ClInclude Include="Game\Object\ObjectAgent.h" />
@@ -225,7 +224,6 @@
     <ClCompile Include="Game\InputConfiguration.cpp" />
     <ClCompile Include="Game\Object\Behaviour\Behaviour.cpp" />
     <ClCompile Include="Game\Object\Behaviour\ChaserBaseBehaviour.cpp" />
-    <ClCompile Include="Game\Object\Behaviour\ChaserWithOrientationBehaviour.cpp" />
     <ClCompile Include="Game\Object\Behaviour\IABehaviour.cpp" />
     <ClCompile Include="Game\Object\Behaviour\PlayerBehaviour.cpp" />
     <ClCompile Include="Game\Object\ObjectAgent.cpp" />
