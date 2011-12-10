@@ -5,7 +5,7 @@
 #include "..\..\Input\InputManager.h"
 #include "..\InputConfiguration.h"
 #include "Behaviour\PlayerBehaviour.h"
-#include "Behaviour\ChaserWithOrientationBehaviour.h"
+#include "Behaviour\IABehaviour.h"
 
 cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 {
@@ -153,7 +153,7 @@ void cObjectVehicle::SetBehaviour(){
     if (GetPlayer() == __PLAYER_ID)
 		mpActiveBehaviour = new cPlayerBehaviour();
     else
-        mpActiveBehaviour = NULL;//new cChaserWithOrientationBehaviour();
+        mpActiveBehaviour = new cIABehaviour();
 		
 	if(mpActiveBehaviour!=NULL)mpActiveBehaviour->Init(this);
 	
