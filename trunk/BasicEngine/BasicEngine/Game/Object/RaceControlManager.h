@@ -90,6 +90,8 @@ class cRaceControlManager : public cSingleton<cRaceControlManager>
 		cVec3 GetPtoControlPositionFromCar(string lNombreCoche);
         cVec3 GetRaceControlPoint(unsigned luiIndex);
 		bool GetVictoria(){return mVictoria;}
+        inline unsigned GetNumOfRaceControlPoints() {return mRaceControls.size(); }
+
 	private:
 		string msFileName;
 		unsigned int muiMaxLaps;

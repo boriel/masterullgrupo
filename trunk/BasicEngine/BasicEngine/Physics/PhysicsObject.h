@@ -64,7 +64,8 @@ class cPhysicsObject
         virtual cVec3 GetAngSpeed();
         // Retorna la velocidad lineal en los 3 ejes
         virtual float GetSpeed();
-        virtual cVec3 GetLinearSpeed(); // Módulo de la anterior
+        // Módulo de la anterior
+        virtual cVec3 GetLinearSpeed(); 
 
 	protected:
 		std::string macNameID;

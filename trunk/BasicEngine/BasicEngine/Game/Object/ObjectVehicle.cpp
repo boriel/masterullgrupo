@@ -4,6 +4,7 @@
 #include "..\..\Game\Object\RaceControlManager.h"
 #include "..\..\Input\InputManager.h"
 #include "..\InputConfiguration.h"
+#include "..\..\MathLib\MathLib.h"
 #include "Behaviour\PlayerBehaviour.h"
 #include "Behaviour\IABehaviour.h"
 
@@ -13,7 +14,7 @@ cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 		this->SetPlayer(lObject.GetPlayer());
 
 		// Añadimos los sonidos de cada coche
-		if(lObject.GetModelName() == "Lambert"){
+		if (lObject.GetModelName() == "Lambert") {
 			Sound *mSoundAcelerar=new Sound();
 			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarProta.wav");
 
@@ -25,7 +26,7 @@ cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 
 			Sound *mSoundMarchaAtras=new Sound();
 			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasProta.wav");
-		}else if(lObject.GetModelName() == "L200"){
+		} else if (lObject.GetModelName() == "L200") {
 			Sound *mSoundAcelerar=new Sound();
 			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarL200.wav");
 
@@ -37,7 +38,7 @@ cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 
 			Sound *mSoundMarchaAtras=new Sound();
 			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasL200.wav");
-		}else if(lObject.GetModelName() == "Jeep"){
+		} else if (lObject.GetModelName() == "Jeep") {
 			Sound *mSoundAcelerar=new Sound();
 			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarJeep.wav");
 
@@ -49,7 +50,7 @@ cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 
 			Sound *mSoundMarchaAtras=new Sound();
 			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasJeep.wav");
-		}else if(lObject.GetModelName() == "Jazz"){
+		} else if (lObject.GetModelName() == "Jazz") {
 			Sound *mSoundAcelerar=new Sound();
 			this->mSoundAcelerar=cSoundManager::Get().AddSound("/Acelerar/AcelerarEnemigo.wav");
 
@@ -62,6 +63,7 @@ cObjectVehicle::cObjectVehicle (cObjectAgent lObject)
 			Sound *mSoundMarchaAtras=new Sound();
 			this->mSoundMarchaAtras=cSoundManager::Get().AddSound("/MarchaAtras/MarchaAtrasEnemigo.wav");
 		}
+
 		mbSuena=true;
 		//mPhysicsObject = new cPhysicsVehicle;
 /*
@@ -78,7 +80,8 @@ void cObjectVehicle::InitPhysics ()
 	((cPhysicsVehicle*)mpPhysicsObject)->Init(mPosition);
 }
 */
-void cObjectVehicle::StopSounds(){
+void cObjectVehicle::StopSounds()
+{
 	cSoundManager::Get().Stop(mSoundAcelerar);
 	cSoundManager::Get().Stop(mSoundFrenar);
 	cSoundManager::Get().Stop(mSoundCorriendo);
@@ -149,14 +152,18 @@ void cObjectVehicle::Init()
     cObjectAgent::Init();
 }
 
-void cObjectVehicle::SetBehaviour(){
+// Pone un comportamiento al vehículo.
+// Si tiene el ID del jugador, pone el comportamiento del jugador.
+// En otro caso, pone el de la IA
+void cObjectVehicle::SetBehaviour()
+{
     if (GetPlayer() == __PLAYER_ID)
 		mpActiveBehaviour = new cPlayerBehaviour();
     else
         mpActiveBehaviour = new cIABehaviour();
 		
-	if(mpActiveBehaviour!=NULL)mpActiveBehaviour->Init(this);
-	
+	if (mpActiveBehaviour != NULL)
+        mpActiveBehaviour->Init(this);	
 }
 
 void cObjectVehicle::Update( float lfTimestep )
@@ -173,7 +180,7 @@ void cObjectVehicle::Update( float lfTimestep )
 	// lQuatRot.AsMatrix(mWorldMatrix);
 	// mWorldMatrix.SetPosition(mPosition);
 
-	if(this->GetPlayer()==__PLAYER_ID) {
+	if(this->GetPlayer() == __PLAYER_ID) {
 	    //mWorldMatrix.LoadScale(mfScale);
 	
         // Si somos el player, llamaremos a la función de controlar el coche
@@ -202,7 +209,7 @@ void cObjectVehicle::Update( float lfTimestep )
 }
 
 //void cObjectPlayer::Render (cMatrix &lWorld) 
-void cObjectVehicle::Render () 
+void cObjectVehicle::Render() 
 {
 	//cObject::Render(lWorld);
 	cObject::Render();
@@ -214,7 +221,7 @@ void cObjectVehicle::Render ()
 }
 
 //Recargando el vehiculo 
-void cObjectVehicle::Reload ()
+void cObjectVehicle::Reload()
 {
 	int lPtoControl=cRaceControlManager::Get().GetPuntoControlFromCar(this->GetModelName());
 	// Haremos que se coloque en la posición del ultimo punto de control por el que pasó
@@ -222,6 +229,9 @@ void cObjectVehicle::Reload ()
 	int lAux=mPosition.y;
 	//printf("%i,%i,%i",
 	mPosition = cRaceControlManager::Get().GetPositionPuntoControl(lPtoControl);
-	mPosition.y = lAux+10;
+	mPosition.y = lAux + 10;
 	//mPosition = GetPosicionInicial();
 }
+
+
+

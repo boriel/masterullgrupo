@@ -15,8 +15,7 @@ void cObject::Init(cVec3 lPosition, string lsType, string lsModelName, string ls
 	mRotacionInicial = lRotacionInicial;
 	mPosicionInicial = lPosition;
 	mfScale = lScale;
-	Init();  
-
+	Init();
 }
 
 void cObject::Init()
@@ -35,7 +34,10 @@ void cObject::Init()
 void cObject::Deinit()
 {
 	//Hacer mejor los deletes y la liberación de memoria, y las llamadas
-	delete mpPhysicsObject;
+    if (mpPhysicsObject != NULL) {
+	    delete mpPhysicsObject;
+        mpPhysicsObject = NULL;
+    }
 }
 
 //void cObject::Render(cMatrix &lWorld)
@@ -110,23 +112,3 @@ void cObject::InitPhysics()
 
 }
 
-
-// Velocidad en los 3 ejes
-cVec3 cObject::GetLinearSpeed()
-{
-    return mpPhysicsObject->GetLinearSpeed();
-}
-
-
- // El módulo de la velocidad (módulo del vector anterior)
-float cObject::GetSpeed()
-{
-    return mpPhysicsObject->GetSpeed();
-}
-
-
-// Velocidad Angular (velocidad de giro) en cada eje
-cVec3 cObject::GetAngularSpeed()
-{
-    return mpPhysicsObject->GetAngSpeed();
-}
