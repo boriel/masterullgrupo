@@ -1,6 +1,8 @@
 #include "IABehaviour.h"
+#include "../RaceControlManager.h"
 
-bool cChaserWithOrientationBehaviour::Init(cObjectAgent *lpCharacter)
+
+bool cIABehaviour::Init(cObjectAgent *lpCharacter)
 {
     cChaserBaseBehaviour::Init(lpCharacter);
     mTarget = RACECONTROLMANAGER.GetRaceControlPoint(muiCurrentPoint);
@@ -9,7 +11,7 @@ bool cChaserWithOrientationBehaviour::Init(cObjectAgent *lpCharacter)
 }
 
 
-void cChaserWithOrientationBehaviour::Update(float lfTimestep)
+void cIABehaviour::Update(float lfTimestep)
 {
 	
 }

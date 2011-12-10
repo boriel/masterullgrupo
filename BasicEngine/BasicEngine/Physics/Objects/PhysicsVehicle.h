@@ -84,9 +84,10 @@ class cPhysicsVehicle : public cPhysicsObject
         // Retorna las velocidades angulares en los 3 ejes (en radianes)
         virtual cVec3 GetAngSpeed();
         // Retorna la velocidad lineal en los 3 ejes
-        virtual cVec3 GetSpeed();
-
-
+        virtual cVec3 GetLinearSpeed();
+        // Retorna el módulo de lo anterior
+        virtual float GetSpeed();
+        
 		//void RenderObjectVehicleDebug();
 
 		void SpecialKeyboardRelease(const unsigned int luiKey);

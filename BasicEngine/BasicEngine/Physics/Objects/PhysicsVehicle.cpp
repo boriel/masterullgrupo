@@ -452,12 +452,17 @@ cVec3 cPhysicsVehicle::GetAngSpeed()
 }
 
 
-cVec3 cPhysicsVehicle::GetSpeed()
+cVec3 cPhysicsVehicle::GetLinearSpeed()
 {
     btVector3 btVec3 = mpbtVehicle->getRigidBody()->getLinearVelocity();
     return cVec3(btVec3.getX() , btVec3.getY(), btVec3.getZ());
 }
 
+
+float cPhysicsVehicle::GetSpeed()
+{
+    return mpbtVehicle->getRigidBody()->getLinearVelocity().length();
+}
 
 
 /*

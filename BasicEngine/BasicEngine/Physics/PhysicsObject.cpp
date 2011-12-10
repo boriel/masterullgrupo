@@ -257,7 +257,13 @@ cVec3 cPhysicsObject::GetAngSpeed()
 }
 
 
-cVec3 cPhysicsObject::GetSpeed()
+float cPhysicsObject::GetSpeed()
+{
+    return mpbtRigidBody->getLinearVelocity().length();
+}
+
+
+cVec3 cPhysicsObject::GetLinearSpeed()
 {
     btVector3 btVec3 = mpbtRigidBody->getLinearVelocity();
     return cVec3(btVec3.getX() , btVec3.getY(), btVec3.getZ());
@@ -269,7 +275,6 @@ btQuaternion cPhysicsObject::CambiarEje(const cQuaternion &lRotQuat)
 {
 
 	btQuaternion lbtRotQuat = btQuaternion(lRotQuat.x, lRotQuat.y, lRotQuat.z, lRotQuat.w);
-
 
 	btMatrix3x3 lbtMatrix = btMatrix3x3(1,0,0, 0,1,0, 0,0,1);  //Identidad, no se is pasarán otra, es al principio solo
 	btTransform lbtTransform = btTransform(lbtMatrix);

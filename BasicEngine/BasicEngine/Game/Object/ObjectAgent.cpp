@@ -139,5 +139,5 @@ float cObjectAgent::GetAngSpeedZ()
 
 float cObjectAgent::GetSpeed()
 {
-    return mpPhysicsObject->GetSpeed().Length();
+    return mpPhysicsObject->GetSpeed();
 }
