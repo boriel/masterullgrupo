@@ -1,13 +1,20 @@
 #include "Behaviour.h"
-	
-//Inicializa los atributos del comportamiento y es llamada en el
-	
+
+//Inicializa los atributos del comportamiento y es llamada en el	
 //momento en que se asocia este comportamiento a un personaje
-bool cBehaviour::Init(cObjectAgent *lpCharacter){
-	return true;
+
+bool cBehaviour::Init(cObjectAgent *lpCharacter)
+{
+	mpCharacter = lpCharacter;
+
+    return true;
 }
 
-	//Deinicializa los atributos del comportamiento y es llamada en el
-	//momento en que se elimina este comportamiento de un personaje
-void cBehaviour::Deinit(){
+//Deinicializa los atributos del comportamiento y es llamada en el
+//momento en que se elimina este comportamiento de un personaje
+void cBehaviour::Deinit()
+{
+    mpCharacter = NULL;
 }
+
+
