@@ -528,7 +528,7 @@ void cMenuManager::SeleccionarJugador(){
 		}
 	}
 	// Y al coche que anteriormente era player 1, le ponemos el valor nuevo
-	char aux[1]; 
+	char aux[256];  // Mínimo 2 caracteres
 	itoa(mJugadorSeleccionado,aux,10);
 	//printf("%i",aux);
 	cObjectManager::Get().GetCars()->at(0)->SetPlayer(aux);
