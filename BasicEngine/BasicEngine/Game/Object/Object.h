@@ -49,7 +49,7 @@ class cObject
 		inline void SetModelFile (string lsModelFile) { msModelFile = lsModelFile; }
 		inline string GetModelFile () {return msModelFile; }
 		inline void SetPosition (cVec3 lPosition) { mPosition = lPosition; }
-		inline cVec3 GetPosition () { return mPosition; }
+        inline cVec3 GetPosition () { return mPosition; }
 		inline void SetCollision (cVec3 lCollision) { mCollision = lCollision; }  //TODO: a mano por ahora NO USADO!
 		inline cVec3 GetCollision () { return mCollision; } //TODO: a mano por ahora
 		inline void SetRotacionInicial (cQuaternion lQuatRot) { mRotacionInicial = lQuatRot; }  
@@ -63,9 +63,9 @@ class cObject
 
         //Propiedades del objeto relativas a la física
         //Estas funciones sólo envuelven las que ya se definen en el objeto de la física, para mayor comodidad
-        virtual cVec3 GetLinearSpeed(); // Velocidad en los 3 ejes
-        virtual float GetSpeed(); // El módulo de la velocidad (módulo del vector anterior)
-        virtual cVec3 GetAngularSpeed(); // Velocidad Angular (velocidad de giro) en cada eje
+        inline cVec3 GetLinearSpeed() { return mpPhysicsObject->GetLinearSpeed();} // Velocidad en los 3 ejes
+        inline float GetSpeed() { return mpPhysicsObject->GetSpeed();} // El módulo de la velocidad (módulo del vector anterior)
+        inline cVec3 GetAngularSpeed() { return mpPhysicsObject->GetAngSpeed();} // Velocidad Angular (velocidad de giro) en cada eje
 
 		//para pruebas de recarga
 		inline cVec3 GetPosicionInicial () { return mPosicionInicial; }

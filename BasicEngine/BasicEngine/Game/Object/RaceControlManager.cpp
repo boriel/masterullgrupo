@@ -146,24 +146,26 @@ cVec3 cRaceControlManager::GetPositionPuntoControl(int lPtoControl){
     return cVec3(0, 0, 0); // sucede si el punto pedido no existe
 }
 
-void cRaceControlManager::AddPuntoControl(string lNombre, string lTipo, int lPosX, int lPosZ, btPairCachingGhostObject* lGhost){
+void cRaceControlManager::AddPuntoControl(string lNombre, string lTipo, int lPosX, int lPosZ, btPairCachingGhostObject* lGhost)
+{
 	tPuntoControl lAux;
-	lAux.Nombre=lNombre;
-	lAux.Tipo=lTipo;
-	lAux.PosX=lPosX;
-	lAux.PosZ=lPosZ;
-	lAux.Ghost=lGhost;
+	lAux.Nombre = lNombre;
+	lAux.Tipo = lTipo;
+	lAux.PosX = lPosX;
+	lAux.PosZ = lPosZ;
+	lAux.Ghost = lGhost;
 	mRaceControls.push_back(lAux);
 }
 
-void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
-	for (unsigned luiIndex = 0; luiIndex < mRaceControls.size(); ++luiIndex ){
+void cRaceControlManager::ComprobarColision(unsigned lCocheIndice)
+{
+	for (unsigned luiIndex = 0; luiIndex < mRaceControls.size(); ++luiIndex ) {
 		// Buscamos los puntos de contacto
 		btManifoldArray   manifoldArray;
 		btBroadphasePairArray& pairArray = mRaceControls[luiIndex].Ghost->getOverlappingPairCache()->getOverlappingPairArray();
 		int numPairs = pairArray.size();
 
-		for (int i=0;i<numPairs;i++){
+		for (int i=0;i<numPairs;i++) {
 				manifoldArray.clear();
 
 				const btBroadphasePair& pair = pairArray[i];
@@ -171,19 +173,18 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 				//unless we manually perform collision detection on this pair, the contacts are in the dynamics world paircache:
 				btBroadphasePair* collisionPair = cPhysicsManager::Get().GetDynamicsWorld()->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
 				if (!collisionPair)
-				continue;
+				    continue;
 
 				if (collisionPair->m_algorithm)
-				collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
+				    collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
 
-				for (int j=0;j<manifoldArray.size();j++){
+				for (int j=0; j < manifoldArray.size(); j++) {
 				btPersistentManifold* manifold = manifoldArray[j];
 				btScalar directionSign = manifold->getBody0() == mRaceControls[luiIndex].Ghost ? btScalar(-1.0) : btScalar(1.0);
-				for (int p=0;p<manifold->getNumContacts();p++)
-				{
+				for (int p=0;p<manifold->getNumContacts();p++) {
              		const btManifoldPoint&pt = manifold->getContactPoint(p);
 
-					if (pt.getDistance()<0.f){
+					if (pt.getDistance() < 0.f) {
 						const btVector3& ptA = pt.getPositionWorldOnA();
 						const btVector3& ptB = pt.getPositionWorldOnB();
 						const btVector3& normalOnB = pt.m_normalWorldOnB;
@@ -191,14 +192,13 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 						// Necesitamos saber que coche es el que está atravesando la meta y descartarlo aqui
 						// Comprobamos si algún coche ha pasado la meta
 						btCollisionObject* obB = static_cast<btCollisionObject*>(manifold->getBody0());	// == Vehiculo que actualmente pasa la meta
-						if (((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPtrPhysicsVehicle()->mpbtCarChassis==obB)
-						{
+
+						if (((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPtrPhysicsVehicle()->mpbtCarChassis==obB) {
 							// Puede ser que mVehicle y GetCars() no coincidan así que hacemos comprobacion
-							for(int lIndex =0;lIndex<mVehicles.size();lIndex++){
-								if(mVehicles[lIndex]->msModelName==((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetModelName()){
+							for(int lIndex = 0; lIndex < mVehicles.size(); lIndex++) {
+								if(mVehicles[lIndex]->msModelName==((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetModelName()) {
 									//OutputDebugString("Coche Detectado!\n");
-									if(mRaceControls[luiIndex].Tipo== "Meta")
-											{
+									if(mRaceControls[luiIndex].Tipo== "Meta") {
 												//OutputDebugString("Pasando meta!\n");	
 												// Le añadimos UNA vuelta al coche adecuado
 												if(mVehicles[lIndex]->AumentaVuelta){
@@ -206,13 +206,13 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 													// Reiniciamos los puntos de control
 													mVehicles[lIndex]->muiPuntoControlActual=0;
 													// Si algun coche llega al maximo se acaba la carrera
-													if(mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps){
+													if (mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps) {
 														//OutputDebugString("Un coche llego a la meta");
-														if(((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPlayer()=="1"){
+														if (((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPlayer()=="1"){
 															cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
 															EndRace(true);
 															OutputDebugString("Victoria\n");
-														}else{
+														} else {
 															cSoundManager::Get().Play(mSoundDerrota, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
 															EndRace(false);
 															OutputDebugString("Derrota\n");
@@ -228,7 +228,7 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice){
 													// Con esto recordaremos hace cuánto pasamos la meta
 													//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
 												}
-											}else {
+											} else {
 												int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
 												printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
 												// Comprobamos que solo va hacia deante el coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
@@ -279,7 +279,7 @@ cVec3 cRaceControlManager::GetPtoControlPositionFromCar(string lNombreCoche){
 
 cVec3 cRaceControlManager::GetRaceControlPoint(unsigned luiIndex)
 {
-    if (mRaceControls.size() < luiIndex) {
+    if (luiIndex < mRaceControls.size()) {
         tPuntoControl lTmp = mRaceControls[luiIndex];
         return cVec3(lTmp.PosX, 0, lTmp.PosZ);
     }

@@ -37,9 +37,6 @@ public:
 		
 	//Devuelve el vector Right del personaje
 	cVec3 GetRight();
-
-    //Devuelve la velocidad lineal (módulo del vector)
-    virtual float GetSpeed();
 };
 
 #endif
