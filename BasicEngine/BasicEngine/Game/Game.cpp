@@ -35,7 +35,7 @@
 #include "..\Character\Behaviour\ChaserBase.h"
 #endif
 
-#define MaxSize 128
+#define MaxSize 200
 
 extern tActionMapping kaActionMapping[];
 
