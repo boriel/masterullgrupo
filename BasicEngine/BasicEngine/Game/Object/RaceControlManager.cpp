@@ -6,6 +6,7 @@
 #include <tinystr.h>
 #include <tinyxml.h>
 #include <vector>
+#include "..\..\Utility\Debug.h"
 
 bool cRaceControlManager::Init(string lsFileName) 
 {	
@@ -230,7 +231,15 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice)
 												}
 											} else {
 												int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
-												printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+												//printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+                                                DEBUG_MSG("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+                                                DEBUG_MSG("Coordenadas del coche: (%f, %f)", 
+                                                    //cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition().x, 
+                                                    OBJECTMANAGER.GetCars()->at(lCocheIndice)->GetPosition().x,
+                                                    //cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition().z
+                                                    OBJECTMANAGER.GetCars()->at(lCocheIndice)->GetPosition().z
+                                                    );
+
 												// Comprobamos que solo va hacia deante el coche, que en el caso de volver al punto de control de atrás, se recolocase en el punto correcto
 												// Genera errores, es poco probable que vaya hacia atras
 												/*if(lAux < mVehicles[lCocheIndice]->muiPuntoControlActual){

@@ -10,6 +10,8 @@ class ObjectManager: Lista de objetos
 #include "Object.h"
 #include "..\..\Utility\Singleton.h"
 
+#define OBJECTMANAGER cObjectManager::Get()
+
 class cObjectManager : public cSingleton<cObjectManager>
 {
 	public:
