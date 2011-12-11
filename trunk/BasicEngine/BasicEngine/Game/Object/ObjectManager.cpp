@@ -357,14 +357,19 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			cResource* lResourceMesh = lSubModel->GetResource(0);
 
 			cMesh* lpMesh = (cMesh*)lResourceMesh;
-
+            cVec3  lCentroide = cVec3(0, 0, 0);
 			cVec3* lVec3 = lpMesh->mpVertexPositionBuffer;  //los vertices o puntos de la malla
 		
 			btConvexHullShape* lbtShape = new btConvexHullShape();
 
 			//float lfScala = 1.0f;		// NO ESCALES LAS MALLAS DE COLISION!!!  De acuerdo, la escala ya está aplicada en el mesh al cargar por primera vez el objeto
-			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++)
+			for (int liCont = 0; liCont < (int) lpMesh->muiNumVertex; liCont++) {
 				lbtShape->addPoint(btVector3(lVec3[liCont].x, lVec3[liCont].y, lVec3[liCont].z) );
+                lCentroide += lVec3[liCont];
+            }
+
+            if (lpMesh->muiNumVertex)
+                lCentroide /= lpMesh->muiNumVertex;
 
 			cQuaternion lRotacionInicial = lpObject->GetRotacionInicial();
 
@@ -411,7 +416,8 @@ void cObjectManager::CreandoFisica(cObject* lpObject, cPhysicsObject* lpPhysicsO
 			//cRaceControlManager::Get().AddControl(lpbtRirigBody);
 			//cRaceControlManager::Get().AddGhost(lTokens[1].c_str(),lbptGhost);
 
-			cRaceControlManager::Get().AddPuntoControl(lTokens[2].c_str(),lTokens[1].c_str(),lpObject->GetPosition().x, lpObject->GetPosition().z,lbptGhost);
+			//cRaceControlManager::Get().AddPuntoControl(lTokens[2].c_str(),lTokens[1].c_str(),lpObject->GetPosition().x, lpObject->GetPosition().z,lbptGhost);
+            cRaceControlManager::Get().AddPuntoControl(lTokens[2].c_str(),lTokens[1].c_str(), lCentroide.x, lCentroide.z, lbptGhost);
 
 		//	(*lpPhysicsObject).SetRigidBody(lpbtRirigBody);  
 		}
