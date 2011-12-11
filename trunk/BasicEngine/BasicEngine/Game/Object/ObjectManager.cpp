@@ -1011,7 +1011,8 @@ cObject *cObjectManager::GetObject(const string lsType, const string lsModelName
 	return NULL;
 }
 
-cObject *cObjectManager::GetObjectPlayer(){
+cObject *cObjectManager::GetObjectPlayer()
+{
 	for (unsigned luiIndex = 0; luiIndex < mObjectVehicle.size(); ++luiIndex ) 
 		if (mObjectVehicle[luiIndex]->GetPlayer() == "1")
 			return mObjectVehicle[luiIndex];
