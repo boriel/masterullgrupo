@@ -111,6 +111,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0CCEB1394A7445B3BC31139E21987B50"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0EE66D2C61884ECC834F8EE7C9B6AD74"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0FD27F79E0904F0EA5ABEF636E76BFF2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -183,6 +195,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1B3BFB92DB014AE0B97A74BD5F91BA24"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1B8409396F614A8798958ED1076ED7B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -232,6 +250,12 @@
         "Entry"
         {
         "MsmKey" = "8:_22FBF5AE50D64B758C32BE4B324B8BB8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_24DED42913A64594B955AC3A023063B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -441,6 +465,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4928C46AEEE145A5A5F004AB258BF26D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_49C85C98F8A24B689C4628717AF0E1DF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -461,6 +491,12 @@
         {
         "MsmKey" = "8:_4B025949D4F6930B80FD827FE885A4A3"
         "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4B68F5465AA94A17842E76BFB63E20B1"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -567,6 +603,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5E1694137E8F476590B42E64C8702049"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5F2196AAE1924D768914F17F53896DC7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -591,6 +633,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_61ED9AF8374D41979EB1601B4CAFC907"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_61FF830ABDD14AA384BD25C1556FC2A0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -604,6 +652,12 @@
         "Entry"
         {
         "MsmKey" = "8:_62811E4F8D3146A4AA365B2B89D4C6DE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6295310478174CDC82284F2A50CA4F0F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -723,6 +777,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_75C35E45F869409B8EFA84D7D6B8B6A8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_75DF6022427A4B88BCC352F1F7D52936"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -759,6 +819,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7C4ADF44442A4E59B8C5E7648E151E4D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7CA865C8EC2B4B21BAC272D933B9A09B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -784,6 +850,12 @@
         "Entry"
         {
         "MsmKey" = "8:_81CF6EF23AAC45BD9C2D52043B22DA5A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_820410D233384D92BD919B611317D951"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -879,6 +951,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_92CFE1DD41284E09901BD7B9DEF1B467"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_92E7F86E389D4007A3AD6CC549D66EA2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -886,6 +964,12 @@
         "Entry"
         {
         "MsmKey" = "8:_93305DB3CCEC4089BACD37857C6F7BB9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_93603FD975324A61B4A09D584350A026"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -903,7 +987,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_94BA8A65289E42E1817B2C110CF7F6CF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9539942B184149FBADE3F749EB180B97"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_95A32F1A3F794F83A69FE5E8B8EF1661"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1011,6 +1107,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A7321CF0F9F947859D746BF1596676C4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A80A2FA87520497089BA5E505979FB31"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1077,6 +1179,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B8892B902DE047799D984FD231E3496F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B89C8E2FFF804A2C93C1ECB1A9886CCA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1119,6 +1227,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BECF482EDADE40D3A04CB56B08E94499"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BED5FC77E9AE4ACF973085001C9F10F1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1156,6 +1270,12 @@
         "Entry"
         {
         "MsmKey" = "8:_C23281CF1B13466EAB0B43DBF07D1902"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C33857EAFB9C4E81903C3DA9BA99F941"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1204,6 +1324,18 @@
         "Entry"
         {
         "MsmKey" = "8:_C9DF8B90F31F4EEB8B6E534A4245DDBB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C9F0A6E92C06496F8B36245FFF898428"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CADB6847487B43E98DB7F7CE34761145"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1347,6 +1479,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E0FC202F68414516BAB0FC61A393F2DC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E24B0538CC5C4DFCA881D36274C1F112"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1395,7 +1533,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E7723CC497EF4F03B377C1EBA6A3A1F8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EC028E8E1C2E4106B6F6D2525D229F23"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EC9B589B365D40E29A0931F02B249CEB"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1471,6 +1621,12 @@
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_FF0E5B13F93048AEA2AD5A31C94004A8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -1511,7 +1667,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\InstaladorJuego.msi"
+        "OutputFilename" = "8:Release\\ToyCorriendo.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -1883,6 +2039,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0CCEB1394A7445B3BC31139E21987B50"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoHistoria4.jpg"
+            "TargetName" = "8:FondoHistoria4.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0EE66D2C61884ECC834F8EE7C9B6AD74"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoCreditos.jpg"
+            "TargetName" = "8:FondoCreditos.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FD27F79E0904F0EA5ABEF636E76BFF2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\Test1.bmfc"
@@ -2123,6 +2319,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B3BFB92DB014AE0B97A74BD5F91BA24"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoHistoria2.jpg"
+            "TargetName" = "8:FondoHistoria2.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1B8409396F614A8798958ED1076ED7B5"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Shader\\skeletal.fx"
@@ -2289,6 +2505,26 @@
             "TargetName" = "8:14Ball.jpg"
             "Tag" = "8:"
             "Folder" = "8:_75B20320CB0A47AEA3B548B3387A44D2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_24DED42913A64594B955AC3A023063B5"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\enchufe.jpg"
+            "TargetName" = "8:enchufe.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2983,6 +3219,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4928C46AEEE145A5A5F004AB258BF26D"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoCargando.jpg"
+            "TargetName" = "8:FondoCargando.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49C85C98F8A24B689C4628717AF0E1DF"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\Menu\\Movimiento1.wav"
@@ -3061,6 +3317,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4B68F5465AA94A17842E76BFB63E20B1"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\madera.jpg"
+            "TargetName" = "8:madera.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4BD02249837444DDB216C7A1852512EB"
@@ -3383,6 +3659,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E1694137E8F476590B42E64C8702049"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoHistoria1.jpg"
+            "TargetName" = "8:FondoHistoria1.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5F2196AAE1924D768914F17F53896DC7"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_spine_lower.cmf"
@@ -3463,6 +3759,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61ED9AF8374D41979EB1601B4CAFC907"
+            {
+            "SourcePath" = "8:dlls\\MSVCR80.dll"
+            "TargetName" = "8:MSVCR80.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_61FF830ABDD14AA384BD25C1556FC2A0"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Billar\\01\\images\\Bubing_2.gif"
@@ -3509,6 +3825,26 @@
             "TargetName" = "8:Regleta.DAE"
             "Tag" = "8:"
             "Folder" = "8:_E002CE9BFCC14DBC897D72E09A14A17E"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6295310478174CDC82284F2A50CA4F0F"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\Fuente.fnt"
+            "TargetName" = "8:Fuente.fnt"
+            "Tag" = "8:"
+            "Folder" = "8:_2E090EF186514D31AAE43140E9677FE9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3903,6 +4239,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75C35E45F869409B8EFA84D7D6B8B6A8"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\parquet_488.jpg"
+            "TargetName" = "8:parquet_488.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75DF6022427A4B88BCC352F1F7D52936"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\CircuitoBasico03.DAE"
@@ -4023,6 +4379,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C4ADF44442A4E59B8C5E7648E151E4D"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoHistoria3.jpg"
+            "TargetName" = "8:FondoHistoria3.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7CA865C8EC2B4B21BAC272D933B9A09B"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\Menu\\Movimiento8.wav"
@@ -4109,6 +4485,26 @@
             "TargetName" = "8:skeleton_hiphop.caf"
             "Tag" = "8:"
             "Folder" = "8:_3568BE687B3148C6B638FA674BB7F4DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_820410D233384D92BD919B611317D951"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\madera2.jpg"
+            "TargetName" = "8:madera2.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4423,6 +4819,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92CFE1DD41284E09901BD7B9DEF1B467"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\Portada.jpg"
+            "TargetName" = "8:Portada.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92E7F86E389D4007A3AD6CC549D66EA2"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton.csf"
@@ -4449,6 +4865,26 @@
             "TargetName" = "8:rocket4g.jpg"
             "Tag" = "8:"
             "Folder" = "8:_0A2DB948C3B64F9C802F0C8F66531150"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93603FD975324A61B4A09D584350A026"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\DSCI0147.JPG"
+            "TargetName" = "8:DSCI0147.JPG"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4503,12 +4939,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_94BA8A65289E42E1817B2C110CF7F6CF"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\Meta\\PasoMeta.wav"
+            "TargetName" = "8:PasoMeta.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_5372E94076854758961741CE2F7F154B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9539942B184149FBADE3F749EB180B97"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_neck.cmf"
             "TargetName" = "8:skeleton_neck.cmf"
             "Tag" = "8:"
             "Folder" = "8:_3568BE687B3148C6B638FA674BB7F4DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95A32F1A3F794F83A69FE5E8B8EF1661"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\legoVerdeFuerte.jpg"
+            "TargetName" = "8:legoVerdeFuerte.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4863,6 +5339,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7321CF0F9F947859D746BF1596676C4"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\CircuitoV2012.DAE"
+            "TargetName" = "8:CircuitoV2012.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_0A8A798D4ECE4E299A42ECD4C0F514C9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A80A2FA87520497089BA5E505979FB31"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\ads_toy_corriendo.jpg"
@@ -5063,6 +5559,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8892B902DE047799D984FD231E3496F"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoSeleccionPersonaje.jpg"
+            "TargetName" = "8:FondoSeleccionPersonaje.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B89C8E2FFF804A2C93C1ECB1A9886CCA"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_hair2.xrf"
@@ -5203,6 +5719,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BECF482EDADE40D3A04CB56B08E94499"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\legoRojoFuerte.jpg"
+            "TargetName" = "8:legoRojoFuerte.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BED5FC77E9AE4ACF973085001C9F10F1"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Scene\\images\\CuboTextura.jpg"
@@ -5289,6 +5825,26 @@
             "TargetName" = "8:CorriendoProta.wav"
             "Tag" = "8:"
             "Folder" = "8:_8BAE37E85C2843D2A6B6C9F819781271"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C33857EAFB9C4E81903C3DA9BA99F941"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\Fuente_0.tga"
+            "TargetName" = "8:Fuente_0.tga"
+            "Tag" = "8:"
+            "Folder" = "8:_2E090EF186514D31AAE43140E9677FE9"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5449,6 +6005,46 @@
             "TargetName" = "8:TemaMenu.wav"
             "Tag" = "8:"
             "Folder" = "8:_4DB72DEF4DF746EEA209081F6D24440F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C9F0A6E92C06496F8B36245FFF898428"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Fonts\\KidsFirstPrintFont.ttf"
+            "TargetName" = "8:KidsFirstPrintFont.ttf"
+            "Tag" = "8:"
+            "Folder" = "8:_2E090EF186514D31AAE43140E9677FE9"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CADB6847487B43E98DB7F7CE34761145"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\ToyCorriendo.ico"
+            "TargetName" = "8:ToyCorriendo.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5923,6 +6519,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E0FC202F68414516BAB0FC61A393F2DC"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoMenu.jpg"
+            "TargetName" = "8:FondoMenu.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E24B0538CC5C4DFCA881D36274C1F112"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\ads_polyfactor.jpg"
@@ -6083,10 +6699,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E7723CC497EF4F03B377C1EBA6A3A1F8"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\FondoPausa.jpg"
+            "TargetName" = "8:FondoPausa.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EC028E8E1C2E4106B6F6D2525D229F23"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\CamaSabana.jpg"
             "TargetName" = "8:CamaSabana.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EC9B589B365D40E29A0931F02B249CEB"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\legoVioleta.jpg"
+            "TargetName" = "8:legoVioleta.jpg"
             "Tag" = "8:"
             "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
@@ -6339,6 +6995,26 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF0E5B13F93048AEA2AD5A31C94004A8"
+            {
+            "SourcePath" = "8:dlls\\IEShims.dll"
+            "TargetName" = "8:IEShims.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:4"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
@@ -6608,6 +7284,17 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_CBA665FD636A4B51B7BB9C6A3882786B"
+                            {
+                            "Name" = "8:Menu"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_F431CF7416B94BD0AB7D79DC03C6333D"
+                                "Folders"
+                                {
                                 }
                             }
                             "{9EF0B969-E518-4E46-987F-47570745A589}:_E5EC584013614D4B9C10E83F8D23B83C"
@@ -7049,7 +7736,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{9BC331EF-9DA9-4EC1-BB49-1344CF1E52AF}"
+        "PackageCode" = "8:{67217F59-423C-4E8C-9202-6AAD6B83769D}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -7057,7 +7744,7 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Canarias"
+        "Manufacturer" = "8:PolyFactor.com"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Toy Corriendo"
@@ -7180,7 +7867,7 @@
             "Target" = "8:_4EC62613DB554F02BB9509A265A4AC98"
             "Folder" = "8:_523B3B6BE9BF448FA57BEFC09B9300D4"
             "WorkingFolder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Icon" = "8:"
+            "Icon" = "8:_CADB6847487B43E98DB7F7CE34761145"
             "Feature" = "8:"
             }
         }
