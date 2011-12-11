@@ -30,12 +30,14 @@
 	<!--<Object Type="Vehicle" Position="50,1,-19" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeep.dae" Scale="0.1" Mass="1" Player="1"/>   -->
  
  
- <!-- IMPORTANTE: Siempre que se declare un coche aquí tiene que declararse el nombre también debajo en el mismo orden 
--->		<Object Type="Vehicle" Position="50,1,-30" ModelName="Lambert" ModelFile="./Data/Cars/lambert3SG1/Lambert.DAE" Rotation="0,1,0"  Angle="-90" Scale="1" Mass="1" Player="1"/>
-		<Object Type="Vehicle" Position="50,1,-25" ModelName="Jazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" Player="2"/> 
+ <!-- IMPORTANTE: Siempre que se declare un coche aquí tiene que declararse el nombre también debajo en el mismo orden -->		
+  <Object Type="Vehicle" Position="50,1,-30" ModelName="Lambert" ModelFile="./Data/Cars/lambert3SG1/Lambert.DAE" Rotation="0,1,0"  Angle="-90" Scale="1" Mass="1" Player="1"/>
+	<Object Type="Vehicle" Position="50,1,-25" ModelName="Jazz" ModelFile="./Data/Cars/jazz_3Dmax3.1/jazz.DAE"  Scale="1" Mass="1" Rotation="0,1,0"  Angle="-90" Player="2"/> 
 	<Object Type="Vehicle" Position="50,1,-20" ModelName="L200" ModelFile="./Data/Cars/L200/L200Nuevo.DAE"  Rotation="0,1,0"  Angle="-90" Player="3"/>
 	<Object Type="Vehicle" Position="50,1,-15" ModelName="Jeep" ModelFile="./Data/Cars/jeep/jeepNuevo.dae" Rotation="0,1,0"  Angle="-90" Scale="1" Mass="1" Player="4"/> 
- <!--  PISTAS  -->
+ 
+    
+  <!--  PISTAS  -->
 
 	<!-- 
 	<Object Type="Pista" Position="0,-1,0" ModelName="Suelo" ModelFile="./Data/Scene/sueloMax2.DAE" Rotation="0,0,0"  Angle="-90" Mass="0"/>
@@ -53,6 +55,7 @@
 
 	<!--<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03PtosControl.DAE" Mass="0"  />-->
     <Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoV2012.DAE" Mass="0"  />
+    <!-- <Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03.DAE" Mass="0"  /> -->
      
 
 		<!--   OBJETOS SUELTOS   -->
@@ -161,7 +164,7 @@
 		<!-- -->
 		<Vehicle ModelName="Lambert" />
 		<Vehicle ModelName="Jazz" />
-        <Vehicle ModelName="L200" />
+    <Vehicle ModelName="L200" />
 		<Vehicle ModelName="Jeep" />
 
     </Vehicles>
