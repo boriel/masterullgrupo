@@ -231,7 +231,7 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice)
 										}
 									} else {
 												int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
-												//printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
+					
                                                 DEBUG_MSG("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
                                                 DEBUG_MSG("Coordenadas del coche: (%f, %f)", 
                                                     //cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition().x, 
@@ -250,6 +250,8 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice)
 												// Comprobamos que solo se sume una vez el punto de control actual
 												if(mVehicles[lIndex]->muiPuntoControlActual < lAux)
 												{
+                                                    DEBUG_MSG("Notificando al coche %i su paso por el checkpoint %i", lCocheIndice, lAux);
+                                                    ((cObjectVehicle *)OBJECTMANAGER.GetCars()->at(lCocheIndice))->CheckPointSignal();
 													// Cuando pase un punto de control, guardamos la posición y la dirección para recargar el coche
 													mVehicles[lIndex]->muiPuntoControlActual++;
 													// Obtenemos la informacion del ObjectMAnager
