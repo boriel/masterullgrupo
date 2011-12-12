@@ -435,7 +435,7 @@ bool cRaceControlManager::LoadXml(void)
 						lpVehicle->isPlayer = false;
 						mVehicles.push_back(lpVehicle);
 						lAux=false;
-					}else if(cObjectManager::Get().GetCars()->at(1)->GetPlayer() == "2" && lAux && cObjectManager::Get().GetCars()->at(0)->GetModelName()==lpVehicle->msModelName){
+					}else if(cObjectManager::Get().GetCars()->at(1)->GetPlayer() == "2" && lAux && cObjectManager::Get().GetCars()->at(1)->GetModelName()==lpVehicle->msModelName){
 						lpVehicle->isPlayer = false;
 						mVehicles.push_back(lpVehicle);				
 						lAux=false;
