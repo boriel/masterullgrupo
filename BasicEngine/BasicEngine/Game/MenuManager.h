@@ -70,6 +70,7 @@ public:
 		inline void SetAviso(bool lParpadeo){mAviso=lParpadeo;}
 		void ActivarMusica();
 		void SeleccionarJugador();
+		inline  int GetSelectedPlayer(){return muiSelectedItem;}
 	private:
 		int mJugadorSeleccionado;
 		string msFileName;
@@ -93,7 +94,6 @@ public:
 
 		// Sonidos
 		Sound *mAceptarSound;
-		Sound *mAtrasSound;
 		Sound *mMusicaMenu;
 		Sound *mMusicaCreditos;
 		mSoundBank mMoves_SoundBank; // Añadiremos todos los sonidos para los movimientos, de manera que podamos ejecutarlos aleatoriamente

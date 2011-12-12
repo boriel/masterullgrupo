@@ -168,9 +168,6 @@ bool cMenuManager::Init(string lsFilename){
 	mAceptarSound=new Sound();
 	mAceptarSound=cSoundManager::Get().AddSound("/Menu/Aceptar.wav");
 
-	mAtrasSound=new Sound();
-	mAtrasSound=cSoundManager::Get().AddSound("/Menu/Atras.wav");
-
 	mMusicaCreditos=new Sound();
 	mMusicaCreditos=cSoundManager::Get().AddSound("/Menu/MusicaCreditos.wav");
 
@@ -223,19 +220,17 @@ void cMenuManager::Deinit(){
 	delete mConfirmacion;
 }
 
-void cMenuManager::Render()
-{
+void cMenuManager::Render(){
 	GLint lAuxX;
 	GLint lAuxY;
 	int lPosY;
 	int lPosX;
 	int lDistanciaCoches;
 	glEnable(GL_TEXTURE_2D);
-
 	switch(cSceneManager::Get().GetScene())
 	{
-
 		case eSeleccionJugador:	
+
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
 			mFont.SetColour(1.0f,1.0f,1.0f);
@@ -271,7 +266,6 @@ void cMenuManager::Render()
 			lDistanciaCoches=lPosX+muiSelectedItem*230;
 			mFont.Write(lDistanciaCoches, lPosY, 0,"->", 0,	FONT_ALIGN_LEFT);
 			break;
-
 		case eMenuPrincipal:	
 
 			mFont.SetHeight(40.0);
@@ -315,7 +309,6 @@ void cMenuManager::Render()
 					mFont.Write(lPosX, lPosY-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
-
 		case eFinalHistoria:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
@@ -350,7 +343,6 @@ void cMenuManager::Render()
 			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
 			if(mParpadeo)mFont.Write(0, lPosY , 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
 			break;
-
 		case eLoading:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
@@ -401,13 +393,11 @@ void cMenuManager::Render()
 			if(!mAviso)mFont.Write(0, lPosY, 0,"CARGANDO...", 0,	FONT_ALIGN_CENTER);
 			else if(mParpadeo)mFont.Write(0, lPosY, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
 			break;
-
 		case eNoDisponible:
 			mFont.SetHeight(50.0);
 			mFont.Write(0, 0, 0,"Modo aun no disponible.", 0,	FONT_ALIGN_CENTER);
 			mFont.Write(0, -50, 0,"Presione 'Enter' para volver", 0,	FONT_ALIGN_CENTER);
 			break;
-
 		case ePausa:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
@@ -450,7 +440,6 @@ void cMenuManager::Render()
 					mFont.Write(lPosX, lPosY-(1+(float)luiIndex)*muiDistanceBWItems, 0,mMenuActual->mItemsList[luiIndex]->msMenuItem.c_str(), 0,	FONT_ALIGN_LEFT);
 			}
 			break;
-
 		case ePortada:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
@@ -482,7 +471,6 @@ void cMenuManager::Render()
 			lPosY=-195*(int)cWindow::Get().GetHeight()/DEFAULT_HEIGHT;
 			if(mParpadeo)mFont.Write(0, lPosY, 0,"Presione 'Enter' para continuar", 0,	FONT_ALIGN_CENTER);
 			break;
-
 		case eCreditos:
 			mFont.SetHeight(40.0);
 			// Posición: arriba izquierda
@@ -516,13 +504,10 @@ void cMenuManager::Render()
 			break;
 	}
 
-	if(mTiempoParpadeo>10)
-	{
+	if(mTiempoParpadeo>10){
 		mParpadeo=!mParpadeo;
 		mTiempoParpadeo=0;
-	}
-	else 
-		mTiempoParpadeo++;
+	}else mTiempoParpadeo++;
 
 	
 }
@@ -530,25 +515,22 @@ void cMenuManager::ActivarMusica(){
 	cSoundManager::Get().ChangeMusic((char *)mMusicaMenu->Name.c_str());
 }
 
-void cMenuManager::SeleccionarJugador()
-{
-	// Buscamos el coche que se usa por defecto y lo cambiamos por el que hemos seleccionado
-	//cout << "size:" << cObjectManager::Get().GetCars()->size() << endl;
-	for(unsigned int luiIndex=0;luiIndex<cObjectManager::Get().GetCars()->size();luiIndex++)
-	{
-		// Seleccionamos al jugador que queremos
-		cout << "GetPlayer:" << atoi(cObjectManager::Get().GetCars()->at(luiIndex)->GetPlayer().c_str()) << endl;
-		if(atoi(cObjectManager::Get().GetCars()->at(luiIndex)->GetPlayer().c_str()) == mJugadorSeleccionado)
-		{
-			// Lo ponemos como player 1
-			cObjectManager::Get().GetCars()->at(luiIndex)->SetPlayer("1");
+void cMenuManager::SeleccionarJugador(){
+	if(cRaceControlManager::Get().GetTipoPartida()!=eContrarreloj){
+		// Buscamos el coche que se usa por defecto y lo cambiamos por el que hemos seleccionado
+		for(unsigned int luiIndex=0;luiIndex<cObjectManager::Get().GetCars()->size();luiIndex++){
+			// Seleccionamos al jugador que queremos
+			if(atoi(cObjectManager::Get().GetCars()->at(luiIndex)->GetPlayer().c_str())==mJugadorSeleccionado){
+				// Lo ponemos como player 1
+				cObjectManager::Get().GetCars()->at(luiIndex)->SetPlayer("1");
+			}
 		}
-	}
 	// Y al coche que anteriormente era player 1, le ponemos el valor nuevo
-	char aux[256];  // Mínimo 2 caracteres
-	itoa(mJugadorSeleccionado,aux,10);
-	//printf("%i",aux);
-	cObjectManager::Get().GetCars()->at(0)->SetPlayer(aux);
+		char aux[256];  // Mínimo 2 caracteres
+		itoa(mJugadorSeleccionado,aux,10);
+		//printf("%i",aux);
+		cObjectManager::Get().GetCars()->at(0)->SetPlayer(aux);
+	}else{cObjectManager::Get().GetCars()->at(0)->SetPlayer("1");}
 }
 
 void cMenuManager::Update(float lfTimestep){
