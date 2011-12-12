@@ -99,6 +99,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0A899998AFE04B349AB20A6B89B83F00"
+        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0AB1B29DDD924F2FB2A2912A6AF97457"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -519,6 +525,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4E7F2808968B4D3B8B6F94C2A6EABC5A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -617,6 +629,12 @@
         {
         "MsmKey" = "8:_6022634EF5BC4B39B444FAA757F73F92"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_60559D0A0C7E7AAFD38551085CC97370"
+        "OwnerKey" = "8:_4EC62613DB554F02BB9509A265A4AC98"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1245,12 +1263,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BF2A49EDDAD647C2B3144084878E0878"
-        "OwnerKey" = "8:_B3C69E9DFD224B4C98A76734C1F32F7C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_BF4458A485F843D39B06758D4C36724B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1336,6 +1348,12 @@
         "Entry"
         {
         "MsmKey" = "8:_CADB6847487B43E98DB7F7CE34761145"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CB1AE4A52DC949A5993375401B27A580"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1618,12 +1636,6 @@
         "Entry"
         {
         "MsmKey" = "8:_FD8ABD97FE6E4DF093BA54FB73D1D73F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FF0E5B13F93048AEA2AD5A31C94004A8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3399,6 +3411,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E7F2808968B4D3B8B6F94C2A6EABC5A"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Cars\\lambert3SG1\\images\\textura_coche.jpg"
+            "TargetName" = "8:textura_coche.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_25BCC0FD263A48F6AEE7396282DF29F5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EC88AB4C6A4452CA1C91C655033A70D"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Sounds\\Menu\\Aceptar.wav"
@@ -3717,6 +3749,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_60559D0A0C7E7AAFD38551085CC97370"
+            {
+            "SourcePath" = "8:Assimp32.dll"
+            "TargetName" = "8:Assimp32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_606E7B81015949B1998463D0EC156CFA"
@@ -6059,6 +6111,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB1AE4A52DC949A5993375401B27A580"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Cars\\lambert3SG1\\Lambert.DAE"
+            "TargetName" = "8:Lambert.DAE"
+            "Tag" = "8:"
+            "Folder" = "8:_8ADC16CECFBA467C85B55A34DF250212"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC25F7384B644CD098EF57E91A4EBF47"
             {
             "SourcePath" = "8:..\\BasicEngine\\Data\\Skeletal\\SkeletonModel\\skeleton_shoot_arrow.caf"
@@ -6999,26 +7071,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF0E5B13F93048AEA2AD5A31C94004A8"
-            {
-            "SourcePath" = "8:dlls\\IEShims.dll"
-            "TargetName" = "8:IEShims.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_0C054ECACD9E4838B3AEC0E99B2C4478"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:4"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
         }
         "FileType"
         {
@@ -7238,6 +7290,17 @@
                                     "Property" = "8:_045A249E88E343F1A7E9898E2970578D"
                                         "Folders"
                                         {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_25BCC0FD263A48F6AEE7396282DF29F5"
+                                            {
+                                            "Name" = "8:images"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_FC481C50EFEC42D791466BFA8D0EA851"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
                                         }
                                     }
                                     "{9EF0B969-E518-4E46-987F-47570745A589}:_AB23E33429814B32A909705E55F0A41B"
@@ -7736,7 +7799,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Toy Corriendo"
         "ProductCode" = "8:{81E0F0DD-175A-47F9-9138-79B457717E3B}"
-        "PackageCode" = "8:{67217F59-423C-4E8C-9202-6AAD6B83769D}"
+        "PackageCode" = "8:{E0BBA6EE-681F-4207-8B10-627433F49279}"
         "UpgradeCode" = "8:{23E59013-136F-4494-AF8C-B932031C2E87}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -7751,9 +7814,9 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Master Videojuegos ULL 1ª Edición"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
-        "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPCOMMENTS" = "8:Juego de Coches en una habitación de niño"
+        "ARPURLINFOABOUT" = "8:http://www.polyfactor.com"
+        "ARPPRODUCTICON" = "8:_CADB6847487B43E98DB7F7CE34761145"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -8266,6 +8329,20 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_0A899998AFE04B349AB20A6B89B83F00"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:Microsoft_VC100_DebugCRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
             "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_BF2A49EDDAD647C2B3144084878E0878"
             {
             "UseDynamicProperties" = "11:TRUE"
