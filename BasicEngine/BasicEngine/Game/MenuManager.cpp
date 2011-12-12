@@ -570,6 +570,7 @@ void cMenuManager::Update(float lfTimestep){
 	}else if(BecomePressed(eIA_Accept) && (cSceneManager::Get().GetScene()==eSeleccionJugador)){
 		cSoundManager::Get().StopMusic();
 		mJugadorSeleccionado=muiSelectedItem; // Aquí se selecciona al coche con el que correremos
+		cMenuManager::Get().SetAviso(false);
 		cSceneManager::Get().ResetHistoria();
 		cSceneManager::Get().LoadScene(eLoading);
 		return;
@@ -609,6 +610,7 @@ void cMenuManager::AbrirMenu(){
 			cSoundManager::Get().StopMusic();
 			cRaceControlManager::Get().SetTipoPartida(eContrarreloj);
 			cSceneManager::Get().NextHistoria();
+			cMenuManager::Get().SetAviso(false);
 			cSceneManager::Get().LoadScene(eLoading);
 			this->IniciarMenu();
 			break;
