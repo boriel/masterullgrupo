@@ -138,6 +138,7 @@ bool cGame::Init()
 
 bool cGame::LoadRace()
 {
+	
 	// Reiniciamos la física
 	cPhysicsManager::Get().Deinit();
 	cPhysicsManager::Get().Init();
@@ -241,6 +242,7 @@ void cGame::Update(float lfTimestep)
 
 	// Si la carrera ha finalizado y presionamos Enter, volvemos al menú inicial
 	if(cRaceControlManager::Get().isFinalRace() && BecomePressed(eIA_Accept)){
+		cMenuManager::Get().SetAviso(false);
 		m3DCamera.ResetAnimacionFinal();
 		// Deinicializar las librerías antes de volver al menú
 		cObjectManager::Get().VaciarObjetos();

@@ -399,6 +399,8 @@ bool cRaceControlManager::LoadXml(void)
 	TiXmlElement *lpElement;
 	lpElement =  lpElementRace->FirstChildElement ("Vehicles"); 
 
+	bool lAux=true; // Solo meteremos un coche una vez
+
 	for (lpElement=lpElement->FirstChildElement("Vehicle"); lpElement; lpElement=lpElement->NextSiblingElement()) 
 	{
 		tVehicleControl* lpVehicle = new tVehicleControl;
@@ -423,8 +425,22 @@ bool cRaceControlManager::LoadXml(void)
 			mVehicles.push_back(lpVehicle);
 		}else{
 			if(mTipoPartida!=eContrarreloj){
-				lpVehicle->isPlayer = false;
-				mVehicles.push_back(lpVehicle);
+				// Añadiremos unicamente los coches que nos hacen falta
+				if(mTipoPartida != e2Jugadores){
+					lpVehicle->isPlayer = false;
+					mVehicles.push_back(lpVehicle);
+				}else {
+					// Solo habrán dos coches, habrá que añadir el otro
+					if(cObjectManager::Get().GetCars()->at(0)->GetPlayer() == "2" && lAux && cObjectManager::Get().GetCars()->at(0)->GetModelName()==lpVehicle->msModelName){
+						lpVehicle->isPlayer = false;
+						mVehicles.push_back(lpVehicle);
+						lAux=false;
+					}else if(cObjectManager::Get().GetCars()->at(1)->GetPlayer() == "2" && lAux && cObjectManager::Get().GetCars()->at(0)->GetModelName()==lpVehicle->msModelName){
+						lpVehicle->isPlayer = false;
+						mVehicles.push_back(lpVehicle);				
+						lAux=false;
+					}
+				}
 			}
 		}		
 	}
