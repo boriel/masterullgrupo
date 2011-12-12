@@ -200,36 +200,36 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice)
 								if(mVehicles[lIndex]->msModelName==((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetModelName()) {
 									//OutputDebugString("Coche Detectado!\n");
 									if(mRaceControls[luiIndex].Tipo== "Meta") {
-												//OutputDebugString("Pasando meta!\n");	
-												// Le añadimos UNA vuelta al coche adecuado
-												if(mVehicles[lIndex]->AumentaVuelta){
-													mVehicles[lIndex]->muiNumLaps++;
-													// Reiniciamos los puntos de control
-													mVehicles[lIndex]->muiPuntoControlActual=0;
-													// Si algun coche llega al maximo se acaba la carrera
-													if (mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps) {
-														//OutputDebugString("Un coche llego a la meta");
-														if (((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPlayer()=="1"){
-															cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
-															EndRace(true);
-															OutputDebugString("Victoria\n");
-														} else {
-															cSoundManager::Get().Play(mSoundDerrota, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
-															EndRace(false);
-															OutputDebugString("Derrota\n");
-														}
-													}
-													mVehicles[lIndex]->AumentaVuelta=false;
-													OutputDebugString ("Un coche paso la meta!\n");
-													cSoundManager::Get().Play(mPasoMeta,cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition());
-													if(mVehicles[lIndex]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName())
-														if(mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps-1)
-															cSoundManager::Get().ChangeMusic("TemaPrincipalSubido.wav");
-
-													// Con esto recordaremos hace cuánto pasamos la meta
-													//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
+										//OutputDebugString("Pasando meta!\n");	
+										// Le añadimos UNA vuelta al coche adecuado
+										if(mVehicles[lIndex]->AumentaVuelta){
+											mVehicles[lIndex]->muiNumLaps++;
+											// Reiniciamos los puntos de control
+											mVehicles[lIndex]->muiPuntoControlActual=0;
+											// Si algun coche llega al maximo se acaba la carrera
+											if (mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps) {
+												//OutputDebugString("Un coche llego a la meta");
+												if (((cObjectVehicle *)cObjectManager::Get().GetCars()->at(lCocheIndice))->GetPlayer()=="1"){
+													cSoundManager::Get().Play(mSoundVictoria, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
+													EndRace(true);
+													OutputDebugString("Victoria\n");
+												} else {
+													cSoundManager::Get().Play(mSoundDerrota, cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition(),true);
+													EndRace(false);
+													OutputDebugString("Derrota\n");
 												}
-											} else {
+											}
+											mVehicles[lIndex]->AumentaVuelta=false;
+											OutputDebugString ("Un coche paso la meta!\n");
+											cSoundManager::Get().Play(mPasoMeta,cObjectManager::Get().GetCars()->at(lCocheIndice)->GetPosition());
+											if(mVehicles[lIndex]->msModelName==cObjectManager::Get().GetObjectPlayer()->GetModelName())
+												if(mVehicles[lIndex]->muiNumLaps==this->muiMaxLaps-1)
+													cSoundManager::Get().ChangeMusic("TemaPrincipalSubido.wav");
+
+											// Con esto recordaremos hace cuánto pasamos la meta
+											//mVehicles[lCocheIndice]->mTickUltimaVuelta=muiTemporizador;
+										}
+									} else {
 												int lAux =(int)atof(mRaceControls[luiIndex].Nombre.c_str());
 												//printf ("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)\n",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);
                                                 DEBUG_MSG("Un coche paso un punto de control: %i/%i. PtoControl: (%i,%i)",lAux,mVehicles[lCocheIndice]->muiPuntoControlActual,mRaceControls[luiIndex].PosX,mRaceControls[luiIndex].PosZ);

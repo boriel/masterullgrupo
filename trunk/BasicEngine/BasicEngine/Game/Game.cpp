@@ -149,7 +149,7 @@ bool cGame::LoadRace()
 	
 	// Solo seleccionamos jugador si es distinto a la campaña
 //	if(cSceneManager::Get().GetHistoria()==0){
-		cMenuManager::Get().SeleccionarJugador();
+		//cMenuManager::Get().SeleccionarJugador();
 		// Añadimos los comportamientos pertinentes
 		for(int liIndex=0;liIndex<cObjectManager::Get().GetCars()->size();liIndex++)
 		{

@@ -19,6 +19,7 @@
 #include "..\..\Graphics\GraphicManager.h"
 
 #include "RaceControlManager.h"
+#include "..\MenuManager.h"
 
 bool cObjectManager::Init() 
 {
@@ -787,7 +788,12 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 	
 	TiXmlElement *lpElementResources;
 	lpElementResources = lDoc.FirstChildElement ("Resources");
-	
+
+	int lIdPlayerAux=2; // Para la seleccion de coche
+	char aux[256];  // Mínimo 2 caracteres
+
+	int lContadorCoches=0;
+
 	if (lsResource == "Objects")
 	{
 		TiXmlElement *lpElement;
@@ -872,7 +878,18 @@ bool cObjectManager::LoadObjectsXml(std::string lsResource)
 			(*lObject).SetModelFile(lsModelFile);
 			(*lObject).SetScale(lfScale);
 			(*lObject).SetMass(lfMass);
-			(*lObject).SetPlayer(lsPlayer);
+
+			// Seleccionamos al jugador que queremos
+			if(atoi(lsPlayer.c_str())==cMenuManager::Get().GetSelectedPlayer()){
+				// Lo ponemos como player 1
+				(*lObject).SetPlayer("1");
+			}else{
+				itoa(lIdPlayerAux,aux,10);
+				(*lObject).SetPlayer(aux);
+				lIdPlayerAux++;
+			}
+		
+			//(*lObject).SetPlayer(lsPlayer);
 
 			//Lo iba a poner en una funcion, pero si esto crece en parametros como la pista pasarle los limites, el parametro descompensa. Incluye Init en los constructores
 			//Creamos tambien el objeto Físico
