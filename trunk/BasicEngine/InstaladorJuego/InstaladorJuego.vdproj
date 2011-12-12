@@ -285,6 +285,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2813F95F65EC463492F0213A236AC95E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2C4ED5BCC26842B9B1FF8A33250BA090"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -718,6 +724,12 @@
         "Entry"
         {
         "MsmKey" = "8:_690EF25743174F2EB390BAC9B09FBF1E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6B1958D1906D4B869159FA49E9FC3580"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1534,6 +1546,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E4E8229D37AA4A338AB89256C17B7019"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E560581EA7B6415386E6B3A50CFCC167"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2617,6 +2635,26 @@
             "TargetName" = "8:skeleton_calf_left.cmf"
             "Tag" = "8:"
             "Folder" = "8:_3568BE687B3148C6B638FA674BB7F4DE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2813F95F65EC463492F0213A236AC95E"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\book_page_1.jpg"
+            "TargetName" = "8:book_page_1.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4057,6 +4095,26 @@
             "TargetName" = "8:Despertador.dae"
             "Tag" = "8:"
             "Folder" = "8:_9134DE75066647119133CBFFC3A55940"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B1958D1906D4B869159FA49E9FC3580"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\book_page_2.jpg"
+            "TargetName" = "8:book_page_2.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6737,6 +6795,26 @@
             "TargetName" = "8:AcelerarProta.wav"
             "Tag" = "8:"
             "Folder" = "8:_510F21AA3EB94F80ADFAE220CFEF0254"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E560581EA7B6415386E6B3A50CFCC167"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Circuitos\\Basico03\\images\\uvw_linterna.jpg"
+            "TargetName" = "8:uvw_linterna.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
