@@ -58,14 +58,14 @@ bool cGame::Init()
 	}
 
 	cTextureManager::Get().Init(200); //Iniciando las texturas. Espacio reservado máximo para la carga=10
-	
+
 	//==============
 	//Init CAMERA-3D
 	//==============
 	m3DCamera.Init();
 	float lfAspect = (float)mProperties.muiWidth / (float)mProperties.muiHeight;
 	m3DCamera.SetPerspective (45.0f, lfAspect, 0.1f, 10000.0f);
-	cGraphicManager::Get().ActivateCamera( &m3DCamera );
+
 
 	//===================
 	//Iniciando Camara 2D
@@ -86,6 +86,37 @@ bool cGame::Init()
 	int liLuaRes = cLuaManager::Get().DoFile(LUA_FILE); //Lua	
 #endif
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	cGraphicManager::Get().ActivateCamera( &m2DCamera );
+	SetTheWorldMatrix();
+
+	cResourceHandle mPortada=cTextureManager::Get().LoadResource("CargandoInicio","./Data/Menu/CargandoInicio.jpg");
+	// Insertamos la pantalla de cargando
+	glBindTexture( GL_TEXTURE_2D, mPortada.GetKey() );
+	// Draw texture using a quad 
+	glBegin(GL_POLYGON); 
+			
+	int lAuxX=cWindow::Get().GetWidth()/2;
+	int lAuxY=cWindow::Get().GetHeight()/2;
+
+	// Top left 
+	glTexCoord2f(1.0, 1.0); 
+	glVertex2i(lAuxX,-lAuxY); 
+	// Top right 
+	glTexCoord2f(0.0, 1.0); 
+	glVertex2i(-lAuxX, -lAuxY); 
+	// Bottom right 
+	glTexCoord2f(0.0, 0.0); 
+	glVertex2i(-lAuxX, lAuxY); 
+	// Bottom left 
+	glTexCoord2f(1.0, 0.0); 
+	glVertex2i(lAuxX,lAuxY); 
+	// Finish quad drawing 
+	glEnd();
+
+	cGraphicManager::Get().SwapBuffer(); 
+
+	cGraphicManager::Get().ActivateCamera( &m3DCamera );
 	// Init Input Manager
 	cInputManager::Get().Init( kaActionMapping, eIA_Count );
 	
