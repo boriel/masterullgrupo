@@ -35,6 +35,7 @@ class cObjectVehicle : public cObjectAgent
 		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
 		void SetBehaviour();
         virtual void Init();
+        inline void CheckPointSignal() { mCurrentCheckPoint = true; } // Señaliza que se ha alcanzado el pto de control
 
 	//private:
 		// Sonidos
@@ -43,6 +44,7 @@ class cObjectVehicle : public cObjectAgent
 		Sound *mSoundCorriendo;
 		Sound *mSoundMarchaAtras;
 
+        bool mCurrentCheckPoint; // A true si se ha pasado por un punto de control
 		bool mbSuena; // Se usará para que solo suene una vez la marcha artas      
 };
 

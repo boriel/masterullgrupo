@@ -21,16 +21,19 @@ private:
     tIAState mIAState;
 
     // Subrutina que realiza la conducción
-    void DriveCar();
+    void DriveCar(float lfTimeStep);
+    cVec3 mLastPosition;
 
 public:
 	virtual void Update(float lfTimestep);
     unsigned muiCurrentPoint;
 
     cIABehaviour(): 
-        mIAState(IA_INITIAL), // Estado inicial (indefinido) de la IA
-        cChaserBaseBehaviour(),  // Llamamos al constructor del ancestro
-        muiCurrentPoint(0) {}
+    mIAState(IA_INITIAL), // Estado inicial (indefinido) de la IA
+    cChaserBaseBehaviour(),  // Llamamos al constructor del ancestro
+    muiCurrentPoint(0), // Punto de control (CheckPoint) que se va a perseguir
+    mLastPosition(0, 0, 0) // Coordenadas de la posición anterior
+    {}
 
     virtual bool Init(cObjectAgent *lpCharacter);
     inline void setIAState(const tIAState lIAState) { mIAState = lIAState; }
