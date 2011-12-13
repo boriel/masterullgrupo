@@ -56,7 +56,7 @@ bool cObjectManager::Init()
 	{
 		//mObjectVehicle[luiIndex]->SetScale(mObjectVehicle[luiIndex]->GetScale());
 		cModelManager::Get().LoadResource(mObjectVehicle[luiIndex]->GetModelName(), mObjectVehicle[luiIndex]->GetModelFile());
-        mObjectVehicle[luiIndex]->Init();
+    mObjectVehicle[luiIndex]->Init();
 	}
 
 	for (unsigned luiIndex = 0; luiIndex < mObject.size(); ++luiIndex ) 
@@ -747,6 +747,7 @@ void cObjectManager::Update(float lfTimestep)
 	{
 		mObjectVehicle[luiIndex]->Update(lfTimestep);
 #if _DEBUG
+		std::cout << "Vehicle: " << luiIndex << " -> ";
 		((cPhysicsVehicle*)mObjectVehicle[luiIndex]->GetPtrPhysicsObject())->MostrarInfo();
 #endif
 

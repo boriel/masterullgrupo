@@ -54,8 +54,8 @@
   -->
 
 	<!--<Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03PtosControl.DAE" Mass="0"  />-->
-    <Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoV2012.DAE" Mass="0"  />
-    <!-- <Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoBasico03.DAE" Mass="0"  /> -->
+    <!-- <Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoV2012.DAE" Mass="0"  /> -->
+    <Object Type="Pista2" Position="0,-5,0" ModelName="Circuito" ModelFile="./Data/Circuitos/Basico03/CircuitoV2012Vacio.DAE" Mass="0"  />
      
 
 		<!--   OBJETOS SUELTOS   -->
@@ -89,6 +89,7 @@
 		<Object Type="Despertador" Position="5, 0.5, -20" ModelName="Despertador" ModelFile="./Data/Objetos/Despertador/Despertador.dae" Scale="1" Mass="10"/>
 		-->
 
+<!--    Buenos y bien colocados
 		<Object Type="FootballSoccer" Position="15, -1, -27" ModelName="FootballSoccer" ModelFile="./Data/Objetos/FootballSoccer/FootballSoccer.DAE" Scale="1" Mass="4"/>
 
 		<Object Type="FootballSoccer" Position="-10, -1, 22" ModelName="FootballSoccer" ModelFile="./Data/Objetos/FootballSoccer/FootballSoccer.DAE" Scale="1" Mass="4"/>
@@ -98,6 +99,7 @@
 		
 
 		<Object Type="Zapato" Position="15, -1, 20" ModelName="Zapato" ModelFile="./Data/Objetos/Zapato/TENIS.dae" Scale="0.2" Mass="4"/>
+-->
 
 </Objects>
    

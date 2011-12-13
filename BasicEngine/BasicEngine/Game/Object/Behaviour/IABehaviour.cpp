@@ -81,7 +81,7 @@ void cIABehaviour::nextControlPoint()
 
 void cIABehaviour::DriveCar(float lfTimeStep)
 {
-    return; // desactivada
+    //return; // desactivada
     cVec3 lTargetVector = mTarget - mpCharacter->GetPosition();
     //cVec3 lCurrentVector0 = mpCharacter->GetLinearSpeed();
     cVec3 lCurrentVector = mpCharacter->GetPosition() - mLastPosition;
@@ -95,7 +95,7 @@ void cIABehaviour::DriveCar(float lfTimeStep)
     cObjectVehicle *lpAgent = (cObjectVehicle *)mpCharacter;
 
     if (lAngle > 0) // Está a la iquierda?
-        ((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Left);
+			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Left);
     else
         if (lAngle < 0)
             ((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Right);

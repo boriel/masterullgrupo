@@ -752,6 +752,9 @@ void cPhysicsVehicle::SpecialKeyboard(const unsigned int luiKey)
 
 }
 
+
+
+
 // declaration of callback: Solo ejecutamos el sonido si no es ninguno de ls opuntos de control.
 struct btDrawingResult : public btCollisionWorld::ContactResultCallback
 {
@@ -869,7 +872,8 @@ void cPhysicsVehicle::MostrarInfo ()
 
 	btTransform lbtTransform;
 	mpbtVehicle->getRigidBody()->getMotionState()->getWorldTransform(lbtTransform);
-	//std::cout << "Vehicle: (" << lbtTransform.getOrigin().getX() << "," <<  lbtTransform.getOrigin().getY() << "," << lbtTransform.getOrigin().getZ() << ")" << std::endl;
+	
+	std::cout << "Vehicle: (" << lbtTransform.getOrigin().getX() << "," <<  lbtTransform.getOrigin().getY() << "," << lbtTransform.getOrigin().getZ() << ")" << std::endl;
 
 	/*
 	cout << "--------------------" << endl;

@@ -87,6 +87,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_07E0CAE08DEE45A89CB879BB8A7AB626"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_08009A64250645168E71954AC9064C9A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1975,6 +1981,26 @@
             "TargetName" = "8:Color.png"
             "Tag" = "8:"
             "Folder" = "8:_CC4439018CD9400B9ADC22B3E18192DF"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_07E0CAE08DEE45A89CB879BB8A7AB626"
+            {
+            "SourcePath" = "8:..\\BasicEngine\\Data\\Menu\\CargandoInicio.jpg"
+            "TargetName" = "8:CargandoInicio.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_CBA665FD636A4B51B7BB9C6A3882786B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
