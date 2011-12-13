@@ -91,9 +91,30 @@ void cObjectAgent::SetRoll(float lfNewRoll)
 //Devuelve el vector Front del personaje (o sea, el vector que indica hacia donde mira)
 cVec3 cObjectAgent::GetFront() 
 {
-    float lfYaw = GetYaw();
+    cQuaternion lTmp = mpPhysicsObject->GetQuatRotation();
+    float lfYaw, lfPitch, lfRoll;
+    cVec3 lResult;
 
-    return cVec3( sinf(lfYaw), 0.0f, cosf(lfYaw) );
+    lTmp.AsEuler(lfYaw, lfPitch, lfRoll);
+    
+
+    //float lfYaw = GetYaw();
+    return cVec3(cosf(lfYaw), 0.0f, sinf(lfYaw) );
+
+    /*
+Function PitchYawToVector(pitch#,yaw#,dest.Vector)
+	dest\x = -Cos(pitch) * Sin(yaw)
+	dest\y = -Sin(pitch)
+	dest\z = Cos(pitch) * Cos(yaw)
+	NormalizarVector(dest)
+End Function
+*/
+   	lResult.x = -cos(lfPitch) * sin(lfYaw);
+	lResult.y = sin(lfPitch);
+	lResult.z = cos(lfPitch) * cos(lfYaw);
+    lResult.Normalize();
+	
+    return lResult;
 }
 
 
