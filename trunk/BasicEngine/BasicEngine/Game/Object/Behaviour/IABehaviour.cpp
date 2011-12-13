@@ -143,14 +143,15 @@ void cIABehaviour::DriveCar(float lfTimeStep)
     }
             
     if (((lAngle > 0) && (lAngle2 > 0)) || ((lAngle < 0) && (lAngle2 < 0)))
-        if (abs(lAngle) > (PI / 2.0))
+        if ((abs(lAngle) > (PI / 2.0)) && mpCharacter->GetSpeed() > 10)
             pressDOWN();
         else
             pressUP();
     else { // Si nos vamos a pasar, disminuimos la velocidad lineal
-        releaseUP();
-        if ( (((float)rand()) / RAND_MAX) < abs(lAngle) / (3.141592654 / 2) )
-            pressDOWN();
+        if (mpCharacter->GetSpeed() > 10)
+            releaseUP();
+        //if ( (((float)rand()) / RAND_MAX) < abs(lAngle) / (3.141592654 / 2) )
+        //    pressDOWN();
     }
 
     mLastPosition = mpCharacter->GetPosition(); // Actualizamos la posición
