@@ -59,7 +59,7 @@ void cPlayerBehaviour::Update(float lfTimeStep)
 			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Up);
 		if (BecomeReleased(eIA_Down))
 			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Down);
-	
+/*	
 		//Si no hay giro centramos las ruedas, para ponerlas en su sitio
 		if (!(BecomePressed(eIA_Left) || IsPressed(eIA_Left) || BecomePressed(eIA_Right) || IsPressed(eIA_Right)))
 			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->CentrandoRuedas();
@@ -67,6 +67,7 @@ void cPlayerBehaviour::Update(float lfTimeStep)
 		//ver si está acelerando
 		if (!(BecomePressed(eIA_Up) || IsPressed(eIA_Up)))
 			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->DesAcelerar();
+*/
 	}
 }
 

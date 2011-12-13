@@ -38,6 +38,7 @@ enum eInputActions {
 	eIA_Accept,
 	eIA_Reload,
 	eIA_Drift,
+	eIA_Colon,
 
 	eIA_Count
 };
