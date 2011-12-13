@@ -80,7 +80,8 @@ void cIABehaviour::Update(float lfTimestep)
 void cIABehaviour::nextControlPoint()
 {
     muiCurrentPoint = (++muiCurrentPoint) % RACECONTROLMANAGER.GetNumOfRaceControlPoints();
-    mTarget = RACECONTROLMANAGER.GetRaceControlPoint(muiCurrentPoint);
+    //mTarget = RACECONTROLMANAGER.GetRaceControlPoint(muiCurrentPoint);
+    mTarget = RACECONTROLMANAGER.GetPositionPuntoControl(muiCurrentPoint);
     ((cObjectVehicle *)mpCharacter)->mCurrentCheckPoint = false;
 }
 
