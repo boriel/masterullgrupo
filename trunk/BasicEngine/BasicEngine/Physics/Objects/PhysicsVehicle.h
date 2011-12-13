@@ -121,6 +121,24 @@ class cPhysicsVehicle : public cPhysicsObject
 		bool mbAcelerando;
 		bool gbMarchaAtras; // Controlaremos cuando estamos en la marcha atrás o hacia adelante
 
+		float	gfEngineForce;
+float	gfBreakingForce;
+
+float	gfMaxEngineForce; //this should be engine/velocity dependent  //2000.f
+float	gfMaxBreakingForce;
+float	gfMaxBackForce;
+
+	bool	gbCocheParado;// Controlaremos si el coche está en movimiento o no
+float	gfVehicleSteering;
+float	gfSteeringIncrement;
+float	gfSteeringClamp;
+float	gfWheelRadius;
+float	gfWheelWidth;
+float	gfWheelFriction; //BT_LARGE_FLOAT;
+float	gfSuspensionStiffness;
+float	gfSuspensionDamping;
+float	gfSuspensionCompression;
+float	gfRollInfluence;
 };
 
 

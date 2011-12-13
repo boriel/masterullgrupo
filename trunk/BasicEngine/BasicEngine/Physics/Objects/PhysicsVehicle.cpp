@@ -37,29 +37,14 @@
 ///btRaycastVehicle is the interface for the constraint that implements the raycast vehicle
 ///notice that for higher-quality slow-moving vehicles, another approach might be better
 ///implementing explicit hinged-wheel constraints with cylinder collision, rather then raycasts
-float	gfEngineForce = 0.f;
-float	gfBreakingForce = 0.f;
 
-float	gfMaxEngineForce = 1500.f; //this should be engine/velocity dependent  //2000.f
-float	gfMaxBreakingForce = 100.f;
-float	gfMaxBackForce = 1000.f;
 
 const float gkfAcelerar = 20.f;  //cuando acelera o lo deja presionado
 const float gkfDesAcelerar = 5.f;  //cuando suelta el acelerador
 const float gkfFrenar = 20.f;
 
 
-bool	gbCocheParado = true; // Controlaremos si el coche está en movimiento o no
-float	gfVehicleSteering = 0.f;
-float	gfSteeringIncrement = 0.02f;
-float	gfSteeringClamp = 0.3f;
-float	gfWheelRadius = 0.5f;
-float	gfWheelWidth = 0.4f;
-float	gfWheelFriction = 1000; //BT_LARGE_FLOAT;
-float	gfSuspensionStiffness = 20.f;
-float	gfSuspensionDamping = 2.3f;
-float	gfSuspensionCompression = 4.4f;
-float	gfRollInfluence = 0.1f;//1.0f;
+
 
 
 btScalar gbtSuspensionRestLength(0.6f);
@@ -95,6 +80,25 @@ cPhysicsVehicle::cPhysicsVehicle()
 	//m_maxCameraDistance(10.f)
 	//m_indexVertexArrays(0)
 	//m_vertices(0)
+
+	gfEngineForce = 0.f;
+	gfBreakingForce = 0.f;
+
+	gfMaxEngineForce = 1500.f; //this should be engine/velocity dependent  //2000.f
+	gfMaxBreakingForce = 100.f;
+	gfMaxBackForce = 1000.f;
+
+	gbCocheParado = true; // Controlaremos si el coche está en movimiento o no
+	gfVehicleSteering = 0.f;
+	gfSteeringIncrement = 0.02f;
+	gfSteeringClamp = 0.3f;
+	gfWheelRadius = 0.5f;
+	gfWheelWidth = 0.4f;
+	gfWheelFriction = 1000; //BT_LARGE_FLOAT;
+	gfSuspensionStiffness = 20.f;
+	gfSuspensionDamping = 2.3f;
+	gfSuspensionCompression = 4.4f;
+	gfRollInfluence = 0.1f;//1.0f;
 }
 
 cPhysicsVehicle::~cPhysicsVehicle() 
