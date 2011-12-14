@@ -47,6 +47,7 @@ public:
     inline void setIAState(const tIAState lIAState) { mIAState = lIAState; }
     inline tIAState getIAState() { return mIAState; }
     void nextControlPoint(); // Pasa al siguiente punto de control
+	void RenderDebug();
 
     // Efectores
     // Envía la señal de soltar tecla izquierda pulsada al agente
