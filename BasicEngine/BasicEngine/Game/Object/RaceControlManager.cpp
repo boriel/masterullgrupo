@@ -259,7 +259,7 @@ void cRaceControlManager::ComprobarColision(unsigned lCocheIndice)
 														if(mVehicles[lIndex]->msModelName==cObjectManager::Get().GetCars()->at(luiIndex)->GetModelName()){
 															mVehicles[lIndex]->PosicionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetPosition();
 															mVehicles[lIndex]->PosicionPtoControl.y=mVehicles[lCocheIndice]->PosicionPtoControl.y+10;
-															mVehicles[lIndex]->RotacionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetRotacionInicial();
+															mVehicles[lIndex]->RotacionPtoControl=cObjectManager::Get().GetCars()->at(luiIndex)->GetPtrPhysicsObject()->GetQuatRotation();
 														}
 													}
 												}

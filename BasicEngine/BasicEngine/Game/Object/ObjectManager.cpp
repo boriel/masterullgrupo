@@ -1304,7 +1304,7 @@ void cObjectManager::ReloadVehicle()
 
 		//mObjectVehicle[0]->SetPosition (lvPosicionInicial);
 
-		cPhysicsObject* lpPhysicsObject = mObjectVehicle[0]->GetPtrPhysicsObject();
+		cPhysicsObject* lpPhysicsObject = lObjectVehicle->GetPtrPhysicsObject();
 
 		cPhysicsVehicle* lpPhysicsVehicle = (cPhysicsVehicle*)lpPhysicsObject;
 
@@ -1317,10 +1317,12 @@ void cObjectManager::ReloadVehicle()
 		cVec3 Position = cRaceControlManager::Get().GetPositionPuntoControl(lPtoControl);
 		Position.y = lAux+10;
 		*/
+		cVec3 lPosition = cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName());
+		lPosition.y+=5;
 		// POR ALGUN MOTIVO NO FUNCIONA, NO DEVUELVE CORRECTAMENTE LA POSICION DEL PUNTO DE CONTROL. ARREGLAR.
 		//lpPhysicsVehicle->SetPosition(cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName()), cRaceControlManager::Get().GetPtoControlRotationFromCar(lObjectVehicle->GetModelName()));
-        lpPhysicsVehicle->SetPosition(cRaceControlManager::Get().GetPtoControlPositionFromCar(lObjectVehicle->GetModelName()));
-		
+        lpPhysicsVehicle->SetPosition(lPosition);
+		//lpPhysicsVehicle->SetQuatRotation(cRaceControlManager::Get().GetPtoControlRotationFromCar(lObjectVehicle->GetModelName()));
 		//lpPhysicsVehicle->SetPosition(lvPosicionInicial, lQuat);
 
 		//mPosition = GetPosicionInicial();

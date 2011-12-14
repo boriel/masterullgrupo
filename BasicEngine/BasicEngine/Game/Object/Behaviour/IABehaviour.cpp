@@ -5,6 +5,7 @@
 #include "../RaceControlManager.h"
 #include "../ObjectVehicle.h"
 #include "../../../Utility/Debug.h"
+#include "../../../Graphics/GraphicManager.h"
 
 #define PI 3.141592654
 
@@ -46,7 +47,7 @@ void cIABehaviour::Update(float lfTimestep)
         return;
 
     case IA_INITIAL: 
-        muiCurrentPoint = 0;
+        muiCurrentPoint = 2;
         setIAState(IA_WAIT); // Iniciamos la carrera
         return;
 
@@ -141,7 +142,7 @@ void cIABehaviour::DriveCar(float lfTimeStep)
         releaseLEFT();
         releaseRIGHT();
     }
-            
+        
     if (((lAngle > 0) && (lAngle2 > 0)) || ((lAngle < 0) && (lAngle2 < 0)))
         if ((abs(lAngle) > (PI / 2.0)) && mpCharacter->GetSpeed() > 10)
             pressDOWN();
@@ -157,7 +158,16 @@ void cIABehaviour::DriveCar(float lfTimeStep)
     mLastPosition = mpCharacter->GetPosition(); // Actualizamos la posición
 }
 
+void cIABehaviour::RenderDebug(){
+	// Pintamos el punto de control objetivo
+	//mTarget.y+=20;
 
+	//cGraphicManager::Get().DrawPoint(mpCharacter->GetPosition(),cVec3(1,0,0));
+
+	//cGraphicManager::Get().DrawLine(mTarget,mpCharacter->GetPosition(),cVec3(1,0,0));
+
+	//cGraphicManager::Get().DrawLine(mpCharacter->GetPosition(),mTarget,cVec3(1,0,0));
+}
 
 // Efectores
 // Envía la señal de soltar tecla izquierda pulsada al agente

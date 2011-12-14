@@ -210,7 +210,7 @@ void cObjectVehicle::Update( float lfTimestep )
 
 //void cObjectPlayer::Render (cMatrix &lWorld) 
 void cObjectVehicle::Render() 
-{
+{	((cIABehaviour*)mpActiveBehaviour)->RenderDebug();
 	//cObject::Render(lWorld);
 	cObject::Render();
 
