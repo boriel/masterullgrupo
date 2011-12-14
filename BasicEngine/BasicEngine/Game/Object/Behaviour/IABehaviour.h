@@ -28,6 +28,7 @@ private:
     bool keyLEFTpressed;
     bool keyRIGHTpressed;
 
+
 public:
 	virtual void Update(float lfTimestep);
     unsigned muiCurrentPoint;

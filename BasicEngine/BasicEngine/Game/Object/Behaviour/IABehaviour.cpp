@@ -7,7 +7,7 @@
 #include "../../../Utility/Debug.h"
 #include "../../../Graphics/GraphicManager.h"
 
-#define PI 3.141592654
+//#define PI 3.141592654
 
 // Devuelve el ángulo formado por 2 vectores (en radianes)
 // sobre el plano XZ
@@ -90,13 +90,13 @@ void cIABehaviour::nextControlPoint()
 void cIABehaviour::DriveCar(float lfTimeStep)
 {
     //return; // desactivada
-    cVec3 lPosition = mpCharacter->GetPosition();
+    cVec3 lPosition = mpCharacter->GetPhysPosition();
     cVec3 lVelocity = mpCharacter->GetLinearSpeed();
     cVec3 lAngVelocity = mpCharacter->GetAngularSpeed();
     cVec3 lTargetVector = mTarget - lPosition;
     
-    //cVec3 lCurrentVector = mpCharacter->GetLinearSpeed();
-    cVec3 lCurrentVector = mpCharacter->GetPosition() - mLastPosition;
+    cVec3 lCurrentVector = mpCharacter->GetLinearSpeed();
+    //cVec3 lCurrentVector = mpCharacter->GetPosition() - mLastPosition;
     //cVec3 lCurrentVector = mpCharacter->GetFront(); // No va
     cVec3 lPrediction; // Estimación de donde acabará el coche en el siguiente lfTimestep
 
@@ -155,18 +155,12 @@ void cIABehaviour::DriveCar(float lfTimeStep)
         //    pressDOWN();
     }
 
-    mLastPosition = mpCharacter->GetPosition(); // Actualizamos la posición
-}
-
-void cIABehaviour::RenderDebug(){
-	// Pintamos el punto de control objetivo
-	//mTarget.y+=20;
-
-	//cGraphicManager::Get().DrawPoint(mpCharacter->GetPosition(),cVec3(1,0,0));
-
-	//cGraphicManager::Get().DrawLine(mTarget,mpCharacter->GetPosition(),cVec3(1,0,0));
-
-	//cGraphicManager::Get().DrawLine(mpCharacter->GetPosition(),mTarget,cVec3(1,0,0));
+    /*
+    cVec3 delta = mpCharacter->GetPosition() - mLastPosition;
+    if (delta.Length() < 0.3) // atascado?
+        pressDOWN();
+    */
+    mLastPosition = mpCharacter->GetPhysPosition(); // Actualizamos la posición
 }
 
 // Efectores
@@ -177,7 +171,7 @@ void cIABehaviour::releaseLEFT(void)
         return;
 
     keyLEFTpressed = false;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Left);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboardRelease(eIA_Left);
 }
 
 
@@ -188,7 +182,7 @@ void cIABehaviour::releaseRIGHT(void)
         return;
     
     keyRIGHTpressed = false;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Right);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboardRelease(eIA_Right);
 }
 
 
@@ -199,7 +193,7 @@ void cIABehaviour::releaseUP(void)
         return;
     
     keyUPpressed = false;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Up);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboardRelease(eIA_Up);
 }
 
 
@@ -210,7 +204,7 @@ void cIABehaviour::releaseDOWN(void)
         return;
     
     keyDOWNpressed = false;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Down);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboardRelease(eIA_Down);
 }
 
 
@@ -222,7 +216,7 @@ void cIABehaviour::pressLEFT(void)
 
     releaseRIGHT();
     keyLEFTpressed = true;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboard(eIA_Left);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Left);
 }
 
 
@@ -234,7 +228,7 @@ void cIABehaviour::pressRIGHT(void)
 
     releaseLEFT();
     keyRIGHTpressed = true;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboard(eIA_Right);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Right);
 }
 
 
@@ -246,7 +240,7 @@ void cIABehaviour::pressUP(void)
 
     releaseDOWN();
     keyUPpressed = true;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboard(eIA_Up);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Up);
 }
 
 // Envía la señal de tecla retroceso pulsada al agente
@@ -257,5 +251,23 @@ void cIABehaviour::pressDOWN(void)
 
     releaseUP();
     keyDOWNpressed = true;
-    ((cPhysicsVehicle*)((cObjectVehicle *)mpCharacter)->mpPhysicsObject)->SpecialKeyboard(eIA_Down);
+    ((cObjectVehicle *)mpCharacter)->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Down);
 }
+
+
+void cIABehaviour::RenderDebug()
+{
+    // Pintamos el punto de control objetivo
+    // mTarget.y += 20;
+    if (((cObjectVehicle *)mpCharacter)->GetPlayer() == __PLAYER_ID)
+        return; // El del jugador no
+
+    cGraphicManager::Get().DrawPoint(mTarget,cVec3(1,0,0));
+    cGraphicManager::Get().DrawLine(mpCharacter->GetPhysPosition(), mTarget, cVec3(1,0,0));
+    DEBUG_MSG("Posicion vehículo IA: %f %f %f", 
+        mpCharacter->GetPhysPosition().x,
+        mpCharacter->GetPhysPosition().y,
+        mpCharacter->GetPhysPosition().z);
+    // mTarget.y -= 20;
+}
+

@@ -66,6 +66,7 @@ class cObject
         inline cVec3 GetLinearSpeed() { return mpPhysicsObject->GetLinearSpeed();} // Velocidad en los 3 ejes
         inline float GetSpeed() { return mpPhysicsObject->GetSpeed();} // El módulo de la velocidad (módulo del vector anterior)
         inline cVec3 GetAngularSpeed() { return mpPhysicsObject->GetAngSpeed();} // Velocidad Angular (velocidad de giro) en cada eje
+        inline cVec3 GetPhysPosition() { return mpPhysicsObject->GetPosition();}
 
 		//para pruebas de recarga
 		inline cVec3 GetPosicionInicial () { return mPosicionInicial; }

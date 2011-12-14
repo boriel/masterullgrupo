@@ -30,12 +30,14 @@ class cObjectVehicle : public cObjectAgent
 		void StopSounds();
 		void Reload ();
 
-        cPhysicsVehicle* mpPhysicsObject;
+        //cPhysicsVehicle* mpPhysicsObject;
 		inline void SetPtrPhysicsVehicle (cPhysicsVehicle* lPhysicsObject) { mpPhysicsObject = lPhysicsObject; }
-		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return mpPhysicsObject; }
+		inline cPhysicsVehicle* GetPtrPhysicsVehicle () {return (cPhysicsVehicle *)mpPhysicsObject; }
 		void SetBehaviour();
         virtual void Init();
         inline void CheckPointSignal() { mCurrentCheckPoint = true; } // Señaliza que se ha alcanzado el pto de control
+
+        virtual inline cPhysicsObject* GetPtrPhysicsObject () {return mpPhysicsObject; }
 
 	//private:
 		// Sonidos
