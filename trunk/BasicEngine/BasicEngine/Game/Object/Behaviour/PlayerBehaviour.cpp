@@ -40,13 +40,13 @@ void cPlayerBehaviour::Update(float lfTimeStep)
 		}
 		//Vamos a probar el movimiento del coche, por ahora directamente con la fisica  (no poner los else para que pueda usarse 2 teclas presionadas)
 		if (BecomePressed(eIA_Up) || IsPressed(eIA_Up)) 
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Up);
+			lpAgent->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Up);
 		if (BecomePressed(eIA_Down) || IsPressed(eIA_Down)) 
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Down);
+			lpAgent->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Down);
 		if (BecomePressed(eIA_Left) || IsPressed(eIA_Left)) 
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Left);
+			lpAgent->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Left);
 		if (BecomePressed(eIA_Right) || IsPressed(eIA_Right)) 
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboard(eIA_Right);
+			lpAgent->GetPtrPhysicsVehicle()->SpecialKeyboard(eIA_Right);
 
 		// Activar/Desactivar Derrape
 		// if (BecomePressed(eIA_Drift) || IsPressed(eIA_Drift)) 
@@ -56,17 +56,17 @@ void cPlayerBehaviour::Update(float lfTimeStep)
 		///// ---------------------------------
 
 		if (BecomeReleased(eIA_Up))
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Up);
+			lpAgent->GetPtrPhysicsVehicle()->SpecialKeyboardRelease(eIA_Up);
 		if (BecomeReleased(eIA_Down))
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->SpecialKeyboardRelease(eIA_Down);
+			lpAgent->GetPtrPhysicsVehicle()->SpecialKeyboardRelease(eIA_Down);
 
 		//Si no hay giro centramos las ruedas, para ponerlas en su sitio
 		if (!(BecomePressed(eIA_Left) || IsPressed(eIA_Left) || BecomePressed(eIA_Right) || IsPressed(eIA_Right)))
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->CentrandoRuedas();
+			lpAgent->GetPtrPhysicsVehicle()->CentrandoRuedas();
 
 		//ver si está acelerando
 		if (!(BecomePressed(eIA_Up) || IsPressed(eIA_Up)))
-			((cPhysicsVehicle*)lpAgent->mpPhysicsObject)->DesAcelerar();
+			lpAgent->GetPtrPhysicsVehicle()->DesAcelerar();
 			
 	}
 }

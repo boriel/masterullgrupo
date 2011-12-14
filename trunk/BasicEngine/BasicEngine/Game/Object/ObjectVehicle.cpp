@@ -215,6 +215,7 @@ void cObjectVehicle::Render()
 	cObject::Render();
 
 #ifdef _DEBUG
+    //((cIABehaviour *)GetActiveBehaviour())->RenderDebug();
 	//((cPhysicsVehicle*) mPhysicsObject)->RenderObjectVehicleDebug();
 #endif
 	//cPhysicsObject::DrawTransform(lbtTransform, 1.0);
