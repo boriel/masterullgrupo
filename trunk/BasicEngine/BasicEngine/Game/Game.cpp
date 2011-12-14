@@ -183,7 +183,7 @@ bool cGame::LoadRace()
 //	if(cSceneManager::Get().GetHistoria()==0){
 		//cMenuManager::Get().SeleccionarJugador();
 		// Añadimos los comportamientos pertinentes
-		for(int liIndex=0;liIndex<cObjectManager::Get().GetCars()->size();liIndex++)
+		for(unsigned int liIndex=0;liIndex<cObjectManager::Get().GetCars()->size();liIndex++)
 		{
 			((cObjectVehicle *)cObjectManager::Get().GetCars()->at(liIndex))->SetBehaviour();
 		}
